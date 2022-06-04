@@ -281,11 +281,11 @@
 		C4667A58284B74F100A4A759 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				6F22E536284B9D470069D268 /* Fonts */,
-				6F22E535284B9D400069D268 /* Extensions */,
-				6F22E534284B9D3B0069D268 /* Constants */,
-				6F22E533284B9D370069D268 /* Base */,
 				C4667A5D284B752600A4A759 /* Assets */,
+				6F22E533284B9D370069D268 /* Base */,
+				6F22E534284B9D3B0069D268 /* Constants */,
+				6F22E535284B9D400069D268 /* Extensions */,
+				6F22E536284B9D470069D268 /* Fonts */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";

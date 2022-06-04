@@ -20,25 +20,25 @@ struct ContentView: View {
   var body: some View {
     TabView(selection: $selection) {
       //            HomeView()
-      Color.blue
+      HomeView()
         .tabItem {
           Image(systemName: "person.3.fill")
           Text("홈")
         }
         .tag(Tab.home)
-      Color.green
+      CalendarView()
         .tabItem {
           Image(systemName: "calendar")
           Text("캘린더")
         }
         .tag(Tab.calendar)
-      Color.red
+      AlbumView()
         .tabItem {
           Image(systemName: "book.closed")
           Text("엘범")
         }
         .tag(Tab.album)
-      Color.yellow
+      SettingsView()
         .tabItem {
           Image(systemName: "gearshape.fill")
           Text("설정")

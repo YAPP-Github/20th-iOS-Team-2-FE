@@ -96,8 +96,15 @@
 				A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */,
 				1CBE8172BD1C8B15C2F363BF /* Pods-SofaTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		0A8D9D89284B8D9D00651C16 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		90164B8C881D23443C7F01C5 /* Frameworks */ = {
@@ -138,6 +145,7 @@
 				C4667A2E284B6FF200A4A759 /* SofaApp.swift */,
 				C4667A58284B74F100A4A759 /* Configuration */,
 				C4667A34284B6FF400A4A759 /* Sources */,
+				0A8D9D89284B8D9D00651C16 /* Preview Content */,
 			);
 			path = Sofa;
 			sourceTree = "<group>";
@@ -213,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
-				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";

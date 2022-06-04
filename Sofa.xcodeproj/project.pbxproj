@@ -190,7 +190,8 @@
 			children = (
 				6F22E53D284B9D640069D268 /* Constants.swift */,
 			);
-			path = Constants;
+			name = Constants;
+			path = Base/Constants;
 			sourceTree = "<group>";
 		};
 		6F22E535284B9D400069D268 /* Extensions */ = {
@@ -254,8 +255,8 @@
 		C4667A34284B6FF400A4A759 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6F22E52E284B9D220069D268 /* Network */,
 				6F22E52D284B9D1D0069D268 /* Models */,
+				6F22E52E284B9D220069D268 /* Network */,
 				C4667A5F284B758500A4A759 /* View */,
 			);
 			path = Sources;
@@ -305,8 +306,8 @@
 				C4667A30284B6FF200A4A759 /* ContentView.swift */,
 				6F22E51E284B9CB60069D268 /* Welcome */,
 				6F22E51F284B9CBA0069D268 /* Home */,
-				6F22E522284B9CDC0069D268 /* Album */,
 				6F22E521284B9CD40069D268 /* Calendar */,
+				6F22E522284B9CDC0069D268 /* Album */,
 				6F22E520284B9CC30069D268 /* Settings */,
 			);
 			path = View;

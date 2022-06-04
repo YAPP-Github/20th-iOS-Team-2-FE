@@ -27,6 +27,7 @@
 		C4667A40284B6FF400A4A759 /* SofaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A3F284B6FF400A4A759 /* SofaTests.swift */; };
 		C4667A4A284B6FF400A4A759 /* SofaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A49284B6FF400A4A759 /* SofaUITests.swift */; };
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
+		C4667A87284BA99800A4A759 /* NavigationBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */; };
 		F3C6CFF8EE3699805063FBB2 /* Pods_Sofa_SofaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */; };
 		F4C6071CC5A787C35479A7E7 /* Pods_SofaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639E791ADDF619043B6A741F /* Pods_SofaTests.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +81,7 @@
 		C4667A45284B6FF400A4A759 /* SofaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A49284B6FF400A4A759 /* SofaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITests.swift; sourceTree = "<group>"; };
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWithButton.swift; sourceTree = "<group>"; };
 		E0A02E1DB0E3E122046A066D /* Pods-Sofa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa.release.xcconfig"; path = "Target Support Files/Pods-Sofa/Pods-Sofa.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				6F22E523284B9CF00069D268 /* AlbumView.swift */,
+				C4667A84284BA97000A4A759 /* SubViews */,
 			);
 			path = Album;
 			sourceTree = "<group>";
@@ -316,6 +319,22 @@
 				6F22E520284B9CC30069D268 /* Settings */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C4667A84284BA97000A4A759 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C4667A85284BA98D00A4A759 /* NavigationBar */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C4667A85284BA98D00A4A759 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +580,7 @@
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
 				6F22E530284B9D2B0069D268 /* Models.swift in Sources */,
+				C4667A87284BA99800A4A759 /* NavigationBarWithButton.swift in Sources */,
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,
 				6F22E532284B9D330069D268 /* Network.swift in Sources */,
 				6F22E53E284B9D640069D268 /* Constants.swift in Sources */,

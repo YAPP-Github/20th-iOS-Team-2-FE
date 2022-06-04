@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct AlbumView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  var body: some View {
+    NavigationView {
+      ScrollView {
+        
+      }
+      .background(Color.red)
+      .navigaionBarWithButtonStyle("앨범")
     }
+  }
 }
 
 struct AlbumView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumView()
-    }
+  static var previews: some View {
+    AlbumView()
+  }
 }

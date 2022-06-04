@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A026875284BA8B700E7AF4A /* LoginView.swift */; };
 		187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */; };
 		6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E523284B9CF00069D268 /* AlbumView.swift */; };
 		6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E525284B9CFD0069D268 /* CalendarView.swift */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A026875284BA8B700E7AF4A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		0A026877284BA9A300E7AF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBE8172BD1C8B15C2F363BF /* Pods-SofaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.release.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A02CB536760CF657C4244F9 /* Pods-Sofa-SofaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa-SofaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				6F22E52B284B9D190069D268 /* WelcomeView.swift */,
+				0A026875284BA8B700E7AF4A /* LoginView.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -244,6 +248,7 @@
 		C4667A2D284B6FF200A4A759 /* Sofa */ = {
 			isa = PBXGroup;
 			children = (
+				0A026877284BA9A300E7AF4A /* Info.plist */,
 				C4667A2E284B6FF200A4A759 /* SofaApp.swift */,
 				C4667A58284B74F100A4A759 /* Configuration */,
 				C4667A34284B6FF400A4A759 /* Sources */,
@@ -323,6 +328,7 @@
 				C4667A27284B6FF200A4A759 /* Sources */,
 				C4667A28284B6FF200A4A759 /* Frameworks */,
 				C4667A29284B6FF200A4A759 /* Resources */,
+				139511511FB3B3CE650F2A24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,6 +366,7 @@
 				C4667A41284B6FF400A4A759 /* Sources */,
 				C4667A42284B6FF400A4A759 /* Frameworks */,
 				C4667A43284B6FF400A4A759 /* Resources */,
+				57D937420589C661CCFD68FB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -441,6 +448,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		139511511FB3B3CE650F2A24 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sofa/Pods-Sofa-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sofa/Pods-Sofa-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sofa/Pods-Sofa-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		32BDBF7A3EF775C1963BB4F7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,6 +485,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57D937420589C661CCFD68FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		69EC5C871DE917C1F1773404 /* [CP] Check Pods Manifest.lock */ = {
@@ -522,6 +563,7 @@
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,
 				6F22E532284B9D330069D268 /* Network.swift in Sources */,
 				6F22E53E284B9D640069D268 /* Constants.swift in Sources */,
+				0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */,
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
 				6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */,
 				C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */,
@@ -689,6 +731,7 @@
 				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sofa/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -720,6 +763,7 @@
 				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sofa/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

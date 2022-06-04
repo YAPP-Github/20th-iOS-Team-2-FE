@@ -95,19 +95,20 @@
 			isa = PBXGroup;
 			children = (
 				C4667A2E284B6FF200A4A759 /* SofaApp.swift */,
-				C4667A30284B6FF200A4A759 /* ContentView.swift */,
-				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
-				C4667A34284B6FF400A4A759 /* Preview Content */,
+				C4667A58284B74F100A4A759 /* Configuration */,
+				C4667A34284B6FF400A4A759 /* Sources */,
 			);
 			path = Sofa;
 			sourceTree = "<group>";
 		};
-		C4667A34284B6FF400A4A759 /* Preview Content */ = {
+		C4667A34284B6FF400A4A759 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
+				C4667A60284B758900A4A759 /* Models */,
+				C4667A5E284B758200A4A759 /* Network */,
+				C4667A5F284B758500A4A759 /* View */,
 			);
-			path = "Preview Content";
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		C4667A3E284B6FF400A4A759 /* SofaTests */ = {
@@ -125,6 +126,134 @@
 				C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */,
 			);
 			path = SofaUITests;
+			sourceTree = "<group>";
+		};
+		C4667A58284B74F100A4A759 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				C4667A5D284B752600A4A759 /* Assets */,
+				C4667A5C284B752200A4A759 /* Constants */,
+				C4667A5B284B751F00A4A759 /* Base */,
+				C4667A5A284B751E00A4A759 /* Extensions */,
+				C4667A59284B751A00A4A759 /* Fonts */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		C4667A59284B751A00A4A759 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C4667A5A284B751E00A4A759 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C4667A5B284B751F00A4A759 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C4667A5C284B752200A4A759 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		C4667A5D284B752600A4A759 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
+				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		C4667A5E284B758200A4A759 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C4667A5F284B758500A4A759 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4667A30284B6FF200A4A759 /* ContentView.swift */,
+				C4667A61284B75A900A4A759 /* Welcome */,
+				C4667A64284B75EE00A4A759 /* Home */,
+				C4667A65284B75FA00A4A759 /* Calendar */,
+				C4667A66284B760500A4A759 /* Album */,
+				C4667A67284B764400A4A759 /* Settings */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4667A60284B758900A4A759 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C4667A61284B75A900A4A759 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				C4667A63284B75D400A4A759 /* Login */,
+				C4667A62284B75D000A4A759 /* Register */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		C4667A62284B75D000A4A759 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		C4667A63284B75D400A4A759 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		C4667A64284B75EE00A4A759 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Home;
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		C4667A65284B75FA00A4A759 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		C4667A66284B760500A4A759 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+		C4667A67284B764400A4A759 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

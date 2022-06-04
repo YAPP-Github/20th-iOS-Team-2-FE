@@ -6,7 +6,9 @@ target 'Sofa' do
   use_frameworks!
 
   # Pods for Sofa
-
+  pod 'KakaoSDKCommon'
+  pod 'KakaoSDKAuth'
+  pod 'KakaoSDKUser'
   target 'SofaTests' do
     inherit! :search_paths
     # Pods for testing

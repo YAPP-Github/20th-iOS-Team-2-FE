@@ -302,12 +302,12 @@
 		C4667A5F284B758500A4A759 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C4667A30284B6FF200A4A759 /* ContentView.swift */,
+				6F22E51E284B9CB60069D268 /* Welcome */,
+				6F22E51F284B9CBA0069D268 /* Home */,
 				6F22E522284B9CDC0069D268 /* Album */,
 				6F22E521284B9CD40069D268 /* Calendar */,
 				6F22E520284B9CC30069D268 /* Settings */,
-				6F22E51F284B9CBA0069D268 /* Home */,
-				6F22E51E284B9CB60069D268 /* Welcome */,
-				C4667A30284B6FF200A4A759 /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

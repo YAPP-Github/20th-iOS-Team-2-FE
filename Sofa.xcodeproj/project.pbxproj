@@ -99,14 +99,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		0A8D9D89284B8D9D00651C16 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		90164B8C881D23443C7F01C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +137,6 @@
 				C4667A2E284B6FF200A4A759 /* SofaApp.swift */,
 				C4667A58284B74F100A4A759 /* Configuration */,
 				C4667A34284B6FF400A4A759 /* Sources */,
-				0A8D9D89284B8D9D00651C16 /* Preview Content */,
 			);
 			path = Sofa;
 			sourceTree = "<group>";
@@ -220,6 +211,7 @@
 		C4667A5D284B752600A4A759 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
 				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -666,7 +658,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
 				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -697,7 +689,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
 				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -20,11 +20,11 @@ struct AlbumView: View {
           .opacity(0) // 불투명
           AlbumRow(album: album)
         }
-        .listRowBackground(Color.init(hex: "#FAF8F0"))
+        .listRowBackground(Color.init(hex: "#FAF8F0")) // 임시
       }
       .listStyle(PlainListStyle())
       .padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
-      .background(Color.init(hex: "#FAF8F0"))
+      .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarWithButtonStyle("앨범", "plus")
     }
   }

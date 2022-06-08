@@ -28,6 +28,7 @@
 		C4667A4A284B6FF400A4A759 /* SofaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A49284B6FF400A4A759 /* SofaUITests.swift */; };
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
 		C4667A87284BA99800A4A759 /* NavigationBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */; };
+		C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31CA284F8CBB0049F2C4 /* Album.swift */; };
 		C4EC31DA285035A00049F2C4 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31D9285035A00049F2C4 /* Ex+Color.swift */; };
 		F3C6CFF8EE3699805063FBB2 /* Pods_Sofa_SofaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */; };
 		F4C6071CC5A787C35479A7E7 /* Pods_SofaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639E791ADDF619043B6A741F /* Pods_SofaTests.framework */; };
@@ -83,6 +84,7 @@
 		C4667A49284B6FF400A4A759 /* SofaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITests.swift; sourceTree = "<group>"; };
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWithButton.swift; sourceTree = "<group>"; };
+		C4EC31CA284F8CBB0049F2C4 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		C4EC31D9285035A00049F2C4 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		E0A02E1DB0E3E122046A066D /* Pods-Sofa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa.release.xcconfig"; path = "Target Support Files/Pods-Sofa/Pods-Sofa.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				6F22E52F284B9D2B0069D268 /* Models.swift */,
+				C4EC31CA284F8CBB0049F2C4 /* Album.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */,
 				6F22E53C284B9D5A0069D268 /* Base.swift in Sources */,
 				6F22E528284B9D050069D268 /* SettingsView.swift in Sources */,
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,

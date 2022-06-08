@@ -47,7 +47,7 @@ struct AlbumRow: View {
 
 struct AlbumRow_Previews: PreviewProvider {
   static var previews: some View {
-    let album0 = Album(albumId: 0, title: "제주도ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ 가족여행", thumbnail: "", date: "2022-05-28")
+    let album0 = Album(albumId: 0, title: "제주도 가족여행 제주도 가족여행 제주도 가족여행", thumbnail: "", date: "2022-05-28")
     AlbumRow(album: album0)
   }
 }

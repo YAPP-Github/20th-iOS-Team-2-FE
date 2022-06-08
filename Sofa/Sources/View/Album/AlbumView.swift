@@ -12,6 +12,7 @@ struct AlbumView: View {
     NavigationView {
       ScrollView {
         
+          AlbumRow(album: album)
       }
       .background(Color.red)
       .navigaionBarWithButtonStyle("앨범")

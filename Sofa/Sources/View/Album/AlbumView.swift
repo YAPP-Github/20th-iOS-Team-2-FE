@@ -15,6 +15,7 @@ struct AlbumView: View {
       List(albums, id: \.albumId) { album in
         ZStack {
           NavigationLink(destination: AlbumDetailView()) {
+            EmptyView()
           }
           .opacity(0) // 불투명
           AlbumRow(album: album)

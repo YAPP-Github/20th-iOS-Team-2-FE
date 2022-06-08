@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NavigationBarWithButton: ViewModifier {
   var title: String = ""
+  var buttonName: String = ""
   
   func body(content: Content) -> some View {
     return content
@@ -16,14 +17,9 @@ struct NavigationBarWithButton: ViewModifier {
         leading: Text(title)
           .font(.system(size: 24, weight: .bold))
           .padding(),
-        trailing: Button(
-          action: {
-            //                        print("알림버튼 tapped")
-          },
-          label: {
-            Image(systemName: "plus")
-          }
-        )
+        trailing: NavigationLink(destination: EmptyView(), label: {
+          Image(systemName: buttonName)
+        })
         .accentColor(.black)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
@@ -41,8 +37,8 @@ struct NavigationBarWithButton: ViewModifier {
 }
 
 extension View {
-  func navigaionBarWithButtonStyle(_ title: String) -> some View {
-    return self.modifier(NavigationBarWithButton(title: title))
+  func navigationBarWithButtonStyle(_ title: String, _ buttonName: String) -> some View {
+    return self.modifier(NavigationBarWithButton(title: title, buttonName: buttonName))
   }
 }
 
@@ -50,7 +46,7 @@ struct NavigationBarWithButton_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigaionBarWithButtonStyle("앨범")
+        .navigationBarWithButtonStyle("앨범", "plus")
     }
   }
 }

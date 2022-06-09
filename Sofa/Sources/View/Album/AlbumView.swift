@@ -18,12 +18,15 @@ struct AlbumView: View {
       isShowing: $showingSheet,
       items: [
         ActionSheetCardItem(systemIconName: "photo", label: "사진") {
+          UITabBar.toogleTabBarVisibility()
           showingSheet = false
         },
         ActionSheetCardItem(systemIconName: "camera", label: "카메라") {
+          UITabBar.toogleTabBarVisibility()
           showingSheet = false
         },
         ActionSheetCardItem(systemIconName: "waveform", label: "녹음") {
+          UITabBar.toogleTabBarVisibility()
           showingSheet = false
         }
       ],

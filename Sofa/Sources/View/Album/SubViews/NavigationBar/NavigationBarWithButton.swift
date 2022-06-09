@@ -19,6 +19,7 @@ struct NavigationBarWithButton: ViewModifier {
           .font(.system(size: 24, weight: .bold))
           .padding(),
         trailing: Button(action: {
+          UITabBar.toogleTabBarVisibility()
           showingSheet = true
         }, label: {
           Image(systemName: buttonName)

@@ -58,12 +58,18 @@ struct AlbumView: View {
           }
           
           // 사진 선택 View으로 이동
-          NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
+//          NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
           
           // 녹음 추가 View으로 이동
-          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
+//          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
         }
         .navigationBarWithButton(showingSheet: $showingSheet, "앨범", "plus")
+        .fullScreenCover(isPresented: $showPhotoAdd) {
+          AlbumPhotoAddView()
+        }
+        .fullScreenCover(isPresented: $showRecordAdd) {
+          AlbumRecordAddView()
+        }
       }
       actionSheetView
     }

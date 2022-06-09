@@ -17,7 +17,6 @@
 		6F22E530284B9D2B0069D268 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E52F284B9D2B0069D268 /* Models.swift */; };
 		6F22E532284B9D330069D268 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E531284B9D330069D268 /* Network.swift */; };
 		6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E537284B9D4F0069D268 /* Fonts.swift */; };
-		6F22E53A284B9D540069D268 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E539284B9D540069D268 /* Extensions.swift */; };
 		6F22E53C284B9D5A0069D268 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53B284B9D5A0069D268 /* Base.swift */; };
 		6F22E53E284B9D640069D268 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53D284B9D640069D268 /* Constants.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
@@ -79,7 +78,6 @@
 		6F22E52F284B9D2B0069D268 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		6F22E531284B9D330069D268 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		6F22E537284B9D4F0069D268 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		6F22E539284B9D540069D268 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6F22E53B284B9D5A0069D268 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		6F22E53D284B9D640069D268 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };

@@ -34,7 +34,7 @@ struct ContentView: View {
       AlbumView()
         .tabItem {
           Image(systemName: "book.closed")
-          Text("엘범")
+          Text("앨범")
         }
         .tag(Tab.album)
       SettingsView()

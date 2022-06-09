@@ -45,11 +45,11 @@ extension View {
   }
 }
 
-//struct NavigationBarWithButton_Previews: PreviewProvider {
-//  static var previews: some View {
-//    NavigationView {
-//      Color.gray.edgesIgnoringSafeArea(.all)
-//        .navigationBarWithButtonStyle("앨범", "plus")
-//    }
-//  }
-//}
+struct NavigationBarWithButton_Previews: PreviewProvider {
+  static var previews: some View {
+    NavigationView {
+      Color.gray.edgesIgnoringSafeArea(.all)
+        .navigationBarWithButton(showingSheet: .constant(true), "앨범", "plus")
+    }
+  }
+}

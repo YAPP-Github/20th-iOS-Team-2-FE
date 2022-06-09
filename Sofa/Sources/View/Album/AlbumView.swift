@@ -57,6 +57,7 @@ struct AlbumView: View {
             AlbumList(albums: types)
           }
           
+          // 임시
           // 사진 선택 View으로 이동
 //          NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
           

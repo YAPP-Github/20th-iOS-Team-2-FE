@@ -396,7 +396,6 @@
 		C4B8F2B32852360A0000B8CB /* AlbumAddView */ = {
 			isa = PBXGroup;
 			children = (
-				C4B8F2B4285236750000B8CB /* AlbumPhotoAddView.swift */,
 				C4B8F2B7285237080000B8CB /* AlbumRecordAddView.swift */,
 			);
 			path = AlbumAddView;

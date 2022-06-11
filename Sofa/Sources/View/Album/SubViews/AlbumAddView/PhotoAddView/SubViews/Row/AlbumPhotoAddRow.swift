@@ -9,7 +9,7 @@ import SwiftUI
 import Photos
 
 struct AlbumPhotoAddRow: View {
-  @ObservedObject var photo: Asset
+  @ObservedObject var asset: Asset
   @State var isSelect: Bool
   @Binding var imageClick: UIImage?
   
@@ -19,11 +19,11 @@ struct AlbumPhotoAddRow: View {
   var body: some View {
     ZStack {
       Button(action: {
-        imageClick = photo.image!
+        imageClick = asset.image!
         isSelect = !isSelect
       }, label: {
-        if photo.image != nil {
-          Image(uiImage: photo.image!)
+        if asset.image != nil {
+          Image(uiImage: asset.image!)
             .resizable()
             .scaledToFill()
             .frame(
@@ -49,7 +49,7 @@ struct AlbumPhotoAddRow: View {
     }
     
     .onAppear {
-      self.photo.request()
+      self.asset.request()
     }
   }
 }
@@ -57,6 +57,6 @@ struct AlbumPhotoAddRow: View {
 struct AlbumPhotoAddRow_Previews: PreviewProvider {
   static var previews: some View { // click 금지, imageClick 때문에 error
     let data = UIImage(named: MockData().photoList[1])!
-    AlbumPhotoAddRow(photo: Asset(asset: PHAsset()), isSelect: false, imageClick: .constant(data), index: 0)
+    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), isSelect: false, imageClick: .constant(data), index: 0)
   }
 }

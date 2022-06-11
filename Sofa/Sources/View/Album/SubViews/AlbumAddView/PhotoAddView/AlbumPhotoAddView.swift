@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlbumPhotoAddView: View {
   @State private var isTabPhoto = false
-
+  
   var body: some View {
     ScrollView {
       VStack(spacing: 0) {
@@ -21,6 +21,7 @@ struct AlbumPhotoAddView: View {
             .scaledToFit()
             .frame(height: UIScreen.main.bounds.height/2) // 화면의 반
             .padding(.all, 2)
+            .pinchToZoom()
         }
         AlbumPhotoAddList()
       }

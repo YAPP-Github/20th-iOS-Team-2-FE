@@ -9,13 +9,13 @@ import SwiftUI
 
 struct AlbumPhotoAddList: View {
   @ObservedObject var photoLibrary = AlbumPhotoLibrary()
-
+  
   var gridItem = [
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315))
   ]
-    
+  
   var body: some View {
     ScrollView(showsIndicators: false){
       ZStack {

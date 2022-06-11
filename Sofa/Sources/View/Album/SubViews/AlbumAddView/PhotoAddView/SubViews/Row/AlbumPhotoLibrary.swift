@@ -11,7 +11,7 @@ import Photos
 
 class AlbumPhotoLibrary: ObservableObject {
   @Published var photoAssets = [Asset]()
-
+  
   // 권한 확인
   func requestAuthorization() {
     PHPhotoLibrary.requestAuthorization { [weak self] (status) in
@@ -46,7 +46,7 @@ class AlbumPhotoLibrary: ObservableObject {
     }
     
     var photoAssets = [Asset]()
-
+    
     fetchResult.enumerateObjects { (asset, index, stop) in
       photoAssets.append(Asset(asset: asset))
     }
@@ -60,7 +60,7 @@ class AlbumPhotoLibrary: ObservableObject {
 class Asset: ObservableObject, Identifiable, Hashable {
   @Published var image: UIImage? = nil
   let asset: PHAsset
-
+  
   init(asset: PHAsset) {
     self.asset = asset
   }

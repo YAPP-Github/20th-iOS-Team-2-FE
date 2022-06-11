@@ -125,7 +125,7 @@ struct TabBarAccessor: UIViewControllerRepresentable {
   private class ViewController: UIViewController {
     var callback: (UITabBar) -> Void = { _ in }
     var hight: CGFloat = 0
-
+    
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
       if let tabBar = self.tabBarController {

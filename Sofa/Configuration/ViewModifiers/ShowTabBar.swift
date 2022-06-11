@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ShowTabBar: ViewModifier {
-    var animated = true
+  var animated = true
   
-    func body(content: Content) -> some View {
-        return content.padding(.zero).onAppear {
-            UITabBar.showTabBar(animated: animated)
-        }
+  func body(content: Content) -> some View {
+    return content.padding(.zero).onAppear {
+      UITabBar.showTabBar(animated: animated)
     }
+  }
 }

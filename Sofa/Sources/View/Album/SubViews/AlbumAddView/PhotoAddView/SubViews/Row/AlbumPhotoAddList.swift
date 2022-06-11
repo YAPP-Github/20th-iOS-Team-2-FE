@@ -8,21 +8,26 @@
 import SwiftUI
 
 struct AlbumPhotoAddList: View {
-  let photoList: [String]
+  @ObservedObject var photoLibrary = AlbumPhotoLibrary()
   var gridItem = [
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315))
   ]
-  
+    
   var body: some View {
     ScrollView(showsIndicators: false){
-      LazyVGrid(columns: gridItem, spacing: 1) {
-        ForEach(0..<photoList.count, id:\.self) { index in
-          VStack{
-            AlbumPhotoAddRow(photoName: photoList[index], index: index)
-              .padding(.all, 1)
+      ZStack {
+        LazyVGrid(columns: gridItem, spacing: 1) {
+          ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
+            VStack{
+              AlbumPhotoAddRow(photo: photoLibrary.photoAssets[index], index: index)
+                .padding(.all, 1)
+            }
           }
+        }
+        .onAppear {
+          self.photoLibrary.requestAuthorization()
         }
       }
       .padding(.trailing, 10)
@@ -33,6 +38,6 @@ struct AlbumPhotoAddList: View {
 
 struct AlbumPhotoAddList_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumPhotoAddList(photoList: MockData().photoList)
+    AlbumPhotoAddList()
   }
 }

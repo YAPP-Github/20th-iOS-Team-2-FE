@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlbumPhotoAddView: View {
   @State private var isTabPhoto = false
-  var photoList: [String] = MockData().photoList
+  var photoList: [UIImage] = MockData().photoList.map{UIImage(named: $0)!}
   
   var body: some View {
     ScrollView {
@@ -23,7 +23,7 @@ struct AlbumPhotoAddView: View {
             .frame(height: UIScreen.main.bounds.height/2) // 화면의 반
             .padding(.all, 2)
         }
-        AlbumPhotoAddList(photoList: photoList)
+        AlbumPhotoAddList()
       }
     }
     .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
@@ -32,6 +32,6 @@ struct AlbumPhotoAddView: View {
 
 struct AlbumPhotoAddView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumPhotoAddView(photoList: MockData().photoList)
+    AlbumPhotoAddView()
   }
 }

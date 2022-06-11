@@ -25,7 +25,7 @@ struct AlbumPhotoAddRow: View {
         if isSelect { // 이미 선택되어 있을때,
           selected.remove(at: selected.firstIndex(of: SelectedImages(asset: asset.asset, image: asset.image!))!)
           isSelect = false
-        } else {
+        } else if selected.count < 3 { // 선택이 안되어 있고, 3개 이하일 경우
           selected.append(SelectedImages(asset: asset.asset, image: asset.image!))
           isSelect = true
         }

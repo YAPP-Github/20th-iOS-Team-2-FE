@@ -64,7 +64,7 @@ struct AlbumView: View {
           // 녹음 추가 View으로 이동
 //          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
         }
-        .navigationBarWithButton(showingSheet: $showingSheet, "앨범", "plus")
+        .navigationBarWithButton(isButtonClick: $showingSheet, "앨범", "plus")
         .fullScreenCover(isPresented: $showPhotoAdd) {
           AlbumPhotoAddView()
         }

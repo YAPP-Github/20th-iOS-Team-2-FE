@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NavigationBarWithButton: ViewModifier {
-  @Binding var showingSheet: Bool
+  @Binding var isButtonClick: Bool
   var title: String = ""
   var buttonName: String = ""
   
@@ -20,7 +20,7 @@ struct NavigationBarWithButton: ViewModifier {
           .padding(),
         trailing: Button(action: {
           UITabBar.toogleTabBarVisibility()
-          showingSheet = true
+          isButtonClick = true
         }, label: {
           Image(systemName: buttonName)
         })
@@ -44,7 +44,7 @@ struct NavigationBarWithButton_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarWithButton(showingSheet: .constant(true), "앨범", "plus")
+        .navigationBarWithButton(isButtonClick: .constant(true), "앨범", "plus")
     }
   }
 }

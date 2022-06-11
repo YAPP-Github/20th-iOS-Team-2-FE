@@ -12,26 +12,27 @@ struct AlbumPhotoAddView: View {
   @State var isCancle = false
   @State var isNext = false
   @State var imageClick: UIImage?
+  let height = UIScreen.main.bounds.width * 0.8
   
   var body: some View {
     NavigationView {
       VStack(spacing: 0) {
         ZStack {
           Color.black // 배경
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.5) // 화면의 반
+            .frame(width: UIScreen.main.bounds.width, height: height) // 화면의 반
           
           if imageClick != nil { // 첫 Appear상태에는 선택된 이미지가 없음
             Image(uiImage: imageClick!)
               .resizable()
               .scaledToFit()
-              .frame(height: UIScreen.main.bounds.height * 0.5) // 화면의 반
+              .frame(height: height) // 화면의 반
               .padding(.all, 2)
               .pinchToZoom()
           }
         }
         
         AlbumPhotoAddList(imageClick: $imageClick)
-          .frame(height:UIScreen.main.bounds.height * 0.5)
+          .frame(height: UIScreen.main.bounds.height * 0.5)
 //          .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
       }
       .navigationBarInlineStyle(isNextClick: $isNext, buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러

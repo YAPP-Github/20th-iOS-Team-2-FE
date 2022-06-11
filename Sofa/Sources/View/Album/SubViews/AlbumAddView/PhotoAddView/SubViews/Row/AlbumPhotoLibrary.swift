@@ -36,7 +36,7 @@ class AlbumPhotoLibrary: ObservableObject {
   
   private func fetchAllImage() {
     let fetchOptions = PHFetchOptions()
-    fetchOptions.fetchLimit = 10 // 개수 제한
+    fetchOptions.fetchLimit = 1000 // 임시 개수 제한
     fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)] // 날짜 순으로 Asset
     
     let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions) // only 이미지

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AlbumPhotoAddView: View {
+  @Environment(\.presentationMode) var presentable
+  @State var isCancle = false
+  @State var isNext = false
   @State var imageClick: UIImage?
   
   var body: some View {
@@ -33,7 +36,7 @@ struct AlbumPhotoAddView: View {
         }
         .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
       }
-      .navigationBarInlineStyle(isCancleClick: .constant(true), isNextClick: .constant(true), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
+      .navigationBarInlineStyle(isNextClick: $isNext, buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
     }
   }
 }

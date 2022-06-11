@@ -14,8 +14,8 @@ public extension View {
     return self.modifier(NavigationBarWithButton(isButtonClick: isButtonClick, title: title, buttonName: buttonName))
   }
   
-  func navigationBarInlineStyle(isCancleClick: Binding<Bool>, isNextClick: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String = "") -> some View {
-    return self.modifier(NavigationBarInlineStyle(isCancleClick: isCancleClick, isNextClick: isNextClick, buttonColor: buttonColor, title: title))
+  func navigationBarInlineStyle(isNextClick: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String = "") -> some View {
+    return self.modifier(NavigationBarInlineStyle(isNextClick: isNextClick, buttonColor: buttonColor, title: title))
   }
   
   /// 탭바 숨김 처리 여부

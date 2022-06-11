@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NavigationBarInlineStyle: ViewModifier {
-  @Binding var isCancleClick: Bool
+  @Environment(\.presentationMode) var presentable
   @Binding var isNextClick: Bool
   var buttonColor: Color
   var title: String
@@ -17,7 +17,7 @@ struct NavigationBarInlineStyle: ViewModifier {
     return content
       .navigationBarItems(
         leading: Button(action: {
-          isCancleClick = true
+          presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {
             Image(systemName: "chevron.left")
@@ -57,7 +57,7 @@ struct NavigationBarInlineStyle_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarInlineStyle(isCancleClick: .constant(true), isNextClick: .constant(true), buttonColor: Color.init(hex: "#43A047"), "제목")
+        .navigationBarInlineStyle(isNextClick: .constant(true), buttonColor: Color.init(hex: "#43A047"), "제목")
     }
   }
 }

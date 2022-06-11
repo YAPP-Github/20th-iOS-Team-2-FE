@@ -25,7 +25,6 @@
 		C4667A40284B6FF400A4A759 /* SofaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A3F284B6FF400A4A759 /* SofaTests.swift */; };
 		C4667A4A284B6FF400A4A759 /* SofaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A49284B6FF400A4A759 /* SofaUITests.swift */; };
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
-		C4667A87284BA99800A4A759 /* NavigationBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
@@ -41,6 +40,7 @@
 		C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2C2285292DD0000B8CB /* AlbumPhotoAddRow.swift */; };
 		C4B8F2C8285348980000B8CB /* AlbumPhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2C7285348980000B8CB /* AlbumPhotoLibrary.swift */; };
 		C4B8F2CC285474900000B8CB /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2CB285474900000B8CB /* PinchToZoom.swift */; };
+		C4B8F2CE2854A6680000B8CB /* NavigationBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2CD2854A6680000B8CB /* NavigationBarWithButton.swift */; };
 		C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31C6284F8B380049F2C4 /* AlbumRow.swift */; };
 		C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31CA284F8CBB0049F2C4 /* Album.swift */; };
 		C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31CF284F99F30049F2C4 /* AlbumDetailView.swift */; };
@@ -97,7 +97,6 @@
 		C4667A45284B6FF400A4A759 /* SofaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A49284B6FF400A4A759 /* SofaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITests.swift; sourceTree = "<group>"; };
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWithButton.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
@@ -113,6 +112,7 @@
 		C4B8F2C2285292DD0000B8CB /* AlbumPhotoAddRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPhotoAddRow.swift; sourceTree = "<group>"; };
 		C4B8F2C7285348980000B8CB /* AlbumPhotoLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPhotoLibrary.swift; sourceTree = "<group>"; };
 		C4B8F2CB285474900000B8CB /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
+		C4B8F2CD2854A6680000B8CB /* NavigationBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWithButton.swift; sourceTree = "<group>"; };
 		C4EC31C6284F8B380049F2C4 /* AlbumRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRow.swift; sourceTree = "<group>"; };
 		C4EC31CA284F8CBB0049F2C4 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		C4EC31CF284F99F30049F2C4 /* AlbumDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
@@ -365,21 +365,12 @@
 		C4667A84284BA97000A4A759 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				C4667A85284BA98D00A4A759 /* NavigationBar */,
 				C4B8F2932850DA0E0000B8CB /* ActionSheet */,
 				C4EC31C3284F8A740049F2C4 /* Row */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
 				C4B8F2B32852360A0000B8CB /* AlbumAddView */,
 			);
 			path = SubViews;
-			sourceTree = "<group>";
-		};
-		C4667A85284BA98D00A4A759 /* NavigationBar */ = {
-			isa = PBXGroup;
-			children = (
-				C4667A86284BA99800A4A759 /* NavigationBarWithButton.swift */,
-			);
-			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 		C4B8F2932850DA0E0000B8CB /* ActionSheet */ = {
@@ -398,6 +389,7 @@
 				C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */,
 				C4B8F2A72851CAD50000B8CB /* HiddenTabBar.swift */,
 				C4B8F2CB285474900000B8CB /* PinchToZoom.swift */,
+				C4B8F2CD2854A6680000B8CB /* NavigationBarWithButton.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -717,7 +709,6 @@
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
-				C4667A87284BA99800A4A759 /* NavigationBarWithButton.swift in Sources */,
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,
 				C4B8F2A82851CAD50000B8CB /* HiddenTabBar.swift in Sources */,
@@ -732,6 +723,7 @@
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
 				6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */,
 				C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */,
+				C4B8F2CE2854A6680000B8CB /* NavigationBarWithButton.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,
 				6F22E52C284B9D190069D268 /* WelcomeView.swift in Sources */,
 			);

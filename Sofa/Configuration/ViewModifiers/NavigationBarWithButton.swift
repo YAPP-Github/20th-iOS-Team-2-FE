@@ -2,7 +2,7 @@
 //  NavigationBarWithButton.swift
 //  Sofa
 //
-//  Created by geonhyeong on 2022/06/04.
+//  Created by geonhyeong on 2022/06/11.
 //
 
 import SwiftUI
@@ -37,12 +37,6 @@ struct NavigationBarWithButton: ViewModifier {
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
       }
-  }
-}
-
-extension View {
-  func navigationBarWithButton(showingSheet: Binding<Bool>, _ title: String, _ buttonName: String) -> some View {
-    return self.modifier(NavigationBarWithButton(showingSheet: showingSheet, title: title, buttonName: buttonName))
   }
 }
 

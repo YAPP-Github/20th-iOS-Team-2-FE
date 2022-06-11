@@ -5,10 +5,15 @@
 //  Created by geonhyeong on 2022/06/09.
 //
 
+import SwiftUI
 import protocol SwiftUI.View
 import struct SwiftUI.AnyView
 
 public extension View {
+  func navigationBarWithButton(showingSheet: Binding<Bool>, _ title: String, _ buttonName: String) -> some View {
+    return self.modifier(NavigationBarWithButton(showingSheet: showingSheet, title: title, buttonName: buttonName))
+  }
+  
   /// 탭바 숨김 처리 여부
   /// - Parameter isHidden:
   /// - Returns:

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AlbumPhotoAddList: View {
-  @ObservedObject var photoLibrary = AlbumPhotoLibrary()
+  @StateObject var photoLibrary = AlbumPhotoLibrary()
   @Binding var imageClick: UIImage?
-
+  
   var gridItem = [
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),

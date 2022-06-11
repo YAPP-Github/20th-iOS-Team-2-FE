@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct AlbumPhotoAddView: View {
-  @State private var isTabPhoto = false
-  @State private var image : Image?
   @State var imageClick: UIImage?
   
   var body: some View {

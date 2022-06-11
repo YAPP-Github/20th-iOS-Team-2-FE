@@ -9,24 +9,25 @@ import SwiftUI
 
 struct AlbumPhotoAddView: View {
   @State private var isTabPhoto = false
+  @State var selectImage: UIImage = UIImage(named: MockData().photoList[0])!
   
   var body: some View {
-    ScrollView {
-      VStack(spacing: 0) {
-        ZStack {
-          Color.black // 배경
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/2) // 화면의 반
-          Image("photo01")
-            .resizable()
-            .scaledToFit()
-            .frame(height: UIScreen.main.bounds.height/2) // 화면의 반
-            .padding(.all, 2)
-            .pinchToZoom()
-        }
-        AlbumPhotoAddList()
+    VStack(spacing: 0) {
+      ZStack {
+        Color.black // 배경
+          .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.5) // 화면의 반
+        Image(uiImage: selectImage)
+          .resizable()
+          .scaledToFit()
+          .frame(height: UIScreen.main.bounds.height * 0.5) // 화면의 반
+          .padding(.all, 2)
       }
+      ScrollView {
+        AlbumPhotoAddList(selectImage: $selectImage)
+          .frame(height:UIScreen.main.bounds.height * 0.5)
+      }
+      .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
     }
-    .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
   }
 }
 

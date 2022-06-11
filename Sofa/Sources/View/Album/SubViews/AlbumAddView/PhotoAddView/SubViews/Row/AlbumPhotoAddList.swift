@@ -25,7 +25,7 @@ struct AlbumPhotoAddList: View {
         LazyVGrid(columns: gridItem, spacing: 1) {
           ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
             VStack {
-              AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, isSelect: photoLibrary.photoAssets[index].isSelect, imageClick: $imageClick, index: index)
+              AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, isSelect: photoLibrary.photoAssets[index].isSelect, imageClick: $imageClick)
                 .padding(.all, 1)
             }
           }

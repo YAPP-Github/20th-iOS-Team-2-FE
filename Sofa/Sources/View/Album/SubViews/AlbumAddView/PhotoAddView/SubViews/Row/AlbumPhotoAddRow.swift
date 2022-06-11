@@ -13,8 +13,6 @@ struct AlbumPhotoAddRow: View {
   @Binding var selected: [SelectedImages]
   @State var isSelect: Bool
   @Binding var imageClick: UIImage?
-  
-  var index: Int
   let size = UIScreen.main.bounds.width * 0.325
   
   var body: some View {
@@ -29,7 +27,6 @@ struct AlbumPhotoAddRow: View {
           selected.append(SelectedImages(asset: asset.asset, image: asset.image!))
           isSelect = true
         }
-        print(selected.count)
       }, label: {
         if asset.image != nil {
           Image(uiImage: asset.image!)
@@ -66,6 +63,6 @@ struct AlbumPhotoAddRow: View {
 struct AlbumPhotoAddRow_Previews: PreviewProvider {
   static var previews: some View { // click 금지, imageClick 때문에 error
     let data = UIImage(named: MockData().photoList[1])!
-    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), selected: .constant([SelectedImages]()), isSelect: false, imageClick: .constant(data), index: 0)
+    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), selected: .constant([SelectedImages]()), isSelect: false, imageClick: .constant(data))
   }
 }

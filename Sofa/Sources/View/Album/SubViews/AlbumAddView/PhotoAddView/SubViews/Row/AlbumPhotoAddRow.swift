@@ -14,6 +14,7 @@ struct AlbumPhotoAddRow: View {
   @State var isSelect: Bool
   @Binding var imageClick: UIImage?
   let size = UIScreen.main.bounds.width * 0.325
+  private let limit = 3
   
   var body: some View {
     ZStack {
@@ -24,6 +25,7 @@ struct AlbumPhotoAddRow: View {
           selected.remove(at: selected.firstIndex(of: SelectedImages(asset: asset.asset, image: asset.image!))!)
           isSelect = false
         } else if selected.count < 3 { // 선택이 안되어 있고, 3개 이하일 경우
+        } else if selected.count < limit { // 선택이 안되어 있고, 3개 이하일 경우
           selected.append(SelectedImages(asset: asset.asset, image: asset.image!))
           isSelect = true
         }

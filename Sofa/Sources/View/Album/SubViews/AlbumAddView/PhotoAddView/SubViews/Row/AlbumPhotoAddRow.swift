@@ -10,6 +10,7 @@ import Photos
 
 struct AlbumPhotoAddRow: View {
   @ObservedObject var photo: Asset
+  @State var isSelect: Bool
   @Binding var imageClick: UIImage?
   var index: Int
   let size = UIScreen.main.bounds.width * 0.325
@@ -18,6 +19,7 @@ struct AlbumPhotoAddRow: View {
     ZStack {
       Button(action: {
         imageClick = photo.image!
+        isSelect = !isSelect
       }, label: {
         if photo.image != nil {
           Image(uiImage: photo.image!)
@@ -40,7 +42,7 @@ struct AlbumPhotoAddRow: View {
       
       Circle()
         .strokeBorder(Color.white, lineWidth: 1)
-        .background(Circle().foregroundColor(Color(UIColor.gray.withAlphaComponent(0.6))))
+        .background(Circle().foregroundColor(isSelect ? Color.init(hex: "#43A047") : Color(UIColor.gray.withAlphaComponent(0.6)))) // 임시 컬러
         .frame(width: 24, height: 24, alignment: .center)
         .offset(x: size/3, y: -(size/3))
     }

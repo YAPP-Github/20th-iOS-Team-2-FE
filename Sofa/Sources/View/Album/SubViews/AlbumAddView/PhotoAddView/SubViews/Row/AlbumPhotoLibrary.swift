@@ -10,7 +10,7 @@ import Combine
 import Photos
 
 class AlbumPhotoLibrary: ObservableObject {
-  @Published var photoAssets = [Asset]()
+  @Published var photoAssets = [Photo]()
   
   // 권한 확인
   func requestAuthorization() {
@@ -45,10 +45,10 @@ class AlbumPhotoLibrary: ObservableObject {
       return
     }
     
-    var photoAssets = [Asset]()
+    var photoAssets = [Photo]()
     
     fetchResult.enumerateObjects { (asset, index, stop) in
-      photoAssets.append(Asset(asset: asset))
+      photoAssets.append(Photo(isSelect: false, asset: Asset(asset: asset)))
     }
     
     DispatchQueue.main.async { [weak self] in

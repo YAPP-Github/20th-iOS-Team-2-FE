@@ -12,6 +12,7 @@ struct AlbumPhotoAddRow: View {
   @ObservedObject var asset: Asset
   @Binding var selected: [SelectedImages]
   @State var isSelect: Bool
+  @State private var showAlert = false
   @Binding var imageClick: UIImage?
   let size = UIScreen.main.bounds.width * 0.325
   private let limit = 3
@@ -24,10 +25,11 @@ struct AlbumPhotoAddRow: View {
         if isSelect { // 이미 선택되어 있을때,
           selected.remove(at: selected.firstIndex(of: SelectedImages(asset: asset.asset, image: asset.image!))!)
           isSelect = false
-        } else if selected.count < 3 { // 선택이 안되어 있고, 3개 이하일 경우
         } else if selected.count < limit { // 선택이 안되어 있고, 3개 이하일 경우
           selected.append(SelectedImages(asset: asset.asset, image: asset.image!))
           isSelect = true
+        } else { // 알림
+          showAlert = true
         }
       }, label: {
         if asset.image != nil {
@@ -43,6 +45,12 @@ struct AlbumPhotoAddRow: View {
             .cornerRadius(5.0)
         }
       })
+      .alert(isPresented: $showAlert) {
+        Alert(
+          title: Text("\(limit)개 이상 추가할 수 없습니다"),
+          message: nil,
+          dismissButton: .default(Text("확인")))
+      }
       
       Circle()
         .strokeBorder(Color.white, lineWidth: 1)

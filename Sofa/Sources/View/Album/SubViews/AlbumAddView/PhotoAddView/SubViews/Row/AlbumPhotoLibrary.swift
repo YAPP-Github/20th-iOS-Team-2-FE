@@ -10,6 +10,7 @@ import Combine
 import Photos
 
 class AlbumPhotoLibrary: ObservableObject {
+  @Published var photoAssets = [Asset]()
   
   // 권한 확인
   func requestAuthorization() {
@@ -44,11 +45,44 @@ class AlbumPhotoLibrary: ObservableObject {
       return
     }
     
+    var photoAssets = [Asset]()
 
     fetchResult.enumerateObjects { (asset, index, stop) in
+      photoAssets.append(Asset(asset: asset))
     }
     
     DispatchQueue.main.async { [weak self] in
+      self?.photoAssets = photoAssets
     }
   }
+}
+
+class Asset: ObservableObject, Identifiable, Hashable {
+  @Published var image: UIImage? = nil
+  let asset: PHAsset
+
+  init(asset: PHAsset) {
+    self.asset = asset
+  }
+  
+  static func == (lhs: Asset, rhs: Asset) -> Bool {
+    lhs.id == rhs.id
+  }
+  
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+  }
+  
+  private var manager = PHImageManager.default()
+  func request() {
+    DispatchQueue.global().async {
+      self.manager.requestImage(for: self.asset, targetSize: CGSize(width: 200, height: 200),
+                                contentMode: .aspectFill,
+                                options: nil) { [weak self] (image, info) in
+        self?.image = image
+      }
+    }
+  }
+  
+
 }

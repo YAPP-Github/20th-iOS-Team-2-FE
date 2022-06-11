@@ -10,6 +10,7 @@ import Photos
 
 struct AlbumPhotoAddRow: View {
   @ObservedObject var asset: Asset
+  @Binding var selected: [SelectedImages]
   @State var isSelect: Bool
   @Binding var imageClick: UIImage?
   
@@ -20,7 +21,15 @@ struct AlbumPhotoAddRow: View {
     ZStack {
       Button(action: {
         imageClick = asset.image!
-        isSelect = !isSelect
+        
+        if isSelect { // 이미 선택되어 있을때,
+          selected.remove(at: selected.firstIndex(of: SelectedImages(asset: asset.asset, image: asset.image!))!)
+          isSelect = false
+        } else {
+          selected.append(SelectedImages(asset: asset.asset, image: asset.image!))
+          isSelect = true
+        }
+        print(selected.count)
       }, label: {
         if asset.image != nil {
           Image(uiImage: asset.image!)
@@ -57,6 +66,6 @@ struct AlbumPhotoAddRow: View {
 struct AlbumPhotoAddRow_Previews: PreviewProvider {
   static var previews: some View { // click 금지, imageClick 때문에 error
     let data = UIImage(named: MockData().photoList[1])!
-    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), isSelect: false, imageClick: .constant(data), index: 0)
+    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), selected: .constant([SelectedImages]()), isSelect: false, imageClick: .constant(data), index: 0)
   }
 }

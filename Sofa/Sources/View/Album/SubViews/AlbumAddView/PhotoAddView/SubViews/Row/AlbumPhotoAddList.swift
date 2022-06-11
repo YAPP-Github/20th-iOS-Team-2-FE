@@ -10,6 +10,7 @@ import Photos
 
 struct AlbumPhotoAddList: View {
   @StateObject var photoLibrary = AlbumPhotoLibrary()
+  @Binding var selected: [SelectedImages]
   @Binding var imageClick: UIImage?
   
   var gridItem = [
@@ -24,7 +25,7 @@ struct AlbumPhotoAddList: View {
         LazyVGrid(columns: gridItem, spacing: 1) {
           ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
             VStack {
-              AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, isSelect: photoLibrary.photoAssets[index].isSelect, imageClick: $imageClick, index: index)
+              AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, isSelect: photoLibrary.photoAssets[index].isSelect, imageClick: $imageClick, index: index)
                 .padding(.all, 1)
             }
           }
@@ -60,7 +61,7 @@ struct AlbumPhotoAddList_Previews: PreviewProvider {
   static var previews: some View { // click 금지, imageClick 때문에 error
     let photoLibrary = AlbumPhotoLibrary()
     
-    AlbumPhotoAddList(photoLibrary: photoLibrary, imageClick: .constant(UIImage(named:"photo01")))
+    AlbumPhotoAddList(photoLibrary: photoLibrary, selected: .constant([SelectedImages]()), imageClick: .constant(UIImage(named:"photo01")))
       .onAppear {
         let count = 10
         let photoList = [Photo](repeating: Photo(isSelect: true, asset: Asset(asset: PHAsset())), count: count)

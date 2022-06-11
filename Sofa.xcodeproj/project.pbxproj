@@ -41,6 +41,7 @@
 		C4B8F2C8285348980000B8CB /* AlbumPhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2C7285348980000B8CB /* AlbumPhotoLibrary.swift */; };
 		C4B8F2CC285474900000B8CB /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2CB285474900000B8CB /* PinchToZoom.swift */; };
 		C4B8F2CE2854A6680000B8CB /* NavigationBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2CD2854A6680000B8CB /* NavigationBarWithButton.swift */; };
+		C4B8F2D42854A8510000B8CB /* NavigationBarInlineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2D32854A8510000B8CB /* NavigationBarInlineStyle.swift */; };
 		C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31C6284F8B380049F2C4 /* AlbumRow.swift */; };
 		C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31CA284F8CBB0049F2C4 /* Album.swift */; };
 		C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC31CF284F99F30049F2C4 /* AlbumDetailView.swift */; };
@@ -113,6 +114,7 @@
 		C4B8F2C7285348980000B8CB /* AlbumPhotoLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPhotoLibrary.swift; sourceTree = "<group>"; };
 		C4B8F2CB285474900000B8CB /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		C4B8F2CD2854A6680000B8CB /* NavigationBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWithButton.swift; sourceTree = "<group>"; };
+		C4B8F2D32854A8510000B8CB /* NavigationBarInlineStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarInlineStyle.swift; sourceTree = "<group>"; };
 		C4EC31C6284F8B380049F2C4 /* AlbumRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRow.swift; sourceTree = "<group>"; };
 		C4EC31CA284F8CBB0049F2C4 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		C4EC31CF284F99F30049F2C4 /* AlbumDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				C4B8F2A72851CAD50000B8CB /* HiddenTabBar.swift */,
 				C4B8F2CB285474900000B8CB /* PinchToZoom.swift */,
 				C4B8F2CD2854A6680000B8CB /* NavigationBarWithButton.swift */,
+				C4B8F2D32854A8510000B8CB /* NavigationBarInlineStyle.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -721,6 +724,7 @@
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
+				C4B8F2D42854A8510000B8CB /* NavigationBarInlineStyle.swift in Sources */,
 				6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */,
 				C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */,
 				C4B8F2CE2854A6680000B8CB /* NavigationBarWithButton.swift in Sources */,

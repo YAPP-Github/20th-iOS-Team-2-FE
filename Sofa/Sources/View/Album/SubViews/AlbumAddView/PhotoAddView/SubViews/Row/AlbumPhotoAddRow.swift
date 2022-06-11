@@ -39,7 +39,7 @@ struct AlbumPhotoAddRow: View {
             .cornerRadius(5.0)
           
         } else {
-          Color.black
+          Color.yellow
             .frame(
               width: size,
               height: size)
@@ -49,9 +49,14 @@ struct AlbumPhotoAddRow: View {
       
       Circle()
         .strokeBorder(Color.white, lineWidth: 1)
-        .background(Circle().foregroundColor(isSelect ? Color.init(hex: "#43A047") : Color(UIColor.gray.withAlphaComponent(0.6)))) // 임시 컬러
         .frame(width: 24, height: 24, alignment: .center)
+        .background(Circle().foregroundColor(isSelect ? Color.init(hex: "#43A047") : Color(UIColor.gray.withAlphaComponent(0.6)))) // 임시 컬러
         .offset(x: size/3, y: -(size/3))
+        .overlay(
+          Text("1")
+            .foregroundColor(isSelect ? Color.white : Color.clear)
+            .offset(x: size/3, y: -(size/3))
+        )
     }
     
     .onAppear {
@@ -63,6 +68,6 @@ struct AlbumPhotoAddRow: View {
 struct AlbumPhotoAddRow_Previews: PreviewProvider {
   static var previews: some View { // click 금지, imageClick 때문에 error
     let data = UIImage(named: MockData().photoList[1])!
-    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), selected: .constant([SelectedImages]()), isSelect: false, imageClick: .constant(data))
+    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), selected: .constant([SelectedImages]()), isSelect: true, imageClick: .constant(data))
   }
 }

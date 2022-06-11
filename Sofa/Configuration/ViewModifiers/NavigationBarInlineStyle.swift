@@ -57,7 +57,7 @@ struct NavigationBarInlineStyle_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarInlineStyle(isNextClick: .constant(true), isDisalbeNextButton: .constant(true), buttonColor: Color.init(hex: "#43A047"), "제목")
+        .navigationBarInlineStyle(isNextClick: .constant(true), isDisalbeNextButton: .constant(false), buttonColor: Color.init(hex: "#43A047"), "제목")
     }
   }
 }

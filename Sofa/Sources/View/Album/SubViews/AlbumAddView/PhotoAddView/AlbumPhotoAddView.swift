@@ -30,11 +30,9 @@ struct AlbumPhotoAddView: View {
           }
         }
         
-        ScrollView {
-          AlbumPhotoAddList(imageClick: $imageClick)
-            .frame(height:UIScreen.main.bounds.height * 0.5)
-        }
-        .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0))
+        AlbumPhotoAddList(imageClick: $imageClick)
+          .frame(height:UIScreen.main.bounds.height * 0.5)
+//          .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
       }
       .navigationBarInlineStyle(isNextClick: $isNext, buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
     }

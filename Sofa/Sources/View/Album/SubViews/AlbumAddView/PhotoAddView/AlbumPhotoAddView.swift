@@ -9,8 +9,7 @@ import SwiftUI
 
 struct AlbumPhotoAddView: View {
   @State private var isTabPhoto = false
-  var photoList: [UIImage] = MockData().photoList.map{UIImage(named: $0)!}
-  
+
   var body: some View {
     ScrollView {
       VStack(spacing: 0) {

@@ -39,7 +39,8 @@ struct AlbumPhotoAddRow: View {
 
 //struct AlbumPhotoAddRow_Previews: PreviewProvider {
 //  static var previews: some View {
-//    UIImage(named: "photo01")?.
-//    AlbumPhotoAddRow(photo: AlbumPhotoLibrary().photoAssets[0], index: 0)
+//    let data = UIImage(named: MockData().photoList[0])!
+//
+//    AlbumPhotoAddRow()
 //  }
 //}

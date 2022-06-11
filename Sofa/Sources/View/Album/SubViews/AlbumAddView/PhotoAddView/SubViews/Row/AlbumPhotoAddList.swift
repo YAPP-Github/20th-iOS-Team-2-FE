@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumPhotoAddList: View {
   @ObservedObject var photoLibrary = AlbumPhotoLibrary()
+
   var gridItem = [
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
@@ -29,15 +30,30 @@ struct AlbumPhotoAddList: View {
         .onAppear {
           self.photoLibrary.requestAuthorization()
         }
+        .padding(.trailing, 10)
+        .padding(.leading, 10)
       }
-      .padding(.trailing, 10)
-      .padding(.leading, 10)
     }
   }
 }
 
-struct AlbumPhotoAddList_Previews: PreviewProvider {
-  static var previews: some View {
-    AlbumPhotoAddList()
-  }
-}
+// 임시
+//struct LodingView: View {
+//  var body: some View {
+//    ZStack {
+//      Color.black
+//        .ignoresSafeArea()
+//        .opacity(0.2)
+//
+//      ProgressView()
+//        .progressViewStyle(CircularProgressViewStyle(tint: .black))
+//        .scaleEffect(3)
+//    }
+//  }
+//}
+
+//struct AlbumPhotoAddList_Previews: PreviewProvider {
+//  static var previews: some View {
+//    AlbumPhotoAddList()
+//  }
+//}

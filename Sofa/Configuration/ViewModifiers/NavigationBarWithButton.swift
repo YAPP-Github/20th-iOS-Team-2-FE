@@ -24,7 +24,7 @@ struct NavigationBarWithButton: ViewModifier {
         }, label: {
           Image(systemName: buttonName)
         })
-        .accentColor(.black)
+        .accentColor(Color(UIColor.label))
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
       .navigationBarTitleDisplayMode(.inline)
@@ -32,7 +32,7 @@ struct NavigationBarWithButton: ViewModifier {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor =
-        UIColor(white: 1, alpha: 1)
+        UIColor.systemBackground.withAlphaComponent(1)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance

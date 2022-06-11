@@ -23,9 +23,9 @@ struct NavigationBarInlineStyle: ViewModifier {
             Image(systemName: "chevron.left")
             Text("취소")
           }
-          .foregroundColor(buttonColor)
+//          .foregroundColor(buttonColor)
         })
-        .accentColor(.black)
+        .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
           isNextClick = true
@@ -34,9 +34,8 @@ struct NavigationBarInlineStyle: ViewModifier {
             Text("다음")
             Image(systemName: "chevron.right")
           }
-          .foregroundColor(buttonColor)
         })
-        .accentColor(.black)
+        .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
       .navigationBarTitleDisplayMode(.inline)
@@ -45,7 +44,7 @@ struct NavigationBarInlineStyle: ViewModifier {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor =
-        UIColor(white: 1, alpha: 1)
+        UIColor.systemBackground.withAlphaComponent(1)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance

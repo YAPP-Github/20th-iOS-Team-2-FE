@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Photos
 
 struct AlbumPhotoAddList: View {
   @StateObject var photoLibrary = AlbumPhotoLibrary()
@@ -53,8 +54,17 @@ struct AlbumPhotoAddList: View {
 //  }
 //}
 
-//struct AlbumPhotoAddList_Previews: PreviewProvider {
-//  static var previews: some View {
-//    AlbumPhotoAddList()
-//  }
-//}
+struct AlbumPhotoAddList_Previews: PreviewProvider {
+  var photoLibrary = AlbumPhotoLibrary()
+
+  static var previews: some View {
+    let photoLibrary = AlbumPhotoLibrary()
+    
+    AlbumPhotoAddList(photoLibrary: photoLibrary, imageClick: .constant(UIImage(named:"photo01")))
+      .onAppear {
+        let photoList = [Asset](repeating: Asset(asset: PHAsset()), count: 10)
+
+        photoLibrary.photoAssets = photoList
+      }
+  }
+}

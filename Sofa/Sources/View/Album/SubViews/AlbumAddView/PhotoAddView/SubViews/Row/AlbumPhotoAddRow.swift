@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Photos
 
 struct AlbumPhotoAddRow: View {
   @ObservedObject var photo: Asset
@@ -26,10 +27,11 @@ struct AlbumPhotoAddRow: View {
             alignment: .center)
           .cornerRadius(5.0)
       } else {
-        Color.white
+        Color.black
           .frame(
             width: UIScreen.main.bounds.width * 0.325,
             height: UIScreen.main.bounds.width * 0.325)
+          .cornerRadius(5.0)
       }
     })
     .onAppear {
@@ -38,10 +40,9 @@ struct AlbumPhotoAddRow: View {
   }
 }
 
-//struct AlbumPhotoAddRow_Previews: PreviewProvider {
-//  static var previews: some View {
-////    let data = UIImage(named: MockData().photoList[1])!
-////    AlbumPhotoAddRow(photo: UIImage(named: <#T##String#>), index: 0)
-////    AlbumPhotoAddRow(photo: AlbumPhotoLibrary().photoAssets.first!, index: 0)
-//  }
-//}
+struct AlbumPhotoAddRow_Previews: PreviewProvider {
+  static var previews: some View {
+    let data = UIImage(named: MockData().photoList[1])!
+    AlbumPhotoAddRow(photo: Asset(asset: PHAsset()), imageClick: .constant(data), index: 0)
+  }
+}

@@ -10,8 +10,8 @@ import SwiftUI
 struct NavigationBarInlineStyle: ViewModifier {
   @Environment(\.presentationMode) var presentable
   @Binding var isNextClick: Bool
-  var buttonColor: Color
   var title: String
+  var buttonColor: Color
 
   func body(content: Content) -> some View {
     return content
@@ -23,7 +23,6 @@ struct NavigationBarInlineStyle: ViewModifier {
             Image(systemName: "chevron.left")
             Text("취소")
           }
-//          .foregroundColor(buttonColor)
         })
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),

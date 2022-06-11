@@ -11,6 +11,7 @@ struct NavigationBarWithButton: ViewModifier {
   @Binding var isButtonClick: Bool
   var title: String = ""
   var buttonName: String = ""
+  var buttonColor: Color
   
   func body(content: Content) -> some View {
     return content
@@ -24,7 +25,7 @@ struct NavigationBarWithButton: ViewModifier {
         }, label: {
           Image(systemName: buttonName)
         })
-        .accentColor(Color(UIColor.label))
+        .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
       .navigationBarTitleDisplayMode(.inline)

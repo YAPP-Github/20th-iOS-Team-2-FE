@@ -10,12 +10,12 @@ import protocol SwiftUI.View
 import struct SwiftUI.AnyView
 
 public extension View {
-  func navigationBarWithButton(isButtonClick: Binding<Bool>, _ title: String, _ buttonName: String) -> some View {
-    return self.modifier(NavigationBarWithButton(isButtonClick: isButtonClick, title: title, buttonName: buttonName))
+  func navigationBarWithButton(isButtonClick: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String, _ buttonName: String) -> some View {
+    return self.modifier(NavigationBarWithButton(isButtonClick: isButtonClick, title: title, buttonName: buttonName, buttonColor: buttonColor))
   }
   
   func navigationBarInlineStyle(isNextClick: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String = "") -> some View {
-    return self.modifier(NavigationBarInlineStyle(isNextClick: isNextClick, buttonColor: buttonColor, title: title))
+    return self.modifier(NavigationBarInlineStyle(isNextClick: isNextClick, title: title, buttonColor: buttonColor))
   }
   
   /// 탭바 숨김 처리 여부

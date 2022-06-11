@@ -13,3 +13,9 @@ struct Photo: Hashable {
   var isSelect: Bool
   var asset: Asset
 }
+
+struct SelectedImages: Hashable {
+  var asset : PHAsset
+  var image : UIImage
+}
+

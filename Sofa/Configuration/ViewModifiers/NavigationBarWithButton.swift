@@ -45,7 +45,7 @@ struct NavigationBarWithButton_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarWithButton(isButtonClick: .constant(true), "제목", "plus")
+        .navigationBarWithButton(isButtonClick: .constant(true), buttonColor: Color.init(hex: "#43A047"), "제목", "plus")
     }
   }
 }

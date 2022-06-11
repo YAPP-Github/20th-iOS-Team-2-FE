@@ -78,11 +78,17 @@ class Asset: ObservableObject, Identifiable, Hashable {
     DispatchQueue.global().async {
       self.manager.requestImage(for: self.asset, targetSize: CGSize(width: 200, height: 200),
                                 contentMode: .aspectFill,
-                                options: nil) { [weak self] (image, info) in
+                                options: self.imageOption()) { [weak self] (image, info) in
         self?.image = image
       }
     }
   }
   
-
+  func imageOption() -> PHImageRequestOptions {
+    let imageRequestOptions = PHImageRequestOptions()
+    imageRequestOptions.version = .current
+    imageRequestOptions.isNetworkAccessAllowed = true   // iCloud 가능
+    imageRequestOptions.deliveryMode = .highQualityFormat
+    return imageRequestOptions
+  }
 }

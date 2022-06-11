@@ -32,17 +32,12 @@ struct AlbumPhotoAddRow: View {
           Image(uiImage: asset.image!)
             .resizable()
             .scaledToFill()
-            .frame(
-              width: size,
-              height: size,
-              alignment: .center)
+            .frame(width: size, height: size, alignment: .center)
             .cornerRadius(5.0)
           
         } else {
           Color.yellow
-            .frame(
-              width: size,
-              height: size)
+            .frame(width: size, height: size)
             .cornerRadius(5.0)
         }
       })

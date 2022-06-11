@@ -8,27 +8,38 @@
 import SwiftUI
 
 struct AlbumPhotoAddRow: View {
-  var photoName: String
+  @ObservedObject var photo: Asset
   var index: Int
   
   var body: some View {
     Button(action: {
       
     }, label: {
-      Image(photoName)
-        .resizable()
-        .scaledToFill()
-        .frame(
-          width: UIScreen.main.bounds.width * 0.325,
-          height: UIScreen.main.bounds.width * 0.325,
-          alignment: .center)
-        .cornerRadius(5.0)
+      if photo.image != nil {
+        Image(uiImage: photo.image!)
+          .resizable()
+          .scaledToFill()
+          .frame(
+            width: UIScreen.main.bounds.width * 0.325,
+            height: UIScreen.main.bounds.width * 0.325,
+            alignment: .center)
+          .cornerRadius(5.0)
+      } else {
+        Color.white
+          .frame(
+            width: UIScreen.main.bounds.width * 0.325,
+            height: UIScreen.main.bounds.width * 0.325)
+      }
     })
+    .onAppear {
+      self.photo.request()
+    }
   }
 }
 
-struct AlbumPhotoAddRow_Previews: PreviewProvider {
-  static var previews: some View {
-    AlbumPhotoAddRow(photoName: MockData().photoList[0], index: 0)
-  }
-}
+//struct AlbumPhotoAddRow_Previews: PreviewProvider {
+//  static var previews: some View {
+//    UIImage(named: "photo01")?.
+//    AlbumPhotoAddRow(photo: AlbumPhotoLibrary().photoAssets[0], index: 0)
+//  }
+//}

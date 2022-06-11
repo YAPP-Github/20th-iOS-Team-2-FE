@@ -18,7 +18,7 @@ struct AlbumPhotoAddList: View {
   ]
   
   var body: some View {
-    ScrollView(showsIndicators: false){
+    ScrollView(showsIndicators: true) {
       ZStack {
         LazyVGrid(columns: gridItem, spacing: 1) {
           ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in

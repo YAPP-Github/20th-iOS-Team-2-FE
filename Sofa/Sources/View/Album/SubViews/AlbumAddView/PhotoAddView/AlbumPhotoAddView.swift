@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct AlbumPhotoAddView: View {
-  @Environment(\.presentationMode) var presentable
-  @State var isCancle = false
   @State var isNext = false
   @State var imageClick: UIImage?
   let height = UIScreen.main.bounds.width * 0.8

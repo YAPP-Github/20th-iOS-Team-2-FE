@@ -45,7 +45,7 @@ struct NavigationBarInlineStyle: ViewModifier {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor =
-        UIColor(white: 1, alpha: 0.6)
+        UIColor(white: 1, alpha: 1)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance

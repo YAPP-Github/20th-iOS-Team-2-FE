@@ -32,7 +32,7 @@ struct NavigationBarWithButton: ViewModifier {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor =
-        UIColor(white: 1, alpha: 0.6)
+        UIColor(white: 1, alpha: 1)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
@@ -44,7 +44,7 @@ struct NavigationBarWithButton_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarWithButton(isButtonClick: .constant(true), "앨범", "plus")
+        .navigationBarWithButton(isButtonClick: .constant(true), "제목", "plus")
     }
   }
 }

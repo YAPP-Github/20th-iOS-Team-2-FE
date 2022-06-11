@@ -35,4 +35,9 @@ public extension View {
       return AnyView(showTabBar(animated: animated))
     }
   }
+  
+  // Image 확대
+  func pinchToZoom() -> some View {
+    self.modifier(PinchToZoom())
+  }
 }

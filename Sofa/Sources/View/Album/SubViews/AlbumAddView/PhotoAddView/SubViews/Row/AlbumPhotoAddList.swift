@@ -56,14 +56,15 @@ struct AlbumPhotoAddList: View {
 
 struct AlbumPhotoAddList_Previews: PreviewProvider {
   var photoLibrary = AlbumPhotoLibrary()
-
-  static var previews: some View {
+  
+  static var previews: some View { // click 금지, imageClick 때문에 error
     let photoLibrary = AlbumPhotoLibrary()
     
     AlbumPhotoAddList(photoLibrary: photoLibrary, imageClick: .constant(UIImage(named:"photo01")))
       .onAppear {
-        let photoList = [Asset](repeating: Asset(asset: PHAsset()), count: 10)
-
+        let count = 10
+        let photoList = [Photo](repeating: Photo(isSelect: true, asset: Asset(asset: PHAsset())), count: count)
+        
         photoLibrary.photoAssets = photoList
       }
   }

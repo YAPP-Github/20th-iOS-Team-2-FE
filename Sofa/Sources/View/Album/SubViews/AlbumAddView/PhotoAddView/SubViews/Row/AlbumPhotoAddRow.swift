@@ -12,6 +12,7 @@ struct AlbumPhotoAddRow: View {
   @ObservedObject var photo: Asset
   @State var isSelect: Bool
   @Binding var imageClick: UIImage?
+  
   var index: Int
   let size = UIScreen.main.bounds.width * 0.325
   
@@ -54,8 +55,8 @@ struct AlbumPhotoAddRow: View {
 }
 
 struct AlbumPhotoAddRow_Previews: PreviewProvider {
-  static var previews: some View {
+  static var previews: some View { // click 금지, imageClick 때문에 error
     let data = UIImage(named: MockData().photoList[1])!
-    AlbumPhotoAddRow(photo: Asset(asset: PHAsset()), imageClick: .constant(data), index: 0)
+    AlbumPhotoAddRow(photo: Asset(asset: PHAsset()), isSelect: false, imageClick: .constant(data), index: 0)
   }
 }

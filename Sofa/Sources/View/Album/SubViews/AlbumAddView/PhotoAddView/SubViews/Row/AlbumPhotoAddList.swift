@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AlbumPhotoAddList: View {
   @ObservedObject var photoLibrary = AlbumPhotoLibrary()
-  
+  @Binding var imageClick: UIImage?
+
   var gridItem = [
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
     GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
@@ -22,7 +23,7 @@ struct AlbumPhotoAddList: View {
         LazyVGrid(columns: gridItem, spacing: 1) {
           ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
             VStack{
-              AlbumPhotoAddRow(photo: photoLibrary.photoAssets[index], index: index)
+              AlbumPhotoAddRow(photo: photoLibrary.photoAssets[index], imageClick: $imageClick, index: index)
                 .padding(.all, 1)
             }
           }

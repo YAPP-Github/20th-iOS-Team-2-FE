@@ -9,11 +9,12 @@ import SwiftUI
 
 struct AlbumPhotoAddRow: View {
   @ObservedObject var photo: Asset
+  @Binding var imageClick: UIImage?
   var index: Int
   
   var body: some View {
     Button(action: {
-      
+      imageClick = photo.image!
     }, label: {
       if photo.image != nil {
         Image(uiImage: photo.image!)
@@ -39,8 +40,8 @@ struct AlbumPhotoAddRow: View {
 
 //struct AlbumPhotoAddRow_Previews: PreviewProvider {
 //  static var previews: some View {
-//    let data = UIImage(named: MockData().photoList[0])!
-//
-//    AlbumPhotoAddRow()
+////    let data = UIImage(named: MockData().photoList[1])!
+////    AlbumPhotoAddRow(photo: UIImage(named: <#T##String#>), index: 0)
+////    AlbumPhotoAddRow(photo: AlbumPhotoLibrary().photoAssets.first!, index: 0)
 //  }
 //}

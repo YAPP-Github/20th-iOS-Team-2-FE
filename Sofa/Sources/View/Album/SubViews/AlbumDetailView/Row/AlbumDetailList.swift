@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct AlbumDetailList: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
   @ObservedObject var viewModel = AlbumDetailViewModel()
+  
+  var body: some View {
+    ScrollView {
+      LazyVStack(spacing: 10) {
+        ForEach(viewModel.posts) { element in
+          AlbumDetailRow(isNext: $isNext, info: element)
+          AlbumDetailRow(info: element)
+        }
+      }
     }
+  }
 }
 
 struct AlbumDetailList_Previews: PreviewProvider {

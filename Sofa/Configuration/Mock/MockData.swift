@@ -31,7 +31,7 @@ struct MockData {
     let favourite = AlbumType(kind: "FAVORTIE", count: 26)
     let photo = AlbumType(kind: "PHOTO", count: 112)
     let recording = AlbumType(kind: "RECORDING", count: 3)
-
+    
     return [favourite, photo, recording]
   }
   

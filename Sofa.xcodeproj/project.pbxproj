@@ -384,9 +384,9 @@
 			children = (
 				C4B8F2932850DA0E0000B8CB /* ActionSheet */,
 				C4EC31C3284F8A740049F2C4 /* Row */,
-				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
 				C4B8F2B32852360A0000B8CB /* AlbumAddView */,
 				C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */,
+				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NavigationBarWithTextButtonStyle: ViewModifier {
+  @Environment(\.presentationMode) var presentable
   @Binding var isNextClick: Bool
   @Binding var isDisalbeNextButton: Bool
   var title: String = ""
@@ -18,7 +19,7 @@ struct NavigationBarWithTextButtonStyle: ViewModifier {
     return content
       .navigationBarItems(
         leading: Button(action: {
-          
+          presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {
             Image(systemName: "chevron.left")

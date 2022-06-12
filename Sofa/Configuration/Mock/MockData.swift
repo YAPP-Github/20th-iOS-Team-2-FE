@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 struct MockData {
-
+  
   let titleList = ["제주도 가족여행", "여의도 공원 나드리", "강릉 경포대 여행", "할머니 생신", ""]
   let dateList = ["2022-05-28", "2022-04-30", "2022-04-21", "2022-01-06", "2022-08-04"]
-
+  
   var albumByDate: [Album] {
     var albumList = [Album]()
     
@@ -30,7 +30,14 @@ struct MockData {
     
     return albumList
   }
+  
+  var albumByType: [AlbumType] {
+    let favourite = AlbumType(kind: "FAVORTIE", count: 26)
+    let photo = AlbumType(kind: "PHOTO", count: 112)
+    let recording = AlbumType(kind: "RECORDING", count: 3)
 
+    return [favourite, photo, recording]
+  }
   
   var photoList: [String] = [
     "photo01", "photo02", "photo03", "photo04", "photo05",

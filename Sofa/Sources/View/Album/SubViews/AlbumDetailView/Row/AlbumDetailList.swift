@@ -9,13 +9,13 @@ import SwiftUI
 
 struct AlbumDetailList: View {
   @ObservedObject var viewModel = AlbumDetailViewModel()
+  @Binding var isNext: Bool
   
   var body: some View {
     ScrollView {
       LazyVStack(spacing: 10) {
         ForEach(viewModel.posts) { element in
           AlbumDetailRow(isNext: $isNext, info: element)
-          AlbumDetailRow(info: element)
         }
       }
     }
@@ -23,9 +23,10 @@ struct AlbumDetailList: View {
 }
 
 struct AlbumDetailList_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumDetailList()
-    }
+  static var previews: some View {
+    AlbumDetailList(isNext: .constant(false))
+  }
+}
 
 class AlbumDetailViewModel : ObservableObject {
   @Published var posts = [AlbumDetailElement]()

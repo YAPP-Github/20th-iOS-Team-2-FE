@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct AlbumDetailRow: View {
+  @Binding var isNext: Bool
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
   let screen = UIScreen.main.bounds
   var isBookmark : Bool { return info.favourite }
   
   var body: some View {
     Button(action: {
-      print("image area click")
+      isNext = true
     }, label: {
       VStack() {
         Image(info.link)
@@ -48,9 +49,8 @@ struct AlbumDetailRow: View {
         }) {
           Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
             .frame(width: 20, height: 20)
-            .foregroundColor(info.favourite ? Color(hex: "#FFCA28") : .gray)
+            .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .gray)
             .font(.system(size: 20))
-            .padding(4)
         }
         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
         
@@ -74,6 +74,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.elements[0]
     
-    AlbumDetailRow(info: data)
+    AlbumDetailRow(isNext: .constant(false), info: data)
   }
 }

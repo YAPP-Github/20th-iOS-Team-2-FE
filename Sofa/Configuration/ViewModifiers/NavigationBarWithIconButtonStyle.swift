@@ -1,5 +1,5 @@
 //
-//  NavigationBarWithButton.swift
+//  NavigationBarWithIconButtonStyle.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/11.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationBarWithButton: ViewModifier {
+struct NavigationBarWithIconButtonStyle: ViewModifier {
   @Binding var isButtonClick: Bool
   var title: String = ""
   var buttonName: String = ""
@@ -45,7 +45,7 @@ struct NavigationBarWithButton_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarWithButton(isButtonClick: .constant(true), buttonColor: Color.init(hex: "#43A047"), "제목", "plus")
+        .navigationBarWithIconButtonStyle(isButtonClick: .constant(true), buttonColor: Color.init(hex: "#43A047"), "제목", "plus")
     }
   }
 }

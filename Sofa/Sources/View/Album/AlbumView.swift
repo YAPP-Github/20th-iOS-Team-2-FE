@@ -64,7 +64,7 @@ struct AlbumView: View {
           // 녹음 추가 View으로 이동
 //          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
         }
-        .navigationBarWithButton(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
+        .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
         .fullScreenCover(isPresented: $showPhotoAdd) {
           AlbumPhotoAddView()
         }

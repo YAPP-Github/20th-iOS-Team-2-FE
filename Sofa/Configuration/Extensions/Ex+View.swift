@@ -10,8 +10,8 @@ import protocol SwiftUI.View
 import struct SwiftUI.AnyView
 
 public extension View {
-  func navigationBarWithButton(isButtonClick: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String, _ buttonName: String) -> some View {
-    return self.modifier(NavigationBarWithButton(isButtonClick: isButtonClick, title: title, buttonName: buttonName, buttonColor: buttonColor))
+  func navigationBarWithIconButtonStyle(isButtonClick: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String, _ buttonName: String) -> some View {
+    return self.modifier(NavigationBarWithIconButtonStyle(isButtonClick: isButtonClick, title: title, buttonName: buttonName, buttonColor: buttonColor))
   }
   
   func navigationBarInlineStyle(isNextClick: Binding<Bool>, isDisalbeNextButton: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String = "") -> some View {

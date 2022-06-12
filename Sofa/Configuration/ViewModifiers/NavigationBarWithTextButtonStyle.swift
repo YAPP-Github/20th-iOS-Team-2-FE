@@ -56,7 +56,7 @@ struct NavigationBarWithTextButtonStyle_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarWithTextButtonStyle(isButtonClick: .constant(true), isDisalbeNextButton: .constant(false), "제목", nextText: "올리기", Color.init(hex: "#43A047"))
+        .navigationBarWithTextButtonStyle(isNextClick: .constant(true), isDisalbeNextButton: .constant(false), "제목", nextText: "올리기", Color.init(hex: "#43A047"))
     }
   }
 }

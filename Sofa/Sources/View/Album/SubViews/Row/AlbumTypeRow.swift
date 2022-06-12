@@ -54,7 +54,9 @@ struct AlbumTypeRow: View {
 }
 
 struct AlbumTypeRow_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumTypeRow()
-    }
+  static var previews: some View {
+    let dummy = MockData().albumByType[0]
+    
+    AlbumTypeRow(albumTyep: dummy)
+  }
 }

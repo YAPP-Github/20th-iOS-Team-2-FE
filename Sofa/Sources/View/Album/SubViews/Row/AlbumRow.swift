@@ -18,7 +18,7 @@ struct AlbumRow: View {
         .cornerRadius(8)
       
       VStack(alignment: .leading, spacing: 3) {
-        Text(album.title)
+        Text(album.title == "" ? "\(album.date) 앨범" : album.title)
           .font(.system(size: 16, weight: .semibold))
           .lineLimit(1)
         

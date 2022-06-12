@@ -18,13 +18,8 @@ struct MockData {
     
     for (i, name) in photoList.enumerated() {
       let title = titleList[i % 5]
-      var album: Album
+      let album = Album(albumId: i, title: title, thumbnail: name, date: dateList[i % 5])
       
-      if title == "" {
-        album = Album(albumId: i, title: "\(dateList[i % 5]) 앨범", thumbnail: name, date: dateList[i % 5])
-      } else {
-        album = Album(albumId: i, title: title, thumbnail: name, date: dateList[i % 5])
-      }
       albumList.append(album)
     }
     

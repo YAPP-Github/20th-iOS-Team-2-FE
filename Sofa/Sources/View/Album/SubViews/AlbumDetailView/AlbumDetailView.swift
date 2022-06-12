@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumDetailView: View {
+  @State var isNext = false
   @State var isEdit = false
   let info = MockData().albumDetail
   
@@ -17,6 +18,8 @@ struct AlbumDetailView: View {
         AlbumDetailList(isNext: $isNext)
         
       }
+      .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+      .ignoresSafeArea()
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)

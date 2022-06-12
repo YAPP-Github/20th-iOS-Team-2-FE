@@ -12,7 +12,8 @@ struct AlbumDetail: Hashable, Decodable {
   let elements: [AlbumDetailElement]
 }
 
-struct AlbumDetailElement: Hashable, Decodable {
+struct AlbumDetailElement: Identifiable, Hashable, Decodable {
+  var id : Int?
   let type: String // PHOTO, RECORDING
   let fileId: Int
   let date: String

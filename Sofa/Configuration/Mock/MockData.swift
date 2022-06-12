@@ -43,7 +43,7 @@ struct MockData {
   var albumDetail: AlbumDetail {
     var elements = [AlbumDetailElement]()
     for i in 0..<10 {
-      let element = AlbumDetailElement(type: albumDetailListType[i % 6], fileId: i, date: dateList[i % 6], link: photoList[i % 10], favourite: titleList[i % 6].count % 2 == 0, commentCount: titleList[i % 6].count)
+      let element = AlbumDetailElement(id: i, type: albumDetailListType[i % 6], fileId: i, date: dateList[i % 6], link: photoList[i % 10], favourite: titleList[i % 6].count % 2 == 0, commentCount: titleList[i % 6].count)
       elements.append(element)
     }
     

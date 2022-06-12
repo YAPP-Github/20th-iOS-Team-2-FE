@@ -31,7 +31,7 @@ struct AlbumRow: View {
       VStack(alignment: .center) {
         Spacer()
         Image(systemName: "chevron.right")
-          .font(.body)
+          .foregroundColor(.gray)
         Spacer()
       }
     }

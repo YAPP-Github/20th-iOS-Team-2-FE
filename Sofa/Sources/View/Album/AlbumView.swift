@@ -10,7 +10,7 @@ import SwiftUI
 struct AlbumView: View {
   @State var showingSheet = false
   @State var albums = [Album]()
-  @State var types = [Album]()
+  @State var types = [AlbumType]()
   @State var selected = 0
   @State var showPhotoAdd = false
   @State var showRecordAdd = false
@@ -52,9 +52,9 @@ struct AlbumView: View {
           .pickerStyle(SegmentedPickerStyle())
           
           if selected == 0 {
-            AlbumList(albums: albums)
+            AlbumList(albumDate: albums)
           } else if selected == 1 {
-            AlbumList(albums: types)
+            AlbumList(albumType: types)
           }
           
           // 임시
@@ -79,16 +79,6 @@ struct AlbumView: View {
 
 struct AlbumView_Previews: PreviewProvider {
   static var previews: some View {
-    let albums = [
-      Album(albumId: 0, title: "2022-12-25 앨범", thumbnail: "", date: "2022-06-05"),
-      Album(albumId: 1, title: "제주도 가족여행", thumbnail: "", date: "2022-05-28"),
-      Album(albumId: 2, title: "여의도 공원 나드리", thumbnail: "", date: "2022-05-28")
-    ]
-    
-    let type = [
-      Album(albumId: 0, title: "즐겨찾기", thumbnail: "", date: "2022-06-05"),
-      Album(albumId: 1, title: "제주도 가족여행", thumbnail: "", date: "2022-05-28"),
-    ]
-    AlbumView(albums: albums, types: type)
+    AlbumView(albums: MockData().albumByDate, types: MockData().albumByType)
   }
 }

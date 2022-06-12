@@ -16,7 +16,6 @@ struct AlbumRow: View {
         .resizable()
         .frame(width: 100.0, height: 75.0)
         .cornerRadius(8)
-        .background(Color.gray) // 임시
       
       VStack(alignment: .leading, spacing: 3) {
         Text(album.title)

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AlbumView: View {
   @State var showingSheet = false
-  @State var albums = [Album]()
-  @State var types = [AlbumType]()
+  @State var albums = MockData().albumByDate
+  @State var types = MockData().albumByType
   @State var selected = 0
   @State var showPhotoAdd = false
   @State var showRecordAdd = false

@@ -29,11 +29,6 @@ struct AlbumList: View {
 
 struct AlbumList_Previews: PreviewProvider {
   static var previews: some View {
-    let albums = [
-      Album(albumId: 0, title: "2022-12-25 앨범", thumbnail: "", date: "2022-06-05"),
-      Album(albumId: 1, title: "제주도 가족여행", thumbnail: "", date: "2022-05-28"),
-      Album(albumId: 2, title: "여의도 공원 나드리", thumbnail: "", date: "2022-05-28")
-    ]
-    AlbumList(albums: albums)
+    AlbumList(albums: MockData().albumByDate)
   }
 }

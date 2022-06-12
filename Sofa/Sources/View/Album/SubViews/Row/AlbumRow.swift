@@ -19,6 +19,7 @@ struct AlbumRow: View {
       
       VStack(alignment: .leading, spacing: 3) {
         Text(album.title)
+          .font(.system(size: 16, weight: .semibold))
           .lineLimit(1)
         
         Text(album.date)

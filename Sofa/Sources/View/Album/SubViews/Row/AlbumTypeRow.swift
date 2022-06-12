@@ -29,6 +29,7 @@ struct AlbumTypeRow: View {
       
       VStack(alignment: .leading, spacing: 3) {
         Text(info[albumTyep.kind]!.0)
+          .font(.system(size: 16, weight: .semibold))
           .lineLimit(1)
 
         Text("\(albumTyep.count)\(info[albumTyep.kind]!.2)")

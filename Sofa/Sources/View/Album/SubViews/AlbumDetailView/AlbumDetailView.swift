@@ -20,7 +20,7 @@ struct AlbumDetailView: View {
         NavigationLink("", destination: AlbumRecordAddView(), isActive: $isNext)
       }
       .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
-      .ignoresSafeArea()
+      .edgesIgnoringSafeArea([.bottom])
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)

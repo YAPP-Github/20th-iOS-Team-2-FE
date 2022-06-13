@@ -60,7 +60,11 @@ struct AlbumPhotoAddRow: View {
         .background(Circle().foregroundColor(isSelect ? Color.init(hex: "#43A047") : Color(UIColor.gray.withAlphaComponent(0.6)))) // 임시 컬러
         .offset(x: size/3, y: -(size/3))
         .overlay(
-          Text(asset.image != nil && selected.firstIndex(of: SelectedImages(asset: asset.asset, image: asset.image!)) != nil ? "\(selected.firstIndex(of: SelectedImages(asset: asset.asset, image: asset.image!))! + 1)": "0") // numburing 기능
+          Text(
+            selected.filter{$0.asset == asset.asset}.first != nil &&
+            selected.firstIndex(of: selected.filter{$0.asset == asset.asset}.first!) != nil
+            ? "\(selected.firstIndex(of: selected.filter{$0.asset == asset.asset}.first!)! + 1)" : "0"
+          ) // numburing 기능
             .foregroundColor(isSelect ? Color.white : Color.clear)
             .offset(x: size/3, y: -(size/3))
         )

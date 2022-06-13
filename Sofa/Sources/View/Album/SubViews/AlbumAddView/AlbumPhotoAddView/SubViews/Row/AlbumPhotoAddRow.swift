@@ -9,7 +9,7 @@ import SwiftUI
 import Photos
 
 struct AlbumPhotoAddRow: View {
-  @ObservedObject var asset: Asset
+  @StateObject var asset: Asset
   @Binding var selected: [SelectedImages]
   @State var isSelect: Bool
   @State private var showAlert = false

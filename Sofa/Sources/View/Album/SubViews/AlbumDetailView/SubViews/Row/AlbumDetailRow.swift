@@ -20,7 +20,7 @@ struct AlbumDetailRow: View {
       VStack() {
         Image(info.link)
           .resizable()
-          .frame(height: screen.width * 0.8)
+          .frame(height: screen.width * 0.6)
         
         HStack(spacing: 16) {
           
@@ -65,7 +65,7 @@ struct AlbumDetailRow: View {
             .font(.system(size: 20))
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 30))
-      }.offset(y: 160)
+      }.offset(y: 120)
     )
   }
 }

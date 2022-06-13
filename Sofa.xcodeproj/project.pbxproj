@@ -389,8 +389,8 @@
 		C4667A84284BA97000A4A759 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				C4B8F2932850DA0E0000B8CB /* ActionSheet */,
 				C4EC31C3284F8A740049F2C4 /* Row */,
+				C4B8F2932850DA0E0000B8CB /* ActionSheet */,
 				C4B8F2B32852360A0000B8CB /* AlbumAddView */,
 				C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
@@ -413,6 +413,22 @@
 				C495F6002856446A009B3BDE /* AlbumDetailList.swift */,
 			);
 			path = Row;
+			sourceTree = "<group>";
+		};
+		C495F60228571F51009B3BDE /* AlbumRecordAddView */ = {
+			isa = PBXGroup;
+			children = (
+				C4B8F2B7285237080000B8CB /* AlbumRecordAddView.swift */,
+			);
+			path = AlbumRecordAddView;
+			sourceTree = "<group>";
+		};
+		C495F60328571FC7009B3BDE /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C495F5FD2856387E009B3BDE /* Row */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		C4B8F2932850DA0E0000B8CB /* ActionSheet */ = {
@@ -441,8 +457,8 @@
 		C4B8F2B32852360A0000B8CB /* AlbumAddView */ = {
 			isa = PBXGroup;
 			children = (
-				C4B8F2BD2852908E0000B8CB /* PhotoAddView */,
-				C4B8F2B7285237080000B8CB /* AlbumRecordAddView.swift */,
+				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
+				C495F60228571F51009B3BDE /* AlbumRecordAddView */,
 			);
 			path = AlbumAddView;
 			sourceTree = "<group>";
@@ -455,13 +471,13 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
-		C4B8F2BD2852908E0000B8CB /* PhotoAddView */ = {
+		C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */ = {
 			isa = PBXGroup;
 			children = (
 				C4B8F2B4285236750000B8CB /* AlbumPhotoAddView.swift */,
 				C4B8F2BF285290FE0000B8CB /* SubViews */,
 			);
-			path = PhotoAddView;
+			path = AlbumPhotoAddView;
 			sourceTree = "<group>";
 		};
 		C4B8F2BF285290FE0000B8CB /* SubViews */ = {
@@ -496,7 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				C4EC31CF284F99F30049F2C4 /* AlbumDetailView.swift */,
-				C495F5FD2856387E009B3BDE /* Row */,
+				C495F60328571FC7009B3BDE /* SubViews */,
 			);
 			path = AlbumDetailView;
 			sourceTree = "<group>";

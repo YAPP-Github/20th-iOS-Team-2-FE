@@ -11,10 +11,10 @@ import Photos
 struct AlbumPhotoAddRow: View {
   @StateObject var asset: Asset
   @Binding var selected: [SelectedImages]
-  @State var isSelect: Bool
-  @State private var showAlert = false
   @Binding var imageClick: UIImage?
-  let size = UIScreen.main.bounds.width * 0.325
+  @State private var isSelect: Bool
+  @State private var showAlert = false
+  private let size = UIScreen.main.bounds.width * 0.325
   private let limit = 3
   
   var body: some View {

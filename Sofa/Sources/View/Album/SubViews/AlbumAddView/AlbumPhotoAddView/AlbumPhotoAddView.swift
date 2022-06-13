@@ -12,7 +12,7 @@ struct AlbumPhotoAddView: View {
   @State var isNext = false
   @State var imageClick: UIImage?
   @State var selected : [SelectedImages] = []
-  let height = UIScreen.main.bounds.width * 0.8
+  private let height = UIScreen.main.bounds.width * 0.8
   
   var body: some View {
     NavigationView {

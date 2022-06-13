@@ -10,8 +10,8 @@ import SwiftUI
 struct AlbumDetailRow: View {
   @Binding var isNext: Bool
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
-  let screen = UIScreen.main.bounds
-  var isBookmark : Bool { return info.favourite }
+  private  let screen = UIScreen.main.bounds
+  private  var isBookmark : Bool { return info.favourite }
   
   var body: some View {
     Button(action: {

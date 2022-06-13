@@ -32,9 +32,9 @@ struct AlbumDetailRow: View {
               .padding(4)
             
             Text("\(info.commentCount)")
-              .frame(width: 20, height: 20)
               .foregroundColor(.gray)
               .font(.system(size: 20))
+              .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
           }
           .padding(EdgeInsets(top: 0, leading: 56, bottom: 0, trailing: 0))
           
@@ -72,7 +72,7 @@ struct AlbumDetailRow: View {
 
 struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[0]
+    let data = MockData().albumDetail.elements[1]
     
     AlbumDetailRow(isNext: .constant(false), info: data)
   }

@@ -21,21 +21,17 @@ struct AlbumPhotoAddList: View {
   
   var body: some View {
     ScrollView(showsIndicators: true) {
-      ZStack {
-        LazyVGrid(columns: gridItem, spacing: 1) {
-          ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
-            VStack {
-              AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, imageClick: $imageClick, isSelect: photoLibrary.photoAssets[index].isSelect)
-                .padding(.all, 1)
-            }
-          }
+      LazyVGrid(columns: gridItem, spacing: 1) {
+        ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
+          AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, imageClick: $imageClick, isSelect: photoLibrary.photoAssets[index].isSelect)
+            .padding(.all, 1)
         }
-        .onAppear {
-          self.photoLibrary.requestAuthorization()
-        }
-        .padding(.trailing, 10)
-        .padding(.leading, 10)
       }
+      .onAppear {
+        self.photoLibrary.requestAuthorization()
+      }
+      .padding(.trailing, 10)
+      .padding(.leading, 10)
     }
   }
 }

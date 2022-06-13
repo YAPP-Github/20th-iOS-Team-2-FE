@@ -33,7 +33,6 @@ struct AlbumPhotoAddView: View {
         AlbumPhotoAddList(selected: $selected, imageClick: $imageClick)
           .frame(height: Screen.maxHeight * 0.5)
           .background(Color.black)
-
         //          .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동

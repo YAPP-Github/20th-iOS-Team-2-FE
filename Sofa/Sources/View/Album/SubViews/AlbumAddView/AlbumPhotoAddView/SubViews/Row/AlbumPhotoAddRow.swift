@@ -23,7 +23,9 @@ struct AlbumPhotoAddRow: View {
         imageClick = asset.image!
         
         if isSelect { // 이미 선택되어 있을때,
-          selected.remove(at: selected.firstIndex(of: SelectedImages(asset: asset.asset, image: asset.image!))!)
+          let removeTarget = selected.filter{$0.asset == asset.asset}
+          let removeIndex = selected.firstIndex(of: removeTarget[0])!
+          selected.remove(at: removeIndex)
           isSelect = false
         } else if selected.count < limit { // 선택이 안되어 있고, 3개 이하일 경우
           selected.append(SelectedImages(asset: asset.asset, image: asset.image!))

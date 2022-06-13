@@ -88,7 +88,7 @@ class Asset: ObservableObject, Identifiable, Hashable {
     let imageRequestOptions = PHImageRequestOptions()
     imageRequestOptions.version = .current
     imageRequestOptions.isNetworkAccessAllowed = true   // iCloud 가능
-    imageRequestOptions.deliveryMode = .highQualityFormat
+    imageRequestOptions.deliveryMode = .highQualityFormat // 고화질
     return imageRequestOptions
   }
 }

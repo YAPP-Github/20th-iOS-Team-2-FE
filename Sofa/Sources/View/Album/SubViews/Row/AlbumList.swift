@@ -12,7 +12,7 @@ struct AlbumList: View {
   @State var albumType: [AlbumType]? // 유형별
   
   var body: some View {
-    if let albumDate = albumDate {
+    if let albumDate = albumDate { // 날짜별 보기
       List(albumDate, id: \.albumId) { album in
         ZStack {
           NavigationLink(destination: AlbumDetailView()) {
@@ -26,7 +26,8 @@ struct AlbumList: View {
       .listStyle(PlainListStyle())
       .padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
       .background(Color.init(hex: "#FAF8F0")) // 임시
-    } else if let albumType = albumType {
+      
+    } else if let albumType = albumType { // 유형별 보기
       List(albumType, id: \.self) { album in
         ZStack {
           NavigationLink(destination: AlbumDetailView()) {

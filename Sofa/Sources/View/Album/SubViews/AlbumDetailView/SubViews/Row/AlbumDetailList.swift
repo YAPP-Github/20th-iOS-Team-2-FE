@@ -13,6 +13,7 @@ struct AlbumDetailList: View {
   
   var body: some View {
     ScrollView {
+      // 필요할때 rendering 함, network에 적합
       LazyVStack(spacing: 10) {
         ForEach(viewModel.posts) { element in
           AlbumDetailRow(isNext: $isNext, info: element)

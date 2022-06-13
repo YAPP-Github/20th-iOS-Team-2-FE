@@ -51,28 +51,28 @@ struct AlbumView: View {
           .background(Color.init(hex: "#FAF8F0")) // 임시
           .pickerStyle(SegmentedPickerStyle())
           
-          if selected == 0 {
+          if selected == 0 { // 날짜별
             AlbumList(albumDate: albums)
-          } else if selected == 1 {
+          } else if selected == 1 { // 유형별
             AlbumList(albumType: types)
           }
           
           // 임시
-          // 사진 선택 View으로 이동
+          // 사진 추가 View로 이동
 //          NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
           
-          // 녹음 추가 View으로 이동
+          // 녹음 추가 View로 이동
 //          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
         }
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
-        .fullScreenCover(isPresented: $showPhotoAdd) {
+        .fullScreenCover(isPresented: $showPhotoAdd) { // 사진 추가 View로 이동
           AlbumPhotoAddView()
         }
-        .fullScreenCover(isPresented: $showRecordAdd) {
+        .fullScreenCover(isPresented: $showRecordAdd) { // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }
       }
-      actionSheetView
+      actionSheetView // 바텀 Sheet
     }
   }
 }

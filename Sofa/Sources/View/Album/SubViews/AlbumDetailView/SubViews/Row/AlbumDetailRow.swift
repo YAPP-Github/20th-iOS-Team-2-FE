@@ -17,6 +17,7 @@ struct AlbumDetailRow: View {
       isNext = true
     }, label: {
       VStack() {
+        // post image
         Image(info.link)
           .resizable()
           .frame(height: Screen.maxWidth * 0.7)
@@ -30,6 +31,7 @@ struct AlbumDetailRow: View {
               .font(.system(size: 20))
               .padding(4)
             
+            // 댓글 수
             Text("\(info.commentCount)")
               .foregroundColor(.gray)
               .font(.system(size: 20))
@@ -46,6 +48,7 @@ struct AlbumDetailRow: View {
         Button(action: {
           print("bookmark click")
         }) {
+          // 북마크
           Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
             .frame(width: 20, height: 20)
             .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .gray)
@@ -56,7 +59,7 @@ struct AlbumDetailRow: View {
         Spacer()
         
         Button(action: {
-          print("점 3개 click")
+          print("ellipsis(생략) click")
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)
@@ -64,7 +67,7 @@ struct AlbumDetailRow: View {
             .font(.system(size: 20))
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 30))
-      }.offset(y: 140)
+      }.offset(y: 140) // image위에 icon button 올려놓기
     )
   }
 }

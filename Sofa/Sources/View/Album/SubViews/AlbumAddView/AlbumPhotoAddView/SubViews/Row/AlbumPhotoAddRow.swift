@@ -40,7 +40,6 @@ struct AlbumPhotoAddRow: View {
             .scaledToFill()
             .frame(width: size, height: size, alignment: .center)
             .cornerRadius(5.0)
-          
         } else {
           Color.yellow
             .frame(width: size, height: size)
@@ -53,7 +52,6 @@ struct AlbumPhotoAddRow: View {
           message: nil,
           dismissButton: .default(Text("확인")))
       }
-      
       Circle()
         .strokeBorder(Color.white, lineWidth: 1)
         .frame(width: 24, height: 24, alignment: .center)
@@ -69,7 +67,6 @@ struct AlbumPhotoAddRow: View {
             .offset(x: size/3, y: -(size/3))
         )
     }
-    
     .onAppear {
       self.asset.request()
     }

@@ -17,6 +17,7 @@ struct AlbumDetailList: View {
       LazyVStack(spacing: 10) {
         ForEach(viewModel.posts) { element in
           AlbumDetailRow(isNext: $isNext, info: element)
+            .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
       }
     }

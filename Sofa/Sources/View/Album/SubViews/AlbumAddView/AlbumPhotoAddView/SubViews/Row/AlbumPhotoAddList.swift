@@ -24,7 +24,7 @@ struct AlbumPhotoAddList: View {
       LazyVGrid(columns: gridItem, spacing: 1) {
         ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
           AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, imageClick: $imageClick, isSelect: photoLibrary.photoAssets[index].isSelect)
-            .padding(.all, 1)
+            .padding(1)
         }
       }
       .onAppear {

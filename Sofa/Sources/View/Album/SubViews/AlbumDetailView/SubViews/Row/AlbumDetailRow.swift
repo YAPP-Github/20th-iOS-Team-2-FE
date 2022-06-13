@@ -21,6 +21,7 @@ struct AlbumDetailRow: View {
         Image(info.link)
           .resizable()
           .frame(height: Screen.maxWidth * 0.7)
+          .cornerRadius(8)
         
         HStack(spacing: 16) {
           
@@ -37,7 +38,7 @@ struct AlbumDetailRow: View {
               .font(.system(size: 20))
               .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
           }
-          .padding(EdgeInsets(top: 0, leading: 56, bottom: 0, trailing: 0))
+          .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 0))
           
           Spacer()
         }
@@ -54,19 +55,18 @@ struct AlbumDetailRow: View {
             .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .gray)
             .font(.system(size: 20))
         }
-        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+        .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
         
         Spacer()
         
         Button(action: {
-          print("ellipsis(생략) click")
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)
             .foregroundColor(.gray)
             .font(.system(size: 20))
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
         }
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 30))
       }.offset(y: 140) // image위에 icon button 올려놓기
     )
   }

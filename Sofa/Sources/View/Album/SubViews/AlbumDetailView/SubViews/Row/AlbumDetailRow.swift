@@ -10,8 +10,7 @@ import SwiftUI
 struct AlbumDetailRow: View {
   @Binding var isNext: Bool
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
-  private  let screen = UIScreen.main.bounds
-  private  var isBookmark : Bool { return info.favourite }
+  private var isBookmark : Bool { return info.favourite }
   
   var body: some View {
     Button(action: {
@@ -20,7 +19,7 @@ struct AlbumDetailRow: View {
       VStack() {
         Image(info.link)
           .resizable()
-          .frame(height: screen.width * 0.7)
+          .frame(height: Screen.maxWidth * 0.7)
         
         HStack(spacing: 16) {
           

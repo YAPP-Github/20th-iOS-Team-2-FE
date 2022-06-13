@@ -9,13 +9,13 @@ import SwiftUI
 import Combine
 
 public struct ActionSheetCard: View {
-  @State var offset = UIScreen.main.bounds.height
+  @State var offset = Screen.maxHeight
   @Binding var isShowing: Bool
   @State var isDragging = false
   
   var items: [ActionSheetCardItem]
   var itemCount: Int = 0
-  let heightToDisappear = UIScreen.main.bounds.height
+  let heightToDisappear = Screen.maxHeight
   let cellHeight: CGFloat = 50
   let backgroundColor: Color
   let outOfFocusOpacity: CGFloat

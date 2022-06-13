@@ -14,9 +14,9 @@ struct AlbumPhotoAddList: View {
   @Binding var imageClick: UIImage?
   
   var gridItem = [
-    GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
-    GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
-    GridItem(.fixed(UIScreen.main.bounds.width * 0.315))
+    GridItem(.fixed(Screen.maxWidth * 0.315)),
+    GridItem(.fixed(Screen.maxWidth * 0.315)),
+    GridItem(.fixed(Screen.maxWidth * 0.315))
   ]
   
   var body: some View {

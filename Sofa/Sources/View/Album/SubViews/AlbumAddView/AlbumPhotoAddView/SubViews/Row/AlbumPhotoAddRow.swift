@@ -14,7 +14,7 @@ struct AlbumPhotoAddRow: View {
   @Binding var imageClick: UIImage?
   @State var isSelect: Bool
   @State private var showAlert = false
-  private let size = UIScreen.main.bounds.width * 0.325
+  private let size = Screen.maxWidth * 0.325
   private let limit = 3
   
   var body: some View {

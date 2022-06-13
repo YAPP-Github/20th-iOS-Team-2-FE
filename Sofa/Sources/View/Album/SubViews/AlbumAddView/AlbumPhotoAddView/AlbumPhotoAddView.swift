@@ -12,7 +12,7 @@ struct AlbumPhotoAddView: View {
   @State var isNext = false
   @State var imageClick: UIImage?
   @State var selected : [SelectedImages] = []
-  private let height = Screen.maxWidth * 0.8
+  private let height = Screen.maxWidth * 0.7
   
   var body: some View {
     NavigationView {
@@ -26,13 +26,14 @@ struct AlbumPhotoAddView: View {
               .resizable()
               .scaledToFit()
               .frame(height: height) // 화면의 반
-              .padding(.all, 2)
               .pinchToZoom()
           }
         }
         
         AlbumPhotoAddList(selected: $selected, imageClick: $imageClick)
           .frame(height: Screen.maxHeight * 0.5)
+          .background(Color.black)
+
         //          .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동

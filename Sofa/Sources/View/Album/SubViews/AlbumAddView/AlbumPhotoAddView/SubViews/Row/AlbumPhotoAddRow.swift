@@ -41,7 +41,7 @@ struct AlbumPhotoAddRow: View {
             .frame(width: size, height: size, alignment: .center)
             .cornerRadius(5.0)
         } else {
-          Color.yellow
+          Color.gray
             .frame(width: size, height: size)
             .cornerRadius(5.0)
         }

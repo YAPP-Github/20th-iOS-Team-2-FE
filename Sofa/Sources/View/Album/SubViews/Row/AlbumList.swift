@@ -24,7 +24,7 @@ struct AlbumList: View {
         .listRowBackground(Color.init(hex: "#FAF8F0")) // 임시
       }
       .listStyle(PlainListStyle())
-      .padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
+      .padding(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0)) // 0으로 하면 tabBar area를 무시
       .background(Color.init(hex: "#FAF8F0")) // 임시
       
     } else if let albumType = albumType { // 유형별 보기
@@ -39,7 +39,7 @@ struct AlbumList: View {
         .listRowBackground(Color.init(hex: "#FAF8F0")) // 임시
       }
       .listStyle(PlainListStyle())
-      .padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
+      .padding(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0)) // 0으로 하면 tabBar area를 무시
       .background(Color.init(hex: "#FAF8F0")) // 임시
     }
   }

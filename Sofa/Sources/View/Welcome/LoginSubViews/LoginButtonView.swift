@@ -46,7 +46,6 @@ struct LoginButtonView: View {
     }//VStack
     .ignoresSafeArea()
     .background(Color.white)
-    .cornerRadius(15)
     
   }
 }

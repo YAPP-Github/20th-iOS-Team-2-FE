@@ -12,12 +12,14 @@ import KakaoSDKAuth
 
 struct LoginView: View {
   
-  @State var show = false
+  @State var titleShow = false
+  @State var loginShow = false
   @State var delay = 3
   var body: some View {
     VStack(spacing: -120){
       Spacer()
-      if show{
+      Spacer()
+      if titleShow{
         VStack{
           Text("우리 가족만의 공간")
             .font(.system(size: 28))
@@ -27,6 +29,11 @@ struct LoginView: View {
         .animation(.easeInOut(duration: 1))
         .transition(.move(edge: .top))
         .foregroundColor(Color(hex: "FAF8F0"))
+        .onAppear{
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // 1초 후 Login Show
+            self.loginShow = true
+          }
+        }
       }else{
         VStack{
           Text("우리 가족만의 공간")
@@ -42,13 +49,22 @@ struct LoginView: View {
       LottieView(filename: "15025-bed")
         .frame(width: UIScreen.main.bounds.width, height: 400)
       Spacer()
-      LoginButtonView()
+      if loginShow{
+        LoginButtonView()
+          .cornerRadius(25, corners: [.topLeft, .topRight])
+          .animation(.easeInOut(duration: 1))
+          .transition(.move(edge: .bottom))
+      }else{
+        LoginButtonView()
+          .cornerRadius(25, corners: [.topLeft, .topRight])
+          .opacity(0)
+      }
     }//VStack
     .background(Color(hex: "29662C"))
     .ignoresSafeArea()
     .onAppear {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-        self.show = true
+      DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // 3초 후 Title Show
+        self.titleShow = true
       }
     }
   }

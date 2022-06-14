@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A026875284BA8B700E7AF4A /* LoginView.swift */; };
+		0A2B55092858779D006F816C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B55082858779D006F816C /* View.swift */; };
 		0A858CBC2855BC6600907019 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Color.swift */; };
 		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
 		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		0A026875284BA8B700E7AF4A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A026877284BA9A300E7AF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0A2B55082858779D006F816C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		0ABA0C1828579493005F2C6A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				6F22E539284B9D540069D268 /* Extensions.swift */,
 				0A858CBB2855BC6600907019 /* Color.swift */,
+				0A2B55082858779D006F816C /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
+				0A2B55092858779D006F816C /* View.swift in Sources */,
 				6F22E530284B9D2B0069D268 /* Models.swift in Sources */,
 				0A858CBC2855BC6600907019 /* Color.swift in Sources */,
 				C4667A87284BA99800A4A759 /* NavigationBarWithButton.swift in Sources */,

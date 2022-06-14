@@ -17,8 +17,8 @@ struct SofaApp: App {
   }
   var body: some Scene {
     WindowGroup {
-//      ContentView()
-      LoginView()
+      ContentView()
+//      LoginView()
 //        .onOpenURL { url in
 //          if (AuthApi.isKakaoTalkLoginUrl(url)){
 //            _ = AuthController.handleOpenUrl(url: url)

@@ -8,28 +8,64 @@
 import SwiftUI
 
 struct AlbumView: View {
+  @State var showingSheet = false
   @State var albums = [Album]()
   @State var types = [Album]()
   @State var selected = 0
+  @State var showPhotoAdd = false
+  @State var showRecordAdd = false
+  
+  var actionSheetView: some View {
+    ActionSheetCard(
+      isShowing: $showingSheet,
+      items: [
+        ActionSheetCardItem(systemIconName: "photo", label: "사진") {
+          UITabBar.toogleTabBarVisibility()
+          showingSheet = false
+          showPhotoAdd = true
+        },
+        ActionSheetCardItem(systemIconName: "camera", label: "카메라") {
+          UITabBar.toogleTabBarVisibility()
+          showingSheet = false
+        },
+        ActionSheetCardItem(systemIconName: "waveform", label: "녹음") {
+          UITabBar.toogleTabBarVisibility()
+          showingSheet = false
+          showRecordAdd = true
+        }
+      ],
+      outOfFocusOpacity: 0.2,
+      itemsSpacing: 0
+    )
+  }
   
   var body: some View {
-    NavigationView {
-      VStack(spacing: 0) {
-        Picker(selection: $selected, label: Text(""), content: {
-          Text("날짜별").tag(0)
-          Text("유형별").tag(1)
-        })
-        .padding()
-        .background(Color.init(hex: "#FAF8F0")) // 임시
-        .pickerStyle(SegmentedPickerStyle())
-        .navigationBarWithButtonStyle("앨범", "plus")
-        
-        if selected == 0 {
-          AlbumList(albums: albums)
-        } else if selected == 1 {
-          AlbumList(albums: types)
+    ZStack {
+      NavigationView {
+        VStack(spacing: 0) {
+          Picker(selection: $selected, label: Text(""), content: {
+            Text("날짜별").tag(0)
+            Text("유형별").tag(1)
+          })
+          .padding()
+          .background(Color.init(hex: "#FAF8F0")) // 임시
+          .pickerStyle(SegmentedPickerStyle())
+          
+          if selected == 0 {
+            AlbumList(albums: albums)
+          } else if selected == 1 {
+            AlbumList(albums: types)
+          }
+          
+          // 사진 선택 View으로 이동
+          NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
+          
+          // 녹음 추가 View으로 이동
+          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
         }
+        .navigationBarWithButton(showingSheet: $showingSheet, "앨범", "plus")
       }
+      actionSheetView
     }
   }
 }

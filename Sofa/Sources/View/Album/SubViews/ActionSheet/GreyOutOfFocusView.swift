@@ -1,0 +1,48 @@
+//
+//  GreyOutOfFocusView.swift
+//  Sofa
+//
+//  Created by geonhyeong on 2022/06/08.
+//
+
+import SwiftUI
+
+public struct GreyOutOfFocusView: View {
+  let contentHight: CGFloat
+  let opacity: CGFloat
+  let callback: (() -> ())?
+  var tabBarHight: CGFloat
+  
+  public init(
+    contentHight: CGFloat = 70,
+    opacity: CGFloat = 0.2,
+    callback: (() -> ())? = nil,
+    tabBarHight: CGFloat = 83 // 임시
+  ) {
+    self.contentHight = contentHight
+    self.opacity = opacity
+    self.callback = callback
+    self.tabBarHight = tabBarHight
+  }
+  
+  var greyView: some View {
+    Rectangle()
+      .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - tabBarHight)
+      .background(Color.black)
+      .opacity(opacity)
+      .onTapGesture {
+        callback?()
+      }
+      .edgesIgnoringSafeArea(.all)
+  }
+  
+  public var body: some View {
+    greyView
+  }
+}
+
+struct GreyOutOfFocusView_Previews: PreviewProvider {
+  static var previews: some View {
+    GreyOutOfFocusView(opacity: 0.2)
+  }
+}

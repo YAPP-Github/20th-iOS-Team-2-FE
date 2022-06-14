@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @State private var selection: Tab = .home
-  
+
   enum Tab {
     case home
     case calendar

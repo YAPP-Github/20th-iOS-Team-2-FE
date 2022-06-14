@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A026875284BA8B700E7AF4A /* LoginView.swift */; };
+		0A2B55092858779D006F816C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B55082858779D006F816C /* View.swift */; };
+		0A858CBC2855BC6600907019 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Color.swift */; };
+		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
+		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
+		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
 		187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */; };
 		6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E523284B9CF00069D268 /* AlbumView.swift */; };
 		6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E525284B9CFD0069D268 /* CalendarView.swift */; };
@@ -65,6 +70,11 @@
 /* Begin PBXFileReference section */
 		0A026875284BA8B700E7AF4A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A026877284BA9A300E7AF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0A2B55082858779D006F816C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		0A858CBB2855BC6600907019 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		0ABA0C1828579493005F2C6A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
+		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBE8172BD1C8B15C2F363BF /* Pods-SofaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.release.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A02CB536760CF657C4244F9 /* Pods-Sofa-SofaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa-SofaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,11 +162,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		0ABA0C1E2857A31B005F2C6A /* LoginSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				0ABA0C1828579493005F2C6A /* LottieView.swift */,
+				0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */,
+			);
+			path = LoginSubViews;
+			sourceTree = "<group>";
+		};
 		6F22E51E284B9CB60069D268 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
 				6F22E52B284B9D190069D268 /* WelcomeView.swift */,
 				0A026875284BA8B700E7AF4A /* LoginView.swift */,
+				0ABA0C1E2857A31B005F2C6A /* LoginSubViews */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -230,10 +250,12 @@
 		6F22E535284B9D400069D268 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C4EC31D9285035A00049F2C4 /* Ex+Color.swift */,
 				C4B8F2A92851CAF80000B8CB /* Ex+View.swift */,
 				C4B8F2AB2851CB0E0000B8CB /* Ex+UIView.swift */,
 				C4B8F2AD2851CB1F0000B8CB /* Ex+UITabBar.swift */,
+				6F22E539284B9D540069D268 /* Extensions.swift */,
+				0A858CBB2855BC6600907019 /* Color.swift */,
+				0A2B55082858779D006F816C /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +354,7 @@
 		C4667A5D284B752600A4A759 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0ABA0C1A28579769005F2C6A /* 15025-bed.json */,
 				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
 				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
 			);
@@ -526,6 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4667A36284B6FF400A4A759 /* Preview Assets.xcassets in Resources */,
+				0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */,
 				C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,15 +681,20 @@
 				C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */,
 				C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */,
 				6F22E53C284B9D5A0069D268 /* Base.swift in Sources */,
+				0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */,
 				6F22E528284B9D050069D268 /* SettingsView.swift in Sources */,
 				C4B8F2AC2851CB0E0000B8CB /* Ex+UIView.swift in Sources */,
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
-				C4EC31DA285035A00049F2C4 /* Ex+Color.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
+				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
+				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
+				0A2B55092858779D006F816C /* View.swift in Sources */,
+				6F22E530284B9D2B0069D268 /* Models.swift in Sources */,
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
+				0A858CBC2855BC6600907019 /* Color.swift in Sources */,
 				C4667A87284BA99800A4A759 /* NavigationBarWithButton.swift in Sources */,
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,
 				C4B8F2A82851CAD50000B8CB /* HiddenTabBar.swift in Sources */,

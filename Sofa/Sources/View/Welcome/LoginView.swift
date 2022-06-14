@@ -42,6 +42,7 @@ struct LoginView: View {
       LottieView(filename: "15025-bed")
         .frame(width: UIScreen.main.bounds.width, height: 400)
       Spacer()
+      LoginButtonView()
     }//VStack
     .background(Color(hex: "29662C"))
     .ignoresSafeArea()

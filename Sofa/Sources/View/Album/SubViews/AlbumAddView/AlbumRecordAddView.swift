@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct AlbumRecordAddView: View {
-    var body: some View {
-        Text("Record View")
-    }
+  var body: some View {
+    Text("Record View")
+  }
 }
 
 struct AlbumRecordAddView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumRecordAddView()
-    }
+  static var previews: some View {
+    AlbumRecordAddView()
+  }
 }

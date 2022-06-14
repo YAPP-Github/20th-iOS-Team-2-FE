@@ -2,15 +2,16 @@
 //  NavigationBarWithButton.swift
 //  Sofa
 //
-//  Created by geonhyeong on 2022/06/04.
+//  Created by geonhyeong on 2022/06/11.
 //
 
 import SwiftUI
 
 struct NavigationBarWithButton: ViewModifier {
-  @Binding var showingSheet: Bool
+  @Binding var isButtonClick: Bool
   var title: String = ""
   var buttonName: String = ""
+  var buttonColor: Color
   
   func body(content: Content) -> some View {
     return content
@@ -20,11 +21,11 @@ struct NavigationBarWithButton: ViewModifier {
           .padding(),
         trailing: Button(action: {
           UITabBar.toogleTabBarVisibility()
-          showingSheet = true
+          isButtonClick = true
         }, label: {
           Image(systemName: buttonName)
         })
-        .accentColor(.black)
+        .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
       .navigationBarTitleDisplayMode(.inline)
@@ -32,7 +33,7 @@ struct NavigationBarWithButton: ViewModifier {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor =
-        UIColor(white: 1, alpha: 0.6)
+        UIColor.systemBackground.withAlphaComponent(1)
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
@@ -40,17 +41,11 @@ struct NavigationBarWithButton: ViewModifier {
   }
 }
 
-extension View {
-  func navigationBarWithButton(showingSheet: Binding<Bool>, _ title: String, _ buttonName: String) -> some View {
-    return self.modifier(NavigationBarWithButton(showingSheet: showingSheet, title: title, buttonName: buttonName))
-  }
-}
-
 struct NavigationBarWithButton_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarWithButton(showingSheet: .constant(true), "앨범", "plus")
+        .navigationBarWithButton(isButtonClick: .constant(true), buttonColor: Color.init(hex: "#43A047"), "제목", "plus")
     }
   }
 }

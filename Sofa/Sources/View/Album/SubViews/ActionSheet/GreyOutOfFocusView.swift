@@ -27,7 +27,7 @@ public struct GreyOutOfFocusView: View {
   
   var greyView: some View {
     Rectangle()
-      .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - tabBarHight)
+      .frame(width: Screen.maxWidth, height: Screen.maxHeight - tabBarHight)
       .background(Color.black)
       .opacity(opacity)
       .onTapGesture {

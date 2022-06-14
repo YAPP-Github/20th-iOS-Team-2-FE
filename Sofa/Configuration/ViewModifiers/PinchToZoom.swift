@@ -128,7 +128,7 @@ class PinchZoomView: UIView {
       
     case .changed:
       if gesture.numberOfTouches != numberOfTouches {
-        // If the number of fingers being used changes, the start location needs to be adjusted to avoid jumping.
+        // 사용하는 손가락 수가 변경되면 점프하지 않도록 시작 위치를 조정
         let newLocation = gesture.location(in: self)
         let jumpDifference = CGSize(width: newLocation.x - location.x, height: newLocation.y - location.y)
         startLocation = CGPoint(x: startLocation.x + jumpDifference.width, y: startLocation.y + jumpDifference.height)

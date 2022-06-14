@@ -8,8 +8,8 @@
 import Foundation
 
 struct Album: Hashable, Decodable {
-    let albumId: Int
-    let title: String
-    let thumbnail: String
-    let date: String
+  let albumId: Int
+  let title: String
+  let thumbnail: String
+  let date: String
 }

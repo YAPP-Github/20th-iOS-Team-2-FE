@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct AlbumDetailView: View {
+  @State var isNext = false
+  @State var isEdit = false
+  let info = MockData().albumDetail
+  
   var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    NavigationView {
+      VStack {
+        AlbumDetailList(isNext: $isNext)
+        
+        NavigationLink("", destination: AlbumRecordAddView(), isActive: $isNext)
+      }
+      .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+      .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
+    }
+    .navigationViewStyle(StackNavigationViewStyle())
+    .navigationBarHidden(true)
+    .onAppear { UITabBar.toogleTabBarVisibility() }
+    .onDisappear { UITabBar.toogleTabBarVisibility() }
   }
 }
 

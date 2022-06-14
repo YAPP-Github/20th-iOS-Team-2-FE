@@ -11,16 +11,17 @@ struct AlbumRow: View {
   var album: Album
   
   var body: some View {
-    HStack(alignment:.top, spacing: 8) {
+    HStack(alignment:.top, spacing: 8) { // 위로 붙임
+      // 썸네일
       Image(album.thumbnail)
         .resizable()
-        .scaledToFit()
-        .frame(height: 75.0)
-        .cornerRadius(4)
-        .background(Color.gray) // 임시
+        .frame(width: 100.0, height: 75.0)
+        .cornerRadius(8)
       
+      // 제목
       VStack(alignment: .leading, spacing: 3) {
-        Text(album.title)
+        Text(album.title == "" ? "\(album.date) 앨범" : album.title)
+          .font(.system(size: 16, weight: .semibold))
           .lineLimit(1)
         
         Text(album.date)
@@ -31,9 +32,9 @@ struct AlbumRow: View {
       Spacer()
       
       VStack(alignment: .center) {
-        Spacer()
+        Spacer() // icon을 중앙 정렬 시키기 위해
         Image(systemName: "chevron.right")
-          .font(.body)
+          .foregroundColor(.gray)
         Spacer()
       }
     }
@@ -47,7 +48,8 @@ struct AlbumRow: View {
 
 struct AlbumRow_Previews: PreviewProvider {
   static var previews: some View {
-    let album0 = Album(albumId: 0, title: "제주도 가족여행 제주도 가족여행 제주도 가족여행", thumbnail: "", date: "2022-05-28")
-    AlbumRow(album: album0)
+    let dummy = MockData().albumByDate[0]
+    
+    AlbumRow(album: dummy)
   }
 }

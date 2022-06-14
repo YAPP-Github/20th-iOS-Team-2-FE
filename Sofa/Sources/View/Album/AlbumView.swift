@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AlbumView: View {
   @State var showingSheet = false
-  @State var albums = [Album]()
-  @State var types = [Album]()
+  @State var albums = MockData().albumByDate
+  @State var types = MockData().albumByType
   @State var selected = 0
   @State var showPhotoAdd = false
   @State var showRecordAdd = false
@@ -51,44 +51,34 @@ struct AlbumView: View {
           .background(Color.init(hex: "#FAF8F0")) // 임시
           .pickerStyle(SegmentedPickerStyle())
           
-          if selected == 0 {
-            AlbumList(albums: albums)
-          } else if selected == 1 {
-            AlbumList(albums: types)
+          if selected == 0 { // 날짜별
+            AlbumList(albumDate: albums)
+          } else if selected == 1 { // 유형별
+            AlbumList(albumType: types)
           }
           
           // 임시
-          // 사진 선택 View으로 이동
+          // 사진 추가 View로 이동
 //          NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
           
-          // 녹음 추가 View으로 이동
+          // 녹음 추가 View로 이동
 //          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
         }
-        .navigationBarWithButton(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
-        .fullScreenCover(isPresented: $showPhotoAdd) {
+        .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
+        .fullScreenCover(isPresented: $showPhotoAdd) { // 사진 추가 View로 이동
           AlbumPhotoAddView()
         }
-        .fullScreenCover(isPresented: $showRecordAdd) {
+        .fullScreenCover(isPresented: $showRecordAdd) { // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }
       }
-      actionSheetView
+      actionSheetView // 바텀 Sheet
     }
   }
 }
 
 struct AlbumView_Previews: PreviewProvider {
   static var previews: some View {
-    let albums = [
-      Album(albumId: 0, title: "2022-12-25 앨범", thumbnail: "", date: "2022-06-05"),
-      Album(albumId: 1, title: "제주도 가족여행", thumbnail: "", date: "2022-05-28"),
-      Album(albumId: 2, title: "여의도 공원 나드리", thumbnail: "", date: "2022-05-28")
-    ]
-    
-    let type = [
-      Album(albumId: 0, title: "즐겨찾기", thumbnail: "", date: "2022-06-05"),
-      Album(albumId: 1, title: "제주도 가족여행", thumbnail: "", date: "2022-05-28"),
-    ]
-    AlbumView(albums: albums, types: type)
+    AlbumView(albums: MockData().albumByDate, types: MockData().albumByType)
   }
 }

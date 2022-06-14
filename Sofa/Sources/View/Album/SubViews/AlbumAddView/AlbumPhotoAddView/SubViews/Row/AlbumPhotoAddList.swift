@@ -14,28 +14,24 @@ struct AlbumPhotoAddList: View {
   @Binding var imageClick: UIImage?
   
   var gridItem = [
-    GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
-    GridItem(.fixed(UIScreen.main.bounds.width * 0.315)),
-    GridItem(.fixed(UIScreen.main.bounds.width * 0.315))
+    GridItem(.fixed(Screen.maxWidth * 0.315)),
+    GridItem(.fixed(Screen.maxWidth * 0.315)),
+    GridItem(.fixed(Screen.maxWidth * 0.315))
   ]
   
   var body: some View {
     ScrollView(showsIndicators: true) {
-      ZStack {
-        LazyVGrid(columns: gridItem, spacing: 1) {
-          ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
-            VStack {
-              AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, isSelect: photoLibrary.photoAssets[index].isSelect, imageClick: $imageClick)
-                .padding(.all, 1)
-            }
-          }
+      LazyVGrid(columns: gridItem, spacing: 1) {
+        ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
+          AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, imageClick: $imageClick, isSelect: photoLibrary.photoAssets[index].isSelect)
+            .padding(1)
         }
-        .onAppear {
-          self.photoLibrary.requestAuthorization()
-        }
-        .padding(.trailing, 10)
-        .padding(.leading, 10)
       }
+      .onAppear {
+        self.photoLibrary.requestAuthorization()
+      }
+      .padding(.trailing, 10)
+      .padding(.leading, 10)
     }
   }
 }

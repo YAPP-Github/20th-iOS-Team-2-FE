@@ -9,6 +9,8 @@ target 'Sofa' do
   pod 'KakaoSDKCommon'
   pod 'KakaoSDKAuth'
   pod 'KakaoSDKUser'
+  pod 'lottie-ios'
+
   target 'SofaTests' do
     inherit! :search_paths
     # Pods for testing

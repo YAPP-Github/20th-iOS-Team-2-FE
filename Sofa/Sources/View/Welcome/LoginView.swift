@@ -11,40 +11,64 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 
 struct LoginView: View {
+  
+  @State var titleShow = false
+  @State var loginShow = false
+  @State var delay = 3
   var body: some View {
-    Button {
-      if (UserApi.isKakaoTalkLoginAvailable()) {
-        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-          if let error = error {
-            print(error)
-          }
-          else {
-            print("loginWithKakaoTalk() success.")
-            
-            //do something
-            print(oauthToken)
+    VStack(spacing: -120){
+      Spacer()
+      Spacer()
+      if titleShow{
+        VStack{
+          Text("우리 가족만의 공간")
+            .font(.system(size: 28))
+          Text("Sofa")
+            .font(.system(size: 32))
+        }
+        .animation(.easeInOut(duration: 1))
+        .transition(.move(edge: .top))
+        .foregroundColor(Color(hex: "FAF8F0"))
+        .onAppear{
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // 1초 후 Login Show
+            self.loginShow = true
           }
         }
-      } else {
-        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-          if let error = error {
-            print(error)
-          }
-          else {
-            print("loginWithKakaoTalk() success.")
-            
-            //do something
-            print(oauthToken)
-          }
+      }else{
+        VStack{
+          Text("우리 가족만의 공간")
+            .font(.system(size: 28))
+          Text("Sofa")
+            .font(.system(size: 32))
         }
+        .animation(.default)
+        .transition(.move(edge: .top))
+        .foregroundColor(Color(hex: "FAF8F0"))
+        .opacity(0)
       }
-    } label : {
-      Image("kakao_login_medium_narrow")
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(width : UIScreen.main.bounds.width * 0.5)
+      LottieView(filename: "15025-bed")
+        .frame(width: UIScreen.main.bounds.width, height: 400)
+      Spacer()
+      if loginShow{
+        LoginButtonView()
+          .cornerRadius(25, corners: [.topLeft, .topRight])
+          .animation(.easeInOut(duration: 1))
+          .transition(.move(edge: .bottom))
+      }else{
+        LoginButtonView()
+          .cornerRadius(25, corners: [.topLeft, .topRight])
+          .opacity(0)
+      }
+    }//VStack
+    .background(Color(hex: "29662C"))
+    .ignoresSafeArea()
+    .onAppear {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // 3초 후 Title Show
+        self.titleShow = true
+      }
     }
   }
+  
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -52,3 +76,5 @@ struct LoginView_Previews: PreviewProvider {
     LoginView()
   }
 }
+
+

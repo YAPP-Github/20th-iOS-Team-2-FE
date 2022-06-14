@@ -17,25 +17,32 @@ struct LoginButtonView: View {
         if (UserApi.isKakaoTalkLoginAvailable()) {
           UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             if let error = error {
+              print("👇 error 👇")
               print(error)
             }
             else {
               print("loginWithKakaoTalk() success.")
-              
-              //do something
-              print(oauthToken)
+              print("👇 oauthToken?.accessToken 👇")
+              print(oauthToken?.accessToken)
+              print("👇 oauthToken?.refreshToken 👇")
+              print(oauthToken?.refreshToken)
+            
+
             }
           }
         } else {
           UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
             if let error = error {
+              print("👇 error 👇")
               print(error)
             }
             else {
               print("loginWithKakaoTalk() success.")
-              
-              //do something
-              print(oauthToken)
+              print("👇 oauthToken?.accessToken 👇")
+              print(oauthToken?.accessToken)
+              print("👇 oauthToken?.refreshToken 👇")
+              print(oauthToken?.refreshToken)
+
             }
           }
         }

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>&apos;Sofa&apos;에서 사진을 찰영하기 위해 카메라를 사용합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>&apos;Sofa&apos;에서 사진을 가져오기 위해 갤러리에 접근합니다</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

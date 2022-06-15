@@ -16,7 +16,7 @@ struct AlbumPhotoAddView: View {
   
   var body: some View {
     NavigationView {
-      VStack() {
+      VStack(spacing: 0) {
         VStack {
           if imageClick != nil { // 첫 Appear상태에는 선택된 이미지가 없음
             Image(uiImage: imageClick!)
@@ -27,7 +27,6 @@ struct AlbumPhotoAddView: View {
           }
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반
-        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
         
         AlbumPhotoAddList(selected: $selected, imageClick: $imageClick)
 //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시

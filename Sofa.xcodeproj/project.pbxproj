@@ -238,10 +238,10 @@
 			children = (
 				6F22E523284B9CF00069D268 /* AlbumView.swift */,
 				C4667A84284BA97000A4A759 /* SubViews */,
-				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
-				C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
+				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
 				C495F60228571F51009B3BDE /* AlbumRecordAddView */,
+				C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */,
 			);
 			path = Album;
 			sourceTree = "<group>";

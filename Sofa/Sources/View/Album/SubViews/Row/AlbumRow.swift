@@ -22,7 +22,7 @@ struct AlbumRow: View {
       VStack(alignment: .leading, spacing: 3) {
         Text(album.title == "" ? "\(album.date) 앨범" : album.title)
           .font(.system(size: 16, weight: .semibold))
-          .lineLimit(1)
+          .lineLimit(2)
         
         Text(album.date)
           .font(.subheadline)

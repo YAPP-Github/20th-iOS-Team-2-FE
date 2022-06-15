@@ -42,7 +42,6 @@ struct AlbumRow: View {
     .background(Color.white)
     .cornerRadius(12)
     .fixedSize(horizontal: false, vertical: true)
-    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2) // 임시
   }
 }
 

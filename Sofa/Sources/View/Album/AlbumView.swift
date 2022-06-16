@@ -63,10 +63,13 @@ struct AlbumView: View {
           
           // 임시
           // 사진 추가 View로 이동
-//          NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
+          // NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
           
           // 녹음 추가 View로 이동
-//          NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
+          // NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
+          
+          // 카메라 날짜 선택 View로 이동
+          NavigationLink("", destination: AlbumCameraSelectDateView(image: cameraImage), isActive: $showCameraSelectDate)
         }
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
         .fullScreenCover(isPresented: $showPhotoAdd) { // 사진 추가 View로 이동

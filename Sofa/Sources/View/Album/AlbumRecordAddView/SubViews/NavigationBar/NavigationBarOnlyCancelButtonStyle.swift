@@ -19,13 +19,13 @@ struct NavigationBarOnlyCancelButtonStyle: ViewModifier {
         }, label: {
           HStack(spacing: 0) {
             Text("취소")
+              .foregroundColor(Color.white)
           }
         })
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
       .navigationBarTitleDisplayMode(.inline)
       .navigationTitle(title)
-      .foregroundColor(Color.white)
       .onAppear {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()

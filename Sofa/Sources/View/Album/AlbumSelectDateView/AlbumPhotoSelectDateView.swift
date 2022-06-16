@@ -1,5 +1,5 @@
 //
-//  AlbumCameraSelectDateView.swift
+//  AlbumPhotoSelectDateView.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/16.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct AlbumCameraSelectDateView: View {
+struct AlbumPhotoSelectDateView: View {
   @Environment(\.presentationMode) var presentable
+  @State var imageList: [SelectedImages]?
   @State var image: UIImage?
   @State var isNext = false
   @State var isDisalbeNextButton: Bool = false
@@ -63,6 +64,6 @@ struct AlbumCameraSelectDateView: View {
 
 struct AlbumCarmeraAddView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCameraSelectDateView()
+    AlbumPhotoSelectDateView()
   }
 }

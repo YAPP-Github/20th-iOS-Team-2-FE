@@ -15,6 +15,8 @@ struct AlbumView: View {
   @State var selected = 0
   @State var showPhotoAdd = false
   @State var showRecordAdd = false
+  @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
+  @State var cameraImage: UIImage? // 카메라를 통해 받아오는 이미지
   
   var actionSheetView: some View {
     ActionSheetCard(
@@ -69,6 +71,10 @@ struct AlbumView: View {
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
         .fullScreenCover(isPresented: $showPhotoAdd) { // 사진 추가 View로 이동
           AlbumPhotoAddView()
+        }
+        .fullScreenCover(isPresented: $cameraViewModel.showPicker) { // 카메라 imagePicker로 이동
+          CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
+            .ignoresSafeArea()
         }
         .alert(isPresented: $cameraViewModel.showErrorAlert) { // 카메라 error
           Alert(

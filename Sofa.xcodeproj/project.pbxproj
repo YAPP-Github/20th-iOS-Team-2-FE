@@ -43,6 +43,7 @@
 		C495F60A285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F609285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift */; };
 		C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */; };
 		C495F60E285B5B86009B3BDE /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* CameraViewModel.swift */; };
+		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
@@ -133,6 +134,7 @@
 		C495F609285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPhotoSelectDateView.swift; sourceTree = "<group>"; };
 		C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
 		C495F60D285B5B86009B3BDE /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
@@ -480,6 +482,14 @@
 			path = CameraImagePicker;
 			sourceTree = "<group>";
 		};
+		C495F611285B7FA7009B3BDE /* ZoomScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */,
+			);
+			path = ZoomScrollView;
+			sourceTree = "<group>";
+		};
 		C4B8F2932850DA0E0000B8CB /* ActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +534,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B8F2C5285292FE0000B8CB /* Row */,
+				C495F611285B7FA7009B3BDE /* ZoomScrollView */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -646,6 +657,7 @@
 			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				ko,
 				en,
 				Base,
 			);
@@ -814,6 +826,7 @@
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
+				C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,

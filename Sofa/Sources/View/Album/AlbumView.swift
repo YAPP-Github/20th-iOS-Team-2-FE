@@ -70,6 +70,12 @@ struct AlbumView: View {
         .fullScreenCover(isPresented: $showPhotoAdd) { // 사진 추가 View로 이동
           AlbumPhotoAddView()
         }
+        .alert(isPresented: $cameraViewModel.showErrorAlert) { // 카메라 error
+          Alert(
+            title: Text("카메라 접근 오류"),
+            message: Text(cameraViewModel.cameraError!.message),
+            dismissButton: .default(Text("확인")))
+        }
         .fullScreenCover(isPresented: $showRecordAdd) { // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }

@@ -9,13 +9,18 @@ import SwiftUI
 
 struct AlbumPhotoSelectDateView: View {
   @Environment(\.presentationMode) var presentable
-  @State var imageList: [SelectedImages]?
-  @State var image: UIImage?
   @State var isNext = false
   @State var isDisalbeNextButton: Bool = false
   var title: String = "사진 올리기"
   let buttonColor: Color = Color.init(hex: "#43A047")
   
+  // 갤러리 사진들
+  @State var imageList: [SelectedImages]? // 갤러리 사진들
+  var parent: AlbumPhotoAddView?
+
+  // 카메라 사진
+  @State var image: UIImage? // 카메라 사진
+
   var body: some View {
     NavigationView {
       VStack {

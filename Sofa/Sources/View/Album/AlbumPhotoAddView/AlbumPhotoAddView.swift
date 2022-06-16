@@ -12,7 +12,7 @@ struct AlbumPhotoAddView: View {
   @Environment(\.presentationMode) var presentable
   @State var isNext = false
   @State var imageClick: UIImage?
-  @State var selected : [SelectedImages] = []
+  @State var selected: [SelectedImages] = []
   private let height = Screen.maxHeight * 0.425
   
   var body: some View {
@@ -33,7 +33,7 @@ struct AlbumPhotoAddView: View {
 //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동
-        NavigationLink("", destination: AlbumSelectDateView(parent: self), isActive: $isNext)
+        NavigationLink("", destination: AlbumPhotoSelectDateView(imageList: selected, parent: self), isActive: $isNext)
       }
       .background(Color.black) // 배경색
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시

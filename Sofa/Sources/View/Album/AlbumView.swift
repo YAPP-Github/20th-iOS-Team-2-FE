@@ -28,6 +28,7 @@ struct AlbumView: View {
         ActionSheetCardItem(systemIconName: "camera", label: "카메라") {
           UITabBar.toogleTabBarVisibility()
           showingSheet = false
+          cameraViewModel.showCameraPicker() // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "waveform", label: "녹음") {
           UITabBar.toogleTabBarVisibility()

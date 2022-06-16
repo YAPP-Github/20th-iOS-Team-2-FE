@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumView: View {
+  @ObservedObject var cameraViewModel = CameraViewModel()
   @State var showingSheet = false
   @State var albums = MockData().albumByDate
   @State var types = MockData().albumByType

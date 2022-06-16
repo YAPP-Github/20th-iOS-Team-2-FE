@@ -19,6 +19,7 @@ struct AlbumPhotoSelectDateView: View {
   var parent: AlbumPhotoAddView?
 
   // 카메라 사진
+  @Binding var isCameraCancle: Bool
   @State var image: UIImage? // 카메라 사진
 
   var body: some View {
@@ -28,6 +29,9 @@ struct AlbumPhotoSelectDateView: View {
       }
       .navigationBarItems(
         leading: Button(action: {
+          if image != nil { // 카메라로 들어왔을 경우,
+            isCameraCancle = true // 카메라 imagePicker로 이동
+          }
           presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {
@@ -69,6 +73,6 @@ struct AlbumPhotoSelectDateView: View {
 
 struct AlbumCarmeraAddView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumPhotoSelectDateView()
+    AlbumPhotoSelectDateView(isCameraCancle: .constant(false))
   }
 }

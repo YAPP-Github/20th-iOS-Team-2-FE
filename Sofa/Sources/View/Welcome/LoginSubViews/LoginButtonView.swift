@@ -14,7 +14,7 @@ struct LoginButtonView: View {
   var body: some View {
     VStack{
       Button {
-        if (UserApi.isKakaoTalkLoginAvailable()) {
+        if (UserApi.isKakaoTalkLoginAvailable()) {// 카톡이 설치되어있다면
           UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             if let error = error {
               print("👇 error 👇")
@@ -30,9 +30,9 @@ struct LoginButtonView: View {
 
             }
           }
-        } else {
+        } else { // 카톡이 설치되어있지 않다면
           UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-            if let error = error {
+            if let error = error { 
               print("👇 error 👇")
               print(error)
             }

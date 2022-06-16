@@ -9,6 +9,7 @@ import SwiftUI
 import Photos
 
 struct AlbumPhotoAddView: View {
+  @Environment(\.presentationMode) var presentable
   @State var isNext = false
   @State var imageClick: UIImage?
   @State var selected : [SelectedImages] = []
@@ -32,7 +33,7 @@ struct AlbumPhotoAddView: View {
 //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동
-        NavigationLink("", destination: AlbumSelectDateView(), isActive: $isNext)
+        NavigationLink("", destination: AlbumSelectDateView(parent: self), isActive: $isNext)
       }
       .background(Color.black) // 배경색
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시

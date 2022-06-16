@@ -10,6 +10,8 @@ import SwiftUI
 
 struct CameraImagePicker: UIViewControllerRepresentable {
   @Environment(\.presentationMode) private var presentationMode
+  @Binding var selectedImage: UIImage?
+  @Binding var isNext: Bool
   
   func makeUIViewController(context: UIViewControllerRepresentableContext<CameraImagePicker>) -> UIImagePickerController {
     let imagePicker = UIImagePickerController()
@@ -35,7 +37,10 @@ struct CameraImagePicker: UIViewControllerRepresentable {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
       if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        parent.selectedImage = image
+        parent.isNext = true // 날짜 선택으로
       }
+      parent.presentationMode.wrappedValue.dismiss() // image picker 닫기
     }
   }
 }

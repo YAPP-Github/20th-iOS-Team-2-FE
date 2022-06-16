@@ -43,4 +43,11 @@ struct CameraAuthorization {
       throw PickerError.unavailable
     }
   }
+  
+  struct CameraErrorType {
+    let error: CameraAuthorization.PickerError
+    var message: String {
+      error.localizedDescription
+    }
+  }
 }

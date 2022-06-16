@@ -11,8 +11,8 @@ struct AlbumRecordAddView: View {
   
   var body: some View {
     NavigationView {
-      Text("Record View")
-        .navigationBarOnlyCancelButtonStyle("ddd")
+      
+        .navigationBarOnlyCancelButtonStyle("새로운 녹음")
     }
   }
 }

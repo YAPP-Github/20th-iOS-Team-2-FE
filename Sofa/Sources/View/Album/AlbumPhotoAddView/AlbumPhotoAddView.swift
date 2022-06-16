@@ -19,18 +19,21 @@ struct AlbumPhotoAddView: View {
     NavigationView {
       VStack(spacing: 0) {
         VStack {
+          
           if imageClick != nil { // 첫 Appear상태에는 선택된 이미지가 없음
-            Image(uiImage: imageClick!)
-              .resizable()
-              .scaledToFit()
-              .frame(height: height) // 화면의 반
-              .pinchToZoom()
+            ZoomScrollView {
+              Image(uiImage: imageClick!)
+                .resizable()
+                .scaledToFit()
+                .frame(height: height) // 화면의 반
+                .pinchToZoom()
+            }
           }
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반
         
         AlbumPhotoAddList(selected: $selected, imageClick: $imageClick)
-//                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
+        //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동
         NavigationLink("", destination: AlbumPhotoSelectDateView(imageList: selected, parent: self), isActive: $isNext)

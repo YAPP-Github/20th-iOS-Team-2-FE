@@ -643,7 +643,7 @@
 			};
 			buildConfigurationList = C4667A26284B6FF200A4A759 /* Build configuration list for PBXProject "Sofa" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,

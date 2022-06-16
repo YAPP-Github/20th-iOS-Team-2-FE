@@ -12,6 +12,7 @@ struct CameraImagePicker: UIViewControllerRepresentable {
   @Environment(\.presentationMode) private var presentationMode
   @Binding var selectedImage: UIImage?
   @Binding var isNext: Bool
+  //  var sourceType: UIImagePickerController.SourceType = .camera // 임시 - 추후 삭제
   
   func makeUIViewController(context: UIViewControllerRepresentableContext<CameraImagePicker>) -> UIImagePickerController {
     let imagePicker = UIImagePickerController()

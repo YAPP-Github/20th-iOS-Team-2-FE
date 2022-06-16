@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct CameraAuthorization {
   
@@ -24,6 +25,22 @@ struct CameraAuthorization {
       case .restricted:
         return NSLocalizedString("카메라에 접근할 수 없습니다", comment: "")
       }
+    }
+  }
+  
+  static func checkPermissions() throws {
+    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+      let authStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+      switch authStatus {
+      case .denied:
+        throw PickerError.denied
+      case .restricted:
+        throw PickerError.restricted
+      default:
+        break
+      }
+    } else {
+      throw PickerError.unavailable
     }
   }
 }

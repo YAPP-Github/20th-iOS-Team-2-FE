@@ -44,7 +44,7 @@
 		C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */; };
 		C495F60E285B5B86009B3BDE /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* CameraViewModel.swift */; };
 		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
-		C495F617285B95BB009B3BDE /* NavigationBarOnlyCancleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* NavigationBarOnlyCancleButtonStyle.swift */; };
+		C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
@@ -136,7 +136,7 @@
 		C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
 		C495F60D285B5B86009B3BDE /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
-		C495F616285B95BB009B3BDE /* NavigationBarOnlyCancleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarOnlyCancleButtonStyle.swift; sourceTree = "<group>"; };
+		C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarOnlyCancelButtonStyle.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
@@ -504,7 +504,7 @@
 		C495F615285B9593009B3BDE /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				C495F616285B95BB009B3BDE /* NavigationBarOnlyCancleButtonStyle.swift */,
+				C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -846,7 +846,7 @@
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
 				C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */,
-				C495F617285B95BB009B3BDE /* NavigationBarOnlyCancleButtonStyle.swift in Sources */,
+				C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,

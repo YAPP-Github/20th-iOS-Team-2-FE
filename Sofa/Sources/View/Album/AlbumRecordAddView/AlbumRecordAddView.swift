@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct AlbumRecordAddView: View {
+  
   var body: some View {
-    Text("Record View")
+    NavigationView {
+      Text("Record View")
+        .navigationBarOnlyCancelButtonStyle("ddd")
+    }
   }
 }
 

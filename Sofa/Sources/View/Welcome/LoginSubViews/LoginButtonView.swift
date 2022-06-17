@@ -9,6 +9,7 @@ import SwiftUI
 import KakaoSDKAuth
 import KakaoSDKUser
 import KakaoSDKCommon
+import SwiftKeychainWrapper
 
 struct LoginButtonView: View {
   var body: some View {
@@ -22,27 +23,31 @@ struct LoginButtonView: View {
             }
             else {
               print("loginWithKakaoTalk() success.")
-              print("👇 oauthToken?.accessToken 👇")
-              print(oauthToken?.accessToken)
-              print("👇 oauthToken?.refreshToken 👇")
-              print(oauthToken?.refreshToken)
-            
 
+              // Keychain에 User Token 저장
+              KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
+              KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
+              
+//              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
+//              print(userAccessToken ?? "Token is nil")
             }
           }
         } else { // 카톡이 설치되어있지 않다면
           UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-            if let error = error { 
+            if let error = error {
               print("👇 error 👇")
               print(error)
             }
             else {
               print("loginWithKakaoTalk() success.")
-              print("👇 oauthToken?.accessToken 👇")
-              print(oauthToken?.accessToken)
-              print("👇 oauthToken?.refreshToken 👇")
-              print(oauthToken?.refreshToken)
 
+              // Keychain에 User Token 저장
+              KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
+              KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
+              
+              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
+              print(userAccessToken ?? "Token is nil")
+              
             }
           }
         }

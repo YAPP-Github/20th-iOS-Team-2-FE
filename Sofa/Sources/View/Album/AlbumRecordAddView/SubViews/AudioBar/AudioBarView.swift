@@ -9,19 +9,17 @@ import SwiftUI
 
 struct AudioBarView: View {
   var color: Color
-  var value: Bool
+  var isStep: Bool // 색상을 변경할지 결졍
   
   var body: some View {
-    ZStack{
-      Rectangle()
-        .frame(width: 4, height: 16)
-        .foregroundColor(value ? color : .gray)
-    }
+    Rectangle()
+      .frame(width: 4, height: 16)
+      .foregroundColor(isStep ? color : .gray)
   }
 }
 
 struct AudioBarView_Previews: PreviewProvider {
   static var previews: some View {
-    AudioBarView(color: Color(hex: "4CAF50"), value: true)
+    AudioBarView(color: Color(hex: "4CAF50"), isStep: true)
   }
 }

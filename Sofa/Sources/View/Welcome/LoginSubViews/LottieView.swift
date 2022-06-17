@@ -12,16 +12,18 @@ struct LottieView: UIViewRepresentable {
   
   typealias UIViewType = UIView
   var filename: String
+  let animationView = AnimationView()
+  @Binding var frame_cnt: Int
   
   func makeUIView(context: Context) -> UIView {
     let view = UIView(frame: .zero)
+  
     //4. Add animation
-    let animationView = AnimationView()
     //사용자 애니메이션 파일명
     animationView.animation = Animation.named(filename)
     //애니메이션 크기가 적절하게 조정될 수 있도록
     animationView.contentMode = .scaleAspectFit
-    animationView.loopMode = .loop
+    animationView.loopMode = .playOnce
     //애니메이션 재생
     animationView.play()
     
@@ -36,18 +38,21 @@ struct LottieView: UIViewRepresentable {
         animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
     ])
     
+    
     return view
   }
   
   func updateUIView(_ uiView: UIView, context: Context) {
-    
+    if (frame_cnt > 2){
+      animationView.pause()
+    }
   }
   
 
 }
 
-struct LottieView_Previews: PreviewProvider {
-  static var previews: some View {
-    LottieView(filename: "15025-bed")
-  }
-}
+//struct LottieView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    LottieView(filename: "15025-bed")
+//  }
+//}

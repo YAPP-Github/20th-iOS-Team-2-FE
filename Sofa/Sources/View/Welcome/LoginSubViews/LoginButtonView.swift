@@ -29,7 +29,7 @@ struct LoginButtonView: View {
               KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
               
 //              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
-//              print(userAccessToken)
+//              print(userAccessToken ?? "Token is nil")
             }
           }
         } else { // 카톡이 설치되어있지 않다면
@@ -45,8 +45,8 @@ struct LoginButtonView: View {
               KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
               KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
               
-//              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
-//              print(userAccessToken)
+              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
+              print(userAccessToken ?? "Token is nil")
               
             }
           }

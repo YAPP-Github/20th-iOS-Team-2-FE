@@ -45,6 +45,7 @@
 		C495F60E285B5B86009B3BDE /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* CameraViewModel.swift */; };
 		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
 		C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */; };
+		C495F61F285BC2C8009B3BDE /* AudioBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F61E285BC2C7009B3BDE /* AudioBarView.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
@@ -137,6 +138,7 @@
 		C495F60D285B5B86009B3BDE /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
 		C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarOnlyCancelButtonStyle.swift; sourceTree = "<group>"; };
+		C495F61E285BC2C7009B3BDE /* AudioBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBarView.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				C495F615285B9593009B3BDE /* NavigationBar */,
+				C495F61B285BC279009B3BDE /* AudioBar */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -507,6 +510,14 @@
 				C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		C495F61B285BC279009B3BDE /* AudioBar */ = {
+			isa = PBXGroup;
+			children = (
+				C495F61E285BC2C7009B3BDE /* AudioBarView.swift */,
+			);
+			path = AudioBar;
 			sourceTree = "<group>";
 		};
 		C4B8F2932850DA0E0000B8CB /* ActionSheet */ = {
@@ -834,6 +845,7 @@
 				C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */,
 				6F22E53C284B9D5A0069D268 /* Base.swift in Sources */,
 				C495F5F72855DAB3009B3BDE /* AlbumSelectDateView.swift in Sources */,
+				C495F61F285BC2C8009B3BDE /* AudioBarView.swift in Sources */,
 				C495F5F12855C3AA009B3BDE /* AlbumTypeRow.swift in Sources */,
 				C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */,
 				0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */,

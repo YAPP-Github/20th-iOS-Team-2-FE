@@ -50,7 +50,7 @@ struct LoginView: View {
       LottieView(filename: "15025-bed", frame_cnt: $frame_cnt)
         .frame(width: UIScreen.main.bounds.width, height: 400)
         .onAppear(){
-          DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // 5초 후 Lottie 애니메이션 멈춤
+          DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { // 5초 후 Lottie 애니메이션 멈춤
             self.frame_cnt = 3
           }
         }
@@ -71,7 +71,6 @@ struct LoginView: View {
     .onAppear {
       DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // 3초 후 Title Show
         self.titleShow = true
-        self.frame_cnt = 3
       }
     }
   }

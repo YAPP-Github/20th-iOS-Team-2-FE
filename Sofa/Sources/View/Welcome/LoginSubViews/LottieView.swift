@@ -43,8 +43,12 @@ struct LottieView: UIViewRepresentable {
   }
   
   func updateUIView(_ uiView: UIView, context: Context) {
-    if (frame_cnt > 2){
-      animationView.pause()
+//    if (frame_cnt > 2){
+//      animationView.pause()
+//      animationView.currentProgress = 20
+//    }
+    if frame_cnt > 2 {
+      animationView.currentProgress = 0.2
     }
   }
   

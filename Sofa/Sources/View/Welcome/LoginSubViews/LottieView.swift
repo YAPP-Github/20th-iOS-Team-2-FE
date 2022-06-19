@@ -8,6 +8,15 @@
 import SwiftUI
 import Lottie
 
+enum ProgressKeyFrames: CGFloat {
+
+  case start = 0
+  
+  case end = 700
+
+  
+}
+
 struct LottieView: UIViewRepresentable {
   
   typealias UIViewType = UIView
@@ -25,7 +34,7 @@ struct LottieView: UIViewRepresentable {
     animationView.contentMode = .scaleAspectFit
     animationView.loopMode = .playOnce
     //애니메이션 재생
-    animationView.play()
+    animationView.play(fromFrame: ProgressKeyFrames.start.rawValue, toFrame: ProgressKeyFrames.end.rawValue, loopMode: .none)
     
     //컨테이너의 너비와 높이를 자동으로 지정할 수 있도록
     animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,13 +52,7 @@ struct LottieView: UIViewRepresentable {
   }
   
   func updateUIView(_ uiView: UIView, context: Context) {
-//    if (frame_cnt > 2){
-//      animationView.pause()
-//      animationView.currentProgress = 20
-//    }
-    if frame_cnt > 2 {
-      animationView.currentProgress = 0.2
-    }
+
   }
   
 

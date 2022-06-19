@@ -12,10 +12,8 @@ import KakaoSDKAuth
 
 struct LoginView: View {
   
-  @State var frame_cnt = 0
   @State var titleShow = false
   @State var loginShow = false
-  @State var delay = 3
   var body: some View {
     VStack(spacing: -120){
       Spacer()
@@ -52,7 +50,7 @@ struct LoginView: View {
       Spacer()
       if loginShow{
         LoginButtonView()
-          .padding(.bottom, UIDevice().hasNotch ? 10 : 0)
+          .padding(.bottom, UIDevice().hasNotch ? 5 : 0)
           .background(Color.white)
           .cornerRadius(25, corners: [.topLeft, .topRight])
           .animation(.easeInOut(duration: 1))
@@ -61,7 +59,7 @@ struct LoginView: View {
         LoginButtonView()
           .cornerRadius(25, corners: [.topLeft, .topRight])
           .opacity(0)
-          .padding(.bottom, UIDevice().hasNotch ? 10 : 0)
+          .padding(.bottom, UIDevice().hasNotch ? 5 : 0)
       }
     }//VStack
     .background(Color(hex: "29662C"))

@@ -22,7 +22,6 @@ struct LottieView: UIViewRepresentable {
   typealias UIViewType = UIView
   var filename: String
   let animationView = AnimationView()
-  @Binding var frame_cnt: Int
   
   func makeUIView(context: Context) -> UIView {
     let view = UIView(frame: .zero)
@@ -57,9 +56,3 @@ struct LottieView: UIViewRepresentable {
   
 
 }
-
-//struct LottieView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    LottieView(filename: "15025-bed")
-//  }
-//}

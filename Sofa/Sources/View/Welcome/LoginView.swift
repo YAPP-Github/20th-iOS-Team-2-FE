@@ -47,7 +47,7 @@ struct LoginView: View {
         .foregroundColor(Color(hex: "FAF8F0"))
         .opacity(0)
       }
-      LottieView(filename: "15025-bed", frame_cnt: $frame_cnt)
+      LottieView(filename: "15025-bed")
         .frame(width: UIScreen.main.bounds.width, height: 400)
       Spacer()
       if loginShow{

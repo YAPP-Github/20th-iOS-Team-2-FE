@@ -52,6 +52,8 @@ struct LoginView: View {
       Spacer()
       if loginShow{
         LoginButtonView()
+          .padding(.bottom, UIDevice().hasNotch ? 10 : 0)
+          .background(Color.white)
           .cornerRadius(25, corners: [.topLeft, .topRight])
           .animation(.easeInOut(duration: 1))
           .transition(.move(edge: .bottom))
@@ -59,6 +61,7 @@ struct LoginView: View {
         LoginButtonView()
           .cornerRadius(25, corners: [.topLeft, .topRight])
           .opacity(0)
+          .padding(.bottom, UIDevice().hasNotch ? 10 : 0)
       }
     }//VStack
     .background(Color(hex: "29662C"))

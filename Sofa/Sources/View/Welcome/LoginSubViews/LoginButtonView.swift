@@ -57,7 +57,7 @@ struct LoginButtonView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
       }
-      .padding(EdgeInsets(top: 32, leading: 30, bottom: 0, trailing: 30))
+      .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       Button {
         
         
@@ -67,9 +67,9 @@ struct LoginButtonView: View {
           .aspectRatio(contentMode: .fit)
         
       }
-      .padding(EdgeInsets(top: 16, leading: 30, bottom: 20, trailing: 30))
+      .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.025 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
       Image("line")
-        .padding(EdgeInsets(top: 16, leading: 30, bottom: 20, trailing: 30))
+        .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.025 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
       
       // 폰트 Color 확정 X
       Group() {
@@ -80,7 +80,7 @@ struct LoginButtonView: View {
         + Text("이용방침").foregroundColor(Color(hex: "50AD50"))
         + Text("에 동의하고 서비스를 이용합니다.").foregroundColor(Color.gray)
       }
-      .padding(EdgeInsets(top: 0, leading: 30, bottom: 55, trailing: 30))
+      .padding(EdgeInsets(top: 0, leading: 0.075 * Screen.maxWidth, bottom: 0.06 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
       
     }//VStack
     .ignoresSafeArea()

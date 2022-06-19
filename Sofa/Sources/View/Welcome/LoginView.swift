@@ -22,8 +22,9 @@ struct LoginView: View {
         VStack{
           Text("우리 가족만의 공간")
             .font(.system(size: 28))
+            .font(.custom("Pretendard-Bold", size: 28))
           Text("Sofa")
-            .font(.system(size: 32))
+            .font(.custom("LibreBaskerville-Bold", size: 32))
         }
         .animation(.easeInOut(duration: 1))
         .transition(.move(edge: .top))
@@ -36,9 +37,9 @@ struct LoginView: View {
       }else{
         VStack{
           Text("우리 가족만의 공간")
-            .font(.system(size: 28))
+            .font(.custom("Pretendard-Bold", size: 28))
           Text("Sofa")
-            .font(.system(size: 32))
+            .font(.custom("LibreBaskerville-Bold", size: 32))
         }
         .animation(.default)
         .transition(.move(edge: .top))

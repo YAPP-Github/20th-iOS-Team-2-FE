@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIColor {
+extension UIColor { // 사용법: UIColor(hex: "#439F47")
   convenience init(hex: String, alpha: CGFloat = 1.0) {
     let hex: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     let scanner = Scanner(string: hex)

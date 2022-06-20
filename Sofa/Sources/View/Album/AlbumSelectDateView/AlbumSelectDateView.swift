@@ -17,17 +17,19 @@ struct AlbumSelectDateView: View {
   // 갤러리 사진들
   @State var imageList: [SelectedImages]? // 갤러리 사진들
   var photoParent: AlbumPhotoAddView?
-
+  
   // 카메라 사진
+  @ObservedObject var fetcher = AudioRecorderURLViewModel()
   @Binding var isCameraCancle: Bool
   @State var image: UIImage? // 카메라 사진
   
   // 녹음
   var recordParent: AlbumRecordAddView?
-
+  
   var body: some View {
     NavigationView {
       VStack {
+        
         Text("카메라 날짜 선택 View")
       }
       .navigationBarItems(

@@ -13,6 +13,12 @@ struct AlbumRecordAddView: View {
   var body: some View {
     NavigationView {
       VStack(spacing: 0) {
+        ZStack {
+          Rectangle() // 녹음 배경 영역
+            .frame(width: Screen.maxWidth, height: Screen.maxHeight - Screen.maxWidth * 0.3)
+            .foregroundColor(Color.black) // 임시
+          
+        }
         
         ZStack(alignment: .top) { // 녹음 버튼 영역
           Rectangle()

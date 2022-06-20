@@ -21,13 +21,11 @@ struct AlbumPhotoAddView: View {
         VStack {
           
           if imageClick != nil { // 첫 Appear상태에는 선택된 이미지가 없음
-            ZoomScrollView {
-              Image(uiImage: imageClick!)
-                .resizable()
-                .scaledToFit()
-                .frame(height: height) // 화면의 반
-                .pinchToZoom()
-            }
+            Image(uiImage: imageClick!)
+              .resizable()
+              .scaledToFit()
+              .frame(height: height) // 화면의 반
+              .pinchToZoom()
           }
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반

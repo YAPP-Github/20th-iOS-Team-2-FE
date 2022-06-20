@@ -9,4 +9,101 @@ import Foundation
 import AVFoundation
 
 class AudioRecorderViewModel: ObservableObject {
+  @Published public var soundSamples: [Bool]
+  @Published public var isRecording = false
+  
+  // 시간 Properties
+  @Published var minutes: Int = 0
+  @Published var seconds: Int = 0
+  @Published var microSeconds: Int = 0
+  private var time: Double = 0
+
+  private var audioRecorder: AVAudioRecorder
+  private var timer: Timer
+  private var currentStepbar: Int // 색상 변경해야하는 step bar
+  private let numberOfStepbar: Int // 전체 step bar
+
+  // init
+  init(numberOfSamples: Int) {
+    self.numberOfStepbar = numberOfSamples // numberOfSamples > 0 이여야 함
+    self.soundSamples = [Bool](repeating: false, count: numberOfSamples)
+    self.currentStepbar = 0
+    self.audioRecorder = AVAudioRecorder()
+    self.timer = Timer()
+  }
+  
+  // 녹음 시작
+  func startRecording() {
+    let audioSession = AVAudioSession.sharedInstance() // 싱글톤 인스턴스 획득
+    if audioSession.recordPermission != .granted {
+      audioSession.requestRecordPermission { (isGranted) in
+        if !isGranted {
+          fatalError("오디오 녹음을 허용해야하합니다")
+        }
+      }
+    }
+
+    let recorderSettings: [String:Any] = [
+      AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless), // 녹음 포맷, 코어 오디오에 정의된 포맷 문자 사용
+      AVSampleRateKey: 44100.0, // 샘플링 rate
+      AVNumberOfChannelsKey: 1,
+      AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue // 녹음 품질
+    ]
+    
+    // 저장할 파일 경로
+    let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    
+    // Date Formatter
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "YYYY-MM-dd 녹음"
+    
+    let url = documentPath.appendingPathComponent("\(dateFormatter.string(from: Date()))")
+    
+    do {
+      audioRecorder = try AVAudioRecorder(url: url, settings: recorderSettings)
+      
+      // 오디오 세션 카테고리, 모드, 옵션을 설정
+      try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
+      self.isRecording = true // 녹음 시작
+      
+      startMonitoring() // 시간 및 bar 위치 계산
+    } catch {
+      fatalError(error.localizedDescription)
+    }
+  }
+  
+  // 녹음 정지 & 초기화
+  func stopRecording(){
+    isRecording = false
+    timer.invalidate()
+    microSeconds = 0
+    seconds = 0
+    minutes = 0
+    time = 0
+    audioRecorder.stop()
+    self.currentStepbar = 0
+    self.soundSamples = [Bool](repeating: false, count: numberOfStepbar)
+  }
+  
+  // 시간 및 bar 위치 계산
+  private func startMonitoring() {
+    audioRecorder.isMeteringEnabled = true
+    audioRecorder.record()
+    timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [self] (timer) in
+      self.audioRecorder.updateMeters()
+      
+      self.soundSamples[self.currentStepbar] = true // 초당 bar가 채워짐
+      self.currentStepbar = (self.seconds) % self.numberOfStepbar // 초당 bar가 채워짐 + index 범위 재설정
+      
+      if self.currentStepbar == 0 { // audio bar 초기화
+        self.soundSamples = [true] + [Bool](repeating: false, count: self.numberOfStepbar - 1) // 시작과 동시에 1칸 채우기
+      }
+      
+      self.time += 1
+      
+      self.microSeconds = Int(self.time) % 100
+      self.seconds = Int(self.time * 0.01) % 60
+      self.minutes = (Int(self.time * 0.01) / 60) % 60
+    })
+  }
 }

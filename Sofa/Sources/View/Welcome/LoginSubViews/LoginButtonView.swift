@@ -9,6 +9,7 @@ import SwiftUI
 import KakaoSDKAuth
 import KakaoSDKUser
 import KakaoSDKCommon
+import AuthenticationServices
 import SwiftKeychainWrapper
 
 struct LoginButtonView: View {
@@ -60,7 +61,7 @@ struct LoginButtonView: View {
       }
       .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       Button {
-        
+        self.showAppleLogin()
         
       } label : {
         Image("SignInWithApple")
@@ -81,7 +82,7 @@ struct LoginButtonView: View {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         let attributtedString = NSMutableAttributedString(string: myText, attributes: [NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 13)!, .paragraphStyle: paragraph])
-
+        
         attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#999899"), range: (myText as NSString).range(of: myText))
         attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "필수 이용약관"))
         attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "개인정보 이용방침"))
@@ -98,6 +99,16 @@ struct LoginButtonView: View {
     .background(Color.white)
     
   }
+  
+  private func showAppleLogin() {
+    let request = ASAuthorizationAppleIDProvider().createRequest()
+    request.requestedScopes = []
+    
+    let controller = ASAuthorizationController(authorizationRequests: [request])
+    controller.performRequests()
+
+  }
+
 }
 
 struct LoginButtonView_Previews: PreviewProvider {

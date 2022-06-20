@@ -12,38 +12,67 @@ struct AlbumList: View {
   @State var albumType: [AlbumType]? // 유형별
   
   var body: some View {
+    // 임시 - separator 제거
+    //    if let albumDate = albumDate { // 날짜별 보기
+    //      ScrollView(showsIndicators: false) {
+    //        LazyVStack {
+    //          ForEach(albumDate, id: \.self) { album in
+    //            ZStack {
+    //              NavigationLink(destination: AlbumDetailView()) {
+    //                EmptyView()
+    //              }
+    //              .opacity(0) // 불투명
+    //              AlbumRow(album: album)
+    //            }
+    //          }
+    //        }
+    //      }
+    //      .padding(EdgeInsets(top: 0, leading: 16, bottom: 1, trailing: 16)) // 0으로 하면 tabBar area를 무시
+    //      .background(Color.init(hex: "#FAF8F0")) // 임시
+    //
+    //    } else if let albumType = albumType { // 유형별 보기
+    //      ScrollView(showsIndicators: false) {
+    //        LazyVStack {
+    //          ForEach(albumType, id: \.self) { album in
+    //            ZStack {
+    //              NavigationLink(destination: AlbumDetailView()) {
+    //                EmptyView()
+    //              }
+    //              .opacity(0) // 불투명
+    //              AlbumTypeRow(albumTyep: album)
+    //            }
+    //          }
+    //        }
+    //      }
+    //      .padding(EdgeInsets(top: 0, leading: 16, bottom: 1, trailing: 16)) // 0으로 하면 tabBar area를 무시
+    //      .background(Color.init(hex: "#FAF8F0")) // 임시
+    //    }
     if let albumDate = albumDate { // 날짜별 보기
-      ScrollView(showsIndicators: false) {
-        LazyVStack {
-          ForEach(albumDate, id: \.self) { album in
-            ZStack {
-              NavigationLink(destination: AlbumDetailView()) {
-                EmptyView()
-              }
-              .opacity(0) // 불투명
-              AlbumRow(album: album)
-            }
+      List(albumDate, id: \.albumId) { album in
+        ZStack {
+          NavigationLink(destination: AlbumDetailView()) {
+            EmptyView()
           }
+          .opacity(0) // 불투명
+          AlbumRow(album: album)
         }
+        .listRowBackground(Color.init(hex: "#FAF8F0")) // 임시
       }
-      .padding(EdgeInsets(top: 0, leading: 16, bottom: 1, trailing: 16)) // 0으로 하면 tabBar area를 무시
+      .listStyle(PlainListStyle())
       .background(Color.init(hex: "#FAF8F0")) // 임시
-      
     } else if let albumType = albumType { // 유형별 보기
-      ScrollView(showsIndicators: false) {
-        LazyVStack {
-          ForEach(albumType, id: \.self) { album in
-            ZStack {
-              NavigationLink(destination: AlbumDetailView()) {
-                EmptyView()
-              }
-              .opacity(0) // 불투명
-              AlbumTypeRow(albumTyep: album)
-            }
+      List(albumType, id: \.self) { album in
+        ZStack {
+          NavigationLink(destination: AlbumDetailView()) {
+            EmptyView()
           }
+          .opacity(0) // 불투명
+          
+          AlbumTypeRow(albumTyep: album)
         }
+        .listRowBackground(Color.init(hex: "#FAF8F0")) // 임시
       }
-      .padding(EdgeInsets(top: 0, leading: 16, bottom: 1, trailing: 16)) // 0으로 하면 tabBar area를 무시
+      .listStyle(PlainListStyle())
       .background(Color.init(hex: "#FAF8F0")) // 임시
     }
   }

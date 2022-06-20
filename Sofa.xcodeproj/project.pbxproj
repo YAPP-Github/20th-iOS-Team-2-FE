@@ -45,6 +45,7 @@
 		C495F60E285B5B86009B3BDE /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* CameraViewModel.swift */; };
 		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
 		C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */; };
+		C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */; };
 		C495F61F285BC2C8009B3BDE /* AudioBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F61E285BC2C7009B3BDE /* AudioBarView.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
@@ -138,6 +139,7 @@
 		C495F60D285B5B86009B3BDE /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
 		C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarOnlyCancelButtonStyle.swift; sourceTree = "<group>"; };
+		C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewModel.swift; sourceTree = "<group>"; };
 		C495F61E285BC2C7009B3BDE /* AudioBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBarView.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 		C495F614285B9586009B3BDE /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				C495F618285BBF3B009B3BDE /* ViewModel */,
 				C495F615285B9593009B3BDE /* NavigationBar */,
 				C495F61B285BC279009B3BDE /* AudioBar */,
 			);
@@ -510,6 +513,14 @@
 				C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		C495F618285BBF3B009B3BDE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C495F61B285BC279009B3BDE /* AudioBar */ = {
@@ -839,6 +850,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B8F2CC285474900000B8CB /* PinchToZoom.swift in Sources */,
+				C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */,
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
 				C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */,
 				C4B8F2C8285348980000B8CB /* AlbumPhotoLibrary.swift in Sources */,

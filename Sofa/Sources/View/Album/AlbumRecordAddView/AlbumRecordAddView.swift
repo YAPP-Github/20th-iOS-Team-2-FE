@@ -20,7 +20,11 @@ struct AlbumRecordAddView: View {
           
           ZStack {
             Button(action: {
-              
+              if self.audioRecorder.isRecording{
+                self.audioRecorder.stopRecording()
+              }else{
+                self.audioRecorder.startRecording()
+              }
             }, label: {
               ZStack {
                 Circle()

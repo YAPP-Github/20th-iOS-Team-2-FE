@@ -220,6 +220,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		0A4CFBA52860E3EF000603A5 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		0ABA0C1E2857A31B005F2C6A /* LoginSubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				6F22E529284B9D140069D268 /* HomeView.swift */,
+				0A4CFBA52860E3EF000603A5 /* SubViews */,
 			);
 			path = Home;
 			sourceTree = "<group>";

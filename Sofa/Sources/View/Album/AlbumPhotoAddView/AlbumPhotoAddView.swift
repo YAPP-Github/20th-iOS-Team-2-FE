@@ -36,7 +36,7 @@ struct AlbumPhotoAddView: View {
         //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동
-        NavigationLink("", destination: AlbumPhotoSelectDateView(imageList: selected, parent: self, isCameraCancle: .constant(false)), isActive: $isNext)
+        NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", imageList: selected, photoParent: self, isCameraCancle: .constant(false)), isActive: $isNext)
       }
       .background(Color.black) // 배경색
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시

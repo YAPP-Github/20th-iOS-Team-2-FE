@@ -69,7 +69,7 @@ struct AlbumView: View {
           // NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
           
           // 카메라 날짜 선택 View로 이동
-          NavigationLink("", destination: AlbumPhotoSelectDateView(isCameraCancle: $cameraViewModel.showPicker, image: cameraImage), isActive: $showCameraSelectDate)
+          NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $cameraViewModel.showPicker, image: cameraImage), isActive: $showCameraSelectDate)
         }
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
         .fullScreenCover(isPresented: $showPhotoAdd) { // 사진 추가 View로 이동

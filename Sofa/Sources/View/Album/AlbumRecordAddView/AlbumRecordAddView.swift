@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumRecordAddView: View {
+  @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
   @State var isNext = false
   
@@ -83,8 +84,9 @@ struct AlbumRecordAddView: View {
           }
           .padding(16)
         }
+        
         // 날짜 선택으로 이동
-        NavigationLink("", destination: EmptyView() ,isActive: $isNext)
+        NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self), isActive: $isNext)
       }
       .ignoresSafeArea()
       .navigationBarOnlyCancelButtonStyle("새로운 녹음")

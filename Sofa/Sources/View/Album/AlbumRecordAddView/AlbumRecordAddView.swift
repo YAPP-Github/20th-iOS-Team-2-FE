@@ -27,9 +27,16 @@ struct AlbumRecordAddView: View {
                   .frame(width: 64, height: 64)
                   .foregroundColor(Color.white)
                 
-                Circle()
-                  .frame(width: 48, height: 48)
-                  .foregroundColor(Color(hex: "D81B60"))
+                if audioRecorder.isRecording {
+                  Rectangle()
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(Color(hex: "D81B60"))
+                    .cornerRadius(8)
+                } else {
+                  Circle()
+                    .frame(width: 48, height: 48)
+                    .foregroundColor(Color(hex: "D81B60"))
+                }
               }
             })
           }

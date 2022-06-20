@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumRecordAddView: View {
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
+  @State var isNext = false
   
   var body: some View {
     NavigationView {
@@ -56,21 +57,34 @@ struct AlbumRecordAddView: View {
                   .frame(width: 64, height: 64)
                   .foregroundColor(Color.white)
                 
-                if audioRecorder.isRecording {
+                if audioRecorder.isRecording { // 녹음 시작
                   Rectangle()
                     .frame(width: 32, height: 32)
                     .foregroundColor(Color(hex: "D81B60"))
                     .cornerRadius(8)
-                } else {
+                } else { // 녹음 끝
                   Circle()
                     .frame(width: 48, height: 48)
                     .foregroundColor(Color(hex: "D81B60"))
+                  
+                  HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                      isNext = true // 다음 날짜 선택으로 이동
+                    }, label: {
+                      Text("선택")
+                        .foregroundColor(Color.white)
+                    })
+                  }
                 }
               }
             })
           }
           .padding(16)
         }
+        // 날짜 선택으로 이동
+        NavigationLink("", destination: EmptyView() ,isActive: $isNext)
       }
       .ignoresSafeArea()
       .navigationBarOnlyCancelButtonStyle("새로운 녹음")

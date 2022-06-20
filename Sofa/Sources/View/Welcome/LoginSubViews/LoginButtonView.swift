@@ -27,11 +27,9 @@ struct LoginButtonView: View {
               print("loginWithKakaoTalk() success.")
               
               // Keychain에 User Token 저장
-              KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
-              KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
-              
-              //              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
-              //              print(userAccessToken ?? "Token is nil")
+              Constant.accessToken = oauthToken!.accessToken
+              Constant.refreshToken = oauthToken!.refreshToken
+
             }
           }
         } else { // 카톡이 설치되어있지 않다면
@@ -44,11 +42,8 @@ struct LoginButtonView: View {
               print("loginWithKakaoTalk() success.")
               
               // Keychain에 User Token 저장
-              KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
-              KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
-              
-              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
-              print(userAccessToken ?? "Token is nil")
+              Constant.accessToken = oauthToken!.accessToken
+              Constant.refreshToken = oauthToken!.refreshToken
               
             }
           }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumRecordAddView: View {
+  @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
   
   var body: some View {
     NavigationView {

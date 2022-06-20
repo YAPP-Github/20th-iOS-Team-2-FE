@@ -19,19 +19,38 @@ struct AlbumSelectDateView: View {
   var photoParent: AlbumPhotoAddView?
   
   // 카메라 사진
-  @ObservedObject var fetcher = AudioRecorderURLViewModel()
   @Binding var isCameraCancle: Bool
   @State var image: UIImage? // 카메라 사진
   
   // 녹음
+  @ObservedObject var fetcher = AudioRecorderURLViewModel()
+  @State var recordTitle: String = ""
   var recordParent: AlbumRecordAddView?
   
   var body: some View {
     NavigationView {
-      VStack {
+      VStack(spacing: 8) {
+        if recordParent != nil { // 녹음일 경우
+          VStack(spacing: 0) {
+            Text("") // 임시 - 여백용
+              .frame(height: 8)
+            
+            HStack {
+              Spacer()
+              TextField("\(fetcher.recordTitle)", text: $recordTitle)
+                .padding(16)
+                .background(Color.init(hex: "#FAF8F0")) // 임시
+              Spacer()
+            }
+            .frame(width: Screen.maxWidth, height: 80) // 임시 - 높이
+            .background(Color.white)
+          }
+          Spacer()
+        }
         
-        Text("카메라 날짜 선택 View")
+        Text("select Date")
       }
+      .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
         leading: Button(action: {
           if image != nil { // 카메라로 들어왔을 경우,

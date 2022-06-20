@@ -18,6 +18,13 @@ struct AlbumRecordAddView: View {
             .frame(width: Screen.maxWidth, height: Screen.maxHeight - Screen.maxWidth * 0.3)
             .foregroundColor(Color.black) // 임시
           
+          VStack { // 녹음 Bar 영역
+            HStack(alignment: .center, spacing: 4) {
+              ForEach(self.audioRecorder.soundSamples, id: \.self) { step in
+                AudioBarView(color: Color(hex: "4CAF50"), isStep: step)
+              }
+            }
+            
             ZStack { // 시간 영역
               Text("\(audioRecorder.minutes < 10 ? "0" : "")\(audioRecorder.minutes)" + " :")
                 .foregroundColor(Color.white)
@@ -28,6 +35,7 @@ struct AlbumRecordAddView: View {
                 .foregroundColor(Color.white)
                 .offset(x: 30)
             }
+          }
         }
         
         ZStack(alignment: .top) { // 녹음 버튼 영역

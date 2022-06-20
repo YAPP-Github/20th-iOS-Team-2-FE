@@ -12,6 +12,7 @@ import KakaoSDKCommon
 import SwiftKeychainWrapper
 
 struct LoginButtonView: View {
+  @State var text: NSMutableAttributedString = NSMutableAttributedString(string: "")
   var body: some View {
     VStack{
       Button {
@@ -23,13 +24,13 @@ struct LoginButtonView: View {
             }
             else {
               print("loginWithKakaoTalk() success.")
-
+              
               // Keychain에 User Token 저장
               KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
               KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
               
-//              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
-//              print(userAccessToken ?? "Token is nil")
+              //              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
+              //              print(userAccessToken ?? "Token is nil")
             }
           }
         } else { // 카톡이 설치되어있지 않다면
@@ -40,7 +41,7 @@ struct LoginButtonView: View {
             }
             else {
               print("loginWithKakaoTalk() success.")
-
+              
               // Keychain에 User Token 저장
               KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
               KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
@@ -57,7 +58,7 @@ struct LoginButtonView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
       }
-      .padding(EdgeInsets(top: 32, leading: 30, bottom: 0, trailing: 30))
+      .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       Button {
         
         
@@ -67,22 +68,32 @@ struct LoginButtonView: View {
           .aspectRatio(contentMode: .fit)
         
       }
-      .padding(EdgeInsets(top: 16, leading: 30, bottom: 20, trailing: 30))
+      .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       Image("line")
-        .padding(EdgeInsets(top: 16, leading: 30, bottom: 20, trailing: 30))
+        .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       
-      // 폰트 Color 확정 X
-      Group() {
-        Text("‘시작하기'를 누르는 것으로 ").foregroundColor(Color.gray)
-        + Text("필수 이용약관").foregroundColor(Color(hex: "50AD50"))
-        + Text(" 및 ").foregroundColor(Color.gray)
-        + Text("개인").foregroundColor(Color(hex: "50AD50")) + Text("정보 ").foregroundColor(Color(hex: "50AD50"))
-        + Text("이용방침").foregroundColor(Color(hex: "50AD50"))
-        + Text("에 동의하고 서비스를 이용합니다.").foregroundColor(Color.gray)
+      VStack {
+        CustomText(text: self.$text)
       }
-      .padding(EdgeInsets(top: 0, leading: 30, bottom: 55, trailing: 30))
+      .onAppear{
+        let myText = "'시작하기'를 누른 것으로 필수 이용약관 및 개인정보 이용방침에 동의하고 서비스를 이용합니다."
+        
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        let attributtedString = NSMutableAttributedString(string: myText, attributes: [NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 13)!, .paragraphStyle: paragraph])
+
+        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#999899"), range: (myText as NSString).range(of: myText))
+        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "필수 이용약관"))
+        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "개인정보 이용방침"))
+        
+        
+        self.text = attributtedString
+        
+      }
+      .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.05 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
       
     }//VStack
+    .frame(width: Screen.maxWidth, height: Screen.maxHeight * 0.4 , alignment: .center)
     .ignoresSafeArea()
     .background(Color.white)
     

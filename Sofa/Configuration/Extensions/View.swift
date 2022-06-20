@@ -20,7 +20,7 @@ struct RoundedCorner: Shape {
 }
 
 extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View { // View의 일부분만 Corneradious를 줄 수 있는 Extension
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View { // View의 일부분만 Corneradius를 줄 수 있는 Extension
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
 }

@@ -14,7 +14,6 @@ struct LoginView: View {
   
   @State var titleShow = false
   @State var loginShow = false
-  @State var delay = 3
   var body: some View {
     VStack(spacing: -120){
       Spacer()
@@ -23,8 +22,9 @@ struct LoginView: View {
         VStack{
           Text("우리 가족만의 공간")
             .font(.system(size: 28))
+            .font(.custom("Pretendard-Bold", size: 28))
           Text("Sofa")
-            .font(.system(size: 32))
+            .font(.custom("LibreBaskerville-Bold", size: 32))
         }
         .animation(.easeInOut(duration: 1))
         .transition(.move(edge: .top))
@@ -37,9 +37,9 @@ struct LoginView: View {
       }else{
         VStack{
           Text("우리 가족만의 공간")
-            .font(.system(size: 28))
+            .font(.custom("Pretendard-Bold", size: 28))
           Text("Sofa")
-            .font(.system(size: 32))
+            .font(.custom("LibreBaskerville-Bold", size: 32))
         }
         .animation(.default)
         .transition(.move(edge: .top))
@@ -51,6 +51,8 @@ struct LoginView: View {
       Spacer()
       if loginShow{
         LoginButtonView()
+          .padding(.bottom, UIDevice().hasNotch ? 5 : 0)
+          .background(Color.white)
           .cornerRadius(25, corners: [.topLeft, .topRight])
           .animation(.easeInOut(duration: 1))
           .transition(.move(edge: .bottom))
@@ -58,6 +60,7 @@ struct LoginView: View {
         LoginButtonView()
           .cornerRadius(25, corners: [.topLeft, .topRight])
           .opacity(0)
+          .padding(.bottom, UIDevice().hasNotch ? 5 : 0)
       }
     }//VStack
     .background(Color(hex: "29662C"))

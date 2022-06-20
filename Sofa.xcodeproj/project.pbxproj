@@ -40,7 +40,6 @@
 		C495F5FC2856386A009B3BDE /* AlbumDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5FB2856386A009B3BDE /* AlbumDetailRow.swift */; };
 		C495F6012856446A009B3BDE /* AlbumDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F6002856446A009B3BDE /* AlbumDetailList.swift */; };
 		C495F608285A2B98009B3BDE /* CameraImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F607285A2B97009B3BDE /* CameraImagePicker.swift */; };
-		C495F60A285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F609285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift */; };
 		C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */; };
 		C495F60E285B5B86009B3BDE /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* CameraViewModel.swift */; };
 		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
@@ -134,7 +133,6 @@
 		C495F5FB2856386A009B3BDE /* AlbumDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailRow.swift; sourceTree = "<group>"; };
 		C495F6002856446A009B3BDE /* AlbumDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailList.swift; sourceTree = "<group>"; };
 		C495F607285A2B97009B3BDE /* CameraImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImagePicker.swift; sourceTree = "<group>"; };
-		C495F609285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPhotoSelectDateView.swift; sourceTree = "<group>"; };
 		C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
 		C495F60D285B5B86009B3BDE /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
@@ -440,7 +438,6 @@
 		C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */ = {
 			isa = PBXGroup;
 			children = (
-				C495F609285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift */,
 				C495F5F62855DAB3009B3BDE /* AlbumSelectDateView.swift */,
 			);
 			path = AlbumSelectDateView;
@@ -899,7 +896,6 @@
 				C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */,
 				C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */,
 				C4B8F2CE2854A6680000B8CB /* NavigationBarWithIconButtonStyle.swift in Sources */,
-				C495F60A285A2C46009B3BDE /* AlbumPhotoSelectDateView.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,
 				C495F608285A2B98009B3BDE /* CameraImagePicker.swift in Sources */,
 				C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */,

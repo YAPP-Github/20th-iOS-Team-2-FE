@@ -18,6 +18,16 @@ struct AlbumRecordAddView: View {
             .frame(width: Screen.maxWidth, height: Screen.maxHeight - Screen.maxWidth * 0.3)
             .foregroundColor(Color.black) // 임시
           
+            ZStack { // 시간 영역
+              Text("\(audioRecorder.minutes < 10 ? "0" : "")\(audioRecorder.minutes)" + " :")
+                .foregroundColor(Color.white)
+                .offset(x: -35)
+              Text("\(audioRecorder.seconds < 10 ? "0" : "")\(audioRecorder.seconds)" + " :")
+                .foregroundColor(Color.white)
+              Text("\(audioRecorder.microSeconds < 10 ? "0" : "")\(audioRecorder.microSeconds)")
+                .foregroundColor(Color.white)
+                .offset(x: 30)
+            }
         }
         
         ZStack(alignment: .top) { // 녹음 버튼 영역

@@ -24,13 +24,13 @@ struct CustomDatePicker: View {
         Text(extraDate()[1] + "년 " + extraDate()[0])
           .font(.custom("Pretendard-Bold", size: 18))
           .foregroundColor(Color(hex: "121619"))
-          .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
+          .padding(.leading, 16)
         Button {
         } label: {
           Image(systemName: "chevron.right")
             .font(.custom("SF-pro", size: 20))
             .foregroundColor(Color(hex: "121619"))
-            .padding(EdgeInsets(top: 0, leading: 12.5, bottom: 0, trailing: 0))
+            .padding(.leading, 12.5)
         }
         Spacer(minLength: 0)
         Button {
@@ -54,7 +54,7 @@ struct CustomDatePicker: View {
             .padding(EdgeInsets(top: 0, leading: 13, bottom: 0, trailing: 20.5))
         }
       }
-      .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
+      .padding(.top,15)
       
       // Day
       HStack(spacing: 0){
@@ -62,7 +62,7 @@ struct CustomDatePicker: View {
           Text(day)
             .font(.custom("Pretendard-Medium", size: 13))
             .frame(maxWidth: .infinity)
-            .padding(EdgeInsets(top: 9, leading: 0, bottom: 0, trailing: 0))
+            .padding(.top,9)
             .foregroundColor(.black)
             .opacity(0.4)
         }
@@ -73,9 +73,19 @@ struct CustomDatePicker: View {
       LazyVGrid(columns: columns, spacing: 27) {
         ForEach(extractDate()){value in
           CardView(value: value)
+            .background(
+              Rectangle()
+                .fill(Color(hex: "4CAF50"))
+                .cornerRadius(4)
+                .frame(width: 32, height: 32, alignment: .center)
+                .padding(EdgeInsets(top: 3, leading: 0, bottom: 0, trailing: 0))
+                .opacity(isSameDay(date1: value.dates, date2: currentDate) ? 1 : 0)
+            )
+            .onTapGesture {
+              currentDate = value.dates
+            }
         }
       }
-      /// padding값 수정
       .padding(EdgeInsets(top: 10, leading: 5, bottom: 0, trailing: 5))
     }
     .onChange(of: currentMonth) { newValue in
@@ -85,13 +95,35 @@ struct CustomDatePicker: View {
   
   @ViewBuilder
   func CardView(value: DateValue)->some View{
-    VStack {
+    VStack(spacing: 0) {
       if value.day != -1 {
-        Text("\(value.day)")
-          .font(.custom("Pretendard-Medium", size: 14))
-          .foregroundColor(Color(hex: "121619"))
+        if let task = tasks.first(where: { task in
+          return isSameDay(date1: task.taskDate, date2: value.dates)
+        }){
+          Text("\(value.day)")
+            .font(.custom("Pretendard-Medium", size: 14))
+            .foregroundColor(isSameDay(date1: task.taskDate, date2: currentDate) ? .white : Color(hex: "121619"))
+          Circle()
+            .fill(isSameDay(date1: task.taskDate, date2: currentDate) ? .white : Color(hex: "66BB6A"))
+            .frame(width: 6, height: 6)
+            .padding(EdgeInsets(top: 1, leading: 0, bottom: -1, trailing: 0))
+        }
+        else {
+          Text("\(value.day)")
+            .font(.custom("Pretendard-Medium", size: 14))
+            .foregroundColor(isSameDay(date1: value.dates, date2: currentDate) ? .white : Color(hex: "121619"))
+            .frame(maxWidth: .infinity)
+          
+          Spacer()
+        }
       }
     }
+  }
+  
+  func isSameDay(date1: Date, date2: Date)->Bool{
+    let calendar = Calendar.current
+    
+    return calendar.isDate(date1, inSameDayAs: date2)
   }
   
   func extraDate()->[String]{

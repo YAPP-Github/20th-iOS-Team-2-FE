@@ -62,7 +62,7 @@ struct CustomDatePicker: View {
           Text(day)
             .font(.custom("Pretendard-Medium", size: 13))
             .frame(maxWidth: .infinity)
-            .padding(.top,9)
+            .padding(.top, 10)
             .foregroundColor(.black)
             .opacity(0.4)
         }
@@ -70,7 +70,7 @@ struct CustomDatePicker: View {
       
       // Dates
       let columns = Array(repeating: GridItem(.flexible()), count: 7)
-      LazyVGrid(columns: columns, spacing: 27) {
+      LazyVGrid(columns: columns, spacing: 25) {
         ForEach(extractDate()){value in
           CardView(value: value)
             .background(
@@ -86,7 +86,7 @@ struct CustomDatePicker: View {
             }
         }
       }
-      .padding(EdgeInsets(top: 10, leading: 5, bottom: 0, trailing: 5))
+      .padding(EdgeInsets(top: 12, leading: 5, bottom: 0, trailing: 5))
     }
     .onChange(of: currentMonth) { newValue in
       currentDate = getCurrentMonth()
@@ -174,19 +174,5 @@ struct CustomDatePicker: View {
 struct CustomDatePicker_Previews: PreviewProvider {
   static var previews: some View {
     CalendarView()
-  }
-}
-
-extension Date{
-  func getAllDates()->[Date]{
-    let calendar = Calendar.current
-    
-    let startDate = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
-    
-    let range = calendar.range(of: .day, in: .month, for: startDate)!
-    
-    return range.compactMap { day -> Date in
-      return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
-    }
   }
 }

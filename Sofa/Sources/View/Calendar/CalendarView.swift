@@ -36,9 +36,14 @@ struct CalendarView: View {
         
         Color(hex: "FAF8F0")
           .ignoresSafeArea()
-          .frame(width: .infinity, height: 8, alignment: .center)
+          .frame(height: 8)
         
         CustomDatePicker(currentDate: $currentDate)
+        
+        Rectangle()
+          .frame(height: 1.0, alignment: .bottom)
+          .foregroundColor(Color(hex: "EDEADF"))
+          .padding(.top, 22)
       }
     }
   }

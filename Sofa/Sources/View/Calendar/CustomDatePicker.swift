@@ -21,7 +21,7 @@ struct CustomDatePicker: View {
       let days: [String] = ["일","월","화","수","목","금","토"]
       
       HStack(spacing: 0){
-        Text(extraDate()[1] + "년 " + extraDate()[0] + "월")
+        Text(extraDate()[1] + "년 " + extraDate()[0])
           .font(.custom("Pretendard-Bold", size: 18))
           .foregroundColor(Color(hex: "121619"))
           .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
@@ -96,8 +96,9 @@ struct CustomDatePicker: View {
   
   func extraDate()->[String]{
     let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "ko_KR")
+    formatter.timeZone = TimeZone(abbreviation: "KST")
     formatter.dateFormat = "MMMM YYYY"
-    
     let date = formatter.string(from: currentDate)
     
     return date.components(separatedBy: " ")

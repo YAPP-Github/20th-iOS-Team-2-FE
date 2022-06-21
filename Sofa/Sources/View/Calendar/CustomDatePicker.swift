@@ -72,9 +72,7 @@ struct CustomDatePicker: View {
       let columns = Array(repeating: GridItem(.flexible()), count: 7)
       LazyVGrid(columns: columns, spacing: 27) {
         ForEach(extractDate()){value in
-          Text("\(value.day)")
-            .font(.custom("Pretendard-Medium", size: 14))
-            .foregroundColor(Color(hex: "121619"))
+          CardView(value: value)
         }
       }
       /// padding값 수정
@@ -82,6 +80,17 @@ struct CustomDatePicker: View {
     }
     .onChange(of: currentMonth) { newValue in
       currentDate = getCurrentMonth()
+    }
+  }
+  
+  @ViewBuilder
+  func CardView(value: DateValue)->some View{
+    VStack {
+      if value.day != -1 {
+        Text("\(value.day)")
+          .font(.custom("Pretendard-Medium", size: 14))
+          .foregroundColor(Color(hex: "121619"))
+      }
     }
   }
   
@@ -110,13 +119,22 @@ struct CustomDatePicker: View {
     
     let currentMonth = getCurrentMonth()
     
-    return currentMonth.getAllDates().compactMap { date ->
+    var days = currentMonth.getAllDates().compactMap { date ->
       DateValue in
       
       let day = calendar.component(.day, from: date)
       
       return DateValue(day: day, dates: date)
     }
+    
+    // adding offset days to get exact week day
+    let firstWeekday = calendar.component(.weekday, from: days.first?.dates ?? Date())
+    
+    for _ in 0..<firstWeekday - 1{
+      days.insert(DateValue(day: -1, dates: Date()), at: 0)
+    }
+    
+    return days
   }
 }
 
@@ -132,11 +150,10 @@ extension Date{
     
     let startDate = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
     
-    var range = calendar.range(of: .day, in: .month, for: startDate)!
-    range.removeLast()
+    let range = calendar.range(of: .day, in: .month, for: startDate)!
     
     return range.compactMap { day -> Date in
-      return calendar.date(byAdding: .day, value: day == 1 ? 0 : day, to: startDate)!
+      return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
     }
   }
 }

@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "SignInWithApple.png",
+      "filename" : "birthday.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "birthday@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "birthday@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

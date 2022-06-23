@@ -12,14 +12,16 @@ struct HomeView: View {
   var body: some View {
     VStack {
       NavigationView {
-        VStack() {
+        VStack{
           List{
-            Text("hi")
+            EventList()
+              .listRowInsets(EdgeInsets())
             
           }
+          .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
           .listStyle(.plain)
           .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
-          
+          .background(Color(hex: "EDEADF"))
         }
       }
     }

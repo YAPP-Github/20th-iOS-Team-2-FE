@@ -28,6 +28,7 @@
 		0AAB367C2863816300A47B24 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367B2863816300A47B24 /* EventList.swift */; };
 		0AAB367F286381C000A47B24 /* HomeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367E286381C000A47B24 /* HomeInfo.swift */; };
 		0AAB36812864287E00A47B24 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB36802864287E00A47B24 /* EventRow.swift */; };
+		0AAB368428642AC500A47B24 /* HomeInfoMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AAB368328642AC500A47B24 /* HomeInfoMock.json */; };
 		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
 		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
@@ -122,6 +123,7 @@
 		0AAB367B2863816300A47B24 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		0AAB367E286381C000A47B24 /* HomeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfo.swift; sourceTree = "<group>"; };
 		0AAB36802864287E00A47B24 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		0AAB368328642AC500A47B24 /* HomeInfoMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HomeInfoMock.json; sourceTree = "<group>"; };
 		0ABA0C1828579493005F2C6A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
@@ -243,6 +245,14 @@
 			path = Row;
 			sourceTree = "<group>";
 		};
+		0AAB368228642A9F00A47B24 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				0AAB368328642AC500A47B24 /* HomeInfoMock.json */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		0ABA0C1E2857A31B005F2C6A /* LoginSubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				6F22E529284B9D140069D268 /* HomeView.swift */,
+				0AAB368228642A9F00A47B24 /* Mocks */,
 				0AAB367A2863814F00A47B24 /* SubViews */,
 			);
 			path = Home;
@@ -725,6 +736,7 @@
 				0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */,
 				0A4CFB98285F85C8000603A5 /* Pretendard-SemiBold.otf in Resources */,
 				0A4CFB9C285F85C8000603A5 /* Pretendard-Light.otf in Resources */,
+				0AAB368428642AC500A47B24 /* HomeInfoMock.json in Resources */,
 				0A4CFB96285F85C8000603A5 /* Pretendard-ExtraBold.otf in Resources */,
 				C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */,
 				0A4CFB97285F85C8000603A5 /* Pretendard-Black.otf in Resources */,

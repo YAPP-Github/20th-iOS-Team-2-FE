@@ -27,6 +27,7 @@
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0AAB367C2863816300A47B24 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367B2863816300A47B24 /* EventList.swift */; };
 		0AAB367F286381C000A47B24 /* HomeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367E286381C000A47B24 /* HomeInfo.swift */; };
+		0AAB36812864287E00A47B24 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB36802864287E00A47B24 /* EventRow.swift */; };
 		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
 		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
@@ -120,6 +121,7 @@
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0AAB367B2863816300A47B24 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		0AAB367E286381C000A47B24 /* HomeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfo.swift; sourceTree = "<group>"; };
+		0AAB36802864287E00A47B24 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		0ABA0C1828579493005F2C6A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		0AAB367D2863817500A47B24 /* Row */ = {
 			isa = PBXGroup;
 			children = (
+				0AAB36802864287E00A47B24 /* EventRow.swift */,
 			);
 			path = Row;
 			sourceTree = "<group>";
@@ -864,6 +867,7 @@
 				C495F5F72855DAB3009B3BDE /* AlbumSelectDateView.swift in Sources */,
 				C495F5F12855C3AA009B3BDE /* AlbumTypeRow.swift in Sources */,
 				C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */,
+				0AAB36812864287E00A47B24 /* EventRow.swift in Sources */,
 				0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */,
 				6F22E528284B9D050069D268 /* SettingsView.swift in Sources */,
 				C495F5EB2854F594009B3BDE /* Photo.swift in Sources */,

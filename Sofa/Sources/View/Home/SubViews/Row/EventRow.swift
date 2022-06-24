@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct EventRow: View {
-  //  var event: Event
+  var event: Event
+  
+  init(_ event: Event){
+    self.event = event
+  }
+  
   
   var body: some View {
     HStack{
@@ -16,10 +21,10 @@ struct EventRow: View {
         .resizable()
         .frame(width: 48, height: 48)
       HStack{
-        VStack(spacing: 3){
-          Text("{역할} 생일")
+        VStack(alignment: .leading, spacing: 3){
+          Text("\(event.descriptionTitle)")
             .font(.custom("Pretendard-Bold", size: 16))
-          Text("이벤트 당일 ")
+          Text("\(event.descriptionDate)")
             .font(.custom("Pretendard-Regular", size: 14))
         }
         Spacer()
@@ -46,6 +51,6 @@ struct EventRow: View {
 
 struct EventRow_Previews: PreviewProvider {
   static var previews: some View {
-    EventRow()
+    EventRow(Event.getDummy())
   }
 }

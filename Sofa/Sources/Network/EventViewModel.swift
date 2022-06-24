@@ -44,7 +44,6 @@ class EventViewModel: ObservableObject{
         }, receiveValue: { receivedValue in
           print("받은 값: \(receivedValue.count)")
           self.events = receivedValue
-          print(self.events)
         }).store(in: &subscription)
     }
     

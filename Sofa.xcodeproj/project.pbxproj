@@ -247,14 +247,6 @@
 			path = Row;
 			sourceTree = "<group>";
 		};
-		0AAB368228642A9F00A47B24 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				0AAB368328642AC500A47B24 /* HomeInfoMock.json */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 		0ABA0C1E2857A31B005F2C6A /* LoginSubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				6F22E529284B9D140069D268 /* HomeView.swift */,
-				0AAB368228642A9F00A47B24 /* Mocks */,
 				0AAB367A2863814F00A47B24 /* SubViews */,
 			);
 			path = Home;
@@ -570,6 +561,7 @@
 		C4B8F2BA2852895A0000B8CB /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				0AAB368328642AC500A47B24 /* HomeInfoMock.json */,
 				C4B8F2BB285289A20000B8CB /* MockData.swift */,
 			);
 			path = Mock;

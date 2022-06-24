@@ -18,12 +18,11 @@ class EventViewModel: ObservableObject{
   var baseUrl = ""
   
   init(){
-    print(#fileID, #function, #line, "")
+//    print(#fileID, #function, #line, "")
     fetchEvents()
   }
   
   func fetchEvents(){
-    print(#fileID, #function, #line, "")
     
     guard let path = Bundle.main.path(forResource: "HomeInfoMock", ofType: "json")
     else {

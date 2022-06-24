@@ -9,22 +9,25 @@ import SwiftUI
 
 struct HomeView: View {
   
-
+  
   @State var gotoAlarm = false
+  
+  
   
   var body: some View {
     VStack {
       NavigationView {
         VStack{
-          List{
-            EventList()
-              .listRowInsets(EdgeInsets())
-            
+          ScrollView{
+            LazyVStack{
+              EventList()
+            }
+            .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
+            .listStyle(.plain)
+            .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
+            .background(Color(hex: "EDEADF"))
           }
-          .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
-          .listStyle(.plain)
-          .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
-          .background(Color(hex: "EDEADF"))
+          .background(Color(hex: "F9F7EF"))
         }
       }
     }

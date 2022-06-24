@@ -8,22 +8,26 @@
 import SwiftUI
 
 struct EventList: View {
+  
+  @ObservedObject var eventViewModel = EventViewModel()
+  
   var body: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       LazyHStack(spacing: 16) {
-        ForEach(0...4, id: \.self) { index in
-          if index == 0{
-            EventRow(Event.getDummy())
+
+        ForEach(Array(zip(eventViewModel.events.indices, eventViewModel.events)), id: \.0){ index, event in
+          if index == 0{ // 첫번째 row
+            EventRow(event)
               .frame(width: 320)
               .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
           }
-          else if index == 4{
-            EventRow(Event.getDummy())
+          else if index == eventViewModel.events.count - 1{ // 마지막 row
+            EventRow(event)
               .frame(width: 320)
               .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
           }
           else{
-            EventRow(Event.getDummy())
+            EventRow(event)
               .frame(width: 320)
           }
         }

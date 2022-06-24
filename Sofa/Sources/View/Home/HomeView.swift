@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+  
+  @ObservedObject var eventViewModel = EventViewModel()
   @State var gotoAlarm = false
+  
   var body: some View {
     VStack {
       NavigationView {

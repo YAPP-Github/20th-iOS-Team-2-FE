@@ -9,11 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
   
-  
   @State var gotoAlarm = false
-  
-  
-  
+
   var body: some View {
     VStack {
       NavigationView {
@@ -26,6 +23,7 @@ struct HomeView: View {
             .listStyle(.plain)
             .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
             .background(Color(hex: "EDEADF"))
+            ChatList()
           }
           .background(Color(hex: "F9F7EF"))
         }

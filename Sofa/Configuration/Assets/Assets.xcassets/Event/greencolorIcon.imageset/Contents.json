@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "SignInWithkakao.png",
+      "filename" : "greencolorIcon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "greencolorIcon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "greencolorIcon@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

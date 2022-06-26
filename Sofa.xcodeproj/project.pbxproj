@@ -487,7 +487,6 @@
 			isa = PBXGroup;
 			children = (
 				C495F607285A2B97009B3BDE /* CameraImagePicker.swift */,
-				C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */,
 			);
 			path = CameraImagePicker;
 			sourceTree = "<group>";
@@ -553,6 +552,7 @@
 		C4A9799828682DE600326ABC /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */,
 				C4A9799928682DF800326ABC /* RecordAuthorization.swift */,
 			);
 			path = Authorization;

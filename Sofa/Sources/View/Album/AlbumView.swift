@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct AlbumView: View {
-  @ObservedObject var cameraViewModel = CameraViewModel()
-  @ObservedObject var recordViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @State var showingSheet = false
   @State var albums = MockData().albumByDate
   @State var types = MockData().albumByType
@@ -17,7 +16,7 @@ struct AlbumView: View {
   @State var showPhotoAdd = false
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
   @State var cameraImage: UIImage? // 카메라를 통해 받아오는 이미지
-  
+
   var actionSheetView: some View {
     ActionSheetCard(
       isShowing: $showingSheet,
@@ -30,12 +29,12 @@ struct AlbumView: View {
         ActionSheetCardItem(systemIconName: "camera", label: "카메라") {
           UITabBar.toogleTabBarVisibility()
           showingSheet = false
-          cameraViewModel.showCameraPicker() // 권한 확인
+          authorizationViewModel.showCameraPicker() // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "waveform", label: "녹음") {
           UITabBar.toogleTabBarVisibility()
           showingSheet = false
-          recordViewModel.showAudioRecord() // 권한 확인
+          authorizationViewModel.showAudioRecord() // 권한 확인
         }
       ],
       outOfFocusOpacity: 0.2,
@@ -60,31 +59,25 @@ struct AlbumView: View {
           } else if selected == 1 { // 유형별
             AlbumList(albumType: types)
           }
-
+          
           // 카메라 날짜 선택 View로 이동
-          NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $cameraViewModel.showPicker, image: cameraImage), isActive: $showCameraSelectDate)
+          NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showPicker, image: cameraImage), isActive: $showCameraSelectDate)
         }
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
         .fullScreenCover(isPresented: $showPhotoAdd) { // 사진 추가 View로 이동
           AlbumPhotoAddView()
         }
-        .fullScreenCover(isPresented: $cameraViewModel.showPicker) { // 카메라 imagePicker로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showPicker) { // 카메라 imagePicker로 이동
           CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
             .ignoresSafeArea()
         }
-        .fullScreenCover(isPresented: $recordViewModel.showRecord) { // 녹음 추가 View로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) { // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }
-        .alert(isPresented: $cameraViewModel.showErrorAlert) { // 카메라 error
+        .alert(isPresented: $authorizationViewModel.showErrorAlert) { // 카메라 error
           Alert(
-            title: Text("카메라 접근 오류"),
-            message: Text(cameraViewModel.cameraError!.message),
-            dismissButton: .default(Text("확인")))
-        }
-        .alert(isPresented: $recordViewModel.showErrorAlert) { // 녹음 error
-          Alert(
-            title: Text("녹음 접근 오류"),
-            message: Text(recordViewModel.recordError!.message),
+            title: Text(authorizationViewModel.showErrorAlertTitle),
+            message: Text(authorizationViewModel.cameraError != nil ? authorizationViewModel.cameraError!.message : authorizationViewModel.recordError!.message),
             dismissButton: .default(Text("확인")))
         }
       }

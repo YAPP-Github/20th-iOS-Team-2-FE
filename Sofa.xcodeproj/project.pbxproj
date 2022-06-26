@@ -41,7 +41,7 @@
 		C495F6012856446A009B3BDE /* AlbumDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F6002856446A009B3BDE /* AlbumDetailList.swift */; };
 		C495F608285A2B98009B3BDE /* CameraImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F607285A2B97009B3BDE /* CameraImagePicker.swift */; };
 		C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */; };
-		C495F60E285B5B86009B3BDE /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* CameraViewModel.swift */; };
+		C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* AuthorizationViewModel.swift */; };
 		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
 		C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */; };
 		C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */; };
@@ -136,7 +136,7 @@
 		C495F6002856446A009B3BDE /* AlbumDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailList.swift; sourceTree = "<group>"; };
 		C495F607285A2B97009B3BDE /* CameraImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImagePicker.swift; sourceTree = "<group>"; };
 		C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
-		C495F60D285B5B86009B3BDE /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		C495F60D285B5B86009B3BDE /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
 		C495F616285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarOnlyCancelButtonStyle.swift; sourceTree = "<group>"; };
 		C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewModel.swift; sourceTree = "<group>"; };
@@ -478,7 +478,7 @@
 		C495F60F285B5F69009B3BDE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C495F60D285B5B86009B3BDE /* CameraViewModel.swift */,
+				C495F60D285B5B86009B3BDE /* AuthorizationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -914,7 +914,7 @@
 				6F22E53E284B9D640069D268 /* Constants.swift in Sources */,
 				C4B8F2AA2851CAF80000B8CB /* Ex+View.swift in Sources */,
 				C495F6012856446A009B3BDE /* AlbumDetailList.swift in Sources */,
-				C495F60E285B5B86009B3BDE /* CameraViewModel.swift in Sources */,
+				C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */,
 				C495F5FC2856386A009B3BDE /* AlbumDetailRow.swift in Sources */,
 				C495F5F32855D668009B3BDE /* NavigationBarWithTextButtonStyle.swift in Sources */,
 				C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */,

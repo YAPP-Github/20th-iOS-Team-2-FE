@@ -12,11 +12,6 @@ class AudioRecorderViewModel: ObservableObject {
   @Published public var soundSamples: [Bool]
   @Published public var isRecording = false
   
-  // 권한 확인
-  @Published var showRecord = false
-  @Published var showErrorAlert = false
-  @Published var recordError: RecordAuthorization.RecordErrorType?
-  
   // 시간 Properties
   @Published var minutes: Int = 0
   @Published var seconds: Int = 0
@@ -27,17 +22,6 @@ class AudioRecorderViewModel: ObservableObject {
   private var audioRecorder: AVAudioRecorder
   private var currentStepbar: Int // 색상 변경해야하는 step bar
   private let numberOfStepbar: Int // 전체 step bar
-  
-  // Record 보기 전, 권한 확인
-  func showAudioRecord() {
-    do {
-      try RecordAuthorization.checkPermissions()
-      showRecord = true
-    } catch { // 권한 오류가 발생
-      showErrorAlert = true
-      recordError = RecordAuthorization.RecordErrorType(error: error as! RecordAuthorization.RecordError)
-    }
-  }
   
   // init
   init(numberOfSamples: Int) {

@@ -28,7 +28,7 @@ struct AlbumPhotoAddList: View {
         }
       }
       .onAppear {
-        self.photoLibrary.requestAuthorization()
+        self.photoLibrary.fetchAllImage()
       }
       .padding(.trailing, 10)
       .padding(.leading, 10)

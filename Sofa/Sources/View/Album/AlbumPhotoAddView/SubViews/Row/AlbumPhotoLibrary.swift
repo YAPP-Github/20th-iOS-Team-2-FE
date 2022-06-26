@@ -12,29 +12,7 @@ import Photos
 class AlbumPhotoLibrary: ObservableObject {
   @Published var photoAssets = [Photo]()
   
-  // 권한 확인
-  func requestAuthorization() {
-    PHPhotoLibrary.requestAuthorization { [weak self] (status) in
-      guard let self = self else { return }
-      
-      switch status {
-      case .authorized:
-        self.fetchAllImage()
-      case .denied:
-        break
-      case .notDetermined:
-        break
-      case .restricted:
-        break
-      case .limited:
-        break
-      @unknown default:
-        break
-      }
-    }
-  }
-  
-  private func fetchAllImage() {
+  func fetchAllImage() {
     let fetchOptions = PHFetchOptions()
     fetchOptions.fetchLimit = 1000 // 임시 개수 제한
     fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)] // 날짜 순으로 Asset

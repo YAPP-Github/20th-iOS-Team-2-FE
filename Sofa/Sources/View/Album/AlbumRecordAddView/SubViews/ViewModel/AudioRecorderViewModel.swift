@@ -17,12 +17,12 @@ class AudioRecorderViewModel: ObservableObject {
   @Published var seconds: Int = 0
   @Published var microSeconds: Int = 0
   private var time: Double = 0
-
+  
   private var audioRecorder: AVAudioRecorder
   private var timer: Timer
   private var currentStepbar: Int // 색상 변경해야하는 step bar
   private let numberOfStepbar: Int // 전체 step bar
-
+  
   // init
   init(numberOfSamples: Int) {
     self.numberOfStepbar = numberOfSamples // numberOfSamples > 0 이여야 함
@@ -42,7 +42,7 @@ class AudioRecorderViewModel: ObservableObject {
         }
       }
     }
-
+    
     let recorderSettings: [String:Any] = [
       AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless), // 녹음 포맷, 코어 오디오에 정의된 포맷 문자 사용
       AVSampleRateKey: 44100.0, // 샘플링 rate
@@ -85,6 +85,12 @@ class AudioRecorderViewModel: ObservableObject {
     self.soundSamples = [Bool](repeating: false, count: numberOfStepbar)
   }
   
+  // 소리를 수치로 바꿔주는 함수
+  private func normalizeSoundLevel(level: Float) -> Int {
+    let level = max(0, CGFloat(level) + CGFloat(numberOfStepbar)) // between 0 ~ (level + numberOfStepbar)
+    return Int(level) % numberOfStepbar
+  }
+  
   // 시간 및 bar 위치 계산
   private func startMonitoring() {
     audioRecorder.isMeteringEnabled = true
@@ -92,13 +98,9 @@ class AudioRecorderViewModel: ObservableObject {
     timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [self] (timer) in
       self.audioRecorder.updateMeters()
       
-      self.soundSamples[self.currentStepbar] = true // 초당 bar가 채워짐
-      self.currentStepbar = (self.seconds) % self.numberOfStepbar // 초당 bar가 채워짐 + index 범위 재설정
-      
-      if self.currentStepbar == 0 { // audio bar 초기화
-        self.soundSamples = [true] + [Bool](repeating: false, count: self.numberOfStepbar - 1) // 시작과 동시에 1칸 채우기
-      }
-      
+      self.currentStepbar = normalizeSoundLevel(level: self.audioRecorder.averagePower(forChannel: 0)) // 음성의 level의 크기에 따라
+      self.soundSamples = [Bool](repeating: true, count: currentStepbar) + [Bool](repeating: false, count:  self.numberOfStepbar - currentStepbar)
+
       self.time += 1
       
       self.microSeconds = Int(self.time) % 100

@@ -16,7 +16,7 @@ struct AlbumView: View {
   @State var showPhotoAdd = false
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
   @State var cameraImage: UIImage? // 카메라를 통해 받아오는 이미지
-
+  
   var actionSheetView: some View {
     ActionSheetCard(
       isShowing: $showingSheet,
@@ -78,7 +78,12 @@ struct AlbumView: View {
           Alert(
             title: Text(authorizationViewModel.showErrorAlertTitle),
             message: Text(authorizationViewModel.cameraError != nil ? authorizationViewModel.cameraError!.message : authorizationViewModel.recordError!.message),
-            dismissButton: .default(Text("확인")))
+            primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
+              if let appSettring = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
+              }
+            },
+            secondaryButton: .default(Text("확인")))
         }
       }
       actionSheetView // 바텀 Sheet

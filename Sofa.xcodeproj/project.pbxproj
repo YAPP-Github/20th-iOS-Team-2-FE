@@ -48,6 +48,7 @@
 		C495F61F285BC2C8009B3BDE /* AudioBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F61E285BC2C7009B3BDE /* AudioBarView.swift */; };
 		C4A9795B286067E200326ABC /* AudioRecorderURLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */; };
 		C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9799928682DF800326ABC /* RecordAuthorization.swift */; };
+		C4A9799C286861D800326ABC /* PhotoAlbumAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9799B286861D800326ABC /* PhotoAlbumAuthorization.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
@@ -143,6 +144,7 @@
 		C495F61E285BC2C7009B3BDE /* AudioBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBarView.swift; sourceTree = "<group>"; };
 		C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderURLViewModel.swift; sourceTree = "<group>"; };
 		C4A9799928682DF800326ABC /* RecordAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAuthorization.swift; sourceTree = "<group>"; };
+		C4A9799B286861D800326ABC /* PhotoAlbumAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAuthorization.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */,
+				C4A9799B286861D800326ABC /* PhotoAlbumAuthorization.swift */,
 				C4A9799928682DF800326ABC /* RecordAuthorization.swift */,
 			);
 			path = Authorization;
@@ -912,6 +915,7 @@
 				C4B8F2AE2851CB1F0000B8CB /* Ex+UITabBar.swift in Sources */,
 				6F22E532284B9D330069D268 /* Network.swift in Sources */,
 				6F22E53E284B9D640069D268 /* Constants.swift in Sources */,
+				C4A9799C286861D800326ABC /* PhotoAlbumAuthorization.swift in Sources */,
 				C4B8F2AA2851CAF80000B8CB /* Ex+View.swift in Sources */,
 				C495F6012856446A009B3BDE /* AlbumDetailList.swift in Sources */,
 				C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */,

@@ -12,7 +12,7 @@ class AuthorizationViewModel: ObservableObject {
   @Published var showErrorAlertTitle = "오류"
   
   // 카메라 권한 확인
-  @Published var showPicker = false
+  @Published var showCamera = false
   @Published var cameraError: CameraAuthorization.CameraErrorType?
   
   // 녹음 권한 확인
@@ -23,7 +23,7 @@ class AuthorizationViewModel: ObservableObject {
   func showCameraPicker() {
     do {
       try CameraAuthorization.checkPermissions()
-      showPicker = true
+      showCamera = true
     } catch { // 권한 오류가 발생
       showErrorAlert = true
       showErrorAlertTitle = "카메라 접근 오류"

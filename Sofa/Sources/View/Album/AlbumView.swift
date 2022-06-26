@@ -9,12 +9,12 @@ import SwiftUI
 
 struct AlbumView: View {
   @ObservedObject var cameraViewModel = CameraViewModel()
+  @ObservedObject var recordViewModel = AudioRecorderViewModel(numberOfSamples: 21)
   @State var showingSheet = false
   @State var albums = MockData().albumByDate
   @State var types = MockData().albumByType
   @State var selected = 0
   @State var showPhotoAdd = false
-  @State var showRecordAdd = false
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
   @State var cameraImage: UIImage? // 카메라를 통해 받아오는 이미지
   
@@ -35,7 +35,7 @@ struct AlbumView: View {
         ActionSheetCardItem(systemIconName: "waveform", label: "녹음") {
           UITabBar.toogleTabBarVisibility()
           showingSheet = false
-          showRecordAdd = true
+          recordViewModel.showAudioRecord() // 권한 확인
         }
       ],
       outOfFocusOpacity: 0.2,
@@ -60,14 +60,7 @@ struct AlbumView: View {
           } else if selected == 1 { // 유형별
             AlbumList(albumType: types)
           }
-          
-          // 임시
-          // 사진 추가 View로 이동
-          // NavigationLink("", destination: AlbumPhotoAddView(), isActive: $showPhotoAdd)
-          
-          // 녹음 추가 View로 이동
-          // NavigationLink("", destination: AlbumRecordAddView(), isActive: $showRecordAdd)
-          
+
           // 카메라 날짜 선택 View로 이동
           NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $cameraViewModel.showPicker, image: cameraImage), isActive: $showCameraSelectDate)
         }
@@ -79,14 +72,20 @@ struct AlbumView: View {
           CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
             .ignoresSafeArea()
         }
+        .fullScreenCover(isPresented: $recordViewModel.showRecord) { // 녹음 추가 View로 이동
+          AlbumRecordAddView()
+        }
         .alert(isPresented: $cameraViewModel.showErrorAlert) { // 카메라 error
           Alert(
             title: Text("카메라 접근 오류"),
             message: Text(cameraViewModel.cameraError!.message),
             dismissButton: .default(Text("확인")))
         }
-        .fullScreenCover(isPresented: $showRecordAdd) { // 녹음 추가 View로 이동
-          AlbumRecordAddView()
+        .alert(isPresented: $recordViewModel.showErrorAlert) { // 녹음 error
+          Alert(
+            title: Text("녹음 접근 오류"),
+            message: Text(recordViewModel.recordError!.message),
+            dismissButton: .default(Text("확인")))
         }
       }
       actionSheetView // 바텀 Sheet

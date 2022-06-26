@@ -20,21 +20,21 @@ struct RecordAuthorization {
         return NSLocalizedString("녹음 권한을 명시적으로 거부했습니다. 권한/개인 정보/녹음를 열고 이 애플리케이션에 대한 액세스 권한을 부여하세요", comment: "")
       }
     }
-    
-    static func checkPermissions() throws {
-      switch AVAudioSession.sharedInstance().recordPermission {
-      case .denied:
-        throw RecordError.denied
-      default:
-        break
-      }
+  }
+  
+  static func checkPermissions() throws {
+    switch AVAudioSession.sharedInstance().recordPermission {
+    case .denied:
+      throw RecordError.denied
+    default:
+      break
     }
-    
-    struct CameraErrorType {
-      let error: RecordAuthorization.RecordError
-      var message: String {
-        error.localizedDescription
-      }
+  }
+  
+  struct RecordErrorType {
+    let error: RecordAuthorization.RecordError
+    var message: String {
+      error.localizedDescription
     }
   }
 }

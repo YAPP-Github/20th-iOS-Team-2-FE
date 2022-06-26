@@ -12,16 +12,32 @@ class AudioRecorderViewModel: ObservableObject {
   @Published public var soundSamples: [Bool]
   @Published public var isRecording = false
   
+  // 권한 확인
+  @Published var showRecord = false
+  @Published var showErrorAlert = false
+  @Published var recordError: RecordAuthorization.RecordErrorType?
+  
   // 시간 Properties
   @Published var minutes: Int = 0
   @Published var seconds: Int = 0
   @Published var microSeconds: Int = 0
+  private var timer: Timer
   private var time: Double = 0
   
   private var audioRecorder: AVAudioRecorder
-  private var timer: Timer
   private var currentStepbar: Int // 색상 변경해야하는 step bar
   private let numberOfStepbar: Int // 전체 step bar
+  
+  // Record 보기 전, 권한 확인
+  func showAudioRecord() {
+    do {
+      try RecordAuthorization.checkPermissions()
+      showRecord = true
+    } catch { // 권한 오류가 발생
+      showErrorAlert = true
+      recordError = RecordAuthorization.RecordErrorType(error: error as! RecordAuthorization.RecordError)
+    }
+  }
   
   // init
   init(numberOfSamples: Int) {
@@ -35,13 +51,6 @@ class AudioRecorderViewModel: ObservableObject {
   // 녹음 시작
   func startRecording() {
     let audioSession = AVAudioSession.sharedInstance() // 싱글톤 인스턴스 획득
-    if audioSession.recordPermission != .granted {
-      audioSession.requestRecordPermission { (isGranted) in
-        if !isGranted {
-          fatalError("오디오 녹음을 허용해야하합니다")
-        }
-      }
-    }
     
     let recorderSettings: [String:Any] = [
       AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless), // 녹음 포맷, 코어 오디오에 정의된 포맷 문자 사용

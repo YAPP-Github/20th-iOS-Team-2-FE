@@ -12,12 +12,14 @@ PODS:
   - KakaoSDKUser (2.9.1):
     - KakaoSDKAuth (= 2.9.1)
   - lottie-ios (3.3.0)
+  - SwiftKeychainWrapper (4.0.1)
 
 DEPENDENCIES:
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
   - lottie-ios
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - KakaoSDKCommon
     - KakaoSDKUser
     - lottie-ios
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
@@ -33,7 +36,8 @@ SPEC CHECKSUMS:
   KakaoSDKCommon: c4b08131fdba6770a280ffe83916048174f329bf
   KakaoSDKUser: 3b82c8f4b7bdd8584b296cf91d1be4b4a84102fb
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: d695e614242984233dfa6ce4b067fe70f6161e82
+PODFILE CHECKSUM: 7e99c764fd0429071a357108fc4917005f8d1ae5
 
 COCOAPODS: 1.11.3

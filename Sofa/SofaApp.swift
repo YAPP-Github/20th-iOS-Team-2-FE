@@ -12,8 +12,8 @@ import KakaoSDKAuth
 @main
 struct SofaApp: App {
   init(){
-    KakaoSDK.initSDK(appKey: "c1d24a892dad2a56e31fefcc5443a458")
-    
+    let KAKAO_APP_KEY: String = Bundle.main.infoDictionary?["KAKAO_APP_KEY"] as? String ?? "KAKAO_APP_KEY is nil"
+    KakaoSDK.initSDK(appKey: KAKAO_APP_KEY)
   }
   var body: some Scene {
     WindowGroup {

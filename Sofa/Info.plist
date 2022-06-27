@@ -6,6 +6,22 @@
 	<string>&apos;Sofa&apos;에서 음성 녹음을 위해 마이크를 사용합니다.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>&apos;Sofa&apos;에서 사진을 찰영하기 위해 카메라를 사용합니다.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pretendard-Black.otf</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-ExtraBold.otf</string>
+		<string>Pretendard-ExtraLight.otf</string>
+		<string>Pretendard-Light.otf</string>
+		<string>Pretendard-Medium.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Thin.otf</string>
+		<string>LibreBaskerville-Regular.ttf</string>
+		<string>LibreBaskerville-Bold.ttf</string>
+	</array>
+	<key>KAKAO_APP_KEY</key>
+	<string>c1d24a892dad2a56e31fefcc5443a458</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>&apos;Sofa&apos;에서 사진을 가져오기 위해 갤러리에 접근합니다</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

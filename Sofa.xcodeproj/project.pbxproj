@@ -69,6 +69,7 @@
 		C4A9795B286067E200326ABC /* AudioRecorderURLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */; };
 		C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9799928682DF800326ABC /* RecordAuthorization.swift */; };
 		C4A9799C286861D800326ABC /* PhotoAlbumAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9799B286861D800326ABC /* PhotoAlbumAuthorization.swift */; };
+		C4A979A22869E40F00326ABC /* toastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A12869E40F00326ABC /* toastMessage.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
@@ -185,6 +186,7 @@
 		C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderURLViewModel.swift; sourceTree = "<group>"; };
 		C4A9799928682DF800326ABC /* RecordAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAuthorization.swift; sourceTree = "<group>"; };
 		C4A9799B286861D800326ABC /* PhotoAlbumAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAuthorization.swift; sourceTree = "<group>"; };
+		C4A979A12869E40F00326ABC /* toastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toastMessage.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				C4B8F2932850DA0E0000B8CB /* ActionSheet */,
 				C495F610285B5FA8009B3BDE /* CameraImagePicker */,
 				C4A9799828682DE600326ABC /* Authorization */,
+				C4A979A02869E3FF00326ABC /* ToastMessage */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -642,6 +645,14 @@
 				C4A9799928682DF800326ABC /* RecordAuthorization.swift */,
 			);
 			path = Authorization;
+			sourceTree = "<group>";
+		};
+		C4A979A02869E3FF00326ABC /* ToastMessage */ = {
+			isa = PBXGroup;
+			children = (
+				C4A979A12869E40F00326ABC /* toastMessage.swift */,
+			);
+			path = ToastMessage;
 			sourceTree = "<group>";
 		};
 		C4B8F2932850DA0E0000B8CB /* ActionSheet */ = {
@@ -1028,6 +1039,7 @@
 				C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */,
 				0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */,
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
+				C4A979A22869E40F00326ABC /* toastMessage.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
 				C4B8F2D42854A8510000B8CB /* NavigationBarInlineStyle.swift in Sources */,

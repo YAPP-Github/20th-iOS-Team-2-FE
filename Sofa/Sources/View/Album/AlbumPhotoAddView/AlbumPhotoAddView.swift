@@ -43,8 +43,8 @@ struct AlbumPhotoAddView: View {
       }
       .background(Color.black) // 배경색
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
-      .navigationBarInlineStyle(isNextClick: $isNext, isDisalbeNextButton: .constant(selected.isEmpty), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
       .toastMessage(data: $messageData, isShow: $showToastMessage)
+      .navigationBarInlineStyle(isNextClick: $isNext, isDisalbeNextButton: .constant(selected.isEmpty), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
     }
   }
 }

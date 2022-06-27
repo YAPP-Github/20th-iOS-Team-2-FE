@@ -34,8 +34,8 @@ struct AlbumDetailView: View {
         // 댓글 click
         NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)
       }
-      .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
       .toastMessage(data: $messageData, isShow: $isBookmarkClick)
+      .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
     }
     .navigationViewStyle(StackNavigationViewStyle())

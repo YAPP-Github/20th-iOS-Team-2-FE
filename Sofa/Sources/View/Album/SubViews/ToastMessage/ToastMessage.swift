@@ -77,6 +77,10 @@ extension View {
 
 struct toastMessage_Previews: PreviewProvider {
   static var previews: some View {
-    ToastMessage()
+    let messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "즐겨찾기 등록", type: .Registration)
+    
+    Color.gray
+      .edgesIgnoringSafeArea(.all)
+      .toastMessage(data: .constant(messageData), isShow: .constant(true))
   }
 }

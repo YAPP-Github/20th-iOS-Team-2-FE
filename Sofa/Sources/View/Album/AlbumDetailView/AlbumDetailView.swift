@@ -30,10 +30,10 @@ struct AlbumDetailView: View {
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
           isEllipsisClick = false
         },
-        ActionSheetCardItem(systemIconName: "calnder", label: "날짜 수정") {
+        ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isEllipsisClick = false
         },
-        ActionSheetCardItem(systemIconName: "trash", label: "삭제") {
+        ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
           isEllipsisClick = false
         }
       ],

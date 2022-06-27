@@ -51,6 +51,19 @@ struct ToastMessage: ViewModifier {
           Spacer()
         }
         .padding(.top, 100)
+        .animation(.easeInOut) // 점점 빨라졌다 끝에가서 다시 느려지는 옵션
+        .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+        .onTapGesture {
+          withAnimation { // click하면 사라짐
+            self.isShow = false
+          }
+        }.onAppear(perform: {
+          DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // 3초
+            withAnimation {
+              self.isShow = false
+            }
+          }
+        })
       }
     }
   }

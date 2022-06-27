@@ -13,7 +13,7 @@ struct AlbumDetailRow: View {
   private var isBookmark : Bool { return info.favourite }
   
   var body: some View {
-    VStack(spacing: info.type != "PHOTO" ? 10 : 4) {
+    VStack(spacing: 10) {
       Button(action: {
         isNext = true
       }, label: {
@@ -29,31 +29,13 @@ struct AlbumDetailRow: View {
           Text(info.title!)
             .foregroundColor(Color(UIColor.label))
             .font(.system(size: 18, weight: .semibold))
+            .padding(.top, -6) // top : 4
           
           Spacer()
         }
       }
       
       HStack {
-        HStack(spacing: 3) {
-          Image(systemName: "ellipsis.bubble")
-            .frame(width: 20, height: 20)
-            .foregroundColor(.gray)
-            .font(.system(size: 20))
-            .padding(4)
-          
-          // 댓글 수
-          Text("\(info.commentCount)")
-            .foregroundColor(.gray)
-            .font(.system(size: 20))
-        }
-        .padding(EdgeInsets(top: 0, leading: 49, bottom: 0, trailing: 0))
-        
-        Spacer()
-      }
-    }
-    .overlay (
-      HStack(spacing: 16) {
         Button(action: {
           print("bookmark click")
         }) {
@@ -62,21 +44,40 @@ struct AlbumDetailRow: View {
             .frame(width: 20, height: 20)
             .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .gray)
             .font(.system(size: 20))
-            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
+            .padding(.leading, 8)
         }
+        
+        Button(action: {
+          
+        }, label: {
+          HStack(spacing: 8) {
+            Image(systemName: "ellipsis.bubble")
+              .frame(width: 20, height: 20)
+              .foregroundColor(.gray)
+              .font(.system(size: 20))
+              .padding(.leading, 20)
+            
+            // 댓글 수
+            Text("\(info.commentCount)")
+              .foregroundColor(.gray)
+              .font(.system(size: 20))
+          }
+        })
         
         Spacer()
         
         Button(action: {
+          
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)
             .foregroundColor(.gray)
             .font(.system(size: 20))
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+            .padding(.trailing, 4.5)
         }
-      }.offset(y: info.type == "PHOTO" ? 140 : 158) // image위에 icon button 올려놓기
-    )
+        
+      }
+    }
   }
 }
 

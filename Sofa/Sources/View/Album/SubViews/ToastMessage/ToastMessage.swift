@@ -46,7 +46,7 @@ struct ToastMessage: ViewModifier {
           }
           .foregroundColor(Color.white)
           .padding(EdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16))
-          .background(Color(hex: "#262626"))
+          .background(Color(hex: "#262626")) // 임시
           .cornerRadius(80)
           Spacer()
         }

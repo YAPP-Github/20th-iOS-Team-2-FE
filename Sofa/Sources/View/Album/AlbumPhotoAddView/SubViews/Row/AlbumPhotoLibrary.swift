@@ -10,6 +10,7 @@ import Combine
 import Photos
 
 class AlbumPhotoLibrary: ObservableObject {
+  @Environment(\.presentationMode) var presentable
   @Published var photoAssets = [Photo]()
   
   // 권한 확인
@@ -34,7 +35,7 @@ class AlbumPhotoLibrary: ObservableObject {
     }
   }
   
-  private func fetchAllImage() {
+  func fetchAllImage() {
     let fetchOptions = PHFetchOptions()
     fetchOptions.fetchLimit = 1000 // 임시 개수 제한
     fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)] // 날짜 순으로 Asset

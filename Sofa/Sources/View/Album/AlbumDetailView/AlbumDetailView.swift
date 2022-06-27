@@ -17,7 +17,7 @@ struct AlbumDetailView: View {
       VStack {
         AlbumDetailList(isNext: $isNext)
         
-        NavigationLink("", destination: AlbumRecordAddView(), isActive: $isNext)
+        NavigationLink("", destination: EmptyView(), isActive: $isNext)
       }
       .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시

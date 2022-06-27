@@ -10,12 +10,14 @@ import SwiftUI
 struct AlbumDetailRow: View {
   @Binding var isNext: Bool
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
+  let index: Int
   private var isBookmark : Bool { return info.favourite }
   
   var body: some View {
     VStack(spacing: 10) {
       Button(action: {
         isNext = true
+        print(index)
       }, label: {
         // post image
         Image(info.link)
@@ -75,7 +77,6 @@ struct AlbumDetailRow: View {
             .font(.system(size: 20))
             .padding(.trailing, 4.5)
         }
-        
       }
     }
   }
@@ -85,6 +86,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.elements[3]
     
-    AlbumDetailRow(isNext: .constant(false), info: data)
+    AlbumDetailRow(isNext: .constant(false), info: data, index: 3)
   }
 }

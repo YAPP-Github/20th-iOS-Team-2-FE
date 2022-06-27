@@ -15,8 +15,8 @@ struct AlbumDetailList: View {
     ScrollView {
       // 필요할때 rendering 함, network에 적합
       LazyVStack(spacing: 10) {
-        ForEach(viewModel.posts) { element in
-          AlbumDetailRow(isNext: $isNext, info: element)
+        ForEach(Array(zip(viewModel.posts.indices, viewModel.posts)), id: \.0) { index, element in
+          AlbumDetailRow(isNext: $isNext, info: element, index: index)
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
       }

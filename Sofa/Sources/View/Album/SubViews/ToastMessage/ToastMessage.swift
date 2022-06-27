@@ -7,9 +7,30 @@
 
 import SwiftUI
 
-struct ToastMessage: View {
-  var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct ToastMessage: ViewModifier {
+  @Binding var data: MessageData
+  @Binding var isShow: Bool
+  
+  struct MessageData {
+    var title: String
+    var type: MessageType
+  }
+  
+  enum MessageType {
+    case Registration // 즐겨찾기
+    case Warning      // 사진 선택
+    case Remove       // 사진 제거
+    
+    var iconColor: Color {
+      switch self {
+      case .Registration:
+        return Color(hex: "#FFCA28") // 임시
+      case .Warning:
+        return Color(hex: "#33B1FF") // 임시
+      case .Remove:
+        return Color(hex: "#EC407A") // 임시
+      }
+    }
   }
 }
 

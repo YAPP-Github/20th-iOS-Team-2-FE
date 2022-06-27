@@ -523,7 +523,6 @@
 				C4B8F2932850DA0E0000B8CB /* ActionSheet */,
 				C495F610285B5FA8009B3BDE /* CameraImagePicker */,
 				C4A9799828682DE600326ABC /* Authorization */,
-				C4A979A02869E3FF00326ABC /* ToastMessage */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -647,14 +646,6 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		C4A979A02869E3FF00326ABC /* ToastMessage */ = {
-			isa = PBXGroup;
-			children = (
-				C4A979A12869E40F00326ABC /* ToastMessage.swift */,
-			);
-			path = ToastMessage;
-			sourceTree = "<group>";
-		};
 		C4B8F2932850DA0E0000B8CB /* ActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +665,7 @@
 				C4B8F2CD2854A6680000B8CB /* NavigationBarWithIconButtonStyle.swift */,
 				C495F5F22855D668009B3BDE /* NavigationBarWithTextButtonStyle.swift */,
 				C4B8F2D32854A8510000B8CB /* NavigationBarInlineStyle.swift */,
+				C4A979A12869E40F00326ABC /* ToastMessage.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";

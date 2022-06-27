@@ -9,15 +9,17 @@ import SwiftUI
 import Photos
 
 struct AlbumPhotoAddView: View {
+  @Environment(\.presentationMode) var presentable
   @State var isNext = false
   @State var imageClick: UIImage?
-  @State var selected : [SelectedImages] = []
+  @State var selected: [SelectedImages] = []
   private let height = Screen.maxHeight * 0.425
   
   var body: some View {
     NavigationView {
-      VStack() {
+      VStack(spacing: 0) {
         VStack {
+          
           if imageClick != nil { // 첫 Appear상태에는 선택된 이미지가 없음
             Image(uiImage: imageClick!)
               .resizable()
@@ -27,13 +29,12 @@ struct AlbumPhotoAddView: View {
           }
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반
-        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
         
         AlbumPhotoAddList(selected: $selected, imageClick: $imageClick)
-//                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
+        //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동
-        NavigationLink("", destination: AlbumSelectDateView(), isActive: $isNext)
+        NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", imageList: selected, photoParent: self, isCameraCancle: .constant(false)), isActive: $isNext)
       }
       .background(Color.black) // 배경색
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시

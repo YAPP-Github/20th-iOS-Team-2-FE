@@ -21,17 +21,14 @@ struct AlbumView: View {
       isShowing: $showingSheet,
       items: [
         ActionSheetCardItem(systemIconName: "photo", label: "사진") {
-          UITabBar.showTabBar()
           showingSheet = false
           authorizationViewModel.showPhotoAlbum() // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "camera", label: "카메라") {
-          UITabBar.showTabBar()
           showingSheet = false
           authorizationViewModel.showCameraPicker() // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "waveform", label: "녹음") {
-          UITabBar.showTabBar()
           showingSheet = false
           authorizationViewModel.showAudioRecord() // 권한 확인
         }
@@ -39,6 +36,9 @@ struct AlbumView: View {
       outOfFocusOpacity: 0.2,
       itemsSpacing: 0
     )
+    .onDisappear {
+      UITabBar.showTabBar()
+    }
   }
   
   var body: some View {

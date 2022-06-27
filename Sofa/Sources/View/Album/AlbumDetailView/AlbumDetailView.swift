@@ -40,6 +40,9 @@ struct AlbumDetailView: View {
       outOfFocusOpacity: 0.2,
       itemsSpacing: 0
     )
+    .onDisappear {
+      UITabBar.hideTabBar()
+    }
   }
   
   var body: some View {

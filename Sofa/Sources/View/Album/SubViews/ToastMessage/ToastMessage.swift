@@ -50,7 +50,7 @@ struct ToastMessage: ViewModifier {
           .cornerRadius(80)
           Spacer()
         }
-        .padding(.top, 100)
+        .padding(.top, 11)
         .animation(.easeInOut) // 점점 빨라졌다 끝에가서 다시 느려지는 옵션
         .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
         .onTapGesture {

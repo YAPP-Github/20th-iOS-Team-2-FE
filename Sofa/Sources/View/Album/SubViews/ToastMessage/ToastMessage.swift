@@ -32,6 +32,29 @@ struct ToastMessage: ViewModifier {
       }
     }
   }
+  
+  func body(content: Content) -> some View {
+    ZStack {
+      content
+      if isShow {
+        VStack {
+          HStack {
+            Image(systemName: "info.circle.fill")
+              .foregroundColor(data.type.iconColor)
+            Text(data.title)
+              .font(.system(size: 16, weight: .semibold))
+          }
+          .foregroundColor(Color.white)
+          .padding(EdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16))
+          .background(Color(hex: "#262626"))
+          .cornerRadius(80)
+          Spacer()
+        }
+        .padding(.top, 100)
+      }
+    }
+  }
+}
 }
 
 struct toastMessage_Previews: PreviewProvider {

@@ -8,7 +8,15 @@
 import SwiftUI
 
 struct AlbumDetailRow: View {
-  @Binding var isNext: Bool
+  // 이미지
+  @Binding var isImageClick: Bool
+  @Binding var selectImage: UIImage
+  @Binding var selectImageIndex: Int
+
+  @Binding var isBookmarkClick: Bool
+  @Binding var isCommentClick: Bool
+  @Binding var isEllipsisClick: Bool
+
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
   let index: Int
   private var isBookmark : Bool { return info.favourite }
@@ -16,8 +24,9 @@ struct AlbumDetailRow: View {
   var body: some View {
     VStack(spacing: 10) {
       Button(action: {
-        isNext = true
-        print(index)
+        isImageClick = true
+        selectImage = UIImage(named: info.link)!
+        selectImageIndex = index
       }, label: {
         // post image
         Image(info.link)
@@ -39,7 +48,8 @@ struct AlbumDetailRow: View {
       
       HStack {
         Button(action: {
-          print("bookmark click")
+          isBookmarkClick = true
+          selectImageIndex = index
         }) {
           // 북마크
           Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
@@ -50,7 +60,8 @@ struct AlbumDetailRow: View {
         }
         
         Button(action: {
-          
+          isCommentClick = true
+          selectImageIndex = index
         }, label: {
           HStack(spacing: 8) {
             Image(systemName: "ellipsis.bubble")
@@ -69,7 +80,8 @@ struct AlbumDetailRow: View {
         Spacer()
         
         Button(action: {
-          
+          isEllipsisClick = true
+          selectImageIndex = index
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)
@@ -86,6 +98,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.elements[3]
     
-    AlbumDetailRow(isNext: .constant(false), info: data, index: 3)
+    AlbumDetailRow(isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 3)
   }
 }

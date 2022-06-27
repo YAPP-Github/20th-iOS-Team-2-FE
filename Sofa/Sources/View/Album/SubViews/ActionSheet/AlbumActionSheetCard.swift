@@ -43,7 +43,7 @@ public struct ActionSheetCard: View {
     offset = heightToDisappear
     isDragging = false
     isShowing = false
-    UITabBar.toogleTabBarVisibility()
+    UITabBar.hideTabBar()
   }
   
   var topHalfMiddleBar: some View {

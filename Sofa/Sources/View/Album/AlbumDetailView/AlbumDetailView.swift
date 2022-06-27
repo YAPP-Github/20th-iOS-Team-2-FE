@@ -40,8 +40,8 @@ struct AlbumDetailView: View {
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)
-    .onAppear { UITabBar.toogleTabBarVisibility() }
-    .onDisappear { UITabBar.toogleTabBarVisibility() }
+    .onAppear { UITabBar.hideTabBar() }
+    .onDisappear { UITabBar.showTabBar() }
   }
 }
 

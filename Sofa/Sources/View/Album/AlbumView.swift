@@ -21,17 +21,17 @@ struct AlbumView: View {
       isShowing: $showingSheet,
       items: [
         ActionSheetCardItem(systemIconName: "photo", label: "사진") {
-          UITabBar.toogleTabBarVisibility()
+          UITabBar.showTabBar()
           showingSheet = false
           authorizationViewModel.showPhotoAlbum() // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "camera", label: "카메라") {
-          UITabBar.toogleTabBarVisibility()
+          UITabBar.showTabBar()
           showingSheet = false
           authorizationViewModel.showCameraPicker() // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "waveform", label: "녹음") {
-          UITabBar.toogleTabBarVisibility()
+          UITabBar.showTabBar()
           showingSheet = false
           authorizationViewModel.showAudioRecord() // 권한 확인
         }

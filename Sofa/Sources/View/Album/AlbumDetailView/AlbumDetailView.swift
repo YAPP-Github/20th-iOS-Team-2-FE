@@ -15,7 +15,10 @@ struct AlbumDetailView: View {
   @State var selectImage: UIImage = UIImage()
   @State var selectImageIndex: Int = -1
 
+  // 즐겨찾기
   @State var isBookmarkClick: Bool = false
+  @State private var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "즐겨찾기 등록", type: .Registration)
+
   @State var isCommentClick: Bool = false
   @State var isEllipsisClick: Bool = false
   let info = MockData().albumDetail
@@ -32,6 +35,7 @@ struct AlbumDetailView: View {
         NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)
       }
       .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick)
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
     }
     .navigationViewStyle(StackNavigationViewStyle())

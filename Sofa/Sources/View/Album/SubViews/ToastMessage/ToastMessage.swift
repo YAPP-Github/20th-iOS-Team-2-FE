@@ -68,6 +68,11 @@ struct ToastMessage: ViewModifier {
     }
   }
 }
+
+extension View {
+  func toastMessage(data: Binding<ToastMessage.MessageData>, isShow: Binding<Bool>) -> some View {
+    self.modifier(ToastMessage(data: data, isShow: isShow))
+  }
 }
 
 struct toastMessage_Previews: PreviewProvider {

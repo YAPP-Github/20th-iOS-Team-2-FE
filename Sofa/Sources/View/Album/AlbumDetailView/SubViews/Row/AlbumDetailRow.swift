@@ -13,46 +13,45 @@ struct AlbumDetailRow: View {
   private var isBookmark : Bool { return info.favourite }
   
   var body: some View {
-    Button(action: {
-      isNext = true
-    }, label: {
-      VStack(spacing: info.type != "PHOTO" ? 10 : 4) {
+    VStack(spacing: info.type != "PHOTO" ? 10 : 4) {
+      Button(action: {
+        isNext = true
+      }, label: {
         // post image
         Image(info.link)
           .resizable()
           .frame(height: Screen.maxWidth * 0.7)
           .cornerRadius(8)
-        
-        
-        if info.type != "PHOTO" { // RECORDING
-          HStack {
-            Text(info.title!)
-              .foregroundColor(Color(UIColor.label))
-              .font(.system(size: 18, weight: .semibold))
-            
-            Spacer()
-          }
-        }
-        
+      })
+      
+      if info.type != "PHOTO" { // RECORDING
         HStack {
-          HStack(spacing: 3) {
-            Image(systemName: "ellipsis.bubble")
-              .frame(width: 20, height: 20)
-              .foregroundColor(.gray)
-              .font(.system(size: 20))
-              .padding(4)
-            
-            // 댓글 수
-            Text("\(info.commentCount)")
-              .foregroundColor(.gray)
-              .font(.system(size: 20))
-          }
-          .padding(EdgeInsets(top: 0, leading: 49, bottom: 0, trailing: 0))
+          Text(info.title!)
+            .foregroundColor(Color(UIColor.label))
+            .font(.system(size: 18, weight: .semibold))
           
           Spacer()
         }
       }
-    })
+      
+      HStack {
+        HStack(spacing: 3) {
+          Image(systemName: "ellipsis.bubble")
+            .frame(width: 20, height: 20)
+            .foregroundColor(.gray)
+            .font(.system(size: 20))
+            .padding(4)
+          
+          // 댓글 수
+          Text("\(info.commentCount)")
+            .foregroundColor(.gray)
+            .font(.system(size: 20))
+        }
+        .padding(EdgeInsets(top: 0, leading: 49, bottom: 0, trailing: 0))
+        
+        Spacer()
+      }
+    }
     .overlay (
       HStack(spacing: 16) {
         Button(action: {

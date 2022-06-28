@@ -13,6 +13,11 @@ struct AlbumPhotoAddView: View {
   @State var isNext = false
   @State var imageClick: UIImage?
   @State var selected: [SelectedImages] = []
+
+  // Toast Message
+  @State var showToastMessage: Bool = false
+  @State private var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "최대 3장까지 올릴 수 있어요", type: .Warning)
+  
   private let height = Screen.maxHeight * 0.425
   
   var body: some View {
@@ -30,7 +35,7 @@ struct AlbumPhotoAddView: View {
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반
         
-        AlbumPhotoAddList(selected: $selected, imageClick: $imageClick)
+        AlbumPhotoAddList(selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage)
         //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동
@@ -39,6 +44,7 @@ struct AlbumPhotoAddView: View {
       .background(Color.black) // 배경색
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       .navigationBarInlineStyle(isNextClick: $isNext, isDisalbeNextButton: .constant(selected.isEmpty), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
+      .toastMessage(data: $messageData, isShow: $showToastMessage)
     }
   }
 }

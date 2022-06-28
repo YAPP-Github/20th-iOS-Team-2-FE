@@ -18,9 +18,9 @@ struct NavigationBarWithIconButtonStyle: ViewModifier {
       .navigationBarItems(
         leading: Text(title)
           .font(.system(size: 24, weight: .bold))
-          .padding(),
+          .padding(EdgeInsets(top: 8, leading: 8 * 24 / 30.5, bottom: 8, trailing: 8)), // trailing Item 기준 비율로 맞춰줌
         trailing: Button(action: {
-          UITabBar.toogleTabBarVisibility()
+          UITabBar.hideTabBar(animated: false)
           isButtonClick = true
         }, label: {
           Image(systemName: buttonName)

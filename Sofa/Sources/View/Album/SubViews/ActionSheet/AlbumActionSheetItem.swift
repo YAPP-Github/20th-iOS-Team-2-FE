@@ -27,7 +27,7 @@ public struct ActionSheetCardItem: View {
     iconLeadingPadding: CGFloat? = nil,
     iconTrailingPadding: CGFloat? = nil,
     label: String,
-    labelFont: Font = Font.headline,
+    labelFont: Font = Font.system(size: 16, weight: .semibold),
     foregrounColor: Color = Color.black,
     foregroundInactiveColor: Color = Color.black,
     callback: (() -> ())? = nil
@@ -52,14 +52,14 @@ public struct ActionSheetCardItem: View {
           .aspectRatio(contentMode: .fit)
           .frame(width:iconSize ?? 24, height: iconSize ?? 24)
           .padding(.vertical, iconVerticalPadding)
-          .padding(.leading, iconLeadingPadding ?? 18)
-          .padding(.trailing, iconTrailingPadding ?? 13)
+          .padding(.leading, iconLeadingPadding ?? 32)
+          .padding(.trailing, iconTrailingPadding ?? 10)
       }
     }
   }
   
   var buttonView: some View {
-    HStack (spacing: 0){
+    HStack(spacing: 0) {
       icon
       Text(label)
         .font(labelFont)

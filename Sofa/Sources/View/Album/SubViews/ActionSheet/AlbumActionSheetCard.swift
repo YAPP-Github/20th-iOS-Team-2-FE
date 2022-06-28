@@ -43,13 +43,12 @@ public struct ActionSheetCard: View {
     offset = heightToDisappear
     isDragging = false
     isShowing = false
-    UITabBar.toogleTabBarVisibility()
   }
   
   var topHalfMiddleBar: some View {
     Capsule()
       .frame(width: 36, height: 5)
-      .foregroundColor(Color.white)
+      .foregroundColor(Color.black) // 색상
       .padding(.vertical, 5.5)
       .opacity(0.2)
   }
@@ -57,8 +56,11 @@ public struct ActionSheetCard: View {
   var itemsView: some View {
     VStack (spacing: itemsSpacing){
       ForEach(0..<3) { index in
+        
         items[index]
           .frame(height: cellHeight)
+        
+        Divider() // 구분선 넣기
       }
       Text("").frame(height: 40) // Extra empty space
     }
@@ -93,7 +95,6 @@ public struct ActionSheetCard: View {
     Group {
       if isShowing {
         GreyOutOfFocusView(opacity: outOfFocusOpacity) {
-          UITabBar.toogleTabBarVisibility()
           self.isShowing = false
         }
       }

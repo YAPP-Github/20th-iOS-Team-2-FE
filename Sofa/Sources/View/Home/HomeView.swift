@@ -8,13 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  
+  
+  @State var gotoAlarm = false
+  
+  
+  
+  var body: some View {
+    VStack {
+      NavigationView {
+        VStack{
+          ScrollView{
+            LazyVStack{
+              EventList()
+            }
+            .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
+            .listStyle(.plain)
+            .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
+            .background(Color(hex: "EDEADF"))
+          }
+          .background(Color(hex: "F9F7EF"))
+        }
+      }
     }
+  }
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
+  static var previews: some View {
+    HomeView()
+  }
 }

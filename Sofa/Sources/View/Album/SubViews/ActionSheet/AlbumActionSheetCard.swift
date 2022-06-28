@@ -43,7 +43,6 @@ public struct ActionSheetCard: View {
     offset = heightToDisappear
     isDragging = false
     isShowing = false
-    UITabBar.toogleTabBarVisibility()
   }
   
   var topHalfMiddleBar: some View {
@@ -96,7 +95,6 @@ public struct ActionSheetCard: View {
     Group {
       if isShowing {
         GreyOutOfFocusView(opacity: outOfFocusOpacity) {
-          UITabBar.toogleTabBarVisibility()
           self.isShowing = false
         }
       }

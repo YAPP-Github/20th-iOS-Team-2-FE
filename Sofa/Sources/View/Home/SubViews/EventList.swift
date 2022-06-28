@@ -14,7 +14,7 @@ struct EventList: View {
   var body: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       LazyHStack(spacing: 16) {
-
+        
         ForEach(Array(zip(eventViewModel.events.indices, eventViewModel.events)), id: \.0){ index, event in
           if index == 0{ // 첫번째 row
             EventRow(event)

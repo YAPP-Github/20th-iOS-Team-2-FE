@@ -12,8 +12,9 @@ struct AlbumPhotoAddRow: View {
   @StateObject var asset: Asset
   @Binding var selected: [SelectedImages]
   @Binding var imageClick: UIImage?
+  @Binding var showToastMessage: Bool
   @State var isSelect: Bool
-  @State private var showAlert = false
+
   private let size = Screen.maxWidth * 0.325
   private let limit = 3
   
@@ -31,7 +32,7 @@ struct AlbumPhotoAddRow: View {
           imageClick = asset.image!
           isSelect = true
         } else { // 알림
-          showAlert = true
+          showToastMessage = true
         }
       }, label: {
         if asset.image != nil {
@@ -46,12 +47,6 @@ struct AlbumPhotoAddRow: View {
             .cornerRadius(5.0)
         }
       })
-      .alert(isPresented: $showAlert) {
-        Alert(
-          title: Text("\(limit)개 이상 추가할 수 없습니다"),
-          message: nil,
-          dismissButton: .default(Text("확인")))
-      }
       Circle()
         .strokeBorder(Color.white, lineWidth: 1)
         .frame(width: 24, height: 24, alignment: .center)
@@ -76,6 +71,6 @@ struct AlbumPhotoAddRow: View {
 struct AlbumPhotoAddRow_Previews: PreviewProvider {
   static var previews: some View { // click 금지, imageClick 때문에 error
     let data = UIImage(named: MockData().photoList[1])!
-    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), selected: .constant([SelectedImages]()), imageClick: .constant(data), isSelect: true)
+    AlbumPhotoAddRow(asset: Asset(asset: PHAsset()), selected: .constant([SelectedImages]()), imageClick: .constant(data), showToastMessage: .constant(false), isSelect: true)
   }
 }

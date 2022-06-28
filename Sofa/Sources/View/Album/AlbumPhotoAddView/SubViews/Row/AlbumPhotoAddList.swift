@@ -12,7 +12,8 @@ struct AlbumPhotoAddList: View {
   @StateObject var photoLibrary = AlbumPhotoLibrary()
   @Binding var selected: [SelectedImages]
   @Binding var imageClick: UIImage?
-  
+  @Binding var showToastMessage: Bool
+
   var gridItem = [
     GridItem(.fixed(Screen.maxWidth * 0.315)),
     GridItem(.fixed(Screen.maxWidth * 0.315)),
@@ -23,7 +24,7 @@ struct AlbumPhotoAddList: View {
     ScrollView(showsIndicators: true) {
       LazyVGrid(columns: gridItem, spacing: 1) {
         ForEach(0..<photoLibrary.photoAssets.count, id:\.self) { index in
-          AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, imageClick: $imageClick, isSelect: photoLibrary.photoAssets[index].isSelect)
+          AlbumPhotoAddRow(asset: photoLibrary.photoAssets[index].asset, selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage, isSelect: photoLibrary.photoAssets[index].isSelect)
             .padding(1)
         }
       }
@@ -57,7 +58,7 @@ struct AlbumPhotoAddList_Previews: PreviewProvider {
   static var previews: some View { // click 금지, imageClick 때문에 error
     let photoLibrary = AlbumPhotoLibrary()
     
-    AlbumPhotoAddList(photoLibrary: photoLibrary, selected: .constant([SelectedImages]()), imageClick: .constant(UIImage(named:"photo01")))
+    AlbumPhotoAddList(photoLibrary: photoLibrary, selected: .constant([SelectedImages]()), imageClick: .constant(UIImage(named:"photo01")), showToastMessage: .constant(false))
       .onAppear {
         let count = 10
         let photoList = [Photo](repeating: Photo(isSelect: true, asset: Asset(asset: PHAsset())), count: count)

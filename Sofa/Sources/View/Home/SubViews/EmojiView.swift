@@ -6,8 +6,17 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct EmojiView: View {
+  
+  @State private var counter1: Int = 0
+  @State private var counter2: Int = 0
+  @State private var counter3: Int = 0
+  @State private var counter4: Int = 0
+  @State private var counter5: Int = 0
+  @State private var counter6: Int = 0
+
   var body: some View {
     HStack{
       Capsule()
@@ -17,19 +26,55 @@ struct EmojiView: View {
         .overlay(
           HStack(spacing: 12){
             Spacer()
-            ForEach(["😆", "😭", "😡", "👋", "🎉", "💚"], id: \.self) { item in
+            Group{
               Button {
-                print("hi")
+                counter1 += 1
               } label: {
-                Text(item)
+                Text("😆")
                   .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
               }
-            }
+              .confettiCannon(counter: $counter1, num: 20,confettis: [.text("😆")], confettiSize: 20, rainHeight: 500, radius: 350)
+              Button {
+                counter2 += 1
+              } label: {
+                Text("😭")
+                  .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
+              }
+              .confettiCannon(counter: $counter2, num: 20,confettis: [.text("😭")], confettiSize: 20, rainHeight: 500, radius: 350)
+              Button {
+                counter3 += 1
+              } label: {
+                Text("😡")
+                  .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
+              }
+              .confettiCannon(counter: $counter3, num: 20,confettis: [.text("😡")], confettiSize: 20, rainHeight: 500, radius: 350)
+              Button {
+                counter4 += 1
+              } label: {
+                Text("👋")
+                  .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
+              }
+              .confettiCannon(counter: $counter4, num:20,confettis: [.text("👋")], confettiSize: 20, rainHeight: 500, radius: 350)
+              Button {
+                counter5 += 1
+              } label: {
+                Text("🎉")
+                  .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
+              }
+              .confettiCannon(counter: $counter5, num: 20,confettis: [.text("🎉")], confettiSize: 20, rainHeight: 500, radius: 350)
+              Button {
+                counter6 += 1
+              } label: {
+                Text("💚")
+                  .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
+              }
+              .confettiCannon(counter: $counter6, num: 20,confettis: [.text("💚")], confettiSize: 20, rainHeight: 500, radius: 350)
+            } // Emoji Button Group
+
             Image("dividert")
               .frame(width: 0, height: 24, alignment: .center)
             Button {
               print("hi")
-              print(Screen.maxWidth)
             } label: {
               Text("💬")
                 .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))

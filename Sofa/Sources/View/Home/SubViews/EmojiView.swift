@@ -11,24 +11,30 @@ struct EmojiView: View {
   var body: some View {
     HStack{
       Capsule()
-        .frame(width: 344, height: 52, alignment: .center)
+        .frame(height: 52, alignment: .center)
         .shadow(color: Color.black.opacity(0.16), radius: 4, x: 2, y: 3)
         .foregroundColor(Color.white)
         .overlay(
           HStack(spacing: 12){
-            Group{
-              Text("😆")
-              Text("😭")
-              Text("😡")
-              Text("👋")
-              Text("🎉")
-              Text("💚")
+            Spacer()
+            ForEach(["😆", "😭", "😡", "👋", "🎉", "💚"], id: \.self) { item in
+              Button {
+                print("hi")
+              } label: {
+                Text(item)
+                  .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
+              }
             }
-            .frame(width: 32, height: 32, alignment: .center)
             Image("dividert")
               .frame(width: 0, height: 24, alignment: .center)
-            Text("💬")
-              .frame(width: 32, height: 32, alignment: .center)
+            Button {
+              print("hi")
+              print(Screen.maxWidth)
+            } label: {
+              Text("💬")
+                .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
+            }
+            Spacer()
           }
         )
         .overlay( // cornerRadius값이 있는 border 주기 위해

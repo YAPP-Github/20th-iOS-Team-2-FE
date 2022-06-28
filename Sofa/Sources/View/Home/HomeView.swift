@@ -28,6 +28,7 @@ struct HomeView: View {
           .background(Color(hex: "F9F7EF"))
           EmojiView()
             .offset(x: 0, y: -24)
+            .padding(.horizontal, 23)
         }// VStack
         .background(Color(hex: "F9F7EF"))
         .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")

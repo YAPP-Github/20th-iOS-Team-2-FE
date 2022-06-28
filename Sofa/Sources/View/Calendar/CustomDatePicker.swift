@@ -104,7 +104,7 @@ struct CustomDatePicker: View {
                 Rectangle()
                   .fill(Color(hex: "E91E63"))
                   .frame(width: 5, height: 48, alignment: .leading)
-                  .padding(0)
+                  .cornerRadius(8)
                 VStack(alignment: .leading, spacing: 0){
                   Text(task.title)
                     .font(.custom("Pretendard-Bold", size: 16))

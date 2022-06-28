@@ -22,15 +22,17 @@ struct HomeView: View {
             .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
-            .listStyle(.plain)
-            .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
             .background(Color(hex: "EDEADF"))
             ChatList()
-          }
+          }// ScrollView
           .background(Color(hex: "F9F7EF"))
-        }
-      }
-    }
+          EmojiView()
+            .offset(x: 0, y: -24)
+        }// VStack
+        .background(Color(hex: "F9F7EF"))
+        .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
+      }// NavigationView
+    }// VStack
   }
 }
 

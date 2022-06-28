@@ -87,13 +87,51 @@ struct CustomDatePicker: View {
         }
       }
       .padding(EdgeInsets(top: 12, leading: 5, bottom: 0, trailing: 5))
-    }
-    .onChange(of: currentMonth) { newValue in
-      currentDate = getCurrentMonth()
+      
+      Rectangle()
+        .frame(height: 1.0, alignment: .bottom)
+        .foregroundColor(Color(hex: "EDEADF"))
+        .padding(.top, 22)
+      
+      ScrollView(.vertical, showsIndicators: false) {
+        // Task
+        VStack(spacing: 24) {
+          if let task = tasks.first(where: { task in
+            return isSameDay(date1: task.taskDate, date2: currentDate)
+          }){
+            ForEach(task.task){ task in
+              HStack(spacing: 8){
+                Rectangle()
+                  .fill(Color(hex: "E91E63"))
+                  .frame(width: 5, height: 48, alignment: .leading)
+                  .padding(0)
+                VStack(alignment: .leading, spacing: 0){
+                  Text(task.title)
+                    .font(.custom("Pretendard-Bold", size: 16))
+                    .foregroundColor(Color(hex: "21272A"))
+                    .frame(alignment: .leading)
+                  Text(task.time
+                        .addingTimeInterval(CGFloat
+                                              .random(in: 0...5000)), style:
+                          .time)
+                    .font(.custom("Pretendard-Medium", size: 14))
+                    .foregroundColor(Color(hex: "21272A"))
+                    .frame(alignment: .leading)
+                }
+              }
+              .frame(maxWidth: .infinity, alignment: .leading)
+            }
+          } else {
+          }
+        }
+        .padding()
+      }
+      .onChange(of: currentMonth) { newValue in
+        currentDate = getCurrentMonth()
+      }
     }
   }
   
-  @ViewBuilder
   func CardView(value: DateValue)->some View{
     VStack(spacing: 0) {
       if value.day != -1 {
@@ -147,7 +185,6 @@ struct CustomDatePicker: View {
   }
   
   func extractDate()->[DateValue] {
-    //Getting Current Month Date
     let calendar = Calendar.current
     
     let currentMonth = getCurrentMonth()
@@ -160,7 +197,6 @@ struct CustomDatePicker: View {
       return DateValue(day: day, dates: date)
     }
     
-    // adding offset days to get exact week day
     let firstWeekday = calendar.component(.weekday, from: days.first?.dates ?? Date())
     
     for _ in 0..<firstWeekday - 1{

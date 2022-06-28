@@ -12,7 +12,7 @@ struct AlbumSelectDateView: View {
   @State var isNext = false
   @State var isDisalbeNextButton: Bool = false
   var title: String = "올리기"
-  let buttonColor: Color = Color.init(hex: "#43A047")
+  let buttonColor: Color = Color.init(hex: "#43A047") // 임시
   
   // 갤러리 사진들
   @State var imageList: [SelectedImages]? // 갤러리 사진들

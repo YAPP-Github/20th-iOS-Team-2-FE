@@ -30,9 +30,14 @@
 		0AAB36812864287E00A47B24 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB36802864287E00A47B24 /* EventRow.swift */; };
 		0AAB368428642AC500A47B24 /* HomeInfoMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AAB368328642AC500A47B24 /* HomeInfoMock.json */; };
 		0AAB36F32865F32400A47B24 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB36F22865F32400A47B24 /* EventViewModel.swift */; };
+		0AAB371828674DE300A47B24 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371728674DE300A47B24 /* ChatRow.swift */; };
+		0AAB371A28674DF200A47B24 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371928674DF200A47B24 /* ChatList.swift */; };
+		0AAB372028675A5A00A47B24 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371F28675A5A00A47B24 /* LabelView.swift */; };
 		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
 		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
+		0AC79182286AF1440034A830 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC79181286AF1440034A830 /* EmojiView.swift */; };
+		0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC79184286B0AE00034A830 /* ConfettiSwiftUI */; };
 		187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */; };
 		6F0974352861E53A0000956C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0974342861E53A0000956C /* Task.swift */; };
 		6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E523284B9CF00069D268 /* AlbumView.swift */; };
@@ -141,9 +146,13 @@
 		0AAB36802864287E00A47B24 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		0AAB368328642AC500A47B24 /* HomeInfoMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HomeInfoMock.json; sourceTree = "<group>"; };
 		0AAB36F22865F32400A47B24 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		0AAB371728674DE300A47B24 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
+		0AAB371928674DF200A47B24 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
+		0AAB371F28675A5A00A47B24 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		0ABA0C1828579493005F2C6A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
+		0AC79181286AF1440034A830 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBE8172BD1C8B15C2F363BF /* Pods-SofaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.release.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A02CB536760CF657C4244F9 /* Pods-Sofa-SofaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa-SofaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */,
 				187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +275,9 @@
 			children = (
 				0AAB367D2863817500A47B24 /* Row */,
 				0AAB367B2863816300A47B24 /* EventList.swift */,
+				0AAB371928674DF200A47B24 /* ChatList.swift */,
+				0AC79181286AF1440034A830 /* EmojiView.swift */,
+				0AAB371F28675A5A00A47B24 /* LabelView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -273,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				0AAB36802864287E00A47B24 /* EventRow.swift */,
+				0AAB371728674DE300A47B24 /* ChatRow.swift */,
 			);
 			path = Row;
 			sourceTree = "<group>";
@@ -756,6 +770,9 @@
 			dependencies = (
 			);
 			name = Sofa;
+			packageProductDependencies = (
+				0AC79184286B0AE00034A830 /* ConfettiSwiftUI */,
+			);
 			productName = Sofa;
 			productReference = C4667A2B284B6FF200A4A759 /* Sofa.app */;
 			productType = "com.apple.product-type.application";
@@ -832,6 +849,9 @@
 				Base,
 			);
 			mainGroup = C4667A22284B6FF200A4A759;
+			packageReferences = (
+				0AC79183286B0AE00034A830 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			productRefGroup = C4667A2C284B6FF200A4A759 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1039,6 +1059,7 @@
 				C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */,
 				C495F5FC2856386A009B3BDE /* AlbumDetailRow.swift in Sources */,
 				C495F5F32855D668009B3BDE /* NavigationBarWithTextButtonStyle.swift in Sources */,
+				0AAB371828674DE300A47B24 /* ChatRow.swift in Sources */,
 				0A223B6E285F6D46002203ED /* Ex+UIDevice.swift in Sources */,
 				0A223B70285F74BB002203ED /* Ex+UIColor.swift in Sources */,
 				C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */,
@@ -1049,12 +1070,15 @@
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
 				C4B8F2D42854A8510000B8CB /* NavigationBarInlineStyle.swift in Sources */,
 				6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */,
+				0AC79182286AF1440034A830 /* EmojiView.swift in Sources */,
 				C495F5FA285630C0009B3BDE /* AlbumDetail.swift in Sources */,
 				C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */,
-				C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */,
+				0AAB371A28674DF200A47B24 /* ChatList.swift in Sources */,
 				C4B8F2CE2854A6680000B8CB /* NavigationBarWithIconButtonStyle.swift in Sources */,
 				6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,
+				0AAB372028675A5A00A47B24 /* LabelView.swift in Sources */,
+				C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */,
 				C495F608285A2B98009B3BDE /* CameraImagePicker.swift in Sources */,
 				C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */,
 				6F0974352861E53A0000956C /* Task.swift in Sources */,
@@ -1393,6 +1417,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0AC79183286B0AE00034A830 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0AC79184286B0AE00034A830 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AC79183286B0AE00034A830 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4667A23284B6FF200A4A759 /* Project object */;
 }

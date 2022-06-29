@@ -18,17 +18,17 @@ struct EventList: View {
         ForEach(Array(zip(eventViewModel.events.indices, eventViewModel.events)), id: \.0){ index, event in
           if index == 0{ // 첫번째 row
             EventRow(event)
-              .frame(width: 320)
+              .frame(width: Screen.maxWidth - 32 - 40)
               .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0))
           }
           else if index == eventViewModel.events.count - 1{ // 마지막 row
             EventRow(event)
-              .frame(width: 320)
+              .frame(width: Screen.maxWidth - 32 - 40)
               .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
           }
           else{
             EventRow(event)
-              .frame(width: 320)
+              .frame(width: Screen.maxWidth - 32 - 40)
           }
         }
       }

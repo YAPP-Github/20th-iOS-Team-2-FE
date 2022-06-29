@@ -30,8 +30,11 @@ var tasks: [TaskMetaData] = [
   TaskMetaData(task: [
     Task(title: "토익 스터디"),
     Task(title: "운동가기"),
+    Task(title: "소파 회의"),
+    Task(title: "소파 회의"),
+    Task(title: "소파 회의"),
     Task(title: "소파 회의")
-  ], taskDate: getSampleDate(offset: 1)),
+  ], taskDate: getSampleDate(offset: 0)),
   TaskMetaData(task: [
     Task(title: "엄마한테 전화하기")
   ], taskDate: getSampleDate(offset: -3)),

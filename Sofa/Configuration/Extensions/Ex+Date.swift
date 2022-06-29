@@ -16,9 +16,7 @@ extension Date {
         dateformat.dateFormat = format
         return dateformat.string(from: self)
     }
-}
-
-extension Date{
+  
   func getAllDates()->[Date]{
     let calendar = Calendar.current
     

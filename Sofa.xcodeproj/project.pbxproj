@@ -821,7 +821,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					C4667A2A284B6FF200A4A759 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -1039,7 +1039,6 @@
 				0AAB367C2863816300A47B24 /* EventList.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
-				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
 				0A2B55092858779D006F816C /* View.swift in Sources */,
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,

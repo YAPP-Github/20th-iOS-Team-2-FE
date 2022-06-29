@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import simd
-import Alamofire
 
 struct CustomDatePicker: View {
   
@@ -28,7 +26,7 @@ struct CustomDatePicker: View {
         Button {
         } label: {
           Image(systemName: "chevron.right")
-            .font(.custom("SF-pro", size: 20))
+            .font(.system(size: 20))
             .foregroundColor(Color(hex: "121619"))
             .padding(.leading, 12.5)
         }
@@ -39,7 +37,7 @@ struct CustomDatePicker: View {
           }
         } label: {
           Image(systemName: "chevron.left")
-            .font(.custom("SF-pro", size: 20))
+            .font(.system(size: 20))
             .foregroundColor(Color(hex: "121619"))
           
         }
@@ -49,7 +47,7 @@ struct CustomDatePicker: View {
           }
         } label: {
           Image(systemName: "chevron.right")
-            .font(.custom("SF-pro", size: 20))
+            .font(.system(size: 20))
             .foregroundColor(Color(hex: "121619"))
             .padding(EdgeInsets(top: 0, leading: 13, bottom: 0, trailing: 20.5))
         }

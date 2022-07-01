@@ -42,7 +42,7 @@ struct EventList: View {
     })
     .alignment(PositionAlignment(alignment: self.alignment))
     .singlePagination(ratio: 0.33, sensitivity: .high)
-    .preferredItemSize(CGSize(width: 318, height: 100))
+    .preferredItemSize(CGSize(width: Screen.maxWidth - 72, height: 100))
     .itemSpacing(16)
     .background(Color(hex: "#F5F2E9"))
   }

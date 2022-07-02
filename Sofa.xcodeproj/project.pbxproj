@@ -11,6 +11,8 @@
 		0A223B6E285F6D46002203ED /* Ex+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A223B6D285F6D46002203ED /* Ex+UIDevice.swift */; };
 		0A223B70285F74BB002203ED /* Ex+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A223B6F285F74BB002203ED /* Ex+UIColor.swift */; };
 		0A223B72285F75D6002203ED /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A223B71285F75D6002203ED /* CustomText.swift */; };
+		0A2887F22870A646000A72F2 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2887F12870A646000A72F2 /* ChatViewModel.swift */; };
+		0A2887F42870A69F000A72F2 /* ChatInfoMock.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A2887F32870A69F000A72F2 /* ChatInfoMock.strings */; };
 		0A2B55092858779D006F816C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B55082858779D006F816C /* View.swift */; };
 		0A4CFB8B285F79AB000603A5 /* Ex+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CFB8A285F79AB000603A5 /* Ex+Font.swift */; };
 		0A4CFB95285F85C8000603A5 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFB8C285F85C8000603A5 /* Pretendard-Thin.otf */; };
@@ -126,6 +128,8 @@
 		0A223B6D285F6D46002203ED /* Ex+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIDevice.swift"; sourceTree = "<group>"; };
 		0A223B6F285F74BB002203ED /* Ex+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIColor.swift"; sourceTree = "<group>"; };
 		0A223B71285F75D6002203ED /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
+		0A2887F12870A646000A72F2 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		0A2887F32870A69F000A72F2 /* ChatInfoMock.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ChatInfoMock.strings; sourceTree = "<group>"; };
 		0A2B55082858779D006F816C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		0A4CFB8A285F79AB000603A5 /* Ex+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Font.swift"; sourceTree = "<group>"; };
 		0A4CFB8C285F85C8000603A5 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				0AAB36F22865F32400A47B24 /* EventViewModel.swift */,
+				0A2887F12870A646000A72F2 /* ChatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -698,6 +703,7 @@
 			children = (
 				0AAB368328642AC500A47B24 /* HomeInfoMock.json */,
 				C4B8F2BB285289A20000B8CB /* MockData.swift */,
+				0A2887F32870A69F000A72F2 /* ChatInfoMock.strings */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -867,6 +873,7 @@
 			files = (
 				C4667A36284B6FF400A4A759 /* Preview Assets.xcassets in Resources */,
 				0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */,
+				0A2887F42870A69F000A72F2 /* ChatInfoMock.strings in Resources */,
 				0A4CFB9D285F85C8000603A5 /* Pretendard-Regular.otf in Resources */,
 				0A4CFB99285F85C8000603A5 /* Pretendard-Bold.otf in Resources */,
 				0A4CFB9B285F85C8000603A5 /* Pretendard-ExtraLight.otf in Resources */,
@@ -1073,6 +1080,7 @@
 				C4B8F2CE2854A6680000B8CB /* NavigationBarWithIconButtonStyle.swift in Sources */,
 				6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,
+				0A2887F22870A646000A72F2 /* ChatViewModel.swift in Sources */,
 				0AAB372028675A5A00A47B24 /* LabelView.swift in Sources */,
 				C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */,
 				C495F608285A2B98009B3BDE /* CameraImagePicker.swift in Sources */,

@@ -1,0 +1,31 @@
+{
+  "members" : [
+    {
+      "userId" : 1,
+      "image" : "https:// .... ",
+      "nickname" : "닉네임",
+      "role" : "아들",
+      "updatedAt" : "2022-06-04 22:08",
+      "emoji" : 2,
+      "content" : "지구는 우리 은"
+    },
+    {
+      "userId" : 4,
+      "image" : "https:// .... ",
+      "nickname" : "닉네임",
+      "role" : "엄마",
+      "updatedAt" : "2022-06-04 22:14",
+      "emoji" : 4,
+      "content" : "이번주 아빠 생신이니까, 외식할 곳 찾아보기"
+    },
+    {
+      "id" : 29,
+      "image" : "https:// .... ",
+      "nickname" : "닉네임",
+      "role" : "아빠",
+      "updatedAt" : "2022-06-02 21:08",
+      "emoji" : 1,
+      "content" : "오후에 비 온다고 하니, 나갈 때 우산들 챙겨라"
+    }
+  ]
+}

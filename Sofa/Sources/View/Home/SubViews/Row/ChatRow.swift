@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ChatRow: View {
+  
+  var member: Member
+  
+  init(_ member: Member){
+    self.member = member
+  }
+  
   var body: some View {
     HStack(alignment: .top){
       ZStack{
@@ -21,10 +28,10 @@ struct ChatRow: View {
       .padding(EdgeInsets(top: 10.5, leading: 10.5, bottom: 27, trailing: 14.5))
       VStack(alignment: .leading){
         HStack(){
-          Text("별명")
+          Text("\(member.descriptionNickname)")
             .font(.custom("Pretendard-Bold", size: 13))
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 7))
-          Text("관계")
+          Text("\(member.descriptionRole)")
             .font(.custom("Pretendard-Regular", size: 12))
             .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
             .background(Color(hex: "E8F5E9"))
@@ -32,14 +39,14 @@ struct ChatRow: View {
             .cornerRadius(4)
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 0))
           Spacer()
-          Text("2시간 전")
+          Text("\(member.updatedAt)")
             .font(.custom("Pretendard-Regular", size: 13))
             .foregroundColor(Color(hex: "999999"))
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
 
-        Text("인사하기 내용이 노출된다. 텍스트의 양이 많아지면 줄바꿈이 되며 그 이상 많아지면 말줄임표로 표현")
+        Text("\(member.descriptionContent)")
           .font(.custom("Pretendard-Regular", size: 14))
           .lineLimit(2)
           .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 16))
@@ -59,6 +66,6 @@ struct ChatRow: View {
 
 struct ChatRow_Previews: PreviewProvider {
   static var previews: some View {
-    ChatRow()
+    ChatRow(Member.getDummy())
   }
 }

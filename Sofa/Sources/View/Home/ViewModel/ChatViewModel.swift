@@ -5,16 +5,48 @@
 //  Created by 양유진 on 2022/07/03.
 //
 
-import SwiftUI
+import Foundation
+import Combine
 
-struct ChatViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class MemberViewModel: ObservableObject{
+  
+  //MARK: Properties
+  var subscription = Set<AnyCancellable>()
+  
+  @Published var members = [Member]()
+  
+  var baseUrl = ""
+  
+  init(){
+    fetchMembers()
+  }
+  
+  func fetchMembers(){
+    
+    guard let path = Bundle.main.path(forResource: "ChatInfoMock", ofType: "json")
+    else {
+      fatalError("Couldn't find file in main bundle.")
     }
+    
+    guard let jsonString = try? String(contentsOfFile: path) else {
+      return
+    }
+    
+    print(jsonString)
+    
+    if let data = jsonString.data(using: .utf8){
+      Just(data)
+        .decode(type: familyList.self, decoder: JSONDecoder())
+        .map{ $0.members }
+        .sink(receiveCompletion: { completion in
+          print("데이터스트림 완료")
+          
+        }, receiveValue: { receivedValue in
+          print("받은 값: \(receivedValue.count)")
+          self.members = receivedValue
+        }).store(in: &subscription)
+    }
+    
+  }
 }
 
-struct ChatViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatViewModel()
-    }
-}

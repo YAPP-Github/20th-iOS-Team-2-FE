@@ -32,17 +32,16 @@ class MemberViewModel: ObservableObject{
       return
     }
     
-    print(jsonString)
     
     if let data = jsonString.data(using: .utf8){
       Just(data)
         .decode(type: familyList.self, decoder: JSONDecoder())
         .map{ $0.members }
         .sink(receiveCompletion: { completion in
-          print("데이터스트림 완료")
+//          print("데이터스트림 완료")
           
         }, receiveValue: { receivedValue in
-          print("받은 값: \(receivedValue.count)")
+//          print("받은 값: \(receivedValue.count)")
           self.members = receivedValue
         }).store(in: &subscription)
     }

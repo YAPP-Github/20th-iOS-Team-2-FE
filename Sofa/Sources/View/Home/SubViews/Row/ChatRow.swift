@@ -30,9 +30,9 @@ struct ChatRow: View {
         HStack(){
           Text("\(member.descriptionNickname)")
             .font(.custom("Pretendard-Bold", size: 13))
-            .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 7))
+            .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 1))
           Text("\(member.descriptionRole)")
-            .font(.custom("Pretendard-Regular", size: 12))
+            .font(.custom("Pretendard-Medium", size: 12))
             .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
             .background(Color(hex: "E8F5E9"))
             .foregroundColor(Color(hex: "43A047"))
@@ -40,7 +40,7 @@ struct ChatRow: View {
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 0))
           Spacer()
           Text("\(member.updatedAt)")
-            .font(.custom("Pretendard-Regular", size: 13))
+            .font(.custom("Pretendard-Medium", size: 13))
             .foregroundColor(Color(hex: "999999"))
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
         }

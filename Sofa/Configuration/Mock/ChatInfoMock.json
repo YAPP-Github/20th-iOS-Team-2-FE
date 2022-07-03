@@ -5,7 +5,7 @@
       "image" : "https:// .... ",
       "nickname" : "둘리",
       "role" : "아들",
-      "updatedAt" : "2022-06-04 22:08",
+      "updatedAt" : "2022-06-04 22:20",
       "emoji" : 2,
       "content" : "지구는 우리 은"
     },
@@ -26,6 +26,15 @@
       "updatedAt" : "2022-06-02 21:08",
       "emoji" : 1,
       "content" : "오후에 비 온다고 하니, 나갈 때 우산들 챙겨라"
+    },
+    {
+      "userId" : 41,
+      "image" : "https:// .... ",
+      "nickname" : "뚜뚜",
+      "role" : "딸",
+      "updatedAt" : "2022-06-02 21:08",
+      "emoji" : 3,
+      "content" : "여름 향기 물씬 풍기는 K-POP 플레이리스트 [여자 아이돌편]ㅣ GIRL GROUP K-POP PLAYLIST"
     }
   ]
 }

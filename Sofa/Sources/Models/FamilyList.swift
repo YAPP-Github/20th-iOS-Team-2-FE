@@ -11,7 +11,7 @@ struct familyList: Decodable {
   var members: [Member]
 }
 
-struct Member: Decodable {
+struct Member: Decodable, Hashable {
   var userId: Int
   var image: String
   var nickname: String

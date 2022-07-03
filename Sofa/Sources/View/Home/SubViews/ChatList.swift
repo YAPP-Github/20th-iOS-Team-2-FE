@@ -13,25 +13,36 @@ struct ChatList: View {
   
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
-      LazyVStack(spacing: 16) {
-        
-        ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.0){ index, member in
-          if index == 0{ // 첫번째 row
+      LazyVStack(spacing: 8) {
+        ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
+          Button {
+            print("Animation")
+            withAnimation(Animation.easeInOut(duration: 0.5)) {
+              let selectedMember = member
+              memberViewModel.members = memberViewModel.members.filter { $0.userId != member.userId }
+              memberViewModel.members.insert(selectedMember, at: 0)
+            }
+            
+          } label: {
             ChatRow(member)
-              .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
           }
-          else if index == memberViewModel.members.count - 1{ // 마지막 row
-            ChatRow(member)
-              .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-          }
-          else{
-            ChatRow(member)
-          }
+          .buttonStyle(.automatic)
         }
-
+        
       }
       .background(Color(hex: "F9F7EF"))
+      .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
     }
+  }
+  
+  func move(from source: IndexSet, to destination: Int) {
+    if let first = source.first {
+      memberViewModel.members.swapAt(first, destination)
+    }
+  }
+  
+  func moveRow(from source: IndexSet, to destination: Int) {
+    memberViewModel.members.move(fromOffsets: source, toOffset: destination)
   }
 }
 

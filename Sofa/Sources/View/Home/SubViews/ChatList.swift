@@ -12,33 +12,27 @@ struct ChatList: View {
   @ObservedObject var memberViewModel = MemberViewModel()
   
   var body: some View {
+
     ScrollView(.vertical, showsIndicators: false) {
       LazyVStack(spacing: 8) {
         ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
-          Button {
-            print("Animation")
-            withAnimation(Animation.easeInOut(duration: 0.5)) {
-              let selectedMember = member
-              memberViewModel.members = memberViewModel.members.filter { $0.userId != member.userId }
-              memberViewModel.members.insert(selectedMember, at: 0)
-            }
-            
-          } label: {
-            ChatRow(member)
-          }
-          .buttonStyle(.automatic)
+          ChatRow(member)
         }
         
       }
       .background(Color(hex: "F9F7EF"))
       .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
     }
-  }
-  
-  func move(from source: IndexSet, to destination: Int) {
-    if let first = source.first {
-      memberViewModel.members.swapAt(first, destination)
+    
+    Button {
+      withAnimation(Animation.easeOut(duration: 0.5)) {
+        moveRow(from: IndexSet(integer: 3), to: 0)
+      }
+    } label: {
+      Text(".")
+        .foregroundColor(Color(hex: "F9F7EF"))
     }
+
   }
   
   func moveRow(from source: IndexSet, to destination: Int) {

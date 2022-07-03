@@ -19,14 +19,15 @@ struct ChatList: View {
           ChatRow(member)
         }
         
+        
       }
       .background(Color(hex: "F9F7EF"))
       .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
     }
     
     Button {
-      withAnimation(Animation.easeOut(duration: 0.5)) {
-        moveRow(from: IndexSet(integer: 3), to: 0)
+      withAnimation(Animation.easeOut(duration: 2)) {
+        moveRow(from: IndexSet(integer: memberViewModel.members.count-1), to: 0)
       }
     } label: {
       Text(".")

@@ -8,26 +8,36 @@
 import SwiftUI
 
 struct ChatList: View {
+  
+  @ObservedObject var memberViewModel = MemberViewModel()
+  
   var body: some View {
+
     ScrollView(.vertical, showsIndicators: false) {
-      LazyVStack(spacing: 16) {
-        ForEach(0...3, id: \.self){ idx in
-          if idx == 0{ // 첫번째 row
-            ChatRow()
-              .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
-            
-          }
-          else if idx == 3{ // 마지막 row
-            ChatRow()
-              .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-          }
-          else{
-            ChatRow()
-          }
+      LazyVStack(spacing: 8) {
+        ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
+          ChatRow(member)
         }
+        
+        
       }
       .background(Color(hex: "F9F7EF"))
+      .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
     }
+    
+    Button {
+      withAnimation(Animation.easeOut(duration: 2)) {
+        moveRow(from: IndexSet(integer: memberViewModel.members.count-1), to: 0)
+      }
+    } label: {
+      Text(".")
+        .foregroundColor(Color(hex: "F9F7EF"))
+    }
+
+  }
+  
+  func moveRow(from source: IndexSet, to destination: Int) {
+    memberViewModel.members.move(fromOffsets: source, toOffset: destination)
   }
 }
 

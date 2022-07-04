@@ -146,6 +146,7 @@
 		0A4CFB94285F85C8000603A5 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		0A4CFB9E285F8706000603A5 /* LibreBaskerville-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LibreBaskerville-Bold.ttf"; sourceTree = "<group>"; };
 		0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LibreBaskerville-Regular.ttf"; sourceTree = "<group>"; };
+		0A4CFBA22860C963000603A5 /* Sofa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sofa.entitlements; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0AAB367B2863816300A47B24 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		0AAB367E286381C000A47B24 /* HomeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfo.swift; sourceTree = "<group>"; };
@@ -477,6 +478,7 @@
 		C4667A2D284B6FF200A4A759 /* Sofa */ = {
 			isa = PBXGroup;
 			children = (
+				0A4CFBA22860C963000603A5 /* Sofa.entitlements */,
 				0A026877284BA9A300E7AF4A /* Info.plist */,
 				C4667A2E284B6FF200A4A759 /* SofaApp.swift */,
 				C4667A58284B74F100A4A759 /* Configuration */,
@@ -1251,6 +1253,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sofa/Sofa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
@@ -1283,6 +1286,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sofa/Sofa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";

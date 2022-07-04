@@ -66,6 +66,7 @@ struct LoginButtonView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
       }
+      .frame(width: 326, height: 48, alignment: .center)
       .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       //      Button {
       //
@@ -81,7 +82,9 @@ struct LoginButtonView: View {
         onRequest: configure,
         onCompletion: handle
       )
-      .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
+      .cornerRadius(40)
+      .frame(width: 326, height: 48, alignment: .center)
+      
       Image("line")
         .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       
@@ -106,6 +109,8 @@ struct LoginButtonView: View {
       .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.05 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
       
     }//VStack
+    .foregroundColor(Color.white)
+    .background(Color.white)
     .frame(width: Screen.maxWidth, height: Screen.maxHeight * 0.4 , alignment: .center)
     .ignoresSafeArea()
     .background(Color.white)

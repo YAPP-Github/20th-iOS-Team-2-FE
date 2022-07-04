@@ -26,7 +26,7 @@ struct ChatList: View {
     }
     
     Button {
-      withAnimation(Animation.easeOut(duration: 2)) {
+      withAnimation(Animation.easeOut(duration: 0.3)) {
         moveRow(from: IndexSet(integer: memberViewModel.members.count-1), to: 0)
       }
     } label: {

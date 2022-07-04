@@ -54,6 +54,11 @@ struct EventRow: View {
     .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
     .background(Color.white)
     .cornerRadius(8)
+    .frame(height: 64)
+    .overlay( // cornerRadius값이 있는 border 주기 위해
+      RoundedRectangle(cornerRadius: 8)
+          .stroke(Color(hex: "EDEADF"), lineWidth: 1)
+    )
     .onTapGesture {
       print("Go To Calendar Tab")
     }

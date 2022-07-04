@@ -12,6 +12,18 @@ import KakaoSDKCommon
 import AuthenticationServices
 import SwiftKeychainWrapper
 
+struct AppleUser: Codable {
+  let userId: String
+  let identityToken: String
+  
+  init?(credentials: ASAuthorizationAppleIDCredential){
+    let identityToken = String(decoding: credentials.identityToken!, as: UTF8.self)
+    
+    self.userId = credentials.user
+    self.identityToken = identityToken
+  }
+}
+
 struct LoginButtonView: View {
   @State var text: NSMutableAttributedString = NSMutableAttributedString(string: "")
   var body: some View {
@@ -29,7 +41,7 @@ struct LoginButtonView: View {
               // Keychain에 User Token 저장
               Constant.accessToken = oauthToken!.accessToken
               Constant.refreshToken = oauthToken!.refreshToken
-
+              
             }
           }
         } else { // 카톡이 설치되어있지 않다면
@@ -55,15 +67,20 @@ struct LoginButtonView: View {
           .aspectRatio(contentMode: .fit)
       }
       .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
-      Button {
-        self.showAppleLogin()
-        
-      } label : {
-        Image("SignInWithApple")
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-        
-      }
+      //      Button {
+      //
+      //
+      //      } label : {
+      //        Image("SignInWithApple")
+      //          .resizable()
+      //          .aspectRatio(contentMode: .fit)
+      //
+      //      }
+      SignInWithAppleButton(
+        .signIn,
+        onRequest: configure,
+        onCompletion: handle
+      )
       .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       Image("line")
         .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
@@ -95,15 +112,30 @@ struct LoginButtonView: View {
     
   }
   
-  private func showAppleLogin() {
-    let request = ASAuthorizationAppleIDProvider().createRequest()
+  func configure(_ request: ASAuthorizationAppleIDRequest) {
     request.requestedScopes = []
-    
-    let controller = ASAuthorizationController(authorizationRequests: [request])
-    controller.performRequests()
-
   }
-
+  
+  func handle(_ authResult: Result<ASAuthorization, Error>) {
+    switch authResult{
+    case .success(let auth):
+      print(auth)
+      switch auth.credential{
+      case let appleIDCredentials as ASAuthorizationAppleIDCredential:
+        if let appleUser = AppleUser(credentials: appleIDCredentials),
+          let appleUserData = try? JSONEncoder().encode(appleUser) {
+            //            Constant.userID = appleUserData
+            print(appleUser)
+          }
+        print(auth.credential)
+      default:
+        print(auth.credential)
+      }
+      
+    case .failure(let error):
+      print(error)
+    }
+  }
 }
 
 struct LoginButtonView_Previews: PreviewProvider {

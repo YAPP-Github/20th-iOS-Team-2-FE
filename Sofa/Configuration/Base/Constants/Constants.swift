@@ -9,6 +9,15 @@ import SwiftUI
 import SwiftKeychainWrapper
 
 class Constant{
+  
+  static var userID: String? = KeychainWrapper.standard.string(forKey: "userID") {
+    didSet {
+      guard let id = userID else { return }
+      print("userID: \(userID ?? "0")")
+      KeychainWrapper.standard.set(id, forKey: "userID")
+    }
+  }
+  
   static var accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken") {
     didSet {
       guard let token = accessToken else { return }

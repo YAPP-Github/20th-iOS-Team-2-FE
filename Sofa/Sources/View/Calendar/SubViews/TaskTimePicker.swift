@@ -33,7 +33,9 @@ struct TaskTimePicker: View {
           .background(Color(hex: "#E8F5E9"))
           .cornerRadius(4)
           .onTapGesture {
+            withAnimation{
             self.showTimePicker.toggle()
+            }
           }
       }
       if showTimePicker {

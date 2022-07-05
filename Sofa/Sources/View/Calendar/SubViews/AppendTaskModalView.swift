@@ -67,6 +67,7 @@ struct AppendTaskModalView: View {
         
         ScrollView {
           LazyVStack(spacing: 0) {
+            
             // 제목
             Group {
               TextField("", text: $title)
@@ -83,49 +84,18 @@ struct AppendTaskModalView: View {
             }
             
             // 색상
-            HStack(spacing: 0){
-              Circle()
-                .foregroundColor(Color(hex: "4CAF50"))
-                .overlay(
-                  Circle()
-                    .stroke(.black.opacity(0.05), lineWidth: 1)
-                )
-                .padding(3)
-                .overlay(
-                  Circle()
-                    .stroke(.black.opacity(0.05), lineWidth: 1)
-                )
-                .frame(width: 24, height: 24)
-                .padding(.leading, 16)
+            TaskColorPicker()
+              Rectangle()
+                .frame(width:Screen.maxWidth, height: 1)
+                .foregroundColor(Color(hex: "EDEADF"))
+              Rectangle()
+                .frame(width: Screen.maxWidth, height: 7)
+                .foregroundColor(Color(hex: "FAF8F0"))
               
-              Text("색상")
-                .font(.custom("Pretendard-Medium", size: 16))
-                .foregroundColor(Color(hex: "121619"))
-                .padding(.leading, 10)
-              
-              Spacer()
-              
-              Button(action: {
-                
-              }) {
-                Image(systemName: "chevron.right")
-                  .font(.system(size: 20))
-                  .frame(width: 24, height: 24)
-                  .foregroundColor(Color(.black).opacity(0.4))
-                  .padding(.trailing, 16)
-              }
-              
-            }
-            .padding(.bottom, 28)
-            Rectangle()
-              .frame(width:Screen.maxWidth, height: 1)
-              .foregroundColor(Color(hex: "EDEADF"))
-            Rectangle()
-              .frame(width: Screen.maxWidth, height: 7)
-              .foregroundColor(Color(hex: "FAF8F0"))
-            
-            // 하루종일, 날짜, 시간
+      
+
             Group {
+              // 하루종일
               VStack(spacing: 0) {
                 HStack(spacing: 0) {
                   Image(systemName: "hourglass.tophalf.filled")

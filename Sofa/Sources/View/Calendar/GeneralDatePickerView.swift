@@ -39,7 +39,6 @@ struct GeneralDatePickerView: View {
       if showDatePicker {
         GeneralCalendar(currentDate: $currentDate)
       }
-    
     }
   }
 }

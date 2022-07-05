@@ -158,6 +158,6 @@ struct GeneralCalendar: View {
 
 struct GeneralCalendar_Previews: PreviewProvider {
     static var previews: some View {
-      tmpView()
+      GeneralDatePickerView()
     }
 }

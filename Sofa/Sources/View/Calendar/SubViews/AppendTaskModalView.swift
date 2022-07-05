@@ -141,8 +141,7 @@ struct AppendTaskModalView: View {
                 }.padding(.bottom, 24)
                 
                 // 날짜
-                // TODO: - 이름 변경
-                tmpView()
+                GeneralDatePickerView()
                   .padding(.bottom, 12)
                 
                 HStack(spacing: 0) {

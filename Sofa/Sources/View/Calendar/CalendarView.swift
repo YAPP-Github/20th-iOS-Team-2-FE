@@ -10,6 +10,7 @@ import SwiftUI
 struct CalendarView: View {
   
   @State var currentDate: Date = Date()
+  @State private var showAppendTaskModal: Bool = false
   
   var body: some View {
     VStack(spacing: 0) {
@@ -19,14 +20,16 @@ struct CalendarView: View {
           .foregroundColor(Color(hex: "121619"))
           .padding(EdgeInsets(top: 0, leading: 24, bottom: 12, trailing: 0))
         Spacer()
-        Button {
-          
-        } label: {
+        Button(action: {
+          self.showAppendTaskModal.toggle()
+        }) {
           Image(systemName: "plus")
-            .font(.custom("SF-pro", size: 20))
+            .font(.system(size: 20))
             .foregroundColor(Color(hex: "43A047"))
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 31))
-          
+        }
+        .sheet(isPresented: self.$showAppendTaskModal) {
+          AppendTaskModalView()
         }
       }
       Rectangle()

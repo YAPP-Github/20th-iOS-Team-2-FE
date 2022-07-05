@@ -33,7 +33,9 @@ struct GeneralDatePickerView: View {
           .background(Color(hex: "#E8F5E9"))
           .cornerRadius(4)
           .onTapGesture {
+            withAnimation {
             self.showDatePicker.toggle()
+            }
           }
       }.padding(.bottom, 12)
       if showDatePicker {

@@ -10,9 +10,10 @@ import SwiftUI
 struct HomeView: View {
   
   @State var gotoAlarm = false
-
+  @State var showModal = false
+  
   var body: some View {
-    VStack {
+    ZStack {
       NavigationView {
         VStack{
           ScrollView{
@@ -25,6 +26,10 @@ struct HomeView: View {
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
             ChatList()
+              .onTapGesture {
+                self.showModal = true
+                UITabBar.hideTabBar(animated: false)
+              }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView()
@@ -34,7 +39,11 @@ struct HomeView: View {
         .background(Color(hex: "F9F7EF"))
         .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
       }// NavigationView
-    }// VStack
+      ModalView(isShowing: $showModal)
+        .onDisappear {
+          UITabBar.showTabBar(animated: false)
+        }
+    }// ZStack
   }
 }
 

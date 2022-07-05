@@ -42,6 +42,7 @@
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
 		0AC79182286AF1440034A830 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC79181286AF1440034A830 /* EmojiView.swift */; };
 		0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC79184286B0AE00034A830 /* ConfettiSwiftUI */; };
+		0AE4919A28740D1A00341D35 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4919928740D1A00341D35 /* ModalView.swift */; };
 		187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */; };
 		6F0974352861E53A0000956C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0974342861E53A0000956C /* Task.swift */; };
 		6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E523284B9CF00069D268 /* AlbumView.swift */; };
@@ -160,6 +161,7 @@
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		0AC79181286AF1440034A830 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		0AE4919928740D1A00341D35 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBE8172BD1C8B15C2F363BF /* Pods-SofaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.release.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A02CB536760CF657C4244F9 /* Pods-Sofa-SofaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa-SofaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				0AAB371928674DF200A47B24 /* ChatList.swift */,
 				0AC79181286AF1440034A830 /* EmojiView.swift */,
 				0AAB371F28675A5A00A47B24 /* LabelView.swift */,
+				0AE4919928740D1A00341D35 /* ModalView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1047,6 +1050,7 @@
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
+				0AE4919A28740D1A00341D35 /* ModalView.swift in Sources */,
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				0A4CFB8B285F79AB000603A5 /* Ex+Font.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,

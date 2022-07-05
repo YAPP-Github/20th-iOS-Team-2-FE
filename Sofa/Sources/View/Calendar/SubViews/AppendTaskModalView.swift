@@ -144,24 +144,9 @@ struct AppendTaskModalView: View {
                 GeneralDatePickerView()
                   .padding(.bottom, 12)
                 
-                HStack(spacing: 0) {
-                  Image(systemName: "clock")
-                    .font(.system(size: 20))
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(Color(hex:"4CAF50"))
-                    .padding(.trailing, 10)
-                  Text("시간")
-                    .font(.custom("Pretendard-Medium", size: 16))
-                    .foregroundColor(Color(hex: "121619"))
-                  Spacer()
-                  Text("오후 HH-MM")
-                    .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
-                    .font(.custom("Pretendard-Medium", size: 13))
-                    .foregroundColor(Color(hex: "121619"))
-                    .frame(height: 28, alignment: .center)
-                    .background(Color.black.opacity(0.02))
-                    .cornerRadius(4)
-                }
+                // 시간
+                TaskTimePicker()
+                
               }.padding(EdgeInsets(top: 30, leading: 19.5, bottom: 27, trailing: 16))
               
               Rectangle()

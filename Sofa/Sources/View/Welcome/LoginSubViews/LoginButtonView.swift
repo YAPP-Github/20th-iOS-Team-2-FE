@@ -9,7 +9,20 @@ import SwiftUI
 import KakaoSDKAuth
 import KakaoSDKUser
 import KakaoSDKCommon
+import AuthenticationServices
 import SwiftKeychainWrapper
+
+struct AppleUser: Codable {
+  let userId: String
+  let identityToken: String
+  
+  init?(credentials: ASAuthorizationAppleIDCredential){
+    let identityToken = String(decoding: credentials.identityToken!, as: UTF8.self)
+    
+    self.userId = credentials.user
+    self.identityToken = identityToken
+  }
+}
 
 struct LoginButtonView: View {
   @State var text: NSMutableAttributedString = NSMutableAttributedString(string: "")
@@ -26,11 +39,9 @@ struct LoginButtonView: View {
               print("loginWithKakaoTalk() success.")
               
               // Keychain에 User Token 저장
-              KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
-              KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
+              Constant.accessToken = oauthToken!.accessToken
+              Constant.refreshToken = oauthToken!.refreshToken
               
-              //              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
-              //              print(userAccessToken ?? "Token is nil")
             }
           }
         } else { // 카톡이 설치되어있지 않다면
@@ -43,11 +54,8 @@ struct LoginButtonView: View {
               print("loginWithKakaoTalk() success.")
               
               // Keychain에 User Token 저장
-              KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "userAccessToken")
-              KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "userRefreshToken")
-              
-              let userAccessToken: String? = KeychainWrapper.standard.string(forKey: "userAccessToken")
-              print(userAccessToken ?? "Token is nil")
+              Constant.accessToken = oauthToken!.accessToken
+              Constant.refreshToken = oauthToken!.refreshToken
               
             }
           }
@@ -58,17 +66,25 @@ struct LoginButtonView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
       }
+      .frame(width: 326, height: 48, alignment: .center)
       .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
-      Button {
-        
-        
-      } label : {
-        Image("SignInWithApple")
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-        
-      }
-      .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
+      //      Button {
+      //
+      //
+      //      } label : {
+      //        Image("SignInWithApple")
+      //          .resizable()
+      //          .aspectRatio(contentMode: .fit)
+      //
+      //      }
+      SignInWithAppleButton(
+        .signIn,
+        onRequest: configure,
+        onCompletion: handle
+      )
+      .cornerRadius(40)
+      .frame(width: 326, height: 48, alignment: .center)
+      
       Image("line")
         .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       
@@ -81,7 +97,7 @@ struct LoginButtonView: View {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         let attributtedString = NSMutableAttributedString(string: myText, attributes: [NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 13)!, .paragraphStyle: paragraph])
-
+        
         attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#999899"), range: (myText as NSString).range(of: myText))
         attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "필수 이용약관"))
         attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "개인정보 이용방침"))
@@ -93,10 +109,37 @@ struct LoginButtonView: View {
       .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.05 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
       
     }//VStack
+    .foregroundColor(Color.white)
+    .background(Color.white)
     .frame(width: Screen.maxWidth, height: Screen.maxHeight * 0.4 , alignment: .center)
     .ignoresSafeArea()
     .background(Color.white)
     
+  }
+  
+  func configure(_ request: ASAuthorizationAppleIDRequest) {
+    request.requestedScopes = []
+  }
+  
+  func handle(_ authResult: Result<ASAuthorization, Error>) {
+    switch authResult{
+    case .success(let auth):
+      print(auth)
+      switch auth.credential{
+      case let appleIDCredentials as ASAuthorizationAppleIDCredential:
+        if let appleUser = AppleUser(credentials: appleIDCredentials),
+          let appleUserData = try? JSONEncoder().encode(appleUser) {
+            //            Constant.userID = appleUserData
+            print(appleUser)
+          }
+        print(auth.credential)
+      default:
+        print(auth.credential)
+      }
+      
+    case .failure(let error):
+      print(error)
+    }
   }
 }
 

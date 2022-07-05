@@ -93,7 +93,7 @@ struct CustomDatePicker: View {
       
       ScrollView(.vertical, showsIndicators: false) {
         // Task
-        VStack(spacing: 24) {
+        LazyVStack(spacing: 24) {
           if let task = tasks.first(where: { task in
             return isSameDay(date1: task.taskDate, date2: currentDate)
           }){

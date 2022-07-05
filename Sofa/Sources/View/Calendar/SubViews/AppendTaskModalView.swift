@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AppendTaskModalView: View {
   
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  
   @State var title: String = ""
   @State var memo: String = ""
   
@@ -41,6 +43,9 @@ struct AppendTaskModalView: View {
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(Color(hex: "43A047"))
             .padding(.leading, 24)
+            .onTapGesture {
+              self.presentationMode.wrappedValue.dismiss()
+            }
           Spacer()
           
           Text("새로운 일정")
@@ -54,6 +59,9 @@ struct AppendTaskModalView: View {
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(Color(.black).opacity(0.4))
             .padding(.trailing, 24)
+            .onTapGesture {
+              self.presentationMode.wrappedValue.dismiss()
+            }
         }
         .padding(.top, 17)
         

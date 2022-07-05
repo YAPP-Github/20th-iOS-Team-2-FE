@@ -20,7 +20,6 @@ struct EventList: View {
           id: \.self,
           content: { index in
       // create a page based on the data passed
-
       EventRow(eventViewModel.events[index])
     })
     .onPageChanged({ (newIndex) in

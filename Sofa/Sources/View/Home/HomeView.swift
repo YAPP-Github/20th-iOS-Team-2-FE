@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
   
   @State var gotoAlarm = false
+  var eventList = EventList()
 
   var body: some View {
     VStack {
@@ -18,9 +19,9 @@ struct HomeView: View {
           ScrollView{
             LazyVStack{
               EventList()
-                .frame(height: 64)
+                .frame(height: eventList.eventViewModel.events.count == 0 ? 0 : 64)
+                .padding(.vertical, eventList.eventViewModel.events.count == 0 ? 0 : 16)
             }
-            .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))

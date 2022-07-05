@@ -93,9 +93,14 @@ struct ModalView: View {
       .onEnded { val in
         prevDragTranslation = .zero
         isDragging = false
-        if curHeight > maxHeight {
+        if curHeight > minHeight + 35 {
           curHeight = maxHeight
-        }else if curHeight < minHeight {
+        }
+        else if curHeight < minHeight - 35{
+          isShowing = false
+          curHeight = minHeight
+        }
+        else{
           curHeight = minHeight
         }
       }

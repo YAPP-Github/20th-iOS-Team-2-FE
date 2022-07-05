@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct tmpView: View {
+struct GeneralDatePickerView: View {
   
   @State private var showDatePicker = false
   @State var currentDate: Date = Date()
@@ -44,8 +44,8 @@ struct tmpView: View {
   }
 }
 
-struct tmpView_Previews: PreviewProvider {
+struct GeneralDatePickerView_Previews: PreviewProvider {
   static var previews: some View {
-    tmpView()
+    GeneralDatePickerView()
   }
 }

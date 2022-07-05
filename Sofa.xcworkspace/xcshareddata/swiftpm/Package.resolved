@@ -9,6 +9,15 @@
           "revision": "8d3a15d0aa2991e0761749b767ef8d89bca6275a",
           "version": "1.0.1"
         }
+      },
+      {
+        "package": "SwiftUIPager",
+        "repositoryURL": "https://github.com/fermoya/SwiftUIPager.git",
+        "state": {
+          "branch": "main",
+          "revision": "669d20f0ab90dc6cac5aadbb8462505875805459",
+          "version": null
+        }
       }
     ]
   },

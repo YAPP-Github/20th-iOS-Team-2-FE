@@ -18,11 +18,12 @@ struct HomeView: View {
           ScrollView{
             LazyVStack{
               EventList()
+                .frame(height: 64)
             }
             .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
-            .background(Color(hex: "EDEADF"))
+            .background(Color(hex: "F5F2E9"))
             ChatList()
           }// ScrollView
           .background(Color(hex: "F9F7EF"))

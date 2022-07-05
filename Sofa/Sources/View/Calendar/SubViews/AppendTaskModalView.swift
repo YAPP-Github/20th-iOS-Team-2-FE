@@ -81,6 +81,10 @@ struct AppendTaskModalView: View {
                 .background(Color(hex: "FAF8F0"))
                 .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
                 .cornerRadius(6)
+                .onTapGesture{
+                  print("gdfdfdfdsfdfsdfo")
+                  
+                }
             }
             
             // 색상
@@ -115,9 +119,12 @@ struct AppendTaskModalView: View {
                   .padding(.bottom, 12)
                 
                 // 시간
-                TaskTimePicker()
+                if !allDayToggle {
+                  TaskTimePicker()
+                    .padding(.bottom, 27)
+                }
                 
-              }.padding(EdgeInsets(top: 30, leading: 19.5, bottom: 27, trailing: 16))
+              }.padding(EdgeInsets(top: 30, leading: 19.5, bottom: 0, trailing: 16))
               
               Rectangle()
                 .frame(width: Screen.maxWidth, height: 1)

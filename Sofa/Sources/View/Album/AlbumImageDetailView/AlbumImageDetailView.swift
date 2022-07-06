@@ -21,6 +21,7 @@ struct AlbumImageDetailView: View {
           Image(uiImage: image)
           //          .resizable()
             .scaledToFill()
+            .pinchToZoom()
         }
         
         Color("Background")

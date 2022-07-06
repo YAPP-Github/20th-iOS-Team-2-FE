@@ -50,6 +50,7 @@
 		C4667A40284B6FF400A4A759 /* SofaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A3F284B6FF400A4A759 /* SofaTests.swift */; };
 		C4667A4A284B6FF400A4A759 /* SofaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A49284B6FF400A4A759 /* SofaUITests.swift */; };
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
+		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -168,6 +169,7 @@
 		C4667A45284B6FF400A4A759 /* SofaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A49284B6FF400A4A759 /* SofaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITests.swift; sourceTree = "<group>"; };
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -530,6 +532,22 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		C481B6B42875D4BA005D6831 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6BA2875FCF8005D6831 /* Blur */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C481B6BA2875FCF8005D6831 /* Blur */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6BB2875FD0A005D6831 /* Blur.swift */,
+			);
+			path = Blur;
+			sourceTree = "<group>";
+		};
 		C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,6 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */,
+				C481B6B42875D4BA005D6831 /* SubViews */,
 			);
 			path = AlbumImageDetailView;
 			sourceTree = "<group>";
@@ -1007,6 +1026,7 @@
 				0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */,
 				6F22E528284B9D050069D268 /* SettingsView.swift in Sources */,
 				C495F5EB2854F594009B3BDE /* Photo.swift in Sources */,
+				C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */,
 				C4B8F2AC2851CB0E0000B8CB /* Ex+UIView.swift in Sources */,
 				0A223B72285F75D6002203ED /* CustomText.swift in Sources */,
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,

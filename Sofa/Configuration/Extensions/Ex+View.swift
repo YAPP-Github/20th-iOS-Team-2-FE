@@ -70,8 +70,13 @@ public extension View {
     self.modifier(TextFieldModifier(color: color, padding: padding, lineWidth: lineWidth))
   }
   
+  // TextField 선택 시 하이라이트 기능
   func highlightTextField(firstLineWidth: CGFloat, secondLineWidth: CGFloat) -> some View {
-    self.modifier(customViewModifier(firstLineWidth: firstLineWidth, secondLineWidth: secondLineWidth))
+    self.modifier(RectangleHighlightedViewModifier(firstLineWidth: firstLineWidth, secondLineWidth: secondLineWidth))
+  }
+  
+  func highlightColor(lineWidth: CGFloat) -> some View {
+    self.modifier(CircleHighlightedViewModifier(lineWidth: lineWidth))
   }
 }
 
@@ -90,7 +95,8 @@ struct TextFieldModifier: ViewModifier {
   }
 }
 
-struct customViewModifier: ViewModifier {
+// TextField 선택 시 하이라이트 기능
+struct RectangleHighlightedViewModifier: ViewModifier {
   var firstLineWidth: CGFloat
   var secondLineWidth: CGFloat
   
@@ -101,3 +107,14 @@ struct customViewModifier: ViewModifier {
       .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(Color(hex:"4CAF50").opacity(0.5), lineWidth: secondLineWidth))
   }
 }
+
+struct CircleHighlightedViewModifier: ViewModifier {
+  var lineWidth: CGFloat
+  
+  func body(content: Content) -> some View {
+    content
+      .padding(4)
+      .overlay(Circle().strokeBorder(Color(hex:"4CAF50").opacity(0.5), lineWidth: lineWidth))
+  }
+}
+

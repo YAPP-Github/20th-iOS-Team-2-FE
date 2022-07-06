@@ -17,7 +17,6 @@ struct AppendTaskModalView: View {
   @State private var title: String = ""
   @State private var memo: String = ""
   @State private var allDayToggle = false
-  @State private var isClicked = false
   
   init() {
     UITextView.appearance().backgroundColor = .clear

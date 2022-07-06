@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TaskColorPicker: View {
 
-  @State var isClicked: Bool
-  
+  @State private var isClicked = false
   @State private var showColorPicker = false
   @State private var currentColor: String = "4CAF50"
   
@@ -73,12 +72,8 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
-            .padding(self.isGreenClicked ? 1 : 0)
-            .overlay(
-              Circle()
-                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isGreenClicked ? 4 : 0)
-            )
-            .frame(width: self.isBlueClicked ? 28 : 28, height: self.isBlueClicked ? 28 : 28)
+            .frame(width: 28, height: 28)
+            .highlightColor(lineWidth: isGreenClicked ? 4 : 0 )
             .onTapGesture {
               self.currentColor = "4CAF50"
               self.isGreenClicked = true
@@ -102,12 +97,8 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
-            .padding(self.isLightGreenClicked ? 1 : 0)
-            .overlay(
-              Circle()
-                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isLightGreenClicked ? 4 : 0)
-            )
             .frame(width: 28, height: 28)
+            .highlightColor(lineWidth: isLightGreenClicked ? 4 : 0 )
             .onTapGesture {
               self.currentColor = "#8BC34A"
               self.isGreenClicked = false
@@ -130,12 +121,8 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
-            .padding(self.isAmberClicked ? 1 : 0)
-            .overlay(
-              Circle()
-                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isAmberClicked ? 4 : 0)
-            )
             .frame(width: 28, height: 28)
+            .highlightColor(lineWidth: isAmberClicked ? 4 : 0 )
             .onTapGesture {
               self.currentColor = "#FFA000"
               self.isGreenClicked = false
@@ -158,12 +145,8 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
-            .padding(self.isBlueClicked ? 1 : 0)
-            .overlay(
-              Circle()
-                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isBlueClicked ? 4 : 0)
-            )
             .frame(width: 28, height: 28)
+            .highlightColor(lineWidth: isBlueClicked ? 4 : 0 )
             .onTapGesture {
               self.currentColor = "#4589FF"
               self.isGreenClicked = false
@@ -186,12 +169,8 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
-            .padding(self.isCyanClicked ? 1 : 0)
-            .overlay(
-              Circle()
-                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isCyanClicked ? 4 : 0)
-            )
             .frame(width: 28, height: 28)
+            .highlightColor(lineWidth: isCyanClicked ? 4 : 0 )
             .onTapGesture {
               self.currentColor = "#0072C3"
               self.isGreenClicked = false
@@ -214,12 +193,8 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
-            .padding(self.isPurpleClicked ? 1 : 0)
-            .overlay(
-              Circle()
-                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isPurpleClicked ? 4 : 0)
-            )
             .frame(width: 28, height: 28)
+            .highlightColor(lineWidth: isPurpleClicked ? 4 : 0 )
             .onTapGesture {
               self.currentColor = "#A56EFF"
               self.isGreenClicked = false
@@ -250,6 +225,7 @@ struct TaskColorPicker: View {
 
 struct TaskColorPicker_Previews: PreviewProvider {
   static var previews: some View {
-    AppendTaskModalView()
+    TaskColorPicker()
+   // AppendTaskModalView()
   }
 }

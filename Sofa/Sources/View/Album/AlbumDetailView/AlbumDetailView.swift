@@ -51,7 +51,7 @@ struct AlbumDetailView: View {
           AlbumDetailList(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick)
           
           // 이미지 click
-          NavigationLink("", destination: EmptyView(), isActive: $isImageClick)
+          NavigationLink("", destination: AlbumImageDetailView(image: selectImage, index: selectImageIndex), isActive: $isImageClick)
           
           // 댓글 click
           NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct AlbumView: View {
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @State var showingSheet = false
@@ -58,6 +59,7 @@ struct AlbumView: View {
           } else if selected == 1 { // 유형별
             AlbumList(albumType: types)
           }
+          
           
           // 카메라 날짜 선택 View로 이동
           NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)

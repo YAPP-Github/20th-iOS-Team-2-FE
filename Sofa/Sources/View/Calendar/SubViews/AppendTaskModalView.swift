@@ -11,11 +11,13 @@ struct AppendTaskModalView: View {
   
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
-  @FocusState private var focusField: Field?
+  @FocusState var isTitleFocused: Bool
+  @FocusState var isMemoFocused: Bool
   
-  @State var title: String = ""
-  @State var memo: String = ""
+  @State private var title: String = ""
+  @State private var memo: String = ""
   @State private var allDayToggle = false
+  @State private var isClicked = false
   
   init() {
     UITextView.appearance().backgroundColor = .clear
@@ -80,26 +82,29 @@ struct AppendTaskModalView: View {
                 .customTextField(padding: 12)
                 .disableAutocorrection(true)
                 .frame(height: 48)
-                .background(focusField == .title ? Color.white : Color(hex: "FAF8F0"))
-                .highlightTextField(firstLineWidth: focusField == .title ? 1 : 0, secondLineWidth: focusField == .title ? 4 : 0)
+                .background(isTitleFocused ? Color.white : Color(hex: "FAF8F0"))
+                .highlightTextField(firstLineWidth: isTitleFocused ? 1 : 0, secondLineWidth: isTitleFocused ? 4 : 0)
                 .cornerRadius(6)
-                .focused($focusField, equals: .title)
+                .focused($isTitleFocused)
                 .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
                 .modifier(DismissingKeyboard())
+                .onAppear {
+                  UIApplication.shared.hideKeyboard()
+                }
               
             }
             
             // 색상
             TaskColorPicker()
-              Rectangle()
-                .frame(width:Screen.maxWidth, height: 1)
-                .foregroundColor(Color(hex: "EDEADF"))
-              Rectangle()
-                .frame(width: Screen.maxWidth, height: 7)
-                .foregroundColor(Color(hex: "FAF8F0"))
-              
-      
-
+            Rectangle()
+              .frame(width:Screen.maxWidth, height: 1)
+              .foregroundColor(Color(hex: "EDEADF"))
+            Rectangle()
+              .frame(width: Screen.maxWidth, height: 7)
+              .foregroundColor(Color(hex: "FAF8F0"))
+            
+            
+            
             Group {
               // 하루종일
               VStack(spacing: 0) {
@@ -146,9 +151,9 @@ struct AppendTaskModalView: View {
                   .foregroundColor(Color.white)
                 Rectangle()
                   .frame(height: 128)
-                  .foregroundColor(focusField == .memo ? Color.white : Color(hex: "FAF8F0"))
+                  .foregroundColor(isMemoFocused ? Color.white : Color(hex: "FAF8F0"))
                   .cornerRadius(6)
-                  .highlightTextField(firstLineWidth: focusField == .memo ? 1 : 0, secondLineWidth: focusField == .memo ? 4 : 0)
+                  .highlightTextField(firstLineWidth: isMemoFocused ? 1 : 0, secondLineWidth: isMemoFocused ? 4 : 0)
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
                 TextEditor(text: $memo)
@@ -164,17 +169,13 @@ struct AppendTaskModalView: View {
                   .foregroundColor(Color(hex: "121619"))
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                   .frame(height: 128, alignment: .center)
-                  .focused($focusField, equals: .memo)
+                  .focused($isMemoFocused)
                   .modifier(DismissingKeyboard())
-                 
-
               }
               Rectangle()
                 .frame(width:Screen.maxWidth, height: 1)
                 .foregroundColor(Color(hex: "EDEADF"))
-              
             }
-            
             Spacer()
           }
         }
@@ -188,19 +189,4 @@ struct AppendTaskModalView_Previews: PreviewProvider {
     //CalendarView()
     AppendTaskModalView()
   }
-}
-
-struct DismissingKeyboard: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .onTapGesture {
-                let keyWindow = UIApplication.shared.connectedScenes
-                        .filter({$0.activationState == .foregroundActive})
-                        .map({$0 as? UIWindowScene})
-                        .compactMap({$0})
-                        .first?.windows
-                        .filter({$0.isKeyWindow}).first
-                keyWindow?.endEditing(true)
-        }
-    }
 }

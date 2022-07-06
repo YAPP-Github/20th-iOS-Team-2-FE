@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TaskColorPicker: View {
+
+  @State var isClicked: Bool
   
   @State private var showColorPicker = false
-  @State private var isClicked = false
   @State private var currentColor: String = "4CAF50"
   
   @State private var isGreenClicked = false

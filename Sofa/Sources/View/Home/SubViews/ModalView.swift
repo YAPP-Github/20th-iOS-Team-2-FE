@@ -27,7 +27,7 @@ struct ModalView: View {
             isShowing = false
           }
         mainView
-        .transition(.move(edge: .bottom))
+          .transition(.move(edge: .bottom))
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -36,9 +36,9 @@ struct ModalView: View {
   }
   
   var mainView: some View{
-    VStack {
+    VStack(alignment: .center) {
       
-      ZStack{
+      ZStack(alignment: .center){
         Capsule()
           .frame(width: 48, height: 4)
           .foregroundColor(Color.black)
@@ -49,11 +49,61 @@ struct ModalView: View {
       .background(Color.white.opacity(0.00001))
       .gesture(dragGesture)
       
-      ZStack{
+      ZStack(alignment: .center){
         VStack{
-          Text("Hello")
-        }
-        .padding(.horizontal, 30)
+          HStack(alignment: .top){
+            Image("lionprofile")
+              .frame(width: 51, height: 52.5)
+              .padding(EdgeInsets(top: 10.5, leading: 10.5, bottom: 27, trailing: 14.5))
+            VStack(alignment: .leading){
+              HStack(){
+                Text("별명")
+                  .font(.custom("Pretendard-Bold", size: 13))
+                  .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 1))
+                Text("관계")
+                  .font(.custom("Pretendard-Medium", size: 12))
+                  .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
+                  .background(Color(hex: "E8F5E9"))
+                  .foregroundColor(Color(hex: "43A047"))
+                  .cornerRadius(4)
+                  .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 0))
+                Spacer()
+                Text("2022-12-25")
+                  .font(.custom("Pretendard-Medium", size: 13))
+                  .foregroundColor(Color(hex: "999999"))
+                  .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
+              }
+              .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+            }// VStack
+          }// HStack
+          Divider()
+            .overlay(Color(hex: "EDEADF"))
+            .offset(x:0, y: -30)
+          Spacer()
+          HStack(alignment: .center){
+            Button {
+              print("left")
+            } label: {
+              Text("<")
+                .font(.system(size: 20))
+            }
+            Spacer()
+            Text("1 / 24")
+              .font(.custom("Pretendard-Medium", size: 20))
+            Spacer()
+            Button {
+              print("left")
+            } label: {
+              Text(">")
+            }
+          }
+          .padding(.vertical, 16)
+          .padding(.horizontal, 24)
+        }//VStack
+        
+        
+        
+        
       }
       .frame(maxHeight: .infinity)
     }

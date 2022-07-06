@@ -11,9 +11,10 @@ struct AppendTaskModalView: View {
   
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
+  @FocusState private var focusField: Field?
+  
   @State var title: String = ""
   @State var memo: String = ""
-  
   @State private var allDayToggle = false
   
   init() {
@@ -77,14 +78,15 @@ struct AppendTaskModalView: View {
                     .foregroundColor(Color(hex: "121619").opacity(0.4))
                 }
                 .customTextField(padding: 12)
+                .disableAutocorrection(true)
                 .frame(height: 48)
-                .background(Color(hex: "FAF8F0"))
-                .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
+                .background(focusField == .title ? Color.white : Color(hex: "FAF8F0"))
+                .highlightTextField(firstLineWidth: focusField == .title ? 1 : 0, secondLineWidth: focusField == .title ? 4 : 0)
                 .cornerRadius(6)
-                .onTapGesture{
-                  print("gdfdfdfdsfdfsdfo")
-                  
-                }
+                .focused($focusField, equals: .title)
+                .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
+                .modifier(DismissingKeyboard())
+              
             }
             
             // 색상
@@ -144,8 +146,9 @@ struct AppendTaskModalView: View {
                   .foregroundColor(Color.white)
                 Rectangle()
                   .frame(height: 128)
-                  .foregroundColor(Color(hex: "FAF8F0"))
+                  .foregroundColor(focusField == .memo ? Color.white : Color(hex: "FAF8F0"))
                   .cornerRadius(6)
+                  .highlightTextField(firstLineWidth: focusField == .memo ? 1 : 0, secondLineWidth: focusField == .memo ? 4 : 0)
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
                 TextEditor(text: $memo)
@@ -157,9 +160,14 @@ struct AppendTaskModalView: View {
                       .frame(height: 128, alignment: .topLeading)
                   }
                   .customTextField(padding: 9)
+                  .disableAutocorrection(true)
                   .foregroundColor(Color(hex: "121619"))
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                   .frame(height: 128, alignment: .center)
+                  .focused($focusField, equals: .memo)
+                  .modifier(DismissingKeyboard())
+                 
+
               }
               Rectangle()
                 .frame(width:Screen.maxWidth, height: 1)
@@ -180,4 +188,19 @@ struct AppendTaskModalView_Previews: PreviewProvider {
     //CalendarView()
     AppendTaskModalView()
   }
+}
+
+struct DismissingKeyboard: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .onTapGesture {
+                let keyWindow = UIApplication.shared.connectedScenes
+                        .filter({$0.activationState == .foregroundActive})
+                        .map({$0 as? UIWindowScene})
+                        .compactMap({$0})
+                        .first?.windows
+                        .filter({$0.isKeyWindow}).first
+                keyWindow?.endEditing(true)
+        }
+    }
 }

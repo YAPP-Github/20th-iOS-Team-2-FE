@@ -19,6 +19,7 @@ struct TaskColorPicker: View {
   @State private var isBlueClicked = false
   @State private var isCyanClicked = false
   @State private var isPurpleClicked = false
+  /// 배열로 다시 해보기....
   
   var body: some View {
     VStack(spacing: 0){
@@ -59,6 +60,7 @@ struct TaskColorPicker: View {
       if showColorPicker {
         HStack {
           Group{
+            // TODO: - circle을 따로 뷰로 만들고 바인딩된 값으로 다시 해보기
           Circle()
             .foregroundColor(Color(hex: "4CAF50"))
             .overlay(
@@ -99,6 +101,11 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
+            .padding(self.isLightGreenClicked ? 1 : 0)
+            .overlay(
+              Circle()
+                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isLightGreenClicked ? 4 : 0)
+            )
             .frame(width: 28, height: 28)
             .onTapGesture {
               self.currentColor = "#8BC34A"
@@ -121,6 +128,11 @@ struct TaskColorPicker: View {
             .overlay(
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
+            )
+            .padding(self.isAmberClicked ? 1 : 0)
+            .overlay(
+              Circle()
+                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isAmberClicked ? 4 : 0)
             )
             .frame(width: 28, height: 28)
             .onTapGesture {
@@ -145,6 +157,11 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
+            .padding(self.isBlueClicked ? 1 : 0)
+            .overlay(
+              Circle()
+                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isBlueClicked ? 4 : 0)
+            )
             .frame(width: 28, height: 28)
             .onTapGesture {
               self.currentColor = "#4589FF"
@@ -168,6 +185,11 @@ struct TaskColorPicker: View {
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
             )
+            .padding(self.isCyanClicked ? 1 : 0)
+            .overlay(
+              Circle()
+                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isCyanClicked ? 4 : 0)
+            )
             .frame(width: 28, height: 28)
             .onTapGesture {
               self.currentColor = "#0072C3"
@@ -190,6 +212,11 @@ struct TaskColorPicker: View {
             .overlay(
               Circle()
                 .stroke(.black.opacity(0.05), lineWidth: 1)
+            )
+            .padding(self.isPurpleClicked ? 1 : 0)
+            .overlay(
+              Circle()
+                .stroke(Color(hex: "#4CAF50").opacity(0.4), lineWidth: self.isPurpleClicked ? 4 : 0)
             )
             .frame(width: 28, height: 28)
             .onTapGesture {
@@ -215,7 +242,6 @@ struct TaskColorPicker: View {
           .frame(height: 28)
       }
     }
-   
     .padding(.leading, 16)
     .padding(.trailing, 16)
   }

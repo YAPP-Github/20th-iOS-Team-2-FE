@@ -69,6 +69,10 @@ public extension View {
   func customTextField(color: Color = .secondary, padding: CGFloat = 3, lineWidth: CGFloat = 0.0) -> some View { // <- Default settings
     self.modifier(TextFieldModifier(color: color, padding: padding, lineWidth: lineWidth))
   }
+  
+  func highlightTextField(firstLineWidth: CGFloat, secondLineWidth: CGFloat) -> some View {
+    self.modifier(customViewModifier(firstLineWidth: firstLineWidth, secondLineWidth: secondLineWidth))
+  }
 }
 
 // TextField padding 조정
@@ -83,5 +87,17 @@ struct TextFieldModifier: ViewModifier {
       .overlay(RoundedRectangle(cornerRadius: padding)
                 .stroke(color, lineWidth: lineWidth)
       )
+  }
+}
+
+struct customViewModifier: ViewModifier {
+  var firstLineWidth: CGFloat
+  var secondLineWidth: CGFloat
+  
+  func body(content: Content) -> some View {
+    content
+      .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(Color(hex: "#43A047"), lineWidth: firstLineWidth))
+      .padding(4)
+      .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(Color(hex:"4CAF50").opacity(0.5), lineWidth: secondLineWidth))
   }
 }

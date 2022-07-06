@@ -115,8 +115,19 @@ struct ModalView: View {
             
             Spacer()
             
-            Text("\(self.page.index + 1) / \(numbers.count)")
+//            Text("\(self.page.index + 1) / \(numbers.count)")
+//              .font(.custom("Pretendard-Medium", size: 20))
+            HStack{
+              Group{
+                Text("\(self.page.index+1)")
+                Text("/")
+                  .foregroundColor(Color(hex: "C2C1C1"))
+                Text("\(numbers.count)")
+                  .foregroundColor(Color(hex: "C2C1C1"))
+              }
               .font(.custom("Pretendard-Medium", size: 20))
+              .animationsDisabled()
+            }
             
             Spacer()
             

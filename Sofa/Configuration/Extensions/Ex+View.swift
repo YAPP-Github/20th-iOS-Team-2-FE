@@ -69,6 +69,14 @@ public extension View {
   func customTextField(color: Color = .secondary, padding: CGFloat = 3, lineWidth: CGFloat = 0.0) -> some View { // <- Default settings
     self.modifier(TextFieldModifier(color: color, padding: padding, lineWidth: lineWidth))
   }
+  
+  // animation 비활성화
+  func animationsDisabled() -> some View {
+      return self.transaction { (tx: inout Transaction) in
+          tx.disablesAnimations = true
+          tx.animation = nil
+      }.animation(nil)
+  }
 }
 
 // TextField padding 조정
@@ -85,3 +93,4 @@ struct TextFieldModifier: ViewModifier {
       )
   }
 }
+

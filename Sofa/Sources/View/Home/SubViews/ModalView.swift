@@ -56,7 +56,7 @@ struct ModalView: View {
               .frame(width: 51, height: 52.5)
               .padding(EdgeInsets(top: 10.5, leading: 10.5, bottom: 27, trailing: 14.5))
             VStack(alignment: .leading){
-              HStack(){
+              HStack(alignment: .center){
                 Text("별명")
                   .font(.custom("Pretendard-Bold", size: 13))
                   .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 1))
@@ -70,8 +70,12 @@ struct ModalView: View {
                 Spacer()
                 Text("2022-12-25")
                   .font(.custom("Pretendard-Medium", size: 13))
-                  .foregroundColor(Color(hex: "999999"))
+                  .foregroundColor(Color(hex: "979696"))
+                  .padding(.horizontal, 8)
+                  .background(Color(hex: "F1F1F1"))
+                  .cornerRadius(80)
                   .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
+                
               }
               .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }// VStack
@@ -84,21 +88,32 @@ struct ModalView: View {
             Button {
               print("left")
             } label: {
-              Text("<")
+              Image(systemName: "chevron.left")
                 .font(.system(size: 20))
+                .foregroundColor(Color(hex: "121619"))
             }
+            
             Spacer()
+            
             Text("1 / 24")
               .font(.custom("Pretendard-Medium", size: 20))
+            
             Spacer()
+            
             Button {
-              print("left")
+              print("right")
             } label: {
-              Text(">")
+              Image(systemName: "chevron.right")
+                .font(.system(size: 20))
+                .foregroundColor(Color(hex: "121619"))
             }
+
+
           }
           .padding(.vertical, 16)
           .padding(.horizontal, 24)
+          Spacer()
+            .frame(height: 34)
         }//VStack
         
         

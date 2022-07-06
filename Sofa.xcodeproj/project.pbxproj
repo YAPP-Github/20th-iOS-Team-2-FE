@@ -50,6 +50,7 @@
 		C4667A40284B6FF400A4A759 /* SofaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A3F284B6FF400A4A759 /* SofaTests.swift */; };
 		C4667A4A284B6FF400A4A759 /* SofaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A49284B6FF400A4A759 /* SofaUITests.swift */; };
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
+		C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */; };
 		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
@@ -169,6 +170,7 @@
 		C4667A45284B6FF400A4A759 /* SofaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A49284B6FF400A4A759 /* SofaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITests.swift; sourceTree = "<group>"; };
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailNavigationBar.swift; sourceTree = "<group>"; };
 		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
@@ -535,9 +537,18 @@
 		C481B6B42875D4BA005D6831 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				C481B6B52875D4C9005D6831 /* NavigaionBar */,
 				C481B6BA2875FCF8005D6831 /* Blur */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C481B6B52875D4C9005D6831 /* NavigaionBar */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */,
+			);
+			path = NavigaionBar;
 			sourceTree = "<group>";
 		};
 		C481B6BA2875FCF8005D6831 /* Blur */ = {
@@ -1039,6 +1050,7 @@
 				C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */,
 				0AAB367C2863816300A47B24 /* EventList.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
+				C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
 				0A2B55092858779D006F816C /* View.swift in Sources */,

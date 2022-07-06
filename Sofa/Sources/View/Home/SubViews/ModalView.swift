@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIPager
 
 struct ModalView: View {
   
@@ -34,6 +35,11 @@ struct ModalView: View {
     .ignoresSafeArea()
     .animation(.easeInOut)
   }
+  
+  
+  //MARK: -mainView
+  @StateObject var page: Page = .first()
+  var numbers: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   
   var mainView: some View{
     VStack(alignment: .center) {
@@ -83,41 +89,55 @@ struct ModalView: View {
           Divider()
             .overlay(Color(hex: "EDEADF"))
             .offset(x:0, y: -30)
-          Spacer()
+          //MARK: - Pager
+          VStack{
+            Pager(page: self.page,
+                  data: self.numbers,
+                  id: \.self) {
+              self.pageView($0)
+
+            }
+                  .contentLoadingPolicy(.eager)
+//                  .itemSpacing(10)
+          }
+          .offset(x: 0, y: -20)
           HStack(alignment: .center){
             Button {
               print("left")
+              withAnimation {
+                  self.page.update(.previous)
+              }
             } label: {
               Image(systemName: "chevron.left")
                 .font(.system(size: 20))
-                .foregroundColor(Color(hex: "121619"))
+                .foregroundColor(self.page.index <= 0 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
             }
             
             Spacer()
             
-            Text("1 / 24")
+            Text("\(self.page.index + 1) / \(numbers.count)")
               .font(.custom("Pretendard-Medium", size: 20))
             
             Spacer()
             
             Button {
               print("right")
+              withAnimation {
+                  self.page.update(.next)
+              }
             } label: {
               Image(systemName: "chevron.right")
                 .font(.system(size: 20))
-                .foregroundColor(Color(hex: "121619"))
+                .foregroundColor(self.page.index >= self.numbers.count - 1 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
             }
-
-
-          }
+            
+          }// Page Button
           .padding(.vertical, 16)
           .padding(.horizontal, 24)
           Spacer()
             .frame(height: 34)
         }//VStack
-        
-        
-        
+
         
       }
       .frame(maxHeight: .infinity)
@@ -170,6 +190,24 @@ struct ModalView: View {
         }
       }
   }
+  
+  //MARK: - pageView
+  func pageView(_ number: Int) -> some View {
+    Rectangle()
+      .overlay(
+        VStack{
+          Text("\(number) \(number) \(number) \(number) 지구는 우리 은하의 오리온자리 나선팔에 위치한 태양계를 구성하는 행성 중 하나로, 태양의 세 번째 궤도를 돌고 있다. 현재까지 과학적으로 알려진 바로는, 생명체와 지성체가 세운 문명이 존재하는 것이 입증된 유일한 천체로 인류가 살아 숨쉬다.")
+            .font(.custom("Pretendard-Medium", size: 16))
+            .foregroundColor(Color.black)
+            .padding(.horizontal, 26)
+
+          Spacer()
+        }
+      )
+      .foregroundColor(Color.white)
+
+  }
+  
 }
 
 struct ModalView_Previews: PreviewProvider {

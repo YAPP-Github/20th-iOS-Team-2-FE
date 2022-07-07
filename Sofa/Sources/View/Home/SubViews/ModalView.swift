@@ -117,20 +117,29 @@ struct ModalView: View {
             
             Spacer()
             
-//            Text("\(self.page.index + 1) / \(numbers.count)")
-//              .font(.custom("Pretendard-Medium", size: 20))
             HStack{
-              Group{
-                Text("\(self.page.index+1)")
-                Text("/")
-                  .foregroundColor(Color(hex: "C2C1C1"))
-                Text("\(historyViewModel.history.count)")
-                  .foregroundColor(Color(hex: "C2C1C1"))
+              if !isShowing{
+                Group{
+                  Text("\(self.page.index+1)")
+                  Text("/")
+                    .foregroundColor(Color(hex: "C2C1C1"))
+                  Text("\(historyViewModel.history.count)")
+                    .foregroundColor(Color(hex: "C2C1C1"))
+                }
+                .font(.custom("Pretendard-Medium", size: 20))
+                .animationsDisabled()
+              }else{
+                Group{
+                  Text("\(self.page.index+1)")
+                  Text("/")
+                    .foregroundColor(Color(hex: "C2C1C1"))
+                  Text("\(historyViewModel.history.count)")
+                    .foregroundColor(Color(hex: "C2C1C1"))
+                }
+                .font(.custom("Pretendard-Medium", size: 20))
               }
-              .font(.custom("Pretendard-Medium", size: 20))
-              .animationsDisabled()
+
             }
-            
             Spacer()
             
             Button {

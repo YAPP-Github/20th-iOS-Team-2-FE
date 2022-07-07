@@ -67,10 +67,10 @@ struct ModalView: View {
               .padding(EdgeInsets(top: 10.5, leading: 10.5, bottom: 27, trailing: 14.5))
             VStack(alignment: .leading){
               HStack(alignment: .center){
-                Text("별명")
+                Text("\(historyViewModel.info.nickname)")
                   .font(.custom("Pretendard-Bold", size: 13))
                   .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 1))
-                Text("관계")
+                Text("\(historyViewModel.info.roleInFamily)")
                   .font(.custom("Pretendard-Medium", size: 12))
                   .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
                   .background(Color(hex: "E8F5E9"))
@@ -78,7 +78,7 @@ struct ModalView: View {
                   .cornerRadius(4)
                   .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 0))
                 Spacer()
-                Text("2022-12-25")
+                Text("\(historyViewModel.history[page.index].descriptionDate)")
                   .font(.custom("Pretendard-Medium", size: 13))
                   .foregroundColor(Color(hex: "979696"))
                   .padding(.horizontal, 8)
@@ -98,7 +98,9 @@ struct ModalView: View {
             Pager(page: self.page,
                   data: self.historyViewModel.history.indices,
                   id: \.self) { index in
+              
               self.pageView(historyViewModel.history[index])
+              
             }
                   .contentLoadingPolicy(.eager)
             //                  .itemSpacing(10)
@@ -106,7 +108,6 @@ struct ModalView: View {
           .offset(x: 0, y: -20)
           HStack(alignment: .center){
             Button {
-              print("left")
               withAnimation {
                 self.page.update(.previous)
                 self.animationFlag = false
@@ -145,7 +146,6 @@ struct ModalView: View {
             Spacer()
             
             Button {
-              print("right")
               withAnimation {
                 self.page.update(.next)
                 self.animationFlag = false

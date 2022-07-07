@@ -13,12 +13,13 @@ class HistoryViewModel: ObservableObject{
   //MARK: Properties
   var subscription = Set<AnyCancellable>()
   
-  @Published var info = [HistoryInfo]()
+  @Published var info: HistoryInfo
   @Published var history = [History]()
   
   var baseUrl = ""
   
   init(){
+    info = HistoryInfo(nickname: "희동이", roleInFamily: "엄마", profileLink: "", count: 6, history: [])
     fetchHistory()
   }
   
@@ -33,6 +34,18 @@ class HistoryViewModel: ObservableObject{
       return
     }
     
+    if let infodata = jsonString.data(using: .utf8){
+      Just(infodata)
+        .decode(type: HistoryInfo.self, decoder: JSONDecoder())
+        .map{ $0 }
+        .sink(receiveCompletion: { completion in
+//          print("데이터스트림 완료")
+          
+        }, receiveValue: { receivedValue in
+//          print("받은 값: \(receivedValue.count)")
+          self.info = receivedValue
+        }).store(in: &subscription)
+    }
     
     if let data = jsonString.data(using: .utf8){
       Just(data)
@@ -46,6 +59,7 @@ class HistoryViewModel: ObservableObject{
           self.history = receivedValue
         }).store(in: &subscription)
     }
+    
     
   }
 }

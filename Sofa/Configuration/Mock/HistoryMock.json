@@ -7,17 +7,17 @@
     {
       "messsageId" : 1,
       "content" : "지구는 우리 은하의 오리온자리 나선팔에 위치한 태양계를 구성하는 행성 중 하나로, 태양의 세 번째 궤도를 돌고 있다.",
-      "createdDate" : "2022-12-25"
+      "createdDate" : "2022-12-10"
     },
     {
       "messsageId" : 2,
       "content" : "현재까지 과학적으로 알려진 바로는, 생명체와 지성체가 세운 문명이 존재하는 것이 입증된 유일한 천체로 인류가 살아 숨쉬다.",
-      "createdDate" : "2022-12-13"
+      "createdDate" : "2022-12-11"
     },
     {
       "messsageId" : 3,
       "content" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "createdDate" : "2022-12-13"
+      "createdDate" : "2022-12-12"
     },
     {
       "messsageId" : 4,
@@ -27,12 +27,12 @@
     {
       "messsageId" : 5,
       "content" : "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
-      "createdDate" : "2022-12-13"
+      "createdDate" : "2022-12-14"
     },
     {
       "messsageId" : 6,
       "content" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
-      "createdDate" : "2022-12-13"
+      "createdDate" : "2022-12-15"
     },
   ]
 }

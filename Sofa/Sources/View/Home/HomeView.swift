@@ -11,9 +11,10 @@ struct HomeView: View {
   
   @ObservedObject var eventViewModel = EventViewModel()
   @State var gotoAlarm = false
-
+  @State var showModal = false
+  
   var body: some View {
-    VStack {
+    ZStack {
       NavigationView {
         VStack{
           ScrollView{
@@ -26,7 +27,7 @@ struct HomeView: View {
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
-            ChatList()
+            ChatList(showModal: $showModal)
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView()
@@ -36,7 +37,9 @@ struct HomeView: View {
         .background(Color(hex: "F9F7EF"))
         .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
       }// NavigationView
-    }// VStack
+      ModalView(isShowing: $showModal)
+      
+    }// ZStack
   }
 }
 

@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatList: View {
   
   @ObservedObject var memberViewModel = MemberViewModel()
+  @Binding var showModal: Bool
   
   var body: some View {
 
@@ -17,6 +18,9 @@ struct ChatList: View {
       LazyVStack(spacing: 8) {
         ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
           ChatRow(member)
+            .onTapGesture {
+              self.showModal = true
+            }
         }
         
         
@@ -41,9 +45,9 @@ struct ChatList: View {
   }
 }
 
-
-struct ChatList_Previews: PreviewProvider {
-  static var previews: some View {
-    ChatList()
-  }
-}
+//
+//struct ChatList_Previews: PreviewProvider {
+//  static var previews: some View {
+//    ChatList()
+//  }
+//}

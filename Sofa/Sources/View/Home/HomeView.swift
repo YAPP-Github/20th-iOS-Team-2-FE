@@ -28,6 +28,10 @@ struct HomeView: View {
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
             ChatList(showModal: $showModal)
+              .fullScreenCover(isPresented: $showModal) {
+                ModalView(isShowing: $showModal)
+                  .background(BackgroundCleanerView())
+              }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView()
@@ -37,8 +41,11 @@ struct HomeView: View {
         .background(Color(hex: "F9F7EF"))
         .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
       }// NavigationView
-      ModalView(isShowing: $showModal)
-      
+      if showModal{
+        Color.black
+          .opacity(0.7)
+          .ignoresSafeArea()
+      }
     }// ZStack
   }
 }
@@ -47,4 +54,16 @@ struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
     HomeView()
   }
+}
+
+struct BackgroundCleanerView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }

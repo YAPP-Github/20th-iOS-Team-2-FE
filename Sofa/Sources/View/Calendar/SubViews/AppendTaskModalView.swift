@@ -11,9 +11,11 @@ struct AppendTaskModalView: View {
   
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
-  @State var title: String = ""
-  @State var memo: String = ""
+  @FocusState var isTitleFocused: Bool
+  @FocusState var isMemoFocused: Bool
   
+  @State private var title: String = ""
+  @State private var memo: String = ""
   @State private var allDayToggle = false
   
   init() {
@@ -67,6 +69,7 @@ struct AppendTaskModalView: View {
         
         ScrollView {
           LazyVStack(spacing: 0) {
+            
             // 제목
             Group {
               TextField("", text: $title)
@@ -76,47 +79,22 @@ struct AppendTaskModalView: View {
                     .foregroundColor(Color(hex: "121619").opacity(0.4))
                 }
                 .customTextField(padding: 12)
+                .disableAutocorrection(true)
                 .frame(height: 48)
-                .background(Color(hex: "FAF8F0"))
-                .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
+                .background(isTitleFocused ? Color.white : Color(hex: "FAF8F0"))
+                .highlightTextField(firstLineWidth: isTitleFocused ? 1 : 0, secondLineWidth: isTitleFocused ? 4 : 0)
                 .cornerRadius(6)
+                .focused($isTitleFocused)
+                .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
+                .modifier(DismissingKeyboard())
+                .onAppear {
+                  UIApplication.shared.hideKeyboard()
+                }
+              
             }
             
             // 색상
-            HStack(spacing: 0){
-              Circle()
-                .foregroundColor(Color(hex: "4CAF50"))
-                .overlay(
-                  Circle()
-                    .stroke(.black.opacity(0.05), lineWidth: 1)
-                )
-                .padding(3)
-                .overlay(
-                  Circle()
-                    .stroke(.black.opacity(0.05), lineWidth: 1)
-                )
-                .frame(width: 24, height: 24)
-                .padding(.leading, 16)
-              
-              Text("색상")
-                .font(.custom("Pretendard-Medium", size: 16))
-                .foregroundColor(Color(hex: "121619"))
-                .padding(.leading, 10)
-              
-              Spacer()
-              
-              Button(action: {
-                
-              }) {
-                Image(systemName: "chevron.right")
-                  .font(.system(size: 20))
-                  .frame(width: 24, height: 24)
-                  .foregroundColor(Color(.black).opacity(0.4))
-                  .padding(.trailing, 16)
-              }
-              
-            }
-            .padding(.bottom, 28)
+            TaskColorPicker()
             Rectangle()
               .frame(width:Screen.maxWidth, height: 1)
               .foregroundColor(Color(hex: "EDEADF"))
@@ -124,8 +102,10 @@ struct AppendTaskModalView: View {
               .frame(width: Screen.maxWidth, height: 7)
               .foregroundColor(Color(hex: "FAF8F0"))
             
-            // 하루종일, 날짜, 시간
+            
+            
             Group {
+              // 하루종일
               VStack(spacing: 0) {
                 HStack(spacing: 0) {
                   Image(systemName: "hourglass.tophalf.filled")
@@ -144,25 +124,13 @@ struct AppendTaskModalView: View {
                 GeneralDatePickerView()
                   .padding(.bottom, 12)
                 
-                HStack(spacing: 0) {
-                  Image(systemName: "clock")
-                    .font(.system(size: 20))
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(Color(hex:"4CAF50"))
-                    .padding(.trailing, 10)
-                  Text("시간")
-                    .font(.custom("Pretendard-Medium", size: 16))
-                    .foregroundColor(Color(hex: "121619"))
-                  Spacer()
-                  Text("오후 HH-MM")
-                    .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
-                    .font(.custom("Pretendard-Medium", size: 13))
-                    .foregroundColor(Color(hex: "121619"))
-                    .frame(height: 28, alignment: .center)
-                    .background(Color.black.opacity(0.02))
-                    .cornerRadius(4)
+                // 시간
+                if !allDayToggle {
+                  TaskTimePicker()
+                    .padding(.bottom, 27)
                 }
-              }.padding(EdgeInsets(top: 30, leading: 19.5, bottom: 27, trailing: 16))
+                
+              }.padding(EdgeInsets(top: 30, leading: 19.5, bottom: 0, trailing: 16))
               
               Rectangle()
                 .frame(width: Screen.maxWidth, height: 1)
@@ -182,8 +150,9 @@ struct AppendTaskModalView: View {
                   .foregroundColor(Color.white)
                 Rectangle()
                   .frame(height: 128)
-                  .foregroundColor(Color(hex: "FAF8F0"))
+                  .foregroundColor(isMemoFocused ? Color.white : Color(hex: "FAF8F0"))
                   .cornerRadius(6)
+                  .highlightTextField(firstLineWidth: isMemoFocused ? 1 : 0, secondLineWidth: isMemoFocused ? 4 : 0)
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
                 TextEditor(text: $memo)
@@ -195,16 +164,17 @@ struct AppendTaskModalView: View {
                       .frame(height: 128, alignment: .topLeading)
                   }
                   .customTextField(padding: 9)
+                  .disableAutocorrection(true)
                   .foregroundColor(Color(hex: "121619"))
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                   .frame(height: 128, alignment: .center)
+                  .focused($isMemoFocused)
+                  .modifier(DismissingKeyboard())
               }
               Rectangle()
                 .frame(width:Screen.maxWidth, height: 1)
                 .foregroundColor(Color(hex: "EDEADF"))
-              
             }
-            
             Spacer()
           }
         }

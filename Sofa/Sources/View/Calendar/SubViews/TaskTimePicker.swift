@@ -1,5 +1,5 @@
 //
-//  tmpView.swift
+//  TaskTimePicker.swift
 //  Sofa
 //
 //  Created by 임주민 on 2022/07/05.
@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-struct GeneralDatePickerView: View {
+struct TaskTimePicker: View {
   
-  @State private var showDatePicker = false
-  @State var currentDate: Date = Date()
+  @State private var time = Date()
+  
+  @State private var showTimePicker = false
   
   var body: some View {
-    
-    VStack(spacing: 0) {
+    VStack{
       HStack(spacing: 0) {
-        Image(systemName: "calendar")
+        Image(systemName: "clock")
           .font(.system(size: 20))
           .frame(width: 24, height: 24)
           .foregroundColor(Color(hex:"4CAF50"))
           .padding(.trailing, 10)
-        Text("날짜")
+        Text("시간")
           .font(.custom("Pretendard-Medium", size: 16))
           .foregroundColor(Color(hex: "121619"))
         Spacer()
-        Text("\(currentDate.getFormattedDate(format: "yyyy-MM-dd"))")
+        Text("\(time.getFormattedDate(format: "a hh:MM"))")
           .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
           .font(.custom("Pretendard-Medium", size: 13))
           .foregroundColor(Color(hex: "#43A047"))
@@ -33,20 +33,23 @@ struct GeneralDatePickerView: View {
           .background(Color(hex: "#E8F5E9"))
           .cornerRadius(4)
           .onTapGesture {
-            withAnimation {
-            self.showDatePicker.toggle()
+            withAnimation{
+            self.showTimePicker.toggle()
             }
           }
-      }.padding(.bottom, 12)
-      if showDatePicker {
-        GeneralCalendar(currentDate: $currentDate)
+      }
+      if showTimePicker {
+        DatePicker(selection: $time, displayedComponents: .hourAndMinute) {}
+        .datePickerStyle(WheelDatePickerStyle())
+        .labelsHidden()
+        .frame(width: 358)
       }
     }
   }
 }
 
-struct GeneralDatePickerView_Previews: PreviewProvider {
+struct TaskTimePicker_Previews: PreviewProvider {
   static var previews: some View {
-    GeneralDatePickerView()
+    TaskTimePicker()
   }
 }

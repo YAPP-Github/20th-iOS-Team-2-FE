@@ -1,16 +1,16 @@
 PODS:
   - Alamofire (5.6.1)
-  - KakaoSDKAuth (2.9.1):
-    - KakaoSDKCommon (= 2.9.1)
-  - KakaoSDKCommon (2.9.1):
-    - KakaoSDKCommon/Common (= 2.9.1)
-    - KakaoSDKCommon/Network (= 2.9.1)
-  - KakaoSDKCommon/Common (2.9.1)
-  - KakaoSDKCommon/Network (2.9.1):
+  - KakaoSDKAuth (2.11.0):
+    - KakaoSDKCommon (= 2.11.0)
+  - KakaoSDKCommon (2.11.0):
+    - KakaoSDKCommon/Common (= 2.11.0)
+    - KakaoSDKCommon/Network (= 2.11.0)
+  - KakaoSDKCommon/Common (2.11.0)
+  - KakaoSDKCommon/Network (2.11.0):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.9.1)
-  - KakaoSDKUser (2.9.1):
-    - KakaoSDKAuth (= 2.9.1)
+    - KakaoSDKCommon/Common (= 2.11.0)
+  - KakaoSDKUser (2.11.0):
+    - KakaoSDKAuth (= 2.11.0)
   - lottie-ios (3.3.0)
   - SwiftKeychainWrapper (4.0.1)
 
@@ -32,9 +32,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
-  KakaoSDKAuth: 8ec514e64f57f405735e92483fdae1cc2830d351
-  KakaoSDKCommon: c4b08131fdba6770a280ffe83916048174f329bf
-  KakaoSDKUser: 3b82c8f4b7bdd8584b296cf91d1be4b4a84102fb
+  KakaoSDKAuth: b9470887e42b869725b391f4af34c4aaec42ea46
+  KakaoSDKCommon: 0f59f2c1aead6012d92758e8ca46b63ea11c408b
+  KakaoSDKUser: 5dbefe494c50dfdc87e4072710e503d39b41a609
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 

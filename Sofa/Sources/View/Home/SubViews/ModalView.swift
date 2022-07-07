@@ -30,9 +30,11 @@ struct ModalView: View {
           .transition(.move(edge: .bottom))
           .onAppear{
             UITabBar.hideTabBar(animated: false)
+            self.page.index = 0 // 처음 시작은 무조건 0번째부터
           }
           .onDisappear{
             UITabBar.showTabBar(animated: true)
+            self.page.index = 0 // 처음 시작은 무조건 0번째부터
           }
       }
     }
@@ -69,7 +71,7 @@ struct ModalView: View {
             Image("lionprofile")
               .resizable()
               .frame(width: 51, height: 52.5)
-              .padding(EdgeInsets(top: 10.5, leading: 14.5, bottom: 27, trailing: 5))
+              .padding(EdgeInsets(top: 10.5, leading: 14.5, bottom: 0, trailing: 8))
             VStack(alignment: .leading){
               HStack(alignment: .center){
                 Text("\(historyViewModel.info.nickname)")
@@ -97,7 +99,7 @@ struct ModalView: View {
           }// HStack
           Divider()
             .overlay(Color(hex: "EDEADF"))
-            .offset(x:0, y: -30)
+            .offset(x:0, y: 0)
           //MARK: - Pager
           VStack{
             Pager(page: self.page,
@@ -110,7 +112,7 @@ struct ModalView: View {
                   .contentLoadingPolicy(.eager)
             //                  .itemSpacing(10)
           }
-          .offset(x: 0, y: -20)
+          .offset(x: 0, y: 16)
           HStack(alignment: .center){
             Button {
               withAnimation {
@@ -148,6 +150,8 @@ struct ModalView: View {
               }
               
             }
+
+            
             Spacer()
             
             Button {
@@ -225,17 +229,17 @@ struct ModalView: View {
   func pageView(_ history: History) -> some View {
     Rectangle()
       .overlay(
-        VStack{
+        VStack(alignment: .center){
           Text("\(history.descriptionContent)")
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(Color.black)
-            .padding(.horizontal, 26)
+            .padding(.horizontal, 25)
           
           Spacer()
         }
       )
       .foregroundColor(Color.white)
-    
+      
   }
   
 }

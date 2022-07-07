@@ -8,24 +8,16 @@
 import SwiftUI
 
 struct TaskColorPicker: View {
-
-  @State private var isClicked = false
-  @State private var showColorPicker = false
-  @State private var currentColor: String = "4CAF50"
   
-  @State private var isGreenClicked = false
-  @State private var isLightGreenClicked = false
-  @State private var isAmberClicked = false
-  @State private var isBlueClicked = false
-  @State private var isCyanClicked = false
-  @State private var isPurpleClicked = false
-  /// 배열로 다시 해보기....
+  @State private var isButtonClicked = false
+  @State private var showColorPicker = false
+  @State private var selectedColor: String = "#4CAF50"
   
   var body: some View {
     VStack(spacing: 0){
       HStack(spacing: 0){
         Circle()
-          .foregroundColor(Color(hex: currentColor))
+          .foregroundColor(Color(hex: selectedColor))
           .overlay(
             Circle()
               .stroke(.black.opacity(0.05), lineWidth: 1)
@@ -47,165 +39,19 @@ struct TaskColorPicker: View {
         Button(action: {
           withAnimation {
             self.showColorPicker.toggle()
-            self.isClicked.toggle()
+            self.isButtonClicked.toggle()
           }
         }) {
-          Image(systemName: self.isClicked ? "chevron.down" : "chevron.right" )
+          Image(systemName: self.isButtonClicked ? "chevron.down" : "chevron.right" )
             .font(.system(size: 20))
             .frame(width: 24, height: 24)
-            .foregroundColor(self.isClicked ? Color(hex: "#121619") : Color(.black).opacity(0.4) )
+            .foregroundColor(self.isButtonClicked ? Color(hex: "#121619") : Color(.black).opacity(0.4) )
         }
       }
       
       if showColorPicker {
-        HStack {
-          Group{
-            // TODO: - circle을 따로 뷰로 만들고 바인딩된 값으로 다시 해보기
-          Circle()
-            .foregroundColor(Color(hex: "4CAF50"))
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .padding(5)
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .frame(width: 28, height: 28)
-            .highlightColor(lineWidth: isGreenClicked ? 4 : 0 )
-            .onTapGesture {
-              self.currentColor = "4CAF50"
-              self.isGreenClicked = true
-              self.isAmberClicked = false
-              self.isLightGreenClicked = false
-              self.isBlueClicked = false
-              self.isCyanClicked = false
-              self.isPurpleClicked = false
-            }
-          Spacer()
-          }
-          
-          Circle()
-            .foregroundColor(Color(hex: "#8BC34A"))
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .padding(5)
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .frame(width: 28, height: 28)
-            .highlightColor(lineWidth: isLightGreenClicked ? 4 : 0 )
-            .onTapGesture {
-              self.currentColor = "#8BC34A"
-              self.isGreenClicked = false
-              self.isAmberClicked = false
-              self.isLightGreenClicked = true
-              self.isBlueClicked = false
-              self.isCyanClicked = false
-              self.isPurpleClicked = false
-            }
-          
-          Spacer()
-          Circle()
-            .foregroundColor(Color(hex: "#FFA000"))
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .padding(5)
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .frame(width: 28, height: 28)
-            .highlightColor(lineWidth: isAmberClicked ? 4 : 0 )
-            .onTapGesture {
-              self.currentColor = "#FFA000"
-              self.isGreenClicked = false
-              self.isLightGreenClicked = false
-              self.isAmberClicked = true
-              self.isBlueClicked = false
-              self.isCyanClicked = false
-              self.isPurpleClicked = false
-            }
-          Spacer()
-          
-          Circle()
-            .foregroundColor(Color(hex: "#4589FF"))
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .padding(5)
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .frame(width: 28, height: 28)
-            .highlightColor(lineWidth: isBlueClicked ? 4 : 0 )
-            .onTapGesture {
-              self.currentColor = "#4589FF"
-              self.isGreenClicked = false
-              self.isLightGreenClicked = false
-              self.isAmberClicked = false
-              self.isBlueClicked = true
-              self.isCyanClicked = false
-              self.isPurpleClicked = false
-            }
-          Spacer()
-          
-          Circle()
-            .foregroundColor(Color(hex: "#0072C3"))
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .padding(5)
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .frame(width: 28, height: 28)
-            .highlightColor(lineWidth: isCyanClicked ? 4 : 0 )
-            .onTapGesture {
-              self.currentColor = "#0072C3"
-              self.isGreenClicked = false
-              self.isLightGreenClicked = false
-              self.isAmberClicked = false
-              self.isBlueClicked = false
-              self.isCyanClicked = true
-              self.isPurpleClicked = false
-            }
-          Spacer()
-          
-          Circle()
-            .foregroundColor(Color(hex: "#A56EFF"))
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .padding(5)
-            .overlay(
-              Circle()
-                .stroke(.black.opacity(0.05), lineWidth: 1)
-            )
-            .frame(width: 28, height: 28)
-            .highlightColor(lineWidth: isPurpleClicked ? 4 : 0 )
-            .onTapGesture {
-              self.currentColor = "#A56EFF"
-              self.isGreenClicked = false
-              self.isLightGreenClicked = false
-              self.isAmberClicked = false
-              self.isBlueClicked = false
-              self.isCyanClicked = false
-              self.isPurpleClicked = true
-            }
-        }
-        .padding(.top, 24)
+        ColorCircles(selectedColor: $selectedColor)
+          .padding(.top, 24)
         
         Rectangle()
           .foregroundColor(Color(hex: "#EDEADF"))
@@ -226,6 +72,5 @@ struct TaskColorPicker: View {
 struct TaskColorPicker_Previews: PreviewProvider {
   static var previews: some View {
     TaskColorPicker()
-   // AppendTaskModalView()
   }
 }

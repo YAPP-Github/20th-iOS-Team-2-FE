@@ -53,4 +53,35 @@ public extension View {
   func pinchToZoom() -> some View {
     self.modifier(PinchToZoom())
   }
+  
+  // TextField 커스텀 플레이스 홀더
+  func placeholder<PlaceHolderText: View>(shouldShow: Bool,
+                                             alignment: Alignment = .leading,
+                                             @ViewBuilder placeholderText: () -> PlaceHolderText
+  ) -> some View{
+    ZStack(alignment: alignment) {
+      placeholderText().opacity(shouldShow ? 1 : 0)
+      self
+    }
+  }
+  
+  // TextField padding 조정
+  func customTextField(color: Color = .secondary, padding: CGFloat = 3, lineWidth: CGFloat = 0.0) -> some View { // <- Default settings
+    self.modifier(TextFieldModifier(color: color, padding: padding, lineWidth: lineWidth))
+  }
+}
+
+// TextField padding 조정
+struct TextFieldModifier: ViewModifier {
+  let color: Color
+  let padding: CGFloat // <- space between text and border
+  let lineWidth: CGFloat
+
+  func body(content: Content) -> some View {
+    content
+      .padding(padding)
+      .overlay(RoundedRectangle(cornerRadius: padding)
+                .stroke(color, lineWidth: lineWidth)
+      )
+  }
 }

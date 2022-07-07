@@ -26,6 +26,7 @@ struct ModalView: View {
           .opacity(0.7)
           .onTapGesture {
             isShowing = false
+            self.animationFlag = true
           }
         mainView
           .transition(.move(edge: .bottom))
@@ -40,6 +41,7 @@ struct ModalView: View {
   //MARK: - mainView
   @StateObject var page: Page = .first()
   @ObservedObject var historyViewModel = HistoryViewModel()
+  @State private var animationFlag = true // 하단 Pager 버튼 Animation Control
   
   var numbers: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   
@@ -97,17 +99,17 @@ struct ModalView: View {
                   data: self.historyViewModel.history.indices,
                   id: \.self) { index in
               self.pageView(historyViewModel.history[index])
-
             }
                   .contentLoadingPolicy(.eager)
-//                  .itemSpacing(10)
+            //                  .itemSpacing(10)
           }
           .offset(x: 0, y: -20)
           HStack(alignment: .center){
             Button {
               print("left")
               withAnimation {
-                  self.page.update(.previous)
+                self.page.update(.previous)
+                self.animationFlag = false
               }
             } label: {
               Image(systemName: "chevron.left")
@@ -118,7 +120,7 @@ struct ModalView: View {
             Spacer()
             
             HStack{
-              if !isShowing{
+              if !animationFlag{
                 Group{
                   Text("\(self.page.index+1)")
                   Text("/")
@@ -138,14 +140,15 @@ struct ModalView: View {
                 }
                 .font(.custom("Pretendard-Medium", size: 20))
               }
-
+              
             }
             Spacer()
             
             Button {
               print("right")
               withAnimation {
-                  self.page.update(.next)
+                self.page.update(.next)
+                self.animationFlag = false
               }
             } label: {
               Image(systemName: "chevron.right")
@@ -159,7 +162,7 @@ struct ModalView: View {
           Spacer()
             .frame(height: 34)
         }//VStack
-
+        
         
       }
       .frame(maxHeight: .infinity)
@@ -222,12 +225,12 @@ struct ModalView: View {
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(Color.black)
             .padding(.horizontal, 26)
-
+          
           Spacer()
         }
       )
       .foregroundColor(Color.white)
-
+    
   }
   
 }

@@ -22,6 +22,10 @@ public extension View {
     return self.modifier(NavigationBarInlineStyle(isNextClick: isNextClick, isDisalbeNextButton: isDisalbeNextButton, title: title, buttonColor: buttonColor))
   }
   
+  func homenavigationBarStyle(isButtonClick: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: Binding<String>, _ buttonName: String) -> some View {
+    return self.modifier(HomeNavigationBarStyle(isButtonClick: isButtonClick, title: title, buttonName: buttonName, buttonColor: buttonColor))
+  }
+  
   /// 탭바 숨김 처리 여부
   /// - Parameter isHidden:
   /// - Returns:

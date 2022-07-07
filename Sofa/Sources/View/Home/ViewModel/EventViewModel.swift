@@ -14,6 +14,7 @@ class EventViewModel: ObservableObject{
   var subscription = Set<AnyCancellable>()
   
   @Published var events = [Event]()
+  @Published var hometitle: String = ""
   
   var baseUrl = ""
   
@@ -31,6 +32,19 @@ class EventViewModel: ObservableObject{
     
     guard let jsonString = try? String(contentsOfFile: path) else {
       return
+    }
+    
+    if let homedata = jsonString.data(using: .utf8){
+      Just(homedata)
+        .decode(type: HomeInfo.self, decoder: JSONDecoder())
+        .map{ $0.familyName }
+        .sink(receiveCompletion: { completion in
+//          print("데이터스트림 완료")
+          
+        }, receiveValue: { receivedValue in
+//          print("받은 값: \(receivedValue.count)")
+          self.hometitle = receivedValue
+        }).store(in: &subscription)
     }
     
     if let data = jsonString.data(using: .utf8){

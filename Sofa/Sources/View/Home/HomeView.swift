@@ -39,7 +39,8 @@ struct HomeView: View {
             .padding(.horizontal, 23)
         }// VStack
         .background(Color(hex: "F9F7EF"))
-        .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
+        .homenavigationBarStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), $eventViewModel.hometitle, "bell")
+
       }// NavigationView
       if showModal{
         Color.black

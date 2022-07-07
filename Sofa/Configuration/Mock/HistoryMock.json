@@ -1,0 +1,38 @@
+{
+  "nickname" : "닉네임",
+  "roleInFamily" : "엄마",
+  "profileLink" : "https://...",
+  "count" : 24,
+  "history" : [
+    {
+      "messsageId" : 1,
+      "content" : "지구는 우리 은하의 오리온자리 나선팔에 위치한",
+      "createdDate" : "2022-12-25"
+    },
+    {
+      "messsageId" : 2,
+      "content" : "달의 내부는 크게 표현, 맨틀, 핵, 이렇게 세 부분으로",
+      "createdDate" : "2022-12-13"
+    },
+    {
+      "messsageId" : 3,
+      "content" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "createdDate" : "2022-12-13"
+    },
+    {
+      "messsageId" : 4,
+      "content" : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "createdDate" : "2022-12-13"
+    },
+    {
+      "messsageId" : 5,
+      "content" : "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. ",
+      "createdDate" : "2022-12-13"
+    },
+    {
+      "messsageId" : 6,
+      "content" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
+      "createdDate" : "2022-12-13"
+    },
+  ]
+}

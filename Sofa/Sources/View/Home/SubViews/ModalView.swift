@@ -17,8 +17,6 @@ struct ModalView: View {
   let minHeight: CGFloat = Screen.maxHeight / 2
   let maxHeight: CGFloat = Screen.maxHeight * 0.9
   
-  
-  
   var body: some View {
     ZStack(alignment: .bottom){
       if isShowing{
@@ -30,6 +28,12 @@ struct ModalView: View {
           }
         mainView
           .transition(.move(edge: .bottom))
+          .onAppear{
+            UITabBar.hideTabBar(animated: false)
+          }
+          .onDisappear{
+            UITabBar.showTabBar(animated: true)
+          }
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

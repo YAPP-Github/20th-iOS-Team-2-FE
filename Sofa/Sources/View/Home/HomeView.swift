@@ -25,11 +25,7 @@ struct HomeView: View {
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
-            ChatList()
-              .onTapGesture {
-                self.showModal = true
-                UITabBar.hideTabBar(animated: false)
-              }
+            ChatList(showModal: $showModal)
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView()
@@ -40,9 +36,7 @@ struct HomeView: View {
         .navigationBarWithIconButtonStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), "우리가족 공간", "bell")
       }// NavigationView
       ModalView(isShowing: $showModal)
-        .onDisappear {
-          UITabBar.showTabBar(animated: false)
-        }
+      
     }// ZStack
   }
 }

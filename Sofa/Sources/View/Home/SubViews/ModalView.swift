@@ -37,8 +37,10 @@ struct ModalView: View {
   }
   
   
-  //MARK: -mainView
+  //MARK: - mainView
   @StateObject var page: Page = .first()
+  @ObservedObject var historyViewModel = HistoryViewModel()
+  
   var numbers: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   
   var mainView: some View{
@@ -92,9 +94,9 @@ struct ModalView: View {
           //MARK: - Pager
           VStack{
             Pager(page: self.page,
-                  data: self.numbers,
-                  id: \.self) {
-              self.pageView($0)
+                  data: self.historyViewModel.history.indices,
+                  id: \.self) { index in
+              self.pageView(historyViewModel.history[index])
 
             }
                   .contentLoadingPolicy(.eager)
@@ -122,7 +124,7 @@ struct ModalView: View {
                 Text("\(self.page.index+1)")
                 Text("/")
                   .foregroundColor(Color(hex: "C2C1C1"))
-                Text("\(numbers.count)")
+                Text("\(historyViewModel.history.count)")
                   .foregroundColor(Color(hex: "C2C1C1"))
               }
               .font(.custom("Pretendard-Medium", size: 20))
@@ -139,7 +141,7 @@ struct ModalView: View {
             } label: {
               Image(systemName: "chevron.right")
                 .font(.system(size: 20))
-                .foregroundColor(self.page.index >= self.numbers.count - 1 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
+                .foregroundColor(self.page.index >= self.historyViewModel.history.count - 1 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
             }
             
           }// Page Button
@@ -203,11 +205,11 @@ struct ModalView: View {
   }
   
   //MARK: - pageView
-  func pageView(_ number: Int) -> some View {
+  func pageView(_ history: History) -> some View {
     Rectangle()
       .overlay(
         VStack{
-          Text("\(number) \(number) \(number) \(number) 지구는 우리 은하의 오리온자리 나선팔에 위치한 태양계를 구성하는 행성 중 하나로, 태양의 세 번째 궤도를 돌고 있다. 현재까지 과학적으로 알려진 바로는, 생명체와 지성체가 세운 문명이 존재하는 것이 입증된 유일한 천체로 인류가 살아 숨쉬다.")
+          Text("\(history.descriptionContent)")
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(Color.black)
             .padding(.horizontal, 26)

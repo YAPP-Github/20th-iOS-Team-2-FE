@@ -42,6 +42,10 @@
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
 		0AC79182286AF1440034A830 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC79181286AF1440034A830 /* EmojiView.swift */; };
 		0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC79184286B0AE00034A830 /* ConfettiSwiftUI */; };
+		0AE4919A28740D1A00341D35 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4919928740D1A00341D35 /* ModalView.swift */; };
+		0AE492022876A8DC00341D35 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE492012876A8DC00341D35 /* HistoryViewModel.swift */; };
+		0AE492042876A8F600341D35 /* HistoryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AE492032876A8F600341D35 /* HistoryMock.json */; };
+		0AE492062876A9B000341D35 /* HistoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE492052876A9B000341D35 /* HistoryInfo.swift */; };
 		187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */; };
 		6F0974352861E53A0000956C /* CalendarTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0974342861E53A0000956C /* CalendarTask.swift */; };
 		6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E523284B9CF00069D268 /* AlbumView.swift */; };
@@ -71,6 +75,9 @@
 		C4667A40284B6FF400A4A759 /* SofaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A3F284B6FF400A4A759 /* SofaTests.swift */; };
 		C4667A4A284B6FF400A4A759 /* SofaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A49284B6FF400A4A759 /* SofaUITests.swift */; };
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
+		C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */; };
+		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
+		C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -91,6 +98,7 @@
 		C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9799928682DF800326ABC /* RecordAuthorization.swift */; };
 		C4A9799C286861D800326ABC /* PhotoAlbumAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9799B286861D800326ABC /* PhotoAlbumAuthorization.swift */; };
 		C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A12869E40F00326ABC /* ToastMessage.swift */; };
+		C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
@@ -169,6 +177,10 @@
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		0AC79181286AF1440034A830 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		0AE4919928740D1A00341D35 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		0AE492012876A8DC00341D35 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		0AE492032876A8F600341D35 /* HistoryMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HistoryMock.json; sourceTree = "<group>"; };
+		0AE492052876A9B000341D35 /* HistoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInfo.swift; sourceTree = "<group>"; };
 		1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBE8172BD1C8B15C2F363BF /* Pods-SofaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.release.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A02CB536760CF657C4244F9 /* Pods-Sofa-SofaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa-SofaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +220,9 @@
 		C4667A45284B6FF400A4A759 /* SofaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A49284B6FF400A4A759 /* SofaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITests.swift; sourceTree = "<group>"; };
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailNavigationBar.swift; sourceTree = "<group>"; };
+		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailSettingBar.swift; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -228,6 +243,7 @@
 		C4A9799928682DF800326ABC /* RecordAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAuthorization.swift; sourceTree = "<group>"; };
 		C4A9799B286861D800326ABC /* PhotoAlbumAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumAuthorization.swift; sourceTree = "<group>"; };
 		C4A979A12869E40F00326ABC /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
+		C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailView.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
@@ -303,6 +319,7 @@
 				0AAB371928674DF200A47B24 /* ChatList.swift */,
 				0AC79181286AF1440034A830 /* EmojiView.swift */,
 				0AAB371F28675A5A00A47B24 /* LabelView.swift */,
+				0AE4919928740D1A00341D35 /* ModalView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -321,6 +338,7 @@
 			children = (
 				0AAB36F22865F32400A47B24 /* EventViewModel.swift */,
 				0A2887F12870A646000A72F2 /* ChatViewModel.swift */,
+				0AE492012876A8DC00341D35 /* HistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -381,6 +399,7 @@
 				C4667A84284BA97000A4A759 /* SubViews */,
 				C495F60F285B5F69009B3BDE /* ViewModel */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
+				C4A979A3286AE88E00326ABC /* AlbumImageDetailView */,
 				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
 				C495F60228571F51009B3BDE /* AlbumRecordAddView */,
 				C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */,
@@ -400,6 +419,7 @@
 				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
 				6F0974342861E53A0000956C /* CalendarTask.swift */,
 				6F964BB02875D2FC007FD6B1 /* Color.swift */,
+				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -597,6 +617,40 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		C481B6B42875D4BA005D6831 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6B52875D4C9005D6831 /* NavigaionBar */,
+				C481B6BF287607B1005D6831 /* SettingBar */,
+				C481B6BA2875FCF8005D6831 /* Blur */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C481B6B52875D4C9005D6831 /* NavigaionBar */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */,
+			);
+			path = NavigaionBar;
+			sourceTree = "<group>";
+		};
+		C481B6BA2875FCF8005D6831 /* Blur */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6BB2875FD0A005D6831 /* Blur.swift */,
+			);
+			path = Blur;
+			sourceTree = "<group>";
+		};
+		C481B6BF287607B1005D6831 /* SettingBar */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */,
+			);
+			path = SettingBar;
+			sourceTree = "<group>";
+		};
 		C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,6 +770,15 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
+		C4A979A3286AE88E00326ABC /* AlbumImageDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */,
+				C481B6B42875D4BA005D6831 /* SubViews */,
+			);
+			path = AlbumImageDetailView;
+			sourceTree = "<group>";
+		};
 		C4B8F2932850DA0E0000B8CB /* ActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,6 +809,7 @@
 				0AAB368328642AC500A47B24 /* HomeInfoMock.json */,
 				C4B8F2BB285289A20000B8CB /* MockData.swift */,
 				0A2887F32870A69F000A72F2 /* ChatInfoMock.json */,
+				0AE492032876A8F600341D35 /* HistoryMock.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -920,6 +984,7 @@
 				0A2887F42870A69F000A72F2 /* ChatInfoMock.json in Resources */,
 				0A4CFB9D285F85C8000603A5 /* Pretendard-Regular.otf in Resources */,
 				0A4CFB99285F85C8000603A5 /* Pretendard-Bold.otf in Resources */,
+				0AE492042876A8F600341D35 /* HistoryMock.json in Resources */,
 				0A4CFB9B285F85C8000603A5 /* Pretendard-ExtraLight.otf in Resources */,
 				0A4CFB9F285F8706000603A5 /* LibreBaskerville-Bold.ttf in Resources */,
 				0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */,
@@ -1073,11 +1138,13 @@
 				C495F5F12855C3AA009B3BDE /* AlbumTypeRow.swift in Sources */,
 				6FE6D78928619A1D00E3C21E /* CustomDatePicker.swift in Sources */,
 				C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */,
+				0AE492022876A8DC00341D35 /* HistoryViewModel.swift in Sources */,
 				0AAB36812864287E00A47B24 /* EventRow.swift in Sources */,
 				6FC854012874522900988A44 /* TaskColorPicker.swift in Sources */,
 				0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */,
 				6F22E528284B9D050069D268 /* SettingsView.swift in Sources */,
 				C495F5EB2854F594009B3BDE /* Photo.swift in Sources */,
+				C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */,
 				C4B8F2AC2851CB0E0000B8CB /* Ex+UIView.swift in Sources */,
 				0A223B72285F75D6002203ED /* CustomText.swift in Sources */,
 				6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */,
@@ -1085,6 +1152,7 @@
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
+				0AE4919A28740D1A00341D35 /* ModalView.swift in Sources */,
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				0A4CFB8B285F79AB000603A5 /* Ex+Font.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
@@ -1092,6 +1160,7 @@
 				C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */,
 				0AAB367C2863816300A47B24 /* EventList.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
+				C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */,
 				6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				0A2B55092858779D006F816C /* View.swift in Sources */,
@@ -1099,11 +1168,13 @@
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,
 				C4A9795B286067E200326ABC /* AudioRecorderURLViewModel.swift in Sources */,
 				0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */,
+				C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */,
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,
 				6F7340BC28741A4800707AB7 /* GeneralDatePickerView.swift in Sources */,
 				C4B8F2A82851CAD50000B8CB /* HiddenTabBar.swift in Sources */,
 				C4B8F2AE2851CB1F0000B8CB /* Ex+UITabBar.swift in Sources */,
 				6F22E532284B9D330069D268 /* Network.swift in Sources */,
+				0AE492062876A9B000341D35 /* HistoryInfo.swift in Sources */,
 				6F22E53E284B9D640069D268 /* Constants.swift in Sources */,
 				C4A9799C286861D800326ABC /* PhotoAlbumAuthorization.swift in Sources */,
 				C4B8F2AA2851CAF80000B8CB /* Ex+View.swift in Sources */,
@@ -1119,6 +1190,7 @@
 				0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */,
 				6F7340BF28741F6F00707AB7 /* TaskMetaData.swift in Sources */,
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
+				C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */,
 				C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */,
 				6F964BB12875D2FC007FD6B1 /* Color.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
@@ -1301,7 +1373,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = B4G53F63TN;
+				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;
@@ -1334,7 +1406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = B4G53F63TN;
+				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;

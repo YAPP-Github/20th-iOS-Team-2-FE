@@ -75,8 +75,17 @@ public extension View {
     self.modifier(RectangleHighlightedViewModifier(firstLineWidth: firstLineWidth, secondLineWidth: secondLineWidth))
   }
   
+  // Circle 선택 시 하이라이트 기능
   func highlightColor(lineWidth: CGFloat) -> some View {
     self.modifier(CircleHighlightedViewModifier(lineWidth: lineWidth))
+  }
+ 
+  // animation 비활성화
+  func animationsDisabled() -> some View {
+      return self.transaction { (tx: inout Transaction) in
+          tx.disablesAnimations = true
+          tx.animation = nil
+      }.animation(nil)
   }
 }
 
@@ -108,6 +117,7 @@ struct RectangleHighlightedViewModifier: ViewModifier {
   }
 }
 
+// Circle 선택 시 하이라이트 기능
 struct CircleHighlightedViewModifier: ViewModifier {
   var lineWidth: CGFloat
   

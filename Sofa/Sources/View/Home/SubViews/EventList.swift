@@ -20,12 +20,14 @@ struct EventList: View {
           id: \.self,
           content: { index in
       // create a page based on the data passed
-      EventRow(eventViewModel.events[index])
+      if eventViewModel.events.count > 0 {
+        EventRow(eventViewModel.events[index])
+      }
     })
     .onPageChanged({ (newIndex) in
       if newIndex == 0 {
         withAnimation {
-          self.alignment = .justified
+          self.alignment = .start
         }
       }
       else if newIndex == eventViewModel.events.count {
@@ -42,9 +44,15 @@ struct EventList: View {
     })
     .alignment(PositionAlignment(alignment: self.alignment))
     .singlePagination(ratio: 0.33, sensitivity: .high)
-    .preferredItemSize(CGSize(width: Screen.maxWidth - 72, height: 100))
     .itemSpacing(16)
-    .background(Color(hex: "#F5F2E9"))
+    .preferredItemSize(CGSize(width: eventViewModel.events.count > 1 ? Screen.maxWidth - 72 : Screen.maxWidth - 32, height: 100))
+    .animation(.default)
+//    .background(Color(hex: "#F5F2E9"))
+    .onTapGesture { // Delete Test
+      if eventViewModel.events.count > 0{
+        eventViewModel.events.remove(at: 0)
+      }
+    }
   }
 }
 

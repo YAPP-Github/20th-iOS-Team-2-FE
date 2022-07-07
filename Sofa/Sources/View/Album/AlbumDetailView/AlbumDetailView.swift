@@ -21,7 +21,7 @@ struct AlbumDetailView: View {
   
   @State var isCommentClick: Bool = false   // 댓글
   @State var isEllipsisClick: Bool = false  // 설정
-  @State var isUpdateDate: Bool = false  // 설정
+  @State var isUpdateDate: Bool = false  // 날짜 수정
   let info = MockData().albumDetail
   
   var actionSheetView: some View {

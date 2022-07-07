@@ -52,6 +52,7 @@
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
 		C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */; };
 		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
+		C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -172,6 +173,7 @@
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailNavigationBar.swift; sourceTree = "<group>"; };
 		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailSettingBar.swift; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				C481B6B52875D4C9005D6831 /* NavigaionBar */,
+				C481B6BF287607B1005D6831 /* SettingBar */,
 				C481B6BA2875FCF8005D6831 /* Blur */,
 			);
 			path = SubViews;
@@ -557,6 +560,14 @@
 				C481B6BB2875FD0A005D6831 /* Blur.swift */,
 			);
 			path = Blur;
+			sourceTree = "<group>";
+		};
+		C481B6BF287607B1005D6831 /* SettingBar */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */,
+			);
+			path = SettingBar;
 			sourceTree = "<group>";
 		};
 		C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */ = {
@@ -1075,6 +1086,7 @@
 				C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */,
 				0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */,
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
+				C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */,
 				C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
@@ -1247,7 +1259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = B4G53F63TN;
+				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;
@@ -1279,7 +1291,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = B4G53F63TN;
+				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;

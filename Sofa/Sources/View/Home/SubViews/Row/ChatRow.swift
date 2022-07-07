@@ -19,6 +19,7 @@ struct ChatRow: View {
     HStack(alignment: .top){
       ZStack{
         Image("lionprofile")
+          .resizable()
           .frame(width: 51, height: 52.5)
         Text("👋")
           .font(.system(size: 20))

@@ -67,8 +67,9 @@ struct ModalView: View {
         VStack{
           HStack(alignment: .top){
             Image("lionprofile")
+              .resizable()
               .frame(width: 51, height: 52.5)
-              .padding(EdgeInsets(top: 10.5, leading: 10.5, bottom: 27, trailing: 14.5))
+              .padding(EdgeInsets(top: 10.5, leading: 14.5, bottom: 27, trailing: 5))
             VStack(alignment: .leading){
               HStack(alignment: .center){
                 Text("\(historyViewModel.info.nickname)")
@@ -91,7 +92,7 @@ struct ModalView: View {
                   .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
                 
               }
-              .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+              .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 14.5))
             }// VStack
           }// HStack
           Divider()

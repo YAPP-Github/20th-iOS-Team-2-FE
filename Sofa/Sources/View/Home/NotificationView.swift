@@ -30,23 +30,7 @@ struct NotificationView: View {
           .padding(EdgeInsets(top: 20, leading: 16, bottom: 12, trailing: 300))
           .background(Color.white)
           ForEach(0..<3) { notification in
-            HStack(alignment: .top){
-              Image("lionprofile")
-                .resizable()
-                .frame(width: 51, height: 52.5)
-                .padding(.horizontal, 10.5)
-              LabelView(text: "우리집 보스 님이 새로운 일정을 등록했습니다.")
-                .font(.custom("Pretendard-Bold", size: 14))
-                .foregroundColor(Color(hex: "121619"))
-                .frame(width: 200)
-                .frame(height: 40)
-                .padding(.horizontal, 4)
-              Text("방금 전")
-                .font(.custom("Pretendard-Medium", size: 13))
-                .foregroundColor(Color(hex: "A6A6A6"))
-                .padding(.horizontal, 8)
-            }
-            .frame(height: 64)
+            alarmRow(notification)
           }
           .toolbar {
             Button {
@@ -65,15 +49,31 @@ struct NotificationView: View {
     }// ScrollView
     .offset(x:0, y: 1)
   }
-  
-  var alarmRow: some View{
+  //MARK: - alarmRow
+    func alarmRow(_ notification: Int) ->some View{
     HStack(alignment: .top){
       Image("lionprofile")
         .resizable()
         .frame(width: 51, height: 52.5)
-        .padding(EdgeInsets(top: 10.5, leading: 14.5, bottom: 0, trailing: 8))
-      Text("우리집 보스 님이 새로운 일정을 등록했습니다.")
+        .padding(EdgeInsets(top: 0, leading: 14.5, bottom: 0, trailing: 14.5))
+      Spacer()
+//                .frame(width: 22.5)
+      LabelView(text: "우리집 보스 님이 새로운 일정을 등록했습니다.")
+        .font(.custom("Pretendard-Bold", size: 14))
+        .foregroundColor(Color(hex: "121619"))
+        .frame(height: 40)
+      
+      Spacer()
+        .frame(width: 8)
+      Text("방금 전")
+        .font(.custom("Pretendard-Medium", size: 13))
+        .foregroundColor(Color(hex: "A6A6A6"))
+        .frame(width: 60)
+        .padding(EdgeInsets(top: 3, leading: 0, bottom: 0, trailing: 5))
     }
+    .frame(width: Screen.maxWidth)
+    .frame(height: 64)
+    .background(Color.white)
   }
 }
 

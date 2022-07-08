@@ -59,9 +59,7 @@ struct NotificationView: View {
           .environment(\.locale, .init(identifier: "ko_KR"))
           .navigationBarTitleDisplayMode(.inline)
           .navigationTitle("알림")
-          //          .navigationBarItem(title: Text(""), titleDisplayMode: ., hidesBackButton: true)
-          //          .navigationBarWithTextButtonStyle(isNextClick: $gotoAlarmSetting, isDisalbeNextButton: .constant(false), "알림", nextText: "설정", Color.init(hex: "#43A047"))
-          //          .navigationBarBackButtonHidden(true)
+
         }
       }
     }
@@ -82,10 +80,4 @@ struct NotificationView_Previews: PreviewProvider {
   static var previews: some View {
     NotificationView()
   }
-}
-
-extension UINavigationController {
-    open override func viewWillLayoutSubviews() {
-        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "이전", style: .plain, target: nil, action: nil)
-    }
 }

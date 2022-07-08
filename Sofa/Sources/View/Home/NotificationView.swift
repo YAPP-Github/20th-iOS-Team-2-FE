@@ -62,7 +62,8 @@ struct NotificationView: View {
 
         }
       }
-    }
+    }// ScrollView
+    .offset(x:0, y: 1)
   }
   
   var alarmRow: some View{

@@ -10,7 +10,10 @@ import SwiftUI
 import UIKit
 
 extension UINavigationController { // Backbutton Custom
-    open override func viewWillLayoutSubviews() {
-        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "이전", style: .plain, target: nil, action: nil)
-    }
+  open override func viewWillLayoutSubviews() {
+    navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "이전", style: .plain, target: nil, action: nil)
+    navigationBar.barTintColor = .white
+    navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+    navigationBar.shadowImage = UIImage()
+  }
 }

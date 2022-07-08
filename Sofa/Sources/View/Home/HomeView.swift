@@ -21,7 +21,7 @@ struct HomeView: View {
             Text("\(eventViewModel.hometitle)")
               .font(.custom("Pretendard-Bold", size: 24))
             Spacer()
-            NavigationLink(destination: NotificationView()){
+            NavigationLink(destination: NotificationView().onAppear{UITabBar.hideTabBar(animated: false)}.onDisappear{UITabBar.showTabBar(animated: false)}){
               Image(systemName: "bell")
                 .resizable()
                 .foregroundColor(Color.black)
@@ -60,6 +60,9 @@ struct HomeView: View {
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
       }// NavigationView
+      .accentColor(Color(hex: "43A047"))
+      .environment(\.locale, .init(identifier: "ko_KR"))
+      
       if showModal{
         Color.black
           .opacity(0.7)
@@ -76,13 +79,13 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 struct BackgroundCleanerView: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView()
-        DispatchQueue.main.async {
-            view.superview?.superview?.backgroundColor = .clear
-        }
-        return view
+  func makeUIView(context: Context) -> UIView {
+    let view = UIView()
+    DispatchQueue.main.async {
+      view.superview?.superview?.backgroundColor = .clear
     }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
+    return view
+  }
+  
+  func updateUIView(_ uiView: UIView, context: Context) {}
 }

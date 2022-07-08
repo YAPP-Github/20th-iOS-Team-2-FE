@@ -13,6 +13,7 @@ extension UINavigationController { // Backbutton Custom
   open override func viewWillLayoutSubviews() {
     navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "이전", style: .plain, target: nil, action: nil)
     navigationBar.barTintColor = .white
+    // navigationBar 아래 line 투명하게
     navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     navigationBar.shadowImage = UIImage()
   }

@@ -45,6 +45,9 @@ struct ContentView: View {
         .tag(Tab.setting)
     }
     .accentColor(.black)
+    .onAppear {
+        UITabBar.appearance().backgroundColor = .white
+    }
   }
 }
 

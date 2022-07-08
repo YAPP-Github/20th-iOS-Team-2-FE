@@ -16,7 +16,7 @@ struct HomeView: View {
   var body: some View {
     ZStack {
       NavigationView {
-        VStack(spacing: 0){
+        VStack(spacing: 0){ // Custom Navigation View
           HStack{
             Text("\(eventViewModel.hometitle)")
               .font(.custom("Pretendard-Bold", size: 24))

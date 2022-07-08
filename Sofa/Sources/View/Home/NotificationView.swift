@@ -9,25 +9,30 @@ import SwiftUI
 
 struct NotificationView: View {
   @State var gotoAlarmSetting = false
+//  @Binding var tabbarHeight: Int
   var periodArr = ["오늘", "이번 주", "이번 달"]
   
   init() {
     UINavigationBar.appearance().backgroundColor = .white
+//    self._tabbarHeight = tabbarHeight
   }
   
   var body: some View {
     ScrollView {
-      LazyVStack(spacing: 1) {
+      LazyVStack(spacing: 0) {
         ForEach(periodArr, id: \.self) { period in
           Rectangle()
             .foregroundColor(Color(hex: "FAF8F0"))
-          HStack() {
+            .frame(height: 8)
+          HStack {
+            Spacer()
+              .frame(width: 16)
             Text("\(period)")
               .font(.custom("Pretendard-Bold", size: 13))
               .foregroundColor(Color(hex: "999899"))
             Spacer()
           }
-          .padding(EdgeInsets(top: 20, leading: 16, bottom: 12, trailing: 300))
+          .frame(height: 52)
           .background(Color.white)
           ForEach(0..<3) { notification in
             alarmRow(notification)
@@ -45,9 +50,16 @@ struct NotificationView: View {
           .navigationTitle("알림")
 
         }
+        Rectangle()
+          .foregroundColor(Color(hex: "FAF8F0"))
+          .frame(height: UIDevice().hasNotch ? 40 : 0)
       }
     }// ScrollView
-    .offset(x:0, y: 1)
+    .background(Color(hex: "FAF8F0"))
+    .padding(.top, 1) // ignoreSafeArea 적용 X
+    .padding(.bottom, 5)
+    .edgesIgnoringSafeArea([.bottom])
+
   }
   //MARK: - alarmRow
     func alarmRow(_ notification: Int) ->some View{

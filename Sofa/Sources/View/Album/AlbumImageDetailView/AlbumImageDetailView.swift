@@ -11,6 +11,10 @@ struct AlbumImageDetailView: View {
   @State var touchImage = false
   @State var isCommentClick: Bool = false   // 댓글
   @State var isEllipsisClick: Bool = false  // 설정
+  
+  // 다운로드
+  @State private var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+  
   @State var isUpdateDate: Bool = false  // 날짜 수정
   var image: UIImage
   var index: Int
@@ -20,6 +24,7 @@ struct AlbumImageDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          UIImageWriteToSavedPhotosAlbum(image, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {

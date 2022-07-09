@@ -35,7 +35,12 @@ struct NotificationView: View {
           .frame(height: 52)
           .background(Color.white)
           ForEach(0..<3) { notification in
-            alarmRow(notification)
+            NavigationLink {
+              AlbumImageDetailView(image: UIImage(imageLiteralResourceName: "photo01"), index: 0)
+            } label: {
+              alarmRow(notification)
+            }
+
           }
           .toolbar {
             Button {

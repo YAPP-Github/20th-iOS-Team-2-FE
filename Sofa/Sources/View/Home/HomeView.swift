@@ -12,6 +12,7 @@ struct HomeView: View {
   @ObservedObject var eventViewModel = EventViewModel()
   @State var gotoAlarm = false
   @State var showModal = false
+  @Binding var selectionType: Tab
   
   var body: some View {
     ZStack {
@@ -21,7 +22,7 @@ struct HomeView: View {
             Text("\(eventViewModel.hometitle)")
               .font(.custom("Pretendard-Bold", size: 24))
             Spacer()
-            NavigationLink(destination: NotificationView().onAppear{UITabBar.hideTabBar(animated: false)}.onDisappear{UITabBar.showTabBar(animated: false)}){
+            NavigationLink(destination: NotificationView().onAppear{UITabBar.hideTabBar(animated: false)}){
               Image(systemName: "bell")
                 .resizable()
                 .foregroundColor(Color.black)
@@ -39,7 +40,7 @@ struct HomeView: View {
           .background(.white)
           ScrollView{
             LazyVStack{
-              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start)
+              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType)
                 .frame(height: eventViewModel.events.count == 0 ? 0 : 64)
                 .padding(.vertical, eventViewModel.events.count == 0 ? 0 : 16)
             }
@@ -60,6 +61,9 @@ struct HomeView: View {
         }// VStack
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
+        .onAppear{
+          UITabBar.showTabBar(animated: false)
+        }
       }// NavigationView
       .accentColor(Color(hex: "43A047"))
       
@@ -75,7 +79,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
-    HomeView()
+    HomeView(selectionType: .constant(.home))
   }
 }
 

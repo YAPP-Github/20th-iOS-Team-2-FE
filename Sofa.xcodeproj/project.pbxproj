@@ -67,6 +67,7 @@
 		6FC854012874522900988A44 /* TaskColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC854002874522900988A44 /* TaskColorPicker.swift */; };
 		6FE6D78928619A1D00E3C21E /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */; };
 		6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D78A2861B1B100E3C21E /* DateValue.swift */; };
+		6FF836FD2879FDEB00B3A390 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
 		C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A30284B6FF200A4A759 /* ContentView.swift */; };
 		C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4667A32284B6FF400A4A759 /* Assets.xcassets */; };
@@ -206,6 +207,7 @@
 		6FC854002874522900988A44 /* TaskColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskColorPicker.swift; sourceTree = "<group>"; };
 		6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		6FE6D78A2861B1B100E3C21E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.debug.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -490,6 +492,7 @@
 				6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */,
 				6FC853C528743D8D00988A44 /* TaskTimePicker.swift */,
 				6FC854002874522900988A44 /* TaskColorPicker.swift */,
+				6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */,
 				6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */,
 			);
 			path = SubViews;
@@ -1164,6 +1167,7 @@
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,
 				C4A9795B286067E200326ABC /* AudioRecorderURLViewModel.swift in Sources */,
+				6FF836FD2879FDEB00B3A390 /* TaskDetailView.swift in Sources */,
 				0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */,
 				C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */,
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,

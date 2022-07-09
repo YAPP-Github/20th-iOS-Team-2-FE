@@ -20,20 +20,24 @@ struct ModalView: View {
   var body: some View {
     ZStack(alignment: .bottom){
       if isShowing{
-        Color.black
-          .opacity(0.7)
-          .onTapGesture {
-            isShowing = false
-            self.animationFlag = true
-          }
+        VStack {
+          Color.black
+            .opacity(0)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+          self.isShowing = false
+        }
         mainView
           .transition(.move(edge: .bottom))
           .onAppear{
-            UITabBar.hideTabBar(animated: false)
+//            UITabBar.hideTabBar(animated: false)
+            self.animationFlag = true
             self.page.index = 0 // 처음 시작은 무조건 0번째부터
+            
           }
           .onDisappear{
-            UITabBar.showTabBar(animated: true)
+//            UITabBar.showTabBar(animated: true)
             self.page.index = 0 // 처음 시작은 무조건 0번째부터
           }
       }

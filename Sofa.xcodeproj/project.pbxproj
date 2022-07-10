@@ -108,7 +108,6 @@
 		C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A12869E40F00326ABC /* ToastMessage.swift */; };
 		C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
-		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
 		C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */; };
 		C4B8F2A82851CAD50000B8CB /* HiddenTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2A72851CAD50000B8CB /* HiddenTabBar.swift */; };
@@ -261,7 +260,6 @@
 		C4A979A12869E40F00326ABC /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailView.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
-		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
 		C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTabBar.swift; sourceTree = "<group>"; };
 		C4B8F2A72851CAD50000B8CB /* HiddenTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTabBar.swift; sourceTree = "<group>"; };
@@ -847,7 +845,6 @@
 			children = (
 				C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */,
 				C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */,
-				C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */,
 			);
 			path = ActionSheet;
 			sourceTree = "<group>";
@@ -1192,7 +1189,6 @@
 				C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */,
 				C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */,
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
-				C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */,
 				C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */,
 				0AAB36F32865F32400A47B24 /* EventViewModel.swift in Sources */,
 				C481B6D7287ADEAB005D6831 /* CommentViewModel.swift in Sources */,

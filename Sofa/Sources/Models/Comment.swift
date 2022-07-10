@@ -22,7 +22,14 @@ struct Comment: Decodable {
     return Comment(profileLink: "", nickname: "별명", roleInFamily: "엄마", createdDate: "2022-07-04 20:20:00", content: "또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다 \n댓글에 \n계속 \n줄바꿈을 \n누를 \n때 \n별다른 \n제한은 \n없다.\n\n\n\n")
   }
   
+  // 마지막 공백 제거하여 반환
   var descriptionContent: String {
+    var content = content
+    
+    while content.hasSuffix("\n") {
+      content.removeLast()
+      content.removeLast()
+    }
     return "\(content)"
   }
   

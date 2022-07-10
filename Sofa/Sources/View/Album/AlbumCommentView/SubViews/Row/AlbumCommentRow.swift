@@ -38,7 +38,7 @@ struct AlbumCommentRow: View {
         }
         .padding(.top, 12)
         
-        Text("\(comment.content)") // 댓글
+        Text("\(comment.descriptionContent)") // 댓글
           .font(.custom("Pretendard-Medium", size: 14))
           .lineSpacing(5)
       }

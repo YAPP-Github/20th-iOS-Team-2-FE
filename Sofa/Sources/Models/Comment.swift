@@ -19,14 +19,28 @@ struct Comment: Decodable {
   var content: String
   
   static func getDummy() -> Self{
-    return Comment(profileLink: "", nickname: "별명", roleInFamily: "엄마", createdDate: "2022-07-03", content: "또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다 \n댓글에 \n계속 \n줄바꿈을 \n누를 \n때 \n별다른 \n제한은 \n없다.\n\n\n\n")
+    return Comment(profileLink: "", nickname: "별명", roleInFamily: "엄마", createdDate: "2022-07-04 20:20:00", content: "또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다 \n댓글에 \n계속 \n줄바꿈을 \n누를 \n때 \n별다른 \n제한은 \n없다.\n\n\n\n")
   }
   
-  var descriptionContent: String{
+  var descriptionContent: String {
     return "\(content)"
   }
   
-  var descriptionDate: String{
-    return "\(createdDate)"
+  // 시간 차이로 나타내기
+  var descriptionDate: String {
+    let diff = Date().timeIntervalSince(createdDate.toDate() ?? Date())
+    
+    switch diff {
+    case 0..<60:
+      return "방금 전"
+    case 60..<3600:
+      return "\(Int(diff/60))분 전"
+    case 3600..<86400: // 24시간 이전
+      return "\(Int(diff/3600))시간 전"
+    case 86400..<604800: // 이번주 내
+      return "\(Int(diff/86400))일 전"
+    default:
+      return createdDate.split(separator: " ").map{String($0)}.first!
+    }
   }
 }

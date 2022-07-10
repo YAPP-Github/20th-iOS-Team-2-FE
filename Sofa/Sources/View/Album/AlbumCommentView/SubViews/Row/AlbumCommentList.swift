@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlbumCommentList: View {
-  @ObservedObject var viewModel = CommentViewModel()
+  @StateObject var viewModel = CommentViewModel()
 
   var body: some View {
     ScrollView {

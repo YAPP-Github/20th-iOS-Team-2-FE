@@ -9,7 +9,11 @@ import SwiftUI
 
 struct AlbumImageDetailView: View {
   @State var touchImage = false
+  
+  // 댓글
   @State var isCommentClick: Bool = false   // 댓글
+  let isPreCommentClick: Bool // 이전 화면에서 댓글
+  
   @State var isEllipsisClick: Bool = false  // 설정
   
   // 다운로드
@@ -50,7 +54,7 @@ struct AlbumImageDetailView: View {
           Image(uiImage: image)
             .resizable()
             .scaledToFit()
-          //              .frame(width: Screen.maxWidth, height: Screen.maxHeight)
+          //              .frame(width: Screen.maxWidth, height: Screen.maxHeight) // 임시
             .pinchToZoom()
         }
         
@@ -77,6 +81,11 @@ struct AlbumImageDetailView: View {
         actionSheetView
           .background(BackgroundCleanerView())
       }
+      .onAppear {
+        if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
+          isCommentClick = true
+        }
+      }
     }
   }
 }
@@ -85,6 +94,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.elements[6]
     
-    AlbumImageDetailView(image: UIImage(named: data.link)!, index: 0)
+    AlbumImageDetailView(isPreCommentClick: false, image: UIImage(named: data.link)!, index: 0)
   }
 }

@@ -56,10 +56,11 @@ struct AlbumDetailView: View {
         AlbumDetailList(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick)
         
         // 이미지 click
-        NavigationLink("", destination: AlbumImageDetailView(image: selectImage, index: selectImageIndex), isActive: $isImageClick)
+        NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage, index: selectImageIndex), isActive: $isImageClick)
+        
         
         // 댓글 click
-        NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)
+        NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
       }
       .toastMessage(data: $messageData, isShow: $isBookmarkClick)
       .toastMessage(data: $messageData2, isShow: $isDownloadClick)

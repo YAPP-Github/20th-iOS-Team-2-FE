@@ -61,6 +61,7 @@ struct AlbumDetailRow: View {
         
         Button(action: {
           isCommentClick = true
+          selectImage = UIImage(named: info.link)!
           selectImageIndex = index
         }, label: {
           HStack(spacing: 8) {

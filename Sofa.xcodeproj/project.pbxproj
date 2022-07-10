@@ -66,11 +66,13 @@
 		6F7340BF28741F6F00707AB7 /* TaskMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */; };
 		6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */; };
 		6F9C988C2875A7CB0062BF84 /* Ex+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9C988B2875A7CB0062BF84 /* Ex+UIApplication.swift */; };
+		6FBCD633287ADA5100D874FD /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCD632287ADA5100D874FD /* RegisterView.swift */; };
 		6FC853C628743D8D00988A44 /* TaskTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC853C528743D8D00988A44 /* TaskTimePicker.swift */; };
 		6FC854012874522900988A44 /* TaskColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC854002874522900988A44 /* TaskColorPicker.swift */; };
 		6FE6D78928619A1D00E3C21E /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */; };
 		6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D78A2861B1B100E3C21E /* DateValue.swift */; };
 		6FF836FD2879FDEB00B3A390 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */; };
+		6FF83700287A1D2700B3A390 /* StepCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF836FF287A1D2700B3A390 /* StepCircles.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
 		C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A30284B6FF200A4A759 /* ContentView.swift */; };
 		C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4667A32284B6FF400A4A759 /* Assets.xcassets */; };
@@ -209,11 +211,13 @@
 		6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMetaData.swift; sourceTree = "<group>"; };
 		6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCircles.swift; sourceTree = "<group>"; };
 		6F9C988B2875A7CB0062BF84 /* Ex+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIApplication.swift"; sourceTree = "<group>"; };
+		6FBCD632287ADA5100D874FD /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		6FC853C528743D8D00988A44 /* TaskTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimePicker.swift; sourceTree = "<group>"; };
 		6FC854002874522900988A44 /* TaskColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskColorPicker.swift; sourceTree = "<group>"; };
 		6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		6FE6D78A2861B1B100E3C21E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
+		6FF836FF287A1D2700B3A390 /* StepCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCircles.swift; sourceTree = "<group>"; };
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.debug.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,6 +367,8 @@
 			isa = PBXGroup;
 			children = (
 				6F22E52B284B9D190069D268 /* WelcomeView.swift */,
+				6FBCD632287ADA5100D874FD /* RegisterView.swift */,
+				6FBCD631287ADA3200D874FD /* RegisterSubViews */,
 				0A026875284BA8B700E7AF4A /* LoginView.swift */,
 				0ABA0C1E2857A31B005F2C6A /* LoginSubViews */,
 			);
@@ -505,6 +511,14 @@
 				6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		6FBCD631287ADA3200D874FD /* RegisterSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				6FF836FF287A1D2700B3A390 /* StepCircles.swift */,
+			);
+			path = RegisterSubViews;
 			sourceTree = "<group>";
 		};
 		90164B8C881D23443C7F01C5 /* Frameworks */ = {
@@ -1178,6 +1192,7 @@
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,
 				C4A9795B286067E200326ABC /* AudioRecorderURLViewModel.swift in Sources */,
 				6FF836FD2879FDEB00B3A390 /* TaskDetailView.swift in Sources */,
+				6FBCD633287ADA5100D874FD /* RegisterView.swift in Sources */,
 				0AE492082877387300341D35 /* NotificationView.swift in Sources */,
 				0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */,
 				C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */,
@@ -1197,6 +1212,7 @@
 				0AE4920A287740B300341D35 /* HomeNavigationBarStyle.swift in Sources */,
 				C495F5F32855D668009B3BDE /* NavigationBarWithTextButtonStyle.swift in Sources */,
 				0AAB371828674DE300A47B24 /* ChatRow.swift in Sources */,
+				6FF83700287A1D2700B3A390 /* StepCircles.swift in Sources */,
 				0A223B6E285F6D46002203ED /* Ex+UIDevice.swift in Sources */,
 				0A223B70285F74BB002203ED /* Ex+UIColor.swift in Sources */,
 				C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */,

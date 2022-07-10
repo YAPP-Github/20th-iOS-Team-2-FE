@@ -16,6 +16,9 @@ struct AlbumCommentView: View {
         ModalBackGround { // Back Ground
           self.isShowing = false
         }
+        
+        CommentModal() // 댓글 Modal
+          .transition(.move(edge: .bottom))
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
       .ignoresSafeArea()

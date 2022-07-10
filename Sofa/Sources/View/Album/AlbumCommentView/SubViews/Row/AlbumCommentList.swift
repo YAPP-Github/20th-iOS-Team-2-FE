@@ -17,6 +17,7 @@ struct AlbumCommentList: View {
         ForEach(Array(zip(viewModel.comments.indices, viewModel.comments)), id: \.0) { index, element in
           AlbumCommentRow(comment: element)
             .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+            .animationsDisabled()
         }
       }
     }

@@ -80,6 +80,7 @@
 		C481B6CB2878749D005D6831 /* AlbumCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6CA2878749D005D6831 /* AlbumCommentView.swift */; };
 		C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6CE28787A86005D6831 /* ModalBackGround.swift */; };
 		C481B6D128787C98005D6831 /* CommentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D028787C98005D6831 /* CommentModal.swift */; };
+		C481B6D4287ADA18005D6831 /* AlbumCommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -227,6 +228,7 @@
 		C481B6CA2878749D005D6831 /* AlbumCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentView.swift; sourceTree = "<group>"; };
 		C481B6CE28787A86005D6831 /* ModalBackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBackGround.swift; sourceTree = "<group>"; };
 		C481B6D028787C98005D6831 /* CommentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModal.swift; sourceTree = "<group>"; };
+		C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentRow.swift; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 		C481B6CC28787A5D005D6831 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				C481B6D2287AD9FD005D6831 /* Row */,
 				C481B6CD28787A67005D6831 /* CommentModal */,
 			);
 			path = SubViews;
@@ -679,6 +682,14 @@
 				C481B6D028787C98005D6831 /* CommentModal.swift */,
 			);
 			path = CommentModal;
+			sourceTree = "<group>";
+		};
+		C481B6D2287AD9FD005D6831 /* Row */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */,
+			);
+			path = Row;
 			sourceTree = "<group>";
 		};
 		C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */ = {
@@ -1235,6 +1246,7 @@
 				C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */,
 				0AAB371A28674DF200A47B24 /* ChatList.swift in Sources */,
 				6F9C988C2875A7CB0062BF84 /* Ex+UIApplication.swift in Sources */,
+				C481B6D4287ADA18005D6831 /* AlbumCommentRow.swift in Sources */,
 				C4B8F2CE2854A6680000B8CB /* NavigationBarWithIconButtonStyle.swift in Sources */,
 				6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,

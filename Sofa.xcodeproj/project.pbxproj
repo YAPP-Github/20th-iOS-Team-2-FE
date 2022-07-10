@@ -81,6 +81,7 @@
 		C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6CE28787A86005D6831 /* ModalBackGround.swift */; };
 		C481B6D128787C98005D6831 /* CommentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D028787C98005D6831 /* CommentModal.swift */; };
 		C481B6D4287ADA18005D6831 /* AlbumCommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */; };
+		C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D8287ADF0C005D6831 /* Comment.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -229,6 +230,7 @@
 		C481B6CE28787A86005D6831 /* ModalBackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBackGround.swift; sourceTree = "<group>"; };
 		C481B6D028787C98005D6831 /* CommentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModal.swift; sourceTree = "<group>"; };
 		C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentRow.swift; sourceTree = "<group>"; };
+		C481B6D8287ADF0C005D6831 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C481B6DA287AE288005D6831 /* CommentMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentMock.json; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
 				6F0974342861E53A0000956C /* CalendarTask.swift */,
 				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
+				C481B6D8287ADF0C005D6831 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				0A4CFB8B285F79AB000603A5 /* Ex+Font.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
+				C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */,
 				C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */,
 				C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */,
 				0AAB367C2863816300A47B24 /* EventList.swift in Sources */,

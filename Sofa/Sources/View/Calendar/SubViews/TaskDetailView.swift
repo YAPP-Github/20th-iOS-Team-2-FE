@@ -82,7 +82,6 @@ struct TaskDetailView: View {
                 .cornerRadius(6)
                 .focused($isTitleFocused)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 12, trailing: 16))
-                .modifier(DismissingKeyboard())
                 .onAppear {
                   UIApplication.shared.hideKeyboard()
                 }
@@ -159,7 +158,6 @@ struct TaskDetailView: View {
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                   .frame(height: 128, alignment: .center)
                   .focused($isMemoFocused)
-                  .modifier(DismissingKeyboard())
               }
               Rectangle()
                 .frame(width:Screen.maxWidth, height: 1)

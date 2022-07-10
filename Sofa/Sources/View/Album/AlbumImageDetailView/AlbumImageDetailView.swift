@@ -71,6 +71,9 @@ struct AlbumImageDetailView: View {
         .ignoresSafeArea()
         .navigationBarHidden(true) // 이전 Navigation bar 무시
         .toastMessage(data: $messageData, isShow: $isDownloadClick)
+        .fullScreenCover(isPresented: $isCommentClick) {
+          AlbumCommentView(isShowing: $isCommentClick)
+        }
       }
       actionSheetView // 바텀 Sheet
     }

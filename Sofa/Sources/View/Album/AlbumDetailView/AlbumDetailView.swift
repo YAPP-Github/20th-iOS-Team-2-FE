@@ -21,6 +21,11 @@ struct AlbumDetailView: View {
   
   @State var isCommentClick: Bool = false   // 댓글
   @State var isEllipsisClick: Bool = false  // 설정
+  
+  // 다운로드
+  @State var isDownloadClick: Bool = false  // 다운로드
+  @State private var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+
   @State var isUpdateDate: Bool = false  // 날짜 수정
   let info = MockData().albumDetail
   
@@ -29,7 +34,9 @@ struct AlbumDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          UIImageWriteToSavedPhotosAlbum(selectImage, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
+          isDownloadClick = true
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -55,9 +62,9 @@ struct AlbumDetailView: View {
           
           // 댓글 click
           NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)
-          
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick)
+        .toastMessage(data: $messageData2, isShow: $isDownloadClick)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isUpdateDate) {
           AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))

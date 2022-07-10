@@ -15,7 +15,7 @@ struct AlbumCommentRow: View {
       Image("lionprofile") // 이미지
         .resizable()
         .frame(width: 48, height: 48)
-        .padding(EdgeInsets(top: 12, leading: 12, bottom: 0, trailing: 0))
+        .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
       
       VStack(alignment: .leading) { // 댓글 정보
         HStack(alignment: .center, spacing: 8) { // 댓글 작성자 정보
@@ -36,13 +36,13 @@ struct AlbumCommentRow: View {
             .foregroundColor(Color.secondary)
             .padding(.trailing, 16)
         }
-        .padding(.top, 12)
         
         Text("\(comment.descriptionContent)") // 댓글
           .font(.custom("Pretendard-Medium", size: 14))
           .lineSpacing(5)
       }
     }
+    .padding([.top, .bottom], 12)
   }
 }
 

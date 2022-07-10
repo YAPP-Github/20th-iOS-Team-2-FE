@@ -22,7 +22,10 @@ struct CommentModal: View {
   var body: some View {
     VStack(alignment: .center) {
       topHalfMiddleBar // top bar
-
+      
+      Divider()
+        .overlay(Color(hex: "EDEADF"))
+        .offset(x:0, y: 0)
     }
     .background(Color.white)
     .cornerRadius(15)

@@ -229,6 +229,7 @@
 		C481B6CE28787A86005D6831 /* ModalBackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBackGround.swift; sourceTree = "<group>"; };
 		C481B6D028787C98005D6831 /* CommentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModal.swift; sourceTree = "<group>"; };
 		C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentRow.swift; sourceTree = "<group>"; };
+		C481B6DA287AE288005D6831 /* CommentMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentMock.json; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -851,6 +852,7 @@
 				C4B8F2BB285289A20000B8CB /* MockData.swift */,
 				0A2887F32870A69F000A72F2 /* ChatInfoMock.json */,
 				0AE492032876A8F600341D35 /* HistoryMock.json */,
+				C481B6DA287AE288005D6831 /* CommentMock.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";

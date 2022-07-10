@@ -67,6 +67,12 @@ struct AlbumImageDetailView: View {
           AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
             .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
         )
+      
+      if isCommentClick || isEllipsisClick { // 댓글 or action sheet
+        Color.black
+          .opacity(0.7)
+          .ignoresSafeArea()
+      }
     }
     .background(Color.black)
     .ignoresSafeArea()

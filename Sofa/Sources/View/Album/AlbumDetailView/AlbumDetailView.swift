@@ -51,32 +51,40 @@ struct AlbumDetailView: View {
   }
   
   var body: some View {
-    NavigationView {
-      VStack {
-        AlbumDetailList(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick)
-        
-        // 이미지 click
-        NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage, index: selectImageIndex), isActive: $isImageClick)
-        
-        // 댓글 click
-        NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
+    ZStack {
+      NavigationView {
+        VStack {
+          AlbumDetailList(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick)
+          
+          // 이미지 click
+          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage, index: selectImageIndex), isActive: $isImageClick)
+          
+          // 댓글 click
+          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
+        }
+        .toastMessage(data: $messageData, isShow: $isBookmarkClick)
+        .toastMessage(data: $messageData2, isShow: $isDownloadClick)
+        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+        .fullScreenCover(isPresented: $isUpdateDate) {
+          AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
+        }
+        .fullScreenCover(isPresented: $isEllipsisClick) {
+          actionSheetView // 바텀 Sheet
+            .background(BackgroundCleanerView())
+        }
+        .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       }
-      .toastMessage(data: $messageData, isShow: $isBookmarkClick)
-      .toastMessage(data: $messageData2, isShow: $isDownloadClick)
-      .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
-      .fullScreenCover(isPresented: $isUpdateDate) {
-        AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
+      .navigationViewStyle(StackNavigationViewStyle())
+      .navigationBarHidden(true)
+      .onAppear { UITabBar.hideTabBar() }
+      .onDisappear { UITabBar.showTabBar() }
+      
+      if isEllipsisClick { // action sheet
+        Color.black
+          .opacity(0.7)
+          .ignoresSafeArea()
       }
-      .fullScreenCover(isPresented: $isEllipsisClick) {
-        actionSheetView // 바텀 Sheet
-          .background(BackgroundCleanerView())
-      }
-      .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
     }
-    .navigationViewStyle(StackNavigationViewStyle())
-    .navigationBarHidden(true)
-    .onAppear { UITabBar.hideTabBar() }
-    .onDisappear { UITabBar.showTabBar() }
   }
 }
 

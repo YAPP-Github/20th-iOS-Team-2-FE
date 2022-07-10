@@ -42,51 +42,58 @@ struct AlbumView: View {
   }
   
   var body: some View {
-    NavigationView {
-      VStack(spacing: 0) {
-        Picker(selection: $selected, label: Text(""), content: {
-          Text("날짜별").tag(0)
-          Text("유형별").tag(1)
-        })
-        .padding()
-        .background(Color.init(hex: "#FAF8F0")) // 임시
-        .pickerStyle(SegmentedPickerStyle())
-        
-        if selected == 0 { // 날짜별
-          AlbumList(albumDate: albums)
-        } else if selected == 1 { // 유형별
-          AlbumList(albumType: types)
+    ZStack {
+      NavigationView {
+        VStack(spacing: 0) {
+          Picker(selection: $selected, label: Text(""), content: {
+            Text("날짜별").tag(0)
+            Text("유형별").tag(1)
+          })
+          .padding()
+          .background(Color.init(hex: "#FAF8F0")) // 임시
+          .pickerStyle(SegmentedPickerStyle())
+          
+          if selected == 0 { // 날짜별
+            AlbumList(albumDate: albums)
+          } else if selected == 1 { // 유형별
+            AlbumList(albumType: types)
+          }
+          
+          
+          // 카메라 날짜 선택 View로 이동
+          NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)
         }
-        
-        
-        // 카메라 날짜 선택 View로 이동
-        NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)
+        .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
+        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) { // 사진 추가 View로 이동
+          AlbumPhotoAddView()
+        }
+        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) { // 카메라 imagePicker로 이동
+          CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
+            .ignoresSafeArea()
+        }
+        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) { // 녹음 추가 View로 이동
+          AlbumRecordAddView()
+        }
+        .fullScreenCover(isPresented: $showingSheet) {
+          actionSheetView // 바텀 Sheet
+            .background(BackgroundCleanerView())
+        }
+        .alert(isPresented: $authorizationViewModel.showErrorAlert) { // 카메라 error
+          Alert(
+            title: Text(authorizationViewModel.showErrorAlertTitle),
+            message: Text(authorizationViewModel.showErrorAlertMessage),
+            primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
+              if let appSettring = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
+              }
+            },
+            secondaryButton: .default(Text("확인")))
+        }
       }
-      .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
-      .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) { // 사진 추가 View로 이동
-        AlbumPhotoAddView()
-      }
-      .fullScreenCover(isPresented: $authorizationViewModel.showCamera) { // 카메라 imagePicker로 이동
-        CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
+      if showingSheet { // action sheet
+        Color.black
+          .opacity(0.7)
           .ignoresSafeArea()
-      }
-      .fullScreenCover(isPresented: $authorizationViewModel.showRecord) { // 녹음 추가 View로 이동
-        AlbumRecordAddView()
-      }
-      .fullScreenCover(isPresented: $showingSheet) {
-        actionSheetView // 바텀 Sheet
-          .background(BackgroundCleanerView())
-      }
-      .alert(isPresented: $authorizationViewModel.showErrorAlert) { // 카메라 error
-        Alert(
-          title: Text(authorizationViewModel.showErrorAlertTitle),
-          message: Text(authorizationViewModel.showErrorAlertMessage),
-          primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
-            if let appSettring = URL(string: UIApplication.openSettingsURLString) {
-              UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
-            }
-          },
-          secondaryButton: .default(Text("확인")))
       }
     }
   }

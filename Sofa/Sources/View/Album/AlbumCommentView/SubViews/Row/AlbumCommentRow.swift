@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlbumCommentRow: View {
   var comment: Comment
-  
+
   var body: some View {
     HStack(alignment: .top, spacing: 16) {
       Image("lionprofile") // 이미지

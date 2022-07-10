@@ -8,31 +8,31 @@
     },
     {
       "type" : "ALBUM",
-      "user" : "엄마 아빠 딸",
+      "user" : "엄마",
       "targetId" : 1,
       "createdDate" : "2022-06-05 20:30"
     },
     {
       "type" : "ALBUM",
-      "user" : "엄마 아빠 딸",
+      "user" : "딸",
       "targetId" : 2,
       "createdDate" : "2022-06-05 8:30"
     },
     {
-      "type" : "ALBUM",
-      "user" : "엄마 아빠 딸",
+      "type" : "CALENDAR",
+      "user" : "아빠",
       "targetId" : 3,
       "createdDate" : "2022-06-05 8:30"
     },
     {
       "type" : "ALBUM",
-      "user" : "엄마 아빠 딸",
+      "user" : "엄마",
       "targetId" : 4,
       "createdDate" : "2022-06-05 8:30"
     },
     {
-      "type" : "ALBUM",
-      "user" : "엄마 아빠 딸",
+      "type" : "CALENDAR",
+      "user" : "딸",
       "targetId" : 5,
       "createdDate" : "2022-06-05 8:30"
     },
@@ -43,13 +43,13 @@
       "createdDate" : "2022-06-05 8:30"
     },
     {
-      "type" : "ALBUM",
+      "type" : "CALENDAR",
       "user" : "엄마 아빠 딸",
       "targetId" : 7,
       "createdDate" : "2022-06-05 8:30"
     },
     {
-      "type" : "ALBUM",
+      "type" : "CALENDAR",
       "user" : "엄마 아빠 딸",
       "targetId" : 8,
       "createdDate" : "2022-06-05 8:30"

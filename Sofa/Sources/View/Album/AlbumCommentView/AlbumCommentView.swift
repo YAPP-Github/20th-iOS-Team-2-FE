@@ -9,21 +9,23 @@ import SwiftUI
 
 struct AlbumCommentView: View {
   @Binding var isShowing: Bool
-
+  
   var body: some View {
-    if isShowing {
-      ZStack(alignment: .bottom) {
+    ZStack(alignment: .bottom) {
+      if isShowing {
         ModalBackGround { // Back Ground
           self.isShowing = false
         }
         
-        CommentModal() // 댓글 Modal
-          .transition(.move(edge: .bottom))
+        CommentModal() {// 댓글 Modal
+          self.isShowing = false
+        }
+        .transition(.move(edge: .bottom))
       }
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-      .ignoresSafeArea()
-      .animation(.easeInOut)
     }
+    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+    .ignoresSafeArea()
+    .animation(.easeInOut)
   }
 }
 

@@ -26,6 +26,19 @@ struct CommentModal: View {
     .frame(maxWidth: .infinity)
     .background(Color.white) // 색상을 줘야 frame 영역 gesture 작동
   }
+  var CommentInput: some View {
+    HStack {
+      Text("댓글을 남겨보세요")
+        .font(.custom("Pretendard-Medium", size: 16))
+        .foregroundColor(Color.secondary)
+        .padding(EdgeInsets(top: 16, leading: 26, bottom: 12, trailing: 26))
+      
+      Spacer()
+    }
+    .frame(height: 52)
+    .onTapGesture {
+      isWriteClick = true
+    }
   }
   
   var body: some View {
@@ -38,23 +51,7 @@ struct CommentModal: View {
         .overlay(Color(hex: "EDEADF"))
         .offset(x:0, y: 0)
       
-      VStack {
-        HStack {
-          Text("댓글을 남겨보세요")
-            .font(.custom("Pretendard-Medium", size: 16))
-            .foregroundColor(Color.secondary)
-            .padding(EdgeInsets(top: 16, leading: 26, bottom: 12, trailing: 26))
-          
-          Spacer()
-        }
-        .frame(height: 52)
-        
-        Spacer()
-          .frame(height: Screen.safeAreaBottom)
-      }
-      .onTapGesture {
-        isWriteClick = true
-      }
+      CommentInput // 댓글 입력창
     }
     .background(Color.white)
     .cornerRadius(15)

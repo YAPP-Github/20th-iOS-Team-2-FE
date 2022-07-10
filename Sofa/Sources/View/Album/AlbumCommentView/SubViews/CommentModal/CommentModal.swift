@@ -42,7 +42,7 @@ struct CommentModal: View {
   }
   
   var body: some View {
-    VStack(alignment: .center) {
+    VStack(alignment: .center, spacing: 0) {
       topHalfMiddleBar // top bar
       
       AlbumCommentList()

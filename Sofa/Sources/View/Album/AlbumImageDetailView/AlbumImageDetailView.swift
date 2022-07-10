@@ -73,6 +73,7 @@ struct AlbumImageDetailView: View {
         .toastMessage(data: $messageData, isShow: $isDownloadClick)
         .fullScreenCover(isPresented: $isCommentClick) {
           AlbumCommentView(isShowing: $isCommentClick)
+            .background(BackgroundCleanerView())
         }
       }
       actionSheetView // 바텀 Sheet

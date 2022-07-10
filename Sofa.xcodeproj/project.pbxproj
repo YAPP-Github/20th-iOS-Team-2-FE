@@ -30,6 +30,8 @@
 		0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
+		0A915DD5287A9B8C0055AD6D /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A915DD4287A9B8C0055AD6D /* NotificationViewModel.swift */; };
+		0A915DD7287A9BA00055AD6D /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A915DD6287A9BA00055AD6D /* Notifications.swift */; };
 		0AAB367C2863816300A47B24 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367B2863816300A47B24 /* EventList.swift */; };
 		0AAB367F286381C000A47B24 /* HomeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367E286381C000A47B24 /* HomeInfo.swift */; };
 		0AAB36812864287E00A47B24 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB36802864287E00A47B24 /* EventRow.swift */; };
@@ -169,6 +171,8 @@
 		0A4CFBA22860C963000603A5 /* Sofa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sofa.entitlements; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0A915DD2287A9A9B0055AD6D /* NotificationMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationMock.json; sourceTree = "<group>"; };
+		0A915DD4287A9B8C0055AD6D /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		0A915DD6287A9BA00055AD6D /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		0AAB367B2863816300A47B24 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		0AAB367E286381C000A47B24 /* HomeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfo.swift; sourceTree = "<group>"; };
 		0AAB36802864287E00A47B24 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 				0AAB36F22865F32400A47B24 /* EventViewModel.swift */,
 				0A2887F12870A646000A72F2 /* ChatViewModel.swift */,
 				0AE492012876A8DC00341D35 /* HistoryViewModel.swift */,
+				0A915DD4287A9B8C0055AD6D /* NotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
 				6F0974342861E53A0000956C /* CalendarTask.swift */,
 				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
+				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1147,6 +1153,7 @@
 				C495F61F285BC2C8009B3BDE /* AudioBarView.swift in Sources */,
 				C495F5F12855C3AA009B3BDE /* AlbumTypeRow.swift in Sources */,
 				6FE6D78928619A1D00E3C21E /* CustomDatePicker.swift in Sources */,
+				0A915DD5287A9B8C0055AD6D /* NotificationViewModel.swift in Sources */,
 				C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */,
 				0AE492022876A8DC00341D35 /* HistoryViewModel.swift in Sources */,
 				0AE4921228780B0400341D35 /* Ex+UINavigationController.swift in Sources */,
@@ -1184,6 +1191,7 @@
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,
 				6F7340BC28741A4800707AB7 /* GeneralDatePickerView.swift in Sources */,
 				C4B8F2A82851CAD50000B8CB /* HiddenTabBar.swift in Sources */,
+				0A915DD7287A9BA00055AD6D /* Notifications.swift in Sources */,
 				C4B8F2AE2851CB1F0000B8CB /* Ex+UITabBar.swift in Sources */,
 				6F22E532284B9D330069D268 /* Network.swift in Sources */,
 				0AE492062876A9B000341D35 /* HistoryInfo.swift in Sources */,

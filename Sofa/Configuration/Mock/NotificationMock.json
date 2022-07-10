@@ -2,19 +2,19 @@
   "notifications" : [
     {
       "type" : "CALENDAR",
-      "content" : "엄마 아빠 딸 님이 새로운 일정을 등록했습니다.",
+      "user" : "엄마 아빠 딸",
       "targetId" : 3,
       "createdDate" : "2022-06-05 22:30"
     },
     {
       "type" : "ALBUM",
-      "content" : "엄마 아빠 딸 님이 새로운 사진을 업로드 했습니다.",
+      "user" : "엄마 아빠 딸",
       "targetId" : 23,
       "createdDate" : "2022-06-05 20:30"
     },
     {
       "type" : "ALBUM",
-      "content" : "엄마 아빠 딸 님이 새로운 사진을 업로드 했습니다.",
+      "user" : "엄마 아빠 딸",
       "targetId" : 23,
       "createdDate" : "2022-06-05 8:30"
     }

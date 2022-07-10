@@ -93,7 +93,7 @@ struct CommentModal: View {
         .frame(height: Screen.safeAreaBottom)
     }
     .background(Color.white)
-    .cornerRadius(15)
+    .cornerRadius(16)
     .frame(height: curHeight)
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0.45))

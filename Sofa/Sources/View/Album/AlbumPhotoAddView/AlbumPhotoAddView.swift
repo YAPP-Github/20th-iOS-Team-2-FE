@@ -36,7 +36,6 @@ struct AlbumPhotoAddView: View {
         .frame(width: Screen.maxWidth, height: height) // 화면의 반
         
         AlbumPhotoAddList(selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage)
-        //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
         
         // 날짜 선택으로 이동
         NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", imageList: selected, photoParent: self, isCameraCancle: .constant(false)), isActive: $isNext)

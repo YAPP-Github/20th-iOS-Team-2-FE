@@ -13,34 +13,19 @@ struct CalendarView: View {
   @State private var showAppendTaskModal: Bool = false
   
   var body: some View {
-    VStack(spacing: 0) {
-      HStack(spacing: 0){
-        Text("캘린더")
-          .font(.custom("Pretendard-Bold", size: 24))
-          .foregroundColor(Color(hex: "121619"))
-          .padding(EdgeInsets(top: 0, leading: 24, bottom: 12, trailing: 0))
-        Spacer()
-        Button(action: {
-          self.showAppendTaskModal.toggle()
-        }) {
-          Image(systemName: "plus")
-            .font(.system(size: 20))
-            .foregroundColor(Color(hex: "43A047"))
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 31))
-        }
-        .sheet(isPresented: self.$showAppendTaskModal) {
-          AppendTaskModalView()
-        }
+    NavigationView {
+      VStack(spacing: 0) {
+        Rectangle()
+          .frame(height: 1.0, alignment: .bottom)
+          .foregroundColor(Color(hex: "EDEADF"))
+        
+        Color(hex: "FAF8F0")
+          .ignoresSafeArea()
+          .frame(height: 8)
+        
+        CustomDatePicker(currentDate: $currentDate)
       }
-      Rectangle()
-        .frame(height: 1.0, alignment: .bottom)
-        .foregroundColor(Color(hex: "EDEADF"))
-      
-      Color(hex: "FAF8F0")
-        .ignoresSafeArea()
-        .frame(height: 8)
-      
-      CustomDatePicker(currentDate: $currentDate)
+      .navigationBarWithIconButtonStyle(isButtonClick: $showAppendTaskModal, buttonColor: Color(hex: "43A047"), "캘린더", "plus")
     }
   }
 }

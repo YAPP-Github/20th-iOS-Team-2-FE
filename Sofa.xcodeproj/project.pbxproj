@@ -85,6 +85,7 @@
 		C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D8287ADF0C005D6831 /* Comment.swift */; };
 		C481B6DC287AEF0E005D6831 /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6DB287AEF0E005D6831 /* Ex+String.swift */; };
 		C481B6DD287AF80E005D6831 /* CommentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C481B6DA287AE288005D6831 /* CommentMock.json */; };
+		C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6DE287AFFF3005D6831 /* AlbumCommentList.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -237,6 +238,7 @@
 		C481B6D8287ADF0C005D6831 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C481B6DA287AE288005D6831 /* CommentMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentMock.json; sourceTree = "<group>"; };
 		C481B6DB287AEF0E005D6831 /* Ex+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+String.swift"; sourceTree = "<group>"; };
+		C481B6DE287AFFF3005D6831 /* AlbumCommentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentList.swift; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 			isa = PBXGroup;
 			children = (
 				C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */,
+				C481B6DE287AFFF3005D6831 /* AlbumCommentList.swift */,
 			);
 			path = Row;
 			sourceTree = "<group>";
@@ -1187,6 +1190,7 @@
 			files = (
 				C4B8F2CC285474900000B8CB /* PinchToZoom.swift in Sources */,
 				C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */,
+				C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */,
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
 				C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */,
 				C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */,

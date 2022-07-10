@@ -64,7 +64,7 @@ struct HistoryView: View {
           .foregroundColor(Color.black)
           .opacity(0.24)
       }
-      .frame(height: 40)
+      .frame(height: 20)
       .frame(maxWidth: .infinity)
       .background(Color.white.opacity(0.00001))
       .gesture(dragGesture)
@@ -184,7 +184,8 @@ struct HistoryView: View {
     .frame(maxWidth: .infinity)
     .background(
       ZStack{
-        RoundedRectangle(cornerRadius: 20)
+        Rectangle()
+          .cornerRadius(20, corners: [.topLeft, .topRight])
         Rectangle()
           .frame(height: curHeight / 2)
       }

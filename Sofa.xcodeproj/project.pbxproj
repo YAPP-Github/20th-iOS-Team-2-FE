@@ -28,6 +28,7 @@
 		0A4CFB9D285F85C8000603A5 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFB94285F85C8000603A5 /* Pretendard-Regular.otf */; };
 		0A4CFB9F285F8706000603A5 /* LibreBaskerville-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFB9E285F8706000603A5 /* LibreBaskerville-Bold.ttf */; };
 		0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */; };
+		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DF7287B21E70055AD6D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A915DF6287B21E70055AD6D /* MessageView.swift */; };
 		0AAB367C2863816300A47B24 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367B2863816300A47B24 /* EventList.swift */; };
@@ -169,6 +170,7 @@
 		0A4CFB9E285F8706000603A5 /* LibreBaskerville-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LibreBaskerville-Bold.ttf"; sourceTree = "<group>"; };
 		0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LibreBaskerville-Regular.ttf"; sourceTree = "<group>"; };
 		0A4CFBA22860C963000603A5 /* Sofa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sofa.entitlements; sourceTree = "<group>"; };
+		0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0A915DF6287B21E70055AD6D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		0AAB367B2863816300A47B24 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				0A2B55082858779D006F816C /* View.swift */,
 				6F9C988B2875A7CB0062BF84 /* Ex+UIApplication.swift */,
 				0AE4921128780B0400341D35 /* Ex+UINavigationController.swift */,
+				0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 				0A2887F62870A80B000A72F2 /* FamilyList.swift in Sources */,
 				C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */,
 				C495F5FC2856386A009B3BDE /* AlbumDetailRow.swift in Sources */,
+				0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */,
 				0AE4920A287740B300341D35 /* HomeNavigationBarStyle.swift in Sources */,
 				C495F5F32855D668009B3BDE /* NavigationBarWithTextButtonStyle.swift in Sources */,
 				0AAB371828674DE300A47B24 /* ChatRow.swift in Sources */,

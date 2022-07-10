@@ -12,6 +12,7 @@ struct HomeView: View {
   @ObservedObject var eventViewModel = EventViewModel()
   @State var gotoAlarm = false
   @State var showModal = false
+  @State var showMessageView = false
   
   var body: some View {
     ZStack {

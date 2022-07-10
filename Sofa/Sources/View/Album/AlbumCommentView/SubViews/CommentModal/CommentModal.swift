@@ -23,6 +23,8 @@ struct CommentModal: View {
     VStack(alignment: .center) {
       topHalfMiddleBar // top bar
       
+      AlbumCommentList()
+      
       Divider()
         .overlay(Color(hex: "EDEADF"))
         .offset(x:0, y: 0)

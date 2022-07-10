@@ -84,6 +84,7 @@
 		C481B6D7287ADEAB005D6831 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D6287ADEAB005D6831 /* CommentViewModel.swift */; };
 		C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D8287ADF0C005D6831 /* Comment.swift */; };
 		C481B6DC287AEF0E005D6831 /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6DB287AEF0E005D6831 /* Ex+String.swift */; };
+		C481B6DD287AF80E005D6831 /* CommentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C481B6DA287AE288005D6831 /* CommentMock.json */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -1042,6 +1043,7 @@
 				C4667A36284B6FF400A4A759 /* Preview Assets.xcassets in Resources */,
 				0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */,
 				0A2887F42870A69F000A72F2 /* ChatInfoMock.json in Resources */,
+				C481B6DD287AF80E005D6831 /* CommentMock.json in Resources */,
 				0A4CFB9D285F85C8000603A5 /* Pretendard-Regular.otf in Resources */,
 				0A4CFB99285F85C8000603A5 /* Pretendard-Bold.otf in Resources */,
 				0AE492042876A8F600341D35 /* HistoryMock.json in Resources */,

@@ -17,10 +17,29 @@ struct RegisterView: View {
   
   var body: some View {
     VStack(spacing: 0){
-      
-      StepCircles(currentSteps: $currentSteps)
-        .padding(.top, 9)
+      ZStack{
+        if currentSteps > 1 {
+          HStack(spacing: 0){
+            Image(systemName: "chevron.left")
+              .font(.system(size: 20))
+              .foregroundColor(Color(hex: "#43A047"))
+              .padding(.leading, 24)
+              .contentShape(Rectangle())
+              .onTapGesture {
+                text = ""
+                currentSteps -= 1
+              }
+            Text("이전")
+              .font(.custom("Pretendard-Medium", size: 16))
+              .foregroundColor(Color(hex: "#43A047"))
+              .padding(.leading, 4)
+            Spacer()
+          }///HStack
+        }///if-end
 
+        StepCircles(currentSteps: $currentSteps)
+      }.padding(.top, 9)
+      
       switch currentSteps {
       case 1:
         Text("성함을 알려주세요")
@@ -43,49 +62,48 @@ struct RegisterView: View {
       // 텍스트필드
       Group {
         ZStack{
-        TextField("", text: $text)
-          .placeholder(shouldShow: text.isEmpty) {
-            switch currentSteps {
-            case 1:
-              Text("홍길동")
-                .font(.custom("Pretendard-Medium", size: 18))
-                .foregroundColor(Color(hex: "121619").opacity(0.4))
-            case 2:
-              Text("역할 선택")
-                .font(.custom("Pretendard-Medium", size: 18))
-                .foregroundColor(Color(hex: "121619").opacity(0.4))
-            case 3:
-              Text("1990-01-1")
-                .font(.custom("Pretendard-Medium", size: 18))
-                .foregroundColor(Color(hex: "121619").opacity(0.4))
-            default:
-              Text("이쁜 딸, 효도할 놈")
-                .font(.custom("Pretendard-Medium", size: 18))
-                .foregroundColor(Color(hex: "121619").opacity(0.4))
-            }
-          }
-          .customTextField(padding: 12)
-          .disableAutocorrection(true)
-          .frame(height: 48)
-          .background(isTextFocused ? Color.white : Color(hex: "FAF8F0"))
-          .cornerRadius(6)
-          .highlightTextField(firstLineWidth: isTextFocused ? 1 : 0, secondLineWidth: isTextFocused ? 4 : 0)
-          .focused($isTextFocused)
-          .keyboardType(currentSteps == 3 ? .numberPad : .default)
-          .onAppear {
-            UIApplication.shared.hideKeyboard()
-          }
-          .onChange(of: text) { newValue in
-            print("\(text)")
-            if currentSteps == 3 {
-              if text.count == 4 {
-                text = text+"-"
-              }
-              if text.count == 7 {
-                text = text+"-"
+          TextField("", text: $text)
+            .placeholder(shouldShow: text.isEmpty) {
+              switch currentSteps {
+              case 1:
+                Text("홍길동")
+                  .font(.custom("Pretendard-Medium", size: 18))
+                  .foregroundColor(Color(hex: "121619").opacity(0.4))
+              case 2:
+                Text("역할 선택")
+                  .font(.custom("Pretendard-Medium", size: 18))
+                  .foregroundColor(Color(hex: "121619").opacity(0.4))
+              case 3:
+                Text("1990-01-1")
+                  .font(.custom("Pretendard-Medium", size: 18))
+                  .foregroundColor(Color(hex: "121619").opacity(0.4))
+              default:
+                Text("이쁜 딸, 효도할 놈")
+                  .font(.custom("Pretendard-Medium", size: 18))
+                  .foregroundColor(Color(hex: "121619").opacity(0.4))
               }
             }
-          }
+            .customTextField(padding: 12)
+            .disableAutocorrection(true)
+            .frame(height: 48)
+            .background(isTextFocused ? Color.white : Color(hex: "FAF8F0"))
+            .cornerRadius(6)
+            .highlightTextField(firstLineWidth: isTextFocused ? 1 : 0, secondLineWidth: isTextFocused ? 4 : 0)
+            .focused($isTextFocused)
+            .keyboardType(currentSteps == 3 ? .numberPad : .default)
+            .onAppear {
+              UIApplication.shared.hideKeyboard()
+            }
+            .onChange(of: text) { newValue in
+              if currentSteps == 3 {
+                if text.count == 4 {
+                  text = text+"-"
+                }
+                if text.count == 7 {
+                  text = text+"-"
+                }
+              }
+            }
           
           // 아이콘 X
           HStack{
@@ -124,7 +142,6 @@ struct RegisterView: View {
       .onTapGesture {
         if !text.isEmpty {
           info[currentSteps-1] = text
-          print("\(info[currentSteps-1])")
           text = ""
           if currentSteps == 4 {
             currentSteps = 1

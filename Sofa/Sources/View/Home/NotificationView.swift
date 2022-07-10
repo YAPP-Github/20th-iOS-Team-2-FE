@@ -75,7 +75,7 @@ struct NotificationView: View {
         .padding(EdgeInsets(top: 0, leading: 14.5, bottom: 0, trailing: 14.5))
       Spacer()
 //                .frame(width: 22.5)
-      LabelView(text: "우리집 보스 님이 새로운 일정을 등록했습니다.")
+      LabelView(text: "우리집 보스 님이 새로운 사진을 등록했습니다.")
         .font(.custom("Pretendard-Bold", size: 14))
         .foregroundColor(Color(hex: "121619"))
         .frame(height: 40)

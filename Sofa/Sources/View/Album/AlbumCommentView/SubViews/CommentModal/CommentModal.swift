@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CommentModal: View {
   @State private var curHeight: CGFloat = Screen.maxHeight / 2
+  @State var isWriteClick = false
   
   // Drag bar
   var topHalfMiddleBar: some View {
@@ -28,6 +29,23 @@ struct CommentModal: View {
       Divider()
         .overlay(Color(hex: "EDEADF"))
         .offset(x:0, y: 0)
+      
+      VStack {
+        HStack {
+          Text("댓글을 남겨보세요")
+            .font(.custom("Pretendard-Medium", size: 16))
+            .foregroundColor(Color.secondary)
+            .padding(EdgeInsets(top: 16, leading: 26, bottom: 12, trailing: 26))
+          
+          Spacer()
+        }
+        .frame(height: 52)
+        
+        Spacer()
+      }
+      .onTapGesture {
+        isWriteClick = true
+      }
     }
     .background(Color.white)
     .cornerRadius(15)

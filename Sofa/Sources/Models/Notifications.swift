@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Notifications: Decodable {
+struct Notifications: Decodable, Hashable {
   var notifications: [Notification]
 }
 
-struct Notification: Decodable {
+struct Notification: Decodable, Hashable {
   var type: String
   var user: String
   var targetId: Int

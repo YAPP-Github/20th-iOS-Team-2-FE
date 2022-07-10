@@ -78,6 +78,7 @@
 		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
 		C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */; };
 		C481B6CB2878749D005D6831 /* AlbumCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6CA2878749D005D6831 /* AlbumCommentView.swift */; };
+		C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6CE28787A86005D6831 /* ModalBackGround.swift */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -223,6 +224,7 @@
 		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailSettingBar.swift; sourceTree = "<group>"; };
 		C481B6CA2878749D005D6831 /* AlbumCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentView.swift; sourceTree = "<group>"; };
+		C481B6CE28787A86005D6831 /* ModalBackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBackGround.swift; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -655,8 +657,18 @@
 			isa = PBXGroup;
 			children = (
 				C481B6CA2878749D005D6831 /* AlbumCommentView.swift */,
+				C481B6CC28787A5D005D6831 /* SubViews */,
 			);
 			path = AlbumCommentView;
+			sourceTree = "<group>";
+		};
+		C481B6CD28787A67005D6831 /* CommentModal */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6CE28787A86005D6831 /* ModalBackGround.swift */,
+				C481B6D028787C98005D6831 /* CommentModal.swift */,
+			);
+			path = CommentModal;
 			sourceTree = "<group>";
 		};
 		C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */ = {
@@ -1157,6 +1169,7 @@
 				0A223B72285F75D6002203ED /* CustomText.swift in Sources */,
 				6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */,
 				6FC853C628743D8D00988A44 /* TaskTimePicker.swift in Sources */,
+				C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */,
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,

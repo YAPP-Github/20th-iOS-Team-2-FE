@@ -13,11 +13,19 @@ struct CommentModal: View {
   
   // Drag bar
   var topHalfMiddleBar: some View {
-    Capsule()
-      .frame(width: 48, height: 4)
-      .foregroundColor(Color.black)
-      .padding(.vertical, 8)
-      .opacity(0.24)
+    VStack {
+      Capsule()
+        .frame(width: 48, height: 4)
+        .foregroundColor(Color.black)
+        .opacity(0.24)
+        .padding(.top, 8)
+      
+      Spacer()
+    }
+    .frame(height: 40)
+    .frame(maxWidth: .infinity)
+    .background(Color.white) // 색상을 줘야 frame 영역 gesture 작동
+  }
   }
   
   var body: some View {

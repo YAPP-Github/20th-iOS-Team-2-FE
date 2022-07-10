@@ -42,7 +42,7 @@ struct AlbumCommentRow: View {
           .lineSpacing(5)
       }
     }
-    .padding([.top, .bottom], 12)
+    .padding([.bottom], 24)
   }
 }
 

@@ -17,7 +17,7 @@ struct AlbumCommentView: View {
           self.isShowing = false
         }
         
-        CommentModal() {// 댓글 Modal
+        CommentModal() { // 댓글 Modal
           self.isShowing = false
         }
         .transition(.move(edge: .bottom))

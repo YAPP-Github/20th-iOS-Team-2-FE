@@ -25,7 +25,7 @@ struct AlbumDetailView: View {
   // 다운로드
   @State var isDownloadClick: Bool = false  // 다운로드
   @State private var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-
+  
   @State var isUpdateDate: Bool = false  // 날짜 수정
   let info = MockData().albumDetail
   
@@ -46,38 +46,37 @@ struct AlbumDetailView: View {
           isEllipsisClick = false
         }
       ],
-      outOfFocusOpacity: 0.2,
-      itemsSpacing: 0
+      outOfFocusOpacity: 0.2
     )
   }
   
   var body: some View {
-    ZStack {
-      NavigationView {
-        VStack {
-          AlbumDetailList(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick)
-          
-          // 이미지 click
-          NavigationLink("", destination: AlbumImageDetailView(image: selectImage, index: selectImageIndex), isActive: $isImageClick)
-          
-          // 댓글 click
-          NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)
-        }
-        .toastMessage(data: $messageData, isShow: $isBookmarkClick)
-        .toastMessage(data: $messageData2, isShow: $isDownloadClick)
-        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
-        .fullScreenCover(isPresented: $isUpdateDate) {
-          AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
-        }
-        .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
+    NavigationView {
+      VStack {
+        AlbumDetailList(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick)
+        
+        // 이미지 click
+        NavigationLink("", destination: AlbumImageDetailView(image: selectImage, index: selectImageIndex), isActive: $isImageClick)
+        
+        // 댓글 click
+        NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)
       }
-      .navigationViewStyle(StackNavigationViewStyle())
-      .navigationBarHidden(true)
-      .onAppear { UITabBar.hideTabBar() }
-      .onDisappear { UITabBar.showTabBar() }
-      
-      actionSheetView // 바텀 Sheet
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick)
+      .toastMessage(data: $messageData2, isShow: $isDownloadClick)
+      .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+      .fullScreenCover(isPresented: $isUpdateDate) {
+        AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
+      }
+      .fullScreenCover(isPresented: $isEllipsisClick) {
+        actionSheetView // 바텀 Sheet
+          .background(BackgroundCleanerView())
+      }
+      .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
     }
+    .navigationViewStyle(StackNavigationViewStyle())
+    .navigationBarHidden(true)
+    .onAppear { UITabBar.hideTabBar() }
+    .onDisappear { UITabBar.showTabBar() }
   }
 }
 

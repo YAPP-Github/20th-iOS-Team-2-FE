@@ -37,46 +37,46 @@ struct AlbumImageDetailView: View {
           isEllipsisClick = false
         }
       ],
-      outOfFocusOpacity: 0.2,
-      itemsSpacing: 0
+      outOfFocusOpacity: 0.2
     )
   }
   
   var body: some View {
-    ZStack {
-      GeometryReader { geometry in // safeAreaInsets.top을 넘겨주기 위해
-        ZStack {
-          Button(action: {
-            touchImage.toggle()
-          }) {
-            Image(uiImage: image)
-              .resizable()
-              .scaledToFit()
-//              .frame(width: Screen.maxWidth, height: Screen.maxHeight)
-              .pinchToZoom()
-          }
-          
-          Color.clear
-            .ignoresSafeArea()
-            .overlay(
-              AlbumImageDetailNavigationBar(safeTop: geometry.safeAreaInsets.top)
-                .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-            )
-            .overlay(
-              AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
-                .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-            )
+    GeometryReader { geometry in // safeAreaInsets.top을 넘겨주기 위해
+      ZStack {
+        Button(action: {
+          touchImage.toggle()
+        }) {
+          Image(uiImage: image)
+            .resizable()
+            .scaledToFit()
+          //              .frame(width: Screen.maxWidth, height: Screen.maxHeight)
+            .pinchToZoom()
         }
-        .background(Color.black)
-        .ignoresSafeArea()
-        .navigationBarHidden(true) // 이전 Navigation bar 무시
-        .toastMessage(data: $messageData, isShow: $isDownloadClick)
-        .fullScreenCover(isPresented: $isCommentClick) {
-          AlbumCommentView(isShowing: $isCommentClick)
-            .background(BackgroundCleanerView())
-        }
+        
+        Color.clear
+          .ignoresSafeArea()
+          .overlay(
+            AlbumImageDetailNavigationBar(safeTop: geometry.safeAreaInsets.top)
+              .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+          )
+          .overlay(
+            AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
+              .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+          )
       }
-      actionSheetView // 바텀 Sheet
+      .background(Color.black)
+      .ignoresSafeArea()
+      .navigationBarHidden(true) // 이전 Navigation bar 무시
+      .toastMessage(data: $messageData, isShow: $isDownloadClick)
+      .fullScreenCover(isPresented: $isCommentClick) {
+        AlbumCommentView(isShowing: $isCommentClick)
+          .background(BackgroundCleanerView())
+      }
+      .fullScreenCover(isPresented: $isEllipsisClick) {
+        actionSheetView
+          .background(BackgroundCleanerView())
+      }
     }
   }
 }

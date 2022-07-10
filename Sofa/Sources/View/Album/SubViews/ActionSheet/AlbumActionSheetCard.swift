@@ -94,7 +94,7 @@ public struct ActionSheetCard: View {
   var outOfFocusArea: some View {
     Group {
       if isShowing {
-        GreyOutOfFocusView(opacity: outOfFocusOpacity) {
+        ModalBackGround() {
           self.isShowing = false
         }
       }

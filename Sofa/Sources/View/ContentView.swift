@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Tab {
+enum Tab{
   case home
   case calendar
   case album

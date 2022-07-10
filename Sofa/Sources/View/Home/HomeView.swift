@@ -22,7 +22,7 @@ struct HomeView: View {
             Text("\(eventViewModel.hometitle)")
               .font(.custom("Pretendard-Bold", size: 24))
             Spacer()
-            NavigationLink(destination: NotificationView().onAppear{UITabBar.hideTabBar(animated: false)}){
+            NavigationLink(destination: NotificationView(selectionType: $selectionType).onAppear{UITabBar.hideTabBar(animated: false)}){
               Image(systemName: "bell")
                 .resizable()
                 .foregroundColor(Color.black)

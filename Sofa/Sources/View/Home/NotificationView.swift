@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct NotificationView: View {
+  @Environment(\.presentationMode) var presentationMode
   @State var gotoAlarmSetting = false
   @ObservedObject var notificationViewModel = NotificationViewModel()
+  @Binding var selectionType: Tab
+  
   
   var periodArr = ["오늘", "이번 주", "이번 달"]
   var taskDict = ["CALENDAR" : "일정", "ALBUM" : "사진"]
-  
-  init() {
-    UINavigationBar.appearance().backgroundColor = .white
-  }
   
   // 섹션 별로 나눈 notification
   let today = NotificationViewModel().notification[0..<3]
@@ -46,7 +45,19 @@ struct NotificationView: View {
 //            } label: {
 //              alarmRow(notification)
 //            }
-            alarmRow(notification)
+            NotificationRow(notification)
+              .onTapGesture {
+                if notification.type == "CALENDAR"{
+                  self.selectionType = .calendar
+                  print("CALENDAR")
+                }else if notification.type == "ALBUM"{
+                  self.selectionType = .album
+                  print("ALBUM")
+                }
+                
+                self.presentationMode.wrappedValue.dismiss()
+                
+              }
 
           }
           .toolbar {
@@ -87,8 +98,8 @@ struct NotificationView: View {
      }
   }
   
-  //MARK: - alarmRow
-  func alarmRow(_ notification: Notification) ->some View{
+  //MARK: - NotificationRow
+  func NotificationRow(_ notification: Notification) ->some View{
     HStack(alignment: .top){
       Image("lionprofile")
         .resizable()
@@ -113,9 +124,9 @@ struct NotificationView: View {
     .background(Color.white)
   }
 }
-
-struct NotificationView_Previews: PreviewProvider {
-  static var previews: some View {
-    NotificationView()
-  }
-}
+//
+//struct NotificationView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    NotificationView()
+//  }
+//}

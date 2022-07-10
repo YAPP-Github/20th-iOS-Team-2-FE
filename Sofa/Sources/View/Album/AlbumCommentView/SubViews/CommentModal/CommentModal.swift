@@ -42,6 +42,7 @@ struct CommentModal: View {
         .frame(height: 52)
         
         Spacer()
+          .frame(height: Screen.safeAreaBottom)
       }
       .onTapGesture {
         isWriteClick = true

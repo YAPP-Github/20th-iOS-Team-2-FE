@@ -58,7 +58,6 @@ struct AlbumDetailView: View {
         // 이미지 click
         NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage, index: selectImageIndex), isActive: $isImageClick)
         
-        
         // 댓글 click
         NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
       }

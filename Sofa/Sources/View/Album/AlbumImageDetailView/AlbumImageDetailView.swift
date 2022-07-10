@@ -46,45 +46,43 @@ struct AlbumImageDetailView: View {
   }
   
   var body: some View {
-    GeometryReader { geometry in // safeAreaInsets.top을 넘겨주기 위해
-      ZStack {
-        Button(action: {
-          touchImage.toggle()
-        }) {
-          Image(uiImage: image)
-            .resizable()
-            .scaledToFit()
-          //              .frame(width: Screen.maxWidth, height: Screen.maxHeight) // 임시
-            .pinchToZoom()
-        }
-        
-        Color.clear
-          .ignoresSafeArea()
-          .overlay(
-            AlbumImageDetailNavigationBar(safeTop: geometry.safeAreaInsets.top)
-              .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-          )
-          .overlay(
-            AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
-              .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-          )
+    ZStack {
+      Button(action: {
+        touchImage.toggle()
+      }) {
+        Image(uiImage: image)
+          .resizable()
+          .scaledToFit()
+        //              .frame(width: Screen.maxWidth, height: Screen.maxHeight) // 임시
+          .pinchToZoom()
       }
-      .background(Color.black)
-      .ignoresSafeArea()
-      .navigationBarHidden(true) // 이전 Navigation bar 무시
-      .toastMessage(data: $messageData, isShow: $isDownloadClick)
-      .fullScreenCover(isPresented: $isCommentClick) {
-        AlbumCommentView(isShowing: $isCommentClick)
-          .background(BackgroundCleanerView())
-      }
-      .fullScreenCover(isPresented: $isEllipsisClick) {
-        actionSheetView
-          .background(BackgroundCleanerView())
-      }
-      .onAppear {
-        if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
-          isCommentClick = true
-        }
+      
+      Color.clear
+        .ignoresSafeArea()
+        .overlay(
+          AlbumImageDetailNavigationBar(safeTop: Screen.safeAreaTop)
+            .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+        )
+        .overlay(
+          AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
+            .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+        )
+    }
+    .background(Color.black)
+    .ignoresSafeArea()
+    .navigationBarHidden(true) // 이전 Navigation bar 무시
+    .toastMessage(data: $messageData, isShow: $isDownloadClick)
+    .fullScreenCover(isPresented: $isCommentClick) {
+      AlbumCommentView(isShowing: $isCommentClick)
+        .background(BackgroundCleanerView())
+    }
+    .fullScreenCover(isPresented: $isEllipsisClick) {
+      actionSheetView
+        .background(BackgroundCleanerView())
+    }
+    .onAppear {
+      if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
+        isCommentClick = true
       }
     }
   }

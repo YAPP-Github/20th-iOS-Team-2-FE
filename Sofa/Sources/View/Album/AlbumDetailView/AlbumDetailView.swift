@@ -77,7 +77,6 @@ struct AlbumDetailView: View {
       .navigationViewStyle(StackNavigationViewStyle())
       .navigationBarHidden(true)
       .onAppear { UITabBar.hideTabBar() }
-      .onDisappear { UITabBar.showTabBar() }
       
       if isEllipsisClick { // action sheet
         Color.black

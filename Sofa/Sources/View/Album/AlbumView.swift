@@ -89,6 +89,8 @@ struct AlbumView: View {
             },
             secondaryButton: .default(Text("확인")))
         }
+        .onAppear { UITabBar.showTabBar() }
+        .onDisappear { UITabBar.hideTabBar() }
       }
       if showingSheet { // action sheet
         Color.black

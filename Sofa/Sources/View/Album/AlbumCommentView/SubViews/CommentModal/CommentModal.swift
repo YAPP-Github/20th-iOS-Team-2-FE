@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CommentModal: View {
-  @ObservedObject var commentViewModel = CommentViewModel()
   @State private var curHeight: CGFloat = Screen.maxHeight / 2
   
   // Drag bar

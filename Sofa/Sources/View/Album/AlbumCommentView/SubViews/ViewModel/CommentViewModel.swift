@@ -17,13 +17,8 @@ class CommentViewModel: ObservableObject{
   
   var baseUrl = ""
   
-  init(){
-    fetchComment()
-  }
-  
-  func fetchComment(){
-    guard let path = Bundle.main.path(forResource: "CommentMock", ofType: "json")
-    else {
+  func fetchComment() {
+    guard let path = Bundle.main.path(forResource: "CommentMock", ofType: "json") else {
       fatalError("Couldn't find file in main bundle.")
     }
     
@@ -31,15 +26,14 @@ class CommentViewModel: ObservableObject{
       return
     }
     
-    if let infodata = jsonString.data(using: .utf8){
-      Just(infodata)
+    if let data = jsonString.data(using: .utf8) {
+      Just(data)
         .decode(type: Comments.self, decoder: JSONDecoder())
         .map{ $0.comments }
         .sink(receiveCompletion: { completion in
-          //          print("데이터스트림 완료")
-          
+//                    print("데이터스트림 완료")
         }, receiveValue: { receivedValue in
-          //          print("받은 값: \(receivedValue.count)")
+//                    print("받은 값: \(receivedValue.count)")
           self.comments = receivedValue
         }).store(in: &subscription)
     }

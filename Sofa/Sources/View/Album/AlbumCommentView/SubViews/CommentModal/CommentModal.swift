@@ -9,7 +9,12 @@ import SwiftUI
 
 struct CommentModal: View {
   @State private var curHeight: CGFloat = Screen.maxHeight / 2
+  @State private var prevDragTranslation = CGSize.zero
+  @State private var isDragging = false
   @State var isWriteClick = false
+  let minHeight: CGFloat = Screen.maxHeight / 2
+  let maxHeight: CGFloat = Screen.maxHeight * 0.9
+  var callback: (() -> ())? = nil
   
   // Drag bar
   var topHalfMiddleBar: some View {
@@ -25,7 +30,38 @@ struct CommentModal: View {
     .frame(height: 40)
     .frame(maxWidth: .infinity)
     .background(Color.white) // 색상을 줘야 frame 영역 gesture 작동
+    .gesture(dragGesture)
   }
+  
+  var dragGesture: some Gesture {
+    DragGesture(minimumDistance: 0, coordinateSpace: .global)
+      .onChanged { value in
+        isDragging = true
+        
+        let dragAmount = value.translation.height - prevDragTranslation.height
+        
+        if curHeight > maxHeight || curHeight < minHeight {
+          curHeight -= dragAmount / 6
+        } else{
+          curHeight -= dragAmount
+        }
+        
+        prevDragTranslation = value.translation
+      }
+      .onEnded { _ in
+        prevDragTranslation = .zero
+        isDragging = false
+        if curHeight > minHeight + 35 {
+          curHeight = maxHeight
+        } else if curHeight < minHeight - 35 {
+          callback?() // 닫기
+          curHeight = minHeight
+        } else{
+          curHeight = minHeight
+        }
+      }
+  }
+  
   var CommentInput: some View {
     HStack {
       Text("댓글을 남겨보세요")
@@ -60,6 +96,7 @@ struct CommentModal: View {
     .cornerRadius(15)
     .frame(height: curHeight)
     .frame(maxWidth: .infinity)
+    .animation(isDragging ? nil : .easeInOut(duration: 0.45))
   }
 }
 

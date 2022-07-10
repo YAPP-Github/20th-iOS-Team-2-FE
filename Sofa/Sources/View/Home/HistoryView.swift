@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftUIPager
 
-struct ModalView: View {
+struct HistoryView: View {
   
   @Binding var isShowing: Bool
   @State private var isDragging = false
@@ -250,6 +250,6 @@ struct ModalView: View {
 
 struct ModalView_Previews: PreviewProvider {
   static var previews: some View {
-    ModalView(isShowing: .constant(true))
+    HistoryView(isShowing: .constant(true))
   }
 }

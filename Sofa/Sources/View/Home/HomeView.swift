@@ -48,7 +48,7 @@ struct HomeView: View {
             .background(Color(hex: "F5F2E9"))
             ChatList(showModal: $showModal)
               .fullScreenCover(isPresented: $showModal) {
-                ModalView(isShowing: $showModal)
+                HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
               }
           }// ScrollView

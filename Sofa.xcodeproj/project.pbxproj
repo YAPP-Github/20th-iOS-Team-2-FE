@@ -42,7 +42,7 @@
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
 		0AC79182286AF1440034A830 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC79181286AF1440034A830 /* EmojiView.swift */; };
 		0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC79184286B0AE00034A830 /* ConfettiSwiftUI */; };
-		0AE4919A28740D1A00341D35 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4919928740D1A00341D35 /* ModalView.swift */; };
+		0AE4919A28740D1A00341D35 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4919928740D1A00341D35 /* HistoryView.swift */; };
 		0AE492022876A8DC00341D35 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE492012876A8DC00341D35 /* HistoryViewModel.swift */; };
 		0AE492042876A8F600341D35 /* HistoryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AE492032876A8F600341D35 /* HistoryMock.json */; };
 		0AE492062876A9B000341D35 /* HistoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE492052876A9B000341D35 /* HistoryInfo.swift */; };
@@ -181,7 +181,7 @@
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		0AC79181286AF1440034A830 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
-		0AE4919928740D1A00341D35 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		0AE4919928740D1A00341D35 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		0AE492012876A8DC00341D35 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		0AE492032876A8F600341D35 /* HistoryMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HistoryMock.json; sourceTree = "<group>"; };
 		0AE492052876A9B000341D35 /* HistoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInfo.swift; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 			children = (
 				6F22E529284B9D140069D268 /* HomeView.swift */,
 				0AE492072877387300341D35 /* NotificationView.swift */,
-				0AE4919928740D1A00341D35 /* ModalView.swift */,
+				0AE4919928740D1A00341D35 /* HistoryView.swift */,
 				0AAB36F62866188100A47B24 /* ViewModel */,
 				0AAB367A2863814F00A47B24 /* SubViews */,
 			);
@@ -1173,7 +1173,7 @@
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
-				0AE4919A28740D1A00341D35 /* ModalView.swift in Sources */,
+				0AE4919A28740D1A00341D35 /* HistoryView.swift in Sources */,
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				0A4CFB8B285F79AB000603A5 /* Ex+Font.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
@@ -1397,7 +1397,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = SF6SBNPMLX;
+				DEVELOPMENT_TEAM = B4G53F63TN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;

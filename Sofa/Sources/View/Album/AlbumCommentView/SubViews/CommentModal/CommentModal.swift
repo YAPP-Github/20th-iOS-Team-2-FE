@@ -52,6 +52,9 @@ struct CommentModal: View {
         .offset(x:0, y: 0)
       
       CommentInput // 댓글 입력창
+      
+      Spacer()
+        .frame(height: Screen.safeAreaBottom)
     }
     .background(Color.white)
     .cornerRadius(15)

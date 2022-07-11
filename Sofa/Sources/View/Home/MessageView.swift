@@ -16,14 +16,11 @@ struct MessageView: View {
   @State private var isDragging = false
   @State private var text: String?
   @State private var textLength: Int = 0
-  @State private var textEditorHeight: CGFloat = 52
-  @State private var increasedHeightValue: CGFloat = 0
-  @State var startPos : CGPoint = .zero
-  
   @State private var curHeight: CGFloat = 120
-  
   @State var minHeight: CGFloat = 120
+  
   //  let maxHeight: CGFloat = (Screen.maxHeight - yoffset) * 0.9
+  //  @State var startPos : CGPoint = .zero
   
   init(_ isShowing: Binding<Bool>){
     _isShowing = isShowing
@@ -50,8 +47,6 @@ struct MessageView: View {
   }
   
   //MARK: - mainView
-  var numbers: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  
   var mainView: some View{
     VStack(alignment: .center, spacing: 0) {
       
@@ -73,32 +68,45 @@ struct MessageView: View {
             ZStack(alignment: .topLeading) {
               Color.white
                 .opacity(0.0)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .frame(height: 1)
               
-              Text(text ?? placeholder)
-                .padding()
-                .opacity(text == nil ? 1 : 0)
-              TextEditor(text: Binding($text, replacingNilWith: ""))
-                .frame(minHeight: 40, alignment: .leading)
-                .frame(maxHeight: 130, alignment: .leading)
-                .cornerRadius(6.0)
-                .multilineTextAlignment(.leading)
-                .padding(9)
-                .background(GeometryReader { proxy in
-                  Color.clear
-                    .onChange(of: self.text, perform:
-                                { value in
-                      curHeight = proxy.size.height + 60
-                      
-                      self.minHeight = curHeight
-                    })
-                })
-                .onChange(of: self.text) { newValue in
-                  self.textLength = newValue?.count ?? 0
-                }
+              ZStack(alignment: .leading){
+                Text(text ?? placeholder)
+                  .font(.custom("Pretendard-Regular", size: 16))
+                  .padding()
+                  .opacity(text == nil ? 1 : 0)
+                TextEditor(text: Binding($text, replacingNilWith: ""))
+                  .font(.custom("Pretendard-Regular", size: 16))
+                  .frame(minHeight: 40, alignment: .leading)
+                  .frame(maxHeight: 130, alignment: .leading)
+                  .cornerRadius(6.0)
+                  .multilineTextAlignment(.leading)
+                  .padding(9)
+                  .background(GeometryReader { proxy in
+                    Color.clear
+                      .onChange(of: self.text, perform:
+                                  { value in
+                        curHeight = proxy.size.height + 60
+                        
+                        self.minHeight = curHeight
+                      })
+                  })
+                  .onChange(of: self.text) { newValue in
+                    self.textLength = newValue?.count ?? 0
+                  }
+                  .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+                    self.curHeight = minHeight
+                  }
+                  .foregroundColor(Color.black)
+                  .background(Color.white).opacity(0.5)
+              }
+              .frame(minHeight: 40, alignment: .leading)
+              .frame(maxHeight: 130, alignment: .leading)
                 
             }
           }
+//          .background(Color.gray)
           
           HStack{
             Text("\(textLength) / 150")

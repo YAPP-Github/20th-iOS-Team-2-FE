@@ -11,11 +11,13 @@ struct MessageView: View {
   
   @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
   
+  let placeholder = "Enter Text Here"
   @Binding var isShowing: Bool
   @State private var isDragging = false
-  @State private var text: String = ""
+  @State private var text: String?
   @State private var textLength: Int = 0
-  @State private var textEditorHeight: CGFloat = 16
+  @State private var textEditorHeight: CGFloat = 52
+  @State private var increasedHeightValue: CGFloat = 0
   
   @State private var curHeight: CGFloat = 112
   
@@ -66,28 +68,30 @@ struct MessageView: View {
       
       ZStack(alignment: .center){
         VStack{
-          TextEditor(text: $text)
-            .foregroundColor(Color.black)
-            .font(.custom("Pretendard-Regular", size: 16))
-            .padding(EdgeInsets(top: 4, leading: 26, bottom: 12, trailing: 26))
-            .background(Color.yellow)
-            .onChange(of: text) { value in
-              textLength = value.count
+          ScrollView {
+            ZStack(alignment: .topLeading) {
+              Color.gray
+                .opacity(0.3)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+              
+              Text(text ?? placeholder)
+                .padding()
+                .opacity(text == nil ? 1 : 0)
+              TextEditor(text: Binding($text, replacingNilWith: ""))
+                .frame(minHeight: 30, alignment: .leading)
+                .cornerRadius(6.0)
+                .multilineTextAlignment(.leading)
+                .padding(9)
+                .background(GeometryReader { proxy in
+                  Color.clear
+                    .onChange(of: self.text, perform:
+                                { value in
+                      curHeight = proxy.size.height + 60
+                    })
+                })
             }
-            .frame(minHeight: 30, alignment: .leading)
-
-//            .background(GeometryReader { proxy in
-//              Color.clear
-//                .onChange(of: self.text, perform: { value in
-////                  if proxy.size.height > textEditorHeight {
-////                    textEditorHeight = proxy.size.height + 17.0
-////                  }
-////                  print(proxy.size.height)
-////                  print(textEditorHeight)
-//                  curHeight += textEditorHeight
-//                })
-//
-//            })
+          }
+          
           HStack{
             Text("\(textLength) / 150")
             Spacer()
@@ -115,6 +119,7 @@ struct MessageView: View {
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0.45))
     .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+    //    .animationsDisabled()
   }
   
   
@@ -162,5 +167,22 @@ struct MessageView: View {
 struct MessageView_Previews: PreviewProvider {
   static var previews: some View {
     MessageView(.constant(true))
+  }
+}
+
+
+public extension Binding where Value: Equatable {
+  
+  init(_ source: Binding<Value?>, replacingNilWith nilProxy: Value) {
+    self.init(
+      get: { source.wrappedValue ?? nilProxy },
+      set: { newValue in
+        if newValue == nilProxy {
+          source.wrappedValue = nil
+        } else {
+          source.wrappedValue = newValue
+        }
+      }
+    )
   }
 }

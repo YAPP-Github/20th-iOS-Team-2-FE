@@ -30,10 +30,10 @@
 		0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */; };
 		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
-		0A915DF7287B21E70055AD6D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A915DF6287B21E70055AD6D /* MessageView.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
 		0A915DD5287A9B8C0055AD6D /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A915DD4287A9B8C0055AD6D /* NotificationViewModel.swift */; };
 		0A915DD7287A9BA00055AD6D /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A915DD6287A9BA00055AD6D /* Notifications.swift */; };
+		0A915DF7287B21E70055AD6D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A915DF6287B21E70055AD6D /* MessageView.swift */; };
 		0AAB367C2863816300A47B24 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367B2863816300A47B24 /* EventList.swift */; };
 		0AAB367F286381C000A47B24 /* HomeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB367E286381C000A47B24 /* HomeInfo.swift */; };
 		0AAB36812864287E00A47B24 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB36802864287E00A47B24 /* EventRow.swift */; };
@@ -182,10 +182,10 @@
 		0A4CFBA22860C963000603A5 /* Sofa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sofa.entitlements; sourceTree = "<group>"; };
 		0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
-		0A915DF6287B21E70055AD6D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		0A915DD2287A9A9B0055AD6D /* NotificationMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationMock.json; sourceTree = "<group>"; };
 		0A915DD4287A9B8C0055AD6D /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		0A915DD6287A9BA00055AD6D /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		0A915DF6287B21E70055AD6D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		0AAB367B2863816300A47B24 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		0AAB367E286381C000A47B24 /* HomeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfo.swift; sourceTree = "<group>"; };
 		0AAB36802864287E00A47B24 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
@@ -502,7 +502,6 @@
 				0A2B55082858779D006F816C /* View.swift */,
 				6F9C988B2875A7CB0062BF84 /* Ex+UIApplication.swift */,
 				0AE4921128780B0400341D35 /* Ex+UINavigationController.swift */,
-				0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -878,6 +877,7 @@
 		C4B8F2A42851CAA70000B8CB /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
+				0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */,
 				C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */,
 				C4B8F2A72851CAD50000B8CB /* HiddenTabBar.swift */,
 				C4B8F2CB285474900000B8CB /* PinchToZoom.swift */,

@@ -36,9 +36,6 @@ struct AlbumView: View {
       ],
       outOfFocusOpacity: 0.2
     )
-    .onDisappear {
-      UITabBar.showTabBar()
-    }
   }
   
   var body: some View {
@@ -86,7 +83,6 @@ struct AlbumView: View {
             secondaryButton: .default(Text("확인")))
         }
         .onAppear { UITabBar.showTabBar() }
-        .onDisappear { UITabBar.hideTabBar() }
       }
       if showingSheet { // action sheet
         Color.black

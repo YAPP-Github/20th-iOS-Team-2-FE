@@ -23,6 +23,7 @@ struct MessageView: View {
   @State var isMaxHeight: Bool = false
   @State var keyboardHeight: CGFloat = 0
   @State var fullTextEditorHeight: CGFloat = 0
+  @State var isKeyboard: Bool = false
   
   init(_ isShowing: Binding<Bool>){
     _isShowing = isShowing
@@ -65,7 +66,7 @@ struct MessageView: View {
       .gesture(dragGesture)
       
       ZStack(alignment: .center){
-        VStack{
+        VStack(spacing: 0){
           ScrollView {
             ZStack(alignment: .topLeading) {
               Color.white
@@ -103,6 +104,7 @@ struct MessageView: View {
                   .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
                     self.curHeight = minHeight
                     isMaxHeight = false
+                    isKeyboard = true
                   }
                   .foregroundColor(Color.black)
                   .background(Color.white).opacity(0.5)
@@ -121,7 +123,7 @@ struct MessageView: View {
               })
           })
 
-          HStack{
+          HStack(alignment: .center){
             HStack(spacing: 0){
               Group{
                 Text("\(textLength)")
@@ -155,9 +157,14 @@ struct MessageView: View {
       }// ZStack
       .frame(maxHeight: .infinity)
       .background(Color.white)
+      if !isKeyboard{ // Notch 디바이스는 Radius때문에 하단이 잘리므로 Padding 추가
+        Rectangle()
+          .foregroundColor(.white)
+          .frame(width: Screen.maxWidth, height: UIDevice().hasNotch ? 20 : 0)
+      }
     }
     .offset(y: -self.keyboardHeightHelper.keyboardHeight)
-    .frame(height: curHeight)
+    .frame(height: isKeyboard ? curHeight : curHeight + 20 )
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0))
   }
@@ -224,13 +231,6 @@ public extension Binding where Value: Equatable {
     )
   }
 }
-
-
-//struct MessageView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    MessageView(.constant(true))
-//  }
-//}
 
 extension View {
   func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> some View {

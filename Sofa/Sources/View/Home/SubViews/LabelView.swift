@@ -25,9 +25,10 @@ struct LabelView: View {
     
     func makeUIView(context: Context) -> UILabel {
       let label = UILabel()
-      label.numberOfLines = 2
-      label.lineBreakMode = .byTruncatingTail
+      label.numberOfLines = 0
+      label.lineBreakMode = .byCharWrapping
       label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+      label.font = UIFont(name: "Pretendard-Regular", size: 14)
       
       return label
     }

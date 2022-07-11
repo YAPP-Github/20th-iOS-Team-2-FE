@@ -13,6 +13,7 @@ struct EventList: View {
   @ObservedObject var eventViewModel = EventViewModel()
   @StateObject var page: Page = .first()
   @State var alignment: SofaPositionAlignment = .start
+  @Binding var selectionType: Tab
   
   var body: some View {
     Pager(page: page,
@@ -22,6 +23,9 @@ struct EventList: View {
       // create a page based on the data passed
       if eventViewModel.events.count > 0 {
         EventRow(eventViewModel.events[index])
+          .onTapGesture {
+            self.selectionType = .calendar
+          }
       }
     })
     .onPageChanged({ (newIndex) in
@@ -74,9 +78,9 @@ extension PositionAlignment {
     }
   }
 }
-
-struct EventList_Previews: PreviewProvider {
-  static var previews: some View {
-    EventList()
-  }
-}
+//
+//struct EventList_Previews: PreviewProvider {
+//  static var previews: some View {
+//    EventList()
+//  }
+//}

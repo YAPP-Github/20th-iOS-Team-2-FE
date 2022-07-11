@@ -12,6 +12,7 @@ struct CustomDatePicker: View {
   @Binding var currentDate: Date
   
   @State var currentMonth: Int = 0
+  @State var showTaskDetail = false
   
   var body: some View {
     VStack(spacing: 0){
@@ -118,6 +119,11 @@ struct CustomDatePicker: View {
                 }
               }
               .frame(maxWidth: .infinity, alignment: .leading)
+              .contentShape(Rectangle())
+              .onTapGesture {
+                self.showTaskDetail.toggle()
+              }
+              .fullScreenCover(isPresented: self.$showTaskDetail, content: TaskDetailView.init)
             }
           } else {
           }

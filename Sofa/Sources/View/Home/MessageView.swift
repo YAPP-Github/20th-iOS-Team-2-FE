@@ -122,7 +122,15 @@ struct MessageView: View {
           })
 
           HStack{
-            Text("\(textLength) / 150")
+            HStack(spacing: 0){
+              Group{
+                Text("\(textLength)")
+                  .foregroundColor(Color(hex: "43A047"))
+                Text("/150")
+                  .foregroundColor(Color(hex: "#999899"))
+              }
+              .font(.custom("Pretendard-Medium", size: 14))
+            }
             Spacer()
             Button {
               if textLength == 0{

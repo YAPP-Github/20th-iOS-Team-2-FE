@@ -56,13 +56,14 @@ struct HomeView: View {
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView(messageShow: $showMessageView)
-            .offset(x: 0, y: -24)
-            .padding(.horizontal, 23)
-            .edgesIgnoringSafeArea(.top)
             .fullScreenCover(isPresented: $showMessageView) {
               MessageView($showMessageView)
                 .background(BackgroundCleanerView())
             }
+            .offset(x: 0, y: -24)
+            .padding(.horizontal, 23)
+            .edgesIgnoringSafeArea(.top)
+
         }// VStack
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)

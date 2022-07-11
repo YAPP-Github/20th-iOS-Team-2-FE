@@ -12,6 +12,7 @@ struct MessageView: View {
   
   let placeholder = "가족에게 인사를 남겨보세요."
   @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
+  @Environment(\.presentationMode) var presentationMode
   
   @Binding var isShowing: Bool
   @State private var isDragging = false
@@ -124,7 +125,11 @@ struct MessageView: View {
             Text("\(textLength) / 150")
             Spacer()
             Button {
-              print("send")
+              if textLength == 0{
+                print("DISABLED")
+              }else{
+                self.presentationMode.wrappedValue.dismiss()
+              }
             } label: {
               Rectangle()
                 .frame(width: 56, height: 32)
@@ -143,10 +148,10 @@ struct MessageView: View {
       .frame(maxHeight: .infinity)
       .background(Color.white)
     }
+    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
     .frame(height: curHeight)
     .frame(maxWidth: .infinity)
-    .animation(isDragging ? nil : .easeInOut(duration: 0.45))
-    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+    .animation(isDragging ? nil : .easeInOut(duration: 0))
   }
   
   

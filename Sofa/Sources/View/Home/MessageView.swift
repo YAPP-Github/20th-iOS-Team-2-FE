@@ -11,6 +11,8 @@ import Combine
 struct MessageView: View {
   
   let placeholder = "가족에게 인사를 남겨보세요."
+  @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
+  
   @Binding var isShowing: Bool
   @State private var isDragging = false
   @State private var text: String?
@@ -90,7 +92,7 @@ struct MessageView: View {
                           curHeight = proxy.size.height + 58
                           self.minHeight = curHeight
                         }else{
-                          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeight) * 0.9
+                          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
                         }
                       })
                   })
@@ -144,8 +146,7 @@ struct MessageView: View {
     .frame(height: curHeight)
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0.45))
-    .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
-    .offset(y: -self.keyboardHeight )
+    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
   }
   
   
@@ -161,7 +162,7 @@ struct MessageView: View {
         
         let dragAmount = val.translation.height - prevDragTranslation.height
         
-        if curHeight > (Screen.maxHeight * 0.9 - self.keyboardHeight){
+        if curHeight > (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight){
           curHeight -= dragAmount / 6
         }
         else if curHeight < minHeight {
@@ -177,7 +178,7 @@ struct MessageView: View {
         prevDragTranslation = .zero
         isDragging = false
         if curHeight > minHeight + 120 {
-          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeight) * 0.9
+          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
           isMaxHeight = true
         }
         else if curHeight < minHeight - 30{

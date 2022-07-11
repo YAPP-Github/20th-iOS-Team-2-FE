@@ -13,7 +13,7 @@ struct AlbumPhotoAddView: View {
   @State var isNext = false
   @State var imageClick: UIImage?
   @State var selected: [SelectedImages] = []
-
+  
   // Toast Message
   @State var showToastMessage: Bool = false
   @State private var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "최대 3장까지 올릴 수 있어요", type: .Warning)
@@ -26,11 +26,12 @@ struct AlbumPhotoAddView: View {
         VStack {
           
           if imageClick != nil { // 첫 Appear상태에는 선택된 이미지가 없음
-            Image(uiImage: imageClick!)
-              .resizable()
-              .scaledToFit()
-              .frame(height: height) // 화면의 반
-              .pinchToZoom()
+            ZoomScrollView {
+              Image(uiImage: imageClick!)
+                .resizable()
+                .scaledToFit()
+                .frame(height: height) // 화면의 반
+            }
           }
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반

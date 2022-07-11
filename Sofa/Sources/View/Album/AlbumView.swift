@@ -74,10 +74,6 @@ struct AlbumView: View {
         .fullScreenCover(isPresented: $authorizationViewModel.showRecord) { // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }
-        .fullScreenCover(isPresented: $showingSheet) {
-          actionSheetView // 바텀 Sheet
-            .background(BackgroundCleanerView())
-        }
         .alert(isPresented: $authorizationViewModel.showErrorAlert) { // 카메라 error
           Alert(
             title: Text(authorizationViewModel.showErrorAlertTitle),
@@ -96,6 +92,11 @@ struct AlbumView: View {
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()
+          .onTapGesture {
+            showingSheet = false
+          }
+        
+        actionSheetView // 바텀 Sheet
       }
     }
   }

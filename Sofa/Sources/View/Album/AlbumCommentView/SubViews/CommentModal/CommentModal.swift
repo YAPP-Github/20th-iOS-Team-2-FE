@@ -39,7 +39,7 @@ struct CommentModal: View {
         isDragging = true
         
         let dragAmount = value.translation.height - prevDragTranslation.height
-        
+//        
         if curHeight > maxHeight || curHeight < minHeight {
           curHeight -= dragAmount / 6
         } else{

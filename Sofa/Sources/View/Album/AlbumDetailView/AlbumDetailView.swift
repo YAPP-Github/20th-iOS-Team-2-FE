@@ -68,10 +68,6 @@ struct AlbumDetailView: View {
         .fullScreenCover(isPresented: $isUpdateDate) {
           AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
         }
-        .fullScreenCover(isPresented: $isEllipsisClick) {
-          actionSheetView // 바텀 Sheet
-            .background(BackgroundCleanerView())
-        }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       }
       .navigationViewStyle(StackNavigationViewStyle())
@@ -82,6 +78,11 @@ struct AlbumDetailView: View {
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()
+          .onTapGesture {
+            isEllipsisClick = false
+          }
+        
+        actionSheetView // 바텀 Sheet
       }
     }
   }

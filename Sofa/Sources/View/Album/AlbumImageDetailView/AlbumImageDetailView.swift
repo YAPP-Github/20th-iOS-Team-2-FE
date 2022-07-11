@@ -72,6 +72,13 @@ struct AlbumImageDetailView: View {
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()
+          .onTapGesture {
+            isEllipsisClick = false
+          }
+        
+        if isEllipsisClick {
+          actionSheetView // 바텀 Sheet
+        }
       }
     }
     .background(Color.black)
@@ -80,10 +87,6 @@ struct AlbumImageDetailView: View {
     .toastMessage(data: $messageData, isShow: $isDownloadClick)
     .fullScreenCover(isPresented: $isCommentClick) {
       AlbumCommentView(isShowing: $isCommentClick)
-        .background(BackgroundCleanerView())
-    }
-    .fullScreenCover(isPresented: $isEllipsisClick) {
-      actionSheetView
         .background(BackgroundCleanerView())
     }
     .onAppear {

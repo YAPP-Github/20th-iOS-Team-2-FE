@@ -78,7 +78,7 @@ struct MessageView: View {
                   .opacity(text == nil ? 1 : 0)
                 TextEditor(text: Binding($text, replacingNilWith: ""))
                   .font(.custom("Pretendard-Regular", size: 16))
-                  .frame(minHeight: 40, alignment: .leading)
+                  .frame(minHeight: 45, alignment: .leading)
                   .frame(maxHeight: 130, alignment: .leading)
                   .cornerRadius(6.0)
                   .multilineTextAlignment(.leading)
@@ -101,7 +101,7 @@ struct MessageView: View {
                   .foregroundColor(Color.black)
                   .background(Color.white).opacity(0.5)
               }
-              .frame(minHeight: 40, alignment: .leading)
+              .frame(minHeight: 45, alignment: .leading)
               .frame(maxHeight: 130, alignment: .leading)
                 
             }
@@ -165,10 +165,10 @@ struct MessageView: View {
       .onEnded { gesture in
         prevDragTranslation = .zero
         isDragging = false
-        if curHeight > minHeight + 40 {
+        if curHeight > minHeight + 50 {
           curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
         }
-        else if curHeight < minHeight - 10{
+        else if curHeight < minHeight - 20{
           isShowing = false
           curHeight = minHeight
         }
@@ -212,3 +212,13 @@ public extension Binding where Value: Equatable {
 //    MessageView(.constant(true))
 //  }
 //}
+
+extension View {
+  func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> some View {
+       if conditional {
+           return AnyView(content(self))
+       } else {
+           return AnyView(self)
+       }
+   }
+}

@@ -26,6 +26,7 @@ struct MessageView: View {
   @State var isKeyboard: Bool = false
   
   init(_ isShowing: Binding<Bool>){
+    UITextView.appearance().backgroundColor = .clear
     _isShowing = isShowing
   }
   
@@ -74,10 +75,12 @@ struct MessageView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .frame(height: 1)
               
-              ZStack(alignment: .leading){
-                Text(text ?? placeholder)
+              ZStack(alignment: .topLeading){
+                Text(text ?? placeholder) // PlaceHolder
                   .font(.custom("Pretendard-Regular", size: 16))
-                  .padding()
+                  .foregroundColor(Color(UIColor.placeholderText))
+                  .padding(.horizontal, 12)
+                  .padding(.vertical, 15)
                   .opacity(text == nil ? 1 : 0)
                 TextEditor(text: Binding($text, replacingNilWith: ""))
                   .font(.custom("Pretendard-Regular", size: 16))
@@ -106,8 +109,7 @@ struct MessageView: View {
                     isMaxHeight = false
                     isKeyboard = true
                   }
-                  .foregroundColor(Color.black)
-                  .background(Color.white).opacity(0.5)
+                  
               }
               .frame(minHeight: isMaxHeight ? fullTextEditorHeight : 44, alignment: .leading)
               .frame(maxHeight: isMaxHeight ? fullTextEditorHeight : 130, alignment: .leading)

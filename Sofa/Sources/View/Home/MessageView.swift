@@ -14,16 +14,16 @@ struct MessageView: View {
   @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
   @Environment(\.presentationMode) var presentationMode
   
-  @Binding var isShowing: Bool
+  @Binding var isShowing: Bool // 외부 View에서 MessageView 띄울 때 사용
   @State private var isDragging = false
-  @State private var text: String?
-  @State private var textLength: Int = 0
-  @State private var curHeight: CGFloat = 120
-  @State var minHeight: CGFloat = 120
-  @State var isMaxHeight: Bool = false
+  @State private var text: String? // TextEditor의 Text
+  @State private var textLength: Int = 0 // 글자 수 세기
+  @State private var curHeight: CGFloat = 120 // View의 현재 높이
+  @State var minHeight: CGFloat = 120 // View의 최소 높이
+  @State var isMaxHeight: Bool = false // 현재 View가 MaxHeight인지 여부
   @State var keyboardHeight: CGFloat = 0
-  @State var fullTextEditorHeight: CGFloat = 0
-  @State var isKeyboard: Bool = false
+  @State var fullTextEditorHeight: CGFloat = 0 // TextEditor가 Full일 때 높이
+  @State var isKeyboard: Bool = false // 현재 키보드 올라와있는지
   
   init(_ isShowing: Binding<Bool>){
     UITextView.appearance().backgroundColor = .clear
@@ -54,7 +54,7 @@ struct MessageView: View {
   var mainView: some View{
     VStack(alignment: .center, spacing: -1) {
       
-      ZStack(alignment: .center){
+      ZStack(alignment: .center){ // Panel
         Capsule()
           .frame(width: 48, height: 4)
           .foregroundColor(Color.black)
@@ -125,7 +125,7 @@ struct MessageView: View {
               })
           })
 
-          HStack(alignment: .center){
+          HStack(alignment: .center){ // 글자 수
             HStack(spacing: 0){
               Group{
                 Text("\(textLength)")
@@ -136,7 +136,7 @@ struct MessageView: View {
               .font(.custom("Pretendard-Medium", size: 14))
             }
             Spacer()
-            Button {
+            Button { // SEND BUTTON
               if textLength == 0{
                 print("DISABLED")
               }else{
@@ -232,14 +232,4 @@ public extension Binding where Value: Equatable {
       }
     )
   }
-}
-
-extension View {
-  func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> some View {
-       if conditional {
-           return AnyView(content(self))
-       } else {
-           return AnyView(self)
-       }
-   }
 }

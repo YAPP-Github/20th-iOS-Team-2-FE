@@ -18,6 +18,7 @@ struct MessageView: View {
   @State private var textLength: Int = 0
   @State private var curHeight: CGFloat = 120
   @State var minHeight: CGFloat = 120
+  @State var isMaxHeight: Bool = false
   
   //  let maxHeight: CGFloat = (Screen.maxHeight - yoffset) * 0.9
   //  @State var startPos : CGPoint = .zero
@@ -87,9 +88,14 @@ struct MessageView: View {
                     Color.clear
                       .onChange(of: self.text, perform:
                                   { value in
-                        curHeight = proxy.size.height + 60
-                        
-                        self.minHeight = curHeight
+                        if !isMaxHeight{
+                          curHeight = proxy.size.height + 60
+                          self.minHeight = curHeight
+                        }else{
+                          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
+//                          self.minHeight = curHeight
+                        }
+
                       })
                   })
                   .onChange(of: self.text) { newValue in
@@ -165,15 +171,18 @@ struct MessageView: View {
       .onEnded { gesture in
         prevDragTranslation = .zero
         isDragging = false
-        if curHeight > minHeight + 50 {
+        if curHeight > minHeight + 120 {
           curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
+          isMaxHeight = true
         }
         else if curHeight < minHeight - 20{
           isShowing = false
           curHeight = minHeight
+          isMaxHeight = false
         }
         else {
           curHeight = minHeight
+          isMaxHeight = false
         }
         
 //        let xDist =  abs(gesture.location.x - self.startPos.x)

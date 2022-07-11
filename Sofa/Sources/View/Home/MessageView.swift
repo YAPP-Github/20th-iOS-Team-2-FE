@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MessageView: View {
   
@@ -19,6 +20,7 @@ struct MessageView: View {
   @State private var curHeight: CGFloat = 120
   @State var minHeight: CGFloat = 120
   @State var isMaxHeight: Bool = false
+  @State var keyboardHeight: CGFloat = 0
   
   //  let maxHeight: CGFloat = (Screen.maxHeight - yoffset) * 0.9
   //  @State var startPos : CGPoint = .zero
@@ -79,7 +81,7 @@ struct MessageView: View {
                   .opacity(text == nil ? 1 : 0)
                 TextEditor(text: Binding($text, replacingNilWith: ""))
                   .font(.custom("Pretendard-Regular", size: 16))
-                  .frame(minHeight: 45, alignment: .leading)
+                  .frame(minHeight: 44, alignment: .leading)
                   .frame(maxHeight: 130, alignment: .leading)
                   .cornerRadius(6.0)
                   .multilineTextAlignment(.leading)
@@ -89,13 +91,13 @@ struct MessageView: View {
                       .onChange(of: self.text, perform:
                                   { value in
                         if !isMaxHeight{
-                          curHeight = proxy.size.height + 60
+                          curHeight = proxy.size.height + 58
                           self.minHeight = curHeight
                         }else{
                           curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
-//                          self.minHeight = curHeight
                         }
-
+                        print(curHeight)
+                        print(proxy.size.height)
                       })
                   })
                   .onChange(of: self.text) { newValue in
@@ -103,11 +105,12 @@ struct MessageView: View {
                   }
                   .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
                     self.curHeight = minHeight
+                    isMaxHeight = false
                   }
                   .foregroundColor(Color.black)
                   .background(Color.white).opacity(0.5)
               }
-              .frame(minHeight: 45, alignment: .leading)
+              .frame(minHeight: 44, alignment: .leading)
               .frame(maxHeight: 130, alignment: .leading)
                 
             }
@@ -140,7 +143,8 @@ struct MessageView: View {
     .frame(height: curHeight)
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0.45))
-    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+    .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
+    .offset(y: -self.keyboardHeight )
   }
   
   
@@ -175,7 +179,7 @@ struct MessageView: View {
           curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
           isMaxHeight = true
         }
-        else if curHeight < minHeight - 20{
+        else if curHeight < minHeight - 30{
           isShowing = false
           curHeight = minHeight
           isMaxHeight = false

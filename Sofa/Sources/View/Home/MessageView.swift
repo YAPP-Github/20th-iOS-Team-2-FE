@@ -22,7 +22,7 @@ struct MessageView: View {
   
   @State private var curHeight: CGFloat = 120
   
-  let minHeight: CGFloat = 120
+  @State var minHeight: CGFloat = 120
   //  let maxHeight: CGFloat = (Screen.maxHeight - yoffset) * 0.9
   
   init(_ isShowing: Binding<Bool>){
@@ -34,7 +34,7 @@ struct MessageView: View {
       if isShowing{
         VStack {
           Color.black
-            .opacity(0.7)
+            .opacity(0)
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -71,8 +71,8 @@ struct MessageView: View {
         VStack{
           ScrollView {
             ZStack(alignment: .topLeading) {
-              Color.gray
-                .opacity(0.3)
+              Color.white
+                .opacity(0.0)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
               
               Text(text ?? placeholder)
@@ -89,11 +89,14 @@ struct MessageView: View {
                     .onChange(of: self.text, perform:
                                 { value in
                       curHeight = proxy.size.height + 60
+                      
+                      self.minHeight = curHeight
                     })
                 })
                 .onChange(of: self.text) { newValue in
                   self.textLength = newValue?.count ?? 0
                 }
+                
             }
           }
           

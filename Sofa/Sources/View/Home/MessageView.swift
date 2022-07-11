@@ -10,8 +10,6 @@ import Combine
 
 struct MessageView: View {
   
-  @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
-  
   let placeholder = "가족에게 인사를 남겨보세요."
   @Binding var isShowing: Bool
   @State private var isDragging = false
@@ -21,9 +19,7 @@ struct MessageView: View {
   @State var minHeight: CGFloat = 120
   @State var isMaxHeight: Bool = false
   @State var keyboardHeight: CGFloat = 0
-  
-  //  let maxHeight: CGFloat = (Screen.maxHeight - yoffset) * 0.9
-  //  @State var startPos : CGPoint = .zero
+  @State var fullTextEditorHeight: CGFloat = 0
   
   init(_ isShowing: Binding<Bool>){
     _isShowing = isShowing
@@ -51,7 +47,7 @@ struct MessageView: View {
   
   //MARK: - mainView
   var mainView: some View{
-    VStack(alignment: .center, spacing: 0) {
+    VStack(alignment: .center, spacing: -1) {
       
       ZStack(alignment: .center){
         Capsule()
@@ -81,8 +77,8 @@ struct MessageView: View {
                   .opacity(text == nil ? 1 : 0)
                 TextEditor(text: Binding($text, replacingNilWith: ""))
                   .font(.custom("Pretendard-Regular", size: 16))
-                  .frame(minHeight: 44, alignment: .leading)
-                  .frame(maxHeight: 130, alignment: .leading)
+                  .frame(minHeight: isMaxHeight ? fullTextEditorHeight : 44, alignment: .leading)
+                  .frame(maxHeight: isMaxHeight ? fullTextEditorHeight : 130, alignment: .leading)
                   .cornerRadius(6.0)
                   .multilineTextAlignment(.leading)
                   .padding(9)
@@ -94,10 +90,8 @@ struct MessageView: View {
                           curHeight = proxy.size.height + 58
                           self.minHeight = curHeight
                         }else{
-                          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
+                          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeight) * 0.9
                         }
-                        print(curHeight)
-                        print(proxy.size.height)
                       })
                   })
                   .onChange(of: self.text) { newValue in
@@ -110,13 +104,20 @@ struct MessageView: View {
                   .foregroundColor(Color.black)
                   .background(Color.white).opacity(0.5)
               }
-              .frame(minHeight: 44, alignment: .leading)
-              .frame(maxHeight: 130, alignment: .leading)
-                
+              .frame(minHeight: isMaxHeight ? fullTextEditorHeight : 44, alignment: .leading)
+              .frame(maxHeight: isMaxHeight ? fullTextEditorHeight : 130, alignment: .leading)
             }
           }
-//          .background(Color.gray)
-          
+          .background(GeometryReader { proxy in
+            Color.clear
+              .onChange(of: self.curHeight, perform:
+                          { value in
+                if (isMaxHeight){
+                  self.fullTextEditorHeight = proxy.size.height
+                }
+              })
+          })
+
           HStack{
             Text("\(textLength) / 150")
             Spacer()
@@ -160,7 +161,7 @@ struct MessageView: View {
         
         let dragAmount = val.translation.height - prevDragTranslation.height
         
-        if curHeight > (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight){
+        if curHeight > (Screen.maxHeight * 0.9 - self.keyboardHeight){
           curHeight -= dragAmount / 6
         }
         else if curHeight < minHeight {
@@ -176,7 +177,7 @@ struct MessageView: View {
         prevDragTranslation = .zero
         isDragging = false
         if curHeight > minHeight + 120 {
-          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
+          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeight) * 0.9
           isMaxHeight = true
         }
         else if curHeight < minHeight - 30{
@@ -188,16 +189,7 @@ struct MessageView: View {
           curHeight = minHeight
           isMaxHeight = false
         }
-        
-//        let xDist =  abs(gesture.location.x - self.startPos.x)
-//        let yDist =  abs(gesture.location.y - self.startPos.y)
-//        if self.startPos.y <  gesture.location.y && yDist > xDist { // 아래 Gesture
-//          curHeight = minHeight
-//        }
-//        else if self.startPos.y >  gesture.location.y && yDist > xDist {
-//          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
-//        }
-        
+
       }
   }
 }

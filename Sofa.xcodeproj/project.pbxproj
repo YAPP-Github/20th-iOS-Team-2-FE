@@ -85,6 +85,14 @@
 		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
 		C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */; };
 		C481B6CB2878749D005D6831 /* AlbumCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6CA2878749D005D6831 /* AlbumCommentView.swift */; };
+		C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6CE28787A86005D6831 /* ModalBackGround.swift */; };
+		C481B6D128787C98005D6831 /* CommentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D028787C98005D6831 /* CommentModal.swift */; };
+		C481B6D4287ADA18005D6831 /* AlbumCommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */; };
+		C481B6D7287ADEAB005D6831 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D6287ADEAB005D6831 /* CommentViewModel.swift */; };
+		C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6D8287ADF0C005D6831 /* Comment.swift */; };
+		C481B6DC287AEF0E005D6831 /* Ex+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6DB287AEF0E005D6831 /* Ex+String.swift */; };
+		C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6DE287AFFF3005D6831 /* AlbumCommentList.swift */; };
+		C481B6E1287B0348005D6831 /* CommentMock.json in Resources */ = {isa = PBXBuildFile; fileRef = C481B6E0287B0324005D6831 /* CommentMock.json */; };
 		C495F5EB2854F594009B3BDE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EA2854F594009B3BDE /* Photo.swift */; };
 		C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */; };
 		C495F5EF2855C17C009B3BDE /* AlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F5EE2855C17C009B3BDE /* AlbumType.swift */; };
@@ -107,7 +115,6 @@
 		C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A12869E40F00326ABC /* ToastMessage.swift */; };
 		C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
-		C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
 		C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */; };
 		C4B8F2A82851CAD50000B8CB /* HiddenTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2A72851CAD50000B8CB /* HiddenTabBar.swift */; };
@@ -237,6 +244,14 @@
 		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailSettingBar.swift; sourceTree = "<group>"; };
 		C481B6CA2878749D005D6831 /* AlbumCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentView.swift; sourceTree = "<group>"; };
+		C481B6CE28787A86005D6831 /* ModalBackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBackGround.swift; sourceTree = "<group>"; };
+		C481B6D028787C98005D6831 /* CommentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModal.swift; sourceTree = "<group>"; };
+		C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentRow.swift; sourceTree = "<group>"; };
+		C481B6D6287ADEAB005D6831 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		C481B6D8287ADF0C005D6831 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		C481B6DB287AEF0E005D6831 /* Ex+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+String.swift"; sourceTree = "<group>"; };
+		C481B6DE287AFFF3005D6831 /* AlbumCommentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCommentList.swift; sourceTree = "<group>"; };
+		C481B6E0287B0324005D6831 /* CommentMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentMock.json; sourceTree = "<group>"; };
 		C495F5EA2854F594009B3BDE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C495F5EC2855BB5E009B3BDE /* Ex+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Date.swift"; sourceTree = "<group>"; };
 		C495F5EE2855C17C009B3BDE /* AlbumType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumType.swift; sourceTree = "<group>"; };
@@ -259,7 +274,6 @@
 		C4A979A12869E40F00326ABC /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailView.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
-		C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
 		C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTabBar.swift; sourceTree = "<group>"; };
 		C4B8F2A72851CAD50000B8CB /* HiddenTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenTabBar.swift; sourceTree = "<group>"; };
@@ -437,6 +451,7 @@
 				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
 				6F0974342861E53A0000956C /* CalendarTask.swift */,
 				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
+				C481B6D8287ADF0C005D6831 /* Comment.swift */,
 				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
 			);
 			path = Models;
@@ -475,6 +490,7 @@
 				C4B8F2AB2851CB0E0000B8CB /* Ex+UIView.swift */,
 				C4B8F2AD2851CB1F0000B8CB /* Ex+UITabBar.swift */,
 				0A858CBB2855BC6600907019 /* Ex+Color.swift */,
+				C481B6DB287AEF0E005D6831 /* Ex+String.swift */,
 				0A223B6F285F74BB002203ED /* Ex+UIColor.swift */,
 				0A223B6D285F6D46002203ED /* Ex+UIDevice.swift */,
 				0A4CFB8A285F79AB000603A5 /* Ex+Font.swift */,
@@ -675,8 +691,45 @@
 			isa = PBXGroup;
 			children = (
 				C481B6CA2878749D005D6831 /* AlbumCommentView.swift */,
+				C481B6CC28787A5D005D6831 /* SubViews */,
 			);
 			path = AlbumCommentView;
+			sourceTree = "<group>";
+		};
+		C481B6CC28787A5D005D6831 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6D5287ADE93005D6831 /* ViewModel */,
+				C481B6D2287AD9FD005D6831 /* Row */,
+				C481B6CD28787A67005D6831 /* CommentModal */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C481B6CD28787A67005D6831 /* CommentModal */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6CE28787A86005D6831 /* ModalBackGround.swift */,
+				C481B6D028787C98005D6831 /* CommentModal.swift */,
+			);
+			path = CommentModal;
+			sourceTree = "<group>";
+		};
+		C481B6D2287AD9FD005D6831 /* Row */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6D3287ADA18005D6831 /* AlbumCommentRow.swift */,
+				C481B6DE287AFFF3005D6831 /* AlbumCommentList.swift */,
+			);
+			path = Row;
+			sourceTree = "<group>";
+		};
+		C481B6D5287ADE93005D6831 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C481B6D6287ADEAB005D6831 /* CommentViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */ = {
@@ -812,7 +865,6 @@
 			children = (
 				C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */,
 				C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */,
-				C4B8F2962850E9850000B8CB /* GreyOutOfFocusView.swift */,
 			);
 			path = ActionSheet;
 			sourceTree = "<group>";
@@ -838,6 +890,7 @@
 				C4B8F2BB285289A20000B8CB /* MockData.swift */,
 				0A2887F32870A69F000A72F2 /* ChatInfoMock.json */,
 				0AE492032876A8F600341D35 /* HistoryMock.json */,
+				C481B6E0287B0324005D6831 /* CommentMock.json */,
 				0A915DD2287A9A9B0055AD6D /* NotificationMock.json */,
 			);
 			path = Mock;
@@ -1011,6 +1064,7 @@
 				C4667A36284B6FF400A4A759 /* Preview Assets.xcassets in Resources */,
 				0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */,
 				0A2887F42870A69F000A72F2 /* ChatInfoMock.json in Resources */,
+				C481B6E1287B0348005D6831 /* CommentMock.json in Resources */,
 				0A4CFB9D285F85C8000603A5 /* Pretendard-Regular.otf in Resources */,
 				0A4CFB99285F85C8000603A5 /* Pretendard-Bold.otf in Resources */,
 				0AE492042876A8F600341D35 /* HistoryMock.json in Resources */,
@@ -1155,10 +1209,11 @@
 			files = (
 				C4B8F2CC285474900000B8CB /* PinchToZoom.swift in Sources */,
 				C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */,
+				C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */,
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
-				C4B8F2972850E9850000B8CB /* GreyOutOfFocusView.swift in Sources */,
 				C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */,
 				0AAB36F32865F32400A47B24 /* EventViewModel.swift in Sources */,
+				C481B6D7287ADEAB005D6831 /* CommentViewModel.swift in Sources */,
 				C4B8F2C8285348980000B8CB /* AlbumPhotoLibrary.swift in Sources */,
 				C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */,
 				0AAB367F286381C000A47B24 /* HomeInfo.swift in Sources */,
@@ -1181,6 +1236,7 @@
 				0A223B72285F75D6002203ED /* CustomText.swift in Sources */,
 				6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */,
 				6FC853C628743D8D00988A44 /* TaskTimePicker.swift in Sources */,
+				C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */,
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
@@ -1188,6 +1244,7 @@
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
 				0A4CFB8B285F79AB000603A5 /* Ex+Font.swift in Sources */,
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
+				C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */,
 				C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */,
 				C495F617285B95BB009B3BDE /* NavigationBarOnlyCancelButtonStyle.swift in Sources */,
 				0AAB367C2863816300A47B24 /* EventList.swift in Sources */,
@@ -1223,11 +1280,13 @@
 				0A223B6E285F6D46002203ED /* Ex+UIDevice.swift in Sources */,
 				0A223B70285F74BB002203ED /* Ex+UIColor.swift in Sources */,
 				C4EC31C7284F8B380049F2C4 /* AlbumRow.swift in Sources */,
+				C481B6D128787C98005D6831 /* CommentModal.swift in Sources */,
 				C481B6CB2878749D005D6831 /* AlbumCommentView.swift in Sources */,
 				0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */,
 				6F7340BF28741F6F00707AB7 /* TaskMetaData.swift in Sources */,
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
 				C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */,
+				C481B6DC287AEF0E005D6831 /* Ex+String.swift in Sources */,
 				C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
@@ -1239,6 +1298,7 @@
 				C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */,
 				0AAB371A28674DF200A47B24 /* ChatList.swift in Sources */,
 				6F9C988C2875A7CB0062BF84 /* Ex+UIApplication.swift in Sources */,
+				C481B6D4287ADA18005D6831 /* AlbumCommentRow.swift in Sources */,
 				C4B8F2CE2854A6680000B8CB /* NavigationBarWithIconButtonStyle.swift in Sources */,
 				6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,

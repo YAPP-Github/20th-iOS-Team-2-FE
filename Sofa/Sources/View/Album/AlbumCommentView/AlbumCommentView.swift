@@ -8,13 +8,29 @@
 import SwiftUI
 
 struct AlbumCommentView: View {
+  @Binding var isShowing: Bool
+  
   var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    ZStack(alignment: .bottom) {
+      if isShowing {
+        ModalBackGround { // Back Ground
+          self.isShowing = false
+        }
+        
+        CommentModal() { // 댓글 Modal
+          self.isShowing = false
+        }
+        .transition(.move(edge: .bottom))
+      }
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+    .ignoresSafeArea()
+    .animation(.easeInOut)
   }
 }
 
 struct AlbumCommentView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCommentView()
+    AlbumCommentView(isShowing: .constant(true))
   }
 }

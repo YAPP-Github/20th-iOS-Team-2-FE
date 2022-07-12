@@ -16,6 +16,8 @@ struct EmojiView: View {
   @State private var counter4: Int = 0
   @State private var counter5: Int = 0
   @State private var counter6: Int = 0
+  
+  @Binding var messageShow: Bool
 
   var body: some View {
     HStack{
@@ -74,7 +76,7 @@ struct EmojiView: View {
             Image("dividert")
               .frame(width: 0, height: 24, alignment: .center)
             Button {
-              print("hi")
+              messageShow = true
             } label: {
               Text("💬")
                 .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
@@ -90,8 +92,8 @@ struct EmojiView: View {
   }
 }
 
-struct EmojiView_Previews: PreviewProvider {
-  static var previews: some View {
-    EmojiView()
-  }
-}
+//struct EmojiView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    EmojiView()
+//  }
+//}

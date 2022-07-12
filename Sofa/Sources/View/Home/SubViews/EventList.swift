@@ -47,11 +47,9 @@ struct EventList: View {
       
     })
     .alignment(PositionAlignment(alignment: self.alignment))
-    .singlePagination(ratio: 0.33, sensitivity: .high)
+    .singlePagination(ratio: 0.66, sensitivity: .high)
     .itemSpacing(16)
     .preferredItemSize(CGSize(width: eventViewModel.events.count > 1 ? Screen.maxWidth - 72 : Screen.maxWidth - 32, height: 100))
-    .animation(.default)
-//    .background(Color(hex: "#F5F2E9"))
     .onTapGesture { // Delete Test
       if eventViewModel.events.count > 0{
         eventViewModel.events.remove(at: 0)

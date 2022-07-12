@@ -12,6 +12,7 @@ struct HomeView: View {
   @ObservedObject var eventViewModel = EventViewModel()
   @State var gotoAlarm = false
   @State var showModal = false
+  @State var showMessageView = false
   @Binding var selectionType: Tab
   
   var body: some View {
@@ -49,15 +50,20 @@ struct HomeView: View {
             .background(Color(hex: "F5F2E9"))
             ChatList(showModal: $showModal)
               .fullScreenCover(isPresented: $showModal) {
-                ModalView(isShowing: $showModal)
+                HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
               }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
-          EmojiView()
+          EmojiView(messageShow: $showMessageView)
+            .fullScreenCover(isPresented: $showMessageView) {
+              MessageView($showMessageView)
+                .background(BackgroundCleanerView())
+            }
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.top)
+
         }// VStack
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
@@ -68,7 +74,7 @@ struct HomeView: View {
       .accentColor(Color(hex: "43A047"))
       
       
-      if showModal{
+      if showModal || showMessageView{
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()

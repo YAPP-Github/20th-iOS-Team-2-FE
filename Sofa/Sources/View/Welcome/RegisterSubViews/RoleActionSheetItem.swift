@@ -1,5 +1,5 @@
 //
-//  AlbumActionSheetItem.swift
+//  RoleActionSheetItem.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/08.

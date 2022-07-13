@@ -1,5 +1,5 @@
 //
-//  AlbumActionSheetCard.swift
+//  RoleActionSheet.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/09.
@@ -91,16 +91,6 @@ public struct RoleActionSheet: View {
       })
   }
   
-  var outOfFocusArea: some View {
-    Group {
-      if isShowing {
-        GreyOutOfFocusView(opacity: outOfFocusOpacity) {
-          self.isShowing = false
-        }
-      }
-    }
-  }
-  
   var sheetView: some View {
     VStack {
       Spacer()
@@ -121,7 +111,6 @@ public struct RoleActionSheet: View {
   
   var bodyContet: some View {
     ZStack {
-      outOfFocusArea
       sheetView
     }
     .ignoresSafeArea()

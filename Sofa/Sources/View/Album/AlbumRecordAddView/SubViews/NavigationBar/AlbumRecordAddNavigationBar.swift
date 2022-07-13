@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AlbumRecordAddNavigationBar: View {
-  @Environment(\.presentationMode) var presentable
   @Binding var isNext: Bool
   @Binding var existRecord: Bool
+  let recordParent : AlbumRecordAddView
   let safeTop: CGFloat
   
   var body: some View {
@@ -19,7 +19,7 @@ struct AlbumRecordAddNavigationBar: View {
         Spacer()
         HStack {
           Button(action: {
-            presentable.wrappedValue.dismiss()
+            recordParent.presentable.wrappedValue.dismiss()
           }) {
             Text("취소")
               .foregroundColor(Color.white)
@@ -53,6 +53,6 @@ struct AlbumRecordAddNavigationBar: View {
 
 struct AlbumRecordAddNavigationBar_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumRecordAddNavigationBar(isNext: .constant(true), existRecord: .constant(true), safeTop: 10)
+    AlbumRecordAddNavigationBar( isNext: .constant(true), existRecord: .constant(true), recordParent: AlbumRecordAddView(), safeTop: 10)
   }
 }

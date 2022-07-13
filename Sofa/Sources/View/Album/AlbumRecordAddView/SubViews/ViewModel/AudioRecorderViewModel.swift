@@ -32,6 +32,14 @@ class AudioRecorderViewModel: ObservableObject {
     self.timer = Timer()
   }
   
+  func requestAuthorization(parant: AlbumRecordAddView) {
+    AVAudioSession.sharedInstance().requestRecordPermission({ (granted) in
+      if !granted {
+        parant.presentable.wrappedValue.dismiss()
+      }
+    })
+  }
+  
   // 녹음 시작
   func startRecording() {
     let audioSession = AVAudioSession.sharedInstance() // 싱글톤 인스턴스 획득
@@ -93,7 +101,7 @@ class AudioRecorderViewModel: ObservableObject {
       
       self.currentStepbar = normalizeSoundLevel(level: self.audioRecorder.averagePower(forChannel: 0)) // 음성의 level의 크기에 따라
       self.soundSamples = [Bool](repeating: true, count: currentStepbar) + [Bool](repeating: false, count:  self.numberOfStepbar - currentStepbar)
-
+      
       self.time += 1
       
       self.microSeconds = Int(self.time) % 100

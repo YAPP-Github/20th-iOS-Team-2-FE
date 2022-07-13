@@ -114,7 +114,9 @@ struct AlbumRecordAddView: View {
         .ignoresSafeArea()
       }
     }
-    .onAppear { fetcher.deleteAllRecording() } // 내장 녹음 전체 삭제
+    .onAppear {
+      audioRecorder.requestAuthorization(parant: self)
+      fetcher.deleteAllRecording() } // 내장 녹음 전체 삭제
     .onDisappear { UITabBar.showTabBar() }
   }
 }

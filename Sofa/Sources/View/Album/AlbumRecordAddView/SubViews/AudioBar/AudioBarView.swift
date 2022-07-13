@@ -14,7 +14,7 @@ struct AudioBarView: View {
   var body: some View {
     Rectangle()
       .frame(width: 4, height: 16)
-      .foregroundColor(isStep ? color : .gray)
+      .foregroundColor(isStep ? color : Color.gray.opacity(0.15))
   }
 }
 

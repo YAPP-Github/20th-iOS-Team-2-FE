@@ -43,7 +43,7 @@ class AudioRecorderURLViewModel: ObservableObject {
   //    }
   //  }
   
-  // [URL] 전체 삭제
+  // [URL] 범위 삭제
   func deleteRecording(urlsToDelete: [URL]) {
     for url in urlsToDelete {
       print(url)
@@ -54,5 +54,14 @@ class AudioRecorderURLViewModel: ObservableObject {
       }
     }
     fetchRecordings()
+  }
+  
+  // [URL] 전체 삭제
+  func deleteAllRecording() {
+    let fileManager = FileManager.default
+    let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    
+    let allContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+    deleteRecording(urlsToDelete: allContents)
   }
 }

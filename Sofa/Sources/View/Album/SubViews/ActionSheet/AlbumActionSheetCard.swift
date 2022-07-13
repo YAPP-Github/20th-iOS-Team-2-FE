@@ -62,7 +62,7 @@ public struct ActionSheetCard: View {
         
         Divider() // 구분선 넣기
       }
-      Text("").frame(height: 40) // Extra empty space
+//      Text("").frame(height: 40) // Extra empty space
     }
   }
   
@@ -91,26 +91,16 @@ public struct ActionSheetCard: View {
       })
   }
   
-  var outOfFocusArea: some View {
-    Group {
-      if isShowing {
-        GreyOutOfFocusView(opacity: outOfFocusOpacity) {
-          self.isShowing = false
-        }
-      }
-    }
-  }
-  
   var sheetView: some View {
     VStack {
       Spacer()
       VStack {
         topHalfMiddleBar
         itemsView
-        Text("").frame(height: 10) // empty space
+        Text("").frame(height: Screen.safeAreaBottom) // empty space
       }
       .background(Color.white)
-      .cornerRadius(15)
+      .cornerRadius(16)
       .offset(y: offset)
       .gesture(interactiveGesture)
       .onTapGesture {
@@ -121,7 +111,6 @@ public struct ActionSheetCard: View {
   
   var bodyContet: some View {
     ZStack {
-      outOfFocusArea
       sheetView
     }
     .ignoresSafeArea()

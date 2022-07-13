@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftUIPager
 
-struct ModalView: View {
+struct HistoryView: View {
   
   @Binding var isShowing: Bool
   @State private var isDragging = false
@@ -64,7 +64,7 @@ struct ModalView: View {
           .foregroundColor(Color.black)
           .opacity(0.24)
       }
-      .frame(height: 40)
+      .frame(height: 20)
       .frame(maxWidth: .infinity)
       .background(Color.white.opacity(0.00001))
       .gesture(dragGesture)
@@ -184,7 +184,8 @@ struct ModalView: View {
     .frame(maxWidth: .infinity)
     .background(
       ZStack{
-        RoundedRectangle(cornerRadius: 20)
+        Rectangle()
+          .cornerRadius(20, corners: [.topLeft, .topRight])
         Rectangle()
           .frame(height: curHeight / 2)
       }
@@ -250,6 +251,6 @@ struct ModalView: View {
 
 struct ModalView_Previews: PreviewProvider {
   static var previews: some View {
-    ModalView(isShowing: .constant(true))
+    HistoryView(isShowing: .constant(true))
   }
 }

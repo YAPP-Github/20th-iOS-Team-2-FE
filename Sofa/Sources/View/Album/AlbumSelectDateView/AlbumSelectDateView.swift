@@ -96,8 +96,6 @@ struct AlbumSelectDateView: View {
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)
-    .onAppear { UITabBar.toogleTabBarVisibility() }
-    .onDisappear { UITabBar.toogleTabBarVisibility() }
   }
 }
 

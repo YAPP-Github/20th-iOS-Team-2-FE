@@ -21,6 +21,11 @@ struct AlbumDetailView: View {
   
   @State var isCommentClick: Bool = false   // 댓글
   @State var isEllipsisClick: Bool = false  // 설정
+  
+  // 다운로드
+  @State var isDownloadClick: Bool = false  // 다운로드
+  @State private var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+  
   @State var isUpdateDate: Bool = false  // 날짜 수정
   let info = MockData().albumDetail
   
@@ -29,7 +34,9 @@ struct AlbumDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          UIImageWriteToSavedPhotosAlbum(selectImage, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
+          isDownloadClick = true
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -39,8 +46,7 @@ struct AlbumDetailView: View {
           isEllipsisClick = false
         }
       ],
-      outOfFocusOpacity: 0.2,
-      itemsSpacing: 0
+      outOfFocusOpacity: 0.2
     )
   }
   
@@ -51,13 +57,13 @@ struct AlbumDetailView: View {
           AlbumDetailList(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick)
           
           // 이미지 click
-          NavigationLink("", destination: AlbumImageDetailView(image: selectImage, index: selectImageIndex), isActive: $isImageClick)
+          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage, index: selectImageIndex), isActive: $isImageClick)
           
           // 댓글 click
-          NavigationLink("", destination: EmptyView(), isActive: $isCommentClick)
-          
+          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick)
+        .toastMessage(data: $messageData2, isShow: $isDownloadClick)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isUpdateDate) {
           AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
@@ -67,9 +73,17 @@ struct AlbumDetailView: View {
       .navigationViewStyle(StackNavigationViewStyle())
       .navigationBarHidden(true)
       .onAppear { UITabBar.hideTabBar() }
-      .onDisappear { UITabBar.showTabBar() }
       
-      actionSheetView // 바텀 Sheet
+      if isEllipsisClick { // action sheet
+        Color.black
+          .opacity(0.7)
+          .ignoresSafeArea()
+          .onTapGesture {
+            isEllipsisClick = false
+          }
+        
+        actionSheetView // 바텀 Sheet
+      }
     }
   }
 }

@@ -45,6 +45,7 @@ struct AlbumPhotoAddView: View {
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       .toastMessage(data: $messageData, isShow: $showToastMessage)
       .navigationBarInlineStyle(isNextClick: $isNext, isDisalbeNextButton: .constant(selected.isEmpty), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
+      .onDisappear { UITabBar.showTabBar() }
     }
   }
 }

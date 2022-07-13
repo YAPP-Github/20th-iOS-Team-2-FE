@@ -36,6 +36,7 @@ struct AlbumView: View {
       ],
       outOfFocusOpacity: 0.2
     )
+    .onDisappear { UITabBar.showTabBar() }
   }
   
   var body: some View {

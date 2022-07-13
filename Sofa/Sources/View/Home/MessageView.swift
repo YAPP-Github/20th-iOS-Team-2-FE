@@ -16,7 +16,7 @@ enum FirstResponders: Int {
 struct MessageView: View {
   
   let placeholder = "가족에게 인사를 남겨보세요."
-  @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
+  @StateObject var keyboardHeightHelper = KeyboardHeightHelper()
   @Environment(\.presentationMode) var presentationMode
   
   @Binding var isShowing: Bool // 외부 View에서 MessageView 띄울 때 사용
@@ -41,19 +41,19 @@ struct MessageView: View {
       if isShowing{
         VStack {
           Color.black
-            .opacity(0)
+            .opacity(0.7)
         }
         .contentShape(Rectangle())
         .onTapGesture {
           self.isShowing = false
         }
         mainView
-          .transition(.move(edge: .bottom))
+          .offset(y: -self.keyboardHeightHelper.keyboardHeight)
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
     .ignoresSafeArea()
-    .animation(.easeInOut)
+//    .animation(.easeInOut)
   }
   
   //MARK: - mainView
@@ -172,7 +172,7 @@ struct MessageView: View {
           .frame(width: Screen.maxWidth, height: UIDevice().hasNotch ? 20 : 0)
       }
     }
-    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+//    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
     .frame(height: isKeyboard ? curHeight : curHeight + 20 )
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0))

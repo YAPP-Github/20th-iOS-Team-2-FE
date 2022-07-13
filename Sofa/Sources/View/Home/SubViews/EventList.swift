@@ -14,6 +14,7 @@ struct EventList: View {
   @StateObject var page: Page = .first()
   @State var alignment: SofaPositionAlignment = .start
   @Binding var selectionType: Tab
+  var function: (() -> Void)?
   
   var body: some View {
     Pager(page: page,
@@ -22,7 +23,13 @@ struct EventList: View {
           content: { index in
       // create a page based on the data passed
       if eventViewModel.events.count > 0 {
-        EventRow(eventViewModel.events[index])
+        EventRow(eventViewModel.events[index], callback: function)
+          .onDeleteRow {
+            print("\(index)")
+            if eventViewModel.events.count > 0{
+              eventViewModel.events.remove(at: index)
+            }
+          }
           .onTapGesture {
             self.selectionType = .calendar
           }
@@ -50,12 +57,8 @@ struct EventList: View {
     .singlePagination(ratio: 0.66, sensitivity: .high)
     .itemSpacing(16)
     .preferredItemSize(CGSize(width: eventViewModel.events.count > 1 ? Screen.maxWidth - 72 : Screen.maxWidth - 32, height: 100))
-    .onTapGesture { // Delete Test
-      if eventViewModel.events.count > 0{
-        eventViewModel.events.remove(at: 0)
-      }
-    }
   }
+  
 }
 
 enum SofaPositionAlignment: String, CaseIterable{

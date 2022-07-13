@@ -36,7 +36,7 @@ struct AlbumPhotoAddView: View {
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반
         
-        AlbumPhotoAddList(selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage)
+        AlbumPhotoAddList(selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage, parant: self)
         
         // 날짜 선택으로 이동
         NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", imageList: selected, photoParent: self, isCameraCancle: .constant(false)), isActive: $isNext)
@@ -45,6 +45,7 @@ struct AlbumPhotoAddView: View {
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       .toastMessage(data: $messageData, isShow: $showToastMessage)
       .navigationBarInlineStyle(isNextClick: $isNext, isDisalbeNextButton: .constant(selected.isEmpty), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
+      .onDisappear { UITabBar.showTabBar() }
     }
   }
 }

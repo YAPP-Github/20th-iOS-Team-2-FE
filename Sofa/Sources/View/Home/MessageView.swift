@@ -7,6 +7,11 @@
 
 import SwiftUI
 import Combine
+import MbSwiftUIFirstResponder
+
+enum FirstResponders: Int {
+    case text
+}
 
 struct MessageView: View {
   
@@ -24,6 +29,7 @@ struct MessageView: View {
   @State var keyboardHeight: CGFloat = 0
   @State var fullTextEditorHeight: CGFloat = 0 // TextEditor가 Full일 때 높이
   @State var isKeyboard: Bool = false // 현재 키보드 올라와있는지
+  @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
   
   init(_ isShowing: Binding<Bool>){
     UITextView.appearance().backgroundColor = .clear
@@ -83,6 +89,7 @@ struct MessageView: View {
                   .padding(.vertical, 15)
                   .opacity(text == nil ? 1 : 0)
                 TextEditor(text: Binding($text, replacingNilWith: ""))
+                  .firstResponder(id: FirstResponders.text, firstResponder: $firstResponder, resignableUserOperations: .all)
                   .font(.custom("Pretendard-Regular", size: 16))
                   .frame(minHeight: isMaxHeight ? fullTextEditorHeight : 44, alignment: .leading)
                   .frame(maxHeight: isMaxHeight ? fullTextEditorHeight : 130, alignment: .leading)

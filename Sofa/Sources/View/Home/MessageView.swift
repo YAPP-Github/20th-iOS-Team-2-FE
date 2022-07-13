@@ -17,7 +17,7 @@ struct MessageView: View {
   
   let placeholder = "가족에게 인사를 남겨보세요."
   @StateObject var keyboardHeightHelper = KeyboardHeightHelper()
-  @Environment(\.presentationMode) var presentationMode
+//  @Environment(\.presentationMode) var presentationMode
   
   @Binding var isShowing: Bool // 외부 View에서 MessageView 띄울 때 사용
   @State private var isDragging = false
@@ -147,7 +147,7 @@ struct MessageView: View {
               if textLength == 0{
                 print("DISABLED")
               }else{
-                self.presentationMode.wrappedValue.dismiss()
+                isShowing = false
               }
             } label: {
               Rectangle()

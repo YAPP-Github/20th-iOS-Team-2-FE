@@ -16,7 +16,11 @@ enum Tab{
 
 struct ContentView: View {
   @State private var selection: Tab = .home
-    
+  
+  init() {
+    UITabBar.appearance().barTintColor = .white
+  }
+  
   var body: some View {
     TabView(selection: $selection) {
       HomeView(selectionType: $selection)
@@ -41,9 +45,6 @@ struct ContentView: View {
         .tag(Tab.setting)
     }
     .accentColor(Color(hex: "#43A047"))
-    .onAppear {
-        UITabBar.appearance().backgroundColor = .white
-    }
   }
 }
 

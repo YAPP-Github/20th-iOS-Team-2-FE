@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GeneralDatePickerView: View {
   
-  @State private var showDatePicker = false
+  @Binding var showDatePicker: Bool
+  @Binding var enableToggle: Bool
   @State var currentDate: Date = Date()
   
   var body: some View {
@@ -34,7 +35,7 @@ struct GeneralDatePickerView: View {
           .cornerRadius(4)
           .onTapGesture {
             withAnimation {
-            self.showDatePicker.toggle()
+              self.showDatePicker.toggle()
             }
           }
       }.padding(.bottom, 12)
@@ -47,6 +48,6 @@ struct GeneralDatePickerView: View {
 
 struct GeneralDatePickerView_Previews: PreviewProvider {
   static var previews: some View {
-    GeneralDatePickerView()
+    GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false))
   }
 }

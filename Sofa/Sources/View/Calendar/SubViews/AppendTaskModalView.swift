@@ -79,6 +79,7 @@ struct AppendTaskModalView: View {
   @State private var title: String = ""
   @State private var memo: String = ""
   @State private var allDayToggle = false
+  @State var currentDate: Date = Date()
   @State var showDatePicker = false
   
   init() {
@@ -187,7 +188,7 @@ struct AppendTaskModalView: View {
                 }.padding(.bottom, 24)
                 
                 // 날짜
-                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true))
+                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true), currentDate: $currentDate)
                   .padding(.bottom, 12)
                 
                 // 시간
@@ -226,8 +227,8 @@ struct AppendTaskModalView: View {
                     HStack{
                       Text("메모")
                         .font(.custom("Pretendard-Medium", size: 18))
-                        .foregroundColor(Color.black.opacity(isMemoFocused ? 0 : 0.4))
-                        .padding(.horizontal, 28)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .padding(.horizontal, 32)
                         .padding(.vertical, 30)
                       Spacer()
                     }

@@ -11,8 +11,8 @@ struct GeneralDatePickerView: View {
   
   @Binding var showDatePicker: Bool
   @Binding var enableToggle: Bool
-  @State var currentDate: Date = Date()
-  
+  @Binding var currentDate: Date
+ 
   var body: some View {
     
     VStack(spacing: 0) {
@@ -48,6 +48,6 @@ struct GeneralDatePickerView: View {
 
 struct GeneralDatePickerView_Previews: PreviewProvider {
   static var previews: some View {
-    GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false))
+    GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false), currentDate: .constant(Date()))
   }
 }

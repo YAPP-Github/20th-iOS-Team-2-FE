@@ -1,3 +1,4 @@
+
 //
 //  StepCircles.swift
 //  Sofa
@@ -10,10 +11,11 @@ import SwiftUI
 struct StepCircles: View {
   
   @Binding var currentSteps: Int
+  @Binding var numOfSteps: Int
   
   var body: some View {
     HStack(spacing: 10){
-      ForEach(0...3, id: \.self) { idx in
+      ForEach(0...numOfSteps-1, id: \.self) { idx in
         ZStack{
           Image(systemName: "\(idx+1).circle.fill")
             .font(.system(size: 18))
@@ -26,6 +28,6 @@ struct StepCircles: View {
 
 struct StepCircles_Previews: PreviewProvider {
   static var previews: some View {
-    RegisterView()
+    StepCircles(currentSteps: .constant(1), numOfSteps: .constant(4))
   }
 }

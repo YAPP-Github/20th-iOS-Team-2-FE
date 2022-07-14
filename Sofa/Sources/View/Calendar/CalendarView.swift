@@ -26,6 +26,9 @@ struct CalendarView: View {
         CustomDatePicker(currentDate: $currentDate)
       }
       .navigationBarWithIconButtonStyle(isButtonClick: $showAppendTaskModal, buttonColor: Color(hex: "43A047"), "캘린더", "plus")
+      .sheet(isPresented: self.$showAppendTaskModal) {
+        AppendTaskModalView()
+      }
     }
   }
 }

@@ -10,9 +10,8 @@ import SwiftUI
 struct TaskDetailView: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
-  @FocusState var isTitleFocused: Bool
-  @FocusState var isMemoFocused: Bool
-  
+  @State var isTitleFocused: Bool = false
+  @State var isMemoFocused: Bool = false
   @State private var title: String = ""
   @State private var memo: String = ""
   @State private var allDayToggle = false
@@ -29,7 +28,6 @@ struct TaskDetailView: View {
         .padding(EdgeInsets(top: 500, leading: 0, bottom: 0, trailing: 0))
       
       VStack(spacing: 0){
-        
         HStack(spacing: 0){
           Text("이전")
             .frame(height: 24)
@@ -56,6 +54,7 @@ struct TaskDetailView: View {
               self.presentationMode.wrappedValue.dismiss()
             }
         }
+        
         Rectangle()
           .frame(width:Screen.maxWidth, height: 1)
           .foregroundColor(Color(hex: "EDEADF"))
@@ -67,7 +66,7 @@ struct TaskDetailView: View {
         ScrollView {
           LazyVStack(spacing: 0) {
             
-            Group {
+            ZStack{
               TextField("", text: $title)
                 .placeholder(shouldShow: title.isEmpty) {
                   Text("제목")
@@ -76,17 +75,22 @@ struct TaskDetailView: View {
                 }
                 .customTextField(padding: 12)
                 .disableAutocorrection(true)
-                .frame(height: 48)
                 .background(isTitleFocused ? Color.white : Color(hex: "FAF8F0"))
-                .highlightTextField(firstLineWidth: isTitleFocused ? 1 : 0, secondLineWidth: isTitleFocused ? 4 : 0)
                 .cornerRadius(6)
-                .focused($isTitleFocused)
-                .padding(EdgeInsets(top: 16, leading: 16, bottom: 12, trailing: 16))
-                .modifier(DismissingKeyboard())
+                .highlightTextField(firstLineWidth: isTitleFocused ? 1 : 0, secondLineWidth: isTitleFocused ? 4 : 0)
                 .onAppear {
                   UIApplication.shared.hideKeyboard()
                 }
-            }
+              
+              UITextFieldRepresentable(
+                text: $title,
+                isFirstResponder: false,
+                isNumberPad: false,
+                isFocused: $isTitleFocused
+              )
+              .padding(.horizontal, 14)
+            }.frame(height: 48)
+              .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
             
             // 색상
             TaskColorPicker()
@@ -96,7 +100,7 @@ struct TaskDetailView: View {
             Rectangle()
               .frame(width: Screen.maxWidth, height: 7)
               .foregroundColor(Color(hex: "FAF8F0"))
-  
+            
             Group {
               VStack(spacing: 0) {
                 // 하루종일
@@ -145,22 +149,30 @@ struct TaskDetailView: View {
                   .highlightTextField(firstLineWidth: isMemoFocused ? 1 : 0, secondLineWidth: isMemoFocused ? 4 : 0)
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
-                TextEditor(text: $memo)
-                  .placeholder(shouldShow: memo.isEmpty) {
-                    Text("메모")
-                      .font(.custom("Pretendard-Medium", size: 18))
-                      .foregroundColor(Color.black.opacity(0.4))
-                      .padding(EdgeInsets(top: 10, leading: 3, bottom: 0, trailing: 16))
-                      .frame(height: 128, alignment: .topLeading)
+                if memo.isEmpty {
+                  VStack{
+                    HStack{
+                      Text("메모")
+                        .font(.custom("Pretendard-Medium", size: 18))
+                        .foregroundColor(Color.black.opacity(isMemoFocused ? 0 : 0.4))
+                        .padding(.horizontal, 28)
+                        .padding(.vertical, 30)
+                      Spacer()
+                    }
+                    Spacer()
                   }
-                  .customTextField(padding: 9)
-                  .disableAutocorrection(true)
-                  .foregroundColor(Color(hex: "121619"))
-                  .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                  .frame(height: 128, alignment: .center)
-                  .focused($isMemoFocused)
-                  .modifier(DismissingKeyboard())
+                }
+                
+                UITextViewRepresentable(
+                  text: $memo,
+                  isFirstResponder: false,
+                  isNumberPad: false,
+                  isFocused: $isMemoFocused
+                )
+                .frame(height: 116)
+                .padding(.horizontal, 27)
               }
+              
               Rectangle()
                 .frame(width:Screen.maxWidth, height: 1)
                 .foregroundColor(Color(hex: "EDEADF"))

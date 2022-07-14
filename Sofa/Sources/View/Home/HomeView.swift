@@ -38,7 +38,7 @@ struct HomeView: View {
             .offset(x: 40, y: 0)
           }
           .padding(EdgeInsets(top: 7, leading: 24, bottom: 12, trailing: 68))
-          .background(.white)
+          .background(Color.white)
           ScrollView{
             LazyVStack{
               EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType)

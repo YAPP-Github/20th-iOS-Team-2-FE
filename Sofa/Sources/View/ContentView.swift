@@ -40,7 +40,7 @@ struct ContentView: View {
         }
         .tag(Tab.setting)
     }
-    .accentColor(.black)
+    .accentColor(Color(hex: "#43A047"))
     .onAppear {
         UITabBar.appearance().backgroundColor = .white
     }

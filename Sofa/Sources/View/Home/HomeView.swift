@@ -14,6 +14,7 @@ struct HomeView: View {
   @State var showModal = false
   @State var showMessageView = false
   @Binding var selectionType: Tab
+  @State var placeholder = "가족에게 인사를 남겨보세요."
   
   var body: some View {
     ZStack {
@@ -69,7 +70,7 @@ struct HomeView: View {
       .accentColor(Color(hex: "43A047"))
       
       if showMessageView{
-        MessageView($showMessageView)
+        MessageView($showMessageView, $placeholder)
           .background(BackgroundCleanerView())
       }
       

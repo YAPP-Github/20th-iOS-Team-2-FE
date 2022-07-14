@@ -16,38 +16,35 @@ enum Tab{
 
 struct ContentView: View {
   @State private var selection: Tab = .home
-    
+  
+  init() {
+    UITabBar.appearance().barTintColor = .white
+  }
+  
   var body: some View {
     TabView(selection: $selection) {
       HomeView(selectionType: $selection)
         .tabItem {
-          Image(systemName: "person.3.fill")
-          Text("홈")
+          Image(systemName: "hand.wave")
         }
         .tag(Tab.home)
       CalendarView()
         .tabItem {
           Image(systemName: "calendar")
-          Text("캘린더")
         }
         .tag(Tab.calendar)
       AlbumView()
         .tabItem {
           Image(systemName: "book.closed")
-          Text("앨범")
         }
         .tag(Tab.album)
       SettingsView()
         .tabItem {
-          Image(systemName: "gearshape.fill")
-          Text("설정")
+          Image(systemName: "ellipsis")
         }
         .tag(Tab.setting)
     }
-    .accentColor(.black)
-    .onAppear {
-        UITabBar.appearance().backgroundColor = .white
-    }
+    .accentColor(Color(hex: "#43A047"))
   }
 }
 

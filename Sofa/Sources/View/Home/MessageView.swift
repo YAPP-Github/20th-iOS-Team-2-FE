@@ -150,14 +150,18 @@ struct MessageView: View {
                 isShowing = false
               }
             } label: {
-              Rectangle()
-                .frame(width: 56, height: 32)
-                .cornerRadius(4)
-                .foregroundColor(textLength == 0 ? Color(hex: "#F2F1F1") : Color(hex: "E8F5E9"))
-                .overlay{
-                  Image(systemName: "paperplane.fill")
-                    .foregroundColor(textLength == 0 ? Color(hex: "#919090") : Color(hex: "#43A046"))
-                }
+              if #available(iOS 15.0, *) {
+                Rectangle()
+                  .frame(width: 56, height: 32)
+                  .cornerRadius(4)
+                  .foregroundColor(textLength == 0 ? Color(hex: "#F2F1F1") : Color(hex: "E8F5E9"))
+                  .overlay{
+                    Image(systemName: "paperplane.fill")
+                      .foregroundColor(textLength == 0 ? Color(hex: "#919090") : Color(hex: "#43A046"))
+                  }
+              } else {
+                // Fallback on earlier versions
+              }
             }
           }
           .padding(.horizontal, 16)

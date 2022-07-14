@@ -21,7 +21,7 @@ struct ContentView: View {
     TabView(selection: $selection) {
       HomeView(selectionType: $selection)
         .tabItem {
-          Image(systemName: "person.3.fill")
+          Image(systemName: "hand.wave")
         }
         .tag(Tab.home)
       CalendarView()
@@ -36,7 +36,7 @@ struct ContentView: View {
         .tag(Tab.album)
       SettingsView()
         .tabItem {
-          Image(systemName: "gearshape.fill")
+          Image(systemName: "ellipsis")
         }
         .tag(Tab.setting)
     }

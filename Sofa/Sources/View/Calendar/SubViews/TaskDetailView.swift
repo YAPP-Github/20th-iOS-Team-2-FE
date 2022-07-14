@@ -16,6 +16,7 @@ struct TaskDetailView: View {
   @State private var memo: String = ""
   @State private var allDayToggle = false
   @State var showDatePicker = false
+  @State var currentDate: Date = Date()
   
   init() {
     UITextView.appearance().backgroundColor = .clear
@@ -119,7 +120,7 @@ struct TaskDetailView: View {
                 }.padding(.bottom, 24)
                 
                 // 날짜
-                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true))
+                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true), currentDate: $currentDate)
                   .padding(.bottom, 12)
                 
                 // 시간

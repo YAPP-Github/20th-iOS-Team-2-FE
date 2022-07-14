@@ -158,6 +158,6 @@ struct GeneralCalendar: View {
 
 struct GeneralCalendar_Previews: PreviewProvider {
     static var previews: some View {
-      GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false))
+      GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false), currentDate: .constant(Date()))
     }
 }

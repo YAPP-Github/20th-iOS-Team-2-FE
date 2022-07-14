@@ -79,6 +79,7 @@ struct AppendTaskModalView: View {
   @State private var title: String = ""
   @State private var memo: String = ""
   @State private var allDayToggle = false
+  @State var currentDate: Date = Date()
   @State var showDatePicker = false
   
   init() {
@@ -187,7 +188,7 @@ struct AppendTaskModalView: View {
                 }.padding(.bottom, 24)
                 
                 // 날짜
-                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true))
+                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true), currentDate: $currentDate)
                   .padding(.bottom, 12)
                 
                 // 시간

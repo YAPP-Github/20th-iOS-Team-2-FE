@@ -1,5 +1,5 @@
 //
-//  AlbumActionSheetCard.swift
+//  RoleActionSheet.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/09.
@@ -53,6 +53,16 @@ public struct RoleActionSheet: View {
       .opacity(0.24)
   }
   
+  var outOfFocusArea: some View {
+    Group {
+      if isShowing {
+        GreyOutOfFocusView(opacity: outOfFocusOpacity) {
+          self.isShowing = false
+        }
+      }
+    }
+  }
+  
   var itemsView: some View {
     VStack (spacing: itemsSpacing){
       ForEach(0..<8) { index in
@@ -89,16 +99,6 @@ public struct RoleActionSheet: View {
       .onEnded({ (value) in
         isDragging = false
       })
-  }
-  
-  var outOfFocusArea: some View {
-    Group {
-      if isShowing {
-        GreyOutOfFocusView(opacity: outOfFocusOpacity) {
-          self.isShowing = false
-        }
-      }
-    }
   }
   
   var sheetView: some View {
@@ -160,7 +160,7 @@ struct RoleActionSheet_Previews: PreviewProvider {
                         RoleActionSheetItem(label: "엄마"),
                         RoleActionSheetItem(label: "할아버지"),
                         RoleActionSheetItem(label: "할머니"),
-                        RoleActionSheetItem(label: "이들"),
+                        RoleActionSheetItem(label: "아들"),
                         RoleActionSheetItem(label: "딸"),
                         RoleActionSheetItem(label: "사위"),
                         RoleActionSheetItem(label: "며느리")

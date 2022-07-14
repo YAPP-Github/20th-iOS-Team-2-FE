@@ -227,8 +227,8 @@ struct AppendTaskModalView: View {
                     HStack{
                       Text("메모")
                         .font(.custom("Pretendard-Medium", size: 18))
-                        .foregroundColor(Color.black.opacity(isMemoFocused ? 0 : 0.4))
-                        .padding(.horizontal, 28)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .padding(.horizontal, 32)
                         .padding(.vertical, 30)
                       Spacer()
                     }

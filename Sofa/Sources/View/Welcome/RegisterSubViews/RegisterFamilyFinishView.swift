@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct RegisterFamilyFinishView: View {
+  
+  @State var showContentView: Bool = false
+  
     var body: some View {
+      ZStack{
+        Color(hex: "FAF8F0").ignoresSafeArea(.all)
       
       VStack(spacing: 0){
         ZStack{
@@ -31,26 +36,56 @@ struct RegisterFamilyFinishView: View {
           }
         }
         
-        Button(action: {
-
-        }){
-          Image("linkBtn")
+        ZStack{
+          Rectangle()
+            .frame(height: 131)
+            .foregroundColor(Color.white)
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
+          
+          
+          VStack(spacing: 0){
+            ZStack{
+              Rectangle()
+                .frame(height: 47)
+                .foregroundColor(Color(hex: "#FAF8F0"))
+                .padding(.horizontal, 32)
+                .padding(.top, 16)
+              HStack{
+              Text("qlzpdl_dkdleldj_2909.com")
+                .foregroundColor(Color.black.opacity(0.4))
+                .font(.custom("Pretendard-Medium", size: 18))
+                .padding(.horizontal, 44)
+                .padding(.top, 16)
+                Spacer()
+              }
+            }
+            
+            
+            Button(action: {
+              //
+            }){
+              Image("linkBtn")
+                .padding(.top, 4)
+            }
+          }
+          
+          
         }
-        .padding(.top, 70)
         
         Spacer()
+        
         Button(action: {
-//          self.showFamilyRegister = true
+          self.showContentView = true
         }){
           Image("goRoomBtn")
         }
-//        .fullScreenCover(isPresented: $showFamilyRegister, content: RegisterFamilyView.init)
+        .fullScreenCover(isPresented: $showContentView, content: ContentView.init)
         .padding(.bottom, 88-34)
-        
-        
         
       }
     }
+}
 }
 
 struct RegisterFamilyFinishView_Previews: PreviewProvider {

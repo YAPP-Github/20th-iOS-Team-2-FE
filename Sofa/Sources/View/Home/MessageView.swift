@@ -50,9 +50,6 @@ struct MessageView: View {
         }
         mainView
           .offset(y: -self.keyboardHeightHelper.keyboardHeight)
-          .onAppear{
-            UITabBar.hideTabBar()
-          }
           .onDisappear{
             UITabBar.showTabBar()
           }

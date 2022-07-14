@@ -60,19 +60,21 @@ struct HomeView: View {
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.top)
+            .fullScreenCover(isPresented: $showMessageView) {
+              MessageView($showMessageView, $placeholder)
+                .background(BackgroundCleanerView())
+            }
+          
         }// VStack
+        .ignoresSafeArea(.keyboard)
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
         .onAppear{
           UITabBar.showTabBar(animated: false)
         }
+        
       }// NavigationView
       .accentColor(Color(hex: "43A047"))
-      
-      if showMessageView{
-        MessageView($showMessageView, $placeholder)
-          .background(BackgroundCleanerView())
-      }
       
       if showModal{
         Color.black
@@ -81,6 +83,7 @@ struct HomeView: View {
       }
     }// ZStack
   }
+  
 }
 
 struct HomeView_Previews: PreviewProvider {

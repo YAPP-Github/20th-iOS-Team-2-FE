@@ -22,25 +22,21 @@ struct ContentView: View {
       HomeView(selectionType: $selection)
         .tabItem {
           Image(systemName: "person.3.fill")
-          Text("홈")
         }
         .tag(Tab.home)
       CalendarView()
         .tabItem {
           Image(systemName: "calendar")
-          Text("캘린더")
         }
         .tag(Tab.calendar)
       AlbumView()
         .tabItem {
           Image(systemName: "book.closed")
-          Text("앨범")
         }
         .tag(Tab.album)
       SettingsView()
         .tabItem {
           Image(systemName: "gearshape.fill")
-          Text("설정")
         }
         .tag(Tab.setting)
     }

@@ -21,30 +21,26 @@ struct ContentView: View {
     TabView(selection: $selection) {
       HomeView(selectionType: $selection)
         .tabItem {
-          Image(systemName: "person.3.fill")
-          Text("홈")
+          Image(systemName: "hand.wave")
         }
         .tag(Tab.home)
       CalendarView()
         .tabItem {
           Image(systemName: "calendar")
-          Text("캘린더")
         }
         .tag(Tab.calendar)
       AlbumView()
         .tabItem {
           Image(systemName: "book.closed")
-          Text("앨범")
         }
         .tag(Tab.album)
       SettingsView()
         .tabItem {
-          Image(systemName: "gearshape.fill")
-          Text("설정")
+          Image(systemName: "ellipsis")
         }
         .tag(Tab.setting)
     }
-    .accentColor(.black)
+    .accentColor(Color(hex: "#43A047"))
     .onAppear {
         UITabBar.appearance().backgroundColor = .white
     }

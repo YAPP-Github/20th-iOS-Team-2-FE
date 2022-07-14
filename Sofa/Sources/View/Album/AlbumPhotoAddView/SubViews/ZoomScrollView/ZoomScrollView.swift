@@ -26,6 +26,7 @@ struct ZoomScrollView<Content: View>: UIViewRepresentable {
     hostedView.translatesAutoresizingMaskIntoConstraints = true
     hostedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     hostedView.frame = scrollView.bounds
+    hostedView.backgroundColor = .black
     scrollView.addSubview(hostedView)
     return scrollView
   }

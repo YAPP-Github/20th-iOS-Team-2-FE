@@ -73,6 +73,7 @@ struct AlbumSelectDateView: View {
           } else { // 카메라
             presentable.wrappedValue.dismiss()
           }
+          UITabBar.showTabBar()
         }, label: {
           HStack(spacing: 0) {
             Text("올리기")
@@ -96,8 +97,6 @@ struct AlbumSelectDateView: View {
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)
-    .onAppear { UITabBar.toogleTabBarVisibility() }
-    .onDisappear { UITabBar.toogleTabBarVisibility() }
   }
 }
 

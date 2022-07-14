@@ -2,7 +2,7 @@
 //  GreyOutOfFocusView.swift
 //  Sofa
 //
-//  Created by geonhyeong on 2022/06/08.
+//  Created by 임주민 on 2022/07/14.
 //
 
 import SwiftUI

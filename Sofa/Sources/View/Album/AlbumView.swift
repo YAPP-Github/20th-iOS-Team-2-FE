@@ -34,12 +34,9 @@ struct AlbumView: View {
           authorizationViewModel.showAudioRecord() // 권한 확인
         }
       ],
-      outOfFocusOpacity: 0.2,
-      itemsSpacing: 0
+      outOfFocusOpacity: 0.2
     )
-    .onDisappear {
-      UITabBar.showTabBar()
-    }
+    .onDisappear { UITabBar.showTabBar() }
   }
   
   var body: some View {
@@ -86,8 +83,18 @@ struct AlbumView: View {
             },
             secondaryButton: .default(Text("확인")))
         }
+        .onAppear { UITabBar.showTabBar() }
       }
-      actionSheetView // 바텀 Sheet
+      if showingSheet { // action sheet
+        Color.black
+          .opacity(0.7)
+          .ignoresSafeArea()
+          .onTapGesture {
+            showingSheet = false
+          }
+        
+        actionSheetView // 바텀 Sheet
+      }
     }
   }
 }

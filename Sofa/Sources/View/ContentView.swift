@@ -7,19 +7,19 @@
 
 import SwiftUI
 
+enum Tab{
+  case home
+  case calendar
+  case album
+  case setting
+}
+
 struct ContentView: View {
   @State private var selection: Tab = .home
-  
-  enum Tab {
-    case home
-    case calendar
-    case album
-    case setting
-  }
-  
+    
   var body: some View {
     TabView(selection: $selection) {
-      HomeView()
+      HomeView(selectionType: $selection)
         .tabItem {
           Image(systemName: "person.3.fill")
           Text("홈")

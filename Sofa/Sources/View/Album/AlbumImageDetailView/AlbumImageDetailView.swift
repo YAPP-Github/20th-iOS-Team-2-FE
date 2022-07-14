@@ -9,8 +9,17 @@ import SwiftUI
 
 struct AlbumImageDetailView: View {
   @State var touchImage = false
+  
+  // 댓글
   @State var isCommentClick: Bool = false   // 댓글
+  let isPreCommentClick: Bool // 이전 화면에서 댓글
+  
   @State var isEllipsisClick: Bool = false  // 설정
+  
+  // 다운로드
+  @State var isDownloadClick: Bool = false  // 다운로드
+  @State private var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+  
   @State var isUpdateDate: Bool = false  // 날짜 수정
   var image: UIImage
   var index: Int
@@ -20,7 +29,9 @@ struct AlbumImageDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          UIImageWriteToSavedPhotosAlbum(image, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
+          isDownloadClick = true
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -30,41 +41,58 @@ struct AlbumImageDetailView: View {
           isEllipsisClick = false
         }
       ],
-      outOfFocusOpacity: 0.2,
-      itemsSpacing: 0
+      outOfFocusOpacity: 0.2
     )
   }
   
   var body: some View {
     ZStack {
-      GeometryReader { geometry in // safeAreaInsets.top을 넘겨주기 위해
-        ZStack {
-          Button(action: {
-            touchImage.toggle()
-          }) {
-            Image(uiImage: image)
-              .resizable()
-              .scaledToFit()
-//              .frame(width: Screen.maxWidth, height: Screen.maxHeight)
-              .pinchToZoom()
-          }
-          
-          Color.clear
-            .ignoresSafeArea()
-            .overlay(
-              AlbumImageDetailNavigationBar(safeTop: geometry.safeAreaInsets.top)
-                .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-            )
-            .overlay(
-              AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
-                .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-            )
-        }
-        .background(Color.black)
-        .ignoresSafeArea()
-        .navigationBarHidden(true) // 이전 Navigation bar 무시
+      Button(action: {
+        touchImage.toggle()
+      }) {
+        Image(uiImage: image)
+          .resizable()
+          .scaledToFit()
+        //              .frame(width: Screen.maxWidth, height: Screen.maxHeight) // 임시
+          .pinchToZoom()
       }
-      actionSheetView // 바텀 Sheet
+      
+      Color.clear
+        .ignoresSafeArea()
+        .overlay(
+          AlbumImageDetailNavigationBar(safeTop: Screen.safeAreaTop)
+            .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+        )
+        .overlay(
+          AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
+            .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+        )
+      
+      if isCommentClick || isEllipsisClick { // 댓글 or action sheet
+        Color.black
+          .opacity(0.7)
+          .ignoresSafeArea()
+          .onTapGesture {
+            isEllipsisClick = false
+          }
+        
+        if isEllipsisClick {
+          actionSheetView // 바텀 Sheet
+        }
+      }
+    }
+    .background(Color.black)
+    .ignoresSafeArea()
+    .navigationBarHidden(true) // 이전 Navigation bar 무시
+    .toastMessage(data: $messageData, isShow: $isDownloadClick)
+    .fullScreenCover(isPresented: $isCommentClick) {
+      AlbumCommentView(isShowing: $isCommentClick)
+        .background(BackgroundCleanerView())
+    }
+    .onAppear {
+      if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
+        isCommentClick = true
+      }
     }
   }
 }
@@ -73,6 +101,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.elements[6]
     
-    AlbumImageDetailView(image: UIImage(named: data.link)!, index: 0)
+    AlbumImageDetailView(isPreCommentClick: false, image: UIImage(named: data.link)!, index: 0)
   }
 }

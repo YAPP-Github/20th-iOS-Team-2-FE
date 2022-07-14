@@ -12,6 +12,8 @@ struct HomeView: View {
   @ObservedObject var eventViewModel = EventViewModel()
   @State var gotoAlarm = false
   @State var showModal = false
+  @State var showMessageView = false
+  @Binding var selectionType: Tab
   
   var body: some View {
     ZStack {
@@ -21,7 +23,7 @@ struct HomeView: View {
             Text("\(eventViewModel.hometitle)")
               .font(.custom("Pretendard-Bold", size: 24))
             Spacer()
-            NavigationLink(destination: NotificationView().onAppear{UITabBar.hideTabBar(animated: false)}.onDisappear{UITabBar.showTabBar(animated: false)}){
+            NavigationLink(destination: NotificationView(selectionType: $selectionType).onAppear{UITabBar.hideTabBar(animated: false)}){
               Image(systemName: "bell")
                 .resizable()
                 .foregroundColor(Color.black)
@@ -39,7 +41,7 @@ struct HomeView: View {
           .background(Color.white)
           ScrollView{
             LazyVStack{
-              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start)
+              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType)
                 .frame(height: eventViewModel.events.count == 0 ? 0 : 64)
                 .padding(.vertical, eventViewModel.events.count == 0 ? 0 : 16)
             }
@@ -48,23 +50,31 @@ struct HomeView: View {
             .background(Color(hex: "F5F2E9"))
             ChatList(showModal: $showModal)
               .fullScreenCover(isPresented: $showModal) {
-                ModalView(isShowing: $showModal)
+                HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
               }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
-          EmojiView()
+          EmojiView(messageShow: $showMessageView)
+            .fullScreenCover(isPresented: $showMessageView) {
+              MessageView($showMessageView)
+                .background(BackgroundCleanerView())
+            }
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.top)
+
         }// VStack
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
+        .onAppear{
+          UITabBar.showTabBar(animated: false)
+        }
       }// NavigationView
       .accentColor(Color(hex: "43A047"))
       
       
-      if showModal{
+      if showModal || showMessageView{
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()
@@ -75,7 +85,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
   static var previews: some View {
-    HomeView()
+    HomeView(selectionType: .constant(.home))
   }
 }
 

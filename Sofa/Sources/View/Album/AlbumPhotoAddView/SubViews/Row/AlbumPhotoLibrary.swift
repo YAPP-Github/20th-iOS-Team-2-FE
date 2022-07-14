@@ -10,11 +10,10 @@ import Combine
 import Photos
 
 class AlbumPhotoLibrary: ObservableObject {
-  @Environment(\.presentationMode) var presentable
   @Published var photoAssets = [Photo]()
   
   // 권한 확인
-  func requestAuthorization() {
+  func requestAuthorization(parant: AlbumPhotoAddView) {
     PHPhotoLibrary.requestAuthorization { [weak self] (status) in
       guard let self = self else { return }
       
@@ -22,6 +21,7 @@ class AlbumPhotoLibrary: ObservableObject {
       case .authorized:
         self.fetchAllImage()
       case .denied:
+        parant.presentable.wrappedValue.dismiss()
         break
       case .notDetermined:
         break

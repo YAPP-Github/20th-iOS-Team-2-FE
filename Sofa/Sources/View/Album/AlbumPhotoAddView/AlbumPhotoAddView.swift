@@ -13,7 +13,7 @@ struct AlbumPhotoAddView: View {
   @State var isNext = false
   @State var imageClick: UIImage?
   @State var selected: [SelectedImages] = []
-
+  
   // Toast Message
   @State var showToastMessage: Bool = false
   @State private var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "최대 3장까지 올릴 수 있어요", type: .Warning)
@@ -26,17 +26,17 @@ struct AlbumPhotoAddView: View {
         VStack {
           
           if imageClick != nil { // 첫 Appear상태에는 선택된 이미지가 없음
-            Image(uiImage: imageClick!)
-              .resizable()
-              .scaledToFit()
-              .frame(height: height) // 화면의 반
-              .pinchToZoom()
+            ZoomScrollView {
+              Image(uiImage: imageClick!)
+                .resizable()
+                .scaledToFit()
+                .frame(height: height) // 화면의 반
+            }
           }
         }
         .frame(width: Screen.maxWidth, height: height) // 화면의 반
         
-        AlbumPhotoAddList(selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage)
-        //                  .animation(.spring(response: 1, dampingFraction: 0.7, blendDuration: 0)) // 임시
+        AlbumPhotoAddList(selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage, parant: self)
         
         // 날짜 선택으로 이동
         NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", imageList: selected, photoParent: self, isCameraCancle: .constant(false)), isActive: $isNext)
@@ -45,6 +45,7 @@ struct AlbumPhotoAddView: View {
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       .toastMessage(data: $messageData, isShow: $showToastMessage)
       .navigationBarInlineStyle(isNextClick: $isNext, isDisalbeNextButton: .constant(selected.isEmpty), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
+      .onDisappear { UITabBar.showTabBar() }
     }
   }
 }

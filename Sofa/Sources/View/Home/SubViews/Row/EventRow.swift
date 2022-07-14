@@ -51,9 +51,6 @@ struct EventRow: View {
         }
       }// HStack
     }// HStack
-    .onTapGesture {
-      print("Go To Calendar Tab")
-    }
     .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
     .background(Color.white)
     .cornerRadius(8)

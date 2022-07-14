@@ -7,13 +7,75 @@
 
 import SwiftUI
 
+struct UITextViewRepresentable: UIViewRepresentable {
+    @Binding var text: String
+    var isFirstResponder: Bool = false
+    var isNumberPad: Bool = false
+    @Binding var isFocused: Bool
+    
+  func makeUIView(context: UIViewRepresentableContext<UITextViewRepresentable>) -> UITextView {
+    let textField = UITextView(frame: .zero)
+    textField.delegate = context.coordinator
+    textField.textColor = UIColor(hex: "#121619")
+    textField.autocorrectionType = .no
+    textField.font = UIFont(name: "Pretendard-Medium", size: 18)
+    if isNumberPad { textField.keyboardType = .numberPad
+    }
+    
+    return textField
+  }
+  
+    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<UITextViewRepresentable>) {
+        uiView.text = self.text
+        if isFirstResponder && !context.coordinator.didFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.didFirstResponder = true
+        }
+      if isNumberPad { uiView.keyboardType = .numberPad
+      }
+    }
+    
+    func makeCoordinator() -> UITextViewRepresentable.Coordinator {
+      Coordinator(text: self.$text, isFocused: self.$isFocused)
+    }
+    
+    class Coordinator: NSObject, UITextViewDelegate {
+        @Binding var text: String
+        @Binding var isFocused: Bool
+        var didFirstResponder = false
+        var isNumberPad = false
+        
+      init(text: Binding<String>, isFocused: Binding<Bool>) {
+            self._text = text
+            self._isFocused = isFocused
+        }
+        
+      func textViewDidChangeSelection(_ textField: UITextView) {
+            self.text = textField.text ?? ""
+        }
+        
+        func textViewShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+          
+          return true
+        }
+        
+      func textViewDidBeginEditing(_ textField: UITextView) {
+        self.isFocused = true
+      }
+        
+      func textViewDidEndEditing(_ textField: UITextView) {
+            self.isFocused = false
+        }
+    }
+}
+
 struct AppendTaskModalView: View {
   
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
-  @FocusState var isTitleFocused: Bool
-  @FocusState var isMemoFocused: Bool
-  
+  @State var isTitleFocused: Bool = false
+  @State var isMemoFocused: Bool = false
   @State private var title: String = ""
   @State private var memo: String = ""
   @State private var allDayToggle = false
@@ -71,7 +133,7 @@ struct AppendTaskModalView: View {
           LazyVStack(spacing: 0) {
             
             // 제목
-            Group {
+            ZStack{
               TextField("", text: $title)
                 .placeholder(shouldShow: title.isEmpty) {
                   Text("제목")
@@ -80,18 +142,23 @@ struct AppendTaskModalView: View {
                 }
                 .customTextField(padding: 12)
                 .disableAutocorrection(true)
-                .frame(height: 48)
                 .background(isTitleFocused ? Color.white : Color(hex: "FAF8F0"))
-                .highlightTextField(firstLineWidth: isTitleFocused ? 1 : 0, secondLineWidth: isTitleFocused ? 4 : 0)
                 .cornerRadius(6)
-                .focused($isTitleFocused)
-                .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
+                .highlightTextField(firstLineWidth: isTitleFocused ? 1 : 0, secondLineWidth: isTitleFocused ? 4 : 0)
                 .modifier(DismissingKeyboard())
                 .onAppear {
                   UIApplication.shared.hideKeyboard()
                 }
               
-            }
+              UITextFieldRepresentable(
+                text: $title,
+                isFirstResponder: true,
+                isNumberPad: false,
+                isFocused: $isTitleFocused
+              )
+              .padding(.horizontal, 14)
+            }.frame(height: 48)
+              .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
             
             // 색상
             TaskColorPicker()
@@ -101,8 +168,6 @@ struct AppendTaskModalView: View {
             Rectangle()
               .frame(width: Screen.maxWidth, height: 7)
               .foregroundColor(Color(hex: "FAF8F0"))
-            
-            
             
             Group {
               // 하루종일
@@ -155,22 +220,30 @@ struct AppendTaskModalView: View {
                   .highlightTextField(firstLineWidth: isMemoFocused ? 1 : 0, secondLineWidth: isMemoFocused ? 4 : 0)
                   .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
-                TextEditor(text: $memo)
-                  .placeholder(shouldShow: memo.isEmpty) {
-                    Text("메모")
-                      .font(.custom("Pretendard-Medium", size: 18))
-                      .foregroundColor(Color.black.opacity(0.4))
-                      .padding(EdgeInsets(top: 10, leading: 3, bottom: 0, trailing: 16))
-                      .frame(height: 128, alignment: .topLeading)
+                if memo.isEmpty {
+                  VStack{
+                    HStack{
+                      Text("메모")
+                        .font(.custom("Pretendard-Medium", size: 18))
+                        .foregroundColor(Color.black.opacity(isMemoFocused ? 0 : 0.4))
+                        .padding(.horizontal, 28)
+                        .padding(.vertical, 30)
+                      Spacer()
+                    }
+                    Spacer()
                   }
-                  .customTextField(padding: 9)
-                  .disableAutocorrection(true)
-                  .foregroundColor(Color(hex: "121619"))
-                  .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                  .frame(height: 128, alignment: .center)
-                  .focused($isMemoFocused)
-                  .modifier(DismissingKeyboard())
+                }
+                
+                UITextViewRepresentable(
+                  text: $memo,
+                  isFirstResponder: true,
+                  isNumberPad: false,
+                  isFocused: $isMemoFocused
+                )
+                .frame(height: 116)
+                .padding(.horizontal, 27)
               }
+              
               Rectangle()
                 .frame(width:Screen.maxWidth, height: 1)
                 .foregroundColor(Color(hex: "EDEADF"))

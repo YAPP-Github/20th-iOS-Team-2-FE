@@ -15,9 +15,8 @@ enum FirstResponders: Int {
 
 struct MessageView: View {
   
-  let placeholder = "가족에게 인사를 남겨보세요."
+  @Binding var placeholder: String
   @StateObject var keyboardHeightHelper = KeyboardHeightHelper()
-//  @Environment(\.presentationMode) var presentationMode
   
   @Binding var isShowing: Bool // 외부 View에서 MessageView 띄울 때 사용
   @State private var isDragging = false
@@ -31,9 +30,11 @@ struct MessageView: View {
   @State var isKeyboard: Bool = false // 현재 키보드 올라와있는지
   @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
   
-  init(_ isShowing: Binding<Bool>){
+  init(_ isShowing: Binding<Bool>, _ placeholder: Binding<String>){
     UITextView.appearance().backgroundColor = .clear
     _isShowing = isShowing
+    _placeholder = placeholder
+    
   }
   
   var body: some View {
@@ -49,6 +50,12 @@ struct MessageView: View {
         }
         mainView
           .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+          .onAppear{
+            UITabBar.hideTabBar()
+          }
+          .onDisappear{
+            UITabBar.showTabBar()
+          }
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -89,7 +96,7 @@ struct MessageView: View {
                   .padding(.vertical, 15)
                   .opacity(text == nil ? 1 : 0)
                 TextEditor(text: Binding($text, replacingNilWith: ""))
-                  .firstResponder(id: FirstResponders.text, firstResponder: $firstResponder, resignableUserOperations: .all)
+                  .firstResponder(id: FirstResponders.text, firstResponder: $firstResponder, resignableUserOperations: .none)
                   .font(.custom("Pretendard-Regular", size: 16))
                   .frame(minHeight: isMaxHeight ? fullTextEditorHeight : 44, alignment: .leading)
                   .frame(maxHeight: isMaxHeight ? fullTextEditorHeight : 130, alignment: .leading)
@@ -115,6 +122,9 @@ struct MessageView: View {
                     self.curHeight = minHeight
                     isMaxHeight = false
                     isKeyboard = true
+                  }
+                  .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+                    isKeyboard = false
                   }
                   
               }
@@ -145,19 +155,23 @@ struct MessageView: View {
             Spacer()
             Button { // SEND BUTTON
               if textLength == 0{
-                print("DISABLED")
+                print("textLength == 0")
               }else{
                 isShowing = false
               }
             } label: {
-              Rectangle()
-                .frame(width: 56, height: 32)
-                .cornerRadius(4)
-                .foregroundColor(textLength == 0 ? Color(hex: "#F2F1F1") : Color(hex: "E8F5E9"))
-                .overlay{
-                  Image(systemName: "paperplane.fill")
-                    .foregroundColor(textLength == 0 ? Color(hex: "#919090") : Color(hex: "#43A046"))
-                }
+              if #available(iOS 15.0, *) {
+                Rectangle()
+                  .frame(width: 56, height: 32)
+                  .cornerRadius(4)
+                  .foregroundColor(textLength == 0 ? Color(hex: "#F2F1F1") : Color(hex: "E8F5E9"))
+                  .overlay{
+                    Image(systemName: "paperplane.fill")
+                      .foregroundColor(textLength == 0 ? Color(hex: "#919090") : Color(hex: "#43A046"))
+                  }
+              } else {
+                // Fallback on earlier versions
+              }
             }
           }
           .padding(.horizontal, 16)

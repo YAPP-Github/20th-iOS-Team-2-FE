@@ -82,6 +82,9 @@ struct NotificationView: View {
     .padding(.top, 1) // ignoreSafeArea 적용 X
     .padding(.bottom, 5)
     .edgesIgnoringSafeArea([.bottom])
+    .onDisappear{
+      UITabBar.showTabBar(animated: false)
+    }
 
   }
   

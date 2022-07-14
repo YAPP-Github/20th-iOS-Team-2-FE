@@ -56,14 +56,9 @@ struct HomeView: View {
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView(messageShow: $showMessageView)
-            .fullScreenCover(isPresented: $showMessageView) {
-              MessageView($showMessageView)
-                .background(BackgroundCleanerView())
-            }
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.top)
-
         }// VStack
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
@@ -73,8 +68,12 @@ struct HomeView: View {
       }// NavigationView
       .accentColor(Color(hex: "43A047"))
       
+      if showMessageView{
+        MessageView($showMessageView)
+          .background(BackgroundCleanerView())
+      }
       
-      if showModal || showMessageView{
+      if showModal{
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()

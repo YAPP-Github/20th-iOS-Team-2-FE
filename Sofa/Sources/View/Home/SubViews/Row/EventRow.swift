@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct EventRow: View {
+  
+  var callback: (() -> Void)?
   var event: Event
   
-  init(_ event: Event){
+  init(_ event: Event, callback: (() -> Void)?){
     self.event = event
+    self.callback = callback
   }
   
   
@@ -38,6 +41,7 @@ struct EventRow: View {
         VStack(alignment: .trailing, spacing: 5.5){
           Button(action: {
             print("DELETE ROW")
+            callback?()
           }, label: {
             Image("x.circle.fill")
           })
@@ -62,8 +66,13 @@ struct EventRow: View {
   }
 }
 
-struct EventRow_Previews: PreviewProvider {
-  static var previews: some View {
-    EventRow(Event.getDummy())
+extension EventRow{
+  func onDeleteRow(action: @escaping (() -> Void)) -> EventRow {
+    EventRow(event, callback: action)
   }
 }
+//struct EventRow_Previews: PreviewProvider {
+//  static var previews: some View {
+//    EventRow(Event.getDummy())
+//  }
+//}

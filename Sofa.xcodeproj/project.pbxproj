@@ -45,6 +45,7 @@
 		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
 		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
+		0AC13DF5287F191A00FDD489 /* MbSwiftUIFirstResponder in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC13DF4287F191A00FDD489 /* MbSwiftUIFirstResponder */; };
 		0AC79182286AF1440034A830 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC79181286AF1440034A830 /* EmojiView.swift */; };
 		0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC79184286B0AE00034A830 /* ConfettiSwiftUI */; };
 		0AE4919A28740D1A00341D35 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4919928740D1A00341D35 /* HistoryView.swift */; };
@@ -324,6 +325,7 @@
 				0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */,
 				187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */,
 				0A42E063286DCD0C00A2C73D /* SwiftUIPager in Frameworks */,
+				0AC13DF5287F191A00FDD489 /* MbSwiftUIFirstResponder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,6 +1004,7 @@
 			packageProductDependencies = (
 				0AC79184286B0AE00034A830 /* ConfettiSwiftUI */,
 				0A42E062286DCD0C00A2C73D /* SwiftUIPager */,
+				0AC13DF4287F191A00FDD489 /* MbSwiftUIFirstResponder */,
 			);
 			productName = Sofa;
 			productReference = C4667A2B284B6FF200A4A759 /* Sofa.app */;
@@ -1082,6 +1085,7 @@
 			packageReferences = (
 				0AC79183286B0AE00034A830 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 				0A42E061286DCD0C00A2C73D /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				0AC13DF3287F191A00FDD489 /* XCRemoteSwiftPackageReference "MbSwiftUIFirstResponder" */,
 			);
 			productRefGroup = C4667A2C284B6FF200A4A759 /* Products */;
 			projectDirPath = "";
@@ -1704,6 +1708,14 @@
 				kind = branch;
 			};
 		};
+		0AC13DF3287F191A00FDD489 /* XCRemoteSwiftPackageReference "MbSwiftUIFirstResponder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Mobilinked/MbSwiftUIFirstResponder";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		0AC79183286B0AE00034A830 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
@@ -1719,6 +1731,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0A42E061286DCD0C00A2C73D /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
 			productName = SwiftUIPager;
+		};
+		0AC13DF4287F191A00FDD489 /* MbSwiftUIFirstResponder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AC13DF3287F191A00FDD489 /* XCRemoteSwiftPackageReference "MbSwiftUIFirstResponder" */;
+			productName = MbSwiftUIFirstResponder;
 		};
 		0AC79184286B0AE00034A830 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "mbswiftuifirstresponder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mobilinked/MbSwiftUIFirstResponder",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4eafce5e917742334183f9bde9ebeedbcc0b1651"
+      }
+    },
+    {
       "identity" : "swiftuipager",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fermoya/SwiftUIPager.git",

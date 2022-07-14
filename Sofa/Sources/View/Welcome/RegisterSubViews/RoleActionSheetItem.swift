@@ -66,7 +66,7 @@ struct RoleActionSheetItem_Previews: PreviewProvider {
         RoleActionSheetItem(label: "엄마")
         RoleActionSheetItem(label: "할아버지")
         RoleActionSheetItem(label: "할머니")
-        RoleActionSheetItem(label: "이들")
+        RoleActionSheetItem(label: "아들")
         RoleActionSheetItem(label: "딸")
         RoleActionSheetItem(label: "사위")
         RoleActionSheetItem(label: "며느리")

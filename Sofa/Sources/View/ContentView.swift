@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftKeychainWrapper
 
 enum Tab{
   case home
@@ -28,6 +29,9 @@ struct ContentView: View {
           Image(systemName: "hand.wave")
         }
         .tag(Tab.home)
+//        .onAppear{
+//          KeychainWrapper.standard.removeObject(forKey: "accessToken")
+//        }
       CalendarView()
         .tabItem {
           Image(systemName: "calendar")

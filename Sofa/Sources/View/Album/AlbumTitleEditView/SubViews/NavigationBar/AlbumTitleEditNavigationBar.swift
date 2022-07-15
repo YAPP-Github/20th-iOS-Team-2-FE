@@ -8,13 +8,35 @@
 import SwiftUI
 
 struct AlbumTitleEditNavigationBar: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
+  @Binding var title: String
+  let paddingValue: CGFloat = 12
+  let safeTop: CGFloat
+  
+  var body: some View {
+    VStack {
+      VStack {
+        Spacer()
+        TextField("앨범 제목", text: $title)
+          .firstResponder(id: FirstResponders.text, firstResponder: $firstResponder, resignableUserOperations: .none)
+          .font(.custom("Pretendard-Medium", size: 18))
+          .customTextField(padding: paddingValue)
+          .disableAutocorrection(true)
+          .background(Color.white) // 입력 Area 색상
+          .cornerRadius(6)
+          .highlightTextField(firstLineWidth: 1, secondLineWidth: 4)
+      }
+      .frame(height: safeTop + 10 + paddingValue)
+      .frame(maxWidth: .infinity, alignment: .center)
+      .padding(EdgeInsets(top: 20 + paddingValue, leading: 16, bottom: 15, trailing: 16))
+      .background(Color.white.ignoresSafeArea(edges: .top))
+      Spacer()
     }
+  }
 }
 
 struct AlbumTitleEditNavigationBar_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumTitleEditNavigationBar()
-    }
+  static var previews: some View {
+    AlbumTitleEditNavigationBar(title: .constant(""), safeTop: 10)
+  }
 }

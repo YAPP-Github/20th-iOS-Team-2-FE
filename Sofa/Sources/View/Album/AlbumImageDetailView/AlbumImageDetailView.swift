@@ -42,54 +42,57 @@ struct AlbumImageDetailView: View {
         }
       ]
     )
+    
   }
   
   var body: some View {
-    ZStack {
-      Button(action: {
-        touchImage.toggle()
-      }) {
-        Image(uiImage: image)
-          .resizable()
-          .scaledToFit()
-          .pinchToZoom()
-      }
-      
-      Color.clear
-        .ignoresSafeArea()
-        .overlay(
-          AlbumImageDetailNavigationBar(safeTop: Screen.safeAreaTop)
-            .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-        )
-        .overlay(
-          AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
-            .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
-        )
-      
-      if isCommentClick || isEllipsisClick { // 댓글 or action sheet
-        Color.black
-          .opacity(0.7)
-          .ignoresSafeArea()
-          .onTapGesture {
-            isEllipsisClick = false
-          }
+    GeometryReader { geometry in
+      ZStack {
+        Button(action: {
+          touchImage.toggle()
+        }) {
+          Image(uiImage: image)
+            .resizable()
+            .scaledToFit()
+            .pinchToZoom()
+        }
         
-        if isEllipsisClick {
-          actionSheetView // 바텀 Sheet
+        Color.clear
+          .ignoresSafeArea()
+          .overlay(
+            AlbumImageDetailNavigationBar(safeTop: geometry.safeAreaInsets.top)
+              .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+          )
+          .overlay(
+            AlbumImageDetailSettingBar(isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
+              .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
+          )
+        
+        if isCommentClick || isEllipsisClick { // 댓글 or action sheet
+          Color.black
+            .opacity(0.7)
+            .ignoresSafeArea()
+            .onTapGesture {
+              isEllipsisClick = false
+            }
+          
+          if isEllipsisClick {
+            actionSheetView // 바텀 Sheet
+          }
         }
       }
-    }
-    .background(Color.black)
-    .ignoresSafeArea()
-    .navigationBarHidden(true) // 이전 Navigation bar 무시
-    .toastMessage(data: $messageData, isShow: $isDownloadClick)
-    .fullScreenCover(isPresented: $isCommentClick) {
-      AlbumCommentView(isShowing: $isCommentClick)
-        .background(BackgroundCleanerView())
-    }
-    .onAppear {
-      if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
-        isCommentClick = true
+      .background(Color.black)
+      .ignoresSafeArea()
+      .navigationBarHidden(true) // 이전 Navigation bar 무시
+      .toastMessage(data: $messageData, isShow: $isDownloadClick)
+      .fullScreenCover(isPresented: $isCommentClick) {
+        AlbumCommentView(isShowing: $isCommentClick)
+          .background(BackgroundCleanerView())
+      }
+      .onAppear {
+        if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
+          isCommentClick = true
+        }
       }
     }
   }

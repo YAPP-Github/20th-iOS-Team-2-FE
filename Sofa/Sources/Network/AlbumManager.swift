@@ -12,10 +12,13 @@ import Combine
 enum AlbumManager: URLRequestConvertible {
   
   case getAlbumListByDate(page: Int = 1, results: Int = 20)
+  case getAlbumListByKind
 
   var baseURL: URL {
     switch self {
     case .getAlbumListByDate:
+      return URL(string: "\(APIConstants.url)/album")!
+    case .getAlbumListByKind:
       return URL(string: "\(APIConstants.url)/album")!
     }
   }
@@ -23,6 +26,8 @@ enum AlbumManager: URLRequestConvertible {
   var method: HTTPMethod {
     switch self {
     case .getAlbumListByDate:
+      return .get
+    case .getAlbumListByKind:
       return .get
     }
   }
@@ -35,6 +40,8 @@ enum AlbumManager: URLRequestConvertible {
     switch self {
     case .getAlbumListByDate:
       return headers
+    case .getAlbumListByKind:
+      return headers
     }
   }
   
@@ -46,6 +53,9 @@ enum AlbumManager: URLRequestConvertible {
       //      params["page"] = page
       //      params["results"] = results
       params["type"] = "date"
+      return params
+    case .getAlbumListByKind:
+      params["type"] = "kind"
       return params
     }
   }

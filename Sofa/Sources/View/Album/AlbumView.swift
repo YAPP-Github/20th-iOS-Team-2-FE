@@ -12,7 +12,6 @@ struct AlbumView: View {
   @ObservedObject var viewModel = AlbumListViewModel()
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @State var showingSheet = false
-  @State var types = MockData().albumByType
   @State var selected = 0
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
   @State var cameraImage: UIImage? // 카메라를 통해 받아오는 이미지
@@ -54,7 +53,7 @@ struct AlbumView: View {
           if selected == 0 { // 날짜별
             AlbumList(albumDate: viewModel.albumDateList.count == 0 ? MockData().albumByDate : viewModel.albumDateList) // 임시
           } else if selected == 1 { // 유형별
-            AlbumList(albumType: types)
+            AlbumList(albumType: viewModel.albumTypeList.count == 0 ? MockData().albumByType : viewModel.albumTypeList) // 임시
           }
           
           // 카메라 날짜 선택 View로 이동

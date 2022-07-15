@@ -11,6 +11,12 @@ struct AlbumDateAPIResponse: Hashable, Decodable {
   let albums: [AlbumDate]
 }
 
+struct AlbumTypeAPIResponse: Hashable, Decodable {
+  let favourite: AlbumType
+  let photo: AlbumType
+  let recording: AlbumType
+}
+
 struct AlbumDate: Hashable, Decodable {
   let albumId: Int
   let title: String

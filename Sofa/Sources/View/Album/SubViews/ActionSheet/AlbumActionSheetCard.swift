@@ -55,7 +55,7 @@ public struct ActionSheetCard: View {
   
   var itemsView: some View {
     VStack (spacing: itemsSpacing){
-      ForEach(0..<3) { index in
+      ForEach(0..<items.count) { index in
         
         items[index]
           .frame(height: cellHeight)

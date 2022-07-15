@@ -32,8 +32,7 @@ struct AlbumView: View {
           showingSheet = false
           authorizationViewModel.showAudioRecord() // 권한 확인
         }
-      ],
-      outOfFocusOpacity: 0.2
+      ]
     )
     .onDisappear { UITabBar.showTabBar() }
   }

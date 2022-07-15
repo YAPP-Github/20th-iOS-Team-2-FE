@@ -9,9 +9,9 @@ import SwiftUI
 
 
 struct AlbumView: View {
+  @ObservedObject var viewModel = AlbumListViewModel()
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @State var showingSheet = false
-  @State var albums = MockData().albumByDate
   @State var types = MockData().albumByType
   @State var selected = 0
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
@@ -52,11 +52,10 @@ struct AlbumView: View {
           .pickerStyle(SegmentedPickerStyle())
           
           if selected == 0 { // 날짜별
-            AlbumList(albumDate: albums)
+            AlbumList(albumDate: viewModel.albumDateList.count == 0 ? MockData().albumByDate : viewModel.albumDateList) // 임시
           } else if selected == 1 { // 유형별
             AlbumList(albumType: types)
           }
-          
           
           // 카메라 날짜 선택 View로 이동
           NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)
@@ -101,6 +100,6 @@ struct AlbumView: View {
 
 struct AlbumView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumView(albums: MockData().albumByDate, types: MockData().albumByType)
+    AlbumView()
   }
 }

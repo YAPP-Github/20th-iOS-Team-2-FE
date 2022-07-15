@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct AlbumDateAPIResponse: Hashable, Decodable {
+  let albums: [AlbumDate]
+}
+
 struct AlbumDate: Hashable, Decodable {
   let albumId: Int
   let title: String

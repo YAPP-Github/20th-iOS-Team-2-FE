@@ -40,8 +40,7 @@ struct AlbumImageDetailView: View {
         ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
           isEllipsisClick = false
         }
-      ],
-      outOfFocusOpacity: 0.2
+      ]
     )
   }
   

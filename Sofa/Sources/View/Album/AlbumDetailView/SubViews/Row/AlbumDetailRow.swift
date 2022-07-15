@@ -12,11 +12,11 @@ struct AlbumDetailRow: View {
   @Binding var isImageClick: Bool
   @Binding var selectImage: UIImage
   @Binding var selectImageIndex: Int
-
+  
   @Binding var isBookmarkClick: Bool
   @Binding var isCommentClick: Bool
   @Binding var isEllipsisClick: Bool
-
+  
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
   let index: Int
   private var isBookmark : Bool { return info.favourite }
@@ -28,11 +28,26 @@ struct AlbumDetailRow: View {
         selectImage = UIImage(named: info.link)!
         selectImageIndex = index
       }, label: {
-        // post image
-        Image(info.link)
-          .resizable()
-          .frame(height: Screen.maxWidth * 0.7)
-          .cornerRadius(8)
+        ZStack(alignment: .topTrailing) {
+          // post image
+          Image(info.link)
+            .resizable()
+            .frame(height: Screen.maxWidth * 0.7)
+            .cornerRadius(8)
+          
+          // 대표 사진 Badge
+          if index == 0 {
+            Group {
+              Text("대표 사진")
+                .font(.custom("Pretendard-Bold", size: 12))
+                .foregroundColor(Color.black)
+                .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+                .background(Color.white)
+                .cornerRadius(4)
+            }
+            .padding([.top, .trailing], 8)
+          }
+        }
       })
       
       if info.type != "PHOTO" { // RECORDING
@@ -99,6 +114,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.elements[3]
     
-    AlbumDetailRow(isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 3)
+    AlbumDetailRow(isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }
 }

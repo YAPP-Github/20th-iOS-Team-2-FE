@@ -1,5 +1,5 @@
 //
-//  AlbumRow.swift
+//  AlbumDateRow.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/07.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlbumRow: View {
+struct AlbumDateRow: View {
   var album: Album
   
   var body: some View {
@@ -50,6 +50,6 @@ struct AlbumRow_Previews: PreviewProvider {
   static var previews: some View {
     let dummy = MockData().albumByDate[0]
     
-    AlbumRow(album: dummy)
+    AlbumDateRow(album: dummy)
   }
 }

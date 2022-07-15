@@ -85,6 +85,7 @@
 		6FF89F13287EF7A60009D934 /* RegisterFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F12287EF7A60009D934 /* RegisterFinishView.swift */; };
 		6FF89F15287F011C0009D934 /* RegisterFamilyFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */; };
 		C4400034288191B8007D0C20 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4400033288191B8007D0C20 /* APIConstants.swift */; };
+		C440003728819838007D0C20 /* AlbumTitleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440003628819838007D0C20 /* AlbumTitleEditView.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
 		C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A30284B6FF200A4A759 /* ContentView.swift */; };
 		C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4667A32284B6FF400A4A759 /* Assets.xcassets */; };
@@ -252,6 +253,7 @@
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.debug.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C4400033288191B8007D0C20 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		C440003628819838007D0C20 /* AlbumTitleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleEditView.swift; sourceTree = "<group>"; };
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A2E284B6FF200A4A759 /* SofaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaApp.swift; sourceTree = "<group>"; };
 		C4667A30284B6FF200A4A759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				C4667A84284BA97000A4A759 /* SubViews */,
 				C495F60F285B5F69009B3BDE /* ViewModel */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
+				C44000352881981C007D0C20 /* AlbumTitleEditView */,
 				C4A979A3286AE88E00326ABC /* AlbumImageDetailView */,
 				C481B6C72878746F005D6831 /* AlbumCommentView */,
 				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
@@ -582,6 +585,14 @@
 				639E791ADDF619043B6A741F /* Pods_SofaTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C44000352881981C007D0C20 /* AlbumTitleEditView */ = {
+			isa = PBXGroup;
+			children = (
+				C440003628819838007D0C20 /* AlbumTitleEditView.swift */,
+			);
+			path = AlbumTitleEditView;
 			sourceTree = "<group>";
 		};
 		C4667A22284B6FF200A4A759 = {
@@ -1258,6 +1269,7 @@
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
 				C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */,
 				0AAB36F32865F32400A47B24 /* EventViewModel.swift in Sources */,
+				C440003728819838007D0C20 /* AlbumTitleEditView.swift in Sources */,
 				C481B6D7287ADEAB005D6831 /* CommentViewModel.swift in Sources */,
 				C4B8F2C8285348980000B8CB /* AlbumPhotoLibrary.swift in Sources */,
 				C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */,

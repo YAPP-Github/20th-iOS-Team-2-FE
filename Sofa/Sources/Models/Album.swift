@@ -13,3 +13,9 @@ struct AlbumDate: Hashable, Decodable {
   let thumbnail: String
   let date: String
 }
+
+struct AlbumType: Hashable, Decodable {
+  let kind: String
+  let count: Int
+  let link: String
+}

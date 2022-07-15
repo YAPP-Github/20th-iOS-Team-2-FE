@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlbumDateRow: View {
-  var album: Album
+  var album: AlbumDate
   
   var body: some View {
     HStack(alignment:.top, spacing: 8) { // 위로 붙임

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlbumList: View {
-  @State var albumDate: [Album]? // 날짜별
+  @State var albumDate: [AlbumDate]? // 날짜별
   @State var albumType: [AlbumType]? // 유형별
   @State var showDetail = false
   
@@ -20,7 +20,7 @@ struct AlbumList: View {
             Button(action: {
               showDetail = true
             }, label: {
-              AlbumRow(album: album)
+              AlbumDateRow(album: album)
             })
           }
         }

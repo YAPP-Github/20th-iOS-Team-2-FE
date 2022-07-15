@@ -14,12 +14,12 @@ struct MockData {
   private let dateList = ["2022-05-28", "2022-04-30", "2022-04-21", "2022-01-06", "2022-08-04", "2022-06-03"]
   private let albumDetailListType = ["PHOTO", "PHOTO", "PHOTO", "RECORDING", "PHOTO", "RECORDING"]
   
-  var albumByDate: [Album] {
-    var albumList = [Album]()
+  var albumByDate: [AlbumDate] {
+    var albumList = [AlbumDate]()
     
     for (i, name) in photoList.enumerated() {
       let title = titleList[i % 6]
-      let album = Album(albumId: i, title: title, thumbnail: name, date: dateList[i % 6])
+      let album = AlbumDate(albumId: i, title: title, thumbnail: name, date: dateList[i % 6])
       
       albumList.append(album)
     }

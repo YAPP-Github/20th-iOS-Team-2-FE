@@ -52,7 +52,6 @@ struct AlbumImageDetailView: View {
         Image(uiImage: image)
           .resizable()
           .scaledToFit()
-        //              .frame(width: Screen.maxWidth, height: Screen.maxHeight) // 임시
           .pinchToZoom()
       }
       

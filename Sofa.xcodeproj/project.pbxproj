@@ -55,6 +55,7 @@
 		0AE492082877387300341D35 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE492072877387300341D35 /* NotificationView.swift */; };
 		0AE4920A287740B300341D35 /* HomeNavigationBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE49209287740B300341D35 /* HomeNavigationBarStyle.swift */; };
 		0AE4921228780B0400341D35 /* Ex+UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4921128780B0400341D35 /* Ex+UINavigationController.swift */; };
+		0AF2B5302881D93B00C6A55E /* TextLabelWithHyperlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2B52F2881D93B00C6A55E /* TextLabelWithHyperlink.swift */; };
 		187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */; };
 		6F0974352861E53A0000956C /* CalendarTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0974342861E53A0000956C /* CalendarTask.swift */; };
 		6F155330287FA8260048CE54 /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F15532F287FA8260048CE54 /* GreyOutOfFocusView.swift */; };
@@ -215,6 +216,7 @@
 		0AE492072877387300341D35 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		0AE49209287740B300341D35 /* HomeNavigationBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBarStyle.swift; sourceTree = "<group>"; };
 		0AE4921128780B0400341D35 /* Ex+UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UINavigationController.swift"; sourceTree = "<group>"; };
+		0AF2B52F2881D93B00C6A55E /* TextLabelWithHyperlink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabelWithHyperlink.swift; sourceTree = "<group>"; };
 		1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBE8172BD1C8B15C2F363BF /* Pods-SofaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.release.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A02CB536760CF657C4244F9 /* Pods-Sofa-SofaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofa-SofaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Sofa-SofaUITests/Pods-Sofa-SofaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				0ABA0C1828579493005F2C6A /* LottieView.swift */,
 				0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */,
 				0A223B71285F75D6002203ED /* CustomText.swift */,
+				0AF2B52F2881D93B00C6A55E /* TextLabelWithHyperlink.swift */,
 			);
 			path = LoginSubViews;
 			sourceTree = "<group>";
@@ -1256,6 +1259,7 @@
 				C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */,
 				C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */,
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
+				0AF2B5302881D93B00C6A55E /* TextLabelWithHyperlink.swift in Sources */,
 				C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */,
 				0AAB36F32865F32400A47B24 /* EventViewModel.swift in Sources */,
 				C481B6D7287ADEAB005D6831 /* CommentViewModel.swift in Sources */,

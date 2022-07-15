@@ -93,25 +93,12 @@ struct LoginButtonView: View {
         .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       
       VStack {
-        CustomText(text: self.$text)
+        TextLabelWithHyperlink()
       }
       .onAppear{
         
         // 여기에 써주세요!
 //        KeychainWrapper.standard.set("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzpudWxsIiwiaWF0IjoxNjU3ODE1ODE2LCJleHAiOjE2NTc4MTk0MTZ9.AoThfTsgp4vzT4uVgl3llpGTmBPwzabjp-6t_2UjxAU", forKey: "accessToken")
-        
-        let myText = "'시작하기'를 누른 것으로 필수 이용약관 및 개인정보 이용방침에 동의하고 서비스를 이용합니다."
-        
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = .center
-        let attributtedString = NSMutableAttributedString(string: myText, attributes: [NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 13)!, .paragraphStyle: paragraph])
-        
-        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#999899"), range: (myText as NSString).range(of: myText))
-        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "필수 이용약관"))
-        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "개인정보 이용방침"))
-        
-        
-        self.text = attributtedString
         
       }
       .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.05 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))

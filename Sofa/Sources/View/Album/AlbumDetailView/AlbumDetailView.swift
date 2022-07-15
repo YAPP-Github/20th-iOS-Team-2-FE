@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumDetailView: View {
+  @State var isTitleClick = false
   @State var isEdit = false
   
   // 이미지
@@ -69,7 +70,7 @@ struct AlbumDetailView: View {
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick)
         .toastMessage(data: $messageData2, isShow: $isToastMessage)
-        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isUpdateDate) {
           AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
         }

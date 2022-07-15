@@ -84,6 +84,7 @@
 		6FF89F11287EF3DA0009D934 /* RegisterFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F10287EF3DA0009D934 /* RegisterFamilyView.swift */; };
 		6FF89F13287EF7A60009D934 /* RegisterFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F12287EF7A60009D934 /* RegisterFinishView.swift */; };
 		6FF89F15287F011C0009D934 /* RegisterFamilyFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */; };
+		C4400034288191B8007D0C20 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4400033288191B8007D0C20 /* APIConstants.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
 		C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A30284B6FF200A4A759 /* ContentView.swift */; };
 		C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4667A32284B6FF400A4A759 /* Assets.xcassets */; };
@@ -125,7 +126,6 @@
 		C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */; };
 		C4B4963528800DDF000C9E1F /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */; };
 		C4B4963928801E5D000C9E1F /* AlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963828801E5D000C9E1F /* AlbumManager.swift */; };
-		C4B4963B288041BE000C9E1F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963A288041BE000C9E1F /* APIConstants.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
 		C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */; };
@@ -251,6 +251,7 @@
 		6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFamilyFinishView.swift; sourceTree = "<group>"; };
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.debug.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4400033288191B8007D0C20 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A2E284B6FF200A4A759 /* SofaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaApp.swift; sourceTree = "<group>"; };
 		C4667A30284B6FF200A4A759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -295,7 +296,6 @@
 		C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailView.swift; sourceTree = "<group>"; };
 		C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		C4B4963828801E5D000C9E1F /* AlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumManager.swift; sourceTree = "<group>"; };
-		C4B4963A288041BE000C9E1F /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
 		C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTabBar.swift; sourceTree = "<group>"; };
@@ -487,7 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B4963828801E5D000C9E1F /* AlbumManager.swift */,
-				C4B4963A288041BE000C9E1F /* APIConstants.swift */,
+				C4400033288191B8007D0C20 /* APIConstants.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1314,6 +1314,7 @@
 				C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */,
 				0A915DF7287B21E70055AD6D /* MessageView.swift in Sources */,
 				6F22E52A284B9D140069D268 /* HomeView.swift in Sources */,
+				C4400034288191B8007D0C20 /* APIConstants.swift in Sources */,
 				6F7340BC28741A4800707AB7 /* GeneralDatePickerView.swift in Sources */,
 				C4B8F2A82851CAD50000B8CB /* HiddenTabBar.swift in Sources */,
 				0A915DD7287A9BA00055AD6D /* Notifications.swift in Sources */,
@@ -1343,7 +1344,6 @@
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
 				C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */,
 				C481B6DC287AEF0E005D6831 /* Ex+String.swift in Sources */,
-				C4B4963B288041BE000C9E1F /* APIConstants.swift in Sources */,
 				C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
 				6FF89F15287F011C0009D934 /* RegisterFamilyFinishView.swift in Sources */,

@@ -40,7 +40,7 @@ struct EventRow: View {
         Spacer()
         VStack(alignment: .trailing, spacing: 5.5){
           Button(action: {
-            print("DELETE ROW")
+//            print("DELETE ROW")
             callback?()
           }, label: {
             Image("x.circle.fill")

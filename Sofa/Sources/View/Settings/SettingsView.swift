@@ -83,7 +83,7 @@ struct SettingsView: View {
                 Rectangle()
                   .frame(width: 48, height: 48)
                   .cornerRadius(9)
-                  .foregroundColor(Color.black.opacity(0.5))
+                  .foregroundColor(Color.black.opacity(0.2))
                   .padding(.leading, 16)
 
               Image(systemName: "person.fill")

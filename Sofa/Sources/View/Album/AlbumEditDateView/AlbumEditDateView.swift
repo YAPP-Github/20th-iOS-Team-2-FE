@@ -1,54 +1,23 @@
 //
-//  AlbumSelectDateView.swift
+//  AlbumEditDateView.swift
 //  Sofa
 //
-//  Created by geonhyeong on 2022/06/12.
+//  Created by geonhyeong on 2022/07/16.
 //
 
 import SwiftUI
 
-struct AlbumSelectDateView: View {
+struct AlbumEditDateView: View {
   @Environment(\.presentationMode) var presentable
   @State var currentDate: Date = Date()
-  
-  var title: String = "올리기"
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
-  
-  // 갤러리 사진들
-  @State var imageList: [SelectedImages]? // 갤러리 사진들
-  var photoParent: AlbumPhotoAddView?
-  
-  // 카메라 사진
-  @Binding var isCameraCancle: Bool
-  @State var image: UIImage? // 카메라 사진
-  
-  // 녹음
-  @ObservedObject var fetcher = AudioRecorderURLViewModel()
-  @State var recordTitle: String = ""
-  var recordParent: AlbumRecordAddView?
-  
+  var albumId: String?   // 앨범 날짜 수정
+  var photoId: String?   // 사진 날짜 수정
+  var recordId: String?  // 녹음 날짜 수정
+
   var body: some View {
     NavigationView {
       VStack(spacing: 0) {
-        if recordParent != nil { // 녹음일 경우
-          VStack(spacing: 0) {
-            Divider()
-            Spacer() // 임시 - 여백용
-              .frame(height: 8)
-            
-            HStack {
-              Spacer()
-              TextField("\(fetcher.recordTitle)", text: $recordTitle)
-                .padding(16)
-                .background(Color.init(hex: "#FAF8F0")) // 임시
-                .font(.custom("Pretendard-Medium", size: 18))
-                .cornerRadius(6)
-              Spacer()
-            }
-            .frame(width: Screen.maxWidth, height: 80) // 임시 - 높이
-            .background(Color.white)
-          }
-        }
         Divider()
         Spacer() // 임시 - 여백용
           .frame(height: 8)
@@ -62,14 +31,10 @@ struct AlbumSelectDateView: View {
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
         leading: Button(action: {
-          if image != nil { // 카메라로 들어왔을 경우,
-            isCameraCancle = true // 카메라 imagePicker로 이동
-          }
           presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {
-            Image(systemName: "chevron.left")
-            Text("이전")
+            Text("취소")
               .font(.custom("Pretendard-Medium", size: 16))
               .fontWeight(.semibold)
           }
@@ -77,18 +42,18 @@ struct AlbumSelectDateView: View {
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
-          if photoParent != nil { // 갤러리 사진들
-            photoParent?.presentable.wrappedValue.dismiss()
-          } else if recordParent != nil { // 녹음
-            recordParent?.presentable.wrappedValue.dismiss()
-          } else { // 카메라
-            presentable.wrappedValue.dismiss()
+          if albumId != nil {         // 앨범
+            print("앨범 날짜 수정")
+          } else if photoId != nil {  // 사진
+            print("사진 날짜 수정")
+          } else if recordId != nil { // 녹음
+            print("녹음 날짜 수정")
           }
 //          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
-          UITabBar.showTabBar()
+          presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {
-            Text("올리기")
+            Text("수정")
               .font(.custom("Pretendard-Medium", size: 16))
               .fontWeight(.semibold)
           }
@@ -97,7 +62,7 @@ struct AlbumSelectDateView: View {
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
       .navigationBarTitleDisplayMode(.inline)
-      .navigationTitle(title)
+      .navigationTitle("날짜 수정")
       .onAppear {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -114,8 +79,8 @@ struct AlbumSelectDateView: View {
   }
 }
 
-struct AlbumSelectDateView_Previews: PreviewProvider {
+struct AlbumEditDateView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumSelectDateView(isCameraCancle: .constant(false))
+    AlbumEditDateView()
   }
 }

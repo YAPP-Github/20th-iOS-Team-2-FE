@@ -27,7 +27,7 @@ struct AlbumDetailView: View {
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
 
-  @State var isUpdateDate: Bool = false  // 날짜 수정
+  @State var isUpdateDate: Bool = false  // 사진 & 녹음 날짜 수정
   let info = MockData().albumDetail
   
   var actionSheetView: some View {
@@ -71,8 +71,11 @@ struct AlbumDetailView: View {
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
-        .fullScreenCover(isPresented: $isUpdateDate) {
-          AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
+        .fullScreenCover(isPresented: $isEdit) { // 앨범 날짜 수정
+          AlbumEditDateView(albumId: "0") // 임시
+        }
+        .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
+          AlbumEditDateView(photoId: "0") // 임시
         }
         .fullScreenCover(isPresented: $isTitleClick) {
           AlbumTitleEditView(title: info.title, isShowing: $isTitleClick)

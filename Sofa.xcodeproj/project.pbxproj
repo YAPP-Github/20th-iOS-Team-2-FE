@@ -58,6 +58,7 @@
 		187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4D7E93BA18E55E098F1094 /* Pods_Sofa.framework */; };
 		6F0974352861E53A0000956C /* CalendarTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0974342861E53A0000956C /* CalendarTask.swift */; };
 		6F155330287FA8260048CE54 /* GreyOutOfFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F15532F287FA8260048CE54 /* GreyOutOfFocusView.swift */; };
+		6F1553352881C83C0048CE54 /* SettingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1553342881C83C0048CE54 /* SettingRow.swift */; };
 		6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E523284B9CF00069D268 /* AlbumView.swift */; };
 		6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E525284B9CFD0069D268 /* CalendarView.swift */; };
 		6F22E528284B9D050069D268 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E527284B9D050069D268 /* SettingsView.swift */; };
@@ -222,6 +223,7 @@
 		639E791ADDF619043B6A741F /* Pods_SofaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SofaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F0974342861E53A0000956C /* CalendarTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTask.swift; sourceTree = "<group>"; };
 		6F15532F287FA8260048CE54 /* GreyOutOfFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyOutOfFocusView.swift; sourceTree = "<group>"; };
+		6F1553342881C83C0048CE54 /* SettingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRow.swift; sourceTree = "<group>"; };
 		6F22E523284B9CF00069D268 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		6F22E525284B9CFD0069D268 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		6F22E527284B9D050069D268 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -404,6 +406,14 @@
 			path = LoginSubViews;
 			sourceTree = "<group>";
 		};
+		6F1553332881C8210048CE54 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				6F1553342881C83C0048CE54 /* SettingRow.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		6F22E51E284B9CB60069D268 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +442,7 @@
 		6F22E520284B9CC30069D268 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6F1553332881C8210048CE54 /* SubViews */,
 				6F22E527284B9D050069D268 /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -1278,6 +1289,7 @@
 				C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */,
 				C4B8F2AC2851CB0E0000B8CB /* Ex+UIView.swift in Sources */,
 				0A223B72285F75D6002203ED /* CustomText.swift in Sources */,
+				6F1553352881C83C0048CE54 /* SettingRow.swift in Sources */,
 				6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */,
 				6FC853C628743D8D00988A44 /* TaskTimePicker.swift in Sources */,
 				C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */,

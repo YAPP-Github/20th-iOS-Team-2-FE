@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AlbumSelectDateView: View {
   @Environment(\.presentationMode) var presentable
-  @State var showDatePicker: Bool = true
-  @State var enableToggle: Bool = false
   @State var currentDate: Date = Date()
   
   var title: String = "올리기"
@@ -55,7 +53,7 @@ struct AlbumSelectDateView: View {
         Spacer() // 임시 - 여백용
           .frame(height: 8)
         Group {
-          GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: $enableToggle, currentDate: $currentDate)
+          GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false), currentDate: $currentDate)
         }
         .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
         .background(Color.white)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AlbumTitleEditNavigationBar: View {
   @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
@@ -17,14 +18,29 @@ struct AlbumTitleEditNavigationBar: View {
     VStack {
       VStack {
         Spacer()
-        TextField("앨범 제목", text: $title)
-          .firstResponder(id: FirstResponders.text, firstResponder: $firstResponder, resignableUserOperations: .none)
-          .font(.custom("Pretendard-Medium", size: 18))
-          .customTextField(padding: paddingValue)
-          .disableAutocorrection(true)
-          .background(Color.white) // 입력 Area 색상
-          .cornerRadius(6)
-          .highlightTextField(firstLineWidth: 1, secondLineWidth: 4)
+        ZStack {
+          TextField("앨범 제목", text: $title)
+            .firstResponder(id: FirstResponders.text, firstResponder: $firstResponder, resignableUserOperations: .none)
+            .font(.custom("Pretendard-Medium", size: 18))
+            .customTextField(padding: paddingValue)
+            .disableAutocorrection(true)
+            .background(Color.white) // 입력 Area 색상
+            .cornerRadius(6)
+            .highlightTextField(firstLineWidth: 1, secondLineWidth: 4)
+          
+          // 아이콘 X
+          HStack{
+            Spacer()
+            Image(systemName: "xmark")
+              .font(.system(size: 20))
+              .foregroundColor(Color.black.opacity(!title.isEmpty ? 0.4 : 0))
+              .padding(.trailing, 13.5)
+              .contentShape(Rectangle())
+              .onTapGesture {
+                title = ""
+              }
+          }
+        }
       }
       .frame(height: safeTop + 10 + paddingValue)
       .frame(maxWidth: .infinity, alignment: .center)

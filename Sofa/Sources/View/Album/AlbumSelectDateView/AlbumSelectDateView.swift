@@ -84,6 +84,7 @@ struct AlbumSelectDateView: View {
           } else { // 카메라
             presentable.wrappedValue.dismiss()
           }
+//          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
           UITabBar.showTabBar()
         }, label: {
           HStack(spacing: 0) {

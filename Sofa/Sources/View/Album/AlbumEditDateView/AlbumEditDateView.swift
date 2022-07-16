@@ -49,6 +49,7 @@ struct AlbumEditDateView: View {
           } else if recordId != nil { // 녹음
             print("녹음 날짜 수정")
           }
+//          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
           presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {

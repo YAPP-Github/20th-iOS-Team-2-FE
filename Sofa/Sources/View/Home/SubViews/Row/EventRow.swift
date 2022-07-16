@@ -34,7 +34,7 @@ struct EventRow: View {
         VStack(alignment: .leading, spacing: 3){
           Text("\(event.descriptionTitle)")
             .font(.custom("Pretendard-Bold", size: 16))
-          Text("\(event.descriptionDate)")
+          Text("이벤트 \(event.descriptionIntervalDate)")
             .font(.custom("Pretendard-Regular", size: 14))
         }
         Spacer()
@@ -46,7 +46,7 @@ struct EventRow: View {
             Image("x.circle.fill")
           })
           .frame(width: 20, height: 20)
-          Text("2022-12-25")
+          Text("\(event.descriptionDate)")
             .font(.custom("Pretendard-Regular", size: 13))
             .foregroundColor(Color(hex: "#919090"))
             .padding(.horizontal, 8)

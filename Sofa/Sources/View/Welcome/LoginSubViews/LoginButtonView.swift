@@ -15,12 +15,15 @@ import SwiftKeychainWrapper
 struct AppleUser: Codable {
   let userId: String
   let identityToken: String
+  let authorizationCode: String
   
   init?(credentials: ASAuthorizationAppleIDCredential){
     let identityToken = String(decoding: credentials.identityToken!, as: UTF8.self)
+    let authorizationCode = String(decoding: credentials.authorizationCode!, as: UTF8.self)
     
     self.userId = credentials.user
     self.identityToken = identityToken
+    self.authorizationCode = authorizationCode
   }
 }
 
@@ -124,10 +127,12 @@ struct LoginButtonView: View {
       case let appleIDCredentials as ASAuthorizationAppleIDCredential:
         if let appleUser = AppleUser(credentials: appleIDCredentials),
           let appleUserData = try? JSONEncoder().encode(appleUser) {
-            //            Constant.userID = appleUserData
-            print(appleUser)
+
+          print(appleUser.authorizationCode)
+          print(appleUser.identityToken)
+          print(appleUser.userId)
           }
-        print(auth.credential)
+//        print(auth.credential)
       default:
         print(auth.credential)
       }

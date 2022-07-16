@@ -67,6 +67,7 @@
 		6F22E53C284B9D5A0069D268 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53B284B9D5A0069D268 /* Base.swift */; };
 		6F22E53E284B9D640069D268 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53D284B9D640069D268 /* Constants.swift */; };
 		6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */; };
+		6F6E5A552882B26A00C0734E /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E5A542882B26A00C0734E /* APIConstants.swift */; };
 		6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340B92874184300707AB7 /* GeneralCalendar.swift */; };
 		6F7340BC28741A4800707AB7 /* GeneralDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340BB28741A4800707AB7 /* GeneralDatePickerView.swift */; };
 		6F7340BF28741F6F00707AB7 /* TaskMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */; };
@@ -126,7 +127,6 @@
 		C4A979A5286AE8BD00326ABC /* AlbumImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */; };
 		C4B4963528800DDF000C9E1F /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */; };
 		C4B4963928801E5D000C9E1F /* AlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963828801E5D000C9E1F /* AlbumManager.swift */; };
-		C4B4963B288041BE000C9E1F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963A288041BE000C9E1F /* APIConstants.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
 		C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */; };
 		C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */; };
@@ -233,6 +233,7 @@
 		6F22E53B284B9D5A0069D268 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		6F22E53D284B9D640069D268 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTaskModalView.swift; sourceTree = "<group>"; };
+		6F6E5A542882B26A00C0734E /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		6F7340B92874184300707AB7 /* GeneralCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCalendar.swift; sourceTree = "<group>"; };
 		6F7340BB28741A4800707AB7 /* GeneralDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralDatePickerView.swift; sourceTree = "<group>"; };
 		6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMetaData.swift; sourceTree = "<group>"; };
@@ -297,7 +298,6 @@
 		C4A979A4286AE8BD00326ABC /* AlbumImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailView.swift; sourceTree = "<group>"; };
 		C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		C4B4963828801E5D000C9E1F /* AlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumManager.swift; sourceTree = "<group>"; };
-		C4B4963A288041BE000C9E1F /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
 		C4B8F29E285109410000B8CB /* AlbumActionSheetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetCard.swift; sourceTree = "<group>"; };
 		C4B8F2A52851CABF0000B8CB /* ShowTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTabBar.swift; sourceTree = "<group>"; };
@@ -498,7 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B4963828801E5D000C9E1F /* AlbumManager.swift */,
-				C4B4963A288041BE000C9E1F /* APIConstants.swift */,
+				6F6E5A542882B26A00C0734E /* APIConstants.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1334,6 +1334,7 @@
 				6F22E53E284B9D640069D268 /* Constants.swift in Sources */,
 				C4A9799C286861D800326ABC /* PhotoAlbumAuthorization.swift in Sources */,
 				C4B8F2AA2851CAF80000B8CB /* Ex+View.swift in Sources */,
+				6F6E5A552882B26A00C0734E /* APIConstants.swift in Sources */,
 				C495F6012856446A009B3BDE /* AlbumDetailList.swift in Sources */,
 				0A2887F62870A80B000A72F2 /* FamilyList.swift in Sources */,
 				C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */,
@@ -1355,7 +1356,6 @@
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
 				C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */,
 				C481B6DC287AEF0E005D6831 /* Ex+String.swift in Sources */,
-				C4B4963B288041BE000C9E1F /* APIConstants.swift in Sources */,
 				C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
 				6FF89F15287F011C0009D934 /* RegisterFamilyFinishView.swift in Sources */,

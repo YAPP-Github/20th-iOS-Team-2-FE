@@ -35,4 +35,21 @@ struct Member: Decodable, Hashable {
   var descriptionContent: String{
     return "\(content)"
   }
+  
+  var descriptionTimeInterval: String{
+    let diff = Date().timeIntervalSince(updatedAt.toDate() ?? Date())
+    
+    switch diff {
+    case 0..<60:
+      return "방금 전"
+    case 60..<3600:
+      return "\(Int(diff/60))분 전"
+    case 3600..<86400: // 24시간 이전
+      return "\(Int(diff/3600))시간 전"
+    case 86400..<604800: // 이번주 내
+      return "\(Int(diff/86400))일 전"
+    default:
+      return updatedAt.split(separator: " ").map{String($0)}.first!
+    }
+  }
 }

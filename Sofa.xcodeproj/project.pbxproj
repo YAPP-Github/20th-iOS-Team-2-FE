@@ -121,7 +121,7 @@
 		C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */; };
 		C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* AuthorizationViewModel.swift */; };
 		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
-		C495F617285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift */; };
+		C495F617285B95BB009B3BDE /* AlbumRecordNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* AlbumRecordNavigationBar.swift */; };
 		C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */; };
 		C495F61F285BC2C8009B3BDE /* AudioBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F61E285BC2C7009B3BDE /* AudioBarView.swift */; };
 		C4A9795B286067E200326ABC /* AudioRecorderURLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */; };
@@ -297,7 +297,7 @@
 		C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
 		C495F60D285B5B86009B3BDE /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
-		C495F616285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRecordAddNavigationBar.swift; sourceTree = "<group>"; };
+		C495F616285B95BB009B3BDE /* AlbumRecordNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRecordNavigationBar.swift; sourceTree = "<group>"; };
 		C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewModel.swift; sourceTree = "<group>"; };
 		C495F61E285BC2C7009B3BDE /* AudioBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBarView.swift; sourceTree = "<group>"; };
 		C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderURLViewModel.swift; sourceTree = "<group>"; };
@@ -918,7 +918,7 @@
 		C495F615285B9593009B3BDE /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				C495F616285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift */,
+				C495F616285B95BB009B3BDE /* AlbumRecordNavigationBar.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -1371,9 +1371,9 @@
 				C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */,
 				C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */,
 				6FBCD635287AFA9700D874FD /* Highlighting.swift in Sources */,
-				C495F617285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift in Sources */,
+				C495F617285B95BB009B3BDE /* AlbumRecordNavigationBar.swift in Sources */,
 				6FBCD639287AFEBC00D874FD /* RoleActionSheetItem.swift in Sources */,
-				C495F617285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift in Sources */,
+				C495F617285B95BB009B3BDE /* AlbumRecordNavigationBar.swift in Sources */,
 				0AAB367C2863816300A47B24 /* EventList.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
 				C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */,

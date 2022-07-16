@@ -1,5 +1,5 @@
 //
-//  AlbumRecordAddNavigationBar.swift
+//  AlbumRecordNavigationBar.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/17.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlbumRecordAddNavigationBar: View {
+struct AlbumRecordNavigationBar: View {
   @Environment(\.presentationMode) var presentable
   @Binding var isNext: Bool
   @Binding var existRecord: Bool
@@ -67,6 +67,6 @@ struct AlbumRecordAddNavigationBar: View {
 
 struct AlbumRecordAddNavigationBar_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumRecordAddNavigationBar(isNext: .constant(true), existRecord: .constant(true), title: "새로운 녹음", recordParent: AlbumRecordAddView(), safeTop: 10)
+    AlbumRecordNavigationBar(isNext: .constant(true), existRecord: .constant(true), title: "새로운 녹음", recordParent: AlbumRecordAddView(), safeTop: 10)
   }
 }

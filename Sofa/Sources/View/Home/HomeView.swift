@@ -40,6 +40,7 @@ struct HomeView: View {
           }
           .padding(EdgeInsets(top: 7, leading: 24, bottom: 12, trailing: 68))
           .background(Color.white)
+          .frame(height: 44)
           ScrollView{
             VStack{
               EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType)

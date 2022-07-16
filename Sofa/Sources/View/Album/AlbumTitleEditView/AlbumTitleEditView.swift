@@ -12,9 +12,10 @@ struct AlbumTitleEditView: View {
   @StateObject var keyboardHeightHelper = KeyboardHeightHelper()
   @State var title: String
   @State var isTextView = false
+  @State var isLimite = false
+  @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "글자는 20자까지 입력가능합니다", type: .Remove)
   @Binding var isShowing: Bool
   let duration = 0.5
-  
   let textLimit: Int = 20
 
   var completeButton: some View {
@@ -64,6 +65,7 @@ struct AlbumTitleEditView: View {
             .animation(.easeInOut(duration: duration/2))
         }
       }
+      .toastMessage(data: $messageData, isShow: $isLimite, topInset: Screen.safeAreaTop + 65)
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
       .ignoresSafeArea()
       .onAppear {

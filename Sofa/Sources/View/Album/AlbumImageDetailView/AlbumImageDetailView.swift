@@ -84,7 +84,7 @@ struct AlbumImageDetailView: View {
       .background(Color.black)
       .ignoresSafeArea()
       .navigationBarHidden(true) // 이전 Navigation bar 무시
-      .toastMessage(data: $messageData, isShow: $isDownloadClick)
+      .toastMessage(data: $messageData, isShow: $isDownloadClick, topInset: 0)
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick)
           .background(BackgroundCleanerView())

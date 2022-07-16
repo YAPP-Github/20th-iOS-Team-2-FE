@@ -11,6 +11,7 @@ import Combine
 struct AlbumTitleEditNavigationBar: View {
   @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
   @Binding var title: String
+  @Binding var isLimite: Bool
   let paddingValue: CGFloat = 12
   let safeTop: CGFloat
   let textLimit: Int
@@ -19,6 +20,7 @@ struct AlbumTitleEditNavigationBar: View {
   func limitText(_ upper: Int) {
     if title.count > upper {
       title = String(title.prefix(upper))
+      isLimite = true
     }
   }
   

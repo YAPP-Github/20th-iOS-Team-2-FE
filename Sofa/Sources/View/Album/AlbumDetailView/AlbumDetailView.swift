@@ -68,8 +68,8 @@ struct AlbumDetailView: View {
           // 댓글 click
           NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
         }
-        .toastMessage(data: $messageData, isShow: $isBookmarkClick)
-        .toastMessage(data: $messageData2, isShow: $isToastMessage)
+        .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
+        .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isUpdateDate) {
           AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))

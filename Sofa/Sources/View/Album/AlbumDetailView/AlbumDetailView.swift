@@ -74,13 +74,17 @@ struct AlbumDetailView: View {
         .fullScreenCover(isPresented: $isUpdateDate) {
           AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
         }
+        .fullScreenCover(isPresented: $isTitleClick) {
+          AlbumTitleEditView(title: info.title, isShowing: $isTitleClick)
+            .background(BackgroundCleanerView())
+        }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       }
       .navigationViewStyle(StackNavigationViewStyle())
       .navigationBarHidden(true)
       .onAppear { UITabBar.hideTabBar() }
       
-      if isEllipsisClick { // action sheet
+      if isEllipsisClick || isTitleClick { // action sheet
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()
@@ -88,7 +92,9 @@ struct AlbumDetailView: View {
             isEllipsisClick = false
           }
         
-        actionSheetView // 바텀 Sheet
+        if isEllipsisClick {
+          actionSheetView // 바텀 Sheet
+        }
       }
     }
   }

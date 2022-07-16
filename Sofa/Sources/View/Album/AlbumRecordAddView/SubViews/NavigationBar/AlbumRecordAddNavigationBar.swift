@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct AlbumRecordAddNavigationBar: View {
+  @Environment(\.presentationMode) var presentable
   @Binding var isNext: Bool
   @Binding var existRecord: Bool
-  let recordParent : AlbumRecordAddView
+  let title: String
+  var recordParent: AlbumRecordAddView?
   let safeTop: CGFloat
   
   var body: some View {
@@ -19,16 +21,28 @@ struct AlbumRecordAddNavigationBar: View {
         Spacer()
         HStack {
           Button(action: {
-            recordParent.presentable.wrappedValue.dismiss()
+            if recordParent != nil {
+              recordParent!.presentable.wrappedValue.dismiss()
+            } else {
+              presentable.wrappedValue.dismiss()
+            }
           }) {
-            Text("취소")
-              .foregroundColor(Color.white)
+            if recordParent != nil {
+              Text("취소")
+            } else {
+              HStack(spacing: 4) {
+                Image(systemName: "chevron.left")
+                Text("이전")
+              }
+            }
           }
+          .foregroundColor(Color.white)
           
           Spacer()
           
-          Text("새로운 녹음")
+          Text(title)
             .foregroundColor(Color.white)
+            .padding(.trailing, recordParent != nil ? 0 : 18)
           
           Spacer()
           
@@ -53,6 +67,6 @@ struct AlbumRecordAddNavigationBar: View {
 
 struct AlbumRecordAddNavigationBar_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumRecordAddNavigationBar( isNext: .constant(true), existRecord: .constant(true), recordParent: AlbumRecordAddView(), safeTop: 10)
+    AlbumRecordAddNavigationBar(isNext: .constant(true), existRecord: .constant(true), title: "새로운 녹음", recordParent: AlbumRecordAddView(), safeTop: 10)
   }
 }

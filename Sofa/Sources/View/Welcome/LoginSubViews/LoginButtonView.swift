@@ -40,7 +40,8 @@ struct LoginButtonView: View {
             }
             else {
               print("loginWithKakaoTalk() success.")
-              print("👉OauthToken: \(oauthToken!.accessToken)")
+              print("👉accessToken: \(oauthToken!.accessToken)")
+              print("👉refreshToken: \(oauthToken!.refreshToken)")
               
               // Keychain에 User Token 저장
 //              Constant.accessToken = oauthToken!.accessToken
@@ -58,7 +59,8 @@ struct LoginButtonView: View {
             }
             else {
               print("loginWithKakaoTalk() success.")
-              print("👉OauthToken: \(oauthToken!.accessToken)")
+              print("👉accessToken: \(oauthToken!.accessToken)")
+              print("👉refreshToken: \(oauthToken!.refreshToken)")
               
               // Keychain에 User Token 저장
 //              Constant.accessToken = oauthToken!.accessToken

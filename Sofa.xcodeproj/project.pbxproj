@@ -87,6 +87,7 @@
 		6FF89F11287EF3DA0009D934 /* RegisterFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F10287EF3DA0009D934 /* RegisterFamilyView.swift */; };
 		6FF89F13287EF7A60009D934 /* RegisterFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F12287EF7A60009D934 /* RegisterFinishView.swift */; };
 		6FF89F15287F011C0009D934 /* RegisterFamilyFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */; };
+		C440003728819838007D0C20 /* AlbumTitleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440003628819838007D0C20 /* AlbumTitleEditView.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
 		C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A30284B6FF200A4A759 /* ContentView.swift */; };
 		C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4667A32284B6FF400A4A759 /* Assets.xcassets */; };
@@ -94,6 +95,8 @@
 		C4667A40284B6FF400A4A759 /* SofaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A3F284B6FF400A4A759 /* SofaTests.swift */; };
 		C4667A4A284B6FF400A4A759 /* SofaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A49284B6FF400A4A759 /* SofaUITests.swift */; };
 		C4667A4C284B6FF400A4A759 /* SofaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */; };
+		C46C56CE2881B40700677E63 /* AlbumTitleEditNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C56CD2881B40600677E63 /* AlbumTitleEditNavigationBar.swift */; };
+		C46C56D32882BD6600677E63 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C56D22882BD6600677E63 /* APIConstants.swift */; };
 		C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */; };
 		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
 		C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */; };
@@ -256,6 +259,7 @@
 		6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFamilyFinishView.swift; sourceTree = "<group>"; };
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.debug.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C440003628819838007D0C20 /* AlbumTitleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleEditView.swift; sourceTree = "<group>"; };
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A2E284B6FF200A4A759 /* SofaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaApp.swift; sourceTree = "<group>"; };
 		C4667A30284B6FF200A4A759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 		C4667A45284B6FF400A4A759 /* SofaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A49284B6FF400A4A759 /* SofaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITests.swift; sourceTree = "<group>"; };
 		C4667A4B284B6FF400A4A759 /* SofaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C46C56CD2881B40600677E63 /* AlbumTitleEditNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleEditNavigationBar.swift; sourceTree = "<group>"; };
+		C46C56D22882BD6600677E63 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailNavigationBar.swift; sourceTree = "<group>"; };
 		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailSettingBar.swift; sourceTree = "<group>"; };
@@ -471,6 +477,7 @@
 				C4667A84284BA97000A4A759 /* SubViews */,
 				C495F60F285B5F69009B3BDE /* ViewModel */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
+				C44000352881981C007D0C20 /* AlbumTitleEditView */,
 				C4A979A3286AE88E00326ABC /* AlbumImageDetailView */,
 				C481B6C72878746F005D6831 /* AlbumCommentView */,
 				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
@@ -501,7 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B4963828801E5D000C9E1F /* AlbumManager.swift */,
-				6F6E5A542882B26A00C0734E /* APIConstants.swift */,
+				C46C56D22882BD6600677E63 /* APIConstants.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -598,6 +605,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C44000352881981C007D0C20 /* AlbumTitleEditView */ = {
+			isa = PBXGroup;
+			children = (
+				C440003628819838007D0C20 /* AlbumTitleEditView.swift */,
+				C46C56CB2881B3DE00677E63 /* SubViews */,
+			);
+			path = AlbumTitleEditView;
+			sourceTree = "<group>";
+		};
 		C4667A22284B6FF200A4A759 = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +623,7 @@
 				C4667A2C284B6FF200A4A759 /* Products */,
 				09546CDAD82BB26DF4AB9501 /* Pods */,
 				90164B8C881D23443C7F01C5 /* Frameworks */,
+				C46C56D12882BD3700677E63 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -705,6 +722,30 @@
 				C4A9799828682DE600326ABC /* Authorization */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C46C56CB2881B3DE00677E63 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C46C56CC2881B3EA00677E63 /* NavigationBar */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C46C56CC2881B3EA00677E63 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				C46C56CD2881B40600677E63 /* AlbumTitleEditNavigationBar.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		C46C56D12882BD3700677E63 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				6F6E5A542882B26A00C0734E /* APIConstants.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		C481B6B42875D4BA005D6831 /* SubViews */ = {
@@ -1272,6 +1313,7 @@
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
 				C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */,
 				0AAB36F32865F32400A47B24 /* EventViewModel.swift in Sources */,
+				C440003728819838007D0C20 /* AlbumTitleEditView.swift in Sources */,
 				C481B6D7287ADEAB005D6831 /* CommentViewModel.swift in Sources */,
 				C4B8F2C8285348980000B8CB /* AlbumPhotoLibrary.swift in Sources */,
 				C4EC31CB284F8CBB0049F2C4 /* Album.swift in Sources */,
@@ -1295,6 +1337,7 @@
 				C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */,
 				C4B8F2AC2851CB0E0000B8CB /* Ex+UIView.swift in Sources */,
 				0A223B72285F75D6002203ED /* CustomText.swift in Sources */,
+				C46C56CE2881B40700677E63 /* AlbumTitleEditNavigationBar.swift in Sources */,
 				6F1553352881C83C0048CE54 /* SettingRow.swift in Sources */,
 				6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */,
 				6FC853C628743D8D00988A44 /* TaskTimePicker.swift in Sources */,
@@ -1334,10 +1377,10 @@
 				0A915DD7287A9BA00055AD6D /* Notifications.swift in Sources */,
 				C4B8F2AE2851CB1F0000B8CB /* Ex+UITabBar.swift in Sources */,
 				0AE492062876A9B000341D35 /* HistoryInfo.swift in Sources */,
+				C46C56D32882BD6600677E63 /* APIConstants.swift in Sources */,
 				6F22E53E284B9D640069D268 /* Constants.swift in Sources */,
 				C4A9799C286861D800326ABC /* PhotoAlbumAuthorization.swift in Sources */,
 				C4B8F2AA2851CAF80000B8CB /* Ex+View.swift in Sources */,
-				6F6E5A552882B26A00C0734E /* APIConstants.swift in Sources */,
 				C495F6012856446A009B3BDE /* AlbumDetailList.swift in Sources */,
 				6F6E5A572882B7FF00C0734E /* ProfileSettingView.swift in Sources */,
 				0A2887F62870A80B000A72F2 /* FamilyList.swift in Sources */,

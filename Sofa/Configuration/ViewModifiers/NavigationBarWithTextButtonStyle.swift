@@ -10,7 +10,9 @@ import SwiftUI
 struct NavigationBarWithTextButtonStyle: ViewModifier {
   @Environment(\.presentationMode) var presentable
   @Binding var isNextClick: Bool
+  @Binding var isTitleClick: Bool
   @Binding var isDisalbeNextButton: Bool
+  @Binding var isDisalbeTitleButton: Bool
   var title: String = ""
   var nextText: String = ""
   var buttonColor: Color
@@ -24,6 +26,7 @@ struct NavigationBarWithTextButtonStyle: ViewModifier {
           HStack(spacing: 0) {
             Image(systemName: "chevron.left")
             Text("이전")
+              .font(.custom("Pretendard-Medium", size: 16))
           }
         })
         .accentColor(buttonColor)
@@ -33,6 +36,7 @@ struct NavigationBarWithTextButtonStyle: ViewModifier {
         }, label: {
           HStack(spacing: 0) {
             Text(nextText)
+              .font(.custom("Pretendard-Medium", size: 16))
           }
         })
         .disabled(isDisalbeNextButton)
@@ -40,7 +44,21 @@ struct NavigationBarWithTextButtonStyle: ViewModifier {
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )
       .navigationBarTitleDisplayMode(.inline)
-      .navigationTitle(title)
+      .toolbar {
+        ToolbarItem(placement: .principal) {
+          VStack {
+            Button(action: {
+              isTitleClick = true
+            }) {
+              Text(title)
+                .font(.custom("Pretendard-Medium", size: 16))
+                .foregroundColor(Color.black)
+                .bold()
+            }
+            .disabled(isDisalbeTitleButton)
+          }
+        }
+      }
       .onAppear {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -57,7 +75,7 @@ struct NavigationBarWithTextButtonStyle_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
       Color.gray.edgesIgnoringSafeArea(.all)
-        .navigationBarWithTextButtonStyle(isNextClick: .constant(true), isDisalbeNextButton: .constant(false), "제목", nextText: "올리기", Color.init(hex: "#43A047"))
+        .navigationBarWithTextButtonStyle(isNextClick: .constant(true), isTitleClick: .constant(true), isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), "제목", nextText: "올리기", Color.init(hex: "#43A047"))
     }
   }
 }

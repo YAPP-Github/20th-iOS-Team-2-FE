@@ -10,6 +10,7 @@ import SwiftUI
 struct ToastMessage: ViewModifier {
   @Binding var data: MessageData
   @Binding var isShow: Bool
+  let topInset: CGFloat
   
   struct MessageData {
     var title: String
@@ -19,7 +20,7 @@ struct ToastMessage: ViewModifier {
   enum MessageType {
     case Registration // 즐겨찾기, 다운로드, 대표 사진
     case Warning      // 사진 선택
-    case Remove       // 사진 제거
+    case Remove       // 사진 제거, 글자 제한
     
     var iconColor: Color {
       switch self {
@@ -50,7 +51,7 @@ struct ToastMessage: ViewModifier {
           .cornerRadius(80)
           Spacer()
         }
-        .padding(.top, 11)
+        .padding(.top, 11 + topInset)
         .animation(.easeInOut) // 점점 빨라졌다 끝에가서 다시 느려지는 옵션
         .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
         .onTapGesture {
@@ -70,8 +71,8 @@ struct ToastMessage: ViewModifier {
 }
 
 extension View {
-  func toastMessage(data: Binding<ToastMessage.MessageData>, isShow: Binding<Bool>) -> some View {
-    self.modifier(ToastMessage(data: data, isShow: isShow))
+  func toastMessage(data: Binding<ToastMessage.MessageData>, isShow: Binding<Bool>, topInset: CGFloat) -> some View {
+    self.modifier(ToastMessage(data: data, isShow: isShow, topInset: topInset))
   }
 }
 
@@ -81,6 +82,6 @@ struct toastMessage_Previews: PreviewProvider {
     
     Color.gray
       .edgesIgnoringSafeArea(.all)
-      .toastMessage(data: .constant(messageData), isShow: .constant(true))
+      .toastMessage(data: .constant(messageData), isShow: .constant(true), topInset: 0)
   }
 }

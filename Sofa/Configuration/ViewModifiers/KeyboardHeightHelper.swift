@@ -40,6 +40,7 @@ class KeyboardHeightHelper: ObservableObject {
                                            object: nil,
                                            queue: .main) { (notification) in
       self.keyboardHeight = 0
+      self.keyboardWillShowHeight = 0
     }
   }
 }

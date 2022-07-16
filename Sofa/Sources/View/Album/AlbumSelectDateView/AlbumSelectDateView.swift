@@ -11,6 +11,9 @@ struct AlbumSelectDateView: View {
   @Environment(\.presentationMode) var presentable
   @State var isNext = false
   @State var isDisalbeNextButton: Bool = false
+  @State var showDatePicker: Bool = true
+  @State var enableToggle: Bool = false
+  @State var currentDate: Date = Date()
   var title: String = "올리기"
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
   
@@ -49,6 +52,11 @@ struct AlbumSelectDateView: View {
         }
         
         Text("select Date")
+        Group {
+          GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: $enableToggle, currentDate: $currentDate)
+        }
+        .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+        .background(Color.white)
       }
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(

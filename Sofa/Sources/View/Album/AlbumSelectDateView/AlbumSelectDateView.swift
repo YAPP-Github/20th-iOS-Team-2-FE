@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AlbumSelectDateView: View {
   @Environment(\.presentationMode) var presentable
-  @State var isNext = false
-  @State var isDisalbeNextButton: Bool = false
   @State var showDatePicker: Bool = true
   @State var enableToggle: Bool = false
   @State var currentDate: Date = Date()
@@ -96,7 +94,6 @@ struct AlbumSelectDateView: View {
               .fontWeight(.semibold)
           }
         })
-        .disabled(isDisalbeNextButton)
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
       )

@@ -13,6 +13,14 @@ struct AlbumTitleEditNavigationBar: View {
   @Binding var title: String
   let paddingValue: CGFloat = 12
   let safeTop: CGFloat
+  let textLimit: Int
+  
+  // 텍스트 길이를 제한하는 기능
+  func limitText(_ upper: Int) {
+    if title.count > upper {
+      title = String(title.prefix(upper))
+    }
+  }
   
   var body: some View {
     VStack {
@@ -27,6 +35,7 @@ struct AlbumTitleEditNavigationBar: View {
             .background(Color.white) // 입력 Area 색상
             .cornerRadius(6)
             .highlightTextField(firstLineWidth: 1, secondLineWidth: 4)
+            .onReceive(Just(title)) { _ in limitText(textLimit) }
           
           // 아이콘 X
           HStack{
@@ -53,6 +62,6 @@ struct AlbumTitleEditNavigationBar: View {
 
 struct AlbumTitleEditNavigationBar_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumTitleEditNavigationBar(title: .constant(""), safeTop: 10)
+    AlbumTitleEditNavigationBar(title: .constant(""), isLimite: .constant(false), safeTop: 10, textLimit: 20)
   }
 }

@@ -15,6 +15,8 @@ struct AlbumTitleEditView: View {
   @Binding var isShowing: Bool
   let duration = 0.5
   
+  let textLimit: Int = 20
+
   var completeButton: some View {
     VStack {
       Button(action: {
@@ -53,7 +55,7 @@ struct AlbumTitleEditView: View {
         }
         
         if isTextView { // 0.5초 후 Show
-          AlbumTitleEditNavigationBar(title: $title, safeTop: geometry.safeAreaInsets.top)
+          AlbumTitleEditNavigationBar(title: $title, isLimite: $isLimite, safeTop: geometry.safeAreaInsets.top, textLimit: textLimit)
             .transition(.move(edge: .top))
             .animation(.easeInOut(duration: duration/2))
           

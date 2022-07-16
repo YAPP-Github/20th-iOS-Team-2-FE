@@ -169,6 +169,9 @@ struct SettingsView: View {
             }///VStack
             .frame(width: Screen.maxWidth, height: 48*6, alignment: .center)
           }.padding(.top, 8)///ZStack
+          Rectangle()
+            .frame(height: 1)
+            .foregroundColor(Color.black.opacity(0.05))
           Spacer()
           
         }///VStack

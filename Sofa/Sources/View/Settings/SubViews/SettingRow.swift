@@ -48,10 +48,10 @@ struct SettingRow: View {
       .frame(height: 47)
       
       if !isLast {
-      Divider()
-        .frame(width: Screen.maxWidth-32, height: 1.0, alignment: .center)
+        Rectangle()
+          .frame(width: Screen.maxWidth-32, height: 1.0, alignment: .center)
+          .foregroundColor(Color.black.opacity(0.05))
       }
-      
     }.frame(height: 48)
   }
 }

@@ -42,7 +42,7 @@ struct MessageView: View {
       if isShowing{
         VStack {
           Color.black
-            .opacity(0.7)
+            .opacity(0.0)
         }
         .contentShape(Rectangle())
         .onTapGesture {

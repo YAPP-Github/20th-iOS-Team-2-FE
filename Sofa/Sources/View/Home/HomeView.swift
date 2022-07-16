@@ -76,7 +76,7 @@ struct HomeView: View {
       }// NavigationView
       .accentColor(Color(hex: "43A047"))
       
-      if showModal{
+      if showModal || showMessageView{
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()

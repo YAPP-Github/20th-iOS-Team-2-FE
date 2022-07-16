@@ -42,6 +42,7 @@ struct SettingRow: View {
         .padding(.trailing, 20.5)
 
       }
+      .listRowInsets(EdgeInsets())
     }
 }
 

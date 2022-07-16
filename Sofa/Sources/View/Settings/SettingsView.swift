@@ -17,7 +17,7 @@ struct SettingsView: View {
             .frame(height: 1.0, alignment: .bottom)
             .foregroundColor(Color(hex: "EDEADF"))
           
-          //첫번재 단락
+          //첫번째 단락
           HStack{
             VStack{
               //글씨1
@@ -35,7 +35,17 @@ struct SettingsView: View {
           }
           
           //두번째 단락
-    
+          List {
+            SettingRow(isButtonClick: .constant(true), buttonName: "person.fill.badge.plus", title: "가족 초대")
+            SettingRow(isButtonClick: .constant(true), buttonName: "bell.fill", title: "알림")
+            SettingRow(isButtonClick: .constant(true), buttonName: "shield.lefthalf.filled", title: "계정 및 보안")
+            SettingRow(isButtonClick: .constant(true), buttonName: "gearshape.fill", title: "설정")
+            SettingRow(isButtonClick: .constant(true), buttonName: "mic", title: "공지")
+            SettingRow(isButtonClick: .constant(true), buttonName: "star.fill", title: "소파리뷰")
+          }
+          .listRowInsets(EdgeInsets())
+          .listStyle(InsetListStyle())
+          .frame(width: Screen.maxWidth, height: 300, alignment: .center)
           
           Spacer()
           

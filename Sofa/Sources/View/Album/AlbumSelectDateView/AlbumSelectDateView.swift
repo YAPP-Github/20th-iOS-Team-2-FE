@@ -14,6 +14,7 @@ struct AlbumSelectDateView: View {
   @State var showDatePicker: Bool = true
   @State var enableToggle: Bool = false
   @State var currentDate: Date = Date()
+  
   var title: String = "올리기"
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
   
@@ -32,10 +33,11 @@ struct AlbumSelectDateView: View {
   
   var body: some View {
     NavigationView {
-      VStack(spacing: 8) {
+      VStack(spacing: 0) {
         if recordParent != nil { // 녹음일 경우
           VStack(spacing: 0) {
-            Text("") // 임시 - 여백용
+            Divider()
+            Spacer() // 임시 - 여백용
               .frame(height: 8)
             
             HStack {
@@ -43,20 +45,23 @@ struct AlbumSelectDateView: View {
               TextField("\(fetcher.recordTitle)", text: $recordTitle)
                 .padding(16)
                 .background(Color.init(hex: "#FAF8F0")) // 임시
+                .font(.custom("Pretendard-Medium", size: 18))
+                .cornerRadius(6)
               Spacer()
             }
             .frame(width: Screen.maxWidth, height: 80) // 임시 - 높이
             .background(Color.white)
           }
-          Spacer()
         }
-        
-        Text("select Date")
+        Divider()
+        Spacer() // 임시 - 여백용
+          .frame(height: 8)
         Group {
           GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: $enableToggle, currentDate: $currentDate)
         }
         .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
         .background(Color.white)
+        Spacer()
       }
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
@@ -69,6 +74,8 @@ struct AlbumSelectDateView: View {
           HStack(spacing: 0) {
             Image(systemName: "chevron.left")
             Text("이전")
+              .font(.custom("Pretendard-Medium", size: 16))
+              .fontWeight(.semibold)
           }
         })
         .accentColor(buttonColor)
@@ -85,6 +92,8 @@ struct AlbumSelectDateView: View {
         }, label: {
           HStack(spacing: 0) {
             Text("올리기")
+              .font(.custom("Pretendard-Medium", size: 16))
+              .fontWeight(.semibold)
           }
         })
         .disabled(isDisalbeNextButton)
@@ -102,6 +111,7 @@ struct AlbumSelectDateView: View {
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
       }
+      .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumDetailView: View {
+  @State var isTitleClick = false
   @State var isEdit = false
   
   // 이미지
@@ -67,11 +68,15 @@ struct AlbumDetailView: View {
           // 댓글 click
           NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
         }
-        .toastMessage(data: $messageData, isShow: $isBookmarkClick)
-        .toastMessage(data: $messageData2, isShow: $isToastMessage)
-        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isDisalbeNextButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+        .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
+        .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
+        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isUpdateDate) {
           AlbumSelectDateView(title: "날짜 수정", isCameraCancle: .constant(false))
+        }
+        .fullScreenCover(isPresented: $isTitleClick) {
+          AlbumTitleEditView(title: info.title, isShowing: $isTitleClick)
+            .background(BackgroundCleanerView())
         }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       }
@@ -79,7 +84,7 @@ struct AlbumDetailView: View {
       .navigationBarHidden(true)
       .onAppear { UITabBar.hideTabBar() }
       
-      if isEllipsisClick { // action sheet
+      if isEllipsisClick || isTitleClick { // action sheet
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()
@@ -87,7 +92,9 @@ struct AlbumDetailView: View {
             isEllipsisClick = false
           }
         
-        actionSheetView // 바텀 Sheet
+        if isEllipsisClick {
+          actionSheetView // 바텀 Sheet
+        }
       }
     }
   }

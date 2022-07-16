@@ -14,8 +14,8 @@ public extension View {
     return self.modifier(NavigationBarWithIconButtonStyle(isButtonClick: isButtonClick, title: title, buttonName: buttonName, buttonColor: buttonColor))
   }
   
-  func navigationBarWithTextButtonStyle(isNextClick: Binding<Bool>, isDisalbeNextButton: Binding<Bool>, _ title: String, nextText: String, _ buttonColor: Color = Color(UIColor.label)) -> some View {
-    return self.modifier(NavigationBarWithTextButtonStyle(isNextClick: isNextClick, isDisalbeNextButton: isDisalbeNextButton, title: title, nextText: nextText, buttonColor: buttonColor))
+  func navigationBarWithTextButtonStyle(isNextClick: Binding<Bool>, isTitleClick: Binding<Bool>, isDisalbeNextButton: Binding<Bool>, isDisalbeTitleButton: Binding<Bool>,_ title: String, nextText: String, _ buttonColor: Color = Color(UIColor.label)) -> some View {
+    return self.modifier(NavigationBarWithTextButtonStyle(isNextClick: isNextClick, isTitleClick: isTitleClick, isDisalbeNextButton: isDisalbeNextButton, isDisalbeTitleButton: isDisalbeTitleButton, title: title, nextText: nextText, buttonColor: buttonColor))
   }
   
   func navigationBarInlineStyle(isNextClick: Binding<Bool>, isDisalbeNextButton: Binding<Bool>, buttonColor: Color = Color(UIColor.label), _ title: String = "") -> some View {

@@ -1,5 +1,5 @@
 //
-//  AlbumRow.swift
+//  AlbumDateRow.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/06/07.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct AlbumRow: View {
-  var album: Album
+struct AlbumDateRow: View {
+  var album: AlbumDate
   
   var body: some View {
     HStack(alignment:.top, spacing: 8) { // 위로 붙임
@@ -50,6 +50,6 @@ struct AlbumRow_Previews: PreviewProvider {
   static var previews: some View {
     let dummy = MockData().albumByDate[0]
     
-    AlbumRow(album: dummy)
+    AlbumDateRow(album: dummy)
   }
 }

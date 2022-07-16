@@ -7,9 +7,25 @@
 
 import Foundation
 
-struct Album: Hashable, Decodable {
+struct AlbumDateAPIResponse: Hashable, Decodable {
+  let albums: [AlbumDate]
+}
+
+struct AlbumTypeAPIResponse: Hashable, Decodable {
+  let favourite: AlbumType
+  let photo: AlbumType
+  let recording: AlbumType
+}
+
+struct AlbumDate: Hashable, Decodable {
   let albumId: Int
   let title: String
   let thumbnail: String
   let date: String
+}
+
+struct AlbumType: Hashable, Decodable {
+  let kind: String
+  let count: Int
+  let link: String
 }

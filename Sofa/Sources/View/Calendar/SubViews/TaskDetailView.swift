@@ -16,6 +16,7 @@ struct TaskDetailView: View {
   @State private var memo: String = ""
   @State private var allDayToggle = false
   @State var showDatePicker = false
+  @State var currentDate: Date = Date()
   
   init() {
     UITextView.appearance().backgroundColor = .clear
@@ -119,7 +120,7 @@ struct TaskDetailView: View {
                 }.padding(.bottom, 24)
                 
                 // 날짜
-                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true))
+                GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true), currentDate: $currentDate)
                   .padding(.bottom, 12)
                 
                 // 시간
@@ -155,8 +156,8 @@ struct TaskDetailView: View {
                     HStack{
                       Text("메모")
                         .font(.custom("Pretendard-Medium", size: 18))
-                        .foregroundColor(Color.black.opacity(isMemoFocused ? 0 : 0.4))
-                        .padding(.horizontal, 28)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .padding(.horizontal, 32)
                         .padding(.vertical, 30)
                       Spacer()
                     }

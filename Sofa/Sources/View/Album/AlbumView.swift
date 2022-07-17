@@ -50,9 +50,9 @@ struct AlbumView: View {
           .pickerStyle(SegmentedPickerStyle())
           
           if selected == 0 { // 날짜별
-            AlbumList(albumDate: viewModel.albumDateList.count == 0 ? MockData().albumByDate : viewModel.albumDateList) // 임시
+            AlbumList(albumDate: viewModel.albumDateList)
           } else if selected == 1 { // 유형별
-            AlbumList(albumType: viewModel.albumTypeList.count == 0 ? MockData().albumByType : viewModel.albumTypeList) // 임시
+            AlbumList(albumType: viewModel.albumTypeList)
           }
           
           // 카메라 날짜 선택 View로 이동

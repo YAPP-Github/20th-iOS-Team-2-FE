@@ -59,17 +59,21 @@ struct AlbumView: View {
           NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)
         }
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
-        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) { // 사진 추가 View로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) {
+          // 사진 추가 View로 이동
           AlbumPhotoAddView()
         }
-        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) { // 카메라 imagePicker로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) {
+          // 카메라 imagePicker로 이동
           CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
             .ignoresSafeArea()
         }
-        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) { // 녹음 추가 View로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) {
+          // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }
-        .alert(isPresented: $authorizationViewModel.showErrorAlert) { // 카메라 error
+        .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+          // 카메라 error
           Alert(
             title: Text(authorizationViewModel.showErrorAlertTitle),
             message: Text(authorizationViewModel.showErrorAlertMessage),

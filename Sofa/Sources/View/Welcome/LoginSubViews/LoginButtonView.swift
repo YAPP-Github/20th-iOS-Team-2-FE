@@ -28,6 +28,8 @@ struct AppleUser: Codable {
 }
 
 struct LoginButtonView: View {
+  
+  @ObservedObject var loginViewModel = LoginViewModel()
   @State var text: NSMutableAttributedString = NSMutableAttributedString(string: "")
   var body: some View {
     VStack{
@@ -62,6 +64,8 @@ struct LoginButtonView: View {
               print("👉accessToken: \(oauthToken!.accessToken)")
               print("👉refreshToken: \(oauthToken!.refreshToken)")
               
+              
+              self.loginViewModel.postKakaoLogin(accessToken: oauthToken!.accessToken, refreshToken: oauthToken!.refreshToken)
               // Keychain에 User Token 저장
 //              Constant.accessToken = oauthToken!.accessToken
 //              Constant.refreshToken = oauthToken!.refreshToken

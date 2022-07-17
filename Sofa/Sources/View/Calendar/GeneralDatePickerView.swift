@@ -38,9 +38,10 @@ struct GeneralDatePickerView: View {
               self.showDatePicker.toggle()
             }
           }
-      }.padding(.bottom, 12)
+      }
       if showDatePicker {
         GeneralCalendar(currentDate: $currentDate)
+          .padding(.top, 12)
       }
     }
   }

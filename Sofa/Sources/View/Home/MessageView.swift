@@ -10,7 +10,7 @@ import Combine
 import MbSwiftUIFirstResponder
 
 enum FirstResponders: Int {
-    case text
+  case text
 }
 
 struct MessageView: View {
@@ -57,7 +57,7 @@ struct MessageView: View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
     .ignoresSafeArea()
-//    .animation(.easeInOut)
+    //    .animation(.easeInOut)
   }
   
   //MARK: - mainView
@@ -123,7 +123,7 @@ struct MessageView: View {
                   .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
                     isKeyboard = false
                   }
-                  
+                
               }
               .frame(minHeight: isMaxHeight ? fullTextEditorHeight : 44, alignment: .leading)
               .frame(maxHeight: isMaxHeight ? fullTextEditorHeight : 130, alignment: .leading)
@@ -138,7 +138,7 @@ struct MessageView: View {
                 }
               })
           })
-
+          
           HStack(alignment: .center){ // 글자 수
             HStack(spacing: 0){
               Group{
@@ -157,17 +157,16 @@ struct MessageView: View {
                 isShowing = false
               }
             } label: {
-              if #available(iOS 15.0, *) {
+              ZStack{
                 Rectangle()
                   .frame(width: 56, height: 32)
                   .cornerRadius(4)
                   .foregroundColor(textLength == 0 ? Color(hex: "#F2F1F1") : Color(hex: "E8F5E9"))
-                  .overlay{
-                    Image(systemName: "paperplane.fill")
-                      .foregroundColor(textLength == 0 ? Color(hex: "#919090") : Color(hex: "#43A046"))
-                  }
-              } else {
-                // Fallback on earlier versions
+                Image(systemName: "paperplane.fill")
+                  .resizable()
+                  .foregroundColor(textLength == 0 ? Color(hex: "#919090") : Color(hex: "#43A046"))
+                  .frame(width: 20, height: 20, alignment: .center)
+                
               }
             }
           }
@@ -183,7 +182,7 @@ struct MessageView: View {
           .frame(width: Screen.maxWidth, height: UIDevice().hasNotch ? 20 : 0)
       }
     }
-//    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+    //    .offset(y: -self.keyboardHeightHelper.keyboardHeight)
     .frame(height: isKeyboard ? curHeight : curHeight + 20 )
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0))
@@ -230,7 +229,7 @@ struct MessageView: View {
           curHeight = minHeight
           isMaxHeight = false
         }
-
+        
       }
   }
 }

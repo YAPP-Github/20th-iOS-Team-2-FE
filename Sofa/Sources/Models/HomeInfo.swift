@@ -27,4 +27,15 @@ struct Event: Decodable {
   var descriptionDate: String{
     return "\(eventDate)"
   }
+  
+  var descriptionIntervalDate: String {
+    let startDate = eventDate.toDateDay()
+    let offsetComps = Calendar.current.dateComponents([.day], from: Date().stripTime(), to: startDate!)
+    
+    if offsetComps.day == 0{
+      return "당일"
+    }else{
+      return "\(offsetComps.day ?? 0)일 전"
+    }
+  }
 }

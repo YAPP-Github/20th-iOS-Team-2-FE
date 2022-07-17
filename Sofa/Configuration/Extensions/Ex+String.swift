@@ -19,4 +19,16 @@ extension String {
       return nil
     }
   }
+  
+  func toDateDay() -> Date? { // "yyyy-MM-dd"
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    dateFormatter.timeZone = TimeZone(identifier: "ko_KR")
+    
+    if let date = dateFormatter.date(from: self) {
+      return date
+    } else {
+      return nil
+    }
+  }
 }

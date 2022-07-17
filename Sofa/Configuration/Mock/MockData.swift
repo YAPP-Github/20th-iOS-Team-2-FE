@@ -28,9 +28,9 @@ struct MockData {
   }
   
   var albumByKind: [AlbumKind] {
-    let favourite = AlbumKind(kind: "FAVORTIE", count: 26)
-    let photo = AlbumKind(kind: "PHOTO", count: 112)
-    let recording = AlbumKind(kind: "RECORDING", count: 3)
+    let favourite = AlbumKind(kind: "favourite", count: 26)
+    let photo = AlbumKind(kind: "photo", count: 112)
+    let recording = AlbumKind(kind: "recording", count: 3)
     
     return [favourite, photo, recording]
   }

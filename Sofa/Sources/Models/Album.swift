@@ -17,9 +17,9 @@ struct AlbumDateResult: Hashable, Decodable {
 }
 
 struct AlbumTypeAPIResponse: Hashable, Decodable {
-  let favourite: AlbumType
-  let photo: AlbumType
-  let recording: AlbumType
+  let favourite: AlbumKind
+  let photo: AlbumKind
+  let recording: AlbumKind
 }
 
 struct AlbumDate: Hashable, Decodable {
@@ -29,7 +29,7 @@ struct AlbumDate: Hashable, Decodable {
   let date: String
 }
 
-struct AlbumType: Hashable, Decodable {
+struct AlbumKind: Hashable, Decodable {
   let kind: String
   let count: Int
 }

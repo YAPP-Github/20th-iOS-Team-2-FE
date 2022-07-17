@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlbumList: View {
   @State var albumDate: [AlbumDate]? // 날짜별
-  @State var albumType: [AlbumType]? // 유형별
+  @State var albumKind: [AlbumKind]? // 유형별
   @State var showDateDetail = false
   @State var showKindDetail = false
   
@@ -27,14 +27,14 @@ struct AlbumList: View {
             }
           }
         }
-      } else if let albumType = albumType { // 유형별 보기
+      } else if let albumKind = albumKind { // 유형별 보기
         ScrollView(showsIndicators: false) {
           LazyVStack {
-            ForEach(albumType, id: \.self) { album in
+            ForEach(albumKind, id: \.self) { album in
               Button(action: {
                 showKindDetail = true
               }, label: {
-                AlbumTypeRow(albumTyep: album)
+                AlbumKindRow(albumKind: album)
               })
             }
           }

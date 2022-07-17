@@ -52,7 +52,7 @@ struct AlbumView: View {
           if selected == 0 { // 날짜별
             AlbumList(albumDate: viewModel.albumDateList)
           } else if selected == 1 { // 유형별
-            AlbumList(albumType: viewModel.albumTypeList)
+            AlbumList(albumKind: viewModel.albumKindList)
           }
           
           // 카메라 날짜 선택 View로 이동

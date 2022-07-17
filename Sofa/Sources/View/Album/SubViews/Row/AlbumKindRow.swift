@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct AlbumTypeRow: View {
-  var albumTyep: AlbumType
+struct AlbumKindRow: View {
+  var albumKind: AlbumKind
   let info: [String: (String, String, String, Color, Color)] = [
     "FAVORTIE": ("즐겨찾기", "bookmark", "장", Color(hex: "#FFD54F"), Color(hex: "#FFF8E1")),
     "PHOTO": ("사진", "photo", "장", Color(hex: "#1192E8"), Color(hex: "#E5F6FF")),
@@ -20,20 +20,20 @@ struct AlbumTypeRow: View {
       Rectangle()
         .frame(width: 100.0, height: 75.0)
         .cornerRadius(8)
-        .foregroundColor(info[albumTyep.kind]!.4)
+        .foregroundColor(info[albumKind.kind]!.4)
         .overlay(
-          Image(systemName: info[albumTyep.kind]!.1)
+          Image(systemName: info[albumKind.kind]!.1)
             .font(.system(size: 32))
-            .foregroundColor(info[albumTyep.kind]!.3)
+            .foregroundColor(info[albumKind.kind]!.3)
         )
       
       VStack(alignment: .leading, spacing: 3) {
-        Text(info[albumTyep.kind]!.0)
+        Text(info[albumKind.kind]!.0)
           .font(.system(size: 16, weight: .semibold))
           .foregroundColor(Color.black)
           .lineLimit(1)
 
-        Text("\(albumTyep.count)\(info[albumTyep.kind]!.2)")
+        Text("\(albumKind.count)\(info[albumKind.kind]!.2)")
           .font(.subheadline)
           .foregroundColor(.secondary)
       }
@@ -56,8 +56,8 @@ struct AlbumTypeRow: View {
 
 struct AlbumTypeRow_Previews: PreviewProvider {
   static var previews: some View {
-    let dummy = MockData().albumByType[0]
+    let dummy = MockData().albumByKind[0]
     
-    AlbumTypeRow(albumTyep: dummy)
+    AlbumKindRow(albumKind: dummy)
   }
 }

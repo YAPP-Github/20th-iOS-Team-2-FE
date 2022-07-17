@@ -11,7 +11,7 @@ import Combine
 
 class AlbumListViewModel: ObservableObject {
   @Published var albumDateList = [AlbumDate]()
-  @Published var albumTypeList = [AlbumType]()
+  @Published var albumKindList = [AlbumKind]()
   @Published var isLoading: Bool = false             // Loding
   private var cancellables = Set<AnyCancellable>()    // disposeBag
   
@@ -70,13 +70,13 @@ class AlbumListViewModel: ObservableObject {
             break
           }
           NSLog("Error : " + error.localizedDescription)
-          self?.albumTypeList = [AlbumType]()
+          self?.albumKindList = [AlbumKind]()
         },
         receiveValue: {[weak self] receivedValue in
 //          print("받은 값 : \(receivedValue)")
-          self?.albumTypeList.append(receivedValue.favourite)
-          self?.albumTypeList.append(receivedValue.photo)
-          self?.albumTypeList.append(receivedValue.recording)
+          self?.albumKindList.append(receivedValue.favourite)
+          self?.albumKindList.append(receivedValue.photo)
+          self?.albumKindList.append(receivedValue.recording)
         }
       )
       .store(in: &cancellables)   // disposed(by: disposeBag)

@@ -130,9 +130,9 @@ struct LoginButtonView: View {
         if let appleUser = AppleUser(credentials: appleIDCredentials),
           let appleUserData = try? JSONEncoder().encode(appleUser) {
 
-          print(appleUser.authorizationCode)
-          print(appleUser.identityToken)
-          print(appleUser.userId)
+          print("authoriztionCode: \(appleUser.authorizationCode)")
+          print("identityToken: \(appleUser.identityToken)")
+          print("userID: \(appleUser.userId)")
           }
 //        print(auth.credential)
       default:

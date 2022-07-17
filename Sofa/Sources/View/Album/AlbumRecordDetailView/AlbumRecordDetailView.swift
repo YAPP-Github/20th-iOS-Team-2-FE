@@ -131,13 +131,14 @@ struct AlbumRecordDetailView: View {
   
   // 녹음 버튼 영역
   var recordButtonArea: some View {
-    HStack(spacing: 64) {
+    HStack(spacing: 68.5) {
       Button(action: {
         
       }) {
-        Image("chevron.left")
+        Image(systemName: "gobackward.10")
           .resizable()
-          .frame(width: 32, height: 32)
+          .frame(width: 24, height: 24)
+          .foregroundColor(Color(hex: "#FFFFFF").opacity(0.5))
       }
       Button(action: {
         if self.audioRecorder.isRecording{
@@ -171,9 +172,10 @@ struct AlbumRecordDetailView: View {
       Button(action: {
         
       }) {
-        Image("chevron.right")
+        Image(systemName: "goforward.10")
           .resizable()
-          .frame(width: 32, height: 32)
+          .frame(width: 24, height: 24)
+          .foregroundColor(Color(hex: "#FFFFFF").opacity(0.5))
       }
     }
   }

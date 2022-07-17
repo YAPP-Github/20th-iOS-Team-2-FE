@@ -83,11 +83,6 @@ struct GeneralCalendar: View {
         }
       }
       .padding(EdgeInsets(top: 12, leading: 5, bottom: 0, trailing: 5))
-      
-      Rectangle()
-        .frame(height: 1.0, alignment: .bottom)
-        .foregroundColor(Color(hex: "EDEADF"))
-        .padding(.top, 22)
     
       .onChange(of: currentMonth) { newValue in
         currentDate = getCurrentMonth()

@@ -10,13 +10,13 @@ import SwiftUI
 struct AlbumKindRow: View {
   var albumKind: AlbumKind
   let info: [String: (String, String, String, Color, Color)] = [
-    "FAVORTIE": ("즐겨찾기", "bookmark", "장", Color(hex: "#FFD54F"), Color(hex: "#FFF8E1")),
+    "FAVORTIE": ("즐겨찾기", "bookmark.fill", "장", Color(hex: "#FFD54F"), Color(hex: "#FFF8E1")),
     "PHOTO": ("사진", "photo", "장", Color(hex: "#1192E8"), Color(hex: "#E5F6FF")),
     "RECORDING": ("음성", "waveform", "개", Color(hex: "#66BB6A"), Color(hex: "#E8F5E9"))
   ] // kind: (title, icon, count, backGround, foregroundColor)
   
   var body: some View {
-    HStack(alignment:.top, spacing: 8) {
+    HStack(alignment:.top, spacing: 16) {
       Rectangle()
         .frame(width: 100.0, height: 75.0)
         .cornerRadius(8)
@@ -29,13 +29,13 @@ struct AlbumKindRow: View {
       
       VStack(alignment: .leading, spacing: 3) {
         Text(info[albumKind.kind]!.0)
-          .font(.system(size: 16, weight: .semibold))
-          .foregroundColor(Color.black)
+          .font(.custom("Pretendard-Bold", size: 16))
+          .foregroundColor(Color(hex: "#121619"))
           .lineLimit(1)
 
         Text("\(albumKind.count)\(info[albumKind.kind]!.2)")
-          .font(.subheadline)
-          .foregroundColor(.secondary)
+          .font(.custom("Pretendard-Medium", size: 13))
+          .foregroundColor(Color(hex: "999999"))
       }
       
       Spacer()
@@ -43,13 +43,16 @@ struct AlbumKindRow: View {
       VStack(alignment: .center) {
         Spacer()
         Image(systemName: "chevron.right")
-          .foregroundColor(.gray)
+          .foregroundColor(Color(hex: "999999"))
         Spacer()
       }
     }
     .padding(8)
     .background(Color.white)
-    .cornerRadius(12)
+    .overlay(
+      RoundedRectangle(cornerRadius: 8)
+        .stroke(Color(hex: "EDEADF"), lineWidth: 1)
+    )
     .fixedSize(horizontal: false, vertical: true)
   }
 }

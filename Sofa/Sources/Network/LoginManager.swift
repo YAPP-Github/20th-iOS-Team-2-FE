@@ -40,7 +40,7 @@ enum LoginManager: URLRequestConvertible {
     var params = Parameters()
 
     switch self {
-    case .postkakaoLogin(let accessToken, let refreshToken):
+    case .postkakaoLogin(var accessToken, var refreshToken):
       params["accessToken"] = accessToken
       params["refreshToken"] = refreshToken
       return params

@@ -29,10 +29,12 @@ struct AppleUser: Codable {
 
 struct LoginButtonView: View {
   
-  @ObservedObject var loginViewModel = LoginViewModel()
+  @StateObject var loginViewModel = LoginViewModel()
   @State var text: NSMutableAttributedString = NSMutableAttributedString(string: "")
+  
   var body: some View {
     VStack{
+      
       Button {
         if (UserApi.isKakaoTalkLoginAvailable()) {// 카톡이 설치되어있다면
           UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
@@ -44,11 +46,8 @@ struct LoginButtonView: View {
               print("loginWithKakaoTalk() success.")
               print("👉accessToken: \(oauthToken!.accessToken)")
               print("👉refreshToken: \(oauthToken!.refreshToken)")
-              
-              // Keychain에 User Token 저장
-//              Constant.accessToken = oauthToken!.accessToken
-//              Constant.refreshToken = oauthToken!.refreshToken
-              
+            
+              self.loginViewModel.postKakaoLogin(accessToken: oauthToken!.accessToken, refreshToken: oauthToken!.refreshToken)
               
               
             }
@@ -66,9 +65,6 @@ struct LoginButtonView: View {
               
               
               self.loginViewModel.postKakaoLogin(accessToken: oauthToken!.accessToken, refreshToken: oauthToken!.refreshToken)
-              // Keychain에 User Token 저장
-//              Constant.accessToken = oauthToken!.accessToken
-//              Constant.refreshToken = oauthToken!.refreshToken
               
             }
           }
@@ -81,15 +77,7 @@ struct LoginButtonView: View {
       }
       .frame(width: 326, height: 48, alignment: .center)
       .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
-      //      Button {
-      //
-      //
-      //      } label : {
-      //        Image("SignInWithApple")
-      //          .resizable()
-      //          .aspectRatio(contentMode: .fit)
-      //
-      //      }
+
       SignInWithAppleButton(
         .signIn,
         onRequest: configure,

@@ -8,7 +8,10 @@
 import Foundation
 
 struct LoginResponse: Decodable {
-  let type: String
-  let authToken: String
-
+  let timestamp: String? // 실패
+  let status: Int? // 실패
+  let detail: String? // 실패
+  let type: String? // 성공
+  let authToken: String? // 성공
 }
+

@@ -17,28 +17,36 @@ struct NotificationView: View {
   var periodArr = ["오늘", "이번 주", "이번 달"]
   var taskDict = ["CALENDAR" : "일정", "ALBUM" : "사진"]
   
-  // 섹션 별로 나눈 notification
-  let today = NotificationViewModel().notification[0..<3]
-  let thisweek = NotificationViewModel().notification[3..<6]
-  let thismonth = NotificationViewModel().notification[6..<9]
+  // notification 내 createDate 기준 날짜 필터링
+  let today = NotificationViewModel().notification.filter { notification in
+    notification.getIntervalTime >= 0 && notification.getIntervalTime < 86400
+  }
+  let thisweek = NotificationViewModel().notification.filter { notification in
+    notification.getIntervalTime >= 86400 && notification.getIntervalTime < 604800
+  }
+  let thismonth = NotificationViewModel().notification.filter { notification in
+    notification.getIntervalTime >= 604800 && notification.getIntervalTime < 2592000
+  }
   
   var body: some View {
     ScrollView {
       LazyVStack(spacing: 0) {
         ForEach(periodArr.indices, id: \.self) { i in
-          Rectangle()
-            .foregroundColor(Color(hex: "FAF8F0"))
-            .frame(height: 8)
-          HStack {
-            Spacer()
-              .frame(width: 16)
-            Text("\(periodArr[i])")
-              .font(.custom("Pretendard-Bold", size: 13))
-              .foregroundColor(Color(hex: "999899"))
-            Spacer()
+          if getPeriodType(periodArr[i]).count > 0{ // 해당 기간에 없으면 표시 X
+            Rectangle()
+              .foregroundColor(Color(hex: "FAF8F0"))
+              .frame(height: 8)
+            HStack {
+              Spacer()
+                .frame(width: 16)
+              Text("\(periodArr[i])")
+                .font(.custom("Pretendard-Bold", size: 13))
+                .foregroundColor(Color(hex: "999899"))
+              Spacer()
+            }
+            .frame(height: 52)
+            .background(Color.white)
           }
-          .frame(height: 52)
-          .background(Color.white)
           ForEach(Array(zip(getPeriodType(periodArr[i]).indices, getPeriodType(periodArr[i]))), id: \.1) { idx, notification in
 //            NavigationLink {
 //              AlbumImageDetailView(image: UIImage(imageLiteralResourceName: "photo01"), index: 0)
@@ -88,7 +96,7 @@ struct NotificationView: View {
 
   }
   
-  func getPeriodType(_ periodType: String) -> ArraySlice<Notification>{
+  func getPeriodType(_ periodType: String) -> Array<Notification>{
      switch periodType {
      case "오늘":
        return today
@@ -116,7 +124,7 @@ struct NotificationView: View {
       
       Spacer()
         .frame(width: 8)
-      Text("방금 전")
+      Text("\(notification.descriptionIntervalTime)")
         .font(.custom("Pretendard-Medium", size: 13))
         .foregroundColor(Color(hex: "A6A6A6"))
         .frame(width: 60)

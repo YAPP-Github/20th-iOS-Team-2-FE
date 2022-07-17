@@ -35,8 +35,6 @@ struct AlbumList: View {
       }
     }
     .padding([.leading, .trailing], 16)
-    .background(Color.init(hex: "#FAF8F0")) // 임시
-    .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
     
     // 상세 앨범 View로 이동
     NavigationLink("", destination: AlbumDetailView(), isActive: $showAlbumDetail)

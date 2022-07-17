@@ -41,7 +41,7 @@
 		0AAB36F32865F32400A47B24 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB36F22865F32400A47B24 /* EventViewModel.swift */; };
 		0AAB371828674DE300A47B24 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371728674DE300A47B24 /* ChatRow.swift */; };
 		0AAB371A28674DF200A47B24 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371928674DF200A47B24 /* ChatList.swift */; };
-		0AAB372028675A5A00A47B24 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371F28675A5A00A47B24 /* LabelView.swift */; };
+		0AAB372028675A5A00A47B24 /* CustomBoldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371F28675A5A00A47B24 /* CustomBoldLabelView.swift */; };
 		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
 		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
@@ -67,7 +67,6 @@
 		6F22E53C284B9D5A0069D268 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53B284B9D5A0069D268 /* Base.swift */; };
 		6F22E53E284B9D640069D268 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53D284B9D640069D268 /* Constants.swift */; };
 		6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */; };
-		6F6E5A552882B26A00C0734E /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E5A542882B26A00C0734E /* APIConstants.swift */; };
 		6F6E5A572882B7FF00C0734E /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */; };
 		6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340B92874184300707AB7 /* GeneralCalendar.swift */; };
 		6F7340BC28741A4800707AB7 /* GeneralDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340BB28741A4800707AB7 /* GeneralDatePickerView.swift */; };
@@ -209,7 +208,7 @@
 		0AAB36F22865F32400A47B24 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		0AAB371728674DE300A47B24 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
 		0AAB371928674DF200A47B24 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
-		0AAB371F28675A5A00A47B24 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		0AAB371F28675A5A00A47B24 /* CustomBoldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBoldLabelView.swift; sourceTree = "<group>"; };
 		0ABA0C1828579493005F2C6A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
@@ -382,7 +381,7 @@
 				0AAB367B2863816300A47B24 /* EventList.swift */,
 				0AAB371928674DF200A47B24 /* ChatList.swift */,
 				0AC79181286AF1440034A830 /* EmojiView.swift */,
-				0AAB371F28675A5A00A47B24 /* LabelView.swift */,
+				0AAB371F28675A5A00A47B24 /* CustomBoldLabelView.swift */,
 				0AE49209287740B300341D35 /* HomeNavigationBarStyle.swift */,
 			);
 			path = SubViews;
@@ -1432,7 +1431,7 @@
 				6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,
 				0A2887F22870A646000A72F2 /* ChatViewModel.swift in Sources */,
-				0AAB372028675A5A00A47B24 /* LabelView.swift in Sources */,
+				0AAB372028675A5A00A47B24 /* CustomBoldLabelView.swift in Sources */,
 				C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */,
 				C495F608285A2B98009B3BDE /* CameraImagePicker.swift in Sources */,
 				C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */,

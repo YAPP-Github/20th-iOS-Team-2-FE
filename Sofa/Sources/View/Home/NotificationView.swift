@@ -117,9 +117,7 @@ struct NotificationView: View {
         .frame(width: 51, height: 52.5)
         .padding(EdgeInsets(top: 0, leading: 14.5, bottom: 0, trailing: 14.5))
       Spacer()
-      LabelView(text: "\(notification.user) 님이 새로운 \(taskDict[notification.type] ?? "")을 등록했습니다.")
-        .font(.custom("Pretendard-Bold", size: 14))
-        .foregroundColor(Color(hex: "121619"))
+      CustomBoldLabelView(text1: " 님이 새로운 ", text2: "을 등록했습니다.", user: "\(notification.user)", task: "\(taskDict[notification.type] ?? "없음")")
         .frame(height: 40)
       
       Spacer()

@@ -35,7 +35,7 @@ struct AlbumDateRow: View {
       VStack(alignment: .center) {
         Spacer() // icon을 중앙 정렬 시키기 위해
         Image(systemName: "chevron.right")
-          .foregroundColor(.gray)
+          .foregroundColor(Color(hex: "999999"))
         Spacer()
       }
     }

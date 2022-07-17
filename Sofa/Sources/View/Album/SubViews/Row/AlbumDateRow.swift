@@ -41,7 +41,10 @@ struct AlbumDateRow: View {
     }
     .padding(8)
     .background(Color.white)
-    .cornerRadius(8)
+    .overlay(
+      RoundedRectangle(cornerRadius: 8)
+        .stroke(Color(hex: "EDEADF"), lineWidth: 1)
+    )
     .fixedSize(horizontal: false, vertical: true)
   }
 }

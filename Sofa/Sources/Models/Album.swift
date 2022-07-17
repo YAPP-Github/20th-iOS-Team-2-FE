@@ -8,7 +8,11 @@
 import Foundation
 
 struct AlbumDateAPIResponse: Hashable, Decodable {
+  let results: AlbumDateResult
   let info: Info
+}
+
+struct AlbumDateResult: Hashable, Decodable {
   let albums: [AlbumDate]
 }
 
@@ -28,7 +32,7 @@ struct AlbumDate: Hashable, Decodable {
 struct AlbumType: Hashable, Decodable {
   let kind: String
   let count: Int
-  let link: String
+}
 
 struct Info: Hashable, Decodable {
   let totalCount: Int // pagination이 적용안된 전체 element 개수

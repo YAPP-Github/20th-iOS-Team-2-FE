@@ -28,7 +28,7 @@ class AlbumListViewModel: ObservableObject {
       .publishDecodable(type: AlbumDateAPIResponse.self)
       .value()
       .receive(on: DispatchQueue.main)
-      .map { $0.albums }
+      .map { $0.results.albums }
       .sink(
         receiveCompletion: {[weak self] in
           self?.isLoading = false
@@ -69,8 +69,7 @@ class AlbumListViewModel: ObservableObject {
           default:
             break
           }
-//          NSLog("Error : " + error.localizedDescription)
-//          print("데이터스트림 완료 ")
+          NSLog("Error : " + error.localizedDescription)
           self?.albumTypeList = [AlbumType]()
         },
         receiveValue: {[weak self] receivedValue in

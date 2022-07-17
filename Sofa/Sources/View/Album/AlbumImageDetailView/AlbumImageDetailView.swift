@@ -101,6 +101,9 @@ struct AlbumImageDetailView: View {
       .navigationBarHidden(true) // 이전 Navigation bar 무시
       .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
       .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
+      .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
+        AlbumEditDateView(photoId: "0") // 임시
+      }
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick)
           .background(BackgroundCleanerView())

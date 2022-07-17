@@ -42,10 +42,10 @@ struct AlbumView: View {
       NavigationView {
         VStack(spacing: 0) {
           Picker(selection: $selected, label: Text(""), content: {
-            Text("날짜별").tag(0)
-            Text("유형별").tag(1)
+            Text("날짜별").font(.custom("Pretendard-Regular", size: 16)).tag(0)
+            Text("유형별").font(.custom("Pretendard-Regular", size: 16)).tag(1)
           })
-          .padding()
+          .padding(16)
           .background(Color.init(hex: "#FAF8F0")) // 임시
           .pickerStyle(SegmentedPickerStyle())
           

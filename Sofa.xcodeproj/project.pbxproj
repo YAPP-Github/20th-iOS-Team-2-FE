@@ -98,6 +98,7 @@
 		C46C56CE2881B40700677E63 /* AlbumTitleEditNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C56CD2881B40600677E63 /* AlbumTitleEditNavigationBar.swift */; };
 		C46C56D32882BD6600677E63 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C56D22882BD6600677E63 /* APIConstants.swift */; };
 		C46C56D62882EAC500677E63 /* AlbumEditDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C56D52882EAC500677E63 /* AlbumEditDateView.swift */; };
+		C46C56D92883144800677E63 /* AlbumRecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C56D82883144800677E63 /* AlbumRecordDetailView.swift */; };
 		C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */; };
 		C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6BB2875FD0A005D6831 /* Blur.swift */; };
 		C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */; };
@@ -122,7 +123,7 @@
 		C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */; };
 		C495F60E285B5B86009B3BDE /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F60D285B5B86009B3BDE /* AuthorizationViewModel.swift */; };
 		C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */; };
-		C495F617285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift */; };
+		C495F617285B95BB009B3BDE /* AlbumRecordNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F616285B95BB009B3BDE /* AlbumRecordNavigationBar.swift */; };
 		C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */; };
 		C495F61F285BC2C8009B3BDE /* AudioBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495F61E285BC2C7009B3BDE /* AudioBarView.swift */; };
 		C4A9795B286067E200326ABC /* AudioRecorderURLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */; };
@@ -274,6 +275,7 @@
 		C46C56CD2881B40600677E63 /* AlbumTitleEditNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleEditNavigationBar.swift; sourceTree = "<group>"; };
 		C46C56D22882BD6600677E63 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C46C56D52882EAC500677E63 /* AlbumEditDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEditDateView.swift; sourceTree = "<group>"; };
+		C46C56D82883144800677E63 /* AlbumRecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRecordDetailView.swift; sourceTree = "<group>"; };
 		C481B6B62875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailNavigationBar.swift; sourceTree = "<group>"; };
 		C481B6BB2875FD0A005D6831 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		C481B6C0287607DB005D6831 /* AlbumImageDetailSettingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImageDetailSettingBar.swift; sourceTree = "<group>"; };
@@ -298,7 +300,7 @@
 		C495F60B285A2E72009B3BDE /* CameraAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAuthorization.swift; sourceTree = "<group>"; };
 		C495F60D285B5B86009B3BDE /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		C495F612285B7FDE009B3BDE /* ZoomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomScrollView.swift; sourceTree = "<group>"; };
-		C495F616285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRecordAddNavigationBar.swift; sourceTree = "<group>"; };
+		C495F616285B95BB009B3BDE /* AlbumRecordNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRecordNavigationBar.swift; sourceTree = "<group>"; };
 		C495F619285BBF58009B3BDE /* AudioRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewModel.swift; sourceTree = "<group>"; };
 		C495F61E285BC2C7009B3BDE /* AudioBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBarView.swift; sourceTree = "<group>"; };
 		C4A9795A286067E200326ABC /* AudioRecorderURLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderURLViewModel.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
 				C44000352881981C007D0C20 /* AlbumTitleEditView */,
 				C4A979A3286AE88E00326ABC /* AlbumImageDetailView */,
+				C46C56D72883143100677E63 /* AlbumRecordDetailView */,
 				C481B6C72878746F005D6831 /* AlbumCommentView */,
 				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
 				C495F60228571F51009B3BDE /* AlbumRecordAddView */,
@@ -759,6 +762,14 @@
 			path = AlbumEditDateView;
 			sourceTree = "<group>";
 		};
+		C46C56D72883143100677E63 /* AlbumRecordDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				C46C56D82883144800677E63 /* AlbumRecordDetailView.swift */,
+			);
+			path = AlbumRecordDetailView;
+			sourceTree = "<group>";
+		};
 		C481B6B42875D4BA005D6831 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -911,7 +922,7 @@
 		C495F615285B9593009B3BDE /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				C495F616285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift */,
+				C495F616285B95BB009B3BDE /* AlbumRecordNavigationBar.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -1364,9 +1375,9 @@
 				C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */,
 				C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */,
 				6FBCD635287AFA9700D874FD /* Highlighting.swift in Sources */,
-				C495F617285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift in Sources */,
+				C495F617285B95BB009B3BDE /* AlbumRecordNavigationBar.swift in Sources */,
 				6FBCD639287AFEBC00D874FD /* RoleActionSheetItem.swift in Sources */,
-				C495F617285B95BB009B3BDE /* AlbumRecordAddNavigationBar.swift in Sources */,
+				C495F617285B95BB009B3BDE /* AlbumRecordNavigationBar.swift in Sources */,
 				0AAB367C2863816300A47B24 /* EventList.swift in Sources */,
 				C4B8F2A62851CABF0000B8CB /* ShowTabBar.swift in Sources */,
 				C481B6B72875D4E7005D6831 /* AlbumImageDetailNavigationBar.swift in Sources */,
@@ -1429,6 +1440,7 @@
 				6F9C988C2875A7CB0062BF84 /* Ex+UIApplication.swift in Sources */,
 				C481B6D4287ADA18005D6831 /* AlbumCommentRow.swift in Sources */,
 				C4B8F2CE2854A6680000B8CB /* NavigationBarWithIconButtonStyle.swift in Sources */,
+				C46C56D92883144800677E63 /* AlbumRecordDetailView.swift in Sources */,
 				6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */,
 				C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */,
 				0A2887F22870A646000A72F2 /* ChatViewModel.swift in Sources */,

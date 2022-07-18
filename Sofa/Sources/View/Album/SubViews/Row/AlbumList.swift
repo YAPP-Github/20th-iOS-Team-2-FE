@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct AlbumList: View {
-  @State var albumDate: [AlbumDate]? // 날짜별
-  @State var albumKind: [AlbumKind]? // 유형별
   @ObservedObject var viewModel = AlbumListViewModel()
+  @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 0)
   @State var showAlbumDetail = false
   @State var selectAlbumId: Int = -1
   @State var selectKindType: String = ""
@@ -26,6 +26,12 @@ struct AlbumList: View {
             }
           }
         }
+        .introspectScrollView(customize: { uiScrollView in
+          uiScrollView.delegate = scrollViewHelper
+        })
+        .onReceive(self.scrollViewHelper.isBottom, perform: { isBottom in
+          viewModel.fetchMoreActionSubject.send() // pagenation
+        })
       } else if selectType == 1 { // 유형별 보기
         ScrollView(showsIndicators: false) {
           LazyVStack {

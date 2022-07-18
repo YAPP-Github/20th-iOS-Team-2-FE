@@ -12,15 +12,28 @@ import Combine
 class AlbumListViewModel: ObservableObject {
   @Published var albumDateList = [AlbumDate]()
   @Published var albumKindList = [AlbumKind]()
-  @Published var isLoading: Bool = false             // Loding
-  private var cancellables = Set<AnyCancellable>()    // disposeBag
+  @Published var isLoading: Bool = false // Loding
+  @Published var pageInfo : Info? {
+    didSet {
+      print("pageInfo: \(pageInfo!)")
+    }
+  }
+  private var subscription = Set<AnyCancellable>()    // disposeBag
+  var fetchMoreActionSubject = PassthroughSubject<(), Never>()
   
   init() {
     print(#fileID, #function, #line, "")
     fetchAlbumByDate() // 날짜별
     fetchAlbumByType() // 유형별
+    
+    fetchMoreActionSubject.sink{[weak self] _ in
+      guard let self = self else { return }
+      if !self.isLoading {
+        self.fetchMore()
+      }
+    }.store(in: &subscription)
   }
-
+  
   // 날짜별
   fileprivate func fetchAlbumByDate() {
     self.isLoading = true
@@ -28,7 +41,7 @@ class AlbumListViewModel: ObservableObject {
       .publishDecodable(type: AlbumDateAPIResponse.self)
       .value()
       .receive(on: DispatchQueue.main)
-      .map { $0.results.albums }
+      .map { $0 }
       .sink(
         receiveCompletion: {[weak self] in
           self?.isLoading = false
@@ -45,11 +58,12 @@ class AlbumListViewModel: ObservableObject {
           self?.albumDateList = [AlbumDate]()
         },
         receiveValue: {[weak self] receivedValue in
-//          print("받은 값 : \(receivedValue)")
-          self?.albumDateList = receivedValue
+          //          print("받은 값 : \(receivedValue)")
+          self?.albumDateList = receivedValue.results.albums
+          self?.pageInfo = receivedValue.info
         }
       )
-      .store(in: &cancellables)   // disposed(by: disposeBag)
+      .store(in: &subscription)   // disposed(by: disposeBag)
   }
   
   // 유형별
@@ -73,12 +87,37 @@ class AlbumListViewModel: ObservableObject {
           self?.albumKindList = [AlbumKind]()
         },
         receiveValue: {[weak self] receivedValue in
-//          print("받은 값 : \(receivedValue)")
+          //          print("받은 값 : \(receivedValue)")
           self?.albumKindList.append(receivedValue.favourite)
           self?.albumKindList.append(receivedValue.photo)
           self?.albumKindList.append(receivedValue.recording)
         }
       )
-      .store(in: &cancellables)   // disposed(by: disposeBag)
+      .store(in: &subscription)   // disposed(by: disposeBag)
+  }
+  
+  // pagenation
+  fileprivate func fetchMore() {
+    guard let currentPage = pageInfo?.pageCount else {
+      print("페이지 정보가 없습니다.")
+      return
+    }
+    self.isLoading = true
+    let pageToLoad = currentPage + 1
+    
+    AF.request(AlbumManager.getAlbumListByDate(page: pageToLoad))
+      .publishDecodable(type: AlbumDateAPIResponse.self)
+      .value()
+      .sink(
+        receiveCompletion: { completion in
+          self.isLoading = false
+        },
+        receiveValue: { receivedValue in
+//          print("받은 값 : \(receivedValue.results.albums.count)")
+          self.albumDateList += receivedValue.results.albums
+          self.pageInfo = receivedValue.info
+        }
+      )
+      .store(in: &subscription)
   }
 }

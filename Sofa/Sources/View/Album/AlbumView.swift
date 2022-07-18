@@ -9,7 +9,6 @@ import SwiftUI
 
 
 struct AlbumView: View {
-  @ObservedObject var viewModel = AlbumListViewModel()
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @State var showingSheet = false
   @State var selected = 0
@@ -49,11 +48,7 @@ struct AlbumView: View {
           .background(Color.init(hex: "#FAF8F0")) // 임시
           .pickerStyle(SegmentedPickerStyle())
           
-          if selected == 0 { // 날짜별
-            AlbumList(albumDate: viewModel.albumDateList)
-          } else if selected == 1 { // 유형별
-            AlbumList(albumKind: viewModel.albumKindList)
-          }
+          AlbumList(selectType: selected) // select값에 따른 날짜별, 유형별 View
           
           // 카메라 날짜 선택 View로 이동
           NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)

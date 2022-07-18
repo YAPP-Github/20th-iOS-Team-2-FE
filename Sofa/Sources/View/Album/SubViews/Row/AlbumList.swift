@@ -10,7 +10,7 @@ import Introspect
 
 struct AlbumList: View {
   @ObservedObject var viewModel = AlbumListViewModel()
-  @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 0)
+  @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 100)
   @State var showAlbumDetail = false
   @State var selectAlbumId: Int = -1
   @State var selectKindType: String = ""

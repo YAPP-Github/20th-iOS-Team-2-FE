@@ -66,14 +66,12 @@ struct HomeView: View {
               MessageView($showMessageView, $placeholder)
                 .background(BackgroundCleanerView())
             }
+
           
         }// VStack
-        .ignoresSafeArea(.keyboard)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
-        .onAppear{
-          UITabBar.showTabBar(animated: false)
-        }
         
       }// NavigationView
       .accentColor(Color(hex: "43A047"))

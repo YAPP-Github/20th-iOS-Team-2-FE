@@ -11,11 +11,23 @@ import Combine
 
 class LoginViewModel: ObservableObject {
   @Published var loginResponse: LoginResponse
+  @Published var showJoin: Bool
+  @Published var showContent: Bool
 
   private var cancellables = Set<AnyCancellable>()    // disposeBag
   
   init(){
     loginResponse = LoginResponse(timestamp: "", status: 0, detail: "", type: "", authToken: "")
+    showJoin = false
+    showContent = false
+  }
+  
+  func toggleJoin(){
+    showJoin.toggle()
+  }
+  
+  func toggleLogin(){
+    showContent.toggle()
   }
 
   func postKakaoLogin(accessToken: String, refreshToken: String){
@@ -48,11 +60,11 @@ class LoginViewModel: ObservableObject {
             case 400: // 요청 에러 발생했을 때
               print(receivedValue.status!)
               print(receivedValue.detail!)
+              self?.toggleJoin()
               break
             case 500: // 서버의 내부적 에러가 발생했을 때
               print(receivedValue.status!)
               print(receivedValue.detail!)
-              self?.loginResponse = LoginResponse(timestamp: "", status: 0, detail: "", type: "join", authToken:  "")
               break
             default:
               print(receivedValue.status!)
@@ -60,7 +72,14 @@ class LoginViewModel: ObservableObject {
               break
             }
           }else{ // Success
-            self?.loginResponse = LoginResponse(timestamp: "", status: 0, detail: "", type: "join", authToken:  "")
+            self?.loginResponse = receivedValue
+            if self?.loginResponse.type == "join"{
+              self?.toggleJoin()
+            }else if self?.loginResponse.type == "login"{
+              Constant.accessToken = self?.loginResponse.authToken // Token 저장
+              self?.toggleLogin()
+            }
+            
           }
         }
       )

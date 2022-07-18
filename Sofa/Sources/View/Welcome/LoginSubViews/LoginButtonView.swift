@@ -48,7 +48,7 @@ struct LoginButtonView: View {
               print("👉refreshToken: \(oauthToken!.refreshToken)")
             
               self.loginViewModel.postKakaoLogin(accessToken: oauthToken!.accessToken, refreshToken: oauthToken!.refreshToken)
-              
+
               
             }
           }
@@ -66,6 +66,7 @@ struct LoginButtonView: View {
               
               self.loginViewModel.postKakaoLogin(accessToken: oauthToken!.accessToken, refreshToken: oauthToken!.refreshToken)
               
+
             }
           }
         }
@@ -105,7 +106,13 @@ struct LoginButtonView: View {
     .background(Color.white)
     .frame(width: Screen.maxWidth, height: Screen.maxHeight * 0.4 , alignment: .center)
     .ignoresSafeArea()
-    .background(Color.white)
+    .background(Color.white )
+    .fullScreenCover(isPresented: $loginViewModel.showJoin) { // 회원 등록
+      RegisterView()
+    }
+    .fullScreenCover(isPresented: $loginViewModel.showContent) { // 재로그인
+      ContentView()
+    }
     
   }
   

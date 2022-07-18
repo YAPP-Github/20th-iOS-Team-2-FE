@@ -15,6 +15,11 @@ struct AlbumList: View {
   @State var selectAlbumId: Int = -1
   @State var selectKindType: String = ""
   let selectType: Int
+  var refreshControl: UIRefreshControl {
+    let refresh = UIRefreshControl()
+    refresh.tintColor = UIColor.red
+    return refresh
+  }
   
   var body: some View {
     VStack {
@@ -28,9 +33,18 @@ struct AlbumList: View {
         }
         .introspectScrollView(customize: { uiScrollView in
           uiScrollView.delegate = scrollViewHelper
+          uiScrollView.refreshControl = refreshControl
         })
         .onReceive(self.scrollViewHelper.isBottom, perform: { isBottom in
           viewModel.fetchMoreActionSubject.send() // pagenation
+        })
+        .onReceive(self.scrollViewHelper.isRefresh, perform: { isBottom in
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+            print("리프레시가 되었다")
+            //MARK: - TODO : Api 다시 땡기기
+            viewModel.refreshActionSubject.send()
+            refreshControl.endRefreshing()
+          })
         })
       } else if selectType == 1 { // 유형별 보기
         ScrollView(showsIndicators: false) {

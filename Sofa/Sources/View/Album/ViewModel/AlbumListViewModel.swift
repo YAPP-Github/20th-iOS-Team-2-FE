@@ -19,12 +19,18 @@ class AlbumListViewModel: ObservableObject {
     }
   }
   private var subscription = Set<AnyCancellable>()    // disposeBag
+  var refreshActionSubject = PassthroughSubject<(), Never>()
   var fetchMoreActionSubject = PassthroughSubject<(), Never>()
   
   init() {
-    print(#fileID, #function, #line, "")
+//    print(#fileID, #function, #line, "")
     fetchAlbumByDate() // 날짜별
     fetchAlbumByType() // 유형별
+    
+    refreshActionSubject.sink{ [weak self] _ in
+      guard let self = self else { return }
+      self.fetchAlbumByDate()
+    }.store(in: &subscription)
     
     fetchMoreActionSubject.sink{[weak self] _ in
       guard let self = self else { return }

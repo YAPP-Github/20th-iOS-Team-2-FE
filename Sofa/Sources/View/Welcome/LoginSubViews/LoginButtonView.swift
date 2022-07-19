@@ -132,6 +132,9 @@ struct LoginButtonView: View {
           print("authoriztionCode: \(appleUser.authorizationCode)")
           print("identityToken: \(appleUser.identityToken)")
           print("userID: \(appleUser.userId)")
+          
+          self.loginViewModel.postAppleLogin(identityToken: appleUser.identityToken, authoriztionCode: appleUser.authorizationCode, userId: appleUser.userId)
+          
           }
 //        print(auth.credential)
       default:

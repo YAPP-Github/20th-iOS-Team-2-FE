@@ -16,6 +16,8 @@ struct HomeView: View {
   @Binding var selectionType: Tab
   @State var placeholder = "가족에게 인사를 남겨보세요."
   
+  @ObservedObject var tabbarManager = TabBarManager.shared
+  
   var body: some View {
     ZStack {
       NavigationView {
@@ -66,12 +68,19 @@ struct HomeView: View {
               MessageView($showMessageView, $placeholder)
                 .background(BackgroundCleanerView())
             }
+          
+          if (!tabbarManager.showTabBar){
+            Rectangle()
+              .foregroundColor(Color.clear)
+              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11 + 8: Screen.maxHeight * 0.11 - 5)
+          }
 
           
         }// VStack
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .ignoresSafeArea(.keyboard)
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
+        .edgesIgnoringSafeArea([.bottom])
         
       }// NavigationView
       .accentColor(Color(hex: "43A047"))

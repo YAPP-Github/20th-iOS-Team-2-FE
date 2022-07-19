@@ -28,7 +28,7 @@ struct ContentView: View {
   
 
   var body: some View {
-    VStack{
+    VStack(spacing: 0){
       ZStack{
         switch selection {
         case .home:
@@ -43,9 +43,7 @@ struct ContentView: View {
           HomeView(selectionType: $selection)
         }
       }
-      
-      Spacer()
-      
+            
       if (tabbarManager.showTabBar){
         ZStack{
           HStack(alignment: .center){
@@ -112,17 +110,21 @@ struct ContentView: View {
             } //HStack
             .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11 : Screen.maxHeight * 0.11 - 5)
             .ignoresSafeArea(.keyboard)
-            .edgesIgnoringSafeArea([.bottom])
+            .edgesIgnoringSafeArea(.all)
             
           }// ZStack
+          .frame(width: Screen.maxWidth)
+          .background(Color.white)
         }
+//        .transition(.asymmetric(insertion: AnyTransition.move(edge: .bottom),                                removal: AnyTransition.move(edge: .leading)))
+//        .animation(.easeIn) // Tabbar show animation
         .ignoresSafeArea(.keyboard)
         .edgesIgnoringSafeArea([.bottom])
       }
     }
-    .background(Color.white)
     .ignoresSafeArea(.keyboard)
-    .edgesIgnoringSafeArea([.bottom])
+    .edgesIgnoringSafeArea(.all)
+    .background(Color.clear)
   }
 }
 

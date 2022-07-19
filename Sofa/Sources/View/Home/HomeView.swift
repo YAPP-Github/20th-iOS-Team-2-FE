@@ -72,7 +72,7 @@ struct HomeView: View {
           if (!tabbarManager.showTabBar){
             Rectangle()
               .foregroundColor(Color.clear)
-              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11 + 8: Screen.maxHeight * 0.11 - 5)
+              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
           }
 
           

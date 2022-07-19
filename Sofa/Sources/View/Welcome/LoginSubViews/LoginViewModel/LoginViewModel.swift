@@ -60,7 +60,6 @@ class LoginViewModel: ObservableObject {
             case 400: // 요청 에러 발생했을 때
               print(receivedValue.status!)
               print(receivedValue.detail!)
-              self?.toggleJoin()
               break
             case 500: // 서버의 내부적 에러가 발생했을 때
               print(receivedValue.status!)
@@ -73,10 +72,10 @@ class LoginViewModel: ObservableObject {
             }
           }else{ // Success
             self?.loginResponse = receivedValue
-            if self?.loginResponse.type == "join"{
+            if self?.loginResponse.type == "join"{ // 첫 로그인 (회원가입)
               self?.toggleJoin()
-            }else if self?.loginResponse.type == "login"{
-              Constant.accessToken = self?.loginResponse.authToken // Token 저장
+            }else if self?.loginResponse.type == "login"{ // 재 로그인
+              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
               self?.toggleLogin()
             }
             

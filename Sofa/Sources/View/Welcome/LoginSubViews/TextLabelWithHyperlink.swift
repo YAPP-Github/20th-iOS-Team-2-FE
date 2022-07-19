@@ -74,10 +74,3 @@ struct TextLabelWithHyperlink: UIViewRepresentable {
   
 }
 
-extension NSMutableAttributedString {
-  
-  var range: NSRange {
-    NSRange(location: 0, length: self.length)
-  }
-  
-}

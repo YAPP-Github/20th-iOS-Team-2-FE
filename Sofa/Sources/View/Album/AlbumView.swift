@@ -9,7 +9,6 @@ import SwiftUI
 
 
 struct AlbumView: View {
-  @ObservedObject var viewModel = AlbumListViewModel()
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @State var showingSheet = false
   @State var selected = 0
@@ -42,34 +41,35 @@ struct AlbumView: View {
       NavigationView {
         VStack(spacing: 0) {
           Picker(selection: $selected, label: Text(""), content: {
-            Text("날짜별").tag(0)
-            Text("유형별").tag(1)
+            Text("날짜별").font(.custom("Pretendard-Regular", size: 16)).tag(0)
+            Text("유형별").font(.custom("Pretendard-Regular", size: 16)).tag(1)
           })
-          .padding()
+          .padding(16)
           .background(Color.init(hex: "#FAF8F0")) // 임시
           .pickerStyle(SegmentedPickerStyle())
           
-          if selected == 0 { // 날짜별
-            AlbumList(albumDate: viewModel.albumDateList.count == 0 ? MockData().albumByDate : viewModel.albumDateList) // 임시
-          } else if selected == 1 { // 유형별
-            AlbumList(albumType: viewModel.albumTypeList.count == 0 ? MockData().albumByType : viewModel.albumTypeList) // 임시
-          }
+          AlbumList(selectType: selected) // select값에 따른 날짜별, 유형별 View
           
           // 카메라 날짜 선택 View로 이동
           NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)
         }
+        .background(Color.init(hex: "#FAF8F0")) // 임시
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
-        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) { // 사진 추가 View로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) {
+          // 사진 추가 View로 이동
           AlbumPhotoAddView()
         }
-        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) { // 카메라 imagePicker로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) {
+          // 카메라 imagePicker로 이동
           CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
             .ignoresSafeArea()
         }
-        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) { // 녹음 추가 View로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) {
+          // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }
-        .alert(isPresented: $authorizationViewModel.showErrorAlert) { // 카메라 error
+        .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+          // 카메라 error
           Alert(
             title: Text(authorizationViewModel.showErrorAlertTitle),
             message: Text(authorizationViewModel.showErrorAlertMessage),

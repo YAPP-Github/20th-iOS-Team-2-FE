@@ -15,7 +15,7 @@ struct HomeView: View {
   @State var showMessageView = false
   @Binding var selectionType: Tab
   @State var placeholder = "가족에게 인사를 남겨보세요."
-  @State var currentSelectedTab = 0
+  @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
   
   @ObservedObject var tabbarManager = TabBarManager.shared
   
@@ -76,7 +76,7 @@ struct HomeView: View {
 //              .foregroundColor(Color.clear)
 //              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
             // Custom Tab View
-            CustomTabView(selected: $currentSelectedTab)
+            CustomTabView(selection: $currentSelectedTab)
           
             
           }
@@ -100,11 +100,11 @@ struct HomeView: View {
   
 }
 
-struct HomeView_Previews: PreviewProvider {
-  static var previews: some View {
-    HomeView(selectionType: .constant(.home))
-  }
-}
+//struct HomeView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    HomeView(selectionType: .constant(.home))
+//  }
+//}
 
 struct BackgroundCleanerView: UIViewRepresentable {
   func makeUIView(context: Context) -> UIView {

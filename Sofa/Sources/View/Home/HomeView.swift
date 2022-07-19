@@ -70,12 +70,64 @@ struct HomeView: View {
             }
           
           if (!tabbarManager.showTabBar){
-            Rectangle()
-              .foregroundColor(Color.clear)
-              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
-          }
+            HStack(alignment: .center, spacing: 8){
+              ForEach(0..<4) { i in
+                Spacer()
+                  .frame(width: Screen.maxWidth * 0.05)
+                Button {
 
-          
+                } label: {
+                  switch i{
+                  case 0:
+                    VStack{
+                      Image(systemName:"hand.wave.fill")
+                        .font(.system(size: 24 ))
+                        .padding(.vertical, 10)
+                        .foregroundColor(Color(hex: "43A047"))
+                      Spacer()
+                    }
+                    
+                  case 1:
+                    VStack{
+                      Image(systemName: "calendar")
+                        .font(.system(size: 24))
+                        .padding(.vertical, 10)
+                        .foregroundColor(Color.gray)
+                      Spacer()
+                    }
+                  case 2:
+                    VStack{
+                      Image(systemName: "book.closed")
+                        .font(.system(size: 24))
+                        .padding(.vertical, 8.5)
+                        .foregroundColor(Color.gray)
+                      Spacer()
+                    }
+                  case 3:
+                    VStack{
+                      Image(systemName: "ellipsis")
+                        .font(.system(size: 24))
+                        .padding(.vertical, 17)
+                        .foregroundColor(Color.gray)
+                      Spacer()
+                    }
+                  default:
+                    Image(systemName: "ellipsis")
+                      .font(.system(size: 24))
+                      .foregroundColor(Color.gray)
+                  }
+                }
+                
+                Spacer()
+                  .frame(width: Screen.maxWidth * 0.05)
+              } //HStack
+              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11 : Screen.maxHeight * 0.11 - 5)
+            }
+            .frame(width: Screen.maxWidth)
+            .background(Color.white)
+            
+          }
+            
         }// VStack
         .ignoresSafeArea(.keyboard)
         .background(Color(hex: "F9F7EF"))

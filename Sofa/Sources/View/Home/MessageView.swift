@@ -108,7 +108,7 @@ struct MessageView: View {
                           curHeight = proxy.size.height + 58
                           self.minHeight = curHeight
                         }else{
-                          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
+                          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight)
                         }
                       })
                   })
@@ -217,7 +217,7 @@ struct MessageView: View {
         prevDragTranslation = .zero
         isDragging = false
         if curHeight > minHeight + 120 {
-          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight) * 0.9
+          curHeight = (Screen.maxHeight * 0.9 - self.keyboardHeightHelper.keyboardHeight)
           isMaxHeight = true
         }
         else if curHeight < minHeight - 30{

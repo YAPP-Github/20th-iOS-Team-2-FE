@@ -15,7 +15,6 @@ public struct ActionSheetCardItem: View {
   let iconLeadingPadding: CGFloat?
   let iconTrailingPadding: CGFloat?
   let label: String
-  let labelFont: Font
   let foregrounColor: Color
   let foregroundInactiveColor: Color
   let callback: (() -> ())?
@@ -27,7 +26,6 @@ public struct ActionSheetCardItem: View {
     iconLeadingPadding: CGFloat? = nil,
     iconTrailingPadding: CGFloat? = nil,
     label: String,
-    labelFont: Font = Font.system(size: 16, weight: .semibold),
     foregrounColor: Color = Color.black,
     foregroundInactiveColor: Color = Color.black,
     callback: (() -> ())? = nil
@@ -38,7 +36,6 @@ public struct ActionSheetCardItem: View {
     self.iconLeadingPadding = iconLeadingPadding
     self.iconTrailingPadding = iconTrailingPadding
     self.label = label
-    self.labelFont = labelFont
     self.foregrounColor = foregrounColor
     self.foregroundInactiveColor = foregroundInactiveColor
     self.callback = callback
@@ -50,7 +47,7 @@ public struct ActionSheetCardItem: View {
         Image(systemName: sfSymbolName)
           .resizable()
           .aspectRatio(contentMode: .fit)
-          .frame(width:iconSize ?? 24, height: iconSize ?? 24)
+          .frame(width: iconSize ?? 24, height: iconSize ?? 24)
           .padding(.vertical, iconVerticalPadding)
           .padding(.leading, iconLeadingPadding ?? 32)
           .padding(.trailing, iconTrailingPadding ?? 10)
@@ -62,7 +59,7 @@ public struct ActionSheetCardItem: View {
     HStack(spacing: 0) {
       icon
       Text(label)
-        .font(labelFont)
+        .font(.custom("Pretendard-Medium", size: 16))
       Spacer()
     }
   }

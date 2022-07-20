@@ -74,14 +74,15 @@ struct AlbumSelectDateView: View {
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
+          var recordTitle = ""
           if photoParent != nil { // 갤러리 사진들
             photoParent?.presentable.wrappedValue.dismiss()
           } else if recordParent != nil { // 녹음
             recordParent?.presentable.wrappedValue.dismiss()
+            recordTitle = String(recordUrl!.lastPathComponent.split(separator: ".").first!)
           } else { // 카메라
             presentable.wrappedValue.dismiss()
           }
-//          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
           viewModel.fetchUploadFiles(date: currentDate.getFormattedDate(format: "yyyy-MM-dd"), images: images, title: recordTitle == "" ? recordTitle : recordTitle, audio: recordUrl) // 업로드
           UITabBar.showTabBar()
         }, label: {

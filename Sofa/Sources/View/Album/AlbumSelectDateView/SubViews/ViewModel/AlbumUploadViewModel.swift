@@ -50,6 +50,10 @@ class AlbumUploadViewModel: ObservableObject {
         if images != nil { // 사진
           self?.postUploadPhoto(date: date, links: links)
         }
+        
+        if audio != nil { // 오디오
+          self?.postUploadRecording(date: date, title: title!, links: links)
+        }
       }
     )
     .store(in: &subscription)   // disposed(by: disposeBag)
@@ -58,6 +62,23 @@ class AlbumUploadViewModel: ObservableObject {
   fileprivate func postUploadPhoto(date: String, links: [String]) {
     print(#fileID, #function, #line, "")
     AF.request(UploadManager.postPhotos(date: date, links: links))
+      .publishDecodable(type: UploadFilesAPIResponse.self)
+      .value()
+      .sink(
+        receiveCompletion: { completion in
+          // guard case .failure(let error) = completion else { return }
+          // NSLog("Error : " + error.localizedDescription)
+        },
+        receiveValue: { receivedValue in
+          // NSLog("받은 값 : \(receivedValue)")
+        }
+      )
+      .store(in: &subscription)
+  }
+  
+  fileprivate func postUploadRecording(date: String, title: String, links: [String]) {
+    print(#fileID, #function, #line, "")
+    AF.request(UploadManager.postRecording(date: date, title: title, links: links))
       .publishDecodable(type: UploadFilesAPIResponse.self)
       .value()
       .sink(

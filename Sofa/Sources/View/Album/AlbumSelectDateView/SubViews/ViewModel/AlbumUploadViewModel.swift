@@ -20,7 +20,7 @@ class AlbumUploadViewModel: ObservableObject {
     AF.upload(multipartFormData: { multipartFormData in
       if let images = images { // 사진
         for image in images {
-          multipartFormData.append(image.pngData()!, withName: "files", fileName: "\(image.pngData()!).png", mimeType: "image/png")
+          multipartFormData.append(image.jpegData(compressionQuality: 1)!, withName: "files", fileName: "\(image.pngData()!).jpeg", mimeType: "image/jpeg")
         }
       }
     .publishDecodable(type: UploadFilesAPIResponse.self)

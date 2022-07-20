@@ -56,9 +56,6 @@ struct AlbumSelectDateView: View {
         .background(Color.white)
         Spacer()
       }
-      .onAppear {
-        viewModel.fetchUploadFiles(images: images, audio: recordUrl)
-      }
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
         leading: Button(action: {
@@ -85,6 +82,7 @@ struct AlbumSelectDateView: View {
             presentable.wrappedValue.dismiss()
           }
 //          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
+          viewModel.fetchUploadFiles(date: currentDate.getFormattedDate(format: "yyyy-MM-dd"), images: images, title: recordTitle == "" ? recordTitle : recordTitle, audio: recordUrl) // 업로드
           UITabBar.showTabBar()
         }, label: {
           HStack(spacing: 0) {

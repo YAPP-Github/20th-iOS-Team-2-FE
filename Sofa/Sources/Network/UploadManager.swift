@@ -11,17 +11,21 @@ import Combine
 enum UploadManager: URLRequestConvertible {
   
   case postFiles
-  
+  case postPhotos(date: String, links: [String])
   var baseURL: URL {
     switch self {
     case .postFiles:
       return URL(string: "\(APIConstants.url)/files")!
+    case .postPhotos:
+      return URL(string: "\(APIConstants.url)/album/photos")!
     }
   }
   
   var method: HTTPMethod {
     switch self {
     case .postFiles:
+      return .post
+    case .postPhotos:
       return .post
     }
   }
@@ -34,8 +38,23 @@ enum UploadManager: URLRequestConvertible {
     switch self {
     case .postFiles:
       headers["Content-Type"] = "multipart/form-data"
-      return headers
+    case .postPhotos:
+      headers["Content-Type"] = "application/json"
     }
+    return headers
+  }
+  
+  var parameters: Parameters {
+    var params = Parameters()
+    
+    switch self {
+    case .postFiles:
+      break
+    case let .postPhotos(date, links):
+      params["date"] = date
+      params["links"] = links
+    }
+    return params
   }
   
   func asURLRequest() throws -> URLRequest {
@@ -45,7 +64,11 @@ enum UploadManager: URLRequestConvertible {
     request.method = method
     request.headers = headers
     
-    request = try URLEncoding.default.encode(request, with: nil)
+    switch self {
+    case .postFiles:
+      request = try URLEncoding.default.encode(request, with: nil)
+    case .postPhotos:
+      request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
     
     return request
   }

@@ -10,7 +10,7 @@ import SwiftUI
 import Photos
 
 struct UploadFilesAPIResponse: Hashable, Decodable {
-  let links: [String]
+  let links: [String]?
 }
 
 struct Photo: Hashable {

@@ -9,25 +9,22 @@ import SwiftUI
 
 struct AlbumSelectDateView: View {
   @Environment(\.presentationMode) var presentable
-  @ObservedObject var viewModel: AlbumUploadViewModel
+  @ObservedObject var viewModel = AlbumUploadViewModel()
   @State var currentDate: Date = Date()
   
   var title: String = "올리기"
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
   
-  // 갤러리 사진들
-  @State var imageList: [SelectedImages]? // 갤러리 사진들
-  var photoParent: AlbumPhotoAddView?
-  
-  // 카메라 사진
-  @State var image: UIImage? // 카메라 사진
+  // 사진
+  @Binding var isCameraCancle: Bool // 카메라 사진
+  var photoParent: AlbumPhotoAddView? // 갤러리 사진
+  var images: [UIImage]? // 갤러리 사진들, 카메라
   
   // 녹음
   @ObservedObject var fetcher = AudioRecorderURLViewModel()
   @State var recordTitle: String = ""
   var recordParent: AlbumRecordAddView?
   
-    self.viewModel = AlbumUploadViewModel(images: images)
   var body: some View {
     NavigationView {
       VStack(spacing: 0) {
@@ -36,7 +33,6 @@ struct AlbumSelectDateView: View {
             Divider()
             Spacer() // 임시 - 여백용
               .frame(height: 8)
-            
             HStack {
               Spacer()
               TextField("\(fetcher.recordTitle)", text: $recordTitle)
@@ -63,6 +59,9 @@ struct AlbumSelectDateView: View {
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
         leading: Button(action: {
+          if photoParent == nil && recordParent == nil { // 카메라로 들어왔을 경우,
+            isCameraCancle = true // 카메라 imagePicker로 이동
+          }
           presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {
@@ -109,11 +108,14 @@ struct AlbumSelectDateView: View {
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)
+    .onAppear {
+      viewModel.fetchUploadFiles(images: images)
+    }
   }
 }
 
-struct AlbumSelectDateView_Previews: PreviewProvider {
-  static var previews: some View {
-    AlbumSelectDateView(isCameraCancle: .constant(false))
-  }
-}
+//struct AlbumSelectDateView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    AlbumSelectDateView(images: MockData().photoList.map{UIImage(named: $0)!})
+//  }
+//}

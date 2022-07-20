@@ -13,18 +13,15 @@ class AlbumUploadViewModel: ObservableObject {
   @Published var uploadFiles = [String]()
   private var subscription = Set<AnyCancellable>()    // disposeBag
   
-  init(images: [UIImage]) {
-    print(#fileID, #function, #line, "")
-    fetchUploadFiles(images: images) // 파일 업로드
-  }
-  
   // 서버에 파일 업로드 후, Link 받아오기
-  fileprivate func fetchUploadFiles(images: [UIImage]) {
+  func fetchUploadFiles(images: [UIImage]?) {
     print(#fileID, #function, #line, "")
     
     AF.upload(multipartFormData: { multipartFormData in
-      for image in images {
-        multipartFormData.append(image.pngData()!, withName: "files", fileName: "\(image.pngData()!).png", mimeType: "image/png")
+      if let images = images { // 사진
+        for image in images {
+          multipartFormData.append(image.pngData()!, withName: "files", fileName: "\(image.pngData()!).png", mimeType: "image/png")
+        }
       }
     }, with: UploadManager.postImages)
     .publishDecodable(type: UploadFilesAPIResponse.self)

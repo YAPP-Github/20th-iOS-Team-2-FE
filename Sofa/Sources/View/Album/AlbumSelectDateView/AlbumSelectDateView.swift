@@ -19,7 +19,6 @@ struct AlbumSelectDateView: View {
   var photoParent: AlbumPhotoAddView?
   
   // 카메라 사진
-  @Binding var isCameraCancle: Bool
   @State var image: UIImage? // 카메라 사진
   
   // 녹음
@@ -62,9 +61,6 @@ struct AlbumSelectDateView: View {
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
         leading: Button(action: {
-          if image != nil { // 카메라로 들어왔을 경우,
-            isCameraCancle = true // 카메라 imagePicker로 이동
-          }
           presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {

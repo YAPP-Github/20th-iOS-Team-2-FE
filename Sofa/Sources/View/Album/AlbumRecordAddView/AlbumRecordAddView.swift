@@ -37,11 +37,29 @@ struct AlbumRecordAddView: View {
     .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
   
+  // 녹음 재생 버튼
+  var playButton: some View {
+    Button(action: {
+      
+    }) {
+      ZStack {
+        Circle()
+          .frame(width: 64, height: 64)
+          .foregroundColor(Color.white)
+        
+        Image(systemName: "play.fill")
+          .resizable()
+          .frame(width: 32, height: 32)
+          .foregroundColor(Color(hex: "D81B60"))
+      }
+    }
+  }
+  
   var recordButtonArea: some View {
     VStack {
       Spacer()
       VStack {
-        HStack {
+        HStack(spacing: 24) {
           Button(action: {
             if self.audioRecorder.isRecording{
               self.audioRecorder.stopRecording()
@@ -72,6 +90,9 @@ struct AlbumRecordAddView: View {
               }
             }
           })
+          if record {
+            playButton // 재생 버튼
+          }
         }
         .padding(.top, 16)
         Spacer()

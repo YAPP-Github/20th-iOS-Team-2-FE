@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumSelectDateView: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var viewModel: AlbumUploadViewModel
   @State var currentDate: Date = Date()
   
   var title: String = "올리기"
@@ -26,6 +27,7 @@ struct AlbumSelectDateView: View {
   @State var recordTitle: String = ""
   var recordParent: AlbumRecordAddView?
   
+    self.viewModel = AlbumUploadViewModel(images: images)
   var body: some View {
     NavigationView {
       VStack(spacing: 0) {

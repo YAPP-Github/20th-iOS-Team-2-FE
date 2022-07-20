@@ -15,6 +15,9 @@ struct HomeView: View {
   @State var showMessageView = false
   @Binding var selectionType: Tab
   @State var placeholder = "가족에게 인사를 남겨보세요."
+  @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
+  
+  @ObservedObject var tabbarManager = TabBarManager.shared
   
   var body: some View {
     ZStack {
@@ -61,19 +64,28 @@ struct HomeView: View {
           EmojiView(messageShow: $showMessageView)
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
-            .edgesIgnoringSafeArea(.top)
+            .edgesIgnoringSafeArea(.all)
             .fullScreenCover(isPresented: $showMessageView) {
               MessageView($showMessageView, $placeholder)
                 .background(BackgroundCleanerView())
             }
           
+          if (!tabbarManager.showTabBar){
+            // TabBar Show를 위한 Rectangle()
+//            Rectangle()
+//              .foregroundColor(Color.clear)
+//              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
+            // Custom Tab View
+            CustomTabView(selection: $currentSelectedTab)
+          
+            
+          }
+          
         }// VStack
         .ignoresSafeArea(.keyboard)
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
-        .onAppear{
-          UITabBar.showTabBar(animated: false)
-        }
+        .edgesIgnoringSafeArea([.bottom])
         
       }// NavigationView
       .accentColor(Color(hex: "43A047"))
@@ -88,11 +100,11 @@ struct HomeView: View {
   
 }
 
-struct HomeView_Previews: PreviewProvider {
-  static var previews: some View {
-    HomeView(selectionType: .constant(.home))
-  }
-}
+//struct HomeView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    HomeView(selectionType: .constant(.home))
+//  }
+//}
 
 struct BackgroundCleanerView: UIViewRepresentable {
   func makeUIView(context: Context) -> UIView {

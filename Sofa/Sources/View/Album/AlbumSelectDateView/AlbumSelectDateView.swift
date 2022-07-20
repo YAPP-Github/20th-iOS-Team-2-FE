@@ -114,8 +114,8 @@ struct AlbumSelectDateView: View {
   }
 }
 
-//struct AlbumSelectDateView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    AlbumSelectDateView(images: MockData().photoList.map{UIImage(named: $0)!})
-//  }
-//}
+struct AlbumSelectDateView_Previews: PreviewProvider {
+  static var previews: some View {
+    AlbumSelectDateView(isCameraCancle: .constant(false), images: MockData().photoList.map{UIImage(named: $0)!})
+  }
+}

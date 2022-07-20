@@ -48,6 +48,7 @@
 		0AC13DF5287F191A00FDD489 /* MbSwiftUIFirstResponder in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC13DF4287F191A00FDD489 /* MbSwiftUIFirstResponder */; };
 		0AC79182286AF1440034A830 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC79181286AF1440034A830 /* EmojiView.swift */; };
 		0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC79184286B0AE00034A830 /* ConfettiSwiftUI */; };
+		0ACC024D2886E287006234DF /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACC024C2886E287006234DF /* CustomTabView.swift */; };
 		0AE4919A28740D1A00341D35 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE4919928740D1A00341D35 /* HistoryView.swift */; };
 		0AE492022876A8DC00341D35 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE492012876A8DC00341D35 /* HistoryViewModel.swift */; };
 		0AE492042876A8F600341D35 /* HistoryMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AE492032876A8F600341D35 /* HistoryMock.json */; };
@@ -219,6 +220,7 @@
 		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		0AC79181286AF1440034A830 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		0ACC024C2886E287006234DF /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		0AE4919928740D1A00341D35 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		0AE492012876A8DC00341D35 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		0AE492032876A8F600341D35 /* HistoryMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HistoryMock.json; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 			isa = PBXGroup;
 			children = (
 				C4667A30284B6FF200A4A759 /* ContentView.swift */,
+				0ACC024C2886E287006234DF /* CustomTabView.swift */,
 				6F22E51E284B9CB60069D268 /* Welcome */,
 				6F22E51F284B9CBA0069D268 /* Home */,
 				6F22E521284B9CD40069D268 /* Calendar */,
@@ -1363,6 +1366,7 @@
 				C4B8F2CC285474900000B8CB /* PinchToZoom.swift in Sources */,
 				C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */,
 				C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */,
+				0ACC024D2886E287006234DF /* CustomTabView.swift in Sources */,
 				C4B8F2BC285289A30000B8CB /* MockData.swift in Sources */,
 				0AF2B5302881D93B00C6A55E /* TextLabelWithHyperlink.swift in Sources */,
 				C4A9799A28682DF800326ABC /* RecordAuthorization.swift in Sources */,

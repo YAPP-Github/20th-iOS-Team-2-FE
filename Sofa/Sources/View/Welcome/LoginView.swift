@@ -11,7 +11,7 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 
 struct LoginView: View {
-  
+
   @State var titleShow = false
   @State var loginShow = false
   var body: some View {

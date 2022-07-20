@@ -57,7 +57,7 @@ struct EventList: View {
     .singlePagination(ratio: 0.8, sensitivity: .high)
     .itemSpacing(16)
     .preferredItemSize(CGSize(width: eventViewModel.events.count > 1 ? Screen.maxWidth - 72 : Screen.maxWidth - 32, height: 100))
-    .animation(.default)
+    .animation(eventViewModel.events.count > 1 ? .none : .default)
   }
   
 }

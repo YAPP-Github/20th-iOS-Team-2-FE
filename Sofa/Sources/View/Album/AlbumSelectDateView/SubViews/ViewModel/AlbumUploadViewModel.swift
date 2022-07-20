@@ -23,7 +23,6 @@ class AlbumUploadViewModel: ObservableObject {
           multipartFormData.append(image.pngData()!, withName: "files", fileName: "\(image.pngData()!).png", mimeType: "image/png")
         }
       }
-    }, with: UploadManager.postImages)
     .publishDecodable(type: UploadFilesAPIResponse.self)
     .value()
     .receive(on: DispatchQueue.main)

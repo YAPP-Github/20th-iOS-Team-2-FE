@@ -10,18 +10,18 @@ import Combine
 
 enum UploadManager: URLRequestConvertible {
   
-  case postImages
+  case postFiles
   
   var baseURL: URL {
     switch self {
-    case .postImages:
+    case .postFiles:
       return URL(string: "\(APIConstants.url)/files")!
     }
   }
   
   var method: HTTPMethod {
     switch self {
-    case .postImages:
+    case .postFiles:
       return .post
     }
   }
@@ -32,7 +32,7 @@ enum UploadManager: URLRequestConvertible {
     headers["Authorization"] = accessToken
     
     switch self {
-    case .postImages:
+    case .postFiles:
       headers["Content-Type"] = "multipart/form-data"
       return headers
     }

@@ -51,7 +51,9 @@ struct AlbumView: View {
           AlbumList(selectType: selected) // select값에 따른 날짜별, 유형별 View
           
           // 카메라 날짜 선택 View로 이동
-          NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, images: [cameraImage]), isActive: $showCameraSelectDate)
+          if showCameraSelectDate {
+            NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, images: [cameraImage]), isActive: $showCameraSelectDate)
+          }
         }
         .background(Color.init(hex: "#FAF8F0")) // 임시
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러

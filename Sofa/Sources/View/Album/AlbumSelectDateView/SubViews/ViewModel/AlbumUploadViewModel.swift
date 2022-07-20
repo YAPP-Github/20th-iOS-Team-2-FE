@@ -14,7 +14,7 @@ class AlbumUploadViewModel: ObservableObject {
   private var subscription = Set<AnyCancellable>()    // disposeBag
   
   // 서버에 파일 업로드 후, Link 받아오기
-  func fetchUploadFiles(images: [UIImage]?) {
+  func fetchUploadFiles(images: [UIImage]?, audio: URL?) {
     print(#fileID, #function, #line, "")
     
     AF.upload(multipartFormData: { multipartFormData in
@@ -23,6 +23,13 @@ class AlbumUploadViewModel: ObservableObject {
           multipartFormData.append(image.jpegData(compressionQuality: 1)!, withName: "files", fileName: "\(image.pngData()!).jpeg", mimeType: "image/jpeg")
         }
       }
+      
+      if let audio = audio { // 오디오
+        let fileName = audio.lastPathComponent
+        guard let audioFile: Data = try? Data(contentsOf: audio) else { return }
+        multipartFormData.append(audioFile, withName: "files", fileName: fileName, mimeType: "audio/m4a")
+      }
+    }, with: UploadManager.postFiles)
     .publishDecodable(type: UploadFilesAPIResponse.self)
     .value()
     .receive(on: DispatchQueue.main)

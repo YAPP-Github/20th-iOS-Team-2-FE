@@ -21,9 +21,9 @@ struct AlbumSelectDateView: View {
   var images: [UIImage]? // 갤러리 사진들, 카메라
   
   // 녹음
-  @ObservedObject var fetcher = AudioRecorderURLViewModel()
   @State var recordTitle: String = ""
   var recordParent: AlbumRecordAddView?
+  var recordUrl: URL? // 녹음
   
   var body: some View {
     NavigationView {
@@ -35,7 +35,7 @@ struct AlbumSelectDateView: View {
               .frame(height: 8)
             HStack {
               Spacer()
-              TextField("\(fetcher.recordTitle)", text: $recordTitle)
+              TextField(recordUrl!.lastPathComponent.split(separator: ".").first!, text: $recordTitle)
                 .padding(16)
                 .background(Color.init(hex: "#FAF8F0")) // 임시
                 .font(.custom("Pretendard-Medium", size: 18))
@@ -55,6 +55,9 @@ struct AlbumSelectDateView: View {
         .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
         .background(Color.white)
         Spacer()
+      }
+      .onAppear {
+        viewModel.fetchUploadFiles(images: images, audio: recordUrl)
       }
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
@@ -108,9 +111,6 @@ struct AlbumSelectDateView: View {
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)
-    .onAppear {
-      viewModel.fetchUploadFiles(images: images)
-    }
   }
 }
 

@@ -82,6 +82,7 @@ struct AlbumRecordAddView: View {
   }
   
   func existRecord() -> Bool {
+    return audioRecorder.url != nil && !audioRecorder.isRecording
   }
   
   var body: some View {
@@ -100,7 +101,7 @@ struct AlbumRecordAddView: View {
             )
           
           // 날짜 선택으로 이동
-          NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self), isActive: $isNext)
+          NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
         }
         .background(Color.black)
         .navigationBarHidden(true)

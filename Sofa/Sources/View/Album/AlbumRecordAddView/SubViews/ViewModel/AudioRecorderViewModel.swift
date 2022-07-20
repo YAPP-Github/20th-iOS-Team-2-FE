@@ -109,4 +109,13 @@ class AudioRecorderViewModel: ObservableObject {
       self.minutes = (Int(self.time * 0.01) / 60) % 60
     })
   }
+  // [URL] 범위 삭제
+  func deleteRecording(urlsToDelete: URL?) {
+    guard let urlsToDelete = urlsToDelete else { return }
+    do {
+      try FileManager.default.removeItem(at: urlsToDelete)
+    } catch {
+      print("File could not be deleted!")
+    }
+  }
 }

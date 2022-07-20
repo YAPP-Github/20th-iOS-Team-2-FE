@@ -93,7 +93,7 @@ struct AlbumRecordAddView: View {
           Color.clear
             .ignoresSafeArea()
             .overlay(
-              AlbumRecordNavigationBar(isNext: $isNext, existRecord: .constant(record), title: "새로운 녹음", recordParent: self, safeTop: geometry.safeAreaInsets.top) // Navigation Bar
+              AlbumRecordNavigationBar(isNext: $isNext, existRecord: .constant(record), title: "새로운 녹음", recordParent: self, recordUrl: audioRecorder.url, safeTop: geometry.safeAreaInsets.top) // Navigation Bar
             )
             .overlay(
               recordButtonArea

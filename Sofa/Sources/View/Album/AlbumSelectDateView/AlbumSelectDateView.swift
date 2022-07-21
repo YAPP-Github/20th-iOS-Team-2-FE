@@ -40,6 +40,7 @@ struct AlbumSelectDateView: View {
                 .padding(16)
                 .background(Color.init(hex: "#FAF8F0")) // 임시
                 .font(.custom("Pretendard-Medium", size: 18))
+                .foregroundColor(Color.black)
                 .cornerRadius(6)
               Spacer()
             }

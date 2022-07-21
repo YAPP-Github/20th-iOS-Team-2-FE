@@ -15,7 +15,7 @@ class AlbumUploadViewModel: ObservableObject {
   
   // 서버에 파일 업로드 후, Link 받아오기
   func fetchUploadFiles(date: String, images: [UIImage]?, title: String?, audio: URL?) {
-    print(#fileID, #function, #line, "")
+//    print(#fileID, #function, #line, "")
     
     AF.upload(multipartFormData: { multipartFormData in
       if let images = images { // 사진
@@ -40,7 +40,7 @@ class AlbumUploadViewModel: ObservableObject {
         self?.uploadFiles = [String]()
       },
       receiveValue: {[weak self] receivedValue in
-        NSLog("받은 값 : \(receivedValue)")
+//        NSLog("받은 값 : \(receivedValue)")
         self?.uploadFiles = receivedValue.links!
         guard let links = receivedValue.links else {
           NSLog("links를 받아오지 못했습니다")
@@ -77,7 +77,7 @@ class AlbumUploadViewModel: ObservableObject {
   }
   
   fileprivate func postUploadRecording(date: String, title: String, links: [String]) {
-    print(#fileID, #function, #line, "")
+//    print(#fileID, #function, #line, "")
     AF.request(UploadManager.postRecording(date: date, title: title, links: links))
       .publishDecodable(type: UploadFilesAPIResponse.self)
       .value()

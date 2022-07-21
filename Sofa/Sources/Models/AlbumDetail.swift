@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct AlbumDetail: Hashable, Decodable {
-  let title: String
+struct AlbumDetailAPIResponse: Hashable, Decodable {
+  let title: String?
+  let type: String?
   let elements: [AlbumDetailElement]
 }
 
@@ -19,6 +20,6 @@ struct AlbumDetailElement: Identifiable, Hashable, Decodable {
   let date: String
   let link: String
   let favourite: Bool
-  let title: String?
+  let title: String? // RECORDING일 경우
   let commentCount: Int
 }

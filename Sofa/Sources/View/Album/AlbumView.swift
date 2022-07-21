@@ -16,7 +16,6 @@ struct AlbumView: View {
   @State var selected = 0
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
   @State var cameraImage = UIImage() // 카메라를 통해 받아오는 이미지
-  
 
   var actionSheetView: some View {
     ActionSheetCard(

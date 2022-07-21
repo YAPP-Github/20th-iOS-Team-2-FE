@@ -13,6 +13,7 @@ target 'Sofa' do
   pod 'SwiftKeychainWrapper'
   pod 'Alamofire'
   pod 'Introspect'
+  pod 'URLImage'
 
   target 'SofaTests' do
     inherit! :search_paths

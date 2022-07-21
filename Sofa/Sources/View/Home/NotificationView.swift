@@ -13,6 +13,8 @@ struct NotificationView: View {
   @ObservedObject var notificationViewModel = NotificationViewModel()
   @Binding var selectionType: Tab
   
+  @ObservedObject var tabbarManager = TabBarManager.shared
+  
   
   var periodArr = ["오늘", "이번 주", "이번 달"]
   var taskDict = ["CALENDAR" : "일정", "ALBUM" : "사진"]
@@ -92,6 +94,10 @@ struct NotificationView: View {
     .edgesIgnoringSafeArea([.bottom])
     .onDisappear{
       UITabBar.showTabBar(animated: false)
+      tabbarManager.showTabBar = true
+    }
+    .onAppear{
+      tabbarManager.showTabBar = false
     }
 
   }

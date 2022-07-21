@@ -72,6 +72,11 @@ class AlbumDetailListViewModel: ObservableObject {
   // 날짜별
   fileprivate func fetchAlbumDetailByDate() {
     self.isLoading = true
+//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).baseURL)
+//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).headers)
+//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).method)
+//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).parameters)
+    
     AF.request(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId))
       .publishDecodable(type: AlbumDetailAPIResponse.self)
       .value()
@@ -103,6 +108,11 @@ class AlbumDetailListViewModel: ObservableObject {
   
   // 유형별
   fileprivate func fetchAlbumDetailByKind() {
+//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).baseURL)
+//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).headers)
+//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).parameters)
+//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).method)
+    
     AF.request(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType))
       .publishDecodable(type: AlbumDetailAPIResponse.self)
       .value()

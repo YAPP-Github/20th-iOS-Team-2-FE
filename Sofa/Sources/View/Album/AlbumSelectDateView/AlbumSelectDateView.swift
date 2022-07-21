@@ -28,36 +28,40 @@ struct AlbumSelectDateView: View {
   
   var body: some View {
     NavigationView {
-      VStack(spacing: 0) {
-        if recordParent != nil { // 녹음일 경우
-          VStack(spacing: 0) {
-            Divider()
-            Spacer() // 임시 - 여백용
-              .frame(height: 8)
-            HStack {
-              Spacer()
-              TextField(recordUrl!.lastPathComponent.split(separator: ".").first!, text: $recordTitle)
-                .padding(16)
-                .background(Color.init(hex: "#FAF8F0")) // 임시
-                .font(.custom("Pretendard-Medium", size: 18))
-                .foregroundColor(Color.black)
-                .cornerRadius(6)
-              Spacer()
+      ScrollView {
+        VStack(spacing: 0) {
+          if recordParent != nil { // 녹음일 경우
+            VStack(spacing: 0) {
+              Divider()
+              Spacer() // 임시 - 여백용
+                .frame(height: 8)
+              HStack {
+                Spacer()
+                TextField(recordUrl!.lastPathComponent.split(separator: ".").first!, text: $recordTitle)
+                  .padding(16)
+                  .background(Color.init(hex: "#FAF8F0")) // 임시
+                  .font(.custom("Pretendard-Medium", size: 18))
+                  .foregroundColor(Color.black)
+                  .cornerRadius(6)
+                  .modifier(DismissingKeyboard())
+                Spacer()
+              }
+              .frame(width: Screen.maxWidth, height: 80) // 임시 - 높이
+              .background(Color.white)
             }
-            .frame(width: Screen.maxWidth, height: 80) // 임시 - 높이
-            .background(Color.white)
           }
+          Divider()
+          Spacer() // 임시 - 여백용
+            .frame(height: 8)
+          Group {
+            GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false), currentDate: $currentDate)
+          }
+          .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+          .background(Color.white)
+          Spacer()
         }
-        Divider()
-        Spacer() // 임시 - 여백용
-          .frame(height: 8)
-        Group {
-          GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false), currentDate: $currentDate)
-        }
-        .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
-        .background(Color.white)
-        Spacer()
       }
+      .modifier(DismissingKeyboard())
       .background(Color.init(hex: "#FAF8F0")) // 임시
       .navigationBarItems(
         leading: Button(action: {

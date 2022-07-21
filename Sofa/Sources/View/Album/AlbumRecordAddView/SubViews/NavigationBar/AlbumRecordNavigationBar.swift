@@ -9,10 +9,12 @@ import SwiftUI
 
 struct AlbumRecordNavigationBar: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
   @Binding var isNext: Bool
   @Binding var existRecord: Bool
   let title: String
   var recordParent: AlbumRecordAddView?
+  var recordUrl: URL?
   let safeTop: CGFloat
   
   var body: some View {
@@ -26,6 +28,7 @@ struct AlbumRecordNavigationBar: View {
             } else {
               presentable.wrappedValue.dismiss()
             }
+            audioRecorder.deleteRecording(urlsToDelete: recordUrl)
           }) {
             if recordParent != nil {
               Text("취소")

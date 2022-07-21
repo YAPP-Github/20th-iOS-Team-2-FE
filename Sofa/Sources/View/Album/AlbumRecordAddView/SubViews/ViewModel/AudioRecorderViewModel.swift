@@ -11,6 +11,7 @@ import AVFoundation
 class AudioRecorderViewModel: ObservableObject {
   @Published public var soundSamples: [Bool]
   @Published public var isRecording = false
+  @Published public var url: URL?
   
   // 시간 Properties
   @Published var minutes: Int = 0
@@ -58,10 +59,10 @@ class AudioRecorderViewModel: ObservableObject {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "YYYY-MM-dd 녹음"
     
-    let url = documentPath.appendingPathComponent("\(dateFormatter.string(from: Date()))")
+    self.url = documentPath.appendingPathComponent("\(dateFormatter.string(from: Date())).m4a")
     
     do {
-      audioRecorder = try AVAudioRecorder(url: url, settings: recorderSettings)
+      audioRecorder = try AVAudioRecorder(url: self.url!, settings: recorderSettings)
       
       // 오디오 세션 카테고리, 모드, 옵션을 설정
       try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
@@ -108,5 +109,24 @@ class AudioRecorderViewModel: ObservableObject {
       self.seconds = Int(self.time * 0.01) % 60
       self.minutes = (Int(self.time * 0.01) / 60) % 60
     })
+  }
+  
+  // 개발용 - 검색
+  func search() {
+    let fileManager = FileManager.default
+    let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let path = documentDirectory.path
+    let directoryContents = try! fileManager.contentsOfDirectory(atPath: path)
+    print(directoryContents)
+  }
+  
+  // [URL] 범위 삭제
+  func deleteRecording(urlsToDelete: URL?) {
+    guard let urlsToDelete = urlsToDelete else { return }
+    do {
+      try FileManager.default.removeItem(at: urlsToDelete)
+    } catch {
+      print("File could not be deleted!")
+    }
   }
 }

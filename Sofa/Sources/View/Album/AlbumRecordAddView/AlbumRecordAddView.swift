@@ -37,11 +37,44 @@ struct AlbumRecordAddView: View {
     .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
   
+  // 녹음 재생 버튼
+  var playButton: some View {
+    Button(action: {
+      self.audioRecorder.startPlayback()
+    }) {
+      ZStack {
+        Circle()
+          .frame(width: 64, height: 64)
+          .foregroundColor(Color.white)
+        
+        Image(systemName: "play.fill")
+          .resizable()
+          .frame(width: 32, height: 32)
+          .foregroundColor(Color(hex: "D81B60"))
+      }
+    }
+  }
+  
+  // 정지 버튼
+  var puaseButton: some View {
+    Group {
+      Circle()
+        .frame(width: 64, height: 64)
+        .foregroundColor(Color.white)
+      
+      Image(systemName: "pause.fill")
+        .resizable()
+        .font(.system(size: 32))
+        .frame(width: 28, height: 32)
+        .foregroundColor(Color(hex: "D81B60"))
+    }
+  }
+  
   var recordButtonArea: some View {
     VStack {
       Spacer()
       VStack {
-        HStack {
+        HStack(spacing: 24) {
           Button(action: {
             if self.audioRecorder.isRecording{
               self.audioRecorder.stopRecording()
@@ -51,15 +84,7 @@ struct AlbumRecordAddView: View {
           }, label: {
             ZStack {
               if audioRecorder.isRecording { // 녹음 시작
-                Circle()
-                  .frame(width: 64, height: 64)
-                  .foregroundColor(Color.white)
-                
-                Image(systemName: "pause.fill")
-                  .resizable()
-                  .font(.system(size: 32))
-                  .frame(width: 28, height: 32)
-                  .foregroundColor(Color(hex: "D81B60"))
+                puaseButton // 정지 버튼
               } else { // 녹음 끝
                 Circle()
                   .frame(width: 64, height: 64)
@@ -72,6 +97,19 @@ struct AlbumRecordAddView: View {
               }
             }
           })
+          if record {
+            if audioRecorder.isPlaying == false {
+              playButton // 재생 버튼
+            } else {
+              Button(action: {
+                self.audioRecorder.pausePlayback()
+              }) {
+                ZStack {
+                  puaseButton // 정지 버튼
+                }
+              }
+            }
+          }
         }
         .padding(.top, 16)
         Spacer()
@@ -101,7 +139,12 @@ struct AlbumRecordAddView: View {
             )
           
           // 날짜 선택으로 이동
-          NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
+          if isNext {
+            NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
+              .onAppear {
+                self.audioRecorder.pausePlayback()
+              }
+          }
         }
         .background(Color.black)
         .navigationBarHidden(true)

@@ -72,7 +72,7 @@ struct AlbumDetailView: View {
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
-        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), info.title, nextText: "편집", Color.init(hex: "#43A047"))
+        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), info.title!, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isEdit) { // 앨범 날짜 수정
           AlbumEditDateView(albumId: "0") // 임시
         }
@@ -80,7 +80,7 @@ struct AlbumDetailView: View {
           AlbumEditDateView(photoId: "0") // 임시
         }
         .fullScreenCover(isPresented: $isTitleClick) {
-          AlbumTitleEditView(title: info.title, isShowing: $isTitleClick)
+          AlbumTitleEditView(title: info.title!, isShowing: $isTitleClick)
             .background(BackgroundCleanerView())
         }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시

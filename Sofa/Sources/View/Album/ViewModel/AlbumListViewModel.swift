@@ -15,7 +15,7 @@ class AlbumListViewModel: ObservableObject {
   @Published var isLoading: Bool = false // Loding
   @Published var pageInfo : Info? {
     didSet {
-      print("pageInfo: \(pageInfo!)")
+//      print("pageInfo: \(pageInfo!)")
     }
   }
   private var subscription = Set<AnyCancellable>()    // disposeBag

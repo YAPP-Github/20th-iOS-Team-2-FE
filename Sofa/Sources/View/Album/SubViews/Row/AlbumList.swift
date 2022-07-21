@@ -33,6 +33,9 @@ struct AlbumList: View {
               .font(.custom("Pretendard-Medium", size: 16))
               .frame(height: 20)
           }
+          
+          // 상세 앨범 View로 이동
+          NavigationLink("", destination: AlbumDetailView(selectAlbumId: selectAlbumId), isActive: $showAlbumDetail)
         }
         .coordinateSpace(name: "pullToRefresh")
         .introspectScrollView(customize: { uiScrollView in
@@ -48,13 +51,13 @@ struct AlbumList: View {
               AlbumKindRow(selectKindType: $selectKindType, showAlbumDetail: $showAlbumDetail, albumKind: kind)
             }
           }
+          
+          // 상세 앨범 View로 이동
+          NavigationLink("", destination: AlbumDetailView(selectKindType: selectKindType), isActive: $showAlbumDetail)
         }
       }
     }
     .padding([.leading, .trailing], 16)
-    
-    // 상세 앨범 View로 이동
-    NavigationLink("", destination: AlbumDetailView(selectAlbumId: selectAlbumId, selectKindType: selectKindType), isActive: $showAlbumDetail)
   }
 }
 

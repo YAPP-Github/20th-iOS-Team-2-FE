@@ -19,8 +19,8 @@ struct AlbumDetailList: View {
   @Binding var isCommentClick: Bool
   @Binding var isEllipsisClick: Bool
   
-  let selectAlbumId: Int      // 날짜별
-  let selectKindType: String  // 유형별
+  let selectAlbumId: Int?      // 날짜별
+  let selectKindType: String?  // 유형별
   
   var body: some View {
     ScrollView {

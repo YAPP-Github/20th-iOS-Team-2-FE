@@ -30,10 +30,10 @@ class AlbumDetailListViewModel: ObservableObject {
 
   var currentPage: Int = 0
   
-  func fetch(albumId: Int, kindType: String) {
-    if albumId != -1 { // 날짜별
+  func fetch(albumId: Int?, kindType: String?) {
+    if let albumId = albumId { // 날짜별
       self.albumId = albumId
-      
+
       fetchAlbumDetailByDate()
       
       refreshActionSubjectByDate.sink{ [weak self] _ in
@@ -47,7 +47,9 @@ class AlbumDetailListViewModel: ObservableObject {
           self.fetchMoreByDate()
         }
       }.store(in: &subscription)
-    } else if kindType != "" { // 유형별
+    }
+    
+    if let kindType = kindType { // 유형별
       self.kindType = kindType
       
       fetchAlbumDetailByKind()

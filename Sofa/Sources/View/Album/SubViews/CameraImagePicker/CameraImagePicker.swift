@@ -30,6 +30,7 @@ struct CameraImagePicker: UIViewControllerRepresentable {
   }
   
   final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @ObservedObject var tabbarManager = TabBarManager.shared
     var parent: CameraImagePicker
     
     init(_ parent: CameraImagePicker) {
@@ -41,6 +42,7 @@ struct CameraImagePicker: UIViewControllerRepresentable {
         parent.selectedImage = image
         parent.isNext = true // 날짜 선택으로
       }
+      tabbarManager.showTabBar = true
       parent.presentationMode.wrappedValue.dismiss() // image picker 닫기
     }
   }

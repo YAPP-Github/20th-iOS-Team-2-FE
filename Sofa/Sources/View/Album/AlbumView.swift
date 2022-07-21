@@ -9,12 +9,15 @@ import SwiftUI
 
 
 struct AlbumView: View {
+  @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+  @State var currentSelectedTab: Tab = .album // 현재 선택된 탭으로 표시할 곳
   @State var showingSheet = false
   @State var selected = 0
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
   @State var cameraImage = UIImage() // 카메라를 통해 받아오는 이미지
   
+
   var actionSheetView: some View {
     ActionSheetCard(
       isShowing: $showingSheet,
@@ -33,7 +36,6 @@ struct AlbumView: View {
         }
       ]
     )
-    .onDisappear { UITabBar.showTabBar() }
   }
   
   var body: some View {
@@ -49,6 +51,10 @@ struct AlbumView: View {
           .pickerStyle(SegmentedPickerStyle())
           
           AlbumList(selectType: selected) // select값에 따른 날짜별, 유형별 View
+          
+          if (!tabbarManager.showTabBar){
+            CustomTabView(selection: $currentSelectedTab)
+          }
           
           // 카메라 날짜 선택 View로 이동
           if showCameraSelectDate {
@@ -82,7 +88,6 @@ struct AlbumView: View {
             },
             secondaryButton: .default(Text("확인")))
         }
-        .onAppear { UITabBar.showTabBar() }
       }
       if showingSheet { // action sheet
         Color.black
@@ -90,7 +95,9 @@ struct AlbumView: View {
           .ignoresSafeArea()
           .onTapGesture {
             showingSheet = false
+            tabbarManager.showTabBar = true
           }
+          .onAppear { self.tabbarManager.showTabBar = false }
         
         actionSheetView // 바텀 Sheet
       }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumRecordNavigationBar: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
   @Binding var isNext: Bool
   @Binding var existRecord: Bool
@@ -24,6 +25,7 @@ struct AlbumRecordNavigationBar: View {
         HStack {
           Button(action: {
             if recordParent != nil {
+              tabbarManager.showTabBar = true
               recordParent!.presentable.wrappedValue.dismiss()
             } else {
               presentable.wrappedValue.dismiss()

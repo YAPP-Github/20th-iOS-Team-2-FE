@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumSelectDateView: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject var viewModel = AlbumUploadViewModel()
   @State var currentDate: Date = Date()
   
@@ -83,6 +84,7 @@ struct AlbumSelectDateView: View {
           } else { // 카메라
             presentable.wrappedValue.dismiss()
           }
+          tabbarManager.showTabBar = true
           viewModel.fetchUploadFiles(date: currentDate.getFormattedDate(format: "yyyy-MM-dd"), images: images, title: recordTitle == "" ? recordTitle : recordTitle, audio: recordUrl) // 업로드
           UITabBar.showTabBar()
         }, label: {

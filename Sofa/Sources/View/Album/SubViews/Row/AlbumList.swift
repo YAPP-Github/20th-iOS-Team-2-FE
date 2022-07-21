@@ -54,7 +54,7 @@ struct AlbumList: View {
     .padding([.leading, .trailing], 16)
     
     // 상세 앨범 View로 이동
-    NavigationLink("", destination: AlbumDetailView(), isActive: $showAlbumDetail)
+    NavigationLink("", destination: AlbumDetailView(selectAlbumId: selectAlbumId, selectKindType: selectKindType), isActive: $showAlbumDetail)
   }
 }
 

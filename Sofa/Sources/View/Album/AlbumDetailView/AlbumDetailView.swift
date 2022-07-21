@@ -31,6 +31,8 @@ struct AlbumDetailView: View {
 
   @State var isUpdateDate: Bool = false  // 사진 & 녹음 날짜 수정
   let info = MockData().albumDetail
+  let selectAlbumId: Int      // 날짜별
+  let selectKindType: String  // 유형별
   
   var actionSheetView: some View {
     ActionSheetCard(
@@ -114,6 +116,6 @@ struct AlbumDetailView: View {
 
 struct AlbumDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumDetailView()
+    AlbumDetailView(selectAlbumId: 0, selectKindType: "")
   }
 }

@@ -65,8 +65,13 @@ enum AlbumDetailManger: URLRequestConvertible {
     request.method = method
     request.headers = headers
     
-    request = try URLEncoding.default.encode(request, with: nil)
-    
+    switch self {
+    case .getAlbumDetailListByDate:
+      request = try URLEncoding.default.encode(request, with: nil)
+    case .getAlbumDetailListByKind:
+      request = try URLEncoding.default.encode(request, with: parameters)
+    }
+
     return request
   }
 }

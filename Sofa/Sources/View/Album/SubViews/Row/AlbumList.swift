@@ -29,6 +29,10 @@ struct AlbumList: View {
             ForEach(viewModel.albumDateList, id: \.self) { album in
               AlbumDateRow(selectAlbumId: $selectAlbumId, showAlbumDetail: $showAlbumDetail, album: album)
             }
+            
+            Text("가져올 앨범이 없어요")
+              .font(.custom("Pretendard-Medium", size: 16))
+              .frame(height: 20)
           }
         }
         .introspectScrollView(customize: { uiScrollView in

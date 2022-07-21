@@ -18,6 +18,7 @@ class AlbumDetailListViewModel: ObservableObject {
     }
   }
   var albumId: Int = -1
+  var kindType: String = ""
   private var subscription = Set<AnyCancellable>()    // disposeBag
   // 날짜별
   var refreshActionSubjectByDate = PassthroughSubject<(), Never>()
@@ -29,7 +30,7 @@ class AlbumDetailListViewModel: ObservableObject {
 
   var currentPage: Int = 0
   
-  func fetch(albumId: Int) {
+  func fetch(albumId: Int, kindType: String) {
     if albumId != -1 { // 날짜별
       self.albumId = albumId
       
@@ -46,13 +47,29 @@ class AlbumDetailListViewModel: ObservableObject {
           self.fetchMoreByDate()
         }
       }.store(in: &subscription)
+    } else if kindType != "" { // 유형별
+      self.kindType = kindType
+      
+      fetchAlbumDetailByKind()
+      
+      refreshActionSubjectByKind.sink{ [weak self] _ in
+        guard let self = self else { return }
+        self.fetchAlbumDetailByKind()
+      }.store(in: &subscription)
+      
+      fetchMoreActionSubjectByKind.sink{[weak self] _ in
+        guard let self = self else { return }
+        if !self.isLoading {
+          self.fetchMoreByKind()
+        }
+      }.store(in: &subscription)
+
     }
   }
   
   // 날짜별
   fileprivate func fetchAlbumDetailByDate() {
     self.isLoading = true
-    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId))
     AF.request(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId))
       .publishDecodable(type: AlbumDetailAPIResponse.self)
       .value()
@@ -69,11 +86,11 @@ class AlbumDetailListViewModel: ObservableObject {
           default:
             break
           }
-          NSLog("Error : " + error.localizedDescription)
+//          NSLog("Error : " + error.localizedDescription)
           self?.albumDetailList = [AlbumDetailElement]()
         },
         receiveValue: {[weak self] receivedValue in
-                    print("받은 값 : \(receivedValue)")
+//                    print("받은 값 : \(receivedValue)")
           self?.albumDetailList = receivedValue.elements
 //          self?.pageInfo = receivedValue.info
           self?.currentPage = 0
@@ -81,7 +98,37 @@ class AlbumDetailListViewModel: ObservableObject {
       )
       .store(in: &subscription)   // disposed(by: disposeBag)
   }
-    
+  
+  // 유형별
+  fileprivate func fetchAlbumDetailByKind() {
+    AF.request(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType))
+      .publishDecodable(type: AlbumDetailAPIResponse.self)
+      .value()
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: {[weak self] in
+          guard case .failure(let error) = $0 else { return }
+          switch error.responseCode {
+          case 400: // 요청 에러 발생했을 때
+            break
+          case 500: // 서버의 내부적 에러가 발생했을 때
+            break
+          default:
+            break
+          }
+          NSLog("Error : " + error.localizedDescription)
+          self?.albumDetailList = [AlbumDetailElement]()
+        },
+        receiveValue: {[weak self] receivedValue in
+          //          print("받은 값 : \(receivedValue)")
+          self?.albumDetailList = receivedValue.elements
+//          self?.pageInfo = receivedValue.info
+          self?.currentPage = 0
+        }
+      )
+      .store(in: &subscription)   // disposed(by: disposeBag)
+  }
+  
   // 날짜별 pagenation
   fileprivate func fetchMoreByDate() {
     if self.currentPage == pageInfo?.pageCount {
@@ -94,6 +141,33 @@ class AlbumDetailListViewModel: ObservableObject {
     let pageToLoad = currentPage
 
     AF.request(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId, page: pageToLoad))
+      .publishDecodable(type: AlbumDetailAPIResponse.self)
+      .value()
+      .sink(
+        receiveCompletion: { completion in
+          self.isLoading = false
+        },
+        receiveValue: { receivedValue in
+//          print("받은 값 : \(receivedValue.results.albums.count)")
+          self.albumDetailList += receivedValue.elements
+//          self.pageInfo = receivedValue.info
+        }
+      )
+      .store(in: &subscription)
+  }
+  
+  // 유형별 pagenation
+  fileprivate func fetchMoreByKind() {
+    if self.currentPage == pageInfo?.pageCount {
+      print("Album Detail Kind 페이지 정보가 없습니다.")
+      return
+    }
+
+    self.isLoading = true
+    self.currentPage += 1
+    let pageToLoad = currentPage
+
+    AF.request(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType, page: pageToLoad))
       .publishDecodable(type: AlbumDetailAPIResponse.self)
       .value()
       .sink(

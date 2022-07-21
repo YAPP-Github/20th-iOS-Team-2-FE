@@ -34,7 +34,7 @@ struct AlbumDetailList: View {
       }
     }
     .onAppear {
-      viewModel.fetch(albumId: selectAlbumId)
+      viewModel.fetch(albumId: selectAlbumId, kindType: selectKindType)
     }
   }
 }

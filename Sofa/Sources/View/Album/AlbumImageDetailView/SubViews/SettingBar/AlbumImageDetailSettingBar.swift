@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct AlbumImageDetailSettingBar: View {
+  @Binding var isBookmarkClick: Bool
   @Binding var isCommentClick: Bool
   @Binding var isEllipsisClick: Bool
-  
+
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
   private var isBookmark : Bool { return info.favourite }
   
@@ -22,6 +23,7 @@ struct AlbumImageDetailSettingBar: View {
           HStack {
             Button(action: {
               // 북마크 네트워크 로직
+              self.isBookmarkClick = true
             }) {
               // 북마크
               Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
@@ -74,7 +76,7 @@ struct AlbumImageDetailSettingBar_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.elements[3]
     
-    AlbumImageDetailSettingBar(isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
+    AlbumImageDetailSettingBar(isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
       .ignoresSafeArea()
   }
 }

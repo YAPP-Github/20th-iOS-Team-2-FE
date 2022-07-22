@@ -11,9 +11,9 @@ import Combine
 
 enum AlbumManager: URLRequestConvertible {
   
-  case getAlbumListByDate(page: Int = 1, results: Int = 20)
+  case getAlbumListByDate(page: Int = 0, size: Int = 10)
   case getAlbumListByKind
-
+  
   var baseURL: URL {
     switch self {
     case .getAlbumListByDate:
@@ -31,12 +31,12 @@ enum AlbumManager: URLRequestConvertible {
       return .get
     }
   }
-
+  
   var headers: HTTPHeaders {
     var headers = HTTPHeaders()
-    let accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzpudWxsIiwiaWF0IjoxNjU2OTQ4NDUyLCJleHAiOjE2NTY5NTIwNTJ9.z_D9IzZDNhqKpXvEqc-8H_RjANDra0MOx044zpw8YNU"
+    let accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q"
     headers["Authorization"] = accessToken
-
+    
     switch self {
     case .getAlbumListByDate:
       return headers
@@ -47,12 +47,12 @@ enum AlbumManager: URLRequestConvertible {
   
   var parameters: Parameters {
     var params = Parameters()
-
+    
     switch self {
-    case .getAlbumListByDate:
-      //      params["page"] = page
-      //      params["results"] = results
+    case let .getAlbumListByDate(page, size):
       params["type"] = "date"
+      params["page"] = page
+      params["size"] = size
       return params
     case .getAlbumListByKind:
       params["type"] = "kind"
@@ -62,13 +62,13 @@ enum AlbumManager: URLRequestConvertible {
   
   func asURLRequest() throws -> URLRequest {
     let url = baseURL
-
+    
     var request = URLRequest(url: url)
     request.method = method
     request.headers = headers
-
+    
     request = try URLEncoding.default.encode(request, with: parameters)
-
+    
     return request
   }
 }

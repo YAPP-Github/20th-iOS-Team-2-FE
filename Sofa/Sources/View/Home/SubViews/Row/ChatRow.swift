@@ -40,7 +40,7 @@ struct ChatRow: View {
             .cornerRadius(4)
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 0))
           Spacer()
-          Text("\(member.updatedAt)")
+          Text("\(member.descriptionTimeInterval)")
             .font(.custom("Pretendard-Medium", size: 13))
             .foregroundColor(Color(hex: "999999"))
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))

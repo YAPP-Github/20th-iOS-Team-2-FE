@@ -28,4 +28,10 @@ extension Date {
       return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
     }
   }
+  
+  func stripTime() -> Date { // 날짜에서 시간 제외
+      let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+      let date = Calendar.current.date(from: components)
+      return date!
+  }
 }

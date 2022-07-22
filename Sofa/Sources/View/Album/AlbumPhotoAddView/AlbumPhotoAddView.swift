@@ -39,11 +39,11 @@ struct AlbumPhotoAddView: View {
         AlbumPhotoAddList(selected: $selected, imageClick: $imageClick, showToastMessage: $showToastMessage, parant: self)
         
         // 날짜 선택으로 이동
-        NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", imageList: selected, photoParent: self, isCameraCancle: .constant(false)), isActive: $isNext)
+        NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: .constant(false), photoParent: self, images: selected.map{$0.image}), isActive: $isNext)
       }
       .background(Color.black) // 배경색
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
-      .toastMessage(data: $messageData, isShow: $showToastMessage)
+      .toastMessage(data: $messageData, isShow: $showToastMessage, topInset: 0)
       .navigationBarInlineStyle(isNextClick: $isNext, isDisalbeNextButton: .constant(selected.isEmpty), buttonColor: Color.init(hex: "#43A047"), "사진 선택") // 임시 컬러
       .onDisappear { UITabBar.showTabBar() }
     }

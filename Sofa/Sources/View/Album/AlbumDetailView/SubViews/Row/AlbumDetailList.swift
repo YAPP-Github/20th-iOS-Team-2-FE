@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct AlbumDetailList: View {
   @ObservedObject var viewModel = AlbumDetailListViewModel()
-  
+  @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 100)
+
   // 이미지
   @Binding var isImageClick: Bool
   @Binding var selectImage: UIImage
@@ -45,6 +47,16 @@ struct AlbumDetailList: View {
       }
     }
     .coordinateSpace(name: "pullToRefresh")
+    .introspectScrollView(customize: { uiScrollView in
+      uiScrollView.delegate = scrollViewHelper
+    })
+    .onReceive(self.scrollViewHelper.isBottom, perform: { isBottom in
+      if selectAlbumId != nil {
+        viewModel.fetchMoreActionSubjectByDate.send() // 날짜별 pagenation
+      } else if selectKindType != nil {
+        viewModel.fetchMoreActionSubjectByKind.send() // 유형별 pagenation
+      }
+    })
     .onAppear {
       viewModel.fetch(albumId: selectAlbumId, kindType: selectKindType)
     }

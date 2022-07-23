@@ -24,8 +24,17 @@ struct AlbumDetailList: View {
   
   var body: some View {
     ScrollView {
+      PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+        if selectAlbumId != nil {
+          viewModel.refreshActionSubjectByDate.send() // 날짜별
+        } else if selectKindType != nil {
+          viewModel.refreshActionSubjectByKind.send() // 유형별
+        }
+      }
+      
       // 필요할때 rendering 함, network에 적합
       LazyVStack(spacing: 10) {
+        
         ForEach(Array(zip(viewModel.albumDetailList.indices, viewModel.albumDetailList)), id: \.0) { index, element in
           AlbumDetailRow(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
 
@@ -33,6 +42,7 @@ struct AlbumDetailList: View {
         }
       }
     }
+    .coordinateSpace(name: "pullToRefresh")
     .onAppear {
       viewModel.fetch(albumId: selectAlbumId, kindType: selectKindType)
     }

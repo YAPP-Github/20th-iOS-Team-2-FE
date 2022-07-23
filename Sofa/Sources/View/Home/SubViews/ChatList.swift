@@ -11,15 +11,17 @@ struct ChatList: View {
   
   @ObservedObject var memberViewModel = MemberViewModel()
   @Binding var showModal: Bool
+  var function: (() -> Void)?
   
   var body: some View {
 
     ScrollView(.vertical, showsIndicators: false) {
       LazyVStack(spacing: 8) {
         ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
-          ChatRow(member)
-            .onTapGesture {
+          ChatRow(member, callback: function)
+            .onShowHistory {
               self.showModal = true
+              print("\(index)")
             }
         }
         

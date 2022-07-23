@@ -13,6 +13,7 @@ struct EventList: View {
   @StateObject var eventViewModel = EventViewModel()
   @StateObject var page: Page = .first()
   @State var alignment: SofaPositionAlignment = .start
+  @State var viewAppear: Bool = false
   @Binding var selectionType: Tab
   var function: (() -> Void)?
   
@@ -57,7 +58,12 @@ struct EventList: View {
     .singlePagination(ratio: 0.8, sensitivity: .high)
     .itemSpacing(16)
     .preferredItemSize(CGSize(width: eventViewModel.events.count > 1 ? Screen.maxWidth - 72 : Screen.maxWidth - 32, height: 100))
-    .animation(.default)
+    .animation(viewAppear ? .default : .none)
+    .onAppear{
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        self.viewAppear = true
+      }
+    }
   }
   
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NavigationBarInlineStyle: ViewModifier {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var tabbarManager = TabBarManager.shared
   @Binding var isNextClick: Bool
   @Binding var isDisalbeNextButton: Bool
   var title: String
@@ -18,6 +19,7 @@ struct NavigationBarInlineStyle: ViewModifier {
     return content
       .navigationBarItems(
         leading: Button(action: {
+          tabbarManager.showTabBar = true
           presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {

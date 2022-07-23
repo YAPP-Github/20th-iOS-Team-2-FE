@@ -8,9 +8,14 @@
 import Foundation
 import AVFoundation
 
-class AudioRecorderViewModel: ObservableObject {
+class AudioRecorderViewModel: NSObject, ObservableObject {
   @Published public var soundSamples: [Bool]
   @Published public var isRecording = false
+  @Published public var url: URL?
+  
+  // 재생
+  @Published var isPlaying = false
+  var audioPlayer: AVAudioPlayer!
   
   // 시간 Properties
   @Published var minutes: Int = 0
@@ -58,15 +63,16 @@ class AudioRecorderViewModel: ObservableObject {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "YYYY-MM-dd 녹음"
     
-    let url = documentPath.appendingPathComponent("\(dateFormatter.string(from: Date()))")
+    self.url = documentPath.appendingPathComponent("\(dateFormatter.string(from: Date())).m4a")
     
     do {
-      audioRecorder = try AVAudioRecorder(url: url, settings: recorderSettings)
+      audioRecorder = try AVAudioRecorder(url: self.url!, settings: recorderSettings)
       
       // 오디오 세션 카테고리, 모드, 옵션을 설정
       try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
       self.isRecording = true // 녹음 시작
       
+      stopInit()
       startMonitoring() // 시간 및 bar 위치 계산
     } catch {
       fatalError(error.localizedDescription)
@@ -82,6 +88,7 @@ class AudioRecorderViewModel: ObservableObject {
     minutes = 0
     time = 0
     audioRecorder.stop()
+    self.startInit(audio: self.url!)
     self.currentStepbar = 0
     self.soundSamples = [Bool](repeating: false, count: numberOfStepbar)
   }
@@ -108,5 +115,103 @@ class AudioRecorderViewModel: ObservableObject {
       self.seconds = Int(self.time * 0.01) % 60
       self.minutes = (Int(self.time * 0.01) / 60) % 60
     })
+  }
+  
+  // 개발용 - 검색
+  func search() {
+    let fileManager = FileManager.default
+    let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let path = documentDirectory.path
+    let directoryContents = try! fileManager.contentsOfDirectory(atPath: path)
+    print(directoryContents)
+  }
+  
+  // [URL] 범위 삭제
+  func deleteRecording(urlsToDelete: URL?) {
+    guard let urlsToDelete = urlsToDelete else { return }
+    do {
+      try FileManager.default.removeItem(at: urlsToDelete)
+    } catch {
+      print("File could not be deleted!")
+    }
+  }
+}
+
+//MARK: - 재생
+extension AudioRecorderViewModel: AVAudioPlayerDelegate {
+  func startInit (audio: URL) {
+    let playbackSession = AVAudioSession.sharedInstance()
+    
+    do {
+      try playbackSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+    } catch {
+      print("기기의 스피커를 통해 재생하지 못했습니다")
+    }
+    
+    do {
+      audioPlayer = try AVAudioPlayer(contentsOf: audio)
+      audioPlayer.delegate = self
+    } catch {
+      print("재생 실패")
+    }
+  }
+  
+  func startPlayback() {
+    playMonitoring()
+    isPlaying = true
+  }
+  
+  func playMonitoring() {
+    audioPlayer.isMeteringEnabled = true
+    audioPlayer.play()
+    
+    timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [self] (timer) in
+      self.audioPlayer.updateMeters()
+      
+      self.currentStepbar = normalizeSoundLevel(level: Float(averagePowerFromAllChannels())) // 음성의 level의 크기에 따라
+      self.soundSamples = [Bool](repeating: true, count: currentStepbar) + [Bool](repeating: false, count:  self.numberOfStepbar - currentStepbar)
+      
+      self.time += 1
+      
+      self.microSeconds = Int(self.time) % 100
+      self.seconds = Int(self.time * 0.01) % 60
+      self.minutes = (Int(self.time * 0.01) / 60) % 60
+    })
+  }
+  
+  // 모든 채널의 평균 power 계산
+  private func averagePowerFromAllChannels() -> CGFloat {
+    var power: CGFloat = 0.0
+    (0..<audioPlayer.numberOfChannels).forEach { (index) in
+      power = power + CGFloat(audioPlayer.averagePower(forChannel: index))
+    }
+    return power / CGFloat(audioPlayer.numberOfChannels)
+  }
+  
+  func pausePlayback() {
+    isPlaying = false
+    audioPlayer.pause()
+    timer.invalidate()
+  }
+  
+  // 재생 정지 & 초기화
+  func stopInit() {
+    if let audioPlayer = audioPlayer {
+      audioPlayer.stop() // play중 녹음버튼을 누를 경우,
+    }
+    timer.invalidate()
+    microSeconds = 0
+    seconds = 0
+    minutes = 0
+    time = 0
+    self.currentStepbar = 0
+    self.soundSamples = [Bool](repeating: false, count: numberOfStepbar)
+  }
+  
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    if flag {
+      stopInit()
+      isPlaying = false
+    }
   }
 }

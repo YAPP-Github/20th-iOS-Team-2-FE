@@ -10,7 +10,6 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
-  @ObservedObject var fetcher = AudioRecorderURLViewModel()
   let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
   
   // 즐겨찾기
@@ -236,9 +235,6 @@ struct AlbumRecordDetailView: View {
         .navigationBarHidden(true)
         .ignoresSafeArea()
       }
-    }
-    .onAppear {
-      fetcher.deleteAllRecording() // 내장 녹음 전체 삭제
     }
   }
 }

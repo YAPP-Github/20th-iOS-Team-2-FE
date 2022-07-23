@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AlbumDetailView: View {
+  @ObservedObject var tabbarManager = TabBarManager.shared
+
   @State var isTitleClick = false
   @State var isEdit = false
   
@@ -83,9 +85,16 @@ struct AlbumDetailView: View {
         }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       }
-      .navigationViewStyle(StackNavigationViewStyle())
+//      .navigationViewStyle(StackNavigationViewStyle())
       .navigationBarHidden(true)
-      .onAppear { UITabBar.hideTabBar() }
+      .onDisappear{
+        UITabBar.showTabBar(animated: false)
+        tabbarManager.showTabBar = true
+      }
+      .onAppear{
+        UITabBar.showTabBar(animated: false)
+        tabbarManager.showTabBar = false
+      }
       
       if isEllipsisClick || isTitleClick { // action sheet
         Color.black

@@ -12,9 +12,8 @@ struct AlbumRecordAddView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
   @State var isNext = false
-  @ObservedObject var fetcher = AudioRecorderURLViewModel()
   var record: Bool { return existRecord() }
-
+  
   // 녹음 Bar 영역
   var recordBarArea: some View {
     VStack(spacing: 8) {
@@ -38,11 +37,44 @@ struct AlbumRecordAddView: View {
     .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
   
+  // 녹음 재생 버튼
+  var playButton: some View {
+    Button(action: {
+      self.audioRecorder.startPlayback()
+    }) {
+      ZStack {
+        Circle()
+          .frame(width: 64, height: 64)
+          .foregroundColor(Color.white)
+        
+        Image(systemName: "play.fill")
+          .resizable()
+          .frame(width: 32, height: 32)
+          .foregroundColor(Color(hex: "D81B60"))
+      }
+    }
+  }
+  
+  // 정지 버튼
+  var puaseButton: some View {
+    Group {
+      Circle()
+        .frame(width: 64, height: 64)
+        .foregroundColor(Color.white)
+      
+      Image(systemName: "pause.fill")
+        .resizable()
+        .font(.system(size: 32))
+        .frame(width: 28, height: 32)
+        .foregroundColor(Color(hex: "D81B60"))
+    }
+  }
+  
   var recordButtonArea: some View {
     VStack {
       Spacer()
       VStack {
-        HStack {
+        HStack(spacing: 24) {
           Button(action: {
             if self.audioRecorder.isRecording{
               self.audioRecorder.stopRecording()
@@ -52,15 +84,7 @@ struct AlbumRecordAddView: View {
           }, label: {
             ZStack {
               if audioRecorder.isRecording { // 녹음 시작
-                Circle()
-                  .frame(width: 64, height: 64)
-                  .foregroundColor(Color.white)
-
-                Image(systemName: "pause.fill")
-                  .resizable()
-                  .font(.system(size: 32))
-                  .frame(width: 28, height: 32)
-                  .foregroundColor(Color(hex: "D81B60"))
+                puaseButton // 정지 버튼
               } else { // 녹음 끝
                 Circle()
                   .frame(width: 64, height: 64)
@@ -73,6 +97,19 @@ struct AlbumRecordAddView: View {
               }
             }
           })
+          if record {
+            if audioRecorder.isPlaying == false {
+              playButton // 재생 버튼
+            } else {
+              Button(action: {
+                self.audioRecorder.pausePlayback()
+              }) {
+                ZStack {
+                  puaseButton // 정지 버튼
+                }
+              }
+            }
+          }
         }
         .padding(.top, 16)
         Spacer()
@@ -83,12 +120,7 @@ struct AlbumRecordAddView: View {
   }
   
   func existRecord() -> Bool {
-    let fileManager = FileManager.default
-    let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    let path = documentDirectory.path
-    let directoryContents = try! fileManager.contentsOfDirectory(atPath: path)
-    
-    return directoryContents.count == 1 && !audioRecorder.isRecording
+    return audioRecorder.url != nil && !audioRecorder.isRecording
   }
   
   var body: some View {
@@ -100,14 +132,19 @@ struct AlbumRecordAddView: View {
           Color.clear
             .ignoresSafeArea()
             .overlay(
-              AlbumRecordNavigationBar(isNext: $isNext, existRecord: .constant(record), title: "새로운 녹음", recordParent: self, safeTop: geometry.safeAreaInsets.top) // Navigation Bar
+              AlbumRecordNavigationBar(isNext: $isNext, existRecord: .constant(record), title: "새로운 녹음", recordParent: self, recordUrl: audioRecorder.url, safeTop: geometry.safeAreaInsets.top) // Navigation Bar
             )
             .overlay(
               recordButtonArea
             )
           
           // 날짜 선택으로 이동
-          NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self), isActive: $isNext)
+          if isNext {
+            NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
+              .onAppear {
+                self.audioRecorder.pausePlayback()
+              }
+          }
         }
         .background(Color.black)
         .navigationBarHidden(true)
@@ -116,7 +153,7 @@ struct AlbumRecordAddView: View {
     }
     .onAppear {
       audioRecorder.requestAuthorization(parant: self)
-      fetcher.deleteAllRecording() } // 내장 녹음 전체 삭제
+    }
     .onDisappear { UITabBar.showTabBar() }
   }
 }

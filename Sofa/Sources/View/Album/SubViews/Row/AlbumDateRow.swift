@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct AlbumDateRow: View {
   @Binding var selectAlbumId: Int
@@ -19,10 +20,24 @@ struct AlbumDateRow: View {
     }) {
       HStack(alignment:.top, spacing: 16) { // 위로 붙임
         // 썸네일
-        Image(album.thumbnail)
-          .resizable()
-          .frame(width: 100.0, height: 75.0)
-          .cornerRadius(8)
+        if album.thumbnail == "" {
+          Rectangle()
+            .frame(width: 100.0, height: 75.0)
+            .cornerRadius(8)
+            .foregroundColor(Color(hex: "#E8F5E9"))
+            .overlay(
+              Image(systemName: "waveform")
+                .font(.system(size: 32))
+                .foregroundColor(Color(hex: "#66BB6A"))
+            )
+        } else {
+          URLImage(url: URL(string: album.thumbnail)!, content: { image in
+            image
+              .resizable()
+              .frame(width: 100.0, height: 75.0)
+              .cornerRadius(8)
+          })
+        }
         
         // 제목
         VStack(alignment: .leading, spacing: 3) {

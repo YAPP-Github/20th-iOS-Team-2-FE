@@ -15,12 +15,13 @@ class AlbumListViewModel: ObservableObject {
   @Published var isLoading: Bool = false // Loding
   @Published var pageInfo : Info? {
     didSet {
-      print("pageInfo: \(pageInfo!)")
+//      print("pageInfo: \(pageInfo!)")
     }
   }
   private var subscription = Set<AnyCancellable>()    // disposeBag
   var refreshActionSubject = PassthroughSubject<(), Never>()
   var fetchMoreActionSubject = PassthroughSubject<(), Never>()
+  var currentPage: Int = 0
   
   init() {
 //    print(#fileID, #function, #line, "")
@@ -64,9 +65,10 @@ class AlbumListViewModel: ObservableObject {
           self?.albumDateList = [AlbumDate]()
         },
         receiveValue: {[weak self] receivedValue in
-          //          print("받은 값 : \(receivedValue)")
+//                    print("받은 값 : \(receivedValue)")
           self?.albumDateList = receivedValue.results.albums
           self?.pageInfo = receivedValue.info
+          self?.currentPage = 0
         }
       )
       .store(in: &subscription)   // disposed(by: disposeBag)
@@ -104,12 +106,14 @@ class AlbumListViewModel: ObservableObject {
   
   // pagenation
   fileprivate func fetchMore() {
-    guard let currentPage = pageInfo?.pageCount else {
+    if self.currentPage == pageInfo?.pageCount {
       print("페이지 정보가 없습니다.")
       return
     }
+    
     self.isLoading = true
-    let pageToLoad = currentPage + 1
+    self.currentPage += 1
+    let pageToLoad = currentPage
     
     AF.request(AlbumManager.getAlbumListByDate(page: pageToLoad))
       .publishDecodable(type: AlbumDateAPIResponse.self)

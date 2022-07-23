@@ -11,7 +11,7 @@ import Combine
 
 enum AlbumManager: URLRequestConvertible {
   
-  case getAlbumListByDate(page: Int = 1, size: Int = 10)
+  case getAlbumListByDate(page: Int = 0, size: Int = 10)
   case getAlbumListByKind
   
   var baseURL: URL {

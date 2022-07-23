@@ -11,10 +11,12 @@ import URLImage
 struct AlbumDateRow: View {
   @Binding var selectAlbumId: Int
   @Binding var showAlbumDetail: Bool
+  @Binding var title: String
   var album: AlbumDate
   
   var body: some View {
     Button(action: {
+      self.title = album.title
       self.selectAlbumId = album.albumId
       self.showAlbumDetail = true
     }) {
@@ -76,6 +78,6 @@ struct AlbumRow_Previews: PreviewProvider {
   static var previews: some View {
     let dummy = MockData().albumByDate[0]
     
-    AlbumDateRow(selectAlbumId: .constant(0), showAlbumDetail: .constant(false), album: dummy)
+    AlbumDateRow(selectAlbumId: .constant(0), showAlbumDetail: .constant(false), title: .constant("앨범 상세 날짜별"), album: dummy)
   }
 }

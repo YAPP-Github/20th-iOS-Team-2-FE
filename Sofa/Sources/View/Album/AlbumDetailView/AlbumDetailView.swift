@@ -30,7 +30,7 @@ struct AlbumDetailView: View {
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
 
   @State var isUpdateDate: Bool = false  // 사진 & 녹음 날짜 수정
-  let info = MockData().albumDetail
+  let title: String
   var selectAlbumId: Int?      // 날짜별
   var selectKindType: String?  // 유형별
   
@@ -74,7 +74,7 @@ struct AlbumDetailView: View {
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
-        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), info.title!, nextText: "편집", Color.init(hex: "#43A047"))
+        .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isEdit) { // 앨범 날짜 수정
           AlbumEditDateView(albumId: "0") // 임시
         }
@@ -82,7 +82,7 @@ struct AlbumDetailView: View {
           AlbumEditDateView(photoId: "0") // 임시
         }
         .fullScreenCover(isPresented: $isTitleClick) {
-          AlbumTitleEditView(title: info.title!, isShowing: $isTitleClick)
+          AlbumTitleEditView(title: title, isShowing: $isTitleClick)
             .background(BackgroundCleanerView())
         }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
@@ -116,6 +116,6 @@ struct AlbumDetailView: View {
 
 struct AlbumDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumDetailView(selectAlbumId: 0, selectKindType: "")
+    AlbumDetailView(title: "앨범 상세", selectAlbumId: 0, selectKindType: "")
   }
 }

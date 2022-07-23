@@ -11,7 +11,7 @@ import Lottie
 // Lottie File Frame 관리
 enum ProgressKeyFrames: CGFloat {
   case start = 0
-  case end = 700
+  case end = 39
 }
 
 struct LottieView: UIViewRepresentable {

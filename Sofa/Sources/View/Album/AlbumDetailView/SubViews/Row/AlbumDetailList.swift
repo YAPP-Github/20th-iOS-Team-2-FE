@@ -34,12 +34,14 @@ struct AlbumDetailList: View {
       
       // 필요할때 rendering 함, network에 적합
       LazyVStack(spacing: 10) {
-        
         ForEach(Array(zip(viewModel.albumDetailList.indices, viewModel.albumDetailList)), id: \.0) { index, element in
           AlbumDetailRow(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
-
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
+        
+        Text("가져올 게시물이 없어요")
+          .font(.custom("Pretendard-Medium", size: 16))
+          .frame(height: 20)
       }
     }
     .coordinateSpace(name: "pullToRefresh")

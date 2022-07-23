@@ -509,7 +509,6 @@
 			children = (
 				6F22E523284B9CF00069D268 /* AlbumView.swift */,
 				C4667A84284BA97000A4A759 /* SubViews */,
-				C495F60F285B5F69009B3BDE /* ViewModel */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
 				C44000352881981C007D0C20 /* AlbumTitleEditView */,
 				C4A979A3286AE88E00326ABC /* AlbumImageDetailView */,
@@ -757,6 +756,7 @@
 		C4667A84284BA97000A4A759 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				C495F60F285B5F69009B3BDE /* ViewModel */,
 				C4EC31C3284F8A740049F2C4 /* Row */,
 				C4AC884B288515F600BA5921 /* ScrollViewHelper */,
 				C4B8F2932850DA0E0000B8CB /* ActionSheet */,

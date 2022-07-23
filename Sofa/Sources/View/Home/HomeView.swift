@@ -58,6 +58,12 @@ struct HomeView: View {
               .fullScreenCover(isPresented: $showModal) {
                 HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
+                  .onAppear{
+                    tabbarManager.showTabBar = false
+                  }
+                  .onDisappear{
+                    tabbarManager.showTabBar = true
+                  }
               }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))

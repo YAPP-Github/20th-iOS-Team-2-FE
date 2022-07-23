@@ -19,7 +19,7 @@ enum AlbumDetailManger: URLRequestConvertible {
     case let .getAlbumDetailListByDate(albumId, _, _):
       return URL(string: "\(APIConstants.url)/album/details/\(albumId)")!
     case .getAlbumDetailListByKind:
-      return URL(string: "\(APIConstants.url)/album")!
+      return URL(string: "\(APIConstants.url)/album/details")!
     }
   }
   

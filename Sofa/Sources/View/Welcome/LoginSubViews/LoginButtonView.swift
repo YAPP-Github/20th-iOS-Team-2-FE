@@ -79,11 +79,7 @@ struct LoginButtonView: View {
       .frame(width: 326, height: 48, alignment: .center)
       .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
 
-      SignInWithAppleButton(
-        .signIn,
-        onRequest: configure,
-        onCompletion: handle
-      )
+      SignInWithAppleButtonView(onRequest: configure(_:), onCompletion: handle(_:))
       .cornerRadius(40)
       .frame(width: 326, height: 48, alignment: .center)
       

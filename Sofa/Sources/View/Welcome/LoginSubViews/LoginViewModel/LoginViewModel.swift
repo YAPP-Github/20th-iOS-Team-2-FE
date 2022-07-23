@@ -86,7 +86,7 @@ class LoginViewModel: ObservableObject {
   }
   
   func postAppleLogin(identityToken: String, authoriztionCode: String, userId: String){
-    print("LoginViewModel - postKakaoLogin() called")
+    print("LoginViewModel - postAppleLogin() called")
     
     AF.request(LoginManager.postappleLogin(identityToken: identityToken, authoriztionCode: authoriztionCode, userId: userId))
       .publishDecodable(type: LoginResponse.self)

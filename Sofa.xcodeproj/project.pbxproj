@@ -519,7 +519,6 @@
 				C4B8F2BD2852908E0000B8CB /* AlbumPhotoAddView */,
 				C495F60228571F51009B3BDE /* AlbumRecordAddView */,
 				C495F5F42855DA1A009B3BDE /* AlbumSelectDateView */,
-				C46C56D42882EA9D00677E63 /* AlbumEditDateView */,
 			);
 			path = Album;
 			sourceTree = "<group>";
@@ -792,13 +791,6 @@
 				6F6E5A542882B26A00C0734E /* APIConstants.swift */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		C46C56D42882EA9D00677E63 /* AlbumEditDateView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AlbumEditDateView;
 			sourceTree = "<group>";
 		};
 		C46C56D72883143100677E63 /* AlbumRecordDetailView */ = {

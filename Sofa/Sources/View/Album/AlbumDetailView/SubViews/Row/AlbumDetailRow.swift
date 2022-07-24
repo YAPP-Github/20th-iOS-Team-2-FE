@@ -78,7 +78,7 @@ struct AlbumDetailRow: View {
       
       if info.kind == "RECORDING" { // RECORDING
         HStack {
-          Text("녹음 제목")
+          Text(info.title!)
             .foregroundColor(Color(UIColor.label))
             .font(.system(size: 18, weight: .semibold))
             .padding(.top, -6) // top : 4

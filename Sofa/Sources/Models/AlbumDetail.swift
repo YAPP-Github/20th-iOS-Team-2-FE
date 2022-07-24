@@ -20,6 +20,7 @@ struct AlbumDetailResult: Hashable, Decodable {
 
 struct AlbumDetailElement: Identifiable, Hashable, Decodable {
   var id : Int?
+  let title: String?
   let kind: String // PHOTO, RECORDING
   let fileId: Int
   let date: String

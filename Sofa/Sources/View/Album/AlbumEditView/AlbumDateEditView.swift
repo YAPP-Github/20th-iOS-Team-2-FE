@@ -9,13 +9,14 @@ import SwiftUI
 
 struct AlbumDateEditView: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var viewModel = AlbumEditViewModel()
   @State var currentDate: Date = Date()
   @State var isAlert: Bool = false
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
   var albumId: Int?     // 앨범 날짜 수정
   var photoId: String?  // 사진 날짜 수정
   var recordId: String? // 녹음 날짜 수정
-
+  
   var body: some View {
     NavigationView {
       VStack(spacing: 0) {
@@ -54,7 +55,7 @@ struct AlbumDateEditView: View {
           secondaryButton: .destructive(Text("삭제")
             .font(.custom("Pretendard-Bold", size: 18))) {
               
-          })
+            })
       }
       .navigationBarItems(
         leading: Button(action: {
@@ -70,13 +71,14 @@ struct AlbumDateEditView: View {
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
           if albumId != nil {         // 앨범
-            print("앨범 날짜 수정")
+            let dateStr = currentDate.getFormattedDate(format: "yyyy-MM-dd") + "T" + Date().getFormattedDate(format: "hh:mm:ss")
+            self.viewModel.patchAlbumDate(albumId: albumId!, date: dateStr)
           } else if photoId != nil {  // 사진
             print("사진 날짜 수정")
           } else if recordId != nil { // 녹음
             print("녹음 날짜 수정")
           }
-//          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
+          //          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
           presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {

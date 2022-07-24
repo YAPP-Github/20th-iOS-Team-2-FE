@@ -29,4 +29,22 @@ class AlbumEditViewModel: ObservableObject {
       )
       .store(in: &subscription)   // disposed(by: disposeBag)
   }
+  
+  // 앨범 날짜 수정
+  func patchAlbumDate(albumId: Int, date: String) {
+    AF.request(AlbumDetailManger.patchAlbumDate(albumId: albumId, date: date))
+      .publishDecodable(type: AlbumDefaulAPIResponse.self)
+      .value()
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: { completion in
+           guard case .failure(let error) = completion else { return }
+           NSLog("Error : " + error.localizedDescription)
+        },
+        receiveValue: { receivedValue in
+           NSLog("받은 값 : \(receivedValue)")
+        }
+      )
+      .store(in: &subscription)   // disposed(by: disposeBag)
+  }
 }

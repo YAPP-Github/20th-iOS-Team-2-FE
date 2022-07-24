@@ -102,7 +102,7 @@ struct AlbumImageDetailView: View {
       .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
       .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-        AlbumEditDateView(photoId: "0") // 임시
+        AlbumDateEditView(photoId: "0") // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick)

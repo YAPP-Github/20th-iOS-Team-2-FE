@@ -1,5 +1,5 @@
 //
-//  AlbumEditDateView.swift
+//  AlbumDateEditView.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/07/16.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlbumEditDateView: View {
+struct AlbumDateEditView: View {
   @Environment(\.presentationMode) var presentable
   @State var currentDate: Date = Date()
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
@@ -81,6 +81,6 @@ struct AlbumEditDateView: View {
 
 struct AlbumEditDateView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumEditDateView()
+    AlbumDateEditView()
   }
 }

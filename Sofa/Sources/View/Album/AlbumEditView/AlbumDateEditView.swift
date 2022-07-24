@@ -12,6 +12,7 @@ struct AlbumDateEditView: View {
   @ObservedObject var viewModel = AlbumEditViewModel()
   @State var currentDate: Date = Date()
   @State var isAlert: Bool = false
+  var parant: AlbumDetailView?
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
   var albumId: Int?     // 앨범 날짜 수정
   var photoId: String?  // 사진 날짜 수정
@@ -54,7 +55,8 @@ struct AlbumDateEditView: View {
           primaryButton: .default(Text("취소")),
           secondaryButton: .destructive(Text("삭제")
             .font(.custom("Pretendard-Bold", size: 18))) {
-              
+              self.parant?.presentable.wrappedValue.dismiss()
+              self.presentable.wrappedValue.dismiss()
             })
       }
       .navigationBarItems(
@@ -73,13 +75,13 @@ struct AlbumDateEditView: View {
           if albumId != nil {         // 앨범
             let dateStr = currentDate.getFormattedDate(format: "yyyy-MM-dd") + "T" + Date().getFormattedDate(format: "hh:mm:ss")
             self.viewModel.patchAlbumDate(albumId: albumId!, date: dateStr)
+            self.parant?.presentable.wrappedValue.dismiss()
           } else if photoId != nil {  // 사진
             print("사진 날짜 수정")
           } else if recordId != nil { // 녹음
             print("녹음 날짜 수정")
           }
-          //          print(currentDate.getFormattedDate(format: "yyyy-MM-dd"))
-          presentable.wrappedValue.dismiss()
+          self.presentable.wrappedValue.dismiss()
         }, label: {
           HStack(spacing: 0) {
             Text("수정")
@@ -110,6 +112,6 @@ struct AlbumDateEditView: View {
 
 struct AlbumEditDateView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumDateEditView()
+    AlbumDateEditView(parant: AlbumDetailView(title: "앨범 상세", selectAlbumId: 0, selectKindType: ""))
   }
 }

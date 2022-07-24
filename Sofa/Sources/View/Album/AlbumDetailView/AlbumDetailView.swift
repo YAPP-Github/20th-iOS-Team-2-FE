@@ -9,6 +9,7 @@ import SwiftUI
 import URLImage
 
 struct AlbumDetailView: View {
+  @Environment(\.presentationMode) var presentable
   @ObservedObject var tabbarManager = TabBarManager.shared
   
   @State var isTitleClick = false
@@ -87,7 +88,7 @@ struct AlbumDetailView: View {
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: selectAlbumId != nil ? .constant(false) : .constant(true), isDisalbeTitleButton: selectAlbumId != nil ? .constant(false) : .constant(true), title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isEdit) { // 앨범 날짜 수정
-          AlbumDateEditView(albumId: selectAlbumId) // 임시
+          AlbumDateEditView(parant: self, albumId: selectAlbumId) // 임시
         }
         .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
           AlbumDateEditView(photoId: "0") // 임시

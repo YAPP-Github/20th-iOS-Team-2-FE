@@ -43,12 +43,24 @@ struct AlbumDetailRow: View {
         ZStack(alignment: .topTrailing) {
           // 썸네일
           if info.kind == "PHOTO" {
-            URLImage(url: URL(string: info.link)!, content: { image in
-              image
-                .resizable()
+            if URL(string: info.link) != nil {
+              URLImage(url: URL(string: info.link)!, content: { image in
+                image
+                  .resizable()
+                  .frame(height: Screen.maxWidth * 0.7)
+                  .cornerRadius(8)
+              })
+            } else {
+              Rectangle()
                 .frame(height: Screen.maxWidth * 0.7)
                 .cornerRadius(8)
-            })
+                .foregroundColor(Color(hex: "#FAF8F0"))
+                .overlay(
+                  Text("이미지를 불러오지 못했습니다")
+                    .font(.custom("Pretendard-Regular", size: 16))
+                    .foregroundColor(Color.black)
+                )
+            }
           } else {
             Rectangle()
               .cornerRadius(8)

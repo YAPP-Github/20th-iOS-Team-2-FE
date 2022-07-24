@@ -33,12 +33,24 @@ struct AlbumDateRow: View {
                 .foregroundColor(Color(hex: "#66BB6A"))
             )
         } else {
-          URLImage(url: URL(string: album.thumbnail)!, content: { image in
-            image
-              .resizable()
+          if URL(string: album.thumbnail) != nil {
+            URLImage(url: URL(string: album.thumbnail)!, content: { image in
+              image
+                .resizable()
+                .frame(width: 100.0, height: 75.0)
+                .cornerRadius(8)
+            })
+          } else {
+            Rectangle()
               .frame(width: 100.0, height: 75.0)
               .cornerRadius(8)
-          })
+              .foregroundColor(Color(hex: "#FAF8F0"))
+              .overlay(
+                Text("이미지를 불러오지 못했습니다")
+                  .font(.custom("Pretendard-Regular", size: 16))
+                  .foregroundColor(Color.black)
+              )
+          }
         }
         
         // 제목

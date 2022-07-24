@@ -29,7 +29,6 @@ struct AlbumImageDetailView: View {
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
 
   var image: UIImage
-  var index: Int
   
   var actionSheetView: some View {
     ActionSheetCard(
@@ -121,6 +120,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(isPreCommentClick: false, image: UIImage(named: data.link)!, index: 0)
+    AlbumImageDetailView(isPreCommentClick: false, image: UIImage(named: data.link)!)
   }
 }

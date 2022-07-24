@@ -16,7 +16,6 @@ struct AlbumDetailView: View {
   // 이미지
   @State var isImageClick: Bool = false
   @State var selectImage: UIImage = UIImage()
-  @State var selectImageIndex: Int = -1
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
@@ -64,13 +63,13 @@ struct AlbumDetailView: View {
     ZStack {
       NavigationView {
         VStack(spacing: 0) {
-          AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
+          AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isImageClick: $isImageClick, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           
           // 이미지 click
-          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage, index: selectImageIndex), isActive: $isImageClick)
+          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage), isActive: $isImageClick)
           
           // 댓글 click
-          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage, index: selectImageIndex), isActive: $isCommentClick)
+          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage), isActive: $isCommentClick)
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)

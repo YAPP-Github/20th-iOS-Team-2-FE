@@ -14,7 +14,6 @@ struct AlbumDetailRow: View {
   // 이미지
   @Binding var isImageClick: Bool
   @Binding var selectImage: UIImage
-  @Binding var selectImageIndex: Int
   
   @Binding var isBookmarkClick: Bool
   @Binding var isCommentClick: Bool
@@ -28,7 +27,6 @@ struct AlbumDetailRow: View {
       Button(action: {
         isImageClick = true
         selectImage = UIImage(named: info.link)!
-        selectImageIndex = index
       }, label: {
         ZStack(alignment: .topTrailing) {
           // 썸네일
@@ -95,7 +93,6 @@ struct AlbumDetailRow: View {
         Button(action: {
           isCommentClick = true
           selectImage = UIImage(named: info.link)!
-          selectImageIndex = index
         }, label: {
           HStack(spacing: 8) {
             Image(systemName: "ellipsis.bubble")
@@ -115,7 +112,6 @@ struct AlbumDetailRow: View {
         
         Button(action: {
           isEllipsisClick = true
-          selectImageIndex = index
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)
@@ -133,6 +129,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
+    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }
 }

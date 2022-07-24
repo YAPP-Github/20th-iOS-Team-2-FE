@@ -15,7 +15,6 @@ struct AlbumDetailList: View {
   // 이미지
   @Binding var isImageClick: Bool
   @Binding var selectImage: UIImage
-  @Binding var selectImageIndex: Int
 
   @Binding var isBookmarkClick: Bool
   @Binding var isCommentClick: Bool
@@ -37,7 +36,7 @@ struct AlbumDetailList: View {
       // 필요할때 rendering 함, network에 적합
       LazyVStack(spacing: 0) {
         ForEach(Array(zip(viewModel.albumDetailList.indices, viewModel.albumDetailList)), id: \.0) { index, element in
-          AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: element.fileId, isFavourite: element.favourite), isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
+          AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: element.fileId, isFavourite: element.favourite), isImageClick: $isImageClick, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
       }
@@ -64,6 +63,6 @@ struct AlbumDetailList_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: 0, kindType: ""), isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), selectAlbumId: 0, selectKindType: "")
+    AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: 0, kindType: ""), isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), selectAlbumId: 0, selectKindType: "")
   }
 }

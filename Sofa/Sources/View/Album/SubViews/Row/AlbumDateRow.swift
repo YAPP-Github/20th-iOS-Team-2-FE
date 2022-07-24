@@ -43,12 +43,12 @@ struct AlbumDateRow: View {
         
         // 제목
         VStack(alignment: .leading, spacing: 3) {
-          Text(album.title == "" ? "\(album.date) 앨범" : album.title)
+          Text(album.title)
             .font(.custom("Pretendard-Bold", size: 16))
             .foregroundColor(Color(hex: "#121619"))
             .lineLimit(2)
           
-          Text(album.date)
+          Text(album.descriptionDate)
             .font(.custom("Pretendard-Medium", size: 13))
             .foregroundColor(Color(hex: "999999"))
         }

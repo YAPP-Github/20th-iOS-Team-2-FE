@@ -512,7 +512,7 @@
 				6F22E523284B9CF00069D268 /* AlbumView.swift */,
 				C4667A84284BA97000A4A759 /* SubViews */,
 				C4EC31CE284F99BF0049F2C4 /* AlbumDetailView */,
-				C44000352881981C007D0C20 /* AlbumTitleEditView */,
+				C44000352881981C007D0C20 /* AlbumEditView */,
 				C4A979A3286AE88E00326ABC /* AlbumImageDetailView */,
 				C46C56D72883143100677E63 /* AlbumRecordDetailView */,
 				C481B6C72878746F005D6831 /* AlbumCommentView */,
@@ -646,13 +646,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C44000352881981C007D0C20 /* AlbumTitleEditView */ = {
+		C44000352881981C007D0C20 /* AlbumEditView */ = {
 			isa = PBXGroup;
 			children = (
 				C440003628819838007D0C20 /* AlbumTitleEditView.swift */,
 				C46C56CB2881B3DE00677E63 /* SubViews */,
 			);
-			path = AlbumTitleEditView;
+			path = AlbumEditView;
 			sourceTree = "<group>";
 		};
 		C4667A22284B6FF200A4A759 = {

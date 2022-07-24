@@ -20,17 +20,17 @@ struct AlbumRecordDetailView: View {
   // 댓글
   @State var isCommentClick: Bool = false   // 댓글
   let isPreCommentClick: Bool // 이전 화면에서 댓글
-
+  
   @State var isEllipsisClick: Bool = false  // 설정
   
   // 다운로드
   @State var isDownloadClick: Bool = false  // 다운로드
   @State var isUpdateDate: Bool = false  // 날짜 수정
-
+  
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-
+  
   var actionSheetView: some View {
     ActionSheetCard(
       isShowing: $isEllipsisClick,
@@ -77,7 +77,7 @@ struct AlbumRecordDetailView: View {
       }
       .foregroundColor(Color.white)
       .font(.custom("Pretendard-Medium", size: 16))
-
+      
     }
     .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
@@ -194,46 +194,49 @@ struct AlbumRecordDetailView: View {
   }
   
   var body: some View {
-    NavigationView {
-      GeometryReader { geometry in
-        ZStack {
-          recordBarArea // 녹음 Bar 영역
-          
-          Color.clear
+    GeometryReader { geometry in
+      ZStack {
+        recordBarArea // 녹음 Bar 영역
+        
+        Color.clear
+          .ignoresSafeArea()
+          .overlay(
+            // Navigation Bar
+            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: "info.title!", safeTop: geometry.safeAreaInsets.top)
+          )
+          .overlay(
+            recordBottomArea
+          )
+        
+        if isCommentClick || isEllipsisClick { // 댓글 or action sheet
+          Color.black
+            .opacity(0.7)
             .ignoresSafeArea()
-            .overlay(
-              // Navigation Bar
-              AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: "info.title!", safeTop: geometry.safeAreaInsets.top)
-            )
-            .overlay(
-              recordBottomArea
-            )
-          
-          if isCommentClick || isEllipsisClick { // 댓글 or action sheet
-            Color.black
-              .opacity(0.7)
-              .ignoresSafeArea()
-              .onTapGesture {
-                isEllipsisClick = false
-              }
-            
-            if isEllipsisClick {
-              actionSheetView // 설정 버튼 sheet
+            .onTapGesture {
+              isEllipsisClick = false
             }
+          
+          if isEllipsisClick {
+            actionSheetView // 설정 버튼 sheet
           }
         }
-        .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop + 45)
-        .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop + 45)
-        .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-          AlbumDateEditView(fileId: info.fileId) // 임시
+      }
+      .background(Color.black)
+      .ignoresSafeArea()
+      .navigationBarHidden(true)
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop + 45)
+      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop + 45)
+      .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
+        AlbumDateEditView(fileId: info.fileId) // 임시
+      }
+      .fullScreenCover(isPresented: $isCommentClick) {
+        AlbumCommentView(isShowing: $isCommentClick)
+          .background(BackgroundCleanerView())
+      }
+      .onAppear {
+        if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
+          isCommentClick = true
         }
-        .fullScreenCover(isPresented: $isCommentClick) {
-          AlbumCommentView(isShowing: $isCommentClick)
-            .background(BackgroundCleanerView())
-        }
-        .background(Color.black)
-        .navigationBarHidden(true)
-        .ignoresSafeArea()
       }
     }
   }

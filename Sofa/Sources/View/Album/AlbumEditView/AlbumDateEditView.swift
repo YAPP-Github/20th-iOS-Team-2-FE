@@ -71,12 +71,13 @@ struct AlbumDateEditView: View {
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
+          let dateStr = currentDate.getFormattedDate(format: "yyyy-MM-dd") + "T" + Date().getFormattedDate(format: "hh:mm:ss")
+
           if albumId != nil {         // 앨범
-            let dateStr = currentDate.getFormattedDate(format: "yyyy-MM-dd") + "T" + Date().getFormattedDate(format: "hh:mm:ss")
             self.viewModel.patchAlbumDate(albumId: albumId!, date: dateStr)
             self.parant?.presentable.wrappedValue.dismiss()
           } else if fileId != nil {  // 사진
-            print("사진 날짜 수정")
+            self.viewModel.patchAlbumDetailDate(fieldId: fileId!, date: dateStr)
           }
           self.presentable.wrappedValue.dismiss()
         }, label: {

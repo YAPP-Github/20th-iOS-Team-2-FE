@@ -15,6 +15,7 @@ enum AlbumDetailManger: URLRequestConvertible {
   case getAlbumDetailListByKind(kind: String, page: Int = 0, size: Int = 10)
   case patchAlbumTitle(albumId: Int, title: String)
   case patchAlbumDate(albumId: Int, date: String)
+  case patchAlbumDetailDate(fieldId: Int, date: String)
   case postFavourite(fieldId: Int)
   
   var baseURL: URL {
@@ -27,6 +28,8 @@ enum AlbumDetailManger: URLRequestConvertible {
       return URL(string: "\(APIConstants.url)/album/\(albumId)")!
     case let .patchAlbumDate(albumId, _):
       return URL(string: "\(APIConstants.url)/album/\(albumId)/date")!
+    case let .patchAlbumDetailDate(fieldId, _):
+      return URL(string: "\(APIConstants.url)/album/\(fieldId)/date")!
     case .postFavourite:
       return URL(string: "\(APIConstants.url)/album/favourite")!
     }
@@ -41,6 +44,8 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .patchAlbumTitle:
       return .patch
     case .patchAlbumDate:
+      return .patch
+    case .patchAlbumDetailDate:
       return .patch
     case .postFavourite:
       return .post
@@ -63,6 +68,9 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .patchAlbumDate:
       headers["accept"] = "application/json"
       headers["Content-Type"] = "application/json"
+    case .patchAlbumDetailDate:
+      headers["accept"] = "application/json"
+      headers["Content-Type"] = "application/json"
     case .postFavourite:
       headers["accept"] = "application/json"
     }
@@ -80,6 +88,8 @@ enum AlbumDetailManger: URLRequestConvertible {
     case let .patchAlbumTitle(_, title):
       params["albumName"] = title
     case let .patchAlbumDate(_, date):
+      params["date"] = date
+    case let .patchAlbumDetailDate(_, date):
       params["date"] = date
     case let .postFavourite(fieldId):
       params["fileId"] = fieldId
@@ -102,6 +112,8 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .patchAlbumTitle:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
     case .patchAlbumDate:
+      request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+    case .patchAlbumDetailDate:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
     case .postFavourite:
       request = try URLEncoding.default.encode(request, with: parameters)

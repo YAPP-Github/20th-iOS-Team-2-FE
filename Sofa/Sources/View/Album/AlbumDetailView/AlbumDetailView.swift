@@ -67,12 +67,21 @@ struct AlbumDetailView: View {
         VStack(spacing: 0) {
           AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isThumbnailClick: $isThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           
-          // 이미지 click
-          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage), isActive: $isThumbnailClick)
-          
-          
-          // 댓글 click
-          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage), isActive: $isCommentClick)
+          if let selectFile = selectFile {
+            if selectFile.kind == "PHOTO" {
+              // 이미지 click
+              NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage), isActive: $isThumbnailClick)
+              
+              // 댓글 click
+              NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage), isActive: $isCommentClick)
+            } else if selectFile.kind == "RECORDING" {
+              // 녹음 이미지 click
+              NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: false), isActive: $isThumbnailClick)
+              
+              // 댓글 click
+              NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: true), isActive: $isCommentClick)
+            }
+          }
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)

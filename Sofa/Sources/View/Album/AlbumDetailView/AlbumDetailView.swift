@@ -76,7 +76,7 @@ struct AlbumDetailView: View {
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isEdit) { // 앨범 날짜 수정
-          AlbumDateEditView(albumId: "0") // 임시
+          AlbumDateEditView(albumId: selectAlbumId) // 임시
         }
         .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
           AlbumDateEditView(photoId: "0") // 임시

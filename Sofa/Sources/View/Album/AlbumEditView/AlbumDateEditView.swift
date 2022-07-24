@@ -10,10 +10,11 @@ import SwiftUI
 struct AlbumDateEditView: View {
   @Environment(\.presentationMode) var presentable
   @State var currentDate: Date = Date()
+  @State var isAlert: Bool = false
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
-  var albumId: String?   // 앨범 날짜 수정
-  var photoId: String?   // 사진 날짜 수정
-  var recordId: String?  // 녹음 날짜 수정
+  var albumId: Int?     // 앨범 날짜 수정
+  var photoId: String?  // 사진 날짜 수정
+  var recordId: String? // 녹음 날짜 수정
 
   var body: some View {
     NavigationView {
@@ -27,8 +28,34 @@ struct AlbumDateEditView: View {
         .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
         .background(Color.white)
         Spacer()
+        if albumId != nil {
+          Button(action: {
+            self.isAlert = true
+          }) {
+            Text("앨범 삭제")
+              .foregroundColor(Color.black)
+              .font(.custom("Pretendard-Regular", size: 18))
+              .frame(maxWidth: .infinity, minHeight: 48)
+              .background(Color(hex: "#EDEADF")) // 임시
+              .clipShape(RoundedRectangle(cornerRadius: 6))
+              .padding([.leading, .trailing], 16)
+              .padding(.bottom, 42)
+          }
+        }
       }
       .background(Color.init(hex: "#FAF8F0")) // 임시
+      .alert(isPresented: $isAlert) {
+        Alert(
+          title: Text("앨범 삭제")
+            .font(.custom("Pretendard-Bold", size: 18)),
+          message: Text("앨범을 삭제하면 앨범에 담긴 모든 사진 및 음성 파일이 삭제됩니다")
+            .font(.custom("Pretendard-Regular", size: 13)),
+          primaryButton: .default(Text("취소")),
+          secondaryButton: .destructive(Text("삭제")
+            .font(.custom("Pretendard-Bold", size: 18))) {
+              
+          })
+      }
       .navigationBarItems(
         leading: Button(action: {
           presentable.wrappedValue.dismiss()

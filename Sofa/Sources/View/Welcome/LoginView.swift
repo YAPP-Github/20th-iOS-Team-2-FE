@@ -17,7 +17,8 @@ struct LoginView: View {
     ZStack{
       LottieView(filename: "113766-gravity")
         .frame(width: Screen.maxWidth, height: Screen.maxHeight)
-      VStack(spacing: -120){
+      VStack(spacing: 0){
+        Spacer()
         Spacer()
         if loginShow{
           LoginButtonView()
@@ -26,6 +27,7 @@ struct LoginView: View {
             .cornerRadius(25, corners: [.topLeft, .topRight])
             .animation(.easeInOut(duration: 1))
             .transition(.move(edge: .bottom))
+            .frame(height: Screen.maxHeight * 0.3)
         }else{
           LoginButtonView()
             .cornerRadius(25, corners: [.topLeft, .topRight])

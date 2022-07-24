@@ -78,7 +78,6 @@ struct NotificationView: View {
                 .foregroundColor(Color(hex: "43A047"))
             }
           }
-          .environment(\.locale, .init(identifier: "ko_KR"))
           .navigationBarTitleDisplayMode(.inline)
           .navigationTitle("알림")
 
@@ -93,7 +92,6 @@ struct NotificationView: View {
     .padding(.bottom, 5)
     .edgesIgnoringSafeArea([.bottom])
     .onDisappear{
-      UITabBar.showTabBar(animated: false)
       tabbarManager.showTabBar = true
     }
     .onAppear{

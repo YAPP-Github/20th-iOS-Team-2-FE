@@ -30,7 +30,7 @@ struct SofaApp: App {
             }
           }
       }
-
+      
     }
   }
 }

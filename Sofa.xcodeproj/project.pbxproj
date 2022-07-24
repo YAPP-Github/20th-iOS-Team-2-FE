@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A012B5E288C252100D07970 /* 113766-gravity.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A012B5D288C252100D07970 /* 113766-gravity.json */; };
+		0A012B60288C2EC700D07970 /* SignInWithAppleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A012B5F288C2EC700D07970 /* SignInWithAppleButtonView.swift */; };
 		0A026876284BA8B700E7AF4A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A026875284BA8B700E7AF4A /* LoginView.swift */; };
 		0A223B6E285F6D46002203ED /* Ex+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A223B6D285F6D46002203ED /* Ex+UIDevice.swift */; };
 		0A223B70285F74BB002203ED /* Ex+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A223B6F285F74BB002203ED /* Ex+UIColor.swift */; };
@@ -43,7 +45,6 @@
 		0AAB371A28674DF200A47B24 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371928674DF200A47B24 /* ChatList.swift */; };
 		0AAB372028675A5A00A47B24 /* CustomBoldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB371F28675A5A00A47B24 /* CustomBoldLabelView.swift */; };
 		0ABA0C1928579493005F2C6A /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1828579493005F2C6A /* LottieView.swift */; };
-		0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1A28579769005F2C6A /* 15025-bed.json */; };
 		0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */; };
 		0AC13DF5287F191A00FDD489 /* MbSwiftUIFirstResponder in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC13DF4287F191A00FDD489 /* MbSwiftUIFirstResponder */; };
 		0AC79182286AF1440034A830 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC79181286AF1440034A830 /* EmojiView.swift */; };
@@ -182,6 +183,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A012B5D288C252100D07970 /* 113766-gravity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "113766-gravity.json"; sourceTree = "<group>"; };
+		0A012B5F288C2EC700D07970 /* SignInWithAppleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonView.swift; sourceTree = "<group>"; };
 		0A026875284BA8B700E7AF4A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0A026877284BA9A300E7AF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0A223B6D285F6D46002203ED /* Ex+UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+UIDevice.swift"; sourceTree = "<group>"; };
@@ -219,7 +222,6 @@
 		0AAB371928674DF200A47B24 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		0AAB371F28675A5A00A47B24 /* CustomBoldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBoldLabelView.swift; sourceTree = "<group>"; };
 		0ABA0C1828579493005F2C6A /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		0ABA0C1A28579769005F2C6A /* 15025-bed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "15025-bed.json"; sourceTree = "<group>"; };
 		0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		0AC79181286AF1440034A830 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		0ACC024C2886E287006234DF /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 			children = (
 				0ABA0C1828579493005F2C6A /* LottieView.swift */,
 				0ABA0C1C2857A30E005F2C6A /* LoginButtonView.swift */,
+				0A012B5F288C2EC700D07970 /* SignInWithAppleButtonView.swift */,
 				0A223B71285F75D6002203ED /* CustomText.swift */,
 				0AF2B52F2881D93B00C6A55E /* TextLabelWithHyperlink.swift */,
 			);
@@ -728,7 +731,7 @@
 		C4667A5D284B752600A4A759 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				0ABA0C1A28579769005F2C6A /* 15025-bed.json */,
+				0A012B5D288C252100D07970 /* 113766-gravity.json */,
 				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
 				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
 			);
@@ -1233,11 +1236,11 @@
 				0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */,
 				0A4CFB9B285F85C8000603A5 /* Pretendard-ExtraLight.otf in Resources */,
 				0A4CFB9F285F8706000603A5 /* LibreBaskerville-Bold.ttf in Resources */,
-				0ABA0C1B28579769005F2C6A /* 15025-bed.json in Resources */,
 				0A4CFB98285F85C8000603A5 /* Pretendard-SemiBold.otf in Resources */,
 				0A4CFB9C285F85C8000603A5 /* Pretendard-Light.otf in Resources */,
 				0AAB368428642AC500A47B24 /* HomeInfoMock.json in Resources */,
 				0A4CFB96285F85C8000603A5 /* Pretendard-ExtraBold.otf in Resources */,
+				0A012B5E288C252100D07970 /* 113766-gravity.json in Resources */,
 				C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */,
 				0A4CFB97285F85C8000603A5 /* Pretendard-Black.otf in Resources */,
 				0A4CFB95285F85C8000603A5 /* Pretendard-Thin.otf in Resources */,
@@ -1456,6 +1459,7 @@
 				0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */,
 				0AE4920A287740B300341D35 /* HomeNavigationBarStyle.swift in Sources */,
 				C4B4963928801E5D000C9E1F /* AlbumManager.swift in Sources */,
+				0A012B60288C2EC700D07970 /* SignInWithAppleButtonView.swift in Sources */,
 				C495F5F32855D668009B3BDE /* NavigationBarWithTextButtonStyle.swift in Sources */,
 				6F155330287FA8260048CE54 /* GreyOutOfFocusView.swift in Sources */,
 				0AAB371828674DE300A47B24 /* ChatRow.swift in Sources */,

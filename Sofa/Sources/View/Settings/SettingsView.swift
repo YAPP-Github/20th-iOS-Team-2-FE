@@ -15,8 +15,10 @@ struct SettingsView: View {
   @State var familyHymn: String = "밥은 잘 챙겨먹자!"
   @State var profileNickName: String = "세상에서 가장 이쁜 딸"
   @State var profileEmail: String = "startmim98@gmail.com"
-  @State var profileRoleColor: String = "#F1F8E9" // 추후 다른 형식으로 수정
+  @State var profileRoleColor: String = "#F1F8E9"
   @State var profileRoleName: String = "딸"
+  @State var profileName: String = "이병기"
+  @State var profileBirthDay: String = "1990-01-01"
   
   var body: some View {
     NavigationView {
@@ -176,6 +178,8 @@ struct SettingsView: View {
           
         }///VStack
         .navigationBarWithIconButtonStyle(isButtonClick: .constant(false), buttonColor: Color.clear, "설정", "")
+        .fullScreenCover(isPresented: $ProfileButtonClick, content: {
+          ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01")})
       }///ZStack
     }///NavigationView
   }
@@ -184,6 +188,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView()
+    SettingsView(familyHymn: "밥은 잘 챙겨먹자!", profileNickName: "세상에서 가장 이쁜 딸", profileRoleColor: "#F1F8E9", profileRoleName: "딸", profileName: "이병기", profileBirthDay: "1990-01-01")
   }
 }

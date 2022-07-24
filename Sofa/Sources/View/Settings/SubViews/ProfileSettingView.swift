@@ -26,74 +26,74 @@ struct ProfileSettingView: View {
         //기본 배경
         Color(hex: "FAF8F0").ignoresSafeArea()
         ScrollView{
-        VStack(spacing: 0) {
-          ZStack{
-            VStack(spacing: 0){
-              //초록 배경
-              Image("profileFrame")
-              //흰 배경
-              Rectangle()
-                .frame(width: Screen.maxWidth, height: 40)
-                .foregroundColor(Color.white)
-              Rectangle()
-                .frame(height: 1.0, alignment: .bottom)
-                .foregroundColor(Color(hex: "EDEADF"))
-                .padding(.bottom, 8)
+          VStack(spacing: 0) {
+            ZStack{
+              VStack(spacing: 0){
+                //초록 배경
+                Image("profileFrame")
+                //흰 배경
+                Rectangle()
+                  .frame(width: Screen.maxWidth, height: 40)
+                  .foregroundColor(Color.white)
+                Rectangle()
+                  .frame(height: 1.0, alignment: .bottom)
+                  .foregroundColor(Color(hex: "EDEADF"))
+                  .padding(.bottom, 8)
+              }
+              
+              // 프로필 사진
+              ZStack {
+                Rectangle()
+                  .frame(width: 70, height: 70)
+                  .foregroundColor(Color.gray)
+                  .cornerRadius(9)
+                Image(profileImage)
+                  .scaledToFill()
+                  .frame(width: 70, height: 70)
+                  .cornerRadius(9)
+                  .clipped()
+                  .overlay(RoundedRectangle(cornerRadius: 9)
+                    .stroke(Color.white, lineWidth: 2))
+              }
             }
             
-            // 프로필 사진
-            ZStack {
-              Rectangle()
-                .frame(width: 70, height: 70)
-                .foregroundColor(Color.gray)
-                .cornerRadius(9)
-              Image(profileImage)
-                .scaledToFill()
-                .frame(width: 70, height: 70)
-                .cornerRadius(9)
-                .clipped()
-                .overlay(RoundedRectangle(cornerRadius: 9)
-                  .stroke(Color.white, lineWidth: 2))
-            }
-          }
-          
-          //입력창
-          ZStack{
-            Color.white.frame(height: 420)
-            VStack(spacing: 0){
+            //입력창
+            ZStack{
+              Color.white.frame(height: 420)
+              VStack(spacing: 0){
+                
+                //입력창 - 별명
+                profileText(text: "별명")
+                profileTextField(text: $nickName, isFocused: $isFocused[0], showingSheet: $showingSheet)
+                
+                //입력창 - 성함
+                profileText(text: "성함")
+                profileTextField(text: $name, isFocused: $isFocused[1], showingSheet: $showingSheet)
+                
+                //입력창 - 역할
+                profileText(text: "역할")
+                profileTextField(text: $roleName, isFocused: $isFocused[2], showingSheet: $showingSheet, isRoleName: true)
+                
+                //입력창 - 생년월일
+                profileText(text: "생년월일")
+                profileTextField(text: $birthDay, isFocused: $isFocused[3], showingSheet: $showingSheet, isBirthDay: true)
+                
+                Spacer()
+              }.padding(.top, 30)
               
-              //입력창 - 별명
-              profileText(text: "별명")
-              profileTextField(text: $nickName, isFocused: $isFocused[0], showingSheet: $showingSheet)
-              
-              //입력창 - 성함
-              profileText(text: "성함")
-              profileTextField(text: $name, isFocused: $isFocused[1], showingSheet: $showingSheet)
-              
-              //입력창 - 역할
-              profileText(text: "역할")
-              profileTextField(text: $roleName, isFocused: $isFocused[2], showingSheet: $showingSheet, isRoleName: true)
-              
-              //입력창 - 생년월일
-              profileText(text: "생년월일")
-              profileTextField(text: $birthDay, isFocused: $isFocused[3], showingSheet: $showingSheet, isBirthDay: true)
-              
-              Spacer()
-            }.padding(.top, 30)
+            }.frame(height: 420)
             
-          }.frame(height: 420)
+            //스크롤 여백 공간
+            Rectangle()
+              .frame(height: 300)
+              .foregroundColor(Color.clear)
+            
+            Spacer()
+          }///VStack
           
-          //스크롤 여백 공간
-          Rectangle()
-            .frame(height: 300)
-            .foregroundColor(Color.clear)
-          
-          Spacer()
-        }///VStack
-        
-      }///ScrollView
-      .navigationBarWithTextButtonStyle(isNextClick: $isChangeProfile, isDisalbeNextButton: $isDisableNextButton, "프로필", nextText: "수정", Color.init(hex: "#43A047"))
-      actionSheetView
+        }///ScrollView
+        .navigationBarWithTextButtonStyle(isNextClick: $isChangeProfile, isTitleClick: .constant(false), isDisalbeNextButton: $isDisableNextButton, isDisalbeTitleButton: .constant(false), "프로필", nextText: "수정", Color.init(hex: "#43A047"))
+        actionSheetView
       }///ZStack
     }///navigationView
   }///body
@@ -185,7 +185,7 @@ struct profileTextField: View { //텍스트필드
         isFirstResponder: false,
         isNumberPad: isBirthDay, isFocused: $isFocused
       ).disabled(isRoleName).padding(.horizontal, 17)
-
+      
       if isRoleName {
         HStack{
           Spacer()

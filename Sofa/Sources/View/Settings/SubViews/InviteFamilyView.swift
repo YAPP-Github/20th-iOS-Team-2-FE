@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct InviteFamilyView: View {
-  @State var showContentView: Bool = false
   @ObservedObject var tabbarManager = TabBarManager.shared
   @State var inviteLinkText = "qlzpdl_dkdleldj_2909.com"
   @State var showToastMessage: Bool = false
@@ -63,6 +62,7 @@ struct InviteFamilyView: View {
               HStack{
                 Image(systemName: "link")
                 Text("링크 복사")
+                  .font(.custom("Pretendard-Regular", size: 18))
               }
               .frame(width: 326, height: 48, alignment: .center)
               .background(Color(hex: "FFB300"))
@@ -89,42 +89,6 @@ struct InviteFamilyView: View {
       tabbarManager.showTabBar = true
     }
   }
-  //  @State var inviteLink = "qlzpdl_dkdleldj_2909.com"
-  //  @ObservedObject var tabbarManager = TabBarManager.shared
-  //  var body: some View {
-  //    VStack{
-  //      VStack{
-  //        TextField("", text: $inviteLink)
-  //          .disabled(true)
-  //          .frame(width: 326, height: 48, alignment: .center)
-  //          .background(Color.pink)
-  //        Button {
-  //          print()
-  //        } label: {
-  //          HStack{
-  //            Image(systemName: "link")
-  //            Text("링크 복사")
-  //          }
-  //          .frame(width: 326, height: 48, alignment: .center)
-  //          .background(Color(hex: "FFB300"))
-  //          .foregroundColor(Color.white)
-  //        }
-  //
-  //      }// VStack
-  //      .padding(.horizontal, 16)
-  //      .background(Color.white)
-  //    }// VStack
-  //    .navigationBarTitleDisplayMode(.inline)
-  //    .navigationTitle("가족 초대")
-  //    .onAppear{
-  //      tabbarManager.showTabBar = false
-  //    }
-  //    .onDisappear{
-  //      tabbarManager.showTabBar = true
-  //    }
-  //    .ignoresSafeArea()
-  //    .background(Color(hex: "#FAF8F0"))
-  //  }
 }
 
 struct InviteFamilyView_Previews: PreviewProvider {

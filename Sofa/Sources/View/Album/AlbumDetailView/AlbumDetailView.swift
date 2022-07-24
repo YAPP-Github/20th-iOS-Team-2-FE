@@ -6,28 +6,30 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct AlbumDetailView: View {
   @ObservedObject var tabbarManager = TabBarManager.shared
-
+  
   @State var isTitleClick = false
   @State var isEdit = false
   
   // 이미지
-  @State var isImageClick: Bool = false
+  @State var isThumbnailClick: Bool = false
+  @State var selectFile: AlbumDetailElement?
   @State var selectImage: UIImage = UIImage()
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
   @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "즐겨찾기 등록", type: .Registration)
-
+  
   @State var isCommentClick: Bool = false   // 댓글
   @State var isEllipsisClick: Bool = false  // 설정
   
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-
+  
   @State var isUpdateDate: Bool = false  // 사진 & 녹음 날짜 수정
   @State var title: String
   var selectAlbumId: Int?      // 날짜별
@@ -63,10 +65,11 @@ struct AlbumDetailView: View {
     ZStack {
       NavigationView {
         VStack(spacing: 0) {
-          AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isImageClick: $isImageClick, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
+          AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isThumbnailClick: $isThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           
           // 이미지 click
-          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage), isActive: $isImageClick)
+          NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage), isActive: $isThumbnailClick)
+          
           
           // 댓글 click
           NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage), isActive: $isCommentClick)

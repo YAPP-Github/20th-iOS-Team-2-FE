@@ -11,8 +11,8 @@ import URLImage
 struct AlbumDetailRow: View {
   @ObservedObject var viewModel: AlbumDetailListCellViewModel
 
-  // 이미지
-  @Binding var isImageClick: Bool
+  @Binding var isThumbnailClick: Bool
+  @Binding var selectFile: AlbumDetailElement?
   @Binding var selectImage: UIImage
   
   @Binding var isBookmarkClick: Bool
@@ -22,11 +22,23 @@ struct AlbumDetailRow: View {
   let info: AlbumDetailElement
   let index: Int
   
+  func saveUIImage() {
+    DispatchQueue.global().async {
+      let data = try? Data(contentsOf: URL(string: selectFile!.link)!)
+      DispatchQueue.main.async {
+        self.selectImage = UIImage(data: data!)!
+      }
+    }
+  }
+  
   var body: some View {
     VStack(spacing: 10) {
       Button(action: {
-        isImageClick = true
-        selectImage = UIImage(named: info.link)!
+        isThumbnailClick = true
+        selectFile = info
+        if info.kind == "PHOTO" {
+          saveUIImage()
+        }
       }, label: {
         ZStack(alignment: .topTrailing) {
           // 썸네일
@@ -92,7 +104,10 @@ struct AlbumDetailRow: View {
         
         Button(action: {
           isCommentClick = true
-          selectImage = UIImage(named: info.link)!
+          selectFile = info
+          if info.kind == "PHOTO" {
+            saveUIImage()
+          }
         }, label: {
           HStack(spacing: 8) {
             Image(systemName: "ellipsis.bubble")
@@ -129,6 +144,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
+    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), isThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }
 }

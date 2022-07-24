@@ -190,6 +190,7 @@ struct SettingsView: View {
             
           }
         }///VStack
+        .edgesIgnoringSafeArea([.bottom])
         .navigationBarWithIconButtonStyle(isButtonClick: .constant(false), buttonColor: Color.clear, "설정", "")
         
         if ProfileButtonClick {

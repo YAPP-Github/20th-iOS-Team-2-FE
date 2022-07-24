@@ -47,6 +47,7 @@ struct AlbumDetailList: View {
         .font(.custom("Pretendard-Medium", size: 16))
         .frame(height: 20)
     }
+    .offset(y: -10) // PullToRefresh로 인해 scrollview위로 올리기
     .background(Color.init(hex: "#FAF8F0")) // 임시
     .edgesIgnoringSafeArea(.bottom)
     .coordinateSpace(name: "pullToRefresh")

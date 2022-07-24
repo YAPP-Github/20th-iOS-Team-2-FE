@@ -182,6 +182,9 @@ struct SettingsView: View {
         if ProfileButtonClick {
           NavigationLink("", destination: ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01"), isActive: $ProfileButtonClick)
         }
+        if FamilyButtonClick {
+          NavigationLink("", destination: FamilySettingView(), isActive: $FamilyButtonClick)
+        }
       }///ZStack
     }///NavigationView
   }

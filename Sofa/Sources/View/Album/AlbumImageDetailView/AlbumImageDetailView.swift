@@ -10,6 +10,8 @@ import SwiftUI
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
   @State var touchImage = false
+  var info: AlbumDetailElement
+  var image: UIImage
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
@@ -27,8 +29,6 @@ struct AlbumImageDetailView: View {
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-
-  var image: UIImage
   
   var actionSheetView: some View {
     ActionSheetCard(
@@ -101,7 +101,7 @@ struct AlbumImageDetailView: View {
       .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
       .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-        AlbumDateEditView(photoId: "0") // 임시
+        AlbumDateEditView(fileId: info.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick)
@@ -120,6 +120,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(isPreCommentClick: false, image: UIImage(named: data.link)!)
+    AlbumImageDetailView(info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
   }
 }

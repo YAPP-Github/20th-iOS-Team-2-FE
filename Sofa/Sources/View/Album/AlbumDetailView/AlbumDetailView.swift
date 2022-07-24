@@ -71,10 +71,10 @@ struct AlbumDetailView: View {
           if let selectFile = selectFile {
             if selectFile.kind == "PHOTO" {
               // 이미지 click
-              NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: false, image: selectImage), isActive: $isThumbnailClick)
+              NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isThumbnailClick)
               
               // 댓글 click
-              NavigationLink("", destination: AlbumImageDetailView(isPreCommentClick: true, image: selectImage), isActive: $isCommentClick)
+              NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isCommentClick)
             } else if selectFile.kind == "RECORDING" {
               // 녹음 이미지 click
               NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: false), isActive: $isThumbnailClick)
@@ -91,7 +91,7 @@ struct AlbumDetailView: View {
           AlbumDateEditView(parant: self, albumId: selectAlbumId) // 임시
         }
         .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-          AlbumDateEditView(photoId: "0") // 임시
+          AlbumDateEditView(fileId: selectFile!.fileId) // 임시
         }
         .fullScreenCover(isPresented: $isTitleClick) {
           AlbumTitleEditView(title: title, isShowing: $isTitleClick, preTitle: $title, albumId: selectAlbumId!)

@@ -15,8 +15,7 @@ struct AlbumDateEditView: View {
   var parant: AlbumDetailView?
   let buttonColor: Color = Color.init(hex: "#43A047") // 임시
   var albumId: Int?     // 앨범 날짜 수정
-  var photoId: String?  // 사진 날짜 수정
-  var recordId: String? // 녹음 날짜 수정
+  var fileId: Int?      // 사진/녹음 날짜 수정
   
   var body: some View {
     NavigationView {
@@ -76,10 +75,8 @@ struct AlbumDateEditView: View {
             let dateStr = currentDate.getFormattedDate(format: "yyyy-MM-dd") + "T" + Date().getFormattedDate(format: "hh:mm:ss")
             self.viewModel.patchAlbumDate(albumId: albumId!, date: dateStr)
             self.parant?.presentable.wrappedValue.dismiss()
-          } else if photoId != nil {  // 사진
+          } else if fileId != nil {  // 사진
             print("사진 날짜 수정")
-          } else if recordId != nil { // 녹음
-            print("녹음 날짜 수정")
           }
           self.presentable.wrappedValue.dismiss()
         }, label: {

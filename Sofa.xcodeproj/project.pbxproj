@@ -650,6 +650,7 @@
 			isa = PBXGroup;
 			children = (
 				C440003628819838007D0C20 /* AlbumTitleEditView.swift */,
+				C46C56D52882EAC500677E63 /* AlbumEditDateView.swift */,
 				C46C56CB2881B3DE00677E63 /* SubViews */,
 			);
 			path = AlbumEditView;
@@ -796,7 +797,6 @@
 		C46C56D42882EA9D00677E63 /* AlbumEditDateView */ = {
 			isa = PBXGroup;
 			children = (
-				C46C56D52882EAC500677E63 /* AlbumEditDateView.swift */,
 			);
 			path = AlbumEditDateView;
 			sourceTree = "<group>";

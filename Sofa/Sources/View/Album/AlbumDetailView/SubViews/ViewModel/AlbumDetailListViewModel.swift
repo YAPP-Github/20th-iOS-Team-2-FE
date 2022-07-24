@@ -103,11 +103,6 @@ class AlbumDetailListViewModel: ObservableObject {
   
   // 유형별
   fileprivate func fetchAlbumDetailByKind() {
-//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).baseURL)
-//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).headers)
-//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).parameters)
-//    print(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType).method)
-    
     AF.request(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType))
       .publishDecodable(type: AlbumDetailAPIResponse.self)
       .value()

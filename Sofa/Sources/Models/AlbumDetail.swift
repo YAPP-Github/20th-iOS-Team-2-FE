@@ -13,7 +13,8 @@ struct AlbumDetailAPIResponse: Hashable, Decodable {
 }
 
 struct AlbumDetailResult: Hashable, Decodable {
-  let title: String
+  let title: String?
+  let type: String?
   let elements: [AlbumDetailElement]
 }
 

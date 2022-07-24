@@ -47,6 +47,6 @@ struct MockData {
       elements.append(element)
     }
     
-    return AlbumDetailAPIResponse(results: AlbumDetailResult(title: titleList[0], elements: elements), info: Info(totalCount: 0, pageCount: 0, pageSize: 1))
+    return AlbumDetailAPIResponse(results: AlbumDetailResult(title: titleList[0], type: nil, elements: elements), info: Info(totalCount: 0, pageCount: 0, pageSize: 1))
   }
 }

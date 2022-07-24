@@ -15,19 +15,26 @@ import SwiftKeychainWrapper
 struct AppleUser: Codable {
   let userId: String
   let identityToken: String
+  let authorizationCode: String
   
   init?(credentials: ASAuthorizationAppleIDCredential){
     let identityToken = String(decoding: credentials.identityToken!, as: UTF8.self)
+    let authorizationCode = String(decoding: credentials.authorizationCode!, as: UTF8.self)
     
     self.userId = credentials.user
     self.identityToken = identityToken
+    self.authorizationCode = authorizationCode
   }
 }
 
 struct LoginButtonView: View {
+  
+  @StateObject var loginViewModel = LoginViewModel()
   @State var text: NSMutableAttributedString = NSMutableAttributedString(string: "")
+  
   var body: some View {
     VStack{
+      
       Button {
         if (UserApi.isKakaoTalkLoginAvailable()) {// 카톡이 설치되어있다면
           UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
@@ -37,13 +44,11 @@ struct LoginButtonView: View {
             }
             else {
               print("loginWithKakaoTalk() success.")
-              print("👉OauthToken: \(oauthToken!.accessToken)")
-              
-              // Keychain에 User Token 저장
-//              Constant.accessToken = oauthToken!.accessToken
-//              Constant.refreshToken = oauthToken!.refreshToken
-              
-              
+              print("👉accessToken: \(oauthToken!.accessToken)")
+              print("👉refreshToken: \(oauthToken!.refreshToken)")
+            
+              self.loginViewModel.postKakaoLogin(accessToken: oauthToken!.accessToken, refreshToken: oauthToken!.refreshToken)
+
               
             }
           }
@@ -55,12 +60,13 @@ struct LoginButtonView: View {
             }
             else {
               print("loginWithKakaoTalk() success.")
-              print("👉OauthToken: \(oauthToken!.accessToken)")
+              print("👉accessToken: \(oauthToken!.accessToken)")
+              print("👉refreshToken: \(oauthToken!.refreshToken)")
               
-              // Keychain에 User Token 저장
-//              Constant.accessToken = oauthToken!.accessToken
-//              Constant.refreshToken = oauthToken!.refreshToken
               
+              self.loginViewModel.postKakaoLogin(accessToken: oauthToken!.accessToken, refreshToken: oauthToken!.refreshToken)
+              
+
             }
           }
         }
@@ -72,20 +78,8 @@ struct LoginButtonView: View {
       }
       .frame(width: 326, height: 48, alignment: .center)
       .padding(EdgeInsets(top: 0.04 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
-      //      Button {
-      //
-      //
-      //      } label : {
-      //        Image("SignInWithApple")
-      //          .resizable()
-      //          .aspectRatio(contentMode: .fit)
-      //
-      //      }
-      SignInWithAppleButton(
-        .signIn,
-        onRequest: configure,
-        onCompletion: handle
-      )
+
+      SignInWithAppleButtonView(onRequest: configure(_:), onCompletion: handle(_:))
       .cornerRadius(40)
       .frame(width: 326, height: 48, alignment: .center)
       
@@ -93,25 +87,12 @@ struct LoginButtonView: View {
         .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0, trailing: 0.075 * Screen.maxWidth))
       
       VStack {
-        CustomText(text: self.$text)
+        TextLabelWithHyperlink()
       }
       .onAppear{
         
         // 여기에 써주세요!
 //        KeychainWrapper.standard.set("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzpudWxsIiwiaWF0IjoxNjU3ODE1ODE2LCJleHAiOjE2NTc4MTk0MTZ9.AoThfTsgp4vzT4uVgl3llpGTmBPwzabjp-6t_2UjxAU", forKey: "accessToken")
-        
-        let myText = "'시작하기'를 누른 것으로 필수 이용약관 및 개인정보 이용방침에 동의하고 서비스를 이용합니다."
-        
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = .center
-        let attributtedString = NSMutableAttributedString(string: myText, attributes: [NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 13)!, .paragraphStyle: paragraph])
-        
-        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#999899"), range: (myText as NSString).range(of: myText))
-        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "필수 이용약관"))
-        attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "#439F47"), range: (myText as NSString).range(of: "개인정보 이용방침"))
-        
-        
-        self.text = attributtedString
         
       }
       .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.05 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
@@ -121,7 +102,13 @@ struct LoginButtonView: View {
     .background(Color.white)
     .frame(width: Screen.maxWidth, height: Screen.maxHeight * 0.4 , alignment: .center)
     .ignoresSafeArea()
-    .background(Color.white)
+    .background(Color.white )
+    .fullScreenCover(isPresented: $loginViewModel.showJoin) { // 회원 등록
+      RegisterView()
+    }
+    .fullScreenCover(isPresented: $loginViewModel.showContent) { // 재로그인
+      ContentView()
+    }
     
   }
   
@@ -137,10 +124,15 @@ struct LoginButtonView: View {
       case let appleIDCredentials as ASAuthorizationAppleIDCredential:
         if let appleUser = AppleUser(credentials: appleIDCredentials),
           let appleUserData = try? JSONEncoder().encode(appleUser) {
-            //            Constant.userID = appleUserData
-            print(appleUser)
+
+          print("authoriztionCode: \(appleUser.authorizationCode)")
+          print("identityToken: \(appleUser.identityToken)")
+          print("userID: \(appleUser.userId)")
+          
+          self.loginViewModel.postAppleLogin(identityToken: appleUser.identityToken, authoriztionCode: appleUser.authorizationCode, userId: appleUser.userId)
+          
           }
-        print(auth.credential)
+//        print(auth.credential)
       default:
         print(auth.credential)
       }

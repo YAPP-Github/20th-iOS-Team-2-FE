@@ -9,12 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
   
-  @ObservedObject var eventViewModel = EventViewModel()
+  @StateObject var eventViewModel = EventViewModel()
   @State var gotoAlarm = false
   @State var showModal = false
   @State var showMessageView = false
   @Binding var selectionType: Tab
   @State var placeholder = "가족에게 인사를 남겨보세요."
+  @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
+  
+  @ObservedObject var tabbarManager = TabBarManager.shared
   
   var body: some View {
     ZStack {
@@ -40,11 +43,13 @@ struct HomeView: View {
           }
           .padding(EdgeInsets(top: 7, leading: 24, bottom: 12, trailing: 68))
           .background(Color.white)
+          .frame(height: 44)
           ScrollView{
-            LazyVStack{
+            VStack{
               EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType)
                 .frame(height: eventViewModel.events.count == 0 ? 0 : 64)
                 .padding(.vertical, eventViewModel.events.count == 0 ? 0 : 16)
+                .animation(.default)
             }
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
             .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
@@ -53,25 +58,40 @@ struct HomeView: View {
               .fullScreenCover(isPresented: $showModal) {
                 HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
+                  .onAppear{
+                    tabbarManager.showTabBar = false
+                  }
+                  .onDisappear{
+                    tabbarManager.showTabBar = true
+                  }
               }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView(messageShow: $showMessageView)
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
-            .edgesIgnoringSafeArea(.top)
+            .edgesIgnoringSafeArea(.all)
             .fullScreenCover(isPresented: $showMessageView) {
               MessageView($showMessageView, $placeholder)
                 .background(BackgroundCleanerView())
             }
           
+          if (!tabbarManager.showTabBar){
+            // TabBar Show를 위한 Rectangle()
+//            Rectangle()
+//              .foregroundColor(Color.clear)
+//              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
+            // Custom Tab View
+            CustomTabView(selection: $currentSelectedTab)
+          
+            
+          }
+          
         }// VStack
         .ignoresSafeArea(.keyboard)
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
-        .onAppear{
-          UITabBar.showTabBar(animated: false)
-        }
+        .edgesIgnoringSafeArea([.bottom])
         
       }// NavigationView
       .accentColor(Color(hex: "43A047"))
@@ -86,11 +106,11 @@ struct HomeView: View {
   
 }
 
-struct HomeView_Previews: PreviewProvider {
-  static var previews: some View {
-    HomeView(selectionType: .constant(.home))
-  }
-}
+//struct HomeView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    HomeView(selectionType: .constant(.home))
+//  }
+//}
 
 struct BackgroundCleanerView: UIViewRepresentable {
   func makeUIView(context: Context) -> UIView {

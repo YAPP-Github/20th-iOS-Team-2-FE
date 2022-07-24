@@ -9,13 +9,14 @@ import SwiftUI
 
 
 struct AlbumView: View {
-  @ObservedObject var viewModel = AlbumListViewModel()
+  @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+  @State var currentSelectedTab: Tab = .album // 현재 선택된 탭으로 표시할 곳
   @State var showingSheet = false
   @State var selected = 0
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
-  @State var cameraImage: UIImage? // 카메라를 통해 받아오는 이미지
-  
+  @State var cameraImage = UIImage() // 카메라를 통해 받아오는 이미지
+
   var actionSheetView: some View {
     ActionSheetCard(
       isShowing: $showingSheet,
@@ -34,7 +35,6 @@ struct AlbumView: View {
         }
       ]
     )
-    .onDisappear { UITabBar.showTabBar() }
   }
   
   var body: some View {
@@ -42,34 +42,41 @@ struct AlbumView: View {
       NavigationView {
         VStack(spacing: 0) {
           Picker(selection: $selected, label: Text(""), content: {
-            Text("날짜별").tag(0)
-            Text("유형별").tag(1)
+            Text("날짜별").font(.custom("Pretendard-Regular", size: 16)).tag(0)
+            Text("유형별").font(.custom("Pretendard-Regular", size: 16)).tag(1)
           })
-          .padding()
+          .padding(16)
           .background(Color.init(hex: "#FAF8F0")) // 임시
           .pickerStyle(SegmentedPickerStyle())
           
-          if selected == 0 { // 날짜별
-            AlbumList(albumDate: viewModel.albumDateList.count == 0 ? MockData().albumByDate : viewModel.albumDateList) // 임시
-          } else if selected == 1 { // 유형별
-            AlbumList(albumType: viewModel.albumTypeList.count == 0 ? MockData().albumByType : viewModel.albumTypeList) // 임시
+          AlbumList(selectType: selected) // select값에 따른 날짜별, 유형별 View
+          
+          if (!tabbarManager.showTabBar){
+            CustomTabView(selection: $currentSelectedTab)
           }
           
           // 카메라 날짜 선택 View로 이동
-          NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, image: cameraImage), isActive: $showCameraSelectDate)
+          if showCameraSelectDate {
+            NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, images: [cameraImage]), isActive: $showCameraSelectDate)
+          }
         }
+        .background(Color.init(hex: "#FAF8F0")) // 임시
         .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
-        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) { // 사진 추가 View로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) {
+          // 사진 추가 View로 이동
           AlbumPhotoAddView()
         }
-        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) { // 카메라 imagePicker로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) {
+          // 카메라 imagePicker로 이동
           CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
             .ignoresSafeArea()
         }
-        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) { // 녹음 추가 View로 이동
+        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) {
+          // 녹음 추가 View로 이동
           AlbumRecordAddView()
         }
-        .alert(isPresented: $authorizationViewModel.showErrorAlert) { // 카메라 error
+        .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+          // 카메라 error
           Alert(
             title: Text(authorizationViewModel.showErrorAlertTitle),
             message: Text(authorizationViewModel.showErrorAlertMessage),
@@ -80,7 +87,7 @@ struct AlbumView: View {
             },
             secondaryButton: .default(Text("확인")))
         }
-        .onAppear { UITabBar.showTabBar() }
+        .edgesIgnoringSafeArea([.bottom])
       }
       if showingSheet { // action sheet
         Color.black
@@ -88,7 +95,9 @@ struct AlbumView: View {
           .ignoresSafeArea()
           .onTapGesture {
             showingSheet = false
+            tabbarManager.showTabBar = true
           }
+          .onAppear { self.tabbarManager.showTabBar = false }
         
         actionSheetView // 바텀 Sheet
       }

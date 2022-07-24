@@ -191,10 +191,18 @@ struct AppendTaskModalView: View {
                 GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true), currentDate: $currentDate)
                   .padding(.bottom, 12)
                 
+                if showDatePicker {
+                  Rectangle()
+                    .frame(height: 1.0, alignment: .bottom)
+                    .foregroundColor(Color(hex: "EDEADF"))
+                    .padding(.top, 16)
+                }
+                
                 // 시간
                 if !allDayToggle {
                   TaskTimePicker()
                     .padding(.bottom, 27)
+                    .padding(.top, 12)
                 }
                 
               }.padding(EdgeInsets(top: 30, leading: 19.5, bottom: 0, trailing: 16))

@@ -12,6 +12,8 @@ target 'Sofa' do
   pod 'lottie-ios'
   pod 'SwiftKeychainWrapper'
   pod 'Alamofire'
+  pod 'Introspect'
+  pod 'URLImage'
 
   target 'SofaTests' do
     inherit! :search_paths

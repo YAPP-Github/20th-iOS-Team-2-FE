@@ -8,6 +8,13 @@
 import SwiftUI
 import SwiftKeychainWrapper
 
+class TabBarManager: ObservableObject {
+    @Published var showTabBar: Bool = true
+
+  static let shared = TabBarManager()
+}
+
+
 enum Tab{
   case home
   case calendar
@@ -17,43 +24,38 @@ enum Tab{
 
 struct ContentView: View {
   @State private var selection: Tab = .home
+  @ObservedObject var tabbarManager = TabBarManager.shared
   
-  init() {
-    UITabBar.appearance().barTintColor = .white
-  }
-  
+
   var body: some View {
-    TabView(selection: $selection) {
-      HomeView(selectionType: $selection)
-        .tabItem {
-          Image(systemName: "hand.wave")
+    VStack(spacing: 0){
+      ZStack{
+        switch selection {
+        case .home:
+          HomeView(selectionType: $selection)
+        case .calendar:
+          CalendarView()
+        case .album:
+          AlbumView()
+        case .setting:
+          SettingsView()
+        default:
+          HomeView(selectionType: $selection)
         }
-        .tag(Tab.home)
-//        .onAppear{
-//          KeychainWrapper.standard.removeObject(forKey: "accessToken")
-//        }
-      CalendarView()
-        .tabItem {
-          Image(systemName: "calendar")
-        }
-        .tag(Tab.calendar)
-      AlbumView()
-        .tabItem {
-          Image(systemName: "book.closed")
-        }
-        .tag(Tab.album)
-      SettingsView()
-        .tabItem {
-          Image(systemName: "ellipsis")
-        }
-        .tag(Tab.setting)
+      }
+            
+      if (tabbarManager.showTabBar){
+        CustomTabView(selection: $selection)
+      }
     }
-    .accentColor(Color(hex: "#43A047"))
+    .ignoresSafeArea(.keyboard)
+    .edgesIgnoringSafeArea(.all)
+    .background(Color.clear)
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    ContentView(tabbarManager: TabBarManager())
   }
 }

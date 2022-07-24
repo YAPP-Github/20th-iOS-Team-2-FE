@@ -31,7 +31,14 @@ struct AlbumDetailRow: View {
       }, label: {
         ZStack(alignment: .topTrailing) {
           // 썸네일
-          if info.link.hasSuffix(".m4a") {
+          if info.kind == "PHOTO" {
+            URLImage(url: URL(string: info.link)!, content: { image in
+              image
+                .resizable()
+                .frame(height: Screen.maxWidth * 0.7)
+                .cornerRadius(8)
+            })
+          } else {
             Rectangle()
               .cornerRadius(8)
               .frame(height: Screen.maxWidth * 0.7)
@@ -41,17 +48,10 @@ struct AlbumDetailRow: View {
                   .font(.system(size: 32))
                   .foregroundColor(Color(hex: "#66BB6A"))
               )
-          } else {
-            URLImage(url: URL(string: info.link)!, content: { image in
-              image
-                .resizable()
-                .frame(height: Screen.maxWidth * 0.7)
-                .cornerRadius(8)
-            })
           }
           
           // 대표 사진 Badge
-          if index == 0 {
+          if index == 0 && info.kind == "PHOTO" {
             Group {
               Text("대표 사진")
                 .font(.custom("Pretendard-Bold", size: 12))

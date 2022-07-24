@@ -30,7 +30,7 @@ struct AlbumDetailView: View {
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
 
   @State var isUpdateDate: Bool = false  // 사진 & 녹음 날짜 수정
-  let title: String
+  @State var title: String
   var selectAlbumId: Int?      // 날짜별
   var selectKindType: String?  // 유형별
   
@@ -82,7 +82,7 @@ struct AlbumDetailView: View {
           AlbumEditDateView(photoId: "0") // 임시
         }
         .fullScreenCover(isPresented: $isTitleClick) {
-          AlbumTitleEditView(title: title, isShowing: $isTitleClick)
+          AlbumTitleEditView(title: title, isShowing: $isTitleClick, preTitle: $title, albumId: selectAlbumId!)
             .background(BackgroundCleanerView())
         }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시

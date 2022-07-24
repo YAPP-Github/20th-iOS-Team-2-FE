@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct AlbumDetailRow: View {
   // 이미지
@@ -29,11 +30,25 @@ struct AlbumDetailRow: View {
         selectImageIndex = index
       }, label: {
         ZStack(alignment: .topTrailing) {
-          // post image
-          Image(info.link)
-            .resizable()
-            .frame(height: Screen.maxWidth * 0.7)
-            .cornerRadius(8)
+          // 썸네일
+          if info.link.hasSuffix(".m4a") {
+            Rectangle()
+              .cornerRadius(8)
+              .frame(height: Screen.maxWidth * 0.7)
+              .foregroundColor(Color(hex: "#E8F5E9"))
+              .overlay(
+                Image(systemName: "waveform")
+                  .font(.system(size: 32))
+                  .foregroundColor(Color(hex: "#66BB6A"))
+              )
+          } else {
+            URLImage(url: URL(string: info.link)!, content: { image in
+              image
+                .resizable()
+                .frame(height: Screen.maxWidth * 0.7)
+                .cornerRadius(8)
+            })
+          }
           
           // 대표 사진 Badge
           if index == 0 {
@@ -50,9 +65,9 @@ struct AlbumDetailRow: View {
         }
       })
       
-      if info.type != "PHOTO" { // RECORDING
+      if info.kind == "RECORDING" { // RECORDING
         HStack {
-          Text(info.title!)
+          Text("녹음 제목")
             .foregroundColor(Color(UIColor.label))
             .font(.system(size: 18, weight: .semibold))
             .padding(.top, -6) // top : 4
@@ -112,7 +127,7 @@ struct AlbumDetailRow: View {
 
 struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[3]
+    let data = MockData().albumDetail.results.elements[3]
     
     AlbumDetailRow(isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }

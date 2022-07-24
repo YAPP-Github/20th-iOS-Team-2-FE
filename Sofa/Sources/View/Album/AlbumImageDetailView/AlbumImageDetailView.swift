@@ -79,7 +79,7 @@ struct AlbumImageDetailView: View {
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
           .overlay(
-            AlbumImageDetailSettingBar(isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
+            AlbumImageDetailSettingBar(isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.results.elements[0]) // 임시
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
         
@@ -119,7 +119,7 @@ struct AlbumImageDetailView: View {
 
 struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[6]
+    let data = MockData().albumDetail.results.elements[6]
     
     AlbumImageDetailView(isPreCommentClick: false, image: UIImage(named: data.link)!, index: 0)
   }

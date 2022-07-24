@@ -203,7 +203,7 @@ struct AlbumRecordDetailView: View {
             .ignoresSafeArea()
             .overlay(
               // Navigation Bar
-              AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: info.title!, safeTop: geometry.safeAreaInsets.top)
+              AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: "info.title!", safeTop: geometry.safeAreaInsets.top)
             )
             .overlay(
               recordBottomArea
@@ -241,7 +241,7 @@ struct AlbumRecordDetailView: View {
 
 struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[3]
+    let data = MockData().albumDetail.results.elements[3]
     
     AlbumRecordDetailView(info: data, isPreCommentClick: false)
   }

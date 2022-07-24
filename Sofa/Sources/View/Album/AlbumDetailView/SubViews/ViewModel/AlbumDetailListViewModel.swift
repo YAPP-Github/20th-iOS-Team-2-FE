@@ -30,7 +30,7 @@ class AlbumDetailListViewModel: ObservableObject {
 
   var currentPage: Int = 0
   
-  func fetch(albumId: Int?, kindType: String?) {
+  init(albumId: Int?, kindType: String?) {
     if let albumId = albumId { // 날짜별
       self.albumId = albumId
 
@@ -65,17 +65,12 @@ class AlbumDetailListViewModel: ObservableObject {
           self.fetchMoreByKind()
         }
       }.store(in: &subscription)
-
     }
   }
-  
+    
   // 날짜별
   fileprivate func fetchAlbumDetailByDate() {
     self.isLoading = true
-//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).baseURL)
-//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).headers)
-//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).method)
-//    print(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId).parameters)
     
     AF.request(AlbumDetailManger.getAlbumDetailListByDate(albumId: albumId))
       .publishDecodable(type: AlbumDetailAPIResponse.self)
@@ -98,7 +93,7 @@ class AlbumDetailListViewModel: ObservableObject {
         },
         receiveValue: {[weak self] receivedValue in
 //                    print("받은 값 : \(receivedValue)")
-          self?.albumDetailList = receivedValue.elements
+          self?.albumDetailList = receivedValue.results.elements
 //          self?.pageInfo = receivedValue.info
           self?.currentPage = 0
         }
@@ -128,12 +123,12 @@ class AlbumDetailListViewModel: ObservableObject {
           default:
             break
           }
-          NSLog("Error : " + error.localizedDescription)
+//          NSLog("Error : " + error.localizedDescription)
           self?.albumDetailList = [AlbumDetailElement]()
         },
         receiveValue: {[weak self] receivedValue in
           //          print("받은 값 : \(receivedValue)")
-          self?.albumDetailList = receivedValue.elements
+          self?.albumDetailList = receivedValue.results.elements
 //          self?.pageInfo = receivedValue.info
           self?.currentPage = 0
         }
@@ -161,7 +156,7 @@ class AlbumDetailListViewModel: ObservableObject {
         },
         receiveValue: { receivedValue in
 //          print("받은 값 : \(receivedValue.results.albums.count)")
-          self.albumDetailList += receivedValue.elements
+          self.albumDetailList += receivedValue.results.elements
 //          self.pageInfo = receivedValue.info
         }
       )
@@ -188,7 +183,7 @@ class AlbumDetailListViewModel: ObservableObject {
         },
         receiveValue: { receivedValue in
 //          print("받은 값 : \(receivedValue.results.albums.count)")
-          self.albumDetailList += receivedValue.elements
+          self.albumDetailList += receivedValue.results.elements
 //          self.pageInfo = receivedValue.info
         }
       )

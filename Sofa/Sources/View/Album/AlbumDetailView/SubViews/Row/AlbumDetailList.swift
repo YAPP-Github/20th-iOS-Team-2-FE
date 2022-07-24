@@ -9,7 +9,7 @@ import SwiftUI
 import Introspect
 
 struct AlbumDetailList: View {
-  @ObservedObject var viewModel = AlbumDetailListViewModel()
+  @ObservedObject var viewModel: AlbumDetailListViewModel
   @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 100)
 
   // 이미지
@@ -40,11 +40,12 @@ struct AlbumDetailList: View {
           AlbumDetailRow(isImageClick: $isImageClick, selectImage: $selectImage, selectImageIndex: $selectImageIndex, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
-        
-        Text("가져올 게시물이 없어요")
-          .font(.custom("Pretendard-Medium", size: 16))
-          .frame(height: 20)
       }
+      .background(Color.white)
+      
+      Text("가져올 게시물이 없어요")
+        .font(.custom("Pretendard-Medium", size: 16))
+        .frame(height: 20)
     }
     .background(Color.init(hex: "#FAF8F0")) // 임시
     .coordinateSpace(name: "pullToRefresh")
@@ -58,16 +59,13 @@ struct AlbumDetailList: View {
         viewModel.fetchMoreActionSubjectByKind.send() // 유형별 pagenation
       }
     })
-    .onAppear {
-      viewModel.fetch(albumId: selectAlbumId, kindType: selectKindType)
-    }
   }
 }
 
 struct AlbumDetailList_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[0]
+    let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailList(isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), selectAlbumId: 0, selectKindType: "")
+    AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: 0, kindType: ""), isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), selectAlbumId: 0, selectKindType: "")
   }
 }

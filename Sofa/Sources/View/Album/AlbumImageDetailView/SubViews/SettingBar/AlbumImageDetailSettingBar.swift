@@ -74,7 +74,7 @@ struct AlbumImageDetailSettingBar: View {
 
 struct AlbumImageDetailSettingBar_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[3]
+    let data = MockData().albumDetail.results.elements[3]
     
     AlbumImageDetailSettingBar(isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
       .ignoresSafeArea()

@@ -43,10 +43,10 @@ struct MockData {
   var albumDetail: AlbumDetailAPIResponse {
     var elements = [AlbumDetailElement]()
     for i in 0..<10 {
-      let element = AlbumDetailElement(id: i, type: albumDetailListType[i % 6], fileId: i, date: dateList[i % 6], link: photoList[i % 10], favourite: titleList[i % 6].count % 2 == 0, title: albumDetailListType[i % 6] == "RECORDING" ? "Record-Title" : nil, commentCount: titleList[i % 6].count)
+      let element = AlbumDetailElement(id: i, kind: albumDetailListType[i % 6], fileId: i, date: dateList[i % 6], link: photoList[i % 10], favourite: titleList[i % 6].count % 2 == 0, commentCount: titleList[i % 6].count)
       elements.append(element)
     }
     
-    return AlbumDetailAPIResponse(title: titleList[0], type: nil, elements: elements)
+    return AlbumDetailAPIResponse(results: AlbumDetailResult(title: titleList[0], elements: elements), info: Info(totalCount: 0, pageCount: 0, pageSize: 1))
   }
 }

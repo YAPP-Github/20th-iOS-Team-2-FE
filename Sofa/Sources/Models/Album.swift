@@ -7,6 +7,9 @@
 
 import Foundation
 
+struct AlbumDefaulAPIResponse: Hashable, Decodable {
+}
+
 struct AlbumDateAPIResponse: Hashable, Decodable {
   let results: AlbumDateResult
   let info: Info

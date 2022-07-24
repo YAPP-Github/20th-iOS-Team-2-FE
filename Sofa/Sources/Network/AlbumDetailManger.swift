@@ -48,7 +48,8 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .getAlbumDetailListByKind:
       headers["accept"] = "application/json"
     case .patchAlbumTitle:
-      break
+      headers["accept"] = "application/json"
+      headers["Content-Type"] = "application/json"
     }
     return headers
   }

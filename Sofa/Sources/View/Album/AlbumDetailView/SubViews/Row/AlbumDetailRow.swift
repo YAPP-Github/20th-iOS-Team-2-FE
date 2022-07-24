@@ -139,6 +139,7 @@ struct AlbumDetailRow: View {
         
         Button(action: {
           isEllipsisClick = true
+          selectFile = info
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)

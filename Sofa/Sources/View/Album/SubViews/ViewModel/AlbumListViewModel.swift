@@ -106,7 +106,7 @@ class AlbumListViewModel: ObservableObject {
   
   // pagenation
   fileprivate func fetchMore() {
-    if self.currentPage == pageInfo?.pageCount {
+    if self.currentPage + 1 == pageInfo?.pageCount {
       print("페이지 정보가 없습니다.")
       return
     }

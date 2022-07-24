@@ -94,7 +94,7 @@ class AlbumDetailListViewModel: ObservableObject {
         receiveValue: {[weak self] receivedValue in
 //                    print("받은 값 : \(receivedValue)")
           self?.albumDetailList = receivedValue.results.elements
-//          self?.pageInfo = receivedValue.info
+          self?.pageInfo = receivedValue.info
           self?.currentPage = 0
         }
       )
@@ -124,7 +124,7 @@ class AlbumDetailListViewModel: ObservableObject {
         receiveValue: {[weak self] receivedValue in
           //          print("받은 값 : \(receivedValue)")
           self?.albumDetailList = receivedValue.results.elements
-//          self?.pageInfo = receivedValue.info
+          self?.pageInfo = receivedValue.info
           self?.currentPage = 0
         }
       )
@@ -133,7 +133,7 @@ class AlbumDetailListViewModel: ObservableObject {
   
   // 날짜별 pagenation
   fileprivate func fetchMoreByDate() {
-    if self.currentPage == pageInfo?.pageCount {
+    if self.currentPage + 1 == pageInfo?.pageCount {
       print("Album Detail Date 페이지 정보가 없습니다.")
       return
     }
@@ -152,7 +152,7 @@ class AlbumDetailListViewModel: ObservableObject {
         receiveValue: { receivedValue in
 //          print("받은 값 : \(receivedValue.results.albums.count)")
           self.albumDetailList += receivedValue.results.elements
-//          self.pageInfo = receivedValue.info
+          self.pageInfo = receivedValue.info
         }
       )
       .store(in: &subscription)
@@ -160,7 +160,7 @@ class AlbumDetailListViewModel: ObservableObject {
   
   // 유형별 pagenation
   fileprivate func fetchMoreByKind() {
-    if self.currentPage == pageInfo?.pageCount {
+    if self.currentPage + 1 == pageInfo?.pageCount {
       print("Album Detail Kind 페이지 정보가 없습니다.")
       return
     }
@@ -179,7 +179,7 @@ class AlbumDetailListViewModel: ObservableObject {
         receiveValue: { receivedValue in
 //          print("받은 값 : \(receivedValue.results.albums.count)")
           self.albumDetailList += receivedValue.results.elements
-//          self.pageInfo = receivedValue.info
+          self.pageInfo = receivedValue.info
         }
       )
       .store(in: &subscription)

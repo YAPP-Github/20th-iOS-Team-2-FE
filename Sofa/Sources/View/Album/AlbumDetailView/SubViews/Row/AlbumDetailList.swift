@@ -42,10 +42,6 @@ struct AlbumDetailList: View {
         }
       }
       .background(Color.white)
-      
-      Text("가져올 게시물이 없어요")
-        .font(.custom("Pretendard-Medium", size: 16))
-        .frame(height: 20)
     }
     .offset(y: -10) // PullToRefresh로 인해 scrollview위로 올리기
     .background(Color.init(hex: "#FAF8F0")) // 임시

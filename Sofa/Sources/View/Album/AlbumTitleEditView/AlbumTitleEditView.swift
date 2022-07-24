@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 struct AlbumTitleEditView: View {
-  @ObservedObject var viewModel = AlbumTitleEditViewModel()
+  @ObservedObject var viewModel = AlbumEditViewModel()
   @StateObject var keyboardHeightHelper = KeyboardHeightHelper()
   @State var title: String
   @State var isTextView = false

@@ -1,5 +1,5 @@
 //
-//  AlbumTitleEditViewModel.swift
+//  AlbumEditViewModel.swift
 //  Sofa
 //
 //  Created by geonhyeong on 2022/07/23.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import Combine
 
-class AlbumTitleEditViewModel: ObservableObject {
+class AlbumEditViewModel: ObservableObject {
   private var subscription = Set<AnyCancellable>()    // disposeBag
   
   // 앨범 제목 수정

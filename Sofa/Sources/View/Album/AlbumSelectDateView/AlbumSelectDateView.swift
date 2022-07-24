@@ -90,7 +90,8 @@ struct AlbumSelectDateView: View {
             presentable.wrappedValue.dismiss()
           }
           tabbarManager.showTabBar = true
-          viewModel.fetchUploadFiles(date: currentDate.getFormattedDate(format: "yyyy-MM-dd"), images: images, title: recordTitle == "" ? recordTitle : recordTitle, audio: recordUrl) // 업로드
+          let dateStr = currentDate.getFormattedDate(format: "yyyy-MM-dd") + "T" + Date().getFormattedDate(format: "hh:mm:ss")
+          viewModel.fetchUploadFiles(date: dateStr, images: images, title: recordTitle == "" ? recordTitle : recordTitle, audio: recordUrl) // 업로드
           UITabBar.showTabBar()
         }, label: {
           HStack(spacing: 0) {

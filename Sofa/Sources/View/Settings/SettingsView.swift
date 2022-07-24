@@ -178,8 +178,10 @@ struct SettingsView: View {
           
         }///VStack
         .navigationBarWithIconButtonStyle(isButtonClick: .constant(false), buttonColor: Color.clear, "설정", "")
-        .fullScreenCover(isPresented: $ProfileButtonClick, content: {
-          ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01")})
+        
+        if ProfileButtonClick {
+          NavigationLink("", destination: ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01"), isActive: $ProfileButtonClick)
+        }
       }///ZStack
     }///NavigationView
   }

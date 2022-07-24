@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ProfileSettingView: View {
   
+  @Environment(\.presentationMode) var presentable
+  @ObservedObject var tabbarManager = TabBarManager.shared
+  
   @State var isChangeProfile: Bool = false
   @State var isDisableNextButton: Bool = false
   @State var showingSheet: Bool = false
@@ -99,13 +102,53 @@ struct ProfileSettingView: View {
             }///VStack
             
           }///ScrollView
-          .navigationBarWithTextButtonStyle(isNextClick: $isChangeProfile, isTitleClick: .constant(false), isDisalbeNextButton: $isDisableNextButton, isDisalbeTitleButton: .constant(false), "프로필", nextText: "수정", Color.init(hex: "#43A047"))
         }///ZStack
-      }///navigationView
-      .edgesIgnoringSafeArea(.bottom)
+        .navigationBarItems(
+          leading: Button(action: {
+            presentable.wrappedValue.dismiss()
+          }, label: {
+            HStack(spacing: 0) {
+              Image(systemName: "chevron.left")
+              Text("이전")
+                .font(.custom("Pretendard-Medium", size: 16))
+                .fontWeight(.semibold)
+            }
+          })
+          .accentColor(Color(hex: "#43A047"))
+          .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
+          trailing: Button(action: {
+            presentable.wrappedValue.dismiss()
+            tabbarManager.showTabBar = true
+            UITabBar.showTabBar()
+          }, label: {
+            HStack(spacing: 0) {
+              Text("수정")
+                .font(.custom("Pretendard-Medium", size: 16))
+                .fontWeight(.semibold)
+            }
+          })
+          .accentColor(Color(hex: "#43A047"))
+          .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+        )
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("프로필")
+        .onAppear {
+          let appearance = UINavigationBarAppearance()
+          appearance.configureWithTransparentBackground()
+          appearance.backgroundColor =
+          UIColor.systemBackground.withAlphaComponent(1)
+          UINavigationBar.appearance().standardAppearance = appearance
+          UINavigationBar.appearance().compactAppearance = appearance
+          UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
+        .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
+      }///NavigationView
+      .navigationViewStyle(StackNavigationViewStyle())
+      .navigationBarHidden(true)
       actionSheetView
-    }
+    }///ZStack
   }///body
+  
   var actionSheetView: some View {
     RoleActionSheet(
       isShowing: $showingSheet,

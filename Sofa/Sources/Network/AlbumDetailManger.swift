@@ -15,6 +15,7 @@ enum AlbumDetailManger: URLRequestConvertible {
   case getAlbumDetailListByKind(kind: String, page: Int = 0, size: Int = 10)
   case patchAlbumTitle(albumId: Int, title: String)
   case patchAlbumDate(albumId: Int, date: String)
+  case postFavourite(fieldId: Int)
   
   var baseURL: URL {
     switch self {
@@ -26,6 +27,8 @@ enum AlbumDetailManger: URLRequestConvertible {
       return URL(string: "\(APIConstants.url)/album/\(albumId)")!
     case let .patchAlbumDate(albumId, _):
       return URL(string: "\(APIConstants.url)/album/\(albumId)/date")!
+    case .postFavourite:
+      return URL(string: "\(APIConstants.url)/album/favourite")!
     }
   }
   
@@ -39,6 +42,8 @@ enum AlbumDetailManger: URLRequestConvertible {
       return .patch
     case .patchAlbumDate:
       return .patch
+    case .postFavourite:
+      return .post
     }
   }
   
@@ -58,6 +63,8 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .patchAlbumDate:
       headers["accept"] = "application/json"
       headers["Content-Type"] = "application/json"
+    case .postFavourite:
+      headers["accept"] = "application/json"
     }
     return headers
   }
@@ -74,6 +81,8 @@ enum AlbumDetailManger: URLRequestConvertible {
       params["albumName"] = title
     case let .patchAlbumDate(_, date):
       params["date"] = date
+    case let .postFavourite(fieldId):
+      params["fileId"] = fieldId
     }
     return params
   }
@@ -94,6 +103,8 @@ enum AlbumDetailManger: URLRequestConvertible {
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
     case .patchAlbumDate:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+    case .postFavourite:
+      request = try URLEncoding.default.encode(request, with: parameters)
     }
 
     return request

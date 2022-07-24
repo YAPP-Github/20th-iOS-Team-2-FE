@@ -27,3 +27,8 @@ struct AlbumDetailElement: Identifiable, Hashable, Decodable {
   let favourite: Bool
   let commentCount: Int
 }
+
+//MARK: - 즐겨찾기
+struct AlbumFavouriteAPIResponse: Hashable, Decodable {
+  let result: Bool
+}

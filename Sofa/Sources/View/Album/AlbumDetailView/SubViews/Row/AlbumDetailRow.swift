@@ -9,6 +9,8 @@ import SwiftUI
 import URLImage
 
 struct AlbumDetailRow: View {
+  @ObservedObject var viewModel: AlbumDetailListCellViewModel
+
   // 이미지
   @Binding var isImageClick: Bool
   @Binding var selectImage: UIImage
@@ -18,9 +20,8 @@ struct AlbumDetailRow: View {
   @Binding var isCommentClick: Bool
   @Binding var isEllipsisClick: Bool
   
-  let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
+  let info: AlbumDetailElement
   let index: Int
-  private var isBookmark : Bool { return info.favourite }
   
   var body: some View {
     VStack(spacing: 10) {
@@ -78,13 +79,15 @@ struct AlbumDetailRow: View {
       
       HStack {
         Button(action: {
-          isBookmarkClick = true
-          selectImageIndex = index
+          viewModel.fetchAlbumDetailByDate()
+          if !viewModel.isFavourite {
+            isBookmarkClick = true
+          }
         }) {
           // 북마크
-          Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
+          Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
             .frame(width: 20, height: 20)
-            .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .gray)
+            .foregroundColor(viewModel.isFavourite ? Color(hex: "#FFCA28") : .gray)
             .font(.system(size: 20))
             .padding(.leading, 8)
         }
@@ -130,6 +133,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailRow(isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
+    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }
 }

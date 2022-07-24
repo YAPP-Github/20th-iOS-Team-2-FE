@@ -46,6 +46,7 @@ struct AlbumDetailList: View {
           .frame(height: 20)
       }
     }
+    .background(Color.init(hex: "#FAF8F0")) // 임시
     .coordinateSpace(name: "pullToRefresh")
     .introspectScrollView(customize: { uiScrollView in
       uiScrollView.delegate = scrollViewHelper

@@ -10,7 +10,7 @@ import URLImage
 
 struct AlbumCommentRow: View {
   var comment: Comment
-
+  
   var body: some View {
     HStack(alignment: .top, spacing: 16) {
       if comment.profileLink == "defaultImage" || URL(string: comment.profileLink) == nil { // link를 받아오지 못하거나, default 이미지 일경우
@@ -18,7 +18,7 @@ struct AlbumCommentRow: View {
           .resizable()
           .frame(width: 48, height: 48)
           .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
-
+        
       } else {
         URLImage(url: URL(string: comment.profileLink)!, content: { image in
           image
@@ -42,12 +42,20 @@ struct AlbumCommentRow: View {
           
           Spacer()
           
-          Text("\(comment.descriptionDate)") // 날짜
-            .font(.custom("Pretendard-Medium", size: 13))
-            .foregroundColor(Color.secondary)
-            .padding(.trailing, 16)
-          
-          
+          HStack(spacing: 5) {
+            Text("\(comment.descriptionDate)") // 날짜
+              .font(.custom("Pretendard-Medium", size: 13))
+              .foregroundColor(Color(hex: "999999"))
+            Button(action: {
+              
+            }) {
+              Image(systemName: "ellipsis")
+                .frame(width: 20, height: 20)
+                .foregroundColor(Color(hex: "999999"))
+                .font(.system(size: 20))
+            }
+          }
+          .padding(.trailing, 16)
         }
         
         Text("\(comment.descriptionContent)") // 댓글

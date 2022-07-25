@@ -10,6 +10,7 @@ import URLImage
 
 struct AlbumDetailRow: View {
   @ObservedObject var viewModel: AlbumDetailListCellViewModel
+  @ObservedObject var listViewModel: AlbumDetailListViewModel
 
   @Binding var isPhotoThumbnailClick: Bool
   @Binding var isRecordingThumbnailClick: Bool
@@ -105,7 +106,7 @@ struct AlbumDetailRow: View {
       
       HStack {
         Button(action: {
-          viewModel.fetchAlbumDetailByDate()
+          viewModel.fetchAlbumDetailByDate(viewModel: listViewModel)
           if !viewModel.isFavourite {
             isBookmarkClick = true
           }
@@ -163,6 +164,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), isPhotoThumbnailClick: .constant(false), isRecordingThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isPhotoCommentClick: .constant(false), isRecordingCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
+    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), listViewModel: AlbumDetailListViewModel(albumId: nil, kindType: nil), isPhotoThumbnailClick: .constant(false), isRecordingThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isPhotoCommentClick: .constant(false), isRecordingCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }
 }

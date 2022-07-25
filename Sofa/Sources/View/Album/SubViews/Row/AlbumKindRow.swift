@@ -10,6 +10,7 @@ import SwiftUI
 struct AlbumKindRow: View {
   @Binding var selectKindType: String
   @Binding var showAlbumDetail: Bool
+  @Binding var title: String
   var albumKind: AlbumKind
   let info: [String: (String, String, String, Color, Color)] = [
     "favourite": ("즐겨찾기", "bookmark.fill", "장", Color(hex: "#FFD54F"), Color(hex: "#FFF8E1")),
@@ -19,6 +20,7 @@ struct AlbumKindRow: View {
   
   var body: some View {
     Button(action: {
+      self.title = info[albumKind.kind]!.0
       self.selectKindType = albumKind.kind
       self.showAlbumDetail = true
     }) {
@@ -68,6 +70,6 @@ struct AlbumTypeRow_Previews: PreviewProvider {
   static var previews: some View {
     let dummy = MockData().albumByKind[0]
     
-    AlbumKindRow(selectKindType: .constant(""), showAlbumDetail: .constant(false), albumKind: dummy)
+    AlbumKindRow(selectKindType: .constant(""), showAlbumDetail: .constant(false), title: .constant("앨범 상세 유형별"), albumKind: dummy)
   }
 }

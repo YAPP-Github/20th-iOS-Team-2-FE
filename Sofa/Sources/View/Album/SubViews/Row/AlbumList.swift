@@ -11,6 +11,7 @@ import Introspect
 struct AlbumList: View {
   @ObservedObject var viewModel = AlbumListViewModel()
   @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 100)
+  @State var title: String = "앨범 상세"
   @State var showAlbumDetail = false
   @State var selectAlbumId: Int = -1
   @State var selectKindType: String = ""
@@ -26,14 +27,18 @@ struct AlbumList: View {
           
           LazyVStack {
             ForEach(viewModel.albumDateList, id: \.self) { album in
-              AlbumDateRow(selectAlbumId: $selectAlbumId, showAlbumDetail: $showAlbumDetail, album: album)
+              AlbumDateRow(selectAlbumId: $selectAlbumId, showAlbumDetail: $showAlbumDetail, title: $title, album: album)
             }
             
             Text("가져올 앨범이 없어요")
               .font(.custom("Pretendard-Medium", size: 16))
               .frame(height: 20)
           }
+          
+          // 상세 앨범 View로 이동
+          NavigationLink("", destination: AlbumDetailView(title: title, selectAlbumId: selectAlbumId), isActive: $showAlbumDetail)
         }
+        .offset(y: -10) // PullToRefresh로 인해 scrollview위로 올리기
         .coordinateSpace(name: "pullToRefresh")
         .introspectScrollView(customize: { uiScrollView in
           uiScrollView.delegate = scrollViewHelper
@@ -45,16 +50,16 @@ struct AlbumList: View {
         ScrollView(showsIndicators: false) {
           LazyVStack {
             ForEach(viewModel.albumKindList, id: \.self) { kind in
-              AlbumKindRow(selectKindType: $selectKindType, showAlbumDetail: $showAlbumDetail, albumKind: kind)
+              AlbumKindRow(selectKindType: $selectKindType, showAlbumDetail: $showAlbumDetail, title: $title, albumKind: kind)
             }
           }
+          
+          // 상세 앨범 View로 이동
+          NavigationLink("", destination: AlbumDetailView(title: title, selectKindType: selectKindType), isActive: $showAlbumDetail)
         }
       }
     }
     .padding([.leading, .trailing], 16)
-    
-    // 상세 앨범 View로 이동
-    NavigationLink("", destination: AlbumDetailView(), isActive: $showAlbumDetail)
   }
 }
 

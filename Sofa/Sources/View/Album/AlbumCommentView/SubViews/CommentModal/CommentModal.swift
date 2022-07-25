@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct CommentModal: View {
+  @StateObject var viewModel: CommentViewModel
   @State private var curHeight: CGFloat = Screen.maxHeight / 2
   @State private var prevDragTranslation = CGSize.zero
   @State private var isDragging = false
   @State var isWriteClick = false
-  let filedId: Int
+  @State var commentText: String?
+  @State var placeholder = "댓글을 남겨보세요"
   let minHeight: CGFloat = Screen.maxHeight / 2
   let maxHeight: CGFloat = Screen.maxHeight * 0.9
   var callback: (() -> ())? = nil
@@ -82,7 +84,7 @@ struct CommentModal: View {
     VStack(alignment: .center, spacing: 0) {
       topHalfMiddleBar // top bar
       
-      AlbumCommentList(viewModel: CommentViewModel(filedId: filedId))
+      AlbumCommentList(viewModel: viewModel)
       
       Divider()
         .overlay(Color(hex: "EDEADF"))
@@ -93,9 +95,19 @@ struct CommentModal: View {
       Spacer()
         .frame(height: Screen.safeAreaBottom)
     }
+    .fullScreenCover(isPresented: $isWriteClick) {
+      MessageView($isWriteClick, $commentText, $placeholder)
+        .background(BackgroundCleanerView())
+        .onDisappear {
+          if let commentText = commentText {
+            self.viewModel.writeComment(content: commentText) // 댓글 전송
+            self.commentText = nil // 댓글 초기화
+          }
+        }
+    }
     .background(Color.white)
     .cornerRadius(16)
-    .frame(height: curHeight)
+    .frame(height: isWriteClick ? 0 : curHeight) // 댓글 View가 나타날때
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0.45))
   }
@@ -106,7 +118,7 @@ struct CommentModal_Previews: PreviewProvider {
     ZStack(alignment: .bottom) {
       ModalBackGround() // Back Ground
       
-      CommentModal(filedId: 0) // 댓글 Modal
+      CommentModal(viewModel: CommentViewModel(filedId: 0)) // 댓글 Modal
         .transition(.move(edge: .bottom))
     }
   }

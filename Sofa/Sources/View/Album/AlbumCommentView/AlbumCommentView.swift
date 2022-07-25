@@ -18,7 +18,7 @@ struct AlbumCommentView: View {
           self.isShowing = false
         }
         
-        CommentModal(filedId: filedId) { // 댓글 Modal
+        CommentModal(viewModel: CommentViewModel(filedId: filedId)) { // 댓글 Modal
           self.isShowing = false
         }
         .transition(.move(edge: .bottom))

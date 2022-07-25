@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumCommentView: View {
   @Binding var isShowing: Bool
+  let filedId: Int
   
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -17,7 +18,7 @@ struct AlbumCommentView: View {
           self.isShowing = false
         }
         
-        CommentModal() { // 댓글 Modal
+        CommentModal(filedId: filedId) { // 댓글 Modal
           self.isShowing = false
         }
         .transition(.move(edge: .bottom))
@@ -31,6 +32,6 @@ struct AlbumCommentView: View {
 
 struct AlbumCommentView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCommentView(isShowing: .constant(true))
+    AlbumCommentView(isShowing: .constant(true), filedId: 0)
   }
 }

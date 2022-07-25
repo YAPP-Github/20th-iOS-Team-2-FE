@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlbumCommentList: View {
-  @StateObject var viewModel = CommentViewModel()
+  @StateObject var viewModel: CommentViewModel
 
   var body: some View {
     ScrollView {
@@ -21,14 +21,11 @@ struct AlbumCommentList: View {
         }
       }
     }
-    .onAppear {
-      self.viewModel.fetchComment()
-    }
   }
 }
 
 struct AlbumCommentList_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCommentList()
+    AlbumCommentList(viewModel: CommentViewModel(filedId: 0))
   }
 }

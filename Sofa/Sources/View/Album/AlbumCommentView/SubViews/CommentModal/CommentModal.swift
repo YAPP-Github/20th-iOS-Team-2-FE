@@ -12,6 +12,7 @@ struct CommentModal: View {
   @State private var prevDragTranslation = CGSize.zero
   @State private var isDragging = false
   @State var isWriteClick = false
+  let filedId: Int
   let minHeight: CGFloat = Screen.maxHeight / 2
   let maxHeight: CGFloat = Screen.maxHeight * 0.9
   var callback: (() -> ())? = nil
@@ -39,7 +40,7 @@ struct CommentModal: View {
         isDragging = true
         
         let dragAmount = value.translation.height - prevDragTranslation.height
-//        
+
         if curHeight > maxHeight || curHeight < minHeight {
           curHeight -= dragAmount / 6
         } else{
@@ -81,7 +82,7 @@ struct CommentModal: View {
     VStack(alignment: .center, spacing: 0) {
       topHalfMiddleBar // top bar
       
-      AlbumCommentList()
+      AlbumCommentList(viewModel: CommentViewModel(filedId: filedId))
       
       Divider()
         .overlay(Color(hex: "EDEADF"))
@@ -105,7 +106,7 @@ struct CommentModal_Previews: PreviewProvider {
     ZStack(alignment: .bottom) {
       ModalBackGround() // Back Ground
       
-      CommentModal() // 댓글 Modal
+      CommentModal(filedId: 0) // 댓글 Modal
         .transition(.move(edge: .bottom))
     }
   }

@@ -6,37 +6,48 @@
 //
 
 import Foundation
+import Alamofire
 import Combine
 
 class CommentViewModel: ObservableObject{
-  
   //MARK: Properties
-  var subscription = Set<AnyCancellable>()
-  
   @Published var comments = [Comment]()
   
-  var baseUrl = ""
+  private var subscription = Set<AnyCancellable>() // disposeBag
+  var filedId: Int
   
-  func fetchComment() {
-    guard let path = Bundle.main.path(forResource: "CommentMock", ofType: "json") else {
-      fatalError("Couldn't find file in main bundle.")
-    }
+  init(filedId: Int) {
+    self.filedId = filedId
     
-    guard let jsonString = try? String(contentsOfFile: path) else {
-      return
-    }
-    
-    if let data = jsonString.data(using: .utf8) {
-      Just(data)
-        .decode(type: Comments.self, decoder: JSONDecoder())
-        .map{ $0.comments }
-        .sink(receiveCompletion: { completion in
-//                    print("데이터스트림 완료")
-        }, receiveValue: { receivedValue in
-//                    print("받은 값: \(receivedValue.count)")
-          self.comments = receivedValue
-        }).store(in: &subscription)
-    }
+    fetchComments() // 댓글 조회
+  }
+  
+  // 댓글 조회
+  func fetchComments() {
+    AF.request(CommentManger.getComments(fileId: self.filedId))
+      .publishDecodable(type: CommensAPIResponse.self)
+      .value()
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: {[weak self] in
+          guard case .failure(let error) = $0 else { return }
+          switch error.responseCode {
+          case 400: // 요청 에러 발생했을 때
+            break
+          case 500: // 서버의 내부적 에러가 발생했을 때
+            break
+          default:
+            break
+          }
+          // NSLog("Error : " + error.localizedDescription)
+          self?.comments = [Comment]()
+        },
+        receiveValue: {[weak self] receivedValue in
+          //  NSLog("받은 값 : \(receivedValue)")
+          self?.comments = receivedValue.comments
+        }
+      )
+      .store(in: &subscription)   // disposed(by: disposeBag)
   }
 }
 

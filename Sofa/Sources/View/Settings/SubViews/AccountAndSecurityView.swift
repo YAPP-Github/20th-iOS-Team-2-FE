@@ -15,11 +15,35 @@ struct AccountAndSecurityView: View {
     VStack(spacing: 0){
       VStack(spacing: 0){
         ForEach(titles.indices) { idx in
-          NavigationLink {
-            Text("hihhihihih")
-          } label: {
-            settingSubRowView(titles[idx], idx)
+          switch idx{
+          case 0:
+            NavigationLink {
+              Text("개인정보 이용 약관")
+            } label: {
+              settingSubRowView(titles[idx], idx)
+            }
+          case 1:
+            NavigationLink {
+              Text("서비스 이용 약관")
+            } label: {
+              settingSubRowView(titles[idx], idx)
+            }
+          case 2:
+            NavigationLink {
+              Text("로그아웃")
+            } label: {
+              settingSubRowView(titles[idx], idx)
+            }
+          case 3:
+            NavigationLink {
+              Text("계정 삭제")
+            } label: {
+              settingSubRowView(titles[idx], idx)
+            }
+          default:
+            Text("")
           }
+          
         }
 
         Rectangle()

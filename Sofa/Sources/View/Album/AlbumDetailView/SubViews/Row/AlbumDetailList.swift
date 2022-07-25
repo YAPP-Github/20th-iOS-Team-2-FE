@@ -12,11 +12,13 @@ struct AlbumDetailList: View {
   @ObservedObject var viewModel: AlbumDetailListViewModel
   @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 100)
 
-  @Binding var isThumbnailClick: Bool
+  @Binding var isPhotoThumbnailClick: Bool
+  @Binding var isRecordingThumbnailClick: Bool
   @Binding var selectFile: AlbumDetailElement?
   @Binding var selectImage: UIImage
   @Binding var isBookmarkClick: Bool
-  @Binding var isCommentClick: Bool
+  @Binding var isPhotoCommentClick: Bool
+  @Binding var isRecordingCommentClick: Bool
   @Binding var isEllipsisClick: Bool
   
   let selectAlbumId: Int?      // 날짜별
@@ -35,7 +37,7 @@ struct AlbumDetailList: View {
       // 필요할때 rendering 함, network에 적합
       LazyVStack(spacing: 0) {
         ForEach(Array(zip(viewModel.albumDetailList.indices, viewModel.albumDetailList)), id: \.0) { index, element in
-          AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: element.fileId, isFavourite: element.favourite), isThumbnailClick: $isThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
+          AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: element.fileId, isFavourite: element.favourite), isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
       }
@@ -62,6 +64,6 @@ struct AlbumDetailList_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: 0, kindType: ""), isThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), selectAlbumId: 0, selectKindType: "")
+    AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: 0, kindType: ""), isPhotoThumbnailClick: .constant(false), isRecordingThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isPhotoCommentClick: .constant(false), isRecordingCommentClick: .constant(false), isEllipsisClick: .constant(false), selectAlbumId: 0, selectKindType: "")
   }
 }

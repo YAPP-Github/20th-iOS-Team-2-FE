@@ -16,7 +16,8 @@ struct AlbumDetailView: View {
   @State var isEdit = false
   
   // 이미지
-  @State var isThumbnailClick: Bool = false
+  @State var isPhotoThumbnailClick: Bool = false
+  @State var isRecordingThumbnailClick: Bool = false
   @State var selectFile: AlbumDetailElement?
   @State var selectImage: UIImage = UIImage()
   
@@ -24,9 +25,11 @@ struct AlbumDetailView: View {
   @State var isBookmarkClick: Bool = false
   @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "즐겨찾기 등록", type: .Registration)
   
-  @State var isCommentClick: Bool = false   // 댓글
-  @State var isEllipsisClick: Bool = false  // 설정
-  
+  @State var isPhotoCommentClick: Bool = false   // 사진 댓글
+  @State var isRecordingCommentClick: Bool = false   // 녹음 댓글
+
+  @State var isEllipsisClick: Bool = false  // 사진 설정
+
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
@@ -66,23 +69,19 @@ struct AlbumDetailView: View {
     ZStack {
       NavigationView {
         VStack(spacing: 0) {
-          AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isThumbnailClick: $isThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
+          AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           
-          if let selectFile = selectFile {
-            if selectFile.kind == "PHOTO" {
-              // 이미지 click
-              NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isThumbnailClick)
-              
-              // 댓글 click
-              NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isCommentClick)
-            } else if selectFile.kind == "RECORDING" {
-              // 녹음 이미지 click
-              NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: false), isActive: $isThumbnailClick)
-              
-              // 댓글 click
-              NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: true), isActive: $isCommentClick)
-            }
-          }
+          // 이미지 click
+          NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isPhotoThumbnailClick)
+          
+          // 댓글 click
+          NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
+          
+          // 녹음 이미지 click
+          NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
+          
+          // 댓글 click
+          NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)

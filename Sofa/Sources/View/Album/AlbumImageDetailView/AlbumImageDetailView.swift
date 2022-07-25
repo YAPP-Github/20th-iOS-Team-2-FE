@@ -10,7 +10,7 @@ import SwiftUI
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
   @State var touchImage = false
-  var info: AlbumDetailElement
+  var info: AlbumDetailElement?
   var image: UIImage
   
   // 즐겨찾기
@@ -101,7 +101,7 @@ struct AlbumImageDetailView: View {
       .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
       .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-        AlbumDateEditView(fileId: info.fileId) // 임시
+        AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick)

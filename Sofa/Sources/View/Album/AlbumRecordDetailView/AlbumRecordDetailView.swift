@@ -10,12 +10,11 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
-  let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
+  let info: AlbumDetailElement?
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
   @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "즐겨찾기 등록", type: .Registration)
-  private var isBookmark : Bool { return info.favourite }
   
   // 댓글
   @State var isCommentClick: Bool = false   // 댓글
@@ -90,9 +89,9 @@ struct AlbumRecordDetailView: View {
         isBookmarkClick = true
       }) {
         // 북마크
-        Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
+        Image(systemName: true ? "bookmark.fill" : "bookmark")
           .frame(width: 20, height: 20)
-          .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .white)
+          .foregroundColor(true ? Color(hex: "#FFCA28") : .white)
           .font(.system(size: 20))
           .padding(.leading, 8)
       }
@@ -109,7 +108,7 @@ struct AlbumRecordDetailView: View {
             .padding(.leading, 20)
           
           // 댓글 수
-          Text("\(info.commentCount)")
+          Text("\(info!.commentCount)")
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(.white)
             .font(.system(size: 20))
@@ -227,7 +226,7 @@ struct AlbumRecordDetailView: View {
       .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop + 45)
       .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop + 45)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-        AlbumDateEditView(fileId: info.fileId) // 임시
+        AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick)

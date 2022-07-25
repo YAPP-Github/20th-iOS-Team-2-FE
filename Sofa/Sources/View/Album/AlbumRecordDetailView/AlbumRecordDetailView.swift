@@ -187,7 +187,7 @@ struct AlbumRecordDetailView: View {
         recordButtonArea
         Spacer()
       }
-      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.4)
+      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.5)
       .background(Color(hex: "#161616").ignoresSafeArea(edges: .bottom))
     }
   }

@@ -46,12 +46,10 @@ struct ContentView: View {
             
       if (tabbarManager.showTabBar){
         CustomTabView(selection: $selection)
-      }else{
-//        CustomTabView(selection: $selection)
       }
     }
-//    .background(Color(hex: "F9F7EF"))
-    .background(Color.red)
+    .background(Color(hex: "F9F7EF"))
+//    .background(Color.red)
     .ignoresSafeArea(.keyboard)
     .edgesIgnoringSafeArea(.all)
     

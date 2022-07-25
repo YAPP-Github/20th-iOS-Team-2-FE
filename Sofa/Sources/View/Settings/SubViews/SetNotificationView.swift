@@ -42,15 +42,12 @@ struct SetNotificationView: View {
       }//VStack
       
     }//VStack
-    .background(Color(hex: "FAF8F0"))
-    .navigationBarTitleDisplayMode(.inline)
-    .navigationTitle("알림")
     .onAppear{
       tabbarManager.showTabBar = false
     }
-    .onDisappear{
-      tabbarManager.showTabBar = true
-    }
+    .background(Color(hex: "FAF8F0"))
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationTitle("알림")
     .background(Color(hex: "FAF8F0"))
     .edgesIgnoringSafeArea([.bottom])
   }

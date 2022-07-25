@@ -194,6 +194,9 @@ struct SettingsView: View {
         }///VStack
         .edgesIgnoringSafeArea([.bottom])
         .navigationBarWithIconButtonStyle(isButtonClick: .constant(false), buttonColor: Color.clear, "설정", "")
+        .onAppear{
+          tabbarManager.showTabBar = true
+        }
         
         if ProfileButtonClick {
           NavigationLink("", destination: ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01"), isActive: $ProfileButtonClick)

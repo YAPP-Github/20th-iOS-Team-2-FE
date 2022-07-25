@@ -96,12 +96,6 @@ struct NotificationView: View {
     .padding(.top, 1) // ignoreSafeArea 적용 X
     .padding(.bottom, 5)
     .edgesIgnoringSafeArea([.bottom])
-    .onDisappear{
-      tabbarManager.showTabBar = true
-    }
-    .onAppear{
-      tabbarManager.showTabBar = false
-    }
 
   }
   

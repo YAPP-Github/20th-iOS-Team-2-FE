@@ -27,7 +27,7 @@ struct HomeView: View {
             Text("\(eventViewModel.hometitle)")
               .font(.custom("Pretendard-Bold", size: 24))
             Spacer()
-            NavigationLink(destination: NotificationView(selectionType: $selectionType).onAppear{UITabBar.hideTabBar(animated: false)}){
+            NavigationLink(destination: NotificationView(selectionType: $selectionType).onAppear{tabbarManager.showTabBar = false}){
               Image(systemName: "bell")
                 .resizable()
                 .foregroundColor(Color.black)
@@ -76,24 +76,28 @@ struct HomeView: View {
                 .background(BackgroundCleanerView())
             }
           
-          if (!tabbarManager.showTabBar){
-            // TabBar Show를 위한 Rectangle()
-//            Rectangle()
-//              .foregroundColor(Color.clear)
-//              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
-            // Custom Tab View
-            CustomTabView(selection: $currentSelectedTab)
           
-            
-          }
+//          if (!tabbarManager.showTabBar){
+//            // TabBar Show를 위한 Rectangle()
+////            Rectangle()
+////              .foregroundColor(Color.clear)
+////              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
+//            // Custom Tab View
+//            CustomTabView(selection: $currentSelectedTab)
+//
+//
+//          }
           
         }// VStack
         .ignoresSafeArea(.keyboard)
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea([.bottom])
-        
+        .onAppear{
+          tabbarManager.showTabBar = true
+        }
       }// NavigationView
+      .navigationViewStyle(StackNavigationViewStyle())
       .accentColor(Color(hex: "43A047"))
       
       if showModal{

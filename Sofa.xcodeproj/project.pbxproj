@@ -32,6 +32,7 @@
 		0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */; };
 		0A4F4C1B288D326400913021 /* InviteFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1A288D326400913021 /* InviteFamilyView.swift */; };
 		0A4F4C1D288D9DFC00913021 /* SetNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */; };
+		0A4F4C1F288ED6F200913021 /* AccountAndSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1E288ED6F200913021 /* AccountAndSecurityView.swift */; };
 		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
@@ -211,6 +212,7 @@
 		0A4CFBA22860C963000603A5 /* Sofa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sofa.entitlements; sourceTree = "<group>"; };
 		0A4F4C1A288D326400913021 /* InviteFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyView.swift; sourceTree = "<group>"; };
 		0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNotificationView.swift; sourceTree = "<group>"; };
+		0A4F4C1E288ED6F200913021 /* AccountAndSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAndSecurityView.swift; sourceTree = "<group>"; };
 		0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0A915DD2287A9A9B0055AD6D /* NotificationMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationMock.json; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				6F1553342881C83C0048CE54 /* SettingRow.swift */,
 				0A4F4C1A288D326400913021 /* InviteFamilyView.swift */,
 				0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */,
+				0A4F4C1E288ED6F200913021 /* AccountAndSecurityView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1464,6 +1467,7 @@
 				C495F5FC2856386A009B3BDE /* AlbumDetailRow.swift in Sources */,
 				C4AC885C2886A52600BA5921 /* UploadFile.swift in Sources */,
 				0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */,
+				0A4F4C1F288ED6F200913021 /* AccountAndSecurityView.swift in Sources */,
 				0AE4920A287740B300341D35 /* HomeNavigationBarStyle.swift in Sources */,
 				C4B4963928801E5D000C9E1F /* AlbumManager.swift in Sources */,
 				0A012B60288C2EC700D07970 /* SignInWithAppleButtonView.swift in Sources */,

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AccountAndSecurityView: View {
-  
+  @State private var showingAlert = false
   let titles = ["개인정보 이용 약관", "서비스 이용 약관", "로그아웃", "계정 삭제"]
   @ObservedObject var tabbarManager = TabBarManager.shared
   var body: some View {
@@ -29,11 +29,19 @@ struct AccountAndSecurityView: View {
               settingSubRowView(titles[idx], idx)
             }
           case 2:
-            NavigationLink {
-              Text("로그아웃")
-            } label: {
-              settingSubRowView(titles[idx], idx)
-            }
+            settingSubRowView(titles[idx], idx)
+              .onTapGesture {
+                showingAlert = true
+              }
+              .alert(isPresented: $showingAlert) {
+                Alert(title: Text("로그아웃"), message: Text("로그아웃 하시겠습니까?"),     primaryButton: .cancel(Text("취소"), action: {
+                  
+                }),
+                      secondaryButton: .default(Text("로그아웃"), action: {
+                  print("로그아웃")
+                }))
+                
+              }
           case 3:
             NavigationLink {
               Text("계정 삭제")
@@ -45,7 +53,7 @@ struct AccountAndSecurityView: View {
           }
           
         }
-
+        
         Rectangle()
           .foregroundColor(Color(hex: "EDEADF"))
           .frame(height: 1)
@@ -65,7 +73,7 @@ struct AccountAndSecurityView: View {
     VStack(spacing: 0){
       VStack(alignment: .center, spacing: 0){
         HStack(alignment: .center, spacing: 0){
-
+          
           //글자
           Text(title)
             .font(.custom("Pretendard-Medium", size: 16))
@@ -80,7 +88,7 @@ struct AccountAndSecurityView: View {
             .font(.system(size: 20, weight: .medium))
             .frame(width: 15, height: 20, alignment: .center)
             .foregroundColor(Color.black.opacity(0.4))
-          .padding(.trailing, 20.5)
+            .padding(.trailing, 20.5)
           
         }// HStack
         .frame(height: 48)
@@ -105,7 +113,7 @@ struct AccountAndSecurityView_Previews: PreviewProvider {
 }
 
 struct FlatLinkStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-    }
+  func makeBody(configuration: Configuration) -> some View {
+    configuration.label
+  }
 }

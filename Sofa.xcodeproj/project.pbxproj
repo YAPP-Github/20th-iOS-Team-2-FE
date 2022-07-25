@@ -557,12 +557,12 @@
 		6F22E52E284B9D220069D268 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C4AC885F28896ADB00BA5921 /* APIConstants.swift */,
 				C4B4963828801E5D000C9E1F /* AlbumManager.swift */,
-				C4AC88562886A15000BA5921 /* UploadManager.swift */,
 				C4AC88632889B29D00BA5921 /* AlbumDetailManger.swift */,
 				C4AC886E288EE3D300BA5921 /* CommentManger.swift */,
-				C4AC885F28896ADB00BA5921 /* APIConstants.swift */,
 				0AF2B5432884613D00C6A55E /* LoginManager.swift */,
+				C4AC88562886A15000BA5921 /* UploadManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

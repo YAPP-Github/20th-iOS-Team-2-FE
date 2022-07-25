@@ -13,7 +13,7 @@ struct AlbumCommentRow: View {
 
   var body: some View {
     HStack(alignment: .top, spacing: 16) {
-      if comment.profileLink == "defaultImage" || URL(string: comment.profileLink) != nil { // link를 받아오지 못하거나, default 이미지 일경우
+      if comment.profileLink == "defaultImage" || URL(string: comment.profileLink) == nil { // link를 받아오지 못하거나, default 이미지 일경우
         Image("lionprofile") // 이미지
           .resizable()
           .frame(width: 48, height: 48)
@@ -46,6 +46,8 @@ struct AlbumCommentRow: View {
             .font(.custom("Pretendard-Medium", size: 13))
             .foregroundColor(Color.secondary)
             .padding(.trailing, 16)
+          
+          
         }
         
         Text("\(comment.descriptionContent)") // 댓글

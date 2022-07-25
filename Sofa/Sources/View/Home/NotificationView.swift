@@ -70,23 +70,28 @@ struct NotificationView: View {
               }
 
           }
-          .toolbar {
-            Button {
-              print("goto알림")
-            } label: {
-              Text("설정")
-                .foregroundColor(Color(hex: "43A047"))
-            }
-          }
-          .navigationBarTitleDisplayMode(.inline)
-          .navigationTitle("알림")
-
         }
         Rectangle()
           .foregroundColor(Color(hex: "FAF8F0"))
           .frame(height: UIDevice().hasNotch ? 40 : 0)
       }
     }// ScrollView
+    .toolbar {
+      NavigationLink {
+        SetNotificationView()
+      } label: {
+        Text("설정")
+      }
+
+      //            Button {
+//              print("goto알림")
+//            } label: {
+//              Text("설정")
+//                .foregroundColor(Color(hex: "43A047"))
+//            }
+    }
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationTitle("알림")
     .background(Color(hex: "FAF8F0"))
     .padding(.top, 1) // ignoreSafeArea 적용 X
     .padding(.bottom, 5)

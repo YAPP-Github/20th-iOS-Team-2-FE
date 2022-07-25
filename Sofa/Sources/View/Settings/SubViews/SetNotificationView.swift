@@ -51,6 +51,8 @@ struct SetNotificationView: View {
     .onDisappear{
       tabbarManager.showTabBar = true
     }
+    .background(Color(hex: "FAF8F0"))
+    .edgesIgnoringSafeArea([.bottom])
   }
 }
 

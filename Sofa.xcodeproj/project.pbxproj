@@ -30,6 +30,8 @@
 		0A4CFB9D285F85C8000603A5 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFB94285F85C8000603A5 /* Pretendard-Regular.otf */; };
 		0A4CFB9F285F8706000603A5 /* LibreBaskerville-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFB9E285F8706000603A5 /* LibreBaskerville-Bold.ttf */; };
 		0A4CFBA1285F870B000603A5 /* LibreBaskerville-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */; };
+		0A4F4C1B288D326400913021 /* InviteFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1A288D326400913021 /* InviteFamilyView.swift */; };
+		0A4F4C1D288D9DFC00913021 /* SetNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */; };
 		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
@@ -207,6 +209,8 @@
 		0A4CFB9E285F8706000603A5 /* LibreBaskerville-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LibreBaskerville-Bold.ttf"; sourceTree = "<group>"; };
 		0A4CFBA0285F870B000603A5 /* LibreBaskerville-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LibreBaskerville-Regular.ttf"; sourceTree = "<group>"; };
 		0A4CFBA22860C963000603A5 /* Sofa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sofa.entitlements; sourceTree = "<group>"; };
+		0A4F4C1A288D326400913021 /* InviteFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFamilyView.swift; sourceTree = "<group>"; };
+		0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNotificationView.swift; sourceTree = "<group>"; };
 		0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0A915DD2287A9A9B0055AD6D /* NotificationMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationMock.json; sourceTree = "<group>"; };
@@ -453,6 +457,8 @@
 			children = (
 				6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */,
 				6F1553342881C83C0048CE54 /* SettingRow.swift */,
+				0A4F4C1A288D326400913021 /* InviteFamilyView.swift */,
+				0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1403,6 +1409,7 @@
 				6F22E528284B9D050069D268 /* SettingsView.swift in Sources */,
 				C4AC8862288993C900BA5921 /* PullToRefresh.swift in Sources */,
 				C481B6BC2875FD0A005D6831 /* Blur.swift in Sources */,
+				0A4F4C1B288D326400913021 /* InviteFamilyView.swift in Sources */,
 				C4B8F2AC2851CB0E0000B8CB /* Ex+UIView.swift in Sources */,
 				0A223B72285F75D6002203ED /* CustomText.swift in Sources */,
 				C46C56CE2881B40700677E63 /* AlbumTitleEditNavigationBar.swift in Sources */,
@@ -1497,6 +1504,7 @@
 				0A2887F22870A646000A72F2 /* ChatViewModel.swift in Sources */,
 				0AAB372028675A5A00A47B24 /* CustomBoldLabelView.swift in Sources */,
 				C495F60C285A2E72009B3BDE /* CameraAuthorization.swift in Sources */,
+				0A4F4C1D288D9DFC00913021 /* SetNotificationView.swift in Sources */,
 				C495F608285A2B98009B3BDE /* CameraImagePicker.swift in Sources */,
 				C495F5ED2855BB5E009B3BDE /* Ex+Date.swift in Sources */,
 				C4AC886028896ADB00BA5921 /* APIConstants.swift in Sources */,

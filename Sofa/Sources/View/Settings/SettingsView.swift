@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
- 
+  
   @State var FamilyButtonClick: Bool = false
   @State var ProfileButtonClick: Bool = false
   
@@ -19,6 +19,8 @@ struct SettingsView: View {
   @State var profileRoleName: String = "딸"
   @State var profileName: String = "이병기"
   @State var profileBirthDay: String = "1990-01-01"
+  @ObservedObject var tabbarManager = TabBarManager.shared
+  @State var currentSelectedTab: Tab = .setting // 현재 선택된 탭으로 표시할 곳
   
   var body: some View {
     NavigationView {
@@ -87,23 +89,23 @@ struct SettingsView: View {
                   .cornerRadius(9)
                   .foregroundColor(Color.black.opacity(0.2))
                   .padding(.leading, 16)
-
-              Image(systemName: "person.fill")
-                .frame(width: 48, height: 48)
-                .cornerRadius(9)
-                .padding(.leading, 16)
+                
+                Image(systemName: "person.fill")
+                  .frame(width: 48, height: 48)
+                  .cornerRadius(9)
+                  .padding(.leading, 16)
                 
               }
-                
+              
               VStack(spacing: 0){
                 //프로필 - 별명
                 HStack(spacing: 0){
-                Text(profileNickName)
-                  .font(.custom("Pretendard-Medium", size: 13))
-                  .fontWeight(.bold)
-                  .foregroundColor(Color(hex: "#121619"))
-                  .frame(height: 20)
-                  .padding(.top, 16)
+                  Text(profileNickName)
+                    .font(.custom("Pretendard-Medium", size: 13))
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(hex: "#121619"))
+                    .frame(height: 20)
+                    .padding(.top, 16)
                   
                   //프로필 - 뱃지
                   Rectangle()
@@ -120,21 +122,21 @@ struct SettingsView: View {
                     .padding(.leading, 8)
                   
                   
-                Spacer()
+                  Spacer()
                 }
                 
                 //프로필 - 이메일
                 HStack(spacing: 0){
-                Text(profileEmail)
-                  .font(.custom("Pretendard-Medium", size: 13))
-                  .foregroundColor(Color.black.opacity(0.4))
-                  .frame(height: 20)
-                  .padding(.top, 2)
-                Spacer()
+                  Text(profileEmail)
+                    .font(.custom("Pretendard-Medium", size: 13))
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .frame(height: 20)
+                    .padding(.top, 2)
+                  Spacer()
                 }
                 Spacer()
               }.padding(.leading, 16)///VStack
-              .frame(height: 80)
+                .frame(height: 80)
               
               Spacer()
               
@@ -154,36 +156,54 @@ struct SettingsView: View {
           Rectangle()
             .frame(height: 1)
             .foregroundColor(Color.black.opacity(0.05))
-        
+          
           //---------------------------------
           ZStack{
             Rectangle()
-              .frame(width: Screen.maxWidth, height: 48*6+12)
+              .frame(width: Screen.maxWidth, height: 48*5+12)
               .foregroundColor(Color.white)
             
             VStack(spacing: 0) {
-              SettingRow(isButtonClick: .constant(true), buttonName: "person.fill.badge.plus", title: "가족 초대")
-              SettingRow(isButtonClick: .constant(true), buttonName: "bell.fill", title: "알림")
+              NavigationLink(destination: InviteFamilyView()){
+                SettingRow(isButtonClick: .constant(true), buttonName: "person.fill.badge.plus", title: "가족 초대")
+              }
+              NavigationLink(destination: SetNotificationView()) {
+                SettingRow(isButtonClick: .constant(true), buttonName: "bell.fill", title: "알림")
+              }
               SettingRow(isButtonClick: .constant(true), buttonName: "shield.lefthalf.filled", title: "계정 및 보안")
-              SettingRow(isButtonClick: .constant(true), buttonName: "gearshape.fill", title: "설정")
               SettingRow(isButtonClick: .constant(true), buttonName: "mic", title: "공지")
               SettingRow(isButtonClick: .constant(true), buttonName: "star.fill", title: "소파리뷰", isLast: true)
             }///VStack
-            .frame(width: Screen.maxWidth, height: 48*6, alignment: .center)
+            .frame(width: Screen.maxWidth, height: 48*5, alignment: .center)
           }.padding(.top, 8)///ZStack
           Rectangle()
             .frame(height: 1)
             .foregroundColor(Color.black.opacity(0.05))
           Spacer()
           
+          if (!tabbarManager.showTabBar){
+            // TabBar Show를 위한 Rectangle()
+            //            Rectangle()
+            //              .foregroundColor(Color.clear)
+            //              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
+            // Custom Tab View
+            CustomTabView(selection: $currentSelectedTab)
+            
+            
+          }
         }///VStack
+        .edgesIgnoringSafeArea([.bottom])
         .navigationBarWithIconButtonStyle(isButtonClick: .constant(false), buttonColor: Color.clear, "설정", "")
+        .onAppear{
+          tabbarManager.showTabBar = true
+        }
         
         if ProfileButtonClick {
           NavigationLink("", destination: ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01"), isActive: $ProfileButtonClick)
         }
       }///ZStack
     }///NavigationView
+    .accentColor(Color(hex: "43A047"))
   }
 }
 

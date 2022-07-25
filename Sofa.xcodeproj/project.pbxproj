@@ -540,16 +540,16 @@
 			isa = PBXGroup;
 			children = (
 				C4EC31CA284F8CBB0049F2C4 /* Album.swift */,
-				C4AC885B2886A52600BA5921 /* UploadFile.swift */,
 				C495F5F9285630C0009B3BDE /* AlbumDetail.swift */,
-				0AAB367E286381C000A47B24 /* HomeInfo.swift */,
-				0A2887F52870A80B000A72F2 /* FamilyList.swift */,
-				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
 				6F0974342861E53A0000956C /* CalendarTask.swift */,
-				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
 				C481B6D8287ADF0C005D6831 /* Comment.swift */,
-				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
+				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
+				0A2887F52870A80B000A72F2 /* FamilyList.swift */,
 				0AF2B5412884601B00C6A55E /* LoginResponse.swift */,
+				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
+				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
+				0AAB367E286381C000A47B24 /* HomeInfo.swift */,
+				C4AC885B2886A52600BA5921 /* UploadFile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

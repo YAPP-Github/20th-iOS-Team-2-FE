@@ -7,18 +7,29 @@
 
 import Foundation
 
-struct AlbumDetail: Hashable, Decodable {
-  let title: String
+struct AlbumDetailAPIResponse: Hashable, Decodable {
+  let results: AlbumDetailResult
+  let info: Info
+}
+
+struct AlbumDetailResult: Hashable, Decodable {
+  let title: String?
+  let type: String?
   let elements: [AlbumDetailElement]
 }
 
 struct AlbumDetailElement: Identifiable, Hashable, Decodable {
   var id : Int?
-  let type: String // PHOTO, RECORDING
+  let title: String?
+  let kind: String // PHOTO, RECORDING
   let fileId: Int
   let date: String
   let link: String
   let favourite: Bool
-  let title: String?
   let commentCount: Int
+}
+
+//MARK: - 즐겨찾기
+struct AlbumFavouriteAPIResponse: Hashable, Decodable {
+  let result: Bool
 }

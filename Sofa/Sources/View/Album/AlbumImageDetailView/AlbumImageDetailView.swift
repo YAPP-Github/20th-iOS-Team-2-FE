@@ -10,6 +10,8 @@ import SwiftUI
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
   @State var touchImage = false
+  var info: AlbumDetailElement?
+  var image: UIImage
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
@@ -27,9 +29,6 @@ struct AlbumImageDetailView: View {
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-
-  var image: UIImage
-  var index: Int
   
   var actionSheetView: some View {
     ActionSheetCard(
@@ -79,7 +78,7 @@ struct AlbumImageDetailView: View {
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
           .overlay(
-            AlbumImageDetailSettingBar(isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.elements[0]) // 임시
+            AlbumImageDetailSettingBar(isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.results.elements[0]) // 임시
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
         
@@ -102,7 +101,7 @@ struct AlbumImageDetailView: View {
       .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
       .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-        AlbumEditDateView(photoId: "0") // 임시
+        AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick)
@@ -119,8 +118,8 @@ struct AlbumImageDetailView: View {
 
 struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[6]
+    let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(isPreCommentClick: false, image: UIImage(named: data.link)!, index: 0)
+    AlbumImageDetailView(info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
   }
 }

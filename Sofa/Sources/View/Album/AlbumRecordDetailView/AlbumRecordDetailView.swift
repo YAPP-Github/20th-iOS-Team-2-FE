@@ -10,27 +10,26 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
-  let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
+  let info: AlbumDetailElement?
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
   @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "즐겨찾기 등록", type: .Registration)
-  private var isBookmark : Bool { return info.favourite }
   
   // 댓글
   @State var isCommentClick: Bool = false   // 댓글
   let isPreCommentClick: Bool // 이전 화면에서 댓글
-
+  
   @State var isEllipsisClick: Bool = false  // 설정
   
   // 다운로드
   @State var isDownloadClick: Bool = false  // 다운로드
   @State var isUpdateDate: Bool = false  // 날짜 수정
-
+  
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-
+  
   var actionSheetView: some View {
     ActionSheetCard(
       isShowing: $isEllipsisClick,
@@ -77,7 +76,7 @@ struct AlbumRecordDetailView: View {
       }
       .foregroundColor(Color.white)
       .font(.custom("Pretendard-Medium", size: 16))
-
+      
     }
     .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
@@ -90,9 +89,9 @@ struct AlbumRecordDetailView: View {
         isBookmarkClick = true
       }) {
         // 북마크
-        Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
+        Image(systemName: true ? "bookmark.fill" : "bookmark")
           .frame(width: 20, height: 20)
-          .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .white)
+          .foregroundColor(true ? Color(hex: "#FFCA28") : .white)
           .font(.system(size: 20))
           .padding(.leading, 8)
       }
@@ -109,7 +108,7 @@ struct AlbumRecordDetailView: View {
             .padding(.leading, 20)
           
           // 댓글 수
-          Text("\(info.commentCount)")
+          Text("\(info!.commentCount)")
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(.white)
             .font(.system(size: 20))
@@ -188,52 +187,55 @@ struct AlbumRecordDetailView: View {
         recordButtonArea
         Spacer()
       }
-      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.4)
+      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.5)
       .background(Color(hex: "#161616").ignoresSafeArea(edges: .bottom))
     }
   }
   
   var body: some View {
-    NavigationView {
-      GeometryReader { geometry in
-        ZStack {
-          recordBarArea // 녹음 Bar 영역
-          
-          Color.clear
+    GeometryReader { geometry in
+      ZStack {
+        recordBarArea // 녹음 Bar 영역
+        
+        Color.clear
+          .ignoresSafeArea()
+          .overlay(
+            // Navigation Bar
+            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: "info.title!", safeTop: geometry.safeAreaInsets.top)
+          )
+          .overlay(
+            recordBottomArea
+          )
+        
+        if isCommentClick || isEllipsisClick { // 댓글 or action sheet
+          Color.black
+            .opacity(0.7)
             .ignoresSafeArea()
-            .overlay(
-              // Navigation Bar
-              AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: info.title!, safeTop: geometry.safeAreaInsets.top)
-            )
-            .overlay(
-              recordBottomArea
-            )
-          
-          if isCommentClick || isEllipsisClick { // 댓글 or action sheet
-            Color.black
-              .opacity(0.7)
-              .ignoresSafeArea()
-              .onTapGesture {
-                isEllipsisClick = false
-              }
-            
-            if isEllipsisClick {
-              actionSheetView // 설정 버튼 sheet
+            .onTapGesture {
+              isEllipsisClick = false
             }
+          
+          if isEllipsisClick {
+            actionSheetView // 설정 버튼 sheet
           }
         }
-        .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop + 45)
-        .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop + 45)
-        .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
-          AlbumEditDateView(photoId: "0") // 임시
+      }
+      .background(Color.black)
+      .ignoresSafeArea()
+      .navigationBarHidden(true)
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop + 45)
+      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop + 45)
+      .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
+        AlbumDateEditView(fileId: info!.fileId) // 임시
+      }
+      .fullScreenCover(isPresented: $isCommentClick) {
+        AlbumCommentView(isShowing: $isCommentClick)
+          .background(BackgroundCleanerView())
+      }
+      .onAppear {
+        if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
+          isCommentClick = true
         }
-        .fullScreenCover(isPresented: $isCommentClick) {
-          AlbumCommentView(isShowing: $isCommentClick)
-            .background(BackgroundCleanerView())
-        }
-        .background(Color.black)
-        .navigationBarHidden(true)
-        .ignoresSafeArea()
       }
     }
   }
@@ -241,7 +243,7 @@ struct AlbumRecordDetailView: View {
 
 struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[3]
+    let data = MockData().albumDetail.results.elements[3]
     
     AlbumRecordDetailView(info: data, isPreCommentClick: false)
   }

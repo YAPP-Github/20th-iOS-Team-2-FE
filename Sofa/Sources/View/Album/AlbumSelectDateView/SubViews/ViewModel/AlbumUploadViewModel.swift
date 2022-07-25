@@ -60,7 +60,7 @@ class AlbumUploadViewModel: ObservableObject {
   }
   
   fileprivate func postUploadPhoto(date: String, links: [String]) {
-    print(#fileID, #function, #line, "")
+//    print(#fileID, #function, #line, "")
     AF.request(UploadManager.postPhotos(date: date, links: links))
       .publishDecodable(type: UploadFilesAPIResponse.self)
       .value()

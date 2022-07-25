@@ -68,5 +68,24 @@ class CommentViewModel: ObservableObject{
       )
       .store(in: &subscription)   // disposed(by: disposeBag)
   }
+  
+  // 댓글 수정
+  func editComment(commentId: Int, content: String) {
+    AF.request(CommentManger.patchComment(commentId: commentId, content: content))
+      .publishDecodable(type: AlbumDefaulAPIResponse.self)
+      .value()
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: {completion in
+          guard case .failure(let error) = completion else { return }
+          NSLog("Error : " + error.localizedDescription)
+          self.fetchComments()
+        },
+        receiveValue: {receivedValue in
+          NSLog("받은 값 : \(receivedValue)")
+        }
+      )
+      .store(in: &subscription)   // disposed(by: disposeBag)
+  }
 }
 

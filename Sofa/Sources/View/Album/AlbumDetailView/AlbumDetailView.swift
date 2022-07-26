@@ -52,7 +52,7 @@ struct AlbumDetailView: View {
           if selectFile?.kind == "PHOTO" {
             authorizationViewModel.showPhotoAlbum(selectImage: selectImage) // 권한 확인
           } else if selectFile?.kind == "RECORDING" {
-            audioViewModel.download(link: selectFile!.link) { complete in
+            audioViewModel.download(fileName: selectFile?.title, link: selectFile!.link) { complete in
               isToastMessage = complete
             }
           }

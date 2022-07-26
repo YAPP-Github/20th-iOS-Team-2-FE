@@ -28,6 +28,7 @@ struct AlbumCommentList: View {
             Text("말을 걸어 대화를 시작해보세요") // 별명
               .font(.custom("Pretendard-Medium", size: 16))
           }
+          .foregroundColor(Color.black)
         }
       }
     }

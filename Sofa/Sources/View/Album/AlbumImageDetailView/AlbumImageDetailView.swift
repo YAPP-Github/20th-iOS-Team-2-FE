@@ -10,7 +10,7 @@ import SwiftUI
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
-
+  
   @State var touchImage = false
   var info: AlbumDetailElement?
   var image: UIImage
@@ -67,7 +67,7 @@ struct AlbumImageDetailView: View {
         Button(action: {
           touchImage.toggle()
         }) {
-          if image == UIImage() { 
+          if image == UIImage() {
             Text("이미지를 불러오지 못했습니다")
               .foregroundColor(.white)
               .font(.custom("Pretendard-Medium", size: 16))

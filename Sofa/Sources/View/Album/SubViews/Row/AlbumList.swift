@@ -60,6 +60,9 @@ struct AlbumList: View {
       }
     }
     .padding([.leading, .trailing], 16)
+    .onAppear {
+      self.viewModel.refreshActionSubject.send()
+    }
   }
 }
 

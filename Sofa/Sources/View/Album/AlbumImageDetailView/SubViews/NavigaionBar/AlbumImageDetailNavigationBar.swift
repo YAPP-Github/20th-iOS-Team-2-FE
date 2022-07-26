@@ -22,7 +22,7 @@ struct AlbumImageDetailNavigationBar: View {
             Image(systemName: "chevron.left")
               .font(.system(size: 20))
             Text("이전")
-              .font(.system(size: 16))
+              .font(.custom("Pretendard-Medium", size: 16))
           }
         }
       }

@@ -51,7 +51,7 @@ struct AlbumImageDetailSettingBar: View {
                 // 댓글 수
                 Text("\(info.commentCount)")
                   .foregroundColor(.white)
-                  .font(.system(size: 20))
+                  .font(.custom("Pretendard-Medium", size: 20))
               }
             })
             

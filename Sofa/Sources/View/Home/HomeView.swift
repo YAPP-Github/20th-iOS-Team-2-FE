@@ -59,12 +59,12 @@ struct HomeView: View {
               .fullScreenCover(isPresented: $showModal) {
                 HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
-                  .onAppear{
-                    tabbarManager.showTabBar = false
-                  }
-                  .onDisappear{
-                    tabbarManager.showTabBar = true
-                  }
+//                  .onAppear{
+//                    tabbarManager.showTabBar = false
+//                  }
+//                  .onDisappear{
+//                    tabbarManager.showTabBar = true
+//                  }
               }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
@@ -101,7 +101,7 @@ struct HomeView: View {
       .navigationViewStyle(StackNavigationViewStyle())
       .accentColor(Color(hex: "43A047"))
       
-      if showModal{
+      if (showModal || showMessageView){
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()

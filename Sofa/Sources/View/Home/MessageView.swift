@@ -42,7 +42,7 @@ struct MessageView: View {
       if isShowing{
         VStack {
           Color.black
-            .opacity(0.7)
+            .opacity(0)
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -50,9 +50,6 @@ struct MessageView: View {
         }
         mainView
           .offset(y: -self.keyboardHeightHelper.keyboardHeight)
-          .onDisappear{
-            UITabBar.showTabBar()
-          }
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

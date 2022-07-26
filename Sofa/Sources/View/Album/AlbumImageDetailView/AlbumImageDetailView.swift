@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+
   @State var touchImage = false
   var info: AlbumDetailElement?
   var image: UIImage
@@ -35,10 +37,10 @@ struct AlbumImageDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
-          UIImageWriteToSavedPhotosAlbum(image, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-          isToastMessage = true
+
+          authorizationViewModel.showPhotoAlbum(selectImage: image) // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -99,6 +101,7 @@ struct AlbumImageDetailView: View {
       .ignoresSafeArea()
       .navigationBarHidden(true) // 이전 Navigation bar 무시
       .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
+      .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: Screen.safeAreaTop)
       .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
         AlbumDateEditView(fileId: info!.fileId) // 임시

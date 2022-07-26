@@ -27,9 +27,17 @@ struct AlbumDetailRow: View {
   
   func saveUIImage() {
     DispatchQueue.global().async {
-      let data = try? Data(contentsOf: URL(string: selectFile!.link)!)
-      DispatchQueue.main.async {
-        self.selectImage = UIImage(data: data!)!
+      do {
+        if let url = URL(string: selectFile!.link) {
+          let data = try Data(contentsOf: url)
+          DispatchQueue.main.async {
+            self.selectImage = UIImage(data: data)!
+          }
+        } else {
+          self.selectImage = UIImage()
+        }
+      } catch {
+        self.selectImage = UIImage()
       }
     }
   }

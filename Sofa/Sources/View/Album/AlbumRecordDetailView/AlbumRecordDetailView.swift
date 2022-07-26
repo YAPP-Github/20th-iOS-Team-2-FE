@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
-  @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
+  @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
   let info: AlbumDetailElement?
   
   // 즐겨찾기
@@ -21,8 +21,6 @@ struct AlbumRecordDetailView: View {
   let isPreCommentClick: Bool // 이전 화면에서 댓글
   
   @State var isEllipsisClick: Bool = false  // 설정
-  
-  // 다운로드
   @State var isUpdateDate: Bool = false  // 날짜 수정
   
   // Toast Message
@@ -36,7 +34,9 @@ struct AlbumRecordDetailView: View {
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-          isToastMessage = true
+          audioViewModel.download(fileName: info!.title, link: info!.link) { complete in
+            isToastMessage = complete
+          }
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -61,16 +61,16 @@ struct AlbumRecordDetailView: View {
   var recordBarArea: some View {
     VStack(spacing: 8) {
       HStack(alignment: .center, spacing: 4) {
-        ForEach(self.audioRecorder.soundSamples, id: \.self) { step in
+        ForEach(self.audioViewModel.soundSamples, id: \.self) { step in
           AudioBarView(color: Color(hex: "4CAF50"), isStep: step)
         }
       }
       
       ZStack { // 시간 영역
-        Text("\(audioRecorder.minutes < 10 ? "0" : "")\(audioRecorder.minutes)" + " :")
+        Text("\(audioViewModel.minutes < 10 ? "0" : "")\(audioViewModel.minutes)" + " :")
           .offset(x: -35)
-        Text("\(audioRecorder.seconds < 10 ? "0" : "")\(audioRecorder.seconds)" + " :")
-        Text("\(audioRecorder.microSeconds < 10 ? "0" : "")\(audioRecorder.microSeconds)")
+        Text("\(audioViewModel.seconds < 10 ? "0" : "")\(audioViewModel.seconds)" + " :")
+        Text("\(audioViewModel.microSeconds < 10 ? "0" : "")\(audioViewModel.microSeconds)")
           .offset(x: 30)
       }
       .foregroundColor(Color.white)
@@ -138,14 +138,14 @@ struct AlbumRecordDetailView: View {
           .foregroundColor(Color(hex: "#FFFFFF").opacity(0.5))
       }
       Button(action: {
-        if self.audioRecorder.isRecording{
-          self.audioRecorder.stopRecording()
+        if self.audioViewModel.isRecording{
+          self.audioViewModel.stopRecording()
         } else {
-          self.audioRecorder.startRecording()
+          self.audioViewModel.startRecording()
         }
       }, label: {
         ZStack {
-          if audioRecorder.isRecording { // 녹음 시작
+          if audioViewModel.isRecording { // 녹음 시작
             Circle()
               .frame(width: 64, height: 64)
               .foregroundColor(Color.white)
@@ -232,7 +232,7 @@ struct AlbumRecordDetailView: View {
           .background(BackgroundCleanerView())
       }
       .onAppear {
-        audioRecorder.startInit(audio: URL(string: info!.link)!)
+        audioViewModel.startInit(audio: URL(string: info!.link)!)
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true
         }

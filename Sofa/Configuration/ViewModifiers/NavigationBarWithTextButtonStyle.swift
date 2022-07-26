@@ -52,6 +52,7 @@ struct NavigationBarWithTextButtonStyle: ViewModifier {
             }) {
               Text(title)
                 .font(.custom("Pretendard-Medium", size: 16))
+                .foregroundColor(Color.primary)
                 .bold()
             }
             .disabled(isDisalbeTitleButton)

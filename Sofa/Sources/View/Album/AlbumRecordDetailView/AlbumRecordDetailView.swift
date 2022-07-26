@@ -23,7 +23,6 @@ struct AlbumRecordDetailView: View {
   @State var isEllipsisClick: Bool = false  // 설정
   
   // 다운로드
-  @State var isDownloadClick: Bool = false  // 다운로드
   @State var isUpdateDate: Bool = false  // 날짜 수정
   
   // Toast Message

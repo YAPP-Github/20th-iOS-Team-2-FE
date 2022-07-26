@@ -24,8 +24,6 @@ struct AlbumImageDetailView: View {
   let isPreCommentClick: Bool // 이전 화면에서 댓글
   
   @State var isEllipsisClick: Bool = false  // 설정
-  
-  @State var isDownloadClick: Bool = false  // 다운로드
   @State var isUpdateDate: Bool = false  // 날짜 수정
   
   // Toast Message

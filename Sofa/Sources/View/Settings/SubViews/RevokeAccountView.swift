@@ -14,9 +14,10 @@ struct RevokeAccountView: View {
   var body: some View {
     VStack(spacing: 0){
       HStack(alignment: .center){
-        Image("info.circle.fill")
+        Image(systemName: "info.circle.fill")
           .resizable()
           .frame(width: 24, height: 24, alignment: .center)
+          .foregroundColor(Color(hex: "#FF6F00"))
           .padding(.leading, 16)
           .padding(.trailing, 8)
           .padding(.vertical, 16)
@@ -67,13 +68,15 @@ struct RevokeAccountView: View {
           .stroke(Color(hex: "EDEADF"), lineWidth: 1)
       )
       .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
-      HStack{
-        Image(checkButtonClicked ? "checkmark.circle.fill" : "checkmark.circle")
+      HStack (alignment: .center, spacing: 5){
+        Image(systemName: checkButtonClicked ? "checkmark.circle.fill" : "checkmark.circle")
           .resizable()
+          .foregroundColor(checkButtonClicked ? Color(hex: "#43A047") : Color.black.opacity(0.4))
           .frame(width: 24, height: 24, alignment: .center)
-          .padding(.leading, 16)
-          .padding(.trailing, 8)
-          .padding(.vertical, 16)
+//          .padding(.leading, 16)
+//          .padding(.trailing, 8)
+//          .padding(.vertical, 16)
+          .padding()
         Text("위 내용을 모두 확인했습니다.")
           .font(.custom("Pretendard-Regular", size: 14))
           .foregroundColor(Color(hex: "#21272A"))

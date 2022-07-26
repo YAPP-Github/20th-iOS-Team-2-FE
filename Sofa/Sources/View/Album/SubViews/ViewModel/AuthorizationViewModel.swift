@@ -52,10 +52,6 @@ class AuthorizationViewModel: ObservableObject {
     }
   }
   
-  @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-      print("Save finished!")
-  }
-  
   // camera picker 보기 전, 권한 확인
   func showCameraPicker() {
     do {

@@ -44,7 +44,7 @@ struct AccountAndSecurityView: View {
               }
           case 3:
             NavigationLink {
-              Text("계정 삭제")
+              RevokeAccountView()
             } label: {
               settingSubRowView(titles[idx], idx)
             }

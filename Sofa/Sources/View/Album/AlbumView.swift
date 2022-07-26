@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct AlbumView: View {
   @StateObject var viewModel = AlbumListViewModel()
   @ObservedObject var tabbarManager = TabBarManager.shared

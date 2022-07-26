@@ -7,11 +7,13 @@
 
 import SwiftUI
 import URLImage
+import Photos
 
 struct AlbumDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject var tabbarManager = TabBarManager.shared
-  
+  @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+
   @State var isTitleClick = false
   @State var isEdit = false
   
@@ -44,10 +46,9 @@ struct AlbumDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
-          UIImageWriteToSavedPhotosAlbum(selectImage, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-          isToastMessage = true
+          authorizationViewModel.showPhotoAlbum(selectImage: selectImage) // 권한 확인
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -84,6 +85,7 @@ struct AlbumDetailView: View {
           NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
+        .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: selectAlbumId != nil ? .constant(false) : .constant(true), isDisalbeTitleButton: selectAlbumId != nil ? .constant(false) : .constant(true), title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isEdit) { // 앨범 날짜 수정
@@ -95,6 +97,18 @@ struct AlbumDetailView: View {
         .fullScreenCover(isPresented: $isTitleClick) {
           AlbumTitleEditView(title: title, isShowing: $isTitleClick, preTitle: $title, albumId: selectAlbumId!)
             .background(BackgroundCleanerView())
+        }
+        .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+          // 카메라 error
+          Alert(
+            title: Text(authorizationViewModel.showErrorAlertTitle),
+            message: Text(authorizationViewModel.showErrorAlertMessage),
+            primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
+              if let appSettring = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
+              }
+            },
+            secondaryButton: .default(Text("확인")))
         }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       }

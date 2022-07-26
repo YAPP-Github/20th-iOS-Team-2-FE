@@ -152,6 +152,9 @@ struct AlbumDetailRow: View {
         Button(action: {
           isEllipsisClick = true
           selectFile = info
+          if info.kind == "PHOTO" {
+            saveUIImage()
+          }
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)

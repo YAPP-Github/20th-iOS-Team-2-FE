@@ -229,7 +229,7 @@ struct AlbumRecordDetailView: View {
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
-        AlbumCommentView(isShowing: $isCommentClick)
+        AlbumCommentView(isShowing: $isCommentClick, filedId: info!.fileId)
           .background(BackgroundCleanerView())
       }
       .onAppear {

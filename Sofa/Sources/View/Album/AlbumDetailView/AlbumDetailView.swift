@@ -7,13 +7,13 @@
 
 import SwiftUI
 import URLImage
-import Photos
 
 struct AlbumDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
-
+  @ObservedObject var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  
   @State var isTitleClick = false
   @State var isEdit = false
   
@@ -29,9 +29,9 @@ struct AlbumDetailView: View {
   
   @State var isPhotoCommentClick: Bool = false   // 사진 댓글
   @State var isRecordingCommentClick: Bool = false   // 녹음 댓글
-
+  
   @State var isEllipsisClick: Bool = false  // 사진 설정
-
+  
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
@@ -48,7 +48,14 @@ struct AlbumDetailView: View {
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-          authorizationViewModel.showPhotoAlbum(selectImage: selectImage) // 권한 확인
+          
+          if selectFile?.kind == "PHOTO" {
+            authorizationViewModel.showPhotoAlbum(selectImage: selectImage) // 권한 확인
+          } else if selectFile?.kind == "RECORDING" {
+            audioViewModel.download(link: selectFile!.link) { complete in
+              isToastMessage = complete
+            }
+          }
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true

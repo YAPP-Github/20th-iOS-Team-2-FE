@@ -110,6 +110,18 @@ struct AlbumImageDetailView: View {
         AlbumCommentView(isShowing: $isCommentClick, filedId: info!.fileId)
           .background(BackgroundCleanerView())
       }
+      .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+        // 카메라 error
+        Alert(
+          title: Text(authorizationViewModel.showErrorAlertTitle),
+          message: Text(authorizationViewModel.showErrorAlertMessage),
+          primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
+            if let appSettring = URL(string: UIApplication.openSettingsURLString) {
+              UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
+            }
+          },
+          secondaryButton: .default(Text("확인")))
+      }
       .onAppear {
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true

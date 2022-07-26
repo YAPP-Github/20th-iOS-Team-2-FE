@@ -10,6 +10,7 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
   let info: AlbumDetailElement?
   
   // 즐겨찾기
@@ -85,12 +86,15 @@ struct AlbumRecordDetailView: View {
     HStack {
       Button(action: {
         // 북마크 네트워크 로직
-        isBookmarkClick = true
+        favouriteViewModel.postFavourite()
+        if !favouriteViewModel.isFavourite { // 즐겨찾기 등록
+          isBookmarkClick = true
+        }
       }) {
         // 북마크
-        Image(systemName: true ? "bookmark.fill" : "bookmark")
+        Image(systemName: favouriteViewModel.isFavourite ? "bookmark.fill" : "bookmark")
           .frame(width: 20, height: 20)
-          .foregroundColor(true ? Color(hex: "#FFCA28") : .white)
+          .foregroundColor(favouriteViewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
           .font(.system(size: 20))
           .padding(.leading, 8)
       }
@@ -232,7 +236,7 @@ struct AlbumRecordDetailView: View {
           .background(BackgroundCleanerView())
       }
       .onAppear {
-        audioViewModel.startInit(audio: URL(string: info!.link)!)
+//        audioViewModel.startInit(audio: URL(string: info!.link)!)
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true
         }
@@ -245,6 +249,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
   }
 }

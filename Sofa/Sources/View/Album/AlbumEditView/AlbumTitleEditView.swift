@@ -71,7 +71,7 @@ struct AlbumTitleEditView: View {
             .animation(.easeInOut(duration: duration/2))
         }
       }
-      .toastMessage(data: $messageData, isShow: $isLimite, topInset: Screen.safeAreaTop + 65)
+      .toastMessage(data: $messageData, isShow: $isLimite, topInset: geometry.safeAreaInsets.top + 65)
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
       .ignoresSafeArea()
       .onAppear {

@@ -100,9 +100,9 @@ struct AlbumImageDetailView: View {
       .background(Color.black)
       .ignoresSafeArea()
       .navigationBarHidden(true) // 이전 Navigation bar 무시
-      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
-      .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: Screen.safeAreaTop)
-      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: geometry.safeAreaInsets.top)
+      .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: geometry.safeAreaInsets.top)
+      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: geometry.safeAreaInsets.top)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }

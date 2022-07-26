@@ -223,8 +223,8 @@ struct AlbumRecordDetailView: View {
       .background(Color.black)
       .ignoresSafeArea()
       .navigationBarHidden(true)
-      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop + 45)
-      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop + 45)
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: geometry.safeAreaInsets.top + 45)
+      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: geometry.safeAreaInsets.top + 45)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
@@ -233,6 +233,7 @@ struct AlbumRecordDetailView: View {
           .background(BackgroundCleanerView())
       }
       .onAppear {
+        audioRecorder.startInit(audio: URL(string: info!.link)!)
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true
         }

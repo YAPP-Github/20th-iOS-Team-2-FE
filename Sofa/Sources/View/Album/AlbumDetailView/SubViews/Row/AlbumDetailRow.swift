@@ -106,9 +106,14 @@ struct AlbumDetailRow: View {
       
       HStack {
         Button(action: {
-          viewModel.fetchAlbumDetailByDate(viewModel: listViewModel)
-          if !viewModel.isFavourite {
+          viewModel.fetchAlbumDetailByDate()
+          if !viewModel.isFavourite { // 즐겨찾기 해제
             isBookmarkClick = true
+            listViewModel.albumDetailList[index].favourite = true
+          } else if listViewModel.type == "favourite" {
+            listViewModel.albumDetailList.remove(at: index)
+          } else {
+            listViewModel.albumDetailList[index].favourite = false
           }
         }) {
           // 북마크

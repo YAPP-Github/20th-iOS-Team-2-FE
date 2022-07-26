@@ -21,7 +21,7 @@ class AlbumDetailListCellViewModel: ObservableObject {
   }
     
   // 즐겨찾기
-  func fetchAlbumDetailByDate(viewModel: AlbumDetailListViewModel) {
+  func fetchAlbumDetailByDate() {
     AF.request(AlbumDetailManger.postFavourite(fieldId: self.fileId))
       .publishDecodable(type: AlbumFavouriteAPIResponse.self)
       .value()
@@ -43,7 +43,6 @@ class AlbumDetailListCellViewModel: ObservableObject {
         receiveValue: {[weak self] receivedValue in
 //                    print("받은 값 : \(receivedValue)")
           self?.isFavourite = receivedValue.result
-          viewModel.refreshActionSubjectByKind.send()
         }
       )
       .store(in: &subscription)   // disposed(by: disposeBag)

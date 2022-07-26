@@ -11,6 +11,7 @@ import Combine
 
 class AlbumDetailListViewModel: ObservableObject {
   @Published var albumDetailList = [AlbumDetailElement]()
+  @Published var type: String = ""
   @Published var isLoading: Bool = false // Loding
   @Published var pageInfo : Info? {
     didSet {
@@ -127,6 +128,7 @@ class AlbumDetailListViewModel: ObservableObject {
         receiveValue: {[weak self] receivedValue in
           //          print("받은 값 : \(receivedValue)")
           self?.albumDetailList = receivedValue.results.elements
+          self?.type = receivedValue.results.type!
           self?.pageInfo = receivedValue.info
           self?.currentPage = 0
         }

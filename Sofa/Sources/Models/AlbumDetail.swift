@@ -25,7 +25,7 @@ struct AlbumDetailElement: Identifiable, Hashable, Decodable {
   let fileId: Int
   let date: String
   let link: String
-  let favourite: Bool
+  var favourite: Bool
   let commentCount: Int
 }
 

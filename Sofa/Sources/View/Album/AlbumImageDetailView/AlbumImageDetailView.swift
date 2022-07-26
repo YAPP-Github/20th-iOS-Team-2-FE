@@ -39,8 +39,10 @@ struct AlbumImageDetailView: View {
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-
-          authorizationViewModel.showPhotoAlbum(selectImage: image) // 권한 확인
+          
+          if image != UIImage() { // 이미지가 비어있지 않을 경우
+            authorizationViewModel.showPhotoAlbum(selectImage: image) // 권한 확인
+          }
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -67,10 +69,16 @@ struct AlbumImageDetailView: View {
         Button(action: {
           touchImage.toggle()
         }) {
-          Image(uiImage: image)
-            .resizable()
-            .scaledToFit()
-            .pinchToZoom()
+          if image == UIImage() { 
+            Text("이미지를 불러오지 못했습니다")
+              .foregroundColor(.white)
+              .font(.custom("Pretendard-Medium", size: 16))
+          } else { // 이미지가 비어있지 않을 경우
+            Image(uiImage: image)
+              .resizable()
+              .scaledToFit()
+              .pinchToZoom()
+          }
         }
         
         Color.clear

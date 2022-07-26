@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct AlbumImageDetailSettingBar: View {
+  @ObservedObject var viewModel: AlbumDetailListCellViewModel
+
   @Binding var isBookmarkClick: Bool
   @Binding var isCommentClick: Bool
   @Binding var isEllipsisClick: Bool
 
-  let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
-  private var isBookmark : Bool { return info.favourite }
+  var info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
   
   var body: some View {
     GeometryReader { geometry in
@@ -23,12 +24,15 @@ struct AlbumImageDetailSettingBar: View {
           HStack {
             Button(action: {
               // 북마크 네트워크 로직
-              self.isBookmarkClick = true
+              viewModel.postFavourite()
+              if !viewModel.isFavourite { // 즐겨찾기 해제
+                isBookmarkClick = true
+              }
             }) {
               // 북마크
-              Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
+              Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
                 .frame(width: 20, height: 20)
-                .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .white)
+                .foregroundColor(viewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
                 .font(.system(size: 20))
                 .padding(.leading, 8)
             }
@@ -76,7 +80,7 @@ struct AlbumImageDetailSettingBar_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumImageDetailSettingBar(isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
+    AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: 0, isFavourite: false), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
       .ignoresSafeArea()
   }
 }

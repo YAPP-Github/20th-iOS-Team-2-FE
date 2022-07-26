@@ -14,6 +14,7 @@ struct HomeView: View {
   @State var showModal = false
   @State var showMessageView = false
   @Binding var selectionType: Tab
+  @State var text: String?
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
   
@@ -72,7 +73,7 @@ struct HomeView: View {
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.all)
             .fullScreenCover(isPresented: $showMessageView) {
-              MessageView($showMessageView, $placeholder)
+              MessageView($showMessageView, $text, $placeholder)
                 .background(BackgroundCleanerView())
             }
           

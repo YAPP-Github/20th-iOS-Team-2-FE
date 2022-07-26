@@ -146,6 +146,7 @@
 		C4AC88672889BC0900BA5921 /* AlbumDetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC88662889BC0900BA5921 /* AlbumDetailListViewModel.swift */; };
 		C4AC886A288B8AFA00BA5921 /* AlbumEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC8869288B8AFA00BA5921 /* AlbumEditViewModel.swift */; };
 		C4AC886D288D86BD00BA5921 /* AlbumDetailListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC886C288D86BD00BA5921 /* AlbumDetailListCellViewModel.swift */; };
+		C4AC886F288EE3D300BA5921 /* CommentManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC886E288EE3D300BA5921 /* CommentManger.swift */; };
 		C4B4963528800DDF000C9E1F /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */; };
 		C4B4963928801E5D000C9E1F /* AlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963828801E5D000C9E1F /* AlbumManager.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
@@ -339,6 +340,7 @@
 		C4AC88662889BC0900BA5921 /* AlbumDetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailListViewModel.swift; sourceTree = "<group>"; };
 		C4AC8869288B8AFA00BA5921 /* AlbumEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEditViewModel.swift; sourceTree = "<group>"; };
 		C4AC886C288D86BD00BA5921 /* AlbumDetailListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailListCellViewModel.swift; sourceTree = "<group>"; };
+		C4AC886E288EE3D300BA5921 /* CommentManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentManger.swift; sourceTree = "<group>"; };
 		C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		C4B4963828801E5D000C9E1F /* AlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumManager.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
@@ -541,16 +543,16 @@
 			isa = PBXGroup;
 			children = (
 				C4EC31CA284F8CBB0049F2C4 /* Album.swift */,
-				C4AC885B2886A52600BA5921 /* UploadFile.swift */,
 				C495F5F9285630C0009B3BDE /* AlbumDetail.swift */,
-				0AAB367E286381C000A47B24 /* HomeInfo.swift */,
-				0A2887F52870A80B000A72F2 /* FamilyList.swift */,
-				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
 				6F0974342861E53A0000956C /* CalendarTask.swift */,
-				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
 				C481B6D8287ADF0C005D6831 /* Comment.swift */,
-				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
+				6FE6D78A2861B1B100E3C21E /* DateValue.swift */,
+				0A2887F52870A80B000A72F2 /* FamilyList.swift */,
 				0AF2B5412884601B00C6A55E /* LoginResponse.swift */,
+				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
+				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
+				0AAB367E286381C000A47B24 /* HomeInfo.swift */,
+				C4AC885B2886A52600BA5921 /* UploadFile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -558,11 +560,12 @@
 		6F22E52E284B9D220069D268 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4963828801E5D000C9E1F /* AlbumManager.swift */,
-				C4AC88562886A15000BA5921 /* UploadManager.swift */,
-				C4AC88632889B29D00BA5921 /* AlbumDetailManger.swift */,
 				C4AC885F28896ADB00BA5921 /* APIConstants.swift */,
+				C4B4963828801E5D000C9E1F /* AlbumManager.swift */,
+				C4AC88632889B29D00BA5921 /* AlbumDetailManger.swift */,
+				C4AC886E288EE3D300BA5921 /* CommentManger.swift */,
 				0AF2B5432884613D00C6A55E /* LoginManager.swift */,
+				C4AC88562886A15000BA5921 /* UploadManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1452,6 +1455,7 @@
 				C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */,
 				0AF2B5442884613D00C6A55E /* LoginManager.swift in Sources */,
 				C481B6D9287ADF0C005D6831 /* Comment.swift in Sources */,
+				C4AC886F288EE3D300BA5921 /* CommentManger.swift in Sources */,
 				C495F613285B7FDE009B3BDE /* ZoomScrollView.swift in Sources */,
 				6FBCD635287AFA9700D874FD /* Highlighting.swift in Sources */,
 				C495F617285B95BB009B3BDE /* AlbumRecordNavigationBar.swift in Sources */,
@@ -1697,7 +1701,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = B4G53F63TN;
+				DEVELOPMENT_TEAM = SF6SBNPMLX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct RevokeAccountView: View {
   @ObservedObject var tabbarManager = TabBarManager.shared
-  
+  @State var checkButtonClicked = false
+  @State var revokeButtonClicked = false
   var body: some View {
     VStack(spacing: 0){
       HStack(alignment: .center){
@@ -29,11 +30,11 @@ struct RevokeAccountView: View {
       .cornerRadius(8)
       .overlay( // cornerRadius값이 있는 border 주기 위해
         RoundedRectangle(cornerRadius: 8)
-            .stroke(Color(hex: "FFECB3"), lineWidth: 1)
+          .stroke(Color(hex: "FFECB3"), lineWidth: 1)
       )
       .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
       VStack(alignment: .leading){
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 6) {
           HStack(alignment: .top){
             Text("·").fontWeight(.black)
             Text("가족 공간 내 자료 열람이 차단됩니다.")
@@ -55,6 +56,7 @@ struct RevokeAccountView: View {
             Text("계정 삭제 전 신중하게 선택해 주시기 바랍니다.")
           }
         }
+        .lineSpacing(5)
         .font(.custom("Pretendard-Regular", size: 14))
         .padding(16)
       }//VStack
@@ -62,46 +64,54 @@ struct RevokeAccountView: View {
       .cornerRadius(8)
       .overlay( // cornerRadius값이 있는 border 주기 위해
         RoundedRectangle(cornerRadius: 8)
-            .stroke(Color(hex: "EDEADF"), lineWidth: 1)
+          .stroke(Color(hex: "EDEADF"), lineWidth: 1)
       )
       .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
       HStack{
-          Image("checkmark.circle")
-            .resizable()
-            .frame(width: 24, height: 24, alignment: .center)
-            .padding(.leading, 16)
-            .padding(.trailing, 8)
-            .padding(.vertical, 16)
-          Text("위 내용을 모두 확인했습니다.")
-            .font(.custom("Pretendard-Regular", size: 14))
-            .foregroundColor(Color(hex: "#21272A"))
-            .padding(.vertical, 16)
-          Spacer()
+        Image(checkButtonClicked ? "checkmark.circle.fill" : "checkmark.circle")
+          .resizable()
+          .frame(width: 24, height: 24, alignment: .center)
+          .padding(.leading, 16)
+          .padding(.trailing, 8)
+          .padding(.vertical, 16)
+        Text("위 내용을 모두 확인했습니다.")
+          .font(.custom("Pretendard-Regular", size: 14))
+          .foregroundColor(Color(hex: "#21272A"))
+          .padding(.vertical, 16)
+        Spacer()
       }//HStack
       .background(Color(hex: "#FFFFFF"))
       .cornerRadius(8)
       .overlay( // cornerRadius값이 있는 border 주기 위해
         RoundedRectangle(cornerRadius: 8)
-            .stroke(Color(hex: "EDEADF"), lineWidth: 1)
+          .stroke(Color(hex: "EDEADF"), lineWidth: 1)
       )
       .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+      .onTapGesture {
+        if checkButtonClicked {
+          checkButtonClicked = false
+          revokeButtonClicked = false
+        }else{
+          checkButtonClicked = true
+          revokeButtonClicked = true
+        }
+      }
       Spacer()
       HStack(alignment: .center){
         Spacer()
         Text("계정 삭제")
           .font(.custom("Pretendard-Regular", size: 18))
-          .foregroundColor(Color(hex: "FF6F00"))
+          .foregroundColor(revokeButtonClicked ? Color(hex: "FF6F00") : Color.black.opacity(0.24))
           .padding(.vertical, 12)
         Spacer()
       }//HStack
-      .background(Color(hex: "#FFF8E1"))
+      .background(revokeButtonClicked ? Color(hex: "#FFF8E1") : Color(hex: "#EDEADF"))
       .cornerRadius(8)
-      .overlay( // cornerRadius값이 있는 border 주기 위해
-        RoundedRectangle(cornerRadius: 8)
-            .stroke(Color(hex: "FFECB3"), lineWidth: 1)
-      )
       .padding(.horizontal, 16)
       .padding(.bottom, UIDevice().hasNotch ? 42 : 37)
+      .onTapGesture {
+        print("계정이 삭제되었습니다.")
+      }
     }//VStack
     .onAppear{
       tabbarManager.showTabBar = false

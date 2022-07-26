@@ -9,7 +9,7 @@ import SwiftUI
 import Introspect
 
 struct AlbumDetailList: View {
-  @ObservedObject var viewModel: AlbumDetailListViewModel
+  @StateObject var viewModel: AlbumDetailListViewModel
   @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 100)
 
   @Binding var isPhotoThumbnailClick: Bool

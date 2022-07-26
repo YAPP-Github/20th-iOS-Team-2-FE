@@ -36,7 +36,7 @@ struct AlbumList: View {
           }
           
           // 상세 앨범 View로 이동
-          NavigationLink("", destination: AlbumDetailView(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: nil), title: title, selectAlbumId: selectAlbumId), isActive: $showAlbumDetail)
+          NavigationLink("", destination: AlbumDetailView(title: title, selectAlbumId: selectAlbumId), isActive: $showAlbumDetail)
         }
         .offset(y: -10) // PullToRefresh로 인해 scrollview위로 올리기
         .coordinateSpace(name: "pullToRefresh")
@@ -55,7 +55,7 @@ struct AlbumList: View {
           }
           
           // 상세 앨범 View로 이동
-          NavigationLink("", destination: AlbumDetailView(viewModel: AlbumDetailListViewModel(albumId: nil, kindType: selectKindType), title: title, selectKindType: selectKindType), isActive: $showAlbumDetail)
+          NavigationLink("", destination: AlbumDetailView(title: title, selectKindType: selectKindType), isActive: $showAlbumDetail)
         }
       }
     }

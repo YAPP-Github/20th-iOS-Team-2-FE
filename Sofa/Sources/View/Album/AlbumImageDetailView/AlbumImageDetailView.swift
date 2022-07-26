@@ -80,7 +80,7 @@ struct AlbumImageDetailView: View {
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
           .overlay(
-            AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: info!.fileId, isFavourite: info!.favourite), isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.results.elements[0]) // 임시
+            AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: info!.fileId, isFavourite: info!.favourite), isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: info!) // 임시
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
         

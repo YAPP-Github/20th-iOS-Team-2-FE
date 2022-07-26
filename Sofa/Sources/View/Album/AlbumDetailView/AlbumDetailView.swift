@@ -10,6 +10,7 @@ import URLImage
 
 struct AlbumDetailView: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var viewModel: AlbumDetailListViewModel
   @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @ObservedObject var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
@@ -77,7 +78,7 @@ struct AlbumDetailView: View {
     ZStack {
       NavigationView {
         ZStack {
-          AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
+          AlbumDetailList(viewModel: viewModel, isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           
           // 이미지 click
           NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isPhotoThumbnailClick)
@@ -147,6 +148,6 @@ struct AlbumDetailView: View {
 
 struct AlbumDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumDetailView(title: "앨범 상세", selectAlbumId: 0, selectKindType: "")
+    AlbumDetailView(viewModel: AlbumDetailListViewModel(albumId: 0, kindType: ""), title: "앨범 상세", selectAlbumId: 0, selectKindType: "")
   }
 }

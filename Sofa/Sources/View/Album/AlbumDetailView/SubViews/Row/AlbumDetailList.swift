@@ -43,6 +43,13 @@ struct AlbumDetailList: View {
       }
       .background(Color.white)
     }
+    .onAppear {
+      if selectAlbumId != nil {
+        viewModel.refreshActionSubjectByDate.send() // 날짜별 pagenation
+      } else if selectKindType != nil {
+        viewModel.refreshActionSubjectByKind.send() // 유형별 pagenation
+      }
+    }
     .offset(y: -10) // PullToRefresh로 인해 scrollview위로 올리기
     .background(Color.init(hex: "#FAF8F0")) // 임시
     .edgesIgnoringSafeArea(.bottom)

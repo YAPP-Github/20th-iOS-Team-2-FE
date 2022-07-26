@@ -103,12 +103,15 @@ class AlbumDetailListViewModel: ObservableObject {
   
   // 유형별
   fileprivate func fetchAlbumDetailByKind() {
+    self.isLoading = true
+    
     AF.request(AlbumDetailManger.getAlbumDetailListByKind(kind: kindType))
       .publishDecodable(type: AlbumDetailAPIResponse.self)
       .value()
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: {[weak self] in
+          self?.isLoading = false
           guard case .failure(let error) = $0 else { return }
           switch error.responseCode {
           case 400: // 요청 에러 발생했을 때

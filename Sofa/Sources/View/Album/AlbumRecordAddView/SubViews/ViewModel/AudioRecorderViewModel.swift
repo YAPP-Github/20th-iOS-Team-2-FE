@@ -220,6 +220,7 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
     seconds = 0
     minutes = 0
     time = 0
+    isPlaying = false
     self.currentStepbar = 0
     self.soundSamples = [Bool](repeating: false, count: numberOfStepbar)
   }

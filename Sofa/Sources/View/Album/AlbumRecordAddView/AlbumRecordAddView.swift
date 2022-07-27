@@ -141,7 +141,7 @@ struct AlbumRecordAddView: View {
           if isNext {
             NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
               .onAppear {
-                self.audioRecorder.pausePlayback()
+                self.audioRecorder.stopInit()
               }
           }
         }
@@ -153,7 +153,10 @@ struct AlbumRecordAddView: View {
     .onAppear {
       audioRecorder.requestAuthorization(parant: self)
     }
-    .onDisappear { UITabBar.showTabBar() }
+    .onDisappear {
+      self.audioRecorder.stopInit()
+      UITabBar.showTabBar()
+    }
   }
 }
 

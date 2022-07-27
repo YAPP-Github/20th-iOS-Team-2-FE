@@ -240,6 +240,9 @@ struct AlbumRecordDetailView: View {
           isCommentClick = true
         }
       }
+      .onDisappear {
+        self.audioViewModel.stopInit()
+      }
     }
   }
 }

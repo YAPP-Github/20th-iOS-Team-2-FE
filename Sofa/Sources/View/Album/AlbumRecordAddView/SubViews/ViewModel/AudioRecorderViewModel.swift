@@ -175,6 +175,7 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
   func jumpSeconds(seconds: Double) {
     audioPlayer.currentTime += seconds
     time += (seconds * 100)
+    if time < 0 { time = 0 }
   }
   
   func playMonitoring() {

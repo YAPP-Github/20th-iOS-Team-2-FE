@@ -42,7 +42,7 @@ struct CommentModal: View {
         isDragging = true
         
         let dragAmount = value.translation.height - prevDragTranslation.height
-
+        
         if curHeight > maxHeight || curHeight < minHeight {
           curHeight -= dragAmount / 6
         } else{
@@ -96,14 +96,13 @@ struct CommentModal: View {
         .frame(height: Screen.safeAreaBottom)
     }
     .fullScreenCover(isPresented: $isWriteClick) {
-      MessageView($isWriteClick, $commentText, $placeholder)
-        .background(BackgroundCleanerView())
-        .onDisappear {
-          if let commentText = commentText {
-            self.viewModel.writeComment(content: commentText) // 댓글 전송
-            self.commentText = nil // 댓글 초기화
-          }
+      MessageView($isWriteClick, $commentText, $placeholder) {
+        if let commentText = commentText {
+          self.viewModel.writeComment(content: commentText) // 댓글 전송
+          self.commentText = nil // 댓글 초기화
         }
+      }
+      .background(BackgroundCleanerView())
     }
     .background(Color.white)
     .cornerRadius(16)

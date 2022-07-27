@@ -10,6 +10,7 @@ import URLImage
 
 struct AlbumDetailRow: View {
   @ObservedObject var viewModel: AlbumDetailListCellViewModel
+  @ObservedObject var listViewModel: AlbumDetailListViewModel
 
   @Binding var isPhotoThumbnailClick: Bool
   @Binding var isRecordingThumbnailClick: Bool
@@ -26,9 +27,17 @@ struct AlbumDetailRow: View {
   
   func saveUIImage() {
     DispatchQueue.global().async {
-      let data = try? Data(contentsOf: URL(string: selectFile!.link)!)
-      DispatchQueue.main.async {
-        self.selectImage = UIImage(data: data!)!
+      do {
+        if let url = URL(string: selectFile!.link) {
+          let data = try Data(contentsOf: url)
+          DispatchQueue.main.async {
+            self.selectImage = UIImage(data: data)!
+          }
+        } else {
+          self.selectImage = UIImage()
+        }
+      } catch {
+        self.selectImage = UIImage()
       }
     }
   }
@@ -106,8 +115,13 @@ struct AlbumDetailRow: View {
       HStack {
         Button(action: {
           viewModel.fetchAlbumDetailByDate()
-          if !viewModel.isFavourite {
+          if !viewModel.isFavourite { // 즐겨찾기 해제
             isBookmarkClick = true
+            listViewModel.albumDetailList[index].favourite = true
+          } else if listViewModel.type == "favourite" {
+            listViewModel.albumDetailList.remove(at: index)
+          } else {
+            listViewModel.albumDetailList[index].favourite = false
           }
         }) {
           // 북마크
@@ -146,6 +160,9 @@ struct AlbumDetailRow: View {
         Button(action: {
           isEllipsisClick = true
           selectFile = info
+          if info.kind == "PHOTO" {
+            saveUIImage()
+          }
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)
@@ -163,6 +180,6 @@ struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), isPhotoThumbnailClick: .constant(false), isRecordingThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isPhotoCommentClick: .constant(false), isRecordingCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
+    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), listViewModel: AlbumDetailListViewModel(albumId: nil, kindType: nil), isPhotoThumbnailClick: .constant(false), isRecordingThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isPhotoCommentClick: .constant(false), isRecordingCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }
 }

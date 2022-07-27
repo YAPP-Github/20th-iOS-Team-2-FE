@@ -11,6 +11,8 @@ import URLImage
 struct AlbumDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject var tabbarManager = TabBarManager.shared
+  @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+  @ObservedObject var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
   
   @State var isTitleClick = false
   @State var isEdit = false
@@ -27,9 +29,9 @@ struct AlbumDetailView: View {
   
   @State var isPhotoCommentClick: Bool = false   // 사진 댓글
   @State var isRecordingCommentClick: Bool = false   // 녹음 댓글
-
+  
   @State var isEllipsisClick: Bool = false  // 사진 설정
-
+  
   // Toast Message
   @State var isToastMessage: Bool = false
   @State var messageData2: ToastMessage.MessageData = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
@@ -44,10 +46,16 @@ struct AlbumDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
-          UIImageWriteToSavedPhotosAlbum(selectImage, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-          isToastMessage = true
+          
+          if selectFile?.kind == "PHOTO" {
+            authorizationViewModel.showPhotoAlbum(selectImage: selectImage) // 권한 확인
+          } else if selectFile?.kind == "RECORDING" {
+            audioViewModel.download(fileName: selectFile?.title, link: selectFile!.link) { complete in
+              isToastMessage = complete
+            }
+          }
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -68,7 +76,7 @@ struct AlbumDetailView: View {
   var body: some View {
     ZStack {
       NavigationView {
-        VStack(spacing: 0) {
+        ZStack {
           AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           
           // 이미지 click
@@ -84,6 +92,7 @@ struct AlbumDetailView: View {
           NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
+        .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: 0)
         .navigationBarWithTextButtonStyle(isNextClick: $isEdit, isTitleClick: $isTitleClick, isDisalbeNextButton: selectAlbumId != nil ? .constant(false) : .constant(true), isDisalbeTitleButton: selectAlbumId != nil ? .constant(false) : .constant(true), title, nextText: "편집", Color.init(hex: "#43A047"))
         .fullScreenCover(isPresented: $isEdit) { // 앨범 날짜 수정
@@ -95,6 +104,18 @@ struct AlbumDetailView: View {
         .fullScreenCover(isPresented: $isTitleClick) {
           AlbumTitleEditView(title: title, isShowing: $isTitleClick, preTitle: $title, albumId: selectAlbumId!)
             .background(BackgroundCleanerView())
+        }
+        .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+          // 카메라 error
+          Alert(
+            title: Text(authorizationViewModel.showErrorAlertTitle),
+            message: Text(authorizationViewModel.showErrorAlertMessage),
+            primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
+              if let appSettring = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
+              }
+            },
+            secondaryButton: .default(Text("확인")))
         }
         .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
       }

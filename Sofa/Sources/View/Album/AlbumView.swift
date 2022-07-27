@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-
 struct AlbumView: View {
+  @StateObject var viewModel = AlbumListViewModel()
   @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @State var currentSelectedTab: Tab = .album // 현재 선택된 탭으로 표시할 곳
@@ -49,7 +49,7 @@ struct AlbumView: View {
           .background(Color.init(hex: "#FAF8F0")) // 임시
           .pickerStyle(SegmentedPickerStyle())
           
-          AlbumList(selectType: selected) // select값에 따른 날짜별, 유형별 View
+          AlbumList(viewModel: viewModel, selectType: selected) // select값에 따른 날짜별, 유형별 View
           
           if (!tabbarManager.showTabBar){
             CustomTabView(selection: $currentSelectedTab)
@@ -65,15 +65,18 @@ struct AlbumView: View {
         .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) {
           // 사진 추가 View로 이동
           AlbumPhotoAddView()
+            .onDisappear { viewModel.refreshActionSubject.send() }
         }
         .fullScreenCover(isPresented: $authorizationViewModel.showCamera) {
           // 카메라 imagePicker로 이동
           CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
+            .onDisappear { viewModel.refreshActionSubject.send() }
             .ignoresSafeArea()
         }
         .fullScreenCover(isPresented: $authorizationViewModel.showRecord) {
           // 녹음 추가 View로 이동
           AlbumRecordAddView()
+            .onDisappear { viewModel.refreshActionSubject.send() }
         }
         .alert(isPresented: $authorizationViewModel.showErrorAlert) {
           // 카메라 error
@@ -89,6 +92,7 @@ struct AlbumView: View {
         }
         .edgesIgnoringSafeArea([.bottom])
       }
+      .navigationViewStyle(StackNavigationViewStyle())
       if showingSheet { // action sheet
         Color.black
           .opacity(0.7)

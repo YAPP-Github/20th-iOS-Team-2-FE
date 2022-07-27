@@ -26,17 +26,19 @@ class AlbumListViewModel: ObservableObject {
   init() {
 //    print(#fileID, #function, #line, "")
     fetchAlbumByDate() // 날짜별
-    fetchAlbumByType() // 유형별
+    fetchAlbumByKind() // 유형별
     
     refreshActionSubject.sink{ [weak self] _ in
       guard let self = self else { return }
       self.fetchAlbumByDate()
+      self.fetchAlbumByKind()
     }.store(in: &subscription)
     
     fetchMoreActionSubject.sink{[weak self] _ in
       guard let self = self else { return }
       if !self.isLoading {
         self.fetchMore()
+        self.fetchAlbumByKind()
       }
     }.store(in: &subscription)
   }
@@ -75,7 +77,8 @@ class AlbumListViewModel: ObservableObject {
   }
   
   // 유형별
-  fileprivate func fetchAlbumByType() {
+  fileprivate func fetchAlbumByKind() {
+    self.albumKindList = [AlbumKind]()
     AF.request(AlbumManager.getAlbumListByKind)
       .publishDecodable(type: AlbumTypeAPIResponse.self)
       .value()

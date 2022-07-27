@@ -83,8 +83,10 @@ enum AlbumDetailManger: URLRequestConvertible {
     switch self {
     case .getAlbumDetailListByDate:
       break
-    case let .getAlbumDetailListByKind(kind, _, _):
+    case let .getAlbumDetailListByKind(kind, page, size):
       params["kind"] = kind
+      params["page"] = page
+      params["size"] = size
     case let .patchAlbumTitle(_, title):
       params["albumName"] = title
     case let .patchAlbumDate(_, date):

@@ -9,7 +9,7 @@ import SwiftUI
 import Introspect
 
 struct AlbumList: View {
-  @ObservedObject var viewModel = AlbumListViewModel()
+  @ObservedObject var viewModel: AlbumListViewModel
   @StateObject var scrollViewHelper = ScrollViewHelper(threshold: 100)
   @State var title: String = "앨범 상세"
   @State var showAlbumDetail = false
@@ -60,11 +60,14 @@ struct AlbumList: View {
       }
     }
     .padding([.leading, .trailing], 16)
+    .onAppear {
+      self.viewModel.refreshActionSubject.send()
+    }
   }
 }
 
 struct AlbumList_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumList(selectType: 0)
+    AlbumList(viewModel: AlbumListViewModel(), selectType: 0)
   }
 }

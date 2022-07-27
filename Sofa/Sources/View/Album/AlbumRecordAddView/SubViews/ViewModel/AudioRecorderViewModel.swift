@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import Alamofire
 
 class AudioRecorderViewModel: NSObject, ObservableObject {
   @Published public var soundSamples: [Bool]
@@ -212,6 +213,35 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
     if flag {
       stopInit()
       isPlaying = false
+    }
+  }
+}
+
+//MARK: - 다운로드
+extension AudioRecorderViewModel {
+  func download(fileName: String?, link: String, _ completion: @escaping(Bool) -> Void) {
+    let url = URL(string: link)!
+    let fileManager = FileManager.default // 파일매니저
+    let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0] // 앱 경로
+    var fileURL: URL
+    if let fileName = fileName {
+      fileURL = documentsURL.appendingPathComponent(fileName) // 파일 경로 생성
+    } else {
+      let fileName = url.lastPathComponent.removingPercentEncoding! // 파일이름 url 의 맨 뒤 컴포넌트로 지정 (fileName.m4a) + 한글 인코딩
+      fileURL = documentsURL.appendingPathComponent(fileName) // 파일 경로 생성
+    }
+    let destination: DownloadRequest.Destination = { _, _ in // 파일 경로 지정 및 다운로드 옵션 설정 ( 이전 파일 삭제 , 디렉토리 생성 )
+      return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+    }
+    
+    AF.download(url, method: .get, parameters: nil, encoding: JSONEncoding.default, to: destination).downloadProgress { (progress) in
+//      print("progress: \(Int(progress.fractionCompleted * 100))")
+    }.response { response in
+      if response.error != nil {
+        completion(false) // 파일 다운로드 실패
+      } else {
+        completion(true) // 파일 다운로드 완료
+      }
     }
   }
 }

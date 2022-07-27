@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SwiftKeychainWrapper
 
 struct AccountAndSecurityView: View {
+  @Environment(\.presentationMode) var presentationMode
   @State private var showingAlert = false
   let titles = ["개인정보 이용 약관", "서비스 이용 약관", "로그아웃", "계정 삭제"]
   @ObservedObject var tabbarManager = TabBarManager.shared
@@ -39,6 +41,9 @@ struct AccountAndSecurityView: View {
                 }),
                       secondaryButton: .default(Text("로그아웃"), action: {
                   print("로그아웃")
+                  Constant.accessToken = nil
+                  KeychainWrapper.standard.remove(forKey: "accessToken")
+                  presentationMode.wrappedValue.dismiss()
                 }))
                 
               }

@@ -133,7 +133,7 @@ struct AlbumRecordDetailView: View {
   var recordButtonArea: some View {
     HStack(spacing: 68.5) {
       Button(action: {
-        
+        self.audioViewModel.jumpSeconds(seconds: -10.0)
       }) {
         Image(systemName: "gobackward.10")
           .resizable()
@@ -170,7 +170,7 @@ struct AlbumRecordDetailView: View {
         }
       })
       Button(action: {
-        
+        self.audioViewModel.jumpSeconds(seconds: 10.0)
       }) {
         Image(systemName: "goforward.10")
           .resizable()

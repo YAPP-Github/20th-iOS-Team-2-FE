@@ -171,6 +171,12 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
     isPlaying = true
   }
   
+  // 초단위로 오디오 jump
+  func jumpSeconds(seconds: Double) {
+    audioPlayer.currentTime += seconds
+    time += (seconds * 100)
+  }
+  
   func playMonitoring() {
     audioPlayer.isMeteringEnabled = true
     audioPlayer.play()

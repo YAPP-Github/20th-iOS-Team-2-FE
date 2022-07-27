@@ -34,6 +34,7 @@
 		0A4F4C1D288D9DFC00913021 /* SetNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */; };
 		0A4F4C1F288ED6F200913021 /* AccountAndSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1E288ED6F200913021 /* AccountAndSecurityView.swift */; };
 		0A4F4C21289052CE00913021 /* RevokeAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C20289052CE00913021 /* RevokeAccountView.swift */; };
+		0A4F4C232891586B00913021 /* StarscreamWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C222891586B00913021 /* StarscreamWebsocket.swift */; };
 		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
@@ -220,6 +221,7 @@
 		0A4F4C1C288D9DFC00913021 /* SetNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNotificationView.swift; sourceTree = "<group>"; };
 		0A4F4C1E288ED6F200913021 /* AccountAndSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAndSecurityView.swift; sourceTree = "<group>"; };
 		0A4F4C20289052CE00913021 /* RevokeAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevokeAccountView.swift; sourceTree = "<group>"; };
+		0A4F4C222891586B00913021 /* StarscreamWebsocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarscreamWebsocket.swift; sourceTree = "<group>"; };
 		0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0A915DD2287A9A9B0055AD6D /* NotificationMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationMock.json; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				0AE492072877387300341D35 /* NotificationView.swift */,
 				0AE4919928740D1A00341D35 /* HistoryView.swift */,
 				0A915DF6287B21E70055AD6D /* MessageView.swift */,
+				0A4F4C222891586B00913021 /* StarscreamWebsocket.swift */,
 				0AAB36F62866188100A47B24 /* ViewModel */,
 				0AAB367A2863814F00A47B24 /* SubViews */,
 			);
@@ -1523,6 +1526,7 @@
 				0AF2B5422884601B00C6A55E /* LoginResponse.swift in Sources */,
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
 				C4B8F2D42854A8510000B8CB /* NavigationBarInlineStyle.swift in Sources */,
+				0A4F4C232891586B00913021 /* StarscreamWebsocket.swift in Sources */,
 				6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */,
 				0AC79182286AF1440034A830 /* EmojiView.swift in Sources */,
 				6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */,

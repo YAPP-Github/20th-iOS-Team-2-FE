@@ -25,14 +25,13 @@ struct AlbumRecordAddView: View {
       
       ZStack { // 시간 영역
         Text("\(audioRecorder.minutes < 10 ? "0" : "")\(audioRecorder.minutes)" + " :")
-          .foregroundColor(Color.white)
           .offset(x: -35)
         Text("\(audioRecorder.seconds < 10 ? "0" : "")\(audioRecorder.seconds)" + " :")
-          .foregroundColor(Color.white)
         Text("\(audioRecorder.microSeconds < 10 ? "0" : "")\(audioRecorder.microSeconds)")
-          .foregroundColor(Color.white)
           .offset(x: 30)
       }
+      .foregroundColor(Color.white)
+      .font(.custom("Pretendard-Medium", size: 16))
     }
     .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }

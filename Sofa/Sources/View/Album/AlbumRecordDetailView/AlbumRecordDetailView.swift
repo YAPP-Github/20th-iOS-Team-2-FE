@@ -78,7 +78,6 @@ struct AlbumRecordDetailView: View {
       .font(.custom("Pretendard-Medium", size: 16))
       
     }
-    .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
   
   // 즐겨찾기, 댓글, 설정 영역
@@ -142,14 +141,14 @@ struct AlbumRecordDetailView: View {
           .foregroundColor(Color(hex: "#FFFFFF").opacity(0.5))
       }
       Button(action: {
-        if self.audioViewModel.isRecording{
-          self.audioViewModel.stopRecording()
+        if !audioViewModel.isPlaying {
+          self.audioViewModel.startPlayback()
         } else {
-          self.audioViewModel.startRecording()
+          self.audioViewModel.pausePlayback()
         }
       }, label: {
         ZStack {
-          if audioViewModel.isRecording { // 녹음 시작
+          if !audioViewModel.isPlaying { // 녹음 시작
             Circle()
               .frame(width: 64, height: 64)
               .foregroundColor(Color.white)
@@ -190,7 +189,7 @@ struct AlbumRecordDetailView: View {
         recordButtonArea
         Spacer()
       }
-      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.5)
+      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.4)
       .background(Color(hex: "#161616").ignoresSafeArea(edges: .bottom))
     }
   }
@@ -199,12 +198,12 @@ struct AlbumRecordDetailView: View {
     GeometryReader { geometry in
       ZStack {
         recordBarArea // 녹음 Bar 영역
-        
+
         Color.clear
           .ignoresSafeArea()
           .overlay(
             // Navigation Bar
-            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: "info.title!", safeTop: geometry.safeAreaInsets.top)
+            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: info!.title!, safeTop: geometry.safeAreaInsets.top)
           )
           .overlay(
             recordBottomArea
@@ -236,7 +235,7 @@ struct AlbumRecordDetailView: View {
           .background(BackgroundCleanerView())
       }
       .onAppear {
-//        audioViewModel.startInit(audio: URL(string: info!.link)!)
+        audioViewModel.startInit(audio: URL(string: info!.link)!)
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true
         }

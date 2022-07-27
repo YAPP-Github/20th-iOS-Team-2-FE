@@ -34,11 +34,7 @@ struct SofaApp: App {
               _ = AuthController.handleOpenUrl(url: url)
             }
           }
-          .onAppear{
-            Constant.accessToken = "123"
-          }
       }
-      
       
     }
   }

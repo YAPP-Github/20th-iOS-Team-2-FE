@@ -86,10 +86,10 @@ struct AlbumDetailView: View {
           NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
           
           // 녹음 이미지 click
-          NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
+          NavigationLink("", destination: AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
           
           // 댓글 click
-          NavigationLink("", destination: AlbumRecordDetailView(info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
+          NavigationLink("", destination: AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: 0)

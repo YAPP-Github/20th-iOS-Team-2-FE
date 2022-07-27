@@ -25,14 +25,13 @@ struct AlbumRecordAddView: View {
       
       ZStack { // 시간 영역
         Text("\(audioRecorder.minutes < 10 ? "0" : "")\(audioRecorder.minutes)" + " :")
-          .foregroundColor(Color.white)
           .offset(x: -35)
         Text("\(audioRecorder.seconds < 10 ? "0" : "")\(audioRecorder.seconds)" + " :")
-          .foregroundColor(Color.white)
         Text("\(audioRecorder.microSeconds < 10 ? "0" : "")\(audioRecorder.microSeconds)")
-          .foregroundColor(Color.white)
           .offset(x: 30)
       }
+      .foregroundColor(Color.white)
+      .font(.custom("Pretendard-Medium", size: 16))
     }
     .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
@@ -142,7 +141,7 @@ struct AlbumRecordAddView: View {
           if isNext {
             NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
               .onAppear {
-                self.audioRecorder.pausePlayback()
+                self.audioRecorder.stopInit()
               }
           }
         }
@@ -154,7 +153,10 @@ struct AlbumRecordAddView: View {
     .onAppear {
       audioRecorder.requestAuthorization(parant: self)
     }
-    .onDisappear { UITabBar.showTabBar() }
+    .onDisappear {
+      self.audioRecorder.stopInit()
+      UITabBar.showTabBar()
+    }
   }
 }
 

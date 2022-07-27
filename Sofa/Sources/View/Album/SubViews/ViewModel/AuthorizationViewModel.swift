@@ -40,8 +40,8 @@ class AuthorizationViewModel: ObservableObject {
   // Photo Alum 추가 전, 권한 확인
   func showPhotoAlbum(selectImage: UIImage) {
     do {
-      try PhotoAlbumAuthorization.checkAddPermissions() { [weak self] (true) in
-        self?.showAlbum = true
+      try PhotoAlbumAuthorization.checkAddPermissions() { [weak self] grant in
+        self?.showAlbum = grant
         UIImageWriteToSavedPhotosAlbum(selectImage, self, nil, nil) // 이미지 다운로드
       }
     } catch { // 권한 오류가 발생
@@ -50,10 +50,6 @@ class AuthorizationViewModel: ObservableObject {
       photoAlubmError = PhotoAlbumAuthorization.PhotoAlbumErrorType(error: error as! PhotoAlbumAuthorization.PhotoAlbumError)
       showErrorAlertMessage = photoAlubmError!.message
     }
-  }
-  
-  @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-      print("Save finished!")
   }
   
   // camera picker 보기 전, 권한 확인

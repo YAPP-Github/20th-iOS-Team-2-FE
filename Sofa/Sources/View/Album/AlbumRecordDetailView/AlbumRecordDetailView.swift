@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
-  @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
+  @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
   let info: AlbumDetailElement?
   
   // 즐겨찾기
@@ -21,9 +22,6 @@ struct AlbumRecordDetailView: View {
   let isPreCommentClick: Bool // 이전 화면에서 댓글
   
   @State var isEllipsisClick: Bool = false  // 설정
-  
-  // 다운로드
-  @State var isDownloadClick: Bool = false  // 다운로드
   @State var isUpdateDate: Bool = false  // 날짜 수정
   
   // Toast Message
@@ -37,7 +35,9 @@ struct AlbumRecordDetailView: View {
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-          isToastMessage = true
+          audioViewModel.download(fileName: info!.title, link: info!.link) { complete in
+            isToastMessage = complete
+          }
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -62,23 +62,22 @@ struct AlbumRecordDetailView: View {
   var recordBarArea: some View {
     VStack(spacing: 8) {
       HStack(alignment: .center, spacing: 4) {
-        ForEach(self.audioRecorder.soundSamples, id: \.self) { step in
+        ForEach(self.audioViewModel.soundSamples, id: \.self) { step in
           AudioBarView(color: Color(hex: "4CAF50"), isStep: step)
         }
       }
       
       ZStack { // 시간 영역
-        Text("\(audioRecorder.minutes < 10 ? "0" : "")\(audioRecorder.minutes)" + " :")
+        Text("\(audioViewModel.minutes < 10 ? "0" : "")\(audioViewModel.minutes)" + " :")
           .offset(x: -35)
-        Text("\(audioRecorder.seconds < 10 ? "0" : "")\(audioRecorder.seconds)" + " :")
-        Text("\(audioRecorder.microSeconds < 10 ? "0" : "")\(audioRecorder.microSeconds)")
+        Text("\(audioViewModel.seconds < 10 ? "0" : "")\(audioViewModel.seconds)" + " :")
+        Text("\(audioViewModel.microSeconds < 10 ? "0" : "")\(audioViewModel.microSeconds)")
           .offset(x: 30)
       }
       .foregroundColor(Color.white)
       .font(.custom("Pretendard-Medium", size: 16))
       
     }
-    .frame(width: Screen.maxWidth, height: Screen.maxHeight)
   }
   
   // 즐겨찾기, 댓글, 설정 영역
@@ -86,12 +85,15 @@ struct AlbumRecordDetailView: View {
     HStack {
       Button(action: {
         // 북마크 네트워크 로직
-        isBookmarkClick = true
+        favouriteViewModel.postFavourite()
+        if !favouriteViewModel.isFavourite { // 즐겨찾기 등록
+          isBookmarkClick = true
+        }
       }) {
         // 북마크
-        Image(systemName: true ? "bookmark.fill" : "bookmark")
+        Image(systemName: favouriteViewModel.isFavourite ? "bookmark.fill" : "bookmark")
           .frame(width: 20, height: 20)
-          .foregroundColor(true ? Color(hex: "#FFCA28") : .white)
+          .foregroundColor(favouriteViewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
           .font(.system(size: 20))
           .padding(.leading, 8)
       }
@@ -131,7 +133,7 @@ struct AlbumRecordDetailView: View {
   var recordButtonArea: some View {
     HStack(spacing: 68.5) {
       Button(action: {
-        
+        self.audioViewModel.jumpSeconds(seconds: -10.0)
       }) {
         Image(systemName: "gobackward.10")
           .resizable()
@@ -139,19 +141,19 @@ struct AlbumRecordDetailView: View {
           .foregroundColor(Color(hex: "#FFFFFF").opacity(0.5))
       }
       Button(action: {
-        if self.audioRecorder.isRecording{
-          self.audioRecorder.stopRecording()
+        if audioViewModel.isPlaying {
+          self.audioViewModel.pausePlayback()
         } else {
-          self.audioRecorder.startRecording()
+          self.audioViewModel.startPlayback()
         }
       }, label: {
         ZStack {
-          if audioRecorder.isRecording { // 녹음 시작
+          if audioViewModel.isPlaying { // 재생 중
             Circle()
               .frame(width: 64, height: 64)
               .foregroundColor(Color.white)
             
-            Image(systemName: "pause.fill")
+            Image(systemName: "pause.fill") // 정지
               .resizable()
               .frame(width: 28, height: 32)
               .foregroundColor(Color(hex: "D81B60"))
@@ -160,7 +162,7 @@ struct AlbumRecordDetailView: View {
               .frame(width: 64, height: 64)
               .foregroundColor(Color.white)
             
-            Image(systemName: "play.fill")
+            Image(systemName: "play.fill") // 플레이
               .resizable()
               .frame(width: 29, height: 32)
               .foregroundColor(Color(hex: "D81B60"))
@@ -168,7 +170,7 @@ struct AlbumRecordDetailView: View {
         }
       })
       Button(action: {
-        
+        self.audioViewModel.jumpSeconds(seconds: 10.0)
       }) {
         Image(systemName: "goforward.10")
           .resizable()
@@ -187,7 +189,7 @@ struct AlbumRecordDetailView: View {
         recordButtonArea
         Spacer()
       }
-      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.5)
+      .frame(width: Screen.maxWidth, height: Screen.maxWidth * 0.4)
       .background(Color(hex: "#161616").ignoresSafeArea(edges: .bottom))
     }
   }
@@ -196,12 +198,12 @@ struct AlbumRecordDetailView: View {
     GeometryReader { geometry in
       ZStack {
         recordBarArea // 녹음 Bar 영역
-        
+
         Color.clear
           .ignoresSafeArea()
           .overlay(
             // Navigation Bar
-            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: "info.title!", safeTop: geometry.safeAreaInsets.top)
+            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: info!.title!, safeTop: geometry.safeAreaInsets.top)
           )
           .overlay(
             recordBottomArea
@@ -223,8 +225,8 @@ struct AlbumRecordDetailView: View {
       .background(Color.black)
       .ignoresSafeArea()
       .navigationBarHidden(true)
-      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop + 45)
-      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop + 45)
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: geometry.safeAreaInsets.top)
+      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: geometry.safeAreaInsets.top)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
@@ -233,9 +235,13 @@ struct AlbumRecordDetailView: View {
           .background(BackgroundCleanerView())
       }
       .onAppear {
+        audioViewModel.startInit(audio: URL(string: info!.link)!)
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true
         }
+      }
+      .onDisappear {
+        self.audioViewModel.stopInit()
       }
     }
   }
@@ -245,6 +251,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
   }
 }

@@ -24,16 +24,16 @@ struct Screen {
   static let maxWidth = UIScreen.main.bounds.width
   static let maxHeight = UIScreen.main.bounds.height
   
-  static var safeAreaTop: CGFloat {
-    let keyWindow = UIApplication.shared.connectedScenes
-      .filter({$0.activationState == .foregroundActive})
-      .map({$0 as? UIWindowScene})
-      .compactMap({$0})
-      .first?.windows
-      .filter({$0.isKeyWindow}).first
-    
-    return (keyWindow?.safeAreaInsets.top)!
-  }
+//  static var safeAreaTop: CGFloat {
+//    let keyWindow = UIApplication.shared.connectedScenes
+//      .filter({$0.activationState == .foregroundActive})
+//      .map({$0 as? UIWindowScene})
+//      .compactMap({$0})
+//      .first?.windows
+//      .filter({$0.isKeyWindow}).first
+//    
+//    return (keyWindow?.safeAreaInsets.top)!
+//  }
   
   static var safeAreaBottom: CGFloat {
     let keyWindow = UIApplication.shared.connectedScenes

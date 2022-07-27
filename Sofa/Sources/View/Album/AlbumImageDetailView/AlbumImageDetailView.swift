@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+  
   @State var touchImage = false
   var info: AlbumDetailElement?
   var image: UIImage
@@ -22,8 +24,6 @@ struct AlbumImageDetailView: View {
   let isPreCommentClick: Bool // 이전 화면에서 댓글
   
   @State var isEllipsisClick: Bool = false  // 설정
-  
-  @State var isDownloadClick: Bool = false  // 다운로드
   @State var isUpdateDate: Bool = false  // 날짜 수정
   
   // Toast Message
@@ -35,10 +35,12 @@ struct AlbumImageDetailView: View {
       isShowing: $isEllipsisClick,
       items: [
         ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
-          UIImageWriteToSavedPhotosAlbum(image, self, nil, nil) // 이미지 다운로드
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
-          isToastMessage = true
+          
+          if image != UIImage() { // 이미지가 비어있지 않을 경우
+            authorizationViewModel.showPhotoAlbum(selectImage: image) // 권한 확인
+          }
         },
         ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
           isUpdateDate = true
@@ -65,10 +67,16 @@ struct AlbumImageDetailView: View {
         Button(action: {
           touchImage.toggle()
         }) {
-          Image(uiImage: image)
-            .resizable()
-            .scaledToFit()
-            .pinchToZoom()
+          if image == UIImage() {
+            Text("이미지를 불러오지 못했습니다")
+              .foregroundColor(.white)
+              .font(.custom("Pretendard-Medium", size: 16))
+          } else { // 이미지가 비어있지 않을 경우
+            Image(uiImage: image)
+              .resizable()
+              .scaledToFit()
+              .pinchToZoom()
+          }
         }
         
         Color.clear
@@ -78,7 +86,7 @@ struct AlbumImageDetailView: View {
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
           .overlay(
-            AlbumImageDetailSettingBar(isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: MockData().albumDetail.results.elements[0]) // 임시
+            AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: info!.fileId, isFavourite: info!.favourite), isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: info!)
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
         
@@ -98,14 +106,27 @@ struct AlbumImageDetailView: View {
       .background(Color.black)
       .ignoresSafeArea()
       .navigationBarHidden(true) // 이전 Navigation bar 무시
-      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: Screen.safeAreaTop)
-      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: Screen.safeAreaTop)
+      .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: geometry.safeAreaInsets.top)
+      .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: geometry.safeAreaInsets.top)
+      .toastMessage(data: $messageData2, isShow: $isToastMessage, topInset: geometry.safeAreaInsets.top)
       .fullScreenCover(isPresented: $isUpdateDate) { // 사진 & 녹음 수정
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
         AlbumCommentView(isShowing: $isCommentClick, filedId: info!.fileId)
           .background(BackgroundCleanerView())
+      }
+      .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+        // 카메라 error
+        Alert(
+          title: Text(authorizationViewModel.showErrorAlertTitle),
+          message: Text(authorizationViewModel.showErrorAlertMessage),
+          primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
+            if let appSettring = URL(string: UIApplication.openSettingsURLString) {
+              UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
+            }
+          },
+          secondaryButton: .default(Text("확인")))
       }
       .onAppear {
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때

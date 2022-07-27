@@ -29,12 +29,14 @@ struct MessageView: View {
   @State var fullTextEditorHeight: CGFloat = 0 // TextEditor가 Full일 때 높이
   @State var isKeyboard: Bool = false // 현재 키보드 올라와있는지
   @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
+  let callback: (() -> ())?
 
-  init(_ isShowing: Binding<Bool>, _ text: Binding<String?>, _ placeholder: Binding<String>){
+  init(_ isShowing: Binding<Bool>, _ text: Binding<String?>, _ placeholder: Binding<String>, callback: (() -> ())? = nil){
     UITextView.appearance().backgroundColor = .clear
     _isShowing = isShowing
     _text = text
     _placeholder = placeholder
+    self.callback = callback
   }
   
   var body: some View {
@@ -152,6 +154,7 @@ struct MessageView: View {
                 print("textLength == 0")
               }else{
                 isShowing = false
+                self.callback?()
               }
             } label: {
               ZStack{

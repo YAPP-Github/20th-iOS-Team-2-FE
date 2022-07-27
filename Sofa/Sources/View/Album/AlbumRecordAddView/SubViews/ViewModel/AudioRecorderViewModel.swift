@@ -149,17 +149,33 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
       print("기기의 스피커를 통해 재생하지 못했습니다")
     }
     
-    do {
-      audioPlayer = try AVAudioPlayer(contentsOf: audio)
-      audioPlayer.delegate = self
-    } catch {
-      print("재생 실패")
+    DispatchQueue.global().async {
+      do {
+        let data = try Data(contentsOf: audio)
+        DispatchQueue.main.async {
+          do {
+            self.audioPlayer = try AVAudioPlayer(data: data)
+            self.audioPlayer.delegate = self
+          } catch {
+            print("재생 실패")
+          }
+        }
+      } catch {
+        print("m4a Data화 실패")
+      }
     }
   }
   
   func startPlayback() {
     playMonitoring()
     isPlaying = true
+  }
+  
+  // 초단위로 오디오 jump
+  func jumpSeconds(seconds: Double) {
+    audioPlayer.currentTime += seconds
+    time += (seconds * 100)
+    if time < 0 { time = 0 }
   }
   
   func playMonitoring() {
@@ -205,6 +221,7 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
     seconds = 0
     minutes = 0
     time = 0
+    isPlaying = false
     self.currentStepbar = 0
     self.soundSamples = [Bool](repeating: false, count: numberOfStepbar)
   }

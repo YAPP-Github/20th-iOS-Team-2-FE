@@ -141,19 +141,19 @@ struct AlbumRecordDetailView: View {
           .foregroundColor(Color(hex: "#FFFFFF").opacity(0.5))
       }
       Button(action: {
-        if !audioViewModel.isPlaying {
-          self.audioViewModel.startPlayback()
-        } else {
+        if audioViewModel.isPlaying {
           self.audioViewModel.pausePlayback()
+        } else {
+          self.audioViewModel.startPlayback()
         }
       }, label: {
         ZStack {
-          if !audioViewModel.isPlaying { // 녹음 시작
+          if audioViewModel.isPlaying { // 재생 중
             Circle()
               .frame(width: 64, height: 64)
               .foregroundColor(Color.white)
             
-            Image(systemName: "pause.fill")
+            Image(systemName: "pause.fill") // 정지
               .resizable()
               .frame(width: 28, height: 32)
               .foregroundColor(Color(hex: "D81B60"))
@@ -162,7 +162,7 @@ struct AlbumRecordDetailView: View {
               .frame(width: 64, height: 64)
               .foregroundColor(Color.white)
             
-            Image(systemName: "play.fill")
+            Image(systemName: "play.fill") // 플레이
               .resizable()
               .frame(width: 29, height: 32)
               .foregroundColor(Color(hex: "D81B60"))

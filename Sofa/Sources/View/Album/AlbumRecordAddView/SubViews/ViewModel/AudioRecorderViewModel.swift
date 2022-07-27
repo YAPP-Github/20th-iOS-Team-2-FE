@@ -149,11 +149,20 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
       print("기기의 스피커를 통해 재생하지 못했습니다")
     }
     
-    do {
-      audioPlayer = try AVAudioPlayer(contentsOf: audio)
-      audioPlayer.delegate = self
-    } catch {
-      print("재생 실패")
+    DispatchQueue.global().async {
+      do {
+        let data = try Data(contentsOf: audio)
+        DispatchQueue.main.async {
+          do {
+            self.audioPlayer = try AVAudioPlayer(data: data)
+            self.audioPlayer.delegate = self
+          } catch {
+            print("재생 실패")
+          }
+        }
+      } catch {
+        print("m4a Data화 실패")
+      }
     }
   }
   

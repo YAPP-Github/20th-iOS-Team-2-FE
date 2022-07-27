@@ -170,7 +170,9 @@ struct SettingsView: View {
               NavigationLink(destination: SetNotificationView()) {
                 SettingRow(isButtonClick: .constant(true), buttonName: "bell.fill", title: "알림")
               }
-              SettingRow(isButtonClick: .constant(true), buttonName: "shield.lefthalf.filled", title: "계정 및 보안")
+              NavigationLink(destination: AccountAndSecurityView()) {
+                SettingRow(isButtonClick: .constant(true), buttonName: "shield.lefthalf.filled", title: "계정 및 보안")
+              }
               SettingRow(isButtonClick: .constant(true), buttonName: "mic", title: "공지")
               SettingRow(isButtonClick: .constant(true), buttonName: "star.fill", title: "소파리뷰", isLast: true)
             }///VStack

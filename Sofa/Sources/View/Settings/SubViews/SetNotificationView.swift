@@ -12,7 +12,7 @@ struct SetNotificationView: View {
   @State private var setNotification = true
 
   var body: some View {
-    VStack{
+    VStack(spacing: 0){
       Rectangle()
         .foregroundColor(Color(hex: "FAF8F0"))
         .frame(height: 8)

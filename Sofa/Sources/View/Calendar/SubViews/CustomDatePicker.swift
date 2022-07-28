@@ -31,7 +31,7 @@ struct CustomDatePicker: View {
             showYearPicker.toggle()
           }
         } label: {
-          Image(systemName: "chevron.right")
+          Image(systemName: showYearPicker ? "chevron.down" : "chevron.right")
             .font(.system(size: 20))
             .foregroundColor(Color(hex: "121619"))
             .padding(.leading, 12.5)
@@ -101,14 +101,12 @@ struct CustomDatePicker: View {
           }
         }
         else {
-          ZStack{
             DatePicker(selection: $currentDate, displayedComponents: .date) {}
               .datePickerStyle(WheelDatePickerStyle())
               .labelsHidden()
               .onDisappear{
                 currentMonth = currentDate.get(.month) - previousMonth
               }
-          }
         }
       }
       

@@ -33,8 +33,12 @@ struct FamilySettingView: View {
                   profileText(text: "가족공간명")
                     .padding(.top, 16)
                   profileTextField(text: $familyName, isFocused: $familyInfoFocused[0], showingSheet: .constant(false))
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 30)
                   profileText(text: "가훈")
                   profileTextField(text: $familyMotto, isFocused: $familyInfoFocused[1], showingSheet: .constant(false))
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
                 }
               }.padding(.top, 8)
               Border()
@@ -145,7 +149,51 @@ struct FamilyMemberRow: View {
             )
         }
         //별명
-        profileTextField(text: $nickName, isFocused: $isFocused, showingSheet: .constant(false))
+//        profileTextField(text: $nickName, isFocused: $isFocused, showingSheet: .constant(false))
+//
+//          .frame(height: 32)
+//          .padding(.leading, 16)
+//          .padding(.top, 4)
+//          .font(.custom("Pretendard-Medium", size: 16))
+//          //.foregroundColor(Color.black.opacity(0.4))
+
+        ZStack{
+          RoundedRectangle(cornerRadius: 6)
+            .foregroundColor(isFocused ? Color.white : Color(hex: "FAF8F0"))
+            .frame(height: 32)
+            .highlightTextField(firstLineWidth: isFocused ? 1 : 0, secondLineWidth: isFocused ? 4 : 0)
+            .padding(.leading, 16)
+          
+          TextField("", text: $nickName)
+            .font(.custom("Pretendard-Medium", size: 16))
+            .customTextField(padding: 12)
+            .disableAutocorrection(true)
+            .cornerRadius(6)
+            .padding(.leading, 16)
+            .onAppear {
+              UIApplication.shared.hideKeyboard()
+            }
+
+          UITextFieldRepresentable(
+            text: $nickName,
+            isFirstResponder: false,
+            isFocused: $isFocused
+          ).padding(.horizontal, 17)
+            .padding(.leading, 10)
+          
+          HStack{
+            Spacer()
+          Image(systemName: "xmark")
+            .font(.system(size: 15))
+            .foregroundColor(Color.black.opacity(!nickName.isEmpty ? 0.4 : 0.4))
+            .padding(.trailing, 9)
+            .contentShape(Rectangle())
+            .onTapGesture {
+              nickName = ""
+            }
+          }
+          
+        }.frame(height: 32).padding(.top, 4)
       }
     }
     .padding(.horizontal, 16)

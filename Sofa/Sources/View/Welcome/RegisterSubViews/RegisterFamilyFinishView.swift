@@ -11,9 +11,9 @@ struct RegisterFamilyFinishView: View {
   
   @State var showContentView: Bool = false
   
-    var body: some View {
-      ZStack{
-        Color(hex: "FAF8F0").ignoresSafeArea(.all)
+  var body: some View {
+    ZStack{
+      Color(hex: "FAF8F0").ignoresSafeArea(.all)
       
       VStack(spacing: 0){
         ZStack{
@@ -27,7 +27,7 @@ struct RegisterFamilyFinishView: View {
               .font(.custom("Pretendard-Bold", size: 28))
               .foregroundColor(Color.white)
               .frame(height: 42)
-
+            
             Text("우리 가족만의 공간이 생성되었어요.")
               .font(.custom("Pretendard-Medium", size: 20))
               .foregroundColor(Color.white.opacity(0.5))
@@ -42,6 +42,11 @@ struct RegisterFamilyFinishView: View {
             .foregroundColor(Color.white)
             .padding(.horizontal, 16)
             .padding(.top, 16)
+            .cornerRadius(8)
+            .overlay(
+              RoundedRectangle(cornerRadius: 8)
+                .stroke(Color(hex: "EDEADF"), lineWidth: 1)
+            )
           
           
           VStack(spacing: 0){
@@ -52,25 +57,29 @@ struct RegisterFamilyFinishView: View {
                 .padding(.horizontal, 32)
                 .padding(.top, 16)
               HStack{
-              Text("qlzpdl_dkdleldj_2909.com")
-                .foregroundColor(Color.black.opacity(0.4))
-                .font(.custom("Pretendard-Medium", size: 18))
-                .padding(.horizontal, 44)
-                .padding(.top, 16)
+                Text("qlzpdl_dkdleldj_2909.com")
+                  .foregroundColor(Color.black.opacity(0.4))
+                  .font(.custom("Pretendard-Medium", size: 18))
+                  .padding(.horizontal, 44)
+                  .padding(.top, 16)
                 Spacer()
               }
             }
             
-            
-            Button(action: {
-              //
-            }){
-              Image("linkBtn")
-                .padding(.top, 4)
+            Button {
+              print("copy")
+            } label: {
+              HStack{
+                Image(systemName: "link")
+                Text("링크 복사")
+              }
+              .frame(width: 326, height: 48, alignment: .center)
+              .cornerRadius(6)
+              .background(Color(hex: "FFB300"))
+              .foregroundColor(Color.white)
             }
+            .padding(.top, 4)
           }
-          
-          
         }
         
         Spacer()
@@ -85,11 +94,11 @@ struct RegisterFamilyFinishView: View {
         
       }
     }
-}
+  }
 }
 
 struct RegisterFamilyFinishView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterFamilyFinishView()
-    }
+  static var previews: some View {
+    RegisterFamilyFinishView()
+  }
 }

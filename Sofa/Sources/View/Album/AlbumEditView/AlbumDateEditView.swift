@@ -26,8 +26,9 @@ struct AlbumDateEditView: View {
         Group {
           GeneralDatePickerView(showDatePicker: .constant(true), enableToggle: .constant(false), currentDate: $currentDate)
         }
-        .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+        .padding(EdgeInsets(top: 16, leading: 16, bottom: 32, trailing: 16))
         .background(Color.white)
+        Divider()
         Spacer()
         if albumId != nil {
           Button(action: {

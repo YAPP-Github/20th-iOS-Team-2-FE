@@ -34,4 +34,14 @@ extension Date {
       let date = Calendar.current.date(from: components)
       return date!
   }
+  
+  // 사용법 예시 : print("day: \(date.get(.day)), month: \(date.get(.month)), year: \(date.get(.year))")
+  func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+    return calendar.dateComponents(Set(components), from: self)
+  }
+  
+  func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+    return calendar.component(component, from: self)
+  }
+  
 }

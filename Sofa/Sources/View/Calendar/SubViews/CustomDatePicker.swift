@@ -11,8 +11,10 @@ struct CustomDatePicker: View {
   
   @Binding var currentDate: Date
   
-  @State var currentMonth: Int = 0
+  @State var currentMonth = 0
   @State var showTaskDetail = false
+  @State var showYearPicker = false
+  @State var previousMonth = Date().get(.month)
   
   var body: some View {
     VStack(spacing: 0){
@@ -25,6 +27,9 @@ struct CustomDatePicker: View {
           .foregroundColor(Color(hex: "121619"))
           .padding(.leading, 16)
         Button {
+          withAnimation {
+            showYearPicker.toggle()
+          }
         } label: {
           Image(systemName: "chevron.right")
             .font(.system(size: 20))
@@ -55,42 +60,59 @@ struct CustomDatePicker: View {
       }
       .padding(.top,15)
       
-      // Day
-      HStack(spacing: 0){
-        ForEach(days, id: \.self){day in
-          Text(day)
-            .font(.custom("Pretendard-Medium", size: 13))
-            .frame(maxWidth: .infinity)
-            .padding(.top, 10)
-            .foregroundColor(.black)
-            .opacity(0.4)
-        }
-      }
-      
-      // Dates
-      let columns = Array(repeating: GridItem(.flexible()), count: 7)
-      LazyVGrid(columns: columns, spacing: 25) {
-        ForEach(extractDate()){value in
-          CardView(value: value)
-            .background(
-              Rectangle()
-                .fill(Color(hex: "4CAF50"))
-                .cornerRadius(4)
-                .frame(width: 32, height: 32, alignment: .center)
-                .padding(EdgeInsets(top: 3, leading: 0, bottom: 0, trailing: 0))
-                .opacity(isSameDay(date1: value.dates, date2: currentDate) ? 1 : 0)
-            )
-            .onTapGesture {
-              currentDate = value.dates
+      ZStack{
+        
+        // Day
+        if !showYearPicker {
+          VStack{
+            HStack(spacing: 0){
+              ForEach(days, id: \.self){day in
+                Text(day)
+                  .font(.custom("Pretendard-Medium", size: 13))
+                  .frame(maxWidth: .infinity)
+                  .padding(.top, 10)
+                  .foregroundColor(.black)
+                  .opacity(0.4)
+              }
             }
+            
+            
+            
+            // Dates
+            let columns = Array(repeating: GridItem(.flexible()), count: 7)
+            LazyVGrid(columns: columns, spacing: 25) {
+              ForEach(extractDate()){value in
+                CardView(value: value)
+                  .background(
+                    Rectangle()
+                      .fill(Color(hex: "4CAF50"))
+                      .cornerRadius(4)
+                      .frame(width: 32, height: 32, alignment: .center)
+                      .padding(EdgeInsets(top: 3, leading: 0, bottom: 0, trailing: 0))
+                      .opacity(isSameDay(date1: value.dates, date2: currentDate) ? 1 : 0)
+                  )
+                  .onTapGesture {
+                    currentDate = value.dates
+                    print("currentDate : \(currentDate.getFormattedDate(format: "YYYY-MM-dd"))")
+                  }
+              }
+            }
+            .padding(EdgeInsets(top: 12, leading: 5, bottom: 0, trailing: 5))
+          }
+        }
+        else {
+          ZStack{
+            DatePicker(selection: $currentDate, displayedComponents: .date) {}
+              .datePickerStyle(WheelDatePickerStyle())
+              .labelsHidden()
+              .onDisappear{
+                currentMonth = currentDate.get(.month) - previousMonth
+              }
+          }
         }
       }
-      .padding(EdgeInsets(top: 12, leading: 5, bottom: 0, trailing: 5))
       
-      Rectangle()
-        .frame(height: 1.0, alignment: .bottom)
-        .foregroundColor(Color(hex: "EDEADF"))
-        .padding(.top, 22)
+      Border().padding(.top, 22)
       
       ScrollView(.vertical, showsIndicators: false) {
         // Task
@@ -110,12 +132,12 @@ struct CustomDatePicker: View {
                     .foregroundColor(Color(hex: "21272A"))
                     .frame(alignment: .leading)
                   Text(task.time
-                        .addingTimeInterval(CGFloat
-                                              .random(in: 0...5000)), style:
-                          .time)
-                    .font(.custom("Pretendard-Medium", size: 14))
-                    .foregroundColor(Color(hex: "21272A"))
-                    .frame(alignment: .leading)
+                    .addingTimeInterval(CGFloat
+                      .random(in: 0...5000)), style:
+                      .time)
+                  .font(.custom("Pretendard-Medium", size: 14))
+                  .foregroundColor(Color(hex: "21272A"))
+                  .frame(alignment: .leading)
                 }
               }
               .frame(maxWidth: .infinity, alignment: .leading)

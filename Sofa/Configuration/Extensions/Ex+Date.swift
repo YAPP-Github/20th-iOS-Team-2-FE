@@ -13,6 +13,8 @@ let format = date.getFormattedDate(format: "yyyy-MM-dd") // format
 extension Date {
    func getFormattedDate(format: String) -> String {
         let dateformat = DateFormatter()
+        dateformat.locale = Locale(identifier: "ko_KR")
+        dateformat.timeZone = TimeZone(abbreviation: "KST")
         dateformat.dateFormat = format
         return dateformat.string(from: self)
     }

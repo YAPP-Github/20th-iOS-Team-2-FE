@@ -11,10 +11,10 @@ struct CustomDatePicker: View {
   
   @Binding var currentDate: Date
   
+  @State var yearCount = 0
   @State var currentMonth = 0
   @State var showTaskDetail = false
   @State var showYearPicker = false
-  @State var previousMonth = Date().get(.month)
   
   var body: some View {
     VStack(spacing: 0){
@@ -93,7 +93,7 @@ struct CustomDatePicker: View {
                   )
                   .onTapGesture {
                     currentDate = value.dates
-                    print("currentDate : \(currentDate.getFormattedDate(format: "YYYY-MM-dd"))")
+                    print("currentDate : \(currentDate.getFormattedDate(format: "yyyy-MM-dd"))")
                   }
               }
             }
@@ -101,12 +101,15 @@ struct CustomDatePicker: View {
           }
         }
         else {
-            DatePicker(selection: $currentDate, displayedComponents: .date) {}
-              .datePickerStyle(WheelDatePickerStyle())
-              .labelsHidden()
-              .onDisappear{
-                currentMonth = currentDate.get(.month) - previousMonth
-              }
+          let previousMonth = Date().get(.month)
+          let previousYear = Date().get(.year)
+          DatePicker(selection: $currentDate, displayedComponents: .date) {}
+            .datePickerStyle(WheelDatePickerStyle())
+            .labelsHidden()
+            .onDisappear{
+              yearCount = currentDate.get(.year) - previousYear
+              currentMonth = 12*yearCount + currentDate.get(.month) - previousMonth
+            }
         }
       }
       
@@ -192,7 +195,7 @@ struct CustomDatePicker: View {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "ko_KR")
     formatter.timeZone = TimeZone(abbreviation: "KST")
-    formatter.dateFormat = "MMMM YYYY"
+    formatter.dateFormat = "MMMM yyyy"
     let date = formatter.string(from: currentDate)
     
     return date.components(separatedBy: " ")

@@ -21,6 +21,7 @@ struct SettingsView: View {
   @State var profileBirthDay: String = "1990-01-01"
   @ObservedObject var tabbarManager = TabBarManager.shared
   @State var currentSelectedTab: Tab = .setting // 현재 선택된 탭으로 표시할 곳
+  @State var isLogout = false
   
   var body: some View {
     NavigationView {
@@ -170,8 +171,11 @@ struct SettingsView: View {
               NavigationLink(destination: SetNotificationView()) {
                 SettingRow(isButtonClick: .constant(true), buttonName: "bell.fill", title: "알림")
               }
-              NavigationLink(destination: AccountAndSecurityView()) {
+              NavigationLink(destination: AccountAndSecurityView(islogout: $isLogout)) {
                 SettingRow(isButtonClick: .constant(true), buttonName: "shield.lefthalf.filled", title: "계정 및 보안")
+              }
+              .fullScreenCover(isPresented: $isLogout) {
+                LoginView()
               }
               SettingRow(isButtonClick: .constant(true), buttonName: "mic", title: "공지")
               SettingRow(isButtonClick: .constant(true), buttonName: "star.fill", title: "소파리뷰", isLast: true)

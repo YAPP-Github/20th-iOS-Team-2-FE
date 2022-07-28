@@ -50,25 +50,31 @@ struct NotificationView: View {
             .background(Color.white)
           }
           ForEach(Array(zip(getPeriodType(periodArr[i]).indices, getPeriodType(periodArr[i]))), id: \.1) { idx, notification in
-//            NavigationLink {
-//              AlbumImageDetailView(image: UIImage(imageLiteralResourceName: "photo01"), index: 0)
-//            } label: {
-//              alarmRow(notification)
-//            }
+            //            NavigationLink {
+            //              AlbumImageDetailView(image: UIImage(imageLiteralResourceName: "photo01"), index: 0)
+            //            } label: {
+            //              alarmRow(notification)
+            //            }
             NotificationRow(notification)
               .onTapGesture {
                 if notification.type == "CALENDAR"{
-                  self.selectionType = .calendar
+                  tabbarManager.showTabBar = true
+                  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
+                    self.selectionType = .calendar
+                  }
                   print("CALENDAR")
                 }else if notification.type == "ALBUM"{
-                  self.selectionType = .album
+                  tabbarManager.showTabBar = true
+                  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
+                    self.selectionType = .album
+                  }
                   print("ALBUM")
                 }
                 
                 self.presentationMode.wrappedValue.dismiss()
                 
               }
-
+            
           }
         }
         Rectangle()
@@ -79,16 +85,17 @@ struct NotificationView: View {
     .toolbar {
       NavigationLink {
         SetNotificationView()
+
       } label: {
         Text("설정")
       }
-
+      
       //            Button {
-//              print("goto알림")
-//            } label: {
-//              Text("설정")
-//                .foregroundColor(Color(hex: "43A047"))
-//            }
+      //              print("goto알림")
+      //            } label: {
+      //              Text("설정")
+      //                .foregroundColor(Color(hex: "43A047"))
+      //            }
     }
     .navigationBarTitleDisplayMode(.inline)
     .navigationTitle("알림")
@@ -96,20 +103,20 @@ struct NotificationView: View {
     .padding(.top, 1) // ignoreSafeArea 적용 X
     .padding(.bottom, 5)
     .edgesIgnoringSafeArea([.bottom])
-
+    
   }
   
   func getPeriodType(_ periodType: String) -> Array<Notification>{
-     switch periodType {
-     case "오늘":
-       return today
-     case "이번 주":
-       return thisweek
-     case "이번 달":
-        return thismonth
-     default:
-       return today
-     }
+    switch periodType {
+    case "오늘":
+      return today
+    case "이번 주":
+      return thisweek
+    case "이번 달":
+      return thismonth
+    default:
+      return today
+    }
   }
   
   //MARK: - NotificationRow

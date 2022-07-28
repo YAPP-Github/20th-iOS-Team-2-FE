@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftKeychainWrapper
 
 struct AccountAndSecurityView: View {
+  @Environment(\.presentationMode) var presentationMode
   @State private var showingAlert = false
   let titles = ["개인정보 이용 약관", "서비스 이용 약관", "로그아웃", "계정 삭제"]
   @ObservedObject var tabbarManager = TabBarManager.shared
+  @Binding var islogout: Bool
   var body: some View {
     VStack(spacing: 0){
       VStack(spacing: 0){
@@ -39,6 +42,10 @@ struct AccountAndSecurityView: View {
                 }),
                       secondaryButton: .default(Text("로그아웃"), action: {
                   print("로그아웃")
+                  Constant.accessToken = nil
+                  KeychainWrapper.standard.remove(forKey: "accessToken")
+                  islogout = true
+                  presentationMode.wrappedValue.dismiss()
                 }))
                 
               }
@@ -106,11 +113,11 @@ struct AccountAndSecurityView: View {
   }
 }
 
-struct AccountAndSecurityView_Previews: PreviewProvider {
-  static var previews: some View {
-    AccountAndSecurityView()
-  }
-}
+//struct AccountAndSecurityView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    AccountAndSecurityView()
+//  }
+//}
 
 struct FlatLinkStyle: ButtonStyle {
   func makeBody(configuration: Configuration) -> some View {

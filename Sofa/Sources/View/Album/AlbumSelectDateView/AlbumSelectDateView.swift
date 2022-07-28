@@ -117,7 +117,6 @@ struct AlbumSelectDateView: View {
       }
       .edgesIgnoringSafeArea([.bottom]) // Bottom만 safeArea 무시
     }
-    .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)
   }
 }

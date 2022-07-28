@@ -92,7 +92,7 @@ struct AlbumView: View {
         }
         .edgesIgnoringSafeArea([.bottom])
       }
-      .navigationViewStyle(StackNavigationViewStyle())
+//      .navigationViewStyle(StackNavigationViewStyle())
       if showingSheet { // action sheet
         Color.black
           .opacity(0.7)

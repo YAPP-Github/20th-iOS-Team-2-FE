@@ -172,7 +172,7 @@ struct AlbumDetailRow: View {
         }
       }
     }
-    .padding(.bottom, 10)
+    .padding([.top, .bottom], 8)
   }
 }
 

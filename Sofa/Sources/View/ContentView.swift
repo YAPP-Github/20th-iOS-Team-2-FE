@@ -48,9 +48,12 @@ struct ContentView: View {
         CustomTabView(selection: $selection)
       }
     }
+    .background(Color(hex: "F9F7EF"))
+//    .background(Color.red)
     .ignoresSafeArea(.keyboard)
     .edgesIgnoringSafeArea(.all)
-    .background(Color.clear)
+    
+
   }
 }
 

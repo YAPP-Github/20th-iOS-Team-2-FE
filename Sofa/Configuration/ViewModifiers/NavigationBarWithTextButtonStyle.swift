@@ -34,7 +34,7 @@ struct NavigationBarWithTextButtonStyle: ViewModifier {
         trailing: Button(action: {
           isNextClick = true
         }, label: {
-          HStack(spacing: 0) {
+          if !isDisalbeNextButton {
             Text(nextText)
               .font(.custom("Pretendard-Medium", size: 16))
           }
@@ -52,7 +52,7 @@ struct NavigationBarWithTextButtonStyle: ViewModifier {
             }) {
               Text(title)
                 .font(.custom("Pretendard-Medium", size: 16))
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.primary)
                 .bold()
             }
             .disabled(isDisalbeTitleButton)

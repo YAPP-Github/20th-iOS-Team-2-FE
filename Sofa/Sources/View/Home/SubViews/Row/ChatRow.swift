@@ -49,9 +49,10 @@ struct ChatRow: View {
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
 
-        Text("\(member.descriptionContent)")
+        Text("\(member.descriptionContent == "" ? "아직 인사를 건네기 전이에요." : member.descriptionContent)")
           .font(.custom("Pretendard-Regular", size: 14))
           .lineLimit(2)
+          .foregroundColor(member.descriptionContent == "" ? Color.gray :  Color.black)
           .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 16))
           .onTapGesture{
             callback?()

@@ -19,8 +19,8 @@ struct MessageView: View {
   @StateObject var keyboardHeightHelper = KeyboardHeightHelper()
   
   @Binding var isShowing: Bool // 외부 View에서 MessageView 띄울 때 사용
+  @Binding var text: String? // TextEditor의 Text
   @State private var isDragging = false
-  @State private var text: String? // TextEditor의 Text
   @State private var textLength: Int = 0 // 글자 수 세기
   @State private var curHeight: CGFloat = 120 // View의 현재 높이
   @State var minHeight: CGFloat = 120 // View의 최소 높이
@@ -29,12 +29,14 @@ struct MessageView: View {
   @State var fullTextEditorHeight: CGFloat = 0 // TextEditor가 Full일 때 높이
   @State var isKeyboard: Bool = false // 현재 키보드 올라와있는지
   @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
-  
-  init(_ isShowing: Binding<Bool>, _ placeholder: Binding<String>){
+  let callback: (() -> ())?
+
+  init(_ isShowing: Binding<Bool>, _ text: Binding<String?>, _ placeholder: Binding<String>, callback: (() -> ())? = nil){
     UITextView.appearance().backgroundColor = .clear
     _isShowing = isShowing
+    _text = text
     _placeholder = placeholder
-    
+    self.callback = callback
   }
   
   var body: some View {
@@ -42,7 +44,7 @@ struct MessageView: View {
       if isShowing{
         VStack {
           Color.black
-            .opacity(0.7)
+            .opacity(0)
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -50,9 +52,6 @@ struct MessageView: View {
         }
         mainView
           .offset(y: -self.keyboardHeightHelper.keyboardHeight)
-          .onDisappear{
-            UITabBar.showTabBar()
-          }
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -155,6 +154,7 @@ struct MessageView: View {
                 print("textLength == 0")
               }else{
                 isShowing = false
+                self.callback?()
               }
             } label: {
               ZStack{

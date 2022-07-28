@@ -9,18 +9,24 @@ import SwiftUI
 import UIKit
 
 struct AlbumTitleEditView: View {
+  @ObservedObject var viewModel = AlbumEditViewModel()
   @StateObject var keyboardHeightHelper = KeyboardHeightHelper()
   @State var title: String
   @State var isTextView = false
   @State var isLimite = false
   @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "글자는 20자까지 입력가능합니다", type: .Remove)
   @Binding var isShowing: Bool
+  @Binding var preTitle: String
+
+  let albumId: Int
   let duration = 0.5
   let textLimit: Int = 20
 
   var completeButton: some View {
     VStack {
       Button(action: {
+        self.viewModel.patchAlbumTitle(albumId: albumId, title: title)
+        self.preTitle = title
         self.isTextView = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
           // isTextView가 닫히고
@@ -65,7 +71,7 @@ struct AlbumTitleEditView: View {
             .animation(.easeInOut(duration: duration/2))
         }
       }
-      .toastMessage(data: $messageData, isShow: $isLimite, topInset: Screen.safeAreaTop + 65)
+      .toastMessage(data: $messageData, isShow: $isLimite, topInset: geometry.safeAreaInsets.top + 65)
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
       .ignoresSafeArea()
       .onAppear {
@@ -85,7 +91,7 @@ struct AlbumTitleEditView_Previews: PreviewProvider {
         .opacity(0.7)
         .ignoresSafeArea()
       
-      AlbumTitleEditView(title: "2022-07-13 앨범", isShowing: .constant(true))
+      AlbumTitleEditView(title: "2022-07-13 앨범", isShowing: .constant(true), preTitle: .constant(""), albumId: -1)
     }
   }
 }

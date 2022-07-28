@@ -36,6 +36,27 @@ struct PhotoAlbumAuthorization {
     }
   }
   
+  static func checkAddPermissions(_ completion: @escaping(Bool) -> Void) throws {
+    
+    switch PHPhotoLibrary.authorizationStatus() {
+    case .authorized:
+
+      completion(true)
+    case .denied:
+      throw PhotoAlbumError.denied
+    case .restricted:
+      throw PhotoAlbumError.restricted
+    case .notDetermined:
+      PHPhotoLibrary.requestAuthorization { grade in
+        if grade == .authorized {
+          completion(true)
+        }
+      }
+    default:
+      break
+    }
+  }
+  
   struct PhotoAlbumErrorType {
     let error: PhotoAlbumAuthorization.PhotoAlbumError
     var message: String {

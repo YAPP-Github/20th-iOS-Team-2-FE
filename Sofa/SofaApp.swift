@@ -19,17 +19,20 @@ struct SofaApp: App {
   var body: some Scene {
     WindowGroup {
       
-      if KeychainWrapper.standard.string(forKey: "accessToken") != nil{ // Access Token 있다면, 홈 화면
-        ContentView()
-      }
-      else{ // 로그인 필요
-        LoginView()
-          .onOpenURL { url in
-            if (AuthApi.isKakaoTalkLoginUrl(url)){
-              _ = AuthController.handleOpenUrl(url: url)
-            }
-          }
-      }
+//      if KeychainWrapper.standard.string(forKey: "accessToken") != nil{ // Access Token 있다면, 홈 화면
+//        ContentView()
+//      }
+//      else{ // 로그인 필요
+//        LoginView()
+//          .onOpenURL { url in
+//            if (AuthApi.isKakaoTalkLoginUrl(url)){
+//              _ = AuthController.handleOpenUrl(url: url)
+//            }
+//          }
+//      }
+      
+      ContentView()
+      
       
     }
   }

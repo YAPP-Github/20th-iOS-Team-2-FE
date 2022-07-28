@@ -14,6 +14,7 @@ struct HomeView: View {
   @State var showModal = false
   @State var showMessageView = false
   @Binding var selectionType: Tab
+  @State var text: String?
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
   
@@ -27,7 +28,7 @@ struct HomeView: View {
             Text("\(eventViewModel.hometitle)")
               .font(.custom("Pretendard-Bold", size: 24))
             Spacer()
-            NavigationLink(destination: NotificationView(selectionType: $selectionType).onAppear{UITabBar.hideTabBar(animated: false)}){
+            NavigationLink(destination: NotificationView(selectionType: $selectionType).onAppear{tabbarManager.showTabBar = false}){
               Image(systemName: "bell")
                 .resizable()
                 .foregroundColor(Color.black)
@@ -58,12 +59,12 @@ struct HomeView: View {
               .fullScreenCover(isPresented: $showModal) {
                 HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
-                  .onAppear{
-                    tabbarManager.showTabBar = false
-                  }
-                  .onDisappear{
-                    tabbarManager.showTabBar = true
-                  }
+//                  .onAppear{
+//                    tabbarManager.showTabBar = false
+//                  }
+//                  .onDisappear{
+//                    tabbarManager.showTabBar = true
+//                  }
               }
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
@@ -72,31 +73,35 @@ struct HomeView: View {
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.all)
             .fullScreenCover(isPresented: $showMessageView) {
-              MessageView($showMessageView, $placeholder)
+              MessageView($showMessageView, $text, $placeholder)
                 .background(BackgroundCleanerView())
             }
           
-          if (!tabbarManager.showTabBar){
-            // TabBar Show를 위한 Rectangle()
-//            Rectangle()
-//              .foregroundColor(Color.clear)
-//              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
-            // Custom Tab View
-            CustomTabView(selection: $currentSelectedTab)
           
-            
-          }
+//          if (!tabbarManager.showTabBar){
+//            // TabBar Show를 위한 Rectangle()
+////            Rectangle()
+////              .foregroundColor(Color.clear)
+////              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
+//            // Custom Tab View
+//            CustomTabView(selection: $currentSelectedTab)
+//
+//
+//          }
           
         }// VStack
         .ignoresSafeArea(.keyboard)
         .background(Color(hex: "F9F7EF"))
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea([.bottom])
-        
+        .onAppear{
+          tabbarManager.showTabBar = true
+        }
       }// NavigationView
+      .navigationViewStyle(StackNavigationViewStyle())
       .accentColor(Color(hex: "43A047"))
       
-      if showModal{
+      if (showModal || showMessageView){
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()

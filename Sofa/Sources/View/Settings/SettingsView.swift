@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 struct SettingsView: View {
   
@@ -176,6 +178,11 @@ struct SettingsView: View {
               }
               .fullScreenCover(isPresented: $isLogout) {
                 LoginView()
+                  .onOpenURL { url in
+                    if (AuthApi.isKakaoTalkLoginUrl(url)){
+                      _ = AuthController.handleOpenUrl(url: url)
+                    }
+                  }
               }
               SettingRow(isButtonClick: .constant(true), buttonName: "mic", title: "공지")
               SettingRow(isButtonClick: .constant(true), buttonName: "star.fill", title: "소파리뷰", isLast: true)

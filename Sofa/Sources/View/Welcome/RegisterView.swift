@@ -77,6 +77,7 @@ struct RegisterView: View {
   @State var showFinishModal: Bool = false
   @State var info = [String](repeating: "", count: 4)
   @State var isTextFocused: Bool = false
+  @Binding var accessToken: String
   
   let placeHolderText = [
     "홍길동",
@@ -308,11 +309,11 @@ struct RegisterView: View {
   }
 }
 
-struct RegisterView_Previews: PreviewProvider {
-  static var previews: some View {
-    RegisterView()
-  }
-}
+//struct RegisterView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    RegisterView()
+//  }
+//}
 
 struct RegisterTextModifier: ViewModifier {
   func body(content: Content) -> some View {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AlbumCommentView: View {
+  @StateObject var viewModel: CommentViewModel
   @Binding var isShowing: Bool
   let filedId: Int
   
@@ -18,7 +19,7 @@ struct AlbumCommentView: View {
           self.isShowing = false
         }
         
-        CommentModal(viewModel: CommentViewModel(filedId: filedId)) { // 댓글 Modal
+        CommentModal(viewModel: viewModel) { // 댓글 Modal
           self.isShowing = false
         }
         .transition(.move(edge: .bottom))
@@ -32,6 +33,6 @@ struct AlbumCommentView: View {
 
 struct AlbumCommentView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCommentView(isShowing: .constant(true), filedId: 0)
+    AlbumCommentView(viewModel: CommentViewModel(filedId: 0), isShowing: .constant(true), filedId: 0)
   }
 }

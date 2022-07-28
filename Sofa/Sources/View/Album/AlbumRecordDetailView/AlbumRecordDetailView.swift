@@ -10,6 +10,7 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  @StateObject var commentViewModel: CommentViewModel
   @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
   let info: AlbumDetailElement?
   
@@ -110,7 +111,7 @@ struct AlbumRecordDetailView: View {
             .padding(.leading, 20)
           
           // 댓글 수
-          Text("\(info!.commentCount)")
+          Text("\(commentViewModel.comments.count)")
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(.white)
             .font(.system(size: 20))
@@ -231,7 +232,7 @@ struct AlbumRecordDetailView: View {
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
-        AlbumCommentView(isShowing: $isCommentClick, filedId: info!.fileId)
+        AlbumCommentView(viewModel: commentViewModel, isShowing: $isCommentClick, filedId: info!.fileId)
           .background(BackgroundCleanerView())
       }
       .onAppear {
@@ -251,6 +252,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
   }
 }

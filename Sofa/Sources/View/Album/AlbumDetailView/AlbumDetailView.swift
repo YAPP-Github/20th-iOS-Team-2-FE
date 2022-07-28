@@ -80,16 +80,16 @@ struct AlbumDetailView: View {
           AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           
           // 이미지 click
-          NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isPhotoThumbnailClick)
+          NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isPhotoThumbnailClick)
           
           // 댓글 click
-          NavigationLink("", destination: AlbumImageDetailView(info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
+          NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
           
           // 녹음 이미지 click
-          NavigationLink("", destination: AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
+          NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
           
           // 댓글 click
-          NavigationLink("", destination: AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
+          NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
         }
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: 0)

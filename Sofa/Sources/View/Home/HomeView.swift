@@ -70,6 +70,7 @@ struct HomeView: View {
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView(messageShow: $showMessageView)
+            .frame(height: showMessageView ? 0 : 52, alignment: .center)
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.all)

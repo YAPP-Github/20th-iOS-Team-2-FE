@@ -22,7 +22,7 @@ struct EmojiView: View {
   var body: some View {
     HStack{
       Capsule()
-        .frame(height: 52, alignment: .center)
+//        .frame(height: 52, alignment: .center)
         .shadow(color: Color.black.opacity(0.16), radius: 4, x: 2, y: 3)
         .foregroundColor(Color.white)
         .overlay(

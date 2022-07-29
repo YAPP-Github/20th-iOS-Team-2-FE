@@ -75,11 +75,11 @@ class LoginViewModel: ObservableObject {
           }else{ // Success
             self?.loginResponse = receivedValue
             if self?.loginResponse.type == "join"{ // 첫 로그인 (회원가입)
-              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
+//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
               self?.accessToken = (self?.loginResponse.authToken)!
               self?.toggleJoin()
             }else if self?.loginResponse.type == "login"{ // 재 로그인
-              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
+//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
               self?.accessToken = (self?.loginResponse.authToken)!
               self?.toggleLogin()
             }
@@ -122,11 +122,11 @@ class LoginViewModel: ObservableObject {
           }else{ // Success
             self?.loginResponse = receivedValue
             if self?.loginResponse.type == "join"{ // 첫 로그인 (회원가입)
-              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
+//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
               self?.accessToken = (self?.loginResponse.authToken)!
               self?.toggleJoin()
             }else if self?.loginResponse.type == "login"{ // 재 로그인
-              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
+//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
               self?.accessToken = (self?.loginResponse.authToken)!
               self?.toggleLogin()
             }

@@ -78,7 +78,7 @@ struct ProfileSettingView: View {
                     .frame(height: 48)
                     .padding(.bottom, 32)
                     .padding(.horizontal, 16)
-                                    
+                  
                   //입력창 - 역할
                   profileText(text: "역할")
                   profileTextField(text: $roleName, isFocused: $isFocused[2], showingSheet: $showingSheet, isRoleName: true)
@@ -107,19 +107,7 @@ struct ProfileSettingView: View {
               
               Spacer()
             }///VStack
-            
-          }.frame(height: 420)
-          
-          //스크롤 여백 공간
-          Rectangle()
-            .frame(height: 300)
-            .foregroundColor(Color.clear)
-          
-          Spacer()
-        }///VStack
-        
-      }///ScrollView
-      .navigationBarWithTextButtonStyle(isNextClick: $isChangeProfile, isTitleClick: .constant(false), isDisalbeNextButton: $isDisableNextButton, isDisalbeTitleButton: .constant(false), "프로필", nextText: "수정", Color.init(hex: "#43A047"))
+
           }///ScrollView
         }///ZStack
         .navigationBarItems(

@@ -104,7 +104,7 @@ struct LoginButtonView: View {
     .ignoresSafeArea()
     .background(Color.white )
     .fullScreenCover(isPresented: $loginViewModel.showJoin) { // 회원 등록
-      RegisterView(accessToken: $loginViewModel.accessToken)
+      RegisterView(registerViewModel: RegisterViewModel(), accessToken: $loginViewModel.accessToken)
     }
     .fullScreenCover(isPresented: $loginViewModel.showContent) { // 재로그인
       ContentView()

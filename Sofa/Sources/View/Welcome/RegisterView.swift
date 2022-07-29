@@ -71,7 +71,7 @@ struct UITextFieldRepresentable: UIViewRepresentable {
 
 struct RegisterView: View {
   
-  @EnvironmentObject var registerViewModel: RegisterViewModel
+  @ObservedObject var registerViewModel: RegisterViewModel
   
   @State var text: String = ""
   @State var currentSteps: Int = 1
@@ -80,7 +80,7 @@ struct RegisterView: View {
   @State var info = [String](repeating: "", count: 4)
   @State var isTextFocused: Bool = false
   @Binding var accessToken: String
-  
+    
   let placeHolderText = [
     "홍길동",
     "역할 선택",
@@ -164,6 +164,9 @@ struct RegisterView: View {
           case 1:
             Text("성함을 알려주세요")
               .modifier(RegisterTextModifier())
+              .onAppear{
+                print("RegisterView accessToken: \(accessToken)")
+              }
           case 2:
             Text("가족 내에서\n나는 어떤 역할인가요?")
               .modifier(RegisterTextModifier())
@@ -294,14 +297,17 @@ struct RegisterView: View {
               info[currentSteps-1] = text
               text = ""
               if currentSteps == 4 {
-                RegisterViewModel.register(name: info[0], roleInFamily: roleInFamily, birthDay: birthDay, nickname: nickname)
+                registerViewModel.register(name: info[0], roleInFamily: info[1], birthDay: info[2], nickname: info[3])
                 showFinishModal.toggle()
               } else {
                 currentSteps += 1
               }
             }
           }
-          .fullScreenCover(isPresented: $showFinishModal, content: RegisterFinishView.init)
+//          .fullScreenCover(isPresented: $showFinishModal, content: RegisterFinishView(accessToken: $accessToken))
+          .fullScreenCover(isPresented: $showFinishModal) {
+            RegisterFinishView(accessToken: $accessToken)
+          }
         }
           .padding(.bottom, 8+34)
           .navigationBarHidden(true)

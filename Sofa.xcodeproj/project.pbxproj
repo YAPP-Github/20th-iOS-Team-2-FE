@@ -81,16 +81,13 @@
 		6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340B92874184300707AB7 /* GeneralCalendar.swift */; };
 		6F7340BC28741A4800707AB7 /* GeneralDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340BB28741A4800707AB7 /* GeneralDatePickerView.swift */; };
 		6F7340BF28741F6F00707AB7 /* TaskMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */; };
-<<<<<<< HEAD
 		6F809424288AE0B100CD12F8 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809423288AE0B100CD12F8 /* TaskViewModel.swift */; };
 		6F809427288AE17700CD12F8 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809426288AE17700CD12F8 /* RegisterViewModel.swift */; };
 		6F809429288AE18500CD12F8 /* RegisterFamilyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809428288AE18500CD12F8 /* RegisterFamilyViewModel.swift */; };
 		6F80942B288AE29100CD12F8 /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942A288AE29100CD12F8 /* RegisterManager.swift */; };
 		6F80942F288B1CA600CD12F8 /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942E288B1CA600CD12F8 /* RegisterUser.swift */; };
 		6F809455288D258A00CD12F8 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809454288D258A00CD12F8 /* RegisterResponse.swift */; };
-=======
 		6F809457288D3E4100CD12F8 /* FamilySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809456288D3E4000CD12F8 /* FamilySettingView.swift */; };
->>>>>>> f43147404517c943db16aad5e56750f17c0f4b5c
 		6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */; };
 		6F9C988C2875A7CB0062BF84 /* Ex+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9C988B2875A7CB0062BF84 /* Ex+UIApplication.swift */; };
 		6FBCD633287ADA5100D874FD /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCD632287ADA5100D874FD /* RegisterView.swift */; };

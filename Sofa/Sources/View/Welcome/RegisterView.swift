@@ -71,6 +71,8 @@ struct UITextFieldRepresentable: UIViewRepresentable {
 
 struct RegisterView: View {
   
+  @EnvironmentObject var registerViewModel: RegisterViewModel
+  
   @State var text: String = ""
   @State var currentSteps: Int = 1
   @State var showingSheet: Bool = false
@@ -292,6 +294,7 @@ struct RegisterView: View {
               info[currentSteps-1] = text
               text = ""
               if currentSteps == 4 {
+                RegisterViewModel.register(name: info[0], roleInFamily: roleInFamily, birthDay: birthDay, nickname: nickname)
                 showFinishModal.toggle()
               } else {
                 currentSteps += 1

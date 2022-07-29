@@ -59,7 +59,7 @@ class RegisterViewModel: ObservableObject {
               break
             }
           }else{ // Success
-            self?.RegisterResponse = receivedValue
+            self?.registerResponse = receivedValue
           }
         }
       )

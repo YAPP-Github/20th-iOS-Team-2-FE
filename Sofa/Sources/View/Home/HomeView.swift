@@ -53,8 +53,8 @@ struct HomeView: View {
                 .padding(.vertical, eventViewModel.events.count == 0 ? 0 : 16)
                 .animation(.default)
             }
-            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
-            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
+            .overlay(Rectangle().frame(width: nil, height: eventViewModel.events.count == 0 ? 0 : 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
+            .overlay(Rectangle().frame(width: nil, height: eventViewModel.events.count == 0 ? 0 : 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
             ChatList(showModal: $showModal)
               .fullScreenCover(isPresented: $showModal) {

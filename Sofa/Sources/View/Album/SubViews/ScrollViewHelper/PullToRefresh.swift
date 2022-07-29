@@ -15,7 +15,7 @@ struct PullToRefresh: View {
   
   var body: some View {
     GeometryReader { geo in
-      if (geo.frame(in: .named(coordinateSpaceName)).midY > 50) {
+      if (geo.frame(in: .named(coordinateSpaceName)).midY > 10) {
         Spacer()
           .onAppear {
             needRefresh = true

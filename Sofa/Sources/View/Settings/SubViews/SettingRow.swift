@@ -33,14 +33,10 @@ struct SettingRow: View {
         Spacer()
         
         //버튼
-        Button(action: {
-          isButtonClick = true
-        }, label: {
-          Image(systemName: "chevron.right")
-            .font(.system(size: 20, weight: .medium))
-            .frame(width: 15, height: 20, alignment: .center)
-            .foregroundColor(Color.black.opacity(0.4))
-        })
+        Image(systemName: "chevron.right")
+          .font(.system(size: 20, weight: .medium))
+          .frame(width: 15, height: 20, alignment: .center)
+          .foregroundColor(Color.black.opacity(0.4))
         .padding(.trailing, 20.5)
         
       }

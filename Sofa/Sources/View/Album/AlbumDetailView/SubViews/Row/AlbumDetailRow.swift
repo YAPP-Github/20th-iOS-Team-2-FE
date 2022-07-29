@@ -6,37 +6,88 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct AlbumDetailRow: View {
-  // 이미지
-  @Binding var isImageClick: Bool
+  @ObservedObject var viewModel: AlbumDetailListCellViewModel
+  @ObservedObject var listViewModel: AlbumDetailListViewModel
+
+  @Binding var isPhotoThumbnailClick: Bool
+  @Binding var isRecordingThumbnailClick: Bool
+  @Binding var selectFile: AlbumDetailElement?
   @Binding var selectImage: UIImage
-  @Binding var selectImageIndex: Int
   
   @Binding var isBookmarkClick: Bool
-  @Binding var isCommentClick: Bool
+  @Binding var isPhotoCommentClick: Bool
+  @Binding var isRecordingCommentClick: Bool
   @Binding var isEllipsisClick: Bool
   
-  let info: AlbumDetailElement // 임시 @ObservedObject로 변경해야함
+  let info: AlbumDetailElement
   let index: Int
-  private var isBookmark : Bool { return info.favourite }
+  
+  func saveUIImage() {
+    DispatchQueue.global().async {
+      do {
+        if let url = URL(string: selectFile!.link) {
+          let data = try Data(contentsOf: url)
+          DispatchQueue.main.async {
+            self.selectImage = UIImage(data: data)!
+          }
+        } else {
+          self.selectImage = UIImage()
+        }
+      } catch {
+        self.selectImage = UIImage()
+      }
+    }
+  }
   
   var body: some View {
     VStack(spacing: 10) {
       Button(action: {
-        isImageClick = true
-        selectImage = UIImage(named: info.link)!
-        selectImageIndex = index
+        selectFile = info
+        if info.kind == "PHOTO" {
+          saveUIImage()
+          isPhotoThumbnailClick = true
+        } else {
+          isRecordingThumbnailClick = true
+        }
       }, label: {
         ZStack(alignment: .topTrailing) {
-          // post image
-          Image(info.link)
-            .resizable()
-            .frame(height: Screen.maxWidth * 0.7)
-            .cornerRadius(8)
+          // 썸네일
+          if info.kind == "PHOTO" {
+            if URL(string: info.link) != nil {
+              URLImage(url: URL(string: info.link)!, content: { image in
+                image
+                  .resizable()
+                  .frame(height: Screen.maxWidth * 0.7)
+                  .cornerRadius(8)
+              })
+            } else {
+              Rectangle()
+                .frame(height: Screen.maxWidth * 0.7)
+                .cornerRadius(8)
+                .foregroundColor(Color(hex: "#FAF8F0"))
+                .overlay(
+                  Text("이미지를 불러오지 못했습니다")
+                    .font(.custom("Pretendard-Regular", size: 16))
+                    .foregroundColor(Color.black)
+                )
+            }
+          } else {
+            Rectangle()
+              .cornerRadius(8)
+              .frame(height: Screen.maxWidth * 0.7)
+              .foregroundColor(Color(hex: "#E8F5E9"))
+              .overlay(
+                Image(systemName: "waveform")
+                  .font(.system(size: 32))
+                  .foregroundColor(Color(hex: "#66BB6A"))
+              )
+          }
           
           // 대표 사진 Badge
-          if index == 0 {
+          if index == 0 && info.kind == "PHOTO" {
             Group {
               Text("대표 사진")
                 .font(.custom("Pretendard-Bold", size: 12))
@@ -50,7 +101,7 @@ struct AlbumDetailRow: View {
         }
       })
       
-      if info.type != "PHOTO" { // RECORDING
+      if info.kind == "RECORDING" { // RECORDING
         HStack {
           Text(info.title!)
             .foregroundColor(Color(UIColor.label))
@@ -63,21 +114,32 @@ struct AlbumDetailRow: View {
       
       HStack {
         Button(action: {
-          isBookmarkClick = true
-          selectImageIndex = index
+          viewModel.postFavourite()
+          if !viewModel.isFavourite { // 즐겨찾기 해제
+            isBookmarkClick = true
+            listViewModel.albumDetailList[index].favourite = true
+          } else if listViewModel.type == "favourite" {
+            listViewModel.albumDetailList.remove(at: index)
+          } else {
+            listViewModel.albumDetailList[index].favourite = false
+          }
         }) {
           // 북마크
-          Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
+          Image(systemName: viewModel.isFavourite ? "bookmark.fill" : "bookmark")
             .frame(width: 20, height: 20)
-            .foregroundColor(isBookmark ? Color(hex: "#FFCA28") : .gray)
+            .foregroundColor(viewModel.isFavourite ? Color(hex: "#FFCA28") : .gray)
             .font(.system(size: 20))
             .padding(.leading, 8)
         }
         
         Button(action: {
-          isCommentClick = true
-          selectImage = UIImage(named: info.link)!
-          selectImageIndex = index
+          selectFile = info
+          if info.kind == "PHOTO" {
+            saveUIImage()
+            isPhotoCommentClick = true
+          } else {
+            isRecordingCommentClick = true
+          }
         }, label: {
           HStack(spacing: 8) {
             Image(systemName: "ellipsis.bubble")
@@ -97,7 +159,10 @@ struct AlbumDetailRow: View {
         
         Button(action: {
           isEllipsisClick = true
-          selectImageIndex = index
+          selectFile = info
+          if info.kind == "PHOTO" {
+            saveUIImage()
+          }
         }) {
           Image(systemName: "ellipsis")
             .frame(width: 20, height: 20)
@@ -107,13 +172,14 @@ struct AlbumDetailRow: View {
         }
       }
     }
+    .padding(.bottom, 10)
   }
 }
 
 struct AlbumDetailRow_Previews: PreviewProvider {
   static var previews: some View {
-    let data = MockData().albumDetail.elements[3]
+    let data = MockData().albumDetail.results.elements[3]
     
-    AlbumDetailRow(isImageClick: .constant(false), selectImage: .constant(UIImage(named: data.link)!), selectImageIndex: .constant(0), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
+    AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: -1, isFavourite: false), listViewModel: AlbumDetailListViewModel(albumId: nil, kindType: nil), isPhotoThumbnailClick: .constant(false), isRecordingThumbnailClick: .constant(false), selectFile: .constant(data), selectImage: .constant(UIImage()), isBookmarkClick: .constant(false), isPhotoCommentClick: .constant(false), isRecordingCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data, index: 0)
   }
 }

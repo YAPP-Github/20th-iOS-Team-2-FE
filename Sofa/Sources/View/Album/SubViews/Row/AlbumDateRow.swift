@@ -11,10 +11,12 @@ import URLImage
 struct AlbumDateRow: View {
   @Binding var selectAlbumId: Int
   @Binding var showAlbumDetail: Bool
+  @Binding var title: String
   var album: AlbumDate
   
   var body: some View {
     Button(action: {
+      self.title = album.title
       self.selectAlbumId = album.albumId
       self.showAlbumDetail = true
     }) {
@@ -31,22 +33,34 @@ struct AlbumDateRow: View {
                 .foregroundColor(Color(hex: "#66BB6A"))
             )
         } else {
-          URLImage(url: URL(string: album.thumbnail)!, content: { image in
-            image
-              .resizable()
+          if URL(string: album.thumbnail) != nil {
+            URLImage(url: URL(string: album.thumbnail)!, content: { image in
+              image
+                .resizable()
+                .frame(width: 100.0, height: 75.0)
+                .cornerRadius(8)
+            })
+          } else {
+            Rectangle()
               .frame(width: 100.0, height: 75.0)
               .cornerRadius(8)
-          })
+              .foregroundColor(Color(hex: "#FAF8F0"))
+              .overlay(
+                Text("이미지를 불러오지 못했습니다")
+                  .font(.custom("Pretendard-Regular", size: 16))
+                  .foregroundColor(Color.black)
+              )
+          }
         }
         
         // 제목
         VStack(alignment: .leading, spacing: 3) {
-          Text(album.title == "" ? "\(album.date) 앨범" : album.title)
+          Text(album.title)
             .font(.custom("Pretendard-Bold", size: 16))
             .foregroundColor(Color(hex: "#121619"))
             .lineLimit(2)
           
-          Text(album.date)
+          Text(album.descriptionDate)
             .font(.custom("Pretendard-Medium", size: 13))
             .foregroundColor(Color(hex: "999999"))
         }
@@ -76,6 +90,6 @@ struct AlbumRow_Previews: PreviewProvider {
   static var previews: some View {
     let dummy = MockData().albumByDate[0]
     
-    AlbumDateRow(selectAlbumId: .constant(0), showAlbumDetail: .constant(false), album: dummy)
+    AlbumDateRow(selectAlbumId: .constant(0), showAlbumDetail: .constant(false), title: .constant("앨범 상세 날짜별"), album: dummy)
   }
 }

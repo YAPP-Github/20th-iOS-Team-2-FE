@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftKeychainWrapper
 
 class Constant{
-
+  
   static var accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken") {
     didSet {
       guard let token = accessToken else { return }
@@ -17,23 +17,23 @@ class Constant{
       KeychainWrapper.standard.set(token, forKey: "accessToken")
     }
   }
-
+  
 }
 
 struct Screen {
   static let maxWidth = UIScreen.main.bounds.width
   static let maxHeight = UIScreen.main.bounds.height
   
-  static var safeAreaTop: CGFloat {
-    let keyWindow = UIApplication.shared.connectedScenes
-      .filter({$0.activationState == .foregroundActive})
-      .map({$0 as? UIWindowScene})
-      .compactMap({$0})
-      .first?.windows
-      .filter({$0.isKeyWindow}).first
-    
-    return (keyWindow?.safeAreaInsets.top)!
-  }
+//  static var safeAreaTop: CGFloat {
+//    let keyWindow = UIApplication.shared.connectedScenes
+//      .filter({$0.activationState == .foregroundActive})
+//      .map({$0 as? UIWindowScene})
+//      .compactMap({$0})
+//      .first?.windows
+//      .filter({$0.isKeyWindow}).first
+//    
+//    return (keyWindow?.safeAreaInsets.top)!
+//  }
   
   static var safeAreaBottom: CGFloat {
     let keyWindow = UIApplication.shared.connectedScenes
@@ -44,5 +44,17 @@ struct Screen {
       .filter({$0.isKeyWindow}).first
     
     return (keyWindow?.safeAreaInsets.bottom)!
+  }
+}
+
+public class Storage {
+  static func isFirstTime() -> Bool {
+    let defaults = UserDefaults.standard
+    if defaults.object(forKey: "isFirstTime") == nil {
+      defaults.set("No", forKey:"isFirstTime")
+      return true
+    } else {
+      return false
+    }
   }
 }

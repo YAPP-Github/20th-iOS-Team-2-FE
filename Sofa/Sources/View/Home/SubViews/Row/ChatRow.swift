@@ -10,9 +10,11 @@ import SwiftUI
 struct ChatRow: View {
   
   var member: Member
+  var callback: (() -> Void)?
   
-  init(_ member: Member){
+  init(_ member: Member, callback: (() -> Void)?){
     self.member = member
+    self.callback = callback
   }
   
   var body: some View {
@@ -47,10 +49,14 @@ struct ChatRow: View {
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
 
-        Text("\(member.descriptionContent)")
+        Text("\(member.descriptionContent == "" ? "아직 인사를 건네기 전이에요." : member.descriptionContent)")
           .font(.custom("Pretendard-Regular", size: 14))
           .lineLimit(2)
+          .foregroundColor(member.descriptionContent == "" ? Color.gray :  Color.black)
           .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 16))
+          .onTapGesture{
+            callback?()
+          }
 
       }// VStack
     }// HStack
@@ -65,8 +71,13 @@ struct ChatRow: View {
   }
 }
 
-struct ChatRow_Previews: PreviewProvider {
-  static var previews: some View {
-    ChatRow(Member.getDummy())
+extension ChatRow{
+  func onShowHistory(action: @escaping (() -> Void)) -> ChatRow {
+    ChatRow(member, callback: action)
   }
 }
+//struct ChatRow_Previews: PreviewProvider {
+//  static var previews: some View {
+//    ChatRow(Member.getDummy())
+//  }
+//}

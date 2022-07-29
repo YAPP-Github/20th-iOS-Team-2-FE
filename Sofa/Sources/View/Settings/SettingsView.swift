@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 struct SettingsView: View {
   
@@ -21,6 +23,7 @@ struct SettingsView: View {
   @State var profileBirthDay: String = "1990-01-01"
   @ObservedObject var tabbarManager = TabBarManager.shared
   @State var currentSelectedTab: Tab = .setting // 현재 선택된 탭으로 표시할 곳
+  @State var isLogout = false
   
   var body: some View {
     NavigationView {
@@ -170,8 +173,16 @@ struct SettingsView: View {
               NavigationLink(destination: SetNotificationView()) {
                 SettingRow(isButtonClick: .constant(true), buttonName: "bell.fill", title: "알림")
               }
-              NavigationLink(destination: AccountAndSecurityView()) {
+              NavigationLink(destination: AccountAndSecurityView(islogout: $isLogout)) {
                 SettingRow(isButtonClick: .constant(true), buttonName: "shield.lefthalf.filled", title: "계정 및 보안")
+              }
+              .fullScreenCover(isPresented: $isLogout) {
+                LoginView()
+                  .onOpenURL { url in
+                    if (AuthApi.isKakaoTalkLoginUrl(url)){
+                      _ = AuthController.handleOpenUrl(url: url)
+                    }
+                  }
               }
               SettingRow(isButtonClick: .constant(true), buttonName: "mic", title: "공지")
               SettingRow(isButtonClick: .constant(true), buttonName: "star.fill", title: "소파리뷰", isLast: true)
@@ -202,6 +213,9 @@ struct SettingsView: View {
         
         if ProfileButtonClick {
           NavigationLink("", destination: ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01"), isActive: $ProfileButtonClick)
+        }
+        if FamilyButtonClick {
+          NavigationLink("", destination: FamilySettingView(familyName: "우리가족 공간", familyMotto: "밥은 잘 챙겨먹자!"), isActive: $FamilyButtonClick)
         }
       }///ZStack
     }///NavigationView

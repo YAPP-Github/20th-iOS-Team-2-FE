@@ -21,7 +21,7 @@ class AlbumDetailListCellViewModel: ObservableObject {
   }
     
   // 즐겨찾기
-  func fetchAlbumDetailByDate() {
+  func postFavourite() {
     AF.request(AlbumDetailManger.postFavourite(fieldId: self.fileId))
       .publishDecodable(type: AlbumFavouriteAPIResponse.self)
       .value()

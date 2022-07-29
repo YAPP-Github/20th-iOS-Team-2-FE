@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftKeychainWrapper
 
 struct RegisterFinishView: View {
   
+  @Binding var accessToken: String
   @State var showFamilyRegister: Bool = false
   
   var body: some View {
@@ -32,6 +34,11 @@ struct RegisterFinishView: View {
             .padding(.top, 8)
             .frame(height: 30)
         }
+        .onAppear{
+          Constant.accessToken = accessToken
+          KeychainWrapper.standard.set(accessToken, forKey: "accessToken")
+          print("RegisterFinishView AccessToken: \(Constant.accessToken ?? "")")
+        }
       }
       
       Button(action: {
@@ -51,8 +58,8 @@ struct RegisterFinishView: View {
   }
 }
 
-struct RegisterFinishView_Previews: PreviewProvider {
-  static var previews: some View {
-    RegisterFinishView()
-  }
-}
+//struct RegisterFinishView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    RegisterFinishView()
+//  }
+//}

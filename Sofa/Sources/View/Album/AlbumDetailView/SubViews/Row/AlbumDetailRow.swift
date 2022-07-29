@@ -114,7 +114,7 @@ struct AlbumDetailRow: View {
       
       HStack {
         Button(action: {
-          viewModel.fetchAlbumDetailByDate()
+          viewModel.postFavourite()
           if !viewModel.isFavourite { // 즐겨찾기 해제
             isBookmarkClick = true
             listViewModel.albumDetailList[index].favourite = true

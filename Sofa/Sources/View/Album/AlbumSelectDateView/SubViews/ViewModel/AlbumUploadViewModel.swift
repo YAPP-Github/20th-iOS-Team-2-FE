@@ -66,11 +66,11 @@ class AlbumUploadViewModel: ObservableObject {
       .value()
       .sink(
         receiveCompletion: { completion in
-          // guard case .failure(let error) = completion else { return }
-          // NSLog("Error : " + error.localizedDescription)
+           guard case .failure(let error) = completion else { return }
+           NSLog("Error : " + error.localizedDescription)
         },
         receiveValue: { receivedValue in
-          // NSLog("받은 값 : \(receivedValue)")
+           NSLog("받은 값 : \(receivedValue)")
         }
       )
       .store(in: &subscription)

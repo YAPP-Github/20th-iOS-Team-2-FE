@@ -13,6 +13,8 @@ let format = date.getFormattedDate(format: "yyyy-MM-dd") // format
 extension Date {
    func getFormattedDate(format: String) -> String {
         let dateformat = DateFormatter()
+        dateformat.locale = Locale(identifier: "ko_KR")
+        dateformat.timeZone = TimeZone(abbreviation: "KST")
         dateformat.dateFormat = format
         return dateformat.string(from: self)
     }
@@ -34,4 +36,14 @@ extension Date {
       let date = Calendar.current.date(from: components)
       return date!
   }
+  
+  // 사용법 예시 : print("day: \(date.get(.day)), month: \(date.get(.month)), year: \(date.get(.year))")
+  func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+    return calendar.dateComponents(Set(components), from: self)
+  }
+  
+  func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+    return calendar.component(component, from: self)
+  }
+  
 }

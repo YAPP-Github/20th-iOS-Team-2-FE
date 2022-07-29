@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.6.1)
+  - Alamofire (5.6.2)
   - Introspect (0.1.4)
   - KakaoSDKAuth (2.11.0):
     - KakaoSDKCommon (= 2.11.0)
@@ -56,7 +56,7 @@ SPEC REPOS:
     - URLImage
 
 SPEC CHECKSUMS:
-  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   Introspect: b62c4dd2063072327c21d618ef2bedc3c87bc366
   KakaoSDKAuth: b9470887e42b869725b391f4af34c4aaec42ea46
   KakaoSDKCommon: 0f59f2c1aead6012d92758e8ca46b63ea11c408b

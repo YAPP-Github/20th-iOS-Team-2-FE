@@ -108,6 +108,18 @@ struct ProfileSettingView: View {
               Spacer()
             }///VStack
             
+          }.frame(height: 420)
+          
+          //스크롤 여백 공간
+          Rectangle()
+            .frame(height: 300)
+            .foregroundColor(Color.clear)
+          
+          Spacer()
+        }///VStack
+        
+      }///ScrollView
+      .navigationBarWithTextButtonStyle(isNextClick: $isChangeProfile, isTitleClick: .constant(false), isDisalbeNextButton: $isDisableNextButton, isDisalbeTitleButton: .constant(false), "프로필", nextText: "수정", Color.init(hex: "#43A047"))
           }///ScrollView
         }///ZStack
         .navigationBarItems(

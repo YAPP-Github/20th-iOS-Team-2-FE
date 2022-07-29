@@ -14,6 +14,7 @@ struct HomeView: View {
   @State var showModal = false
   @State var showMessageView = false
   @Binding var selectionType: Tab
+  @Binding var dateToShow: String
   @State var text: String?
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
@@ -47,7 +48,7 @@ struct HomeView: View {
           .frame(height: 44)
           ScrollView{
             VStack{
-              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType)
+              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType, dateToShow: $dateToShow)
                 .frame(height: eventViewModel.events.count == 0 ? 0 : 64)
                 .padding(.vertical, eventViewModel.events.count == 0 ? 0 : 16)
                 .animation(.default)

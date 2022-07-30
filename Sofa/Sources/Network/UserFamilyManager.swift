@@ -16,7 +16,8 @@ enum UserFamilyManager: URLRequestConvertible {
   case getUserSimple
   case getUserDetail
   case patchUser(imageLink: String, birthDay: String, roleInFamily: String, nickname: String)
-  
+  case patchFamily(familyName: String, familyMotto: String, nicknames: [Nicknames])
+                  
   var baseURL: URL {
     switch self {
     case .registerUser:

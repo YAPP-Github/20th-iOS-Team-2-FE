@@ -7,16 +7,17 @@
 
 import Foundation
 
-struct RegisterUser: Decodable {
+struct User: Decodable {
   let name: String
   let roleInFamily: String
   let birthDay: String
   let nickname: String
 }
 
-struct RegisterFamily: Decodable {
+struct Family: Decodable {
   let familyName: String
   let familyMotto: String
+  let nicknames: [Nicknames]?
 }
 
 struct FamilyID: Decodable {
@@ -37,4 +38,9 @@ struct DetailUser: Decodable {
   let roleInFamily: String?
   let birth: String?
   let imageLink: String?
+}
+
+struct Nicknames: Decodable {
+  let pastNickname: String
+  let newNickname: String
 }

@@ -212,7 +212,7 @@ struct SettingsView: View {
         }
         
         if ProfileButtonClick {
-          NavigationLink("", destination: ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01"), isActive: $ProfileButtonClick)
+          NavigationLink("", destination: ProfileSettingView(profileImage: settingViewModel.detailUser.imageLink ?? "", nickName: settingViewModel.detailUser.nickname ?? "", name: settingViewModel.detailUser.name ?? "", roleName: settingViewModel.detailUser.roleInFamily ?? "", birthDay: settingViewModel.detailUser.birth ?? ""), isActive: $ProfileButtonClick)
         }
         if FamilyButtonClick {
           NavigationLink("", destination: FamilySettingView(familyName: "우리가족 공간", familyMotto: "밥은 잘 챙겨먹자!"), isActive: $FamilyButtonClick)

@@ -535,7 +535,6 @@
 			children = (
 				6F22E525284B9CFD0069D268 /* CalendarView.swift */,
 				6F7340BD28741E5C00707AB7 /* SubViews */,
-				6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */,
 				6F7340BB28741A4800707AB7 /* GeneralDatePickerView.swift */,
 				6F809422288ADF9D00CD12F8 /* ViewModel */,
 			);
@@ -648,15 +647,24 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		6F347EC02895005D005329DE /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */,
+				6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */,
+				6FC853C528743D8D00988A44 /* TaskTimePicker.swift */,
+				6FC854002874522900988A44 /* TaskColorPicker.swift */,
+				6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		6F7340BD28741E5C00707AB7 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				6F347EC02895005D005329DE /* Task */,
 				6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */,
 				6F7340B92874184300707AB7 /* GeneralCalendar.swift */,
-				6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */,
-				6FC853C528743D8D00988A44 /* TaskTimePicker.swift */,
-				6FC854002874522900988A44 /* TaskColorPicker.swift */,
-				6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */,
 				6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */,
 			);
 			path = SubViews;

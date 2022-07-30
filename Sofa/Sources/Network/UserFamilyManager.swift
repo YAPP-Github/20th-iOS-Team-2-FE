@@ -1,5 +1,5 @@
 //
-//  RegisterManager.swift
+//  UserFamilyManager.swift
 //  Sofa
 //
 //  Created by 임주민 on 2022/07/22.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import Combine
 
-enum RegisterManager: URLRequestConvertible {
+enum UserFamilyManager: URLRequestConvertible {
   
   case registerUser(name: String, roleInFamily: String, birthDay: String, nickname: String)
   case registerFamily(familyName: String, familyMotto: String)

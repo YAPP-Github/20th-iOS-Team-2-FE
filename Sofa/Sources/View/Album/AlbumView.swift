@@ -46,8 +46,9 @@ struct AlbumView: View {
             Text("유형별").font(.custom("Pretendard-Regular", size: 16)).tag(1)
           })
           .padding(16)
-          .background(Color.init(hex: "#FAF8F0")) // 임시
+          .background(Color.init(hex: "#FAF8F0")) //
           .pickerStyle(SegmentedPickerStyle())
+          .scaleEffect(CGSize(width: 1, height: 1.1))
           
           AlbumList(viewModel: viewModel, selectType: selected) // select값에 따른 날짜별, 유형별 View
           

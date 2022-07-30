@@ -22,7 +22,7 @@ class RegisterFamilyViewModel: ObservableObject {
   
   // 가족 등록 post -> familyID 받는 함수
   func registerFamily(familyName: String, familyMotto: String) {
-    AF.request(RegisterManager.registerFamily(familyName: familyName, familyMotto: familyMotto))
+    AF.request(UserFamilyManager.registerFamily(familyName: familyName, familyMotto: familyMotto))
       .publishDecodable(type: FamilyID.self)
       .value()
       .receive(on: DispatchQueue.main)

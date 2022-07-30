@@ -21,7 +21,7 @@ struct MessageView: View {
   @Binding var isShowing: Bool // 외부 View에서 MessageView 띄울 때 사용
   @Binding var text: String? // TextEditor의 Text
   @State private var isDragging = false
-  @State private var textLength: Int = 0 // 글자 수 세기
+  @State private var textLength: Int // 글자 수 세기
   @State private var curHeight: CGFloat = 120 // View의 현재 높이
   @State var minHeight: CGFloat = 120 // View의 최소 높이
   @State var isMaxHeight: Bool = false // 현재 View가 MaxHeight인지 여부
@@ -31,12 +31,13 @@ struct MessageView: View {
   @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
   let callback: (() -> ())?
 
-  init(_ isShowing: Binding<Bool>, _ text: Binding<String?>, _ placeholder: Binding<String>, callback: (() -> ())? = nil){
+  init(_ isShowing: Binding<Bool>, _ text: Binding<String?>, _ textLength: Int, _ placeholder: Binding<String>, callback: (() -> ())? = nil){
     UITextView.appearance().backgroundColor = .clear
     _isShowing = isShowing
     _text = text
     _placeholder = placeholder
     self.callback = callback
+    self.textLength = textLength
   }
   
   var body: some View {

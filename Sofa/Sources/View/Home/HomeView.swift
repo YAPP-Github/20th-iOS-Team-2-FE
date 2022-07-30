@@ -73,7 +73,7 @@ struct HomeView: View {
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.all)
             .fullScreenCover(isPresented: $showMessageView) {
-              MessageView($showMessageView, $text, $placeholder)
+              MessageView($showMessageView, $text, 0, $placeholder)
                 .background(BackgroundCleanerView())
             }
           

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AlbumCommentList: View {
   @StateObject var viewModel: CommentViewModel
+  @Binding var selectComment: Comment?
+  @Binding var editText: String?
   @Binding var isEllipsisClick: Bool // 설정(수정, 삭제)
 
   var body: some View {
@@ -16,7 +18,7 @@ struct AlbumCommentList: View {
       // 필요할때 rendering 함, network에 적합
       LazyVStack(spacing: 0) {
         ForEach(Array(zip(viewModel.comments.indices, viewModel.comments)), id: \.0) { index, element in
-          AlbumCommentRow(isEllipsisClick: $isEllipsisClick, comment: element)
+          AlbumCommentRow(selectComment: $selectComment, editText: $editText, isEllipsisClick: $isEllipsisClick, comment: element)
             .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
             .animationsDisabled()
         }
@@ -39,6 +41,6 @@ struct AlbumCommentList: View {
 
 struct AlbumCommentList_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCommentList(viewModel: CommentViewModel(filedId: 0), isEllipsisClick: .constant(false))
+    AlbumCommentList(viewModel: CommentViewModel(filedId: 0), selectComment: .constant(nil), editText: .constant(""), isEllipsisClick: .constant(false))
   }
 }

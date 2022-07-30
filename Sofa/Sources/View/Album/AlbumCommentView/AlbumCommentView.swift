@@ -36,7 +36,7 @@ struct AlbumCommentView: View {
           self.isShowing = false
         }
         
-        CommentModal(viewModel: viewModel, isEllipsisClick: $isEllipsisClick) { // 댓글 Modal
+        CommentModal(viewModel: viewModel, isEllipsisClick: $isEllipsisClick, isEdit: $isEdit) { // 댓글 Modal
           self.isShowing = false
         }
         .transition(.move(edge: .bottom))

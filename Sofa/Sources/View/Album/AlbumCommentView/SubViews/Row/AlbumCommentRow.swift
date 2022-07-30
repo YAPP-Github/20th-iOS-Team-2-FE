@@ -9,13 +9,15 @@ import SwiftUI
 import URLImage
 
 struct AlbumCommentRow: View {
+  @Binding var selectComment: Comment?
+  @Binding var editText: String?
   @Binding var isEllipsisClick: Bool // 설정(수정, 삭제)
 
   var comment: Comment
   
   var body: some View {
     HStack(alignment: .top, spacing: 0) {
-      if comment.profileLink == "defaultImage" || URL(string: comment.profileLink) == nil { // link를 받아오지 못하거나, default 이미지 일경우
+      if comment.profileLink == "defaultImage" || comment.profileLink == "https://.." || URL(string: comment.profileLink) == nil { // link를 받아오지 못하거나, default 이미지 일경우
         Image("lionprofile") // 이미지
           .resizable()
           .frame(width: 48, height: 48)
@@ -31,7 +33,7 @@ struct AlbumCommentRow: View {
       }
       
       VStack(alignment: .leading) { // 댓글 정보
-        HStack(alignment: .center, spacing: 8) { // 댓글 작성자 정보
+        HStack(alignment: .top, spacing: 8) { // 댓글 작성자 정보
           Text("\(comment.nickname)") // 별명
             .font(.custom("Pretendard-Bold", size: 13))
           
@@ -57,6 +59,8 @@ struct AlbumCommentRow: View {
       .padding(.leading, 16)
       
       Button(action: {
+        self.selectComment = comment
+        self.editText = comment.content
         self.isEllipsisClick = true
       }) {
         Image(systemName: "ellipsis")
@@ -73,6 +77,6 @@ struct AlbumCommentRow: View {
 
 struct AlbumCommentRow_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCommentRow(isEllipsisClick: .constant(false), comment: Comment.getDummy())
+    AlbumCommentRow(selectComment: .constant(nil), editText: .constant(""), isEllipsisClick: .constant(false), comment: Comment.getDummy())
   }
 }

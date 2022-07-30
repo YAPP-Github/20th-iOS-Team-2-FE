@@ -15,10 +15,11 @@ struct CommentModal: View {
   @State var isWriteClick = false
   @State var commentText: String?
   @State var placeholder = "댓글을 남겨보세요"
+  @Binding var isEllipsisClick: Bool // 설정(수정, 삭제)
   let minHeight: CGFloat = Screen.maxHeight / 2
   let maxHeight: CGFloat = Screen.maxHeight * 0.9
   var callback: (() -> ())? = nil
-  
+    
   // Drag bar
   var topHalfMiddleBar: some View {
     VStack {
@@ -84,7 +85,7 @@ struct CommentModal: View {
     VStack(alignment: .center, spacing: 0) {
       topHalfMiddleBar // top bar
       
-      AlbumCommentList(viewModel: viewModel)
+      AlbumCommentList(viewModel: viewModel, isEllipsisClick: $isEllipsisClick)
       
       Divider()
         .overlay(Color(hex: "EDEADF"))
@@ -117,7 +118,7 @@ struct CommentModal_Previews: PreviewProvider {
     ZStack(alignment: .bottom) {
       ModalBackGround() // Back Ground
       
-      CommentModal(viewModel: CommentViewModel(filedId: 0)) // 댓글 Modal
+      CommentModal(viewModel: CommentViewModel(filedId: 0), isEllipsisClick: .constant(false)) // 댓글 Modal
         .transition(.move(edge: .bottom))
     }
   }

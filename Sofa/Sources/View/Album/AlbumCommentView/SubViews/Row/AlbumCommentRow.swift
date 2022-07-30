@@ -9,6 +9,8 @@ import SwiftUI
 import URLImage
 
 struct AlbumCommentRow: View {
+  @Binding var isEllipsisClick: Bool // 설정(수정, 삭제)
+
   var comment: Comment
   
   var body: some View {
@@ -17,14 +19,14 @@ struct AlbumCommentRow: View {
         Image("lionprofile") // 이미지
           .resizable()
           .frame(width: 48, height: 48)
-          .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
+          .padding(EdgeInsets(top: 10, leading: 12, bottom: 0, trailing: 0))
         
       } else {
         URLImage(url: URL(string: comment.profileLink)!, content: { image in
           image
             .resizable()
             .frame(width: 48, height: 48)
-            .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
+            .padding(EdgeInsets(top: 10, leading: 12, bottom: 0, trailing: 0))
         })
       }
       
@@ -51,26 +53,26 @@ struct AlbumCommentRow: View {
           .font(.custom("Pretendard-Medium", size: 14))
           .lineSpacing(5)
       }
+      .padding(.top, 10)
       .padding(.leading, 16)
       
       Button(action: {
-        
+        self.isEllipsisClick = true
       }) {
         Image(systemName: "ellipsis")
-          .frame(width: 20, height: 16)
+          .frame(width: 20)
           .foregroundColor(Color(hex: "999999"))
           .font(.system(size: 20))
       }
-      .padding(.bottom, 10)
-      .padding(.leading, 6.5)
-      .padding(.trailing, 16)
+      .padding(EdgeInsets(top: 14, leading: 6.5, bottom: 10, trailing: 16))
+
     }
-    .padding([.bottom], 24)
+    .padding([.bottom], 14)
   }
 }
 
 struct AlbumCommentRow_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumCommentRow(comment: Comment.getDummy())
+    AlbumCommentRow(isEllipsisClick: .constant(false), comment: Comment.getDummy())
   }
 }

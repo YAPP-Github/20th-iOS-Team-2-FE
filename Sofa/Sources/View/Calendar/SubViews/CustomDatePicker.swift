@@ -132,13 +132,10 @@ struct CustomDatePicker: View {
                     .font(.custom("Pretendard-Bold", size: 16))
                     .foregroundColor(Color(hex: "21272A"))
                     .frame(alignment: .leading)
-                  Text(task.time
-                    .addingTimeInterval(CGFloat
-                      .random(in: 0...5000)), style:
-                      .time)
-                  .font(.custom("Pretendard-Medium", size: 14))
-                  .foregroundColor(Color(hex: "21272A"))
-                  .frame(alignment: .leading)
+                  Text(task.time)
+                    .font(.custom("Pretendard-Medium", size: 14))
+                    .foregroundColor(Color(hex: "21272A"))
+                    .frame(alignment: .leading)
                 }
               }
               .frame(maxWidth: .infinity, alignment: .leading)

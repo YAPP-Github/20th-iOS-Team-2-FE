@@ -12,6 +12,7 @@ struct CommensAPIResponse: Decodable {
 }
 
 struct Comment: Decodable {
+  var commentId: Int
   var writerId: Int
   var profileLink: String
   var nickname: String
@@ -20,7 +21,7 @@ struct Comment: Decodable {
   var content: String
   
   static func getDummy() -> Self{
-    return Comment(writerId: 0, profileLink: "", nickname: "별명", roleInFamily: "엄마", createdDate: "2022-07-04 20:20:00", content: "또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다 \n댓글에 \n계속 \n줄바꿈을 \n누를 \n때 \n별다른 \n제한은 \n없다.\n\n\n\n")
+    return Comment(commentId: 0, writerId: 0, profileLink: "", nickname: "별명", roleInFamily: "엄마", createdDate: "2022-07-04 20:20:00", content: "또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다또 놀러가고싶다 \n댓글에 \n계속 \n줄바꿈을 \n누를 \n때 \n별다른 \n제한은 \n없다.\n\n\n\n")
   }
   
   // 마지막 공백 제거하여 반환

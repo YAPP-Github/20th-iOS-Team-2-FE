@@ -22,7 +22,7 @@ class RegisterViewModel: ObservableObject {
   
   func register(name: String, roleInFamily: String, birthDay: String, nickname: String) {
     print("UserVM: register() called")
-    AF.request(RegisterManager.registerUser(name: name, roleInFamily: roleInFamily, birthDay: birthDay, nickname: nickname))
+    AF.request(UserFamilyManager.registerUser(name: name, roleInFamily: roleInFamily, birthDay: birthDay, nickname: nickname))
       .publishDecodable(type: RegisterResponse.self)
       .value()
       .receive(on: DispatchQueue.main)

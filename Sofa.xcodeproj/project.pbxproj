@@ -35,6 +35,7 @@
 		0A4F4C1F288ED6F200913021 /* AccountAndSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C1E288ED6F200913021 /* AccountAndSecurityView.swift */; };
 		0A4F4C21289052CE00913021 /* RevokeAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C20289052CE00913021 /* RevokeAccountView.swift */; };
 		0A4F4C232891586B00913021 /* StarscreamWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C222891586B00913021 /* StarscreamWebsocket.swift */; };
+		0A4F4C26289578F300913021 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 0A4F4C25289578F300913021 /* Starscream */; };
 		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
@@ -394,6 +395,7 @@
 				0AC79185286B0AE00034A830 /* ConfettiSwiftUI in Frameworks */,
 				187B1EF8C1191F4F7DA3BE39 /* Pods_Sofa.framework in Frameworks */,
 				0A42E063286DCD0C00A2C73D /* SwiftUIPager in Frameworks */,
+				0A4F4C26289578F300913021 /* Starscream in Frameworks */,
 				0AC13DF5287F191A00FDD489 /* MbSwiftUIFirstResponder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1222,6 +1224,7 @@
 				0AC79184286B0AE00034A830 /* ConfettiSwiftUI */,
 				0A42E062286DCD0C00A2C73D /* SwiftUIPager */,
 				0AC13DF4287F191A00FDD489 /* MbSwiftUIFirstResponder */,
+				0A4F4C25289578F300913021 /* Starscream */,
 			);
 			productName = Sofa;
 			productReference = C4667A2B284B6FF200A4A759 /* Sofa.app */;
@@ -1303,6 +1306,7 @@
 				0AC79183286B0AE00034A830 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 				0A42E061286DCD0C00A2C73D /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				0AC13DF3287F191A00FDD489 /* XCRemoteSwiftPackageReference "MbSwiftUIFirstResponder" */,
+				0A4F4C24289578F300913021 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = C4667A2C284B6FF200A4A759 /* Products */;
 			projectDirPath = "";
@@ -1959,6 +1963,14 @@
 				kind = branch;
 			};
 		};
+		0A4F4C24289578F300913021 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		0AC13DF3287F191A00FDD489 /* XCRemoteSwiftPackageReference "MbSwiftUIFirstResponder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Mobilinked/MbSwiftUIFirstResponder";
@@ -1982,6 +1994,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0A42E061286DCD0C00A2C73D /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
 			productName = SwiftUIPager;
+		};
+		0A4F4C25289578F300913021 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A4F4C24289578F300913021 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
 		};
 		0AC13DF4287F191A00FDD489 /* MbSwiftUIFirstResponder */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -19,6 +19,8 @@ struct HomeView: View {
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
   
+  @StateObject var socket = StarscreamWebsocket()
+  
   @ObservedObject var tabbarManager = TabBarManager.shared
   
   var body: some View {
@@ -98,6 +100,9 @@ struct HomeView: View {
         .edgesIgnoringSafeArea([.bottom])
         .onAppear{
           tabbarManager.showTabBar = true
+        }
+        .onAppear{
+          self.socket.connect()
         }
       }// NavigationView
       .navigationViewStyle(StackNavigationViewStyle())

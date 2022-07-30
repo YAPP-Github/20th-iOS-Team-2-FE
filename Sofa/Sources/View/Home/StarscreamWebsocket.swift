@@ -22,6 +22,8 @@ class StarscreamWebsocket: ObservableObject {
     }
     
     let request = URLRequest(url: url)
+//    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//    headers["accept"] = "application/json"
     
     webSocket = WebSocket(request: request)
     webSocket?.delegate = self
@@ -44,6 +46,7 @@ extension StarscreamWebsocket: WebSocketDelegate {
     switch event {
     case .connected(let headers):
       client.write(string: "YJ")
+      print("Connected!")
       print("websocket is connected: \(headers)")
     case .disconnected(let reason, let code):
       print("websocket is disconnected: \(reason) with code: \(code)")
@@ -62,7 +65,6 @@ extension StarscreamWebsocket: WebSocketDelegate {
          let messageText = messageData["text"] as? String {
         print(messageText)
         receivedData = messageText
-        
 
         
       }

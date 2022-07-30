@@ -78,6 +78,12 @@ struct AlbumDetailList: View {
           AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: element.fileId, isFavourite: element.favourite), listViewModel: viewModel, isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
+        
+        if !viewModel.albumDetailList.isEmpty {
+          Rectangle() // 마지막 게시물 밑
+            .frame(height: 16)
+            .foregroundColor(Color.white)
+        }
       }
       .background(Color.white)
       

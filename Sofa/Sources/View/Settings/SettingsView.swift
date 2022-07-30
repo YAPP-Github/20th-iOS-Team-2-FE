@@ -10,6 +10,7 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 
 struct SettingsView: View {
+  @ObservedObject var settingViewModel = SettingViewModel()
   
   @State var FamilyButtonClick: Bool = false
   @State var ProfileButtonClick: Bool = false
@@ -103,7 +104,7 @@ struct SettingsView: View {
               VStack(spacing: 0){
                 //프로필 - 별명
                 HStack(spacing: 0){
-                  Text(profileNickName)
+                  Text(settingViewModel.simpleUser.nickname ?? "")
                     .font(.custom("Pretendard-Medium", size: 13))
                     .fontWeight(.bold)
                     .foregroundColor(Color(hex: "#121619"))
@@ -112,14 +113,13 @@ struct SettingsView: View {
                   
                   //프로필 - 뱃지
                   Rectangle()
-                    .frame(width: 27, height: 20)
+                    .frame(width: 17 + CGFloat((settingViewModel.simpleUser.roleInfamily!.count ?? 1)*11), height: 20)
                     .cornerRadius(4)
                     .foregroundColor(Color(hex: profileRoleColor))
                     .overlay(
-                      Text(profileRoleName)
+                      Text(settingViewModel.simpleUser.roleInfamily ?? "")
                         .font(.custom("Pretendard-Bold", size: 12))
                         .foregroundColor(Color(hex:"#558B2F"))
-                        .frame(width: 11, height: 18)
                     )
                     .padding(.top, 16)
                     .padding(.leading, 8)

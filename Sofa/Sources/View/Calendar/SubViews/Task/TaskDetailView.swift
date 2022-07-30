@@ -52,7 +52,7 @@ struct TaskDetailView: View {
           .padding(EdgeInsets(top: 16, leading: 16, bottom: 12, trailing: 16))
         
         // 색상
-        TaskColorPicker()
+        TaskColorPicker(selectedColor: task.color.toColorHex() ?? "#43A047")
         Border()
         Rectangle()
           .frame(width: Screen.maxWidth, height: 7)
@@ -71,6 +71,9 @@ struct TaskDetailView: View {
                 .font(.custom("Pretendard-Medium", size: 16))
                 .foregroundColor(Color(hex: "121619"))
               Toggle("", isOn: $allDayToggle)
+                .onAppear{
+                  allDayToggle = task.allDay
+                }
               Spacer()
             }.padding(.bottom, 24)
             
@@ -90,7 +93,7 @@ struct TaskDetailView: View {
             
             // 시간
             if !allDayToggle {
-              TaskTimePicker()
+              TaskTimePicker(time: task.time.toTime() ?? Date())
                 .padding(.bottom, 27)
                 .padding(.top, 12)
             }
@@ -182,10 +185,7 @@ struct TaskDetailView: View {
           .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
           trailing: Button(action: {
             self.presentationMode.wrappedValue.dismiss()
-//            tasks.append(contentsOf: [TaskMetaData(task: [
-//              Task(allDay: false, date: "2022-08-01", time: "20:35", title: title, content: memo, visibility: true, color: "BLUE")
-//            ], taskDate: getSampleDate(offset: 0))])
-            print(tasks)
+            // 업데이트
           }, label: {
             Text("수정")
               .fontWeight(.semibold)

@@ -10,18 +10,19 @@ import SwiftUI
 struct AppendTaskModalView: View {
   
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  @EnvironmentObject var store: TaskStore
   
   @State var isTitleFocused: Bool = false
   @State var isMemoFocused: Bool = false
-  @State private var title: String = ""
-  @State private var memo: String = ""
-  @State private var allDayToggle = false
-  @State var currentDate: Date = Date()
-  @State var showDatePicker = false
   
-  init() {
-    UITextView.appearance().backgroundColor = .clear
-  }
+  @State var title = ""
+  @State var memo = ""
+  @State var allDayToggle = false
+  @State var currentDate = Date()
+  @State var showDatePicker = false
+  @State var color = "#43A047"
+  @State var time = Date()
+  var task: Task? = nil
   
   var appendTaskContent: some View {
     ScrollView {
@@ -55,7 +56,7 @@ struct AppendTaskModalView: View {
           .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
         
         // 색상
-        TaskColorPicker()
+        TaskColorPicker(selectedColor: "#43A047")
         Border()
         Rectangle()
           .frame(width: Screen.maxWidth, height: 7)
@@ -89,7 +90,7 @@ struct AppendTaskModalView: View {
             
             // 시간
             if !allDayToggle {
-              TaskTimePicker()
+              TaskTimePicker(time: Date())
                 .padding(.bottom, 27)
                 .padding(.top, 12)
             }
@@ -134,6 +135,9 @@ struct AppendTaskModalView: View {
             )
             .frame(height: 116)
             .padding(.horizontal, 27)
+            .onAppear{
+              UITextView.appearance().backgroundColor = .clear
+            }
           }
           Border()
         }
@@ -169,10 +173,7 @@ struct AppendTaskModalView: View {
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
           self.presentationMode.wrappedValue.dismiss()
-//          tasks.append(contentsOf: [TaskMetaData(task: [
-//            Task(allDay: false, date: "2022-08-01", time: "20:35", title: title, content: memo, visibility: true, color: "BLUE")
-//          ], taskDate: getSampleDate(offset: 0))])
-          print(tasks)
+          store.insert(allDay: allDayToggle, date: currentDate.getFormattedDate(format: "yyyy-MM-dd"), time: time.getFormattedDate(format: "HH:mm"), title: title, content: memo, visibility: true, color: color)
         }, label: {
           Text("완료")
             .fontWeight(.semibold)
@@ -279,8 +280,8 @@ struct UITextViewRepresentable: UIViewRepresentable {
   }
 }
 
-struct AppendTaskModalView_Previews: PreviewProvider {
-  static var previews: some View {
-    AppendTaskModalView()
-  }
-}
+//struct AppendTaskModalView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    AppendTaskModalView(, color: <#String#>)
+//  }
+//}

@@ -77,8 +77,6 @@ struct CustomDatePicker: View {
               }
             }
             
-            
-            
             // Dates
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             LazyVGrid(columns: columns, spacing: 25) {
@@ -119,9 +117,6 @@ struct CustomDatePicker: View {
       ScrollView(.vertical, showsIndicators: false) {
         // Task
         LazyVStack(spacing: 24) {
-//          if let task = store.list.first(where: { task in
-//            return isSameDay(date1: task.date.toDateDay()!, date2: currentDate)
-//          }){
           ForEach(store.list){ task in
             let isSameDay = isSameDay(date1: task.date.toDateDay()!, date2: currentDate)
             if isSameDay {

@@ -14,7 +14,7 @@ struct TaskCell: View {
       
       HStack(spacing: 8){
         Rectangle()
-          .fill(Color(hex: "E91E63"))
+          .fill(Color(hex: task.color.toColorHex() ?? ""))
           .frame(width: 5, height: 48, alignment: .leading)
           .cornerRadius(8)
         VStack(alignment: .leading, spacing: 0){
@@ -23,12 +23,14 @@ struct TaskCell: View {
             .foregroundColor(Color(hex: "21272A"))
             .frame(alignment: .leading)
           Text(task.time)
-//            .addingTimeInterval(CGFloat
-//              .random(in: 0...5000)), style:
-//              .time)
           .font(.custom("Pretendard-Medium", size: 14))
           .foregroundColor(Color(hex: "21272A"))
           .frame(alignment: .leading)
+          .onAppear {
+            if task.allDay == true {
+              task.time = "하루종일"
+            }
+          }
         }
       }
       .frame(maxWidth: .infinity, alignment: .leading)

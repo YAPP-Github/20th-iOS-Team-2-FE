@@ -156,7 +156,8 @@ struct AlbumRecordDetailView: View {
             
             Image(systemName: "pause.fill") // 정지
               .resizable()
-              .frame(width: 28, height: 32)
+              .scaledToFit()
+              .frame(height: 28)
               .foregroundColor(Color(hex: "D81B60"))
           } else { // 녹음 끝
             Circle()
@@ -165,7 +166,9 @@ struct AlbumRecordDetailView: View {
             
             Image(systemName: "play.fill") // 플레이
               .resizable()
-              .frame(width: 29, height: 32)
+              .scaledToFit()
+              .offset(x: 2)
+              .frame(height: 28)
               .foregroundColor(Color(hex: "D81B60"))
           }
         }
@@ -199,7 +202,7 @@ struct AlbumRecordDetailView: View {
     GeometryReader { geometry in
       ZStack {
         recordBarArea // 녹음 Bar 영역
-
+        
         Color.clear
           .ignoresSafeArea()
           .overlay(

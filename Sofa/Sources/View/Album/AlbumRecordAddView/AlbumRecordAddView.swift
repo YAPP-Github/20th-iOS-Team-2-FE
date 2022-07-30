@@ -65,7 +65,6 @@ struct AlbumRecordAddView: View {
       
       Image(systemName: "pause.fill")
         .resizable()
-        .font(.system(size: 32))
         .scaledToFit()
         .frame(height: 28)
         .foregroundColor(Color(hex: "D81B60"))

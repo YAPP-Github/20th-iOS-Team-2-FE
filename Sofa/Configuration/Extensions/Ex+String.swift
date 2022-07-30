@@ -43,4 +43,14 @@ extension String {
       return nil
     }
   }
+  
+}
+
+func getTodayDate() -> String { // 오늘 날짜 format
+  let nowDate = Date() // 현재의 Date
+
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateFormat = "yyyy-MM-dd"
+  
+  return dateFormatter.string(from: nowDate)
 }

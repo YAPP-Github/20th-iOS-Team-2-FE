@@ -15,6 +15,7 @@ struct EventList: View {
   @State var alignment: SofaPositionAlignment = .start
   @State var viewAppear: Bool = false
   @Binding var selectionType: Tab
+  @Binding var dateToShow: String
   var function: (() -> Void)?
   
   var body: some View {
@@ -33,6 +34,7 @@ struct EventList: View {
           }
           .onTapGesture {
             self.selectionType = .calendar
+            self.dateToShow = eventViewModel.events[index].descriptionDate
           }
       }
     })

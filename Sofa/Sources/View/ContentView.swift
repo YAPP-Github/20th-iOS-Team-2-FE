@@ -24,6 +24,7 @@ enum Tab{
 
 struct ContentView: View {
   @State private var selection: Tab = .home
+  @State var dateToShow: String = getTodayDate()
   @ObservedObject var tabbarManager = TabBarManager.shared
   
 
@@ -32,15 +33,15 @@ struct ContentView: View {
       ZStack{
         switch selection {
         case .home:
-          HomeView(selectionType: $selection)
+          HomeView(selectionType: $selection, dateToShow: $dateToShow)
         case .calendar:
-          CalendarView()
+          CalendarView(currentDate: dateToShow.toDateDay()!)
         case .album:
           AlbumView()
         case .setting:
           SettingsView()
         default:
-          HomeView(selectionType: $selection)
+          HomeView(selectionType: $selection, dateToShow: $dateToShow)
         }
       }
             

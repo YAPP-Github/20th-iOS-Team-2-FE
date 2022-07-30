@@ -14,6 +14,7 @@ struct HomeView: View {
   @State var showModal = false
   @State var showMessageView = false
   @Binding var selectionType: Tab
+  @Binding var dateToShow: String
   @State var text: String?
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
@@ -47,13 +48,13 @@ struct HomeView: View {
           .frame(height: 44)
           ScrollView{
             VStack{
-              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType)
+              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType, dateToShow: $dateToShow)
                 .frame(height: eventViewModel.events.count == 0 ? 0 : 64)
                 .padding(.vertical, eventViewModel.events.count == 0 ? 0 : 16)
                 .animation(.default)
             }
-            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
-            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
+            .overlay(Rectangle().frame(width: nil, height: eventViewModel.events.count == 0 ? 0 : 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
+            .overlay(Rectangle().frame(width: nil, height: eventViewModel.events.count == 0 ? 0 : 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
             ChatList(showModal: $showModal)
               .fullScreenCover(isPresented: $showModal) {
@@ -69,6 +70,7 @@ struct HomeView: View {
           }// ScrollView
           .background(Color(hex: "F9F7EF"))
           EmojiView(messageShow: $showMessageView)
+            .frame(height: showMessageView ? 0 : 52, alignment: .center)
             .offset(x: 0, y: -24)
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.all)

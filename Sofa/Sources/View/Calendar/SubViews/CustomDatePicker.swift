@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CustomDatePicker: View {
+  @EnvironmentObject var store: TaskStore
   
   @Binding var currentDate: Date
   
@@ -118,34 +119,18 @@ struct CustomDatePicker: View {
       ScrollView(.vertical, showsIndicators: false) {
         // Task
         LazyVStack(spacing: 24) {
-          if let task = tasks.first(where: { task in
-            return isSameDay(date1: task.taskDate, date2: currentDate)
-          }){
-            ForEach(task.task){ task in
-              HStack(spacing: 8){
-                Rectangle()
-                  .fill(Color(hex: "E91E63"))
-                  .frame(width: 5, height: 48, alignment: .leading)
-                  .cornerRadius(8)
-                VStack(alignment: .leading, spacing: 0){
-                  Text(task.title)
-                    .font(.custom("Pretendard-Bold", size: 16))
-                    .foregroundColor(Color(hex: "21272A"))
-                    .frame(alignment: .leading)
-                  Text(task.time)
-                    .font(.custom("Pretendard-Medium", size: 14))
-                    .foregroundColor(Color(hex: "21272A"))
-                    .frame(alignment: .leading)
-                }
+//          if let task = store.list.first(where: { task in
+//            return isSameDay(date1: task.date.toDateDay()!, date2: currentDate)
+//          }){
+          ForEach(store.list){ task in
+            let isSameDay = isSameDay(date1: task.date.toDateDay()!, date2: currentDate)
+            if isSameDay {
+              NavigationLink {
+                TaskDetailView(task: task)
+              } label: {
+                TaskCell(task: task)
               }
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .contentShape(Rectangle())
-              .onTapGesture {
-                self.showTaskDetail.toggle()
-              }
-              .fullScreenCover(isPresented: self.$showTaskDetail, content: TaskDetailView.init)
             }
-          } else {
           }
         }
         .padding()
@@ -159,14 +144,14 @@ struct CustomDatePicker: View {
   func CardView(value: DateValue)->some View{
     VStack(spacing: 0) {
       if value.day != -1 {
-        if let task = tasks.first(where: { task in
-          return isSameDay(date1: task.taskDate, date2: value.dates)
+        if let task = store.list.first(where: { task in
+          return isSameDay(date1: task.date.toDateDay()!, date2: value.dates)
         }){
           Text("\(value.day)")
             .font(.custom("Pretendard-Medium", size: 14))
-            .foregroundColor(isSameDay(date1: task.taskDate, date2: currentDate) ? .white : Color(hex: "121619"))
+            .foregroundColor(isSameDay(date1: task.date.toDateDay()!, date2: currentDate) ? .white : Color(hex: "121619"))
           Circle()
-            .fill(isSameDay(date1: task.taskDate, date2: currentDate) ? .white : Color(hex: "66BB6A"))
+            .fill(isSameDay(date1: task.date.toDateDay()!, date2: currentDate) ? .white : Color(hex: "66BB6A"))
             .frame(width: 6, height: 6)
             .padding(EdgeInsets(top: 1, leading: 0, bottom: -1, trailing: 0))
         }

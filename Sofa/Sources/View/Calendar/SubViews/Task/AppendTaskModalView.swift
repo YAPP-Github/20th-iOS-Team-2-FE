@@ -169,9 +169,9 @@ struct AppendTaskModalView: View {
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
           self.presentationMode.wrappedValue.dismiss()
-          tasks.append(contentsOf: [TaskMetaData(task: [
-            Task(allDay: false, date: "2022-08-01", time: "20:35", title: title, content: memo, visibility: true, color: "BLUE")
-          ], taskDate: getSampleDate(offset: 0))])
+//          tasks.append(contentsOf: [TaskMetaData(task: [
+//            Task(allDay: false, date: "2022-08-01", time: "20:35", title: title, content: memo, visibility: true, color: "BLUE")
+//          ], taskDate: getSampleDate(offset: 0))])
           print(tasks)
         }, label: {
           Text("완료")

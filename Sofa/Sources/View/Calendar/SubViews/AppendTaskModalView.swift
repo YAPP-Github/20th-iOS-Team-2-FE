@@ -137,80 +137,79 @@ struct AppendTaskModalView: View {
           }
           Border()
         }
-        Spacer()
+        Spacer().frame(height: 350)
       }
     }
   }
   
   var body: some View {
     NavigationView{
-      ScrollView{
-        ZStack {
-          Color(.white).ignoresSafeArea()
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 400, trailing: 0))
-          Color(hex: "FAF8F0").ignoresSafeArea()
-            .padding(EdgeInsets(top: 500, leading: 0, bottom: 0, trailing: 0))
+      ZStack {
+        Color.white.ignoresSafeArea()
+        Color(hex: "FAF8F0").ignoresSafeArea()
+          .padding(.top, Screen.maxHeight/3)
+        ScrollView{
           VStack{
             appendTaskContent
             Spacer()
           }
         }
-        .navigationBarItems(
-          leading: Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-          }, label: {
-            Text("취소")
-              .font(.custom("Pretendard-Medium", size: 16))
-              .fontWeight(.semibold)
+      }
+      .navigationBarItems(
+        leading: Button(action: {
+          self.presentationMode.wrappedValue.dismiss()
+        }, label: {
+          Text("취소")
+            .font(.custom("Pretendard-Medium", size: 16))
+            .fontWeight(.semibold)
+            .frame(height: 24)
+            .padding(.top, 23)
+        })
+        .accentColor(Color(hex: "#43A047"))
+        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
+        trailing: Button(action: {
+          self.presentationMode.wrappedValue.dismiss()
+          tasks.append(contentsOf: [TaskMetaData(task: [
+            Task(allDay: false, date: "2022-08-01", time: "20:35", title: title, content: memo, visibility: true, color: "BLUE")
+          ], taskDate: getSampleDate(offset: 0))])
+          print(tasks)
+        }, label: {
+          Text("완료")
+            .fontWeight(.semibold)
+            .frame(height: 24)
+            .font(.custom("Pretendard-Medium", size: 16))
+            .foregroundColor(Color(.black).opacity(0.4))
+            .padding(.top, 23)
+        })
+        .accentColor(Color(hex: "#43A047"))
+        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+      )
+      .navigationBarTitleDisplayMode(.inline)
+      .toolbar {
+        ToolbarItem(placement: .principal) {
+          VStack(spacing: 17) {
+            Rectangle()
+              .frame(width: 48, height: 4)
+              .foregroundColor(Color(hex: "000000").opacity(0.24).opacity(0.5))
+              .cornerRadius(80)
+              .padding(.top, 2)
+            Text("새로운 일정")
               .frame(height: 24)
-              .padding(.top, 21)
-          })
-          .accentColor(Color(hex: "#43A047"))
-          .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
-          trailing: Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-            tasks.append(contentsOf: [TaskMetaData(task: [
-              Task(allDay: false, date: "2022-08-01", time: "20:35", title: title, content: memo, visibility: true, color: "BLUE")
-            ], taskDate: getSampleDate(offset: 0))])
-            print(tasks)
-          }, label: {
-            Text("완료")
-              .fontWeight(.semibold)
-              .frame(height: 24)
-              .font(.custom("Pretendard-Medium", size: 16))
-              .foregroundColor(Color(.black).opacity(0.4))
-              .padding(.top, 21)
-          })
-          .accentColor(Color(hex: "#43A047"))
-          .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-        )
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-          ToolbarItem(placement: .principal) {
-            VStack(spacing: 17) {
-              Rectangle()
-                .frame(width: 48, height: 4)
-                .foregroundColor(Color(hex: "000000").opacity(0.24))
-                .cornerRadius(80)
-              //.padding(.top, 8)
-              Text("새로운 일정")
-                .frame(height: 24)
-                .font(.custom("Pretendard-Bold", size: 16))
-                .foregroundColor(Color(hex: "121619"))
-            }
+              .font(.custom("Pretendard-Bold", size: 16))
+              .foregroundColor(Color(hex: "121619"))
           }
         }
-        .onAppear {
-          let appearance = UINavigationBarAppearance()
-          appearance.configureWithTransparentBackground()
-          appearance.backgroundColor =
-          UIColor.systemBackground.withAlphaComponent(1)
-          UINavigationBar.appearance().standardAppearance = appearance
-          UINavigationBar.appearance().compactAppearance = appearance
-          UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        }
-        .edgesIgnoringSafeArea([.bottom])
       }
+      .onAppear {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor =
+        UIColor.systemBackground.withAlphaComponent(1)
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+      }
+      .edgesIgnoringSafeArea([.bottom]) 
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)

@@ -77,6 +77,7 @@
 		6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E537284B9D4F0069D268 /* Fonts.swift */; };
 		6F22E53C284B9D5A0069D268 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53B284B9D5A0069D268 /* Base.swift */; };
 		6F22E53E284B9D640069D268 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53D284B9D640069D268 /* Constants.swift */; };
+		6F347EC828951AED005329DE /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347EC728951AED005329DE /* SettingViewModel.swift */; };
 		6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */; };
 		6F6E5A572882B7FF00C0734E /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */; };
 		6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340B92874184300707AB7 /* GeneralCalendar.swift */; };
@@ -274,6 +275,7 @@
 		6F22E537284B9D4F0069D268 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		6F22E53B284B9D5A0069D268 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		6F22E53D284B9D640069D268 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6F347EC728951AED005329DE /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTaskModalView.swift; sourceTree = "<group>"; };
 		6F6E5A542882B26A00C0734E /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 		6F22E520284B9CC30069D268 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6F347EC628951AE3005329DE /* ViewModel */,
 				6F1553332881C8210048CE54 /* SubViews */,
 				6F22E527284B9D050069D268 /* SettingsView.swift */,
 			);
@@ -538,7 +541,6 @@
 			children = (
 				6F22E525284B9CFD0069D268 /* CalendarView.swift */,
 				6F7340BD28741E5C00707AB7 /* SubViews */,
-				6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */,
 				6F7340BB28741A4800707AB7 /* GeneralDatePickerView.swift */,
 				6F809422288ADF9D00CD12F8 /* ViewModel */,
 			);
@@ -651,15 +653,32 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		6F347EC02895005D005329DE /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */,
+				6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */,
+				6FC853C528743D8D00988A44 /* TaskTimePicker.swift */,
+				6FC854002874522900988A44 /* TaskColorPicker.swift */,
+				6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		6F347EC628951AE3005329DE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6F347EC728951AED005329DE /* SettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6F7340BD28741E5C00707AB7 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				6F347EC02895005D005329DE /* Task */,
 				6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */,
 				6F7340B92874184300707AB7 /* GeneralCalendar.swift */,
-				6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */,
-				6FC853C528743D8D00988A44 /* TaskTimePicker.swift */,
-				6FC854002874522900988A44 /* TaskColorPicker.swift */,
-				6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */,
 				6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */,
 			);
 			path = SubViews;
@@ -1494,6 +1513,7 @@
 				C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */,
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */,
+				6F347EC828951AED005329DE /* SettingViewModel.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
 				0AE4919A28740D1A00341D35 /* HistoryView.swift in Sources */,
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,

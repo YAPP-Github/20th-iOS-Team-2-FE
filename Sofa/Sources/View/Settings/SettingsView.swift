@@ -10,17 +10,11 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 
 struct SettingsView: View {
-  
-  @State var FamilyButtonClick: Bool = false
-  @State var ProfileButtonClick: Bool = false
+  @ObservedObject var settingViewModel = SettingViewModel()
   
   @State var familyHymn: String = "밥은 잘 챙겨먹자!"
-  @State var profileNickName: String = "세상에서 가장 이쁜 딸"
   @State var profileEmail: String = "startmim98@gmail.com"
   @State var profileRoleColor: String = "#F1F8E9"
-  @State var profileRoleName: String = "딸"
-  @State var profileName: String = "이병기"
-  @State var profileBirthDay: String = "1990-01-01"
   @ObservedObject var tabbarManager = TabBarManager.shared
   @State var currentSelectedTab: Tab = .setting // 현재 선택된 탭으로 표시할 곳
   @State var isLogout = false
@@ -51,15 +45,15 @@ struct SettingsView: View {
                 Spacer()
                 
                 //가족 공간 - 버튼
-                Button(action: {
-                  FamilyButtonClick = true
-                }, label: {
+                NavigationLink {
+                  FamilySettingView(familyName: "우리가족 공간", familyMotto: "밥은 잘 챙겨먹자!")
+                } label: {
                   Image(systemName: "chevron.right")
                     .font(.system(size: 20, weight: .medium))
                     .frame(width: 15, height: 20, alignment: .center)
                     .foregroundColor(Color.black.opacity(0.4))
-                })
-                .padding(.trailing, 20.5)
+                    .padding(.trailing, 20.5)
+                }
               }
               
               HStack{
@@ -103,7 +97,7 @@ struct SettingsView: View {
               VStack(spacing: 0){
                 //프로필 - 별명
                 HStack(spacing: 0){
-                  Text(profileNickName)
+                  Text(settingViewModel.simpleUser.nickname ?? "")
                     .font(.custom("Pretendard-Medium", size: 13))
                     .fontWeight(.bold)
                     .foregroundColor(Color(hex: "#121619"))
@@ -112,19 +106,16 @@ struct SettingsView: View {
                   
                   //프로필 - 뱃지
                   Rectangle()
-                    .frame(width: 27, height: 20)
+                    .frame(width: 17 + CGFloat((settingViewModel.simpleUser.roleInfamily!.count)*11), height: 20)
                     .cornerRadius(4)
                     .foregroundColor(Color(hex: profileRoleColor))
                     .overlay(
-                      Text(profileRoleName)
+                      Text(settingViewModel.simpleUser.roleInfamily ?? "")
                         .font(.custom("Pretendard-Bold", size: 12))
                         .foregroundColor(Color(hex:"#558B2F"))
-                        .frame(width: 11, height: 18)
                     )
                     .padding(.top, 16)
                     .padding(.leading, 8)
-                  
-                  
                   Spacer()
                 }
                 
@@ -144,16 +135,16 @@ struct SettingsView: View {
               Spacer()
               
               //프로필 - 버튼
-              Button(action: {
-                ProfileButtonClick = true
-              }, label: {
+              NavigationLink {
+                ProfileSettingView(profileImage: settingViewModel.detailUser.imageLink ?? "", nickName: settingViewModel.detailUser.nickname ?? "", name: settingViewModel.detailUser.name ?? "", roleName: settingViewModel.detailUser.roleInFamily ?? "", birthDay: settingViewModel.detailUser.birth ?? "")
+              } label: {
                 Image(systemName: "chevron.right")
                   .font(.system(size: 20, weight: .medium))
                   .frame(width: 15, height: 20, alignment: .center)
                   .foregroundColor(Color.black.opacity(0.4))
-              })
-              .padding(.trailing, 20.5)
-              .padding(.bottom, 8)
+                  .padding(.trailing, 20.5)
+                  .padding(.bottom, 8)
+              }
             }///HStack
           }///ZStack
           Rectangle()
@@ -201,21 +192,12 @@ struct SettingsView: View {
             //              .frame(height: UIDevice().hasNotch ? Screen.maxHeight * 0.11: Screen.maxHeight * 0.11 - 5)
             // Custom Tab View
             CustomTabView(selection: $currentSelectedTab)
-            
-            
           }
         }///VStack
         .edgesIgnoringSafeArea([.bottom])
         .navigationBarWithIconButtonStyle(isButtonClick: .constant(false), buttonColor: Color.clear, "설정", "")
         .onAppear{
           tabbarManager.showTabBar = true
-        }
-        
-        if ProfileButtonClick {
-          NavigationLink("", destination: ProfileSettingView(profileImage: "", nickName: "세상에서 가장 이쁜 딸", name: "이병기", roleName: "딸", birthDay: "1990-01-01"), isActive: $ProfileButtonClick)
-        }
-        if FamilyButtonClick {
-          NavigationLink("", destination: FamilySettingView(familyName: "우리가족 공간", familyMotto: "밥은 잘 챙겨먹자!"), isActive: $FamilyButtonClick)
         }
       }///ZStack
     }///NavigationView
@@ -226,6 +208,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView(familyHymn: "밥은 잘 챙겨먹자!", profileNickName: "세상에서 가장 이쁜 딸", profileRoleColor: "#F1F8E9", profileRoleName: "딸", profileName: "이병기", profileBirthDay: "1990-01-01")
+    SettingsView()
   }
 }

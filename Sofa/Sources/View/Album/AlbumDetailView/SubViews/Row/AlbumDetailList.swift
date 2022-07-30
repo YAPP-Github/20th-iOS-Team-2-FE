@@ -35,7 +35,7 @@ struct AlbumDetailList: View {
       case .favourite: return "empty2"
       case .photo: return "empty3"
       case .recording: return "empty1"
-      case .notCase: return ""
+      case .notCase: return "empty1"
       }
     }
     

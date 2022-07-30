@@ -26,3 +26,19 @@ struct RegisterFamily: Decodable {
     return RegisterFamily(familyName: "우리가족 짱짱", familyMotto: "착하게 살자")
   }
 }
+
+struct SimpleUser: Decodable {
+  let userId: Int?
+  let nickname: String?
+  let name: String?
+  let roleInfamily: String?
+  let imageLink: String?
+}
+
+struct DetailUser: Decodable {
+  let nickname: String?
+  let name: String?
+  let roleInFamily: String?
+  let birth: String?
+  let imageLink: String?
+}

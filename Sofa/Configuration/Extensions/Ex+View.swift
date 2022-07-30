@@ -91,6 +91,15 @@ public extension View {
           tx.animation = nil
       }.animation(nil)
   }
+  
+  @ViewBuilder func scrollEnabled(_ enabled: Bool) -> some View {
+    if enabled {
+      self
+    } else {
+      simultaneousGesture(DragGesture(minimumDistance: 0),
+                          including: .all)
+    }
+  }
 }
 
 // TextField padding 조정

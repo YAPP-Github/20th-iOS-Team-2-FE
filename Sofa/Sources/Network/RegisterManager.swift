@@ -13,6 +13,8 @@ enum RegisterManager: URLRequestConvertible {
   
   case registerUser(name: String, roleInFamily: String, birthDay: String, nickname: String)
   case registerFamily(familyName: String, familyMotto: String)
+  case getUserSimple
+  case getUserDetail
   
   var baseURL: URL {
     switch self {
@@ -20,6 +22,10 @@ enum RegisterManager: URLRequestConvertible {
       return URL(string: "\(APIConstants.url)/user")!
     case .registerFamily:
       return URL(string: "\(APIConstants.url)/family")!
+    case .getUserSimple:
+      return URL(string: "\(APIConstants.url)/user/simple")!
+    case .getUserDetail:
+      return URL(string: "\(APIConstants.url)/user/detail")!
     }
   }
   
@@ -29,6 +35,10 @@ enum RegisterManager: URLRequestConvertible {
       return .post
     case .registerFamily:
       return .post
+    case .getUserSimple:
+      return .get
+    case .getUserDetail:
+      return .get
     }
   }
   
@@ -45,6 +55,10 @@ enum RegisterManager: URLRequestConvertible {
       headers["Content-Type"] = "application/json"
       headers["accept"] = "application/json"
       headers["Authenticate"] = "access Token"
+    case .getUserSimple:
+      return headers
+    case .getUserDetail:
+      return headers
     }
     return headers
   }
@@ -62,6 +76,10 @@ enum RegisterManager: URLRequestConvertible {
     case let .registerFamily(familyName: familyName, familyMotto: familyMotto):
       params["familyName"] = familyName
       params["familyMotto"] = familyMotto
+    case .getUserSimple:
+      break
+    case .getUserDetail:
+      break
     }
     return params
   }
@@ -78,6 +96,10 @@ enum RegisterManager: URLRequestConvertible {
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
     case .registerFamily:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+    case .getUserSimple:
+      request = try URLEncoding.default.encode(request, with: nil)
+    case .getUserDetail:
+      request = try URLEncoding.default.encode(request, with: nil)
     }
     
     return request

@@ -19,6 +19,10 @@ struct RegisterFamily: Decodable {
   let familyMotto: String
 }
 
+struct FamilyID: Decodable {
+  let familyId: Int
+}
+
 struct SimpleUser: Decodable {
   let userId: Int?
   let nickname: String?

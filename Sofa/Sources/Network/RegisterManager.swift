@@ -54,7 +54,6 @@ enum RegisterManager: URLRequestConvertible {
     case .registerFamily:
       headers["Content-Type"] = "application/json"
       headers["accept"] = "application/json"
-      headers["Authenticate"] = "access Token"
     case .getUserSimple:
       return headers
     case .getUserDetail:
@@ -72,7 +71,6 @@ enum RegisterManager: URLRequestConvertible {
       params["roleInFamily"] = roleInFamily
       params["birthDay"] = birthDay
       params["nickname"] = nickname
-      
     case let .registerFamily(familyName: familyName, familyMotto: familyMotto):
       params["familyName"] = familyName
       params["familyMotto"] = familyMotto
@@ -101,7 +99,6 @@ enum RegisterManager: URLRequestConvertible {
     case .getUserDetail:
       request = try URLEncoding.default.encode(request, with: nil)
     }
-    
     return request
   }
 }

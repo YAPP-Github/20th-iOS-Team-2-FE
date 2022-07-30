@@ -12,7 +12,7 @@ struct AlbumCommentRow: View {
   var comment: Comment
   
   var body: some View {
-    HStack(alignment: .top, spacing: 16) {
+    HStack(alignment: .top, spacing: 0) {
       if comment.profileLink == "defaultImage" || URL(string: comment.profileLink) == nil { // link를 받아오지 못하거나, default 이미지 일경우
         Image("lionprofile") // 이미지
           .resizable()
@@ -42,26 +42,28 @@ struct AlbumCommentRow: View {
           
           Spacer()
           
-          HStack(spacing: 5) {
-            Text("\(comment.descriptionDate)") // 날짜
-              .font(.custom("Pretendard-Medium", size: 13))
-              .foregroundColor(Color(hex: "999999"))
-            Button(action: {
-              
-            }) {
-              Image(systemName: "ellipsis")
-                .frame(width: 20, height: 20)
-                .foregroundColor(Color(hex: "999999"))
-                .font(.system(size: 20))
-            }
-          }
-          .padding(.trailing, 16)
+          Text("\(comment.descriptionDate)") // 날짜
+            .font(.custom("Pretendard-Medium", size: 13))
+            .foregroundColor(Color(hex: "999999"))
         }
         
         Text("\(comment.descriptionContent)") // 댓글
           .font(.custom("Pretendard-Medium", size: 14))
           .lineSpacing(5)
       }
+      .padding(.leading, 16)
+      
+      Button(action: {
+        
+      }) {
+        Image(systemName: "ellipsis")
+          .frame(width: 20, height: 16)
+          .foregroundColor(Color(hex: "999999"))
+          .font(.system(size: 20))
+      }
+      .padding(.bottom, 10)
+      .padding(.leading, 6.5)
+      .padding(.trailing, 16)
     }
     .padding([.bottom], 24)
   }

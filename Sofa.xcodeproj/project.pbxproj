@@ -76,6 +76,8 @@
 		6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E537284B9D4F0069D268 /* Fonts.swift */; };
 		6F22E53C284B9D5A0069D268 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53B284B9D5A0069D268 /* Base.swift */; };
 		6F22E53E284B9D640069D268 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53D284B9D640069D268 /* Constants.swift */; };
+		6F347EC828951AED005329DE /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347EC728951AED005329DE /* SettingViewModel.swift */; };
+		6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ECD28955E44005329DE /* UserPatchResponse.swift */; };
 		6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */; };
 		6F6E5A572882B7FF00C0734E /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */; };
 		6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340B92874184300707AB7 /* GeneralCalendar.swift */; };
@@ -84,7 +86,7 @@
 		6F809424288AE0B100CD12F8 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809423288AE0B100CD12F8 /* TaskViewModel.swift */; };
 		6F809427288AE17700CD12F8 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809426288AE17700CD12F8 /* RegisterViewModel.swift */; };
 		6F809429288AE18500CD12F8 /* RegisterFamilyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809428288AE18500CD12F8 /* RegisterFamilyViewModel.swift */; };
-		6F80942B288AE29100CD12F8 /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942A288AE29100CD12F8 /* RegisterManager.swift */; };
+		6F80942B288AE29100CD12F8 /* UserFamilyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942A288AE29100CD12F8 /* UserFamilyManager.swift */; };
 		6F80942F288B1CA600CD12F8 /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942E288B1CA600CD12F8 /* RegisterUser.swift */; };
 		6F809455288D258A00CD12F8 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809454288D258A00CD12F8 /* RegisterResponse.swift */; };
 		6F809457288D3E4100CD12F8 /* FamilySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809456288D3E4000CD12F8 /* FamilySettingView.swift */; };
@@ -272,6 +274,8 @@
 		6F22E537284B9D4F0069D268 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		6F22E53B284B9D5A0069D268 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		6F22E53D284B9D640069D268 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6F347EC728951AED005329DE /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		6F347ECD28955E44005329DE /* UserPatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPatchResponse.swift; sourceTree = "<group>"; };
 		6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTaskModalView.swift; sourceTree = "<group>"; };
 		6F6E5A542882B26A00C0734E /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
@@ -281,7 +285,7 @@
 		6F809423288AE0B100CD12F8 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		6F809426288AE17700CD12F8 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		6F809428288AE18500CD12F8 /* RegisterFamilyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFamilyViewModel.swift; sourceTree = "<group>"; };
-		6F80942A288AE29100CD12F8 /* RegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterManager.swift; sourceTree = "<group>"; };
+		6F80942A288AE29100CD12F8 /* UserFamilyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFamilyManager.swift; sourceTree = "<group>"; };
 		6F80942E288B1CA600CD12F8 /* RegisterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUser.swift; sourceTree = "<group>"; };
 		6F809454288D258A00CD12F8 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		6F809456288D3E4000CD12F8 /* FamilySettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySettingView.swift; sourceTree = "<group>"; };
@@ -524,6 +528,7 @@
 		6F22E520284B9CC30069D268 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6F347EC628951AE3005329DE /* ViewModel */,
 				6F1553332881C8210048CE54 /* SubViews */,
 				6F22E527284B9D050069D268 /* SettingsView.swift */,
 			);
@@ -535,7 +540,6 @@
 			children = (
 				6F22E525284B9CFD0069D268 /* CalendarView.swift */,
 				6F7340BD28741E5C00707AB7 /* SubViews */,
-				6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */,
 				6F7340BB28741A4800707AB7 /* GeneralDatePickerView.swift */,
 				6F809422288ADF9D00CD12F8 /* ViewModel */,
 			);
@@ -570,6 +574,7 @@
 				0A2887F52870A80B000A72F2 /* FamilyList.swift */,
 				0AF2B5412884601B00C6A55E /* LoginResponse.swift */,
 				6F809454288D258A00CD12F8 /* RegisterResponse.swift */,
+				6F347ECD28955E44005329DE /* UserPatchResponse.swift */,
 				6F80942E288B1CA600CD12F8 /* RegisterUser.swift */,
 				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
 				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
@@ -587,7 +592,7 @@
 				C4AC88632889B29D00BA5921 /* AlbumDetailManger.swift */,
 				C4AC886E288EE3D300BA5921 /* CommentManger.swift */,
 				0AF2B5432884613D00C6A55E /* LoginManager.swift */,
-				6F80942A288AE29100CD12F8 /* RegisterManager.swift */,
+				6F80942A288AE29100CD12F8 /* UserFamilyManager.swift */,
 				C4AC88562886A15000BA5921 /* UploadManager.swift */,
 			);
 			path = Network;
@@ -648,15 +653,32 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		6F347EC02895005D005329DE /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */,
+				6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */,
+				6FC853C528743D8D00988A44 /* TaskTimePicker.swift */,
+				6FC854002874522900988A44 /* TaskColorPicker.swift */,
+				6F7340BE28741F6F00707AB7 /* TaskMetaData.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		6F347EC628951AE3005329DE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6F347EC728951AED005329DE /* SettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6F7340BD28741E5C00707AB7 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				6F347EC02895005D005329DE /* Task */,
 				6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */,
 				6F7340B92874184300707AB7 /* GeneralCalendar.swift */,
-				6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */,
-				6FC853C528743D8D00988A44 /* TaskTimePicker.swift */,
-				6FC854002874522900988A44 /* TaskColorPicker.swift */,
-				6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */,
 				6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */,
 			);
 			path = SubViews;
@@ -1466,7 +1488,7 @@
 				C495F5F12855C3AA009B3BDE /* AlbumKindRow.swift in Sources */,
 				6F809455288D258A00CD12F8 /* RegisterResponse.swift in Sources */,
 				6FE6D78928619A1D00E3C21E /* CustomDatePicker.swift in Sources */,
-				6F80942B288AE29100CD12F8 /* RegisterManager.swift in Sources */,
+				6F80942B288AE29100CD12F8 /* UserFamilyManager.swift in Sources */,
 				0A915DD5287A9B8C0055AD6D /* NotificationViewModel.swift in Sources */,
 				C4B4963528800DDF000C9E1F /* AlbumListViewModel.swift in Sources */,
 				6F809427288AE17700CD12F8 /* RegisterViewModel.swift in Sources */,
@@ -1491,6 +1513,7 @@
 				C481B6CF28787A86005D6831 /* ModalBackGround.swift in Sources */,
 				6F22E524284B9CF00069D268 /* AlbumView.swift in Sources */,
 				C4B8F2C3285292DD0000B8CB /* AlbumPhotoAddRow.swift in Sources */,
+				6F347EC828951AED005329DE /* SettingViewModel.swift in Sources */,
 				C4B8F2B8285237080000B8CB /* AlbumRecordAddView.swift in Sources */,
 				0AE4919A28740D1A00341D35 /* HistoryView.swift in Sources */,
 				C4B8F2B5285236750000B8CB /* AlbumPhotoAddView.swift in Sources */,
@@ -1512,6 +1535,7 @@
 				6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				0A2B55092858779D006F816C /* View.swift in Sources */,
+				6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */,
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
 				0AF2B54028845FF900C6A55E /* LoginViewModel.swift in Sources */,
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,

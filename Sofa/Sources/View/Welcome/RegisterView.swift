@@ -7,68 +7,6 @@
 
 import SwiftUI
 
-struct UITextFieldRepresentable: UIViewRepresentable {
-    @Binding var text: String
-    var isFirstResponder: Bool = false
-    var isNumberPad: Bool = false
-    @Binding var isFocused: Bool
-    
-  func makeUIView(context: UIViewRepresentableContext<UITextFieldRepresentable>) -> UITextField {
-    let textField = UITextField(frame: .zero)
-    textField.delegate = context.coordinator
-    textField.textColor = UIColor.clear
-    textField.autocorrectionType = .no
-    if isNumberPad { textField.keyboardType = .numberPad
-    }
-    
-    return textField
-  }
-  
-    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<UITextFieldRepresentable>) {
-        uiView.text = self.text
-        if isFirstResponder && !context.coordinator.didFirstResponder {
-            uiView.becomeFirstResponder()
-            context.coordinator.didFirstResponder = true
-        }
-      if isNumberPad { uiView.keyboardType = .numberPad
-      }
-    }
-    
-    func makeCoordinator() -> UITextFieldRepresentable.Coordinator {
-      Coordinator(text: self.$text, isFocused: self.$isFocused)
-    }
-    
-    class Coordinator: NSObject, UITextFieldDelegate {
-        @Binding var text: String
-        @Binding var isFocused: Bool
-        var didFirstResponder = false
-        var isNumberPad = false
-        
-      init(text: Binding<String>, isFocused: Binding<Bool>) {
-            self._text = text
-            self._isFocused = isFocused
-        }
-        
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            self.text = textField.text ?? ""
-        }
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-          
-          return true
-        }
-        
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-            self.isFocused = true
-        }
-        
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            self.isFocused = false
-        }
-    }
-}
-
 struct RegisterView: View {
   
   @ObservedObject var registerViewModel: RegisterViewModel
@@ -316,6 +254,68 @@ struct RegisterView: View {
       }
     }
   }
+}
+
+struct UITextFieldRepresentable: UIViewRepresentable {
+    @Binding var text: String
+    var isFirstResponder: Bool = false
+    var isNumberPad: Bool = false
+    @Binding var isFocused: Bool
+    
+  func makeUIView(context: UIViewRepresentableContext<UITextFieldRepresentable>) -> UITextField {
+    let textField = UITextField(frame: .zero)
+    textField.delegate = context.coordinator
+    textField.textColor = UIColor.clear
+    textField.autocorrectionType = .no
+    if isNumberPad { textField.keyboardType = .numberPad
+    }
+    
+    return textField
+  }
+  
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<UITextFieldRepresentable>) {
+        uiView.text = self.text
+        if isFirstResponder && !context.coordinator.didFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.didFirstResponder = true
+        }
+      if isNumberPad { uiView.keyboardType = .numberPad
+      }
+    }
+    
+    func makeCoordinator() -> UITextFieldRepresentable.Coordinator {
+      Coordinator(text: self.$text, isFocused: self.$isFocused)
+    }
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        @Binding var text: String
+        @Binding var isFocused: Bool
+        var didFirstResponder = false
+        var isNumberPad = false
+        
+      init(text: Binding<String>, isFocused: Binding<Bool>) {
+            self._text = text
+            self._isFocused = isFocused
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            self.text = textField.text ?? ""
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+          
+          return true
+        }
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            self.isFocused = true
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            self.isFocused = false
+        }
+    }
 }
 
 //struct RegisterView_Previews: PreviewProvider {

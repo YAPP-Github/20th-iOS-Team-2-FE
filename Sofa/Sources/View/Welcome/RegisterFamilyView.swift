@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RegisterFamilyView: View {
   
+  @ObservedObject var registerFamilyViewModel = RegisterFamilyViewModel()
+  
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   @State var showFinishModal: Bool = false
@@ -131,6 +133,7 @@ struct RegisterFamilyView: View {
           if currentSteps == 1 {
             currentSteps += 1
           } else {
+            registerFamilyViewModel.registerFamily(familyName: familyInfo[0], familyMotto: familyInfo[1])
             showFinishModal.toggle()
           }
         }

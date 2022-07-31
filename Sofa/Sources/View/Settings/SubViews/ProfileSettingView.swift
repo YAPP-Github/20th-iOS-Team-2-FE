@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileSettingView: View {
   
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var settingViewModel = SettingViewModel()
   @ObservedObject var tabbarManager = TabBarManager.shared
   
   @State var isChangeProfile: Bool = false
@@ -124,6 +125,7 @@ struct ProfileSettingView: View {
           .accentColor(Color(hex: "#43A047"))
           .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
           trailing: Button(action: {
+            settingViewModel.patchUser(imageLink: "https://..", birthDay: birthDay, roleInFamily: roleName, nickname: nickName)
             presentable.wrappedValue.dismiss()
             tabbarManager.showTabBar = true
             UITabBar.showTabBar()
@@ -203,7 +205,6 @@ struct ProfileSettingView: View {
   }///actionSheetView
   
 }///struct
-
 
 struct profileText: View { //별명, 성함 등..
   var text: String

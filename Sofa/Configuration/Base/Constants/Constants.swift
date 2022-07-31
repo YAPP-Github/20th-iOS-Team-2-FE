@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftKeychainWrapper
 
 class Constant{
-
+  
   static var accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken") {
     didSet {
       guard let token = accessToken else { return }
@@ -17,7 +17,7 @@ class Constant{
       KeychainWrapper.standard.set(token, forKey: "accessToken")
     }
   }
-
+  
 }
 
 struct Screen {
@@ -44,5 +44,17 @@ struct Screen {
       .filter({$0.isKeyWindow}).first
     
     return (keyWindow?.safeAreaInsets.bottom)!
+  }
+}
+
+public class Storage {
+  static func isFirstTime() -> Bool {
+    let defaults = UserDefaults.standard
+    if defaults.object(forKey: "isFirstTime") == nil {
+      defaults.set("No", forKey:"isFirstTime")
+      return true
+    } else {
+      return false
+    }
   }
 }

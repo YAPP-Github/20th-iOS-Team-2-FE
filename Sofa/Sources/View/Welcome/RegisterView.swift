@@ -7,69 +7,9 @@
 
 import SwiftUI
 
-struct UITextFieldRepresentable: UIViewRepresentable {
-    @Binding var text: String
-    var isFirstResponder: Bool = false
-    var isNumberPad: Bool = false
-    @Binding var isFocused: Bool
-    
-  func makeUIView(context: UIViewRepresentableContext<UITextFieldRepresentable>) -> UITextField {
-    let textField = UITextField(frame: .zero)
-    textField.delegate = context.coordinator
-    textField.textColor = UIColor.clear
-    textField.autocorrectionType = .no
-    if isNumberPad { textField.keyboardType = .numberPad
-    }
-    
-    return textField
-  }
-  
-    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<UITextFieldRepresentable>) {
-        uiView.text = self.text
-        if isFirstResponder && !context.coordinator.didFirstResponder {
-            uiView.becomeFirstResponder()
-            context.coordinator.didFirstResponder = true
-        }
-      if isNumberPad { uiView.keyboardType = .numberPad
-      }
-    }
-    
-    func makeCoordinator() -> UITextFieldRepresentable.Coordinator {
-      Coordinator(text: self.$text, isFocused: self.$isFocused)
-    }
-    
-    class Coordinator: NSObject, UITextFieldDelegate {
-        @Binding var text: String
-        @Binding var isFocused: Bool
-        var didFirstResponder = false
-        var isNumberPad = false
-        
-      init(text: Binding<String>, isFocused: Binding<Bool>) {
-            self._text = text
-            self._isFocused = isFocused
-        }
-        
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            self.text = textField.text ?? ""
-        }
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-          
-          return true
-        }
-        
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-            self.isFocused = true
-        }
-        
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            self.isFocused = false
-        }
-    }
-}
-
 struct RegisterView: View {
+  
+  @ObservedObject var registerViewModel: RegisterViewModel
   
   @State var text: String = ""
   @State var currentSteps: Int = 1
@@ -77,7 +17,8 @@ struct RegisterView: View {
   @State var showFinishModal: Bool = false
   @State var info = [String](repeating: "", count: 4)
   @State var isTextFocused: Bool = false
-  
+  @Binding var accessToken: String
+    
   let placeHolderText = [
     "홍길동",
     "역할 선택",
@@ -161,6 +102,9 @@ struct RegisterView: View {
           case 1:
             Text("성함을 알려주세요")
               .modifier(RegisterTextModifier())
+              .onAppear{
+                print("RegisterView accessToken: \(accessToken)")
+              }
           case 2:
             Text("가족 내에서\n나는 어떤 역할인가요?")
               .modifier(RegisterTextModifier())
@@ -291,13 +235,17 @@ struct RegisterView: View {
               info[currentSteps-1] = text
               text = ""
               if currentSteps == 4 {
+                registerViewModel.register(name: info[0], roleInFamily: info[1], birthDay: info[2], nickname: info[3])
                 showFinishModal.toggle()
               } else {
                 currentSteps += 1
               }
             }
           }
-          .fullScreenCover(isPresented: $showFinishModal, content: RegisterFinishView.init)
+//          .fullScreenCover(isPresented: $showFinishModal, content: RegisterFinishView(accessToken: $accessToken))
+          .fullScreenCover(isPresented: $showFinishModal) {
+            RegisterFinishView(accessToken: $accessToken)
+          }
         }
           .padding(.bottom, 8+34)
           .navigationBarHidden(true)
@@ -308,11 +256,73 @@ struct RegisterView: View {
   }
 }
 
-struct RegisterView_Previews: PreviewProvider {
-  static var previews: some View {
-    RegisterView()
+struct UITextFieldRepresentable: UIViewRepresentable {
+    @Binding var text: String
+    var isFirstResponder: Bool = false
+    var isNumberPad: Bool = false
+    @Binding var isFocused: Bool
+    
+  func makeUIView(context: UIViewRepresentableContext<UITextFieldRepresentable>) -> UITextField {
+    let textField = UITextField(frame: .zero)
+    textField.delegate = context.coordinator
+    textField.textColor = UIColor.clear
+    textField.autocorrectionType = .no
+    if isNumberPad { textField.keyboardType = .numberPad
+    }
+    
+    return textField
   }
+  
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<UITextFieldRepresentable>) {
+        uiView.text = self.text
+        if isFirstResponder && !context.coordinator.didFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.didFirstResponder = true
+        }
+      if isNumberPad { uiView.keyboardType = .numberPad
+      }
+    }
+    
+    func makeCoordinator() -> UITextFieldRepresentable.Coordinator {
+      Coordinator(text: self.$text, isFocused: self.$isFocused)
+    }
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        @Binding var text: String
+        @Binding var isFocused: Bool
+        var didFirstResponder = false
+        var isNumberPad = false
+        
+      init(text: Binding<String>, isFocused: Binding<Bool>) {
+            self._text = text
+            self._isFocused = isFocused
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            self.text = textField.text ?? ""
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+          
+          return true
+        }
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            self.isFocused = true
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            self.isFocused = false
+        }
+    }
 }
+
+//struct RegisterView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    RegisterView()
+//  }
+//}
 
 struct RegisterTextModifier: ViewModifier {
   func body(content: Content) -> some View {

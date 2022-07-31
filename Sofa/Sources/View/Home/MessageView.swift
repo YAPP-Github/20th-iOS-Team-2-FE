@@ -29,6 +29,7 @@ struct MessageView: View {
   @State var fullTextEditorHeight: CGFloat = 0 // TextEditor가 Full일 때 높이
   @State var isKeyboard: Bool = false // 현재 키보드 올라와있는지
   @State var firstResponder: FirstResponders? = Sofa.FirstResponders.text
+  @State var showTF = false
   let callback: (() -> ())?
 
   init(_ isShowing: Binding<Bool>, _ text: Binding<String?>, _ textLength: Int, _ placeholder: Binding<String>, callback: (() -> ())? = nil){
@@ -51,8 +52,16 @@ struct MessageView: View {
         .onTapGesture {
           self.isShowing = false
         }
-        mainView
-          .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+        .onAppear{
+          DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+            // 1초 후 실행될 부분
+            showTF = true
+          }
+        }
+        if showTF{
+          mainView
+            .offset(y: -self.keyboardHeightHelper.keyboardHeight)
+        }
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

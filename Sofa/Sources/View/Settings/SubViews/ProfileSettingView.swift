@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileSettingView: View {
   
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var settingViewModel = SettingViewModel()
   @ObservedObject var tabbarManager = TabBarManager.shared
   
   @State var isChangeProfile: Bool = false
@@ -41,10 +42,7 @@ struct ProfileSettingView: View {
                   Rectangle()
                     .frame(width: Screen.maxWidth, height: 40)
                     .foregroundColor(Color.white)
-                  Rectangle()
-                    .frame(height: 1.0, alignment: .bottom)
-                    .foregroundColor(Color(hex: "EDEADF"))
-                    .padding(.bottom, 8)
+                  Border().padding(.bottom, 8)
                 }
                 
                 // 프로필 사진
@@ -71,27 +69,37 @@ struct ProfileSettingView: View {
                   //입력창 - 별명
                   profileText(text: "별명")
                   profileTextField(text: $nickName, isFocused: $isFocused[0], showingSheet: $showingSheet)
-                    .edgesIgnoringSafeArea(.bottom)
+                    .frame(height: 48)
+                    .padding(.bottom, 32)
+                    .padding(.horizontal, 16)
                   
                   //입력창 - 성함
                   profileText(text: "성함")
                   profileTextField(text: $name, isFocused: $isFocused[1], showingSheet: $showingSheet)
-                    .edgesIgnoringSafeArea(.bottom)
+                    .frame(height: 48)
+                    .padding(.bottom, 32)
+                    .padding(.horizontal, 16)
                   
                   //입력창 - 역할
                   profileText(text: "역할")
                   profileTextField(text: $roleName, isFocused: $isFocused[2], showingSheet: $showingSheet, isRoleName: true)
-                    .edgesIgnoringSafeArea(.bottom)
+                    .frame(height: 48)
+                    .padding(.bottom, 32)
+                    .padding(.horizontal, 16)
                   
                   //입력창 - 생년월일
                   profileText(text: "생년월일")
                   profileTextField(text: $birthDay, isFocused: $isFocused[3], showingSheet: $showingSheet, isBirthDay: true)
-                    .edgesIgnoringSafeArea(.bottom)
+                    .frame(height: 48)
+                    .padding(.bottom, 16)
+                    .padding(.horizontal, 16)
                   
                   Spacer()
                 }.padding(.top, 30)
                 
               }.frame(height: 420)
+              
+              Border()
               
               //스크롤 여백 공간
               Rectangle()
@@ -100,7 +108,7 @@ struct ProfileSettingView: View {
               
               Spacer()
             }///VStack
-            
+
           }///ScrollView
         }///ZStack
         .navigationBarItems(
@@ -117,6 +125,7 @@ struct ProfileSettingView: View {
           .accentColor(Color(hex: "#43A047"))
           .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
           trailing: Button(action: {
+            settingViewModel.patchUser(imageLink: "https://..", birthDay: birthDay, roleInFamily: roleName, nickname: nickName)
             presentable.wrappedValue.dismiss()
             tabbarManager.showTabBar = true
             UITabBar.showTabBar()
@@ -197,7 +206,6 @@ struct ProfileSettingView: View {
   
 }///struct
 
-
 struct profileText: View { //별명, 성함 등..
   var text: String
   var body: some View {
@@ -238,7 +246,7 @@ struct profileTextField: View { //텍스트필드
         text: $text,
         isFirstResponder: false,
         isNumberPad: isBirthDay, isFocused: $isFocused
-      ).disabled(isRoleName).padding(.horizontal, 17).edgesIgnoringSafeArea(.bottom)
+      ).disabled(isRoleName).padding(.horizontal, 17)
       
       if isRoleName {
         HStack{
@@ -255,10 +263,6 @@ struct profileTextField: View { //텍스트필드
         }
       }
     }
-    .frame(height: 48)
-    .padding(.bottom, 32)
-    .padding(.horizontal, 16)
-    .edgesIgnoringSafeArea(.bottom)
   }
 }
 

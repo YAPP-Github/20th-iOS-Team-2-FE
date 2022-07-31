@@ -10,11 +10,23 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import SwiftKeychainWrapper
 
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.portrait
+  }
+}
+
 @main
 struct SofaApp: App {
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
   init(){
     let KAKAO_APP_KEY: String = Bundle.main.infoDictionary?["KAKAO_APP_KEY"] as? String ?? "KAKAO_APP_KEY is nil"
     KakaoSDK.initSDK(appKey: KAKAO_APP_KEY)
+    
+    if Storage.isFirstTime() { // 첫 실행
+      Constant.accessToken = nil
+      KeychainWrapper.standard.remove(forKey: "accessToken")
+    }
   }
   var body: some Scene {
     WindowGroup {
@@ -32,7 +44,6 @@ struct SofaApp: App {
 //      }
       
       ContentView()
-      
       
     }
   }

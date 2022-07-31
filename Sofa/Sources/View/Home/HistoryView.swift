@@ -89,13 +89,16 @@ struct HistoryView: View {
                   .cornerRadius(4)
                   .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 0))
                 Spacer()
-                Text("\(historyViewModel.history[page.index].descriptionDate)")
-                  .font(.custom("Pretendard-Medium", size: 13))
-                  .foregroundColor(Color(hex: "979696"))
-                  .padding(.horizontal, 8)
-                  .background(Color(hex: "F1F1F1"))
-                  .cornerRadius(80)
-                  .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
+                if historyViewModel.history.count > 0{
+                  Text("\(historyViewModel.history[page.index].descriptionDate)")
+                    .font(.custom("Pretendard-Medium", size: 13))
+                    .foregroundColor(Color(hex: "979696"))
+                    .padding(.horizontal, 8)
+                    .background(Color(hex: "F1F1F1"))
+                    .cornerRadius(80)
+                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
+                }
+
                 
               }
               .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 14.5))
@@ -104,6 +107,15 @@ struct HistoryView: View {
           Divider()
             .overlay(Color(hex: "EDEADF"))
             .offset(x:0, y: 0)
+          if historyViewModel.history.count == 0{
+            VStack{
+              Text("아직 인사를 건네기 전이에요.")
+                .foregroundColor(Color.black).opacity(0.4)
+                .font(.custom("Pretendard-Medium", size: 14))
+                .padding(.top, 16)
+              Spacer()
+            }
+          }
           //MARK: - Pager
           VStack{
             Pager(page: self.page,
@@ -117,61 +129,65 @@ struct HistoryView: View {
             //                  .itemSpacing(10)
           }
           .offset(x: 0, y: 16)
-          HStack(alignment: .center){
-            Button {
-              withAnimation {
-                self.page.update(.previous)
-                self.animationFlag = false
-              }
-            } label: {
-              Image(systemName: "chevron.left")
-                .font(.system(size: 20))
-                .foregroundColor(self.page.index <= 0 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
-            }
-            
-            Spacer()
-            
-            HStack{
-              if !animationFlag{
-                Group{
-                  Text("\(self.page.index+1)")
-                  Text("/")
-                    .foregroundColor(Color(hex: "C2C1C1"))
-                  Text("\(historyViewModel.history.count)")
-                    .foregroundColor(Color(hex: "C2C1C1"))
+          
+          if historyViewModel.history.count > 0{
+            HStack(alignment: .center){
+              Button {
+                withAnimation {
+                  self.page.update(.previous)
+                  self.animationFlag = false
                 }
-                .font(.custom("Pretendard-Medium", size: 20))
-                .animationsDisabled()
-              }else{
-                Group{
-                  Text("\(self.page.index+1)")
-                  Text("/")
-                    .foregroundColor(Color(hex: "C2C1C1"))
-                  Text("\(historyViewModel.history.count)")
-                    .foregroundColor(Color(hex: "C2C1C1"))
-                }
-                .font(.custom("Pretendard-Medium", size: 20))
+              } label: {
+                Image(systemName: "chevron.left")
+                  .font(.system(size: 20))
+                  .foregroundColor(self.page.index <= 0 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
               }
               
-            }
+              Spacer()
+              
 
-            
-            Spacer()
-            
-            Button {
-              withAnimation {
-                self.page.update(.next)
-                self.animationFlag = false
+              HStack{
+                if !animationFlag{
+                  Group{
+                    Text("\(self.page.index+1)")
+                    Text("/")
+                      .foregroundColor(Color(hex: "C2C1C1"))
+                    Text("\(historyViewModel.history.count)")
+                      .foregroundColor(Color(hex: "C2C1C1"))
+                  }
+                  .font(.custom("Pretendard-Medium", size: 20))
+                  .animationsDisabled()
+                }else{
+                  Group{
+                    Text("\(self.page.index+1)")
+                    Text("/")
+                      .foregroundColor(Color(hex: "C2C1C1"))
+                    Text("\(historyViewModel.history.count)")
+                      .foregroundColor(Color(hex: "C2C1C1"))
+                  }
+                  .font(.custom("Pretendard-Medium", size: 20))
+                }
+                
               }
-            } label: {
-              Image(systemName: "chevron.right")
-                .font(.system(size: 20))
-                .foregroundColor(self.page.index >= self.historyViewModel.history.count - 1 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
-            }
-            
-          }// Page Button
-          .padding(.vertical, 16)
-          .padding(.horizontal, 24)
+
+              
+              Spacer()
+              
+              Button {
+                withAnimation {
+                  self.page.update(.next)
+                  self.animationFlag = false
+                }
+              } label: {
+                Image(systemName: "chevron.right")
+                  .font(.system(size: 20))
+                  .foregroundColor(self.page.index >= self.historyViewModel.history.count - 1 ? Color(hex: "C2C1C1"): Color(hex: "121619"))
+              }
+              
+            }// Page Button
+            .padding(.vertical, 16)
+            .padding(.horizontal, 24)
+          }
           Spacer()
             .frame(height: 34)
         }//VStack

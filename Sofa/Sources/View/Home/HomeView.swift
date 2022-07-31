@@ -98,6 +98,7 @@ struct HomeView: View {
         .edgesIgnoringSafeArea([.bottom])
         .onAppear{
           tabbarManager.showTabBar = true
+//          print(Constant.accessToken!)                                                                                                                                                                             
         }
       }// NavigationView
       .navigationViewStyle(StackNavigationViewStyle())
@@ -108,6 +109,7 @@ struct HomeView: View {
           .opacity(0.7)
           .ignoresSafeArea()
       }
+      
     }// ZStack
   }
   

@@ -10,7 +10,8 @@ import SwiftUI
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
-  
+  @StateObject var commentViewModel: CommentViewModel
+
   @State var touchImage = false
   var info: AlbumDetailElement?
   var image: UIImage
@@ -86,7 +87,7 @@ struct AlbumImageDetailView: View {
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
           .overlay(
-            AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: info!.fileId, isFavourite: info!.favourite), isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: info!)
+            AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: info!.fileId, isFavourite: info!.favourite), commentViewModel: commentViewModel, isBookmarkClick: $isBookmarkClick, isCommentClick: $isCommentClick, isEllipsisClick: $isEllipsisClick, info: info!)
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
         
@@ -113,7 +114,7 @@ struct AlbumImageDetailView: View {
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
-        AlbumCommentView(isShowing: $isCommentClick, filedId: info!.fileId)
+        AlbumCommentView(viewModel: commentViewModel, isShowing: $isCommentClick, filedId: info!.fileId)
           .background(BackgroundCleanerView())
       }
       .alert(isPresented: $authorizationViewModel.showErrorAlert) {
@@ -141,6 +142,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
+    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
   }
 }

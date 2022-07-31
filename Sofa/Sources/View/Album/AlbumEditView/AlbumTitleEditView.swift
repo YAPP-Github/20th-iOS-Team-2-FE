@@ -14,7 +14,7 @@ struct AlbumTitleEditView: View {
   @State var title: String
   @State var isTextView = false
   @State var isLimite = false
-  @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "글자는 20자까지 입력가능합니다", type: .Remove)
+  @State var messageData: ToastMessage.MessageData = ToastMessage.MessageData(title: "글자는 20자까지 입력가능합니다", type: .Warning)
   @Binding var isShowing: Bool
   @Binding var preTitle: String
 

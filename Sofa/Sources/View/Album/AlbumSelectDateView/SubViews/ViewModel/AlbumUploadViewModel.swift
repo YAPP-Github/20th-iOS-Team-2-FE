@@ -10,7 +10,6 @@ import Alamofire
 import Combine
 
 class AlbumUploadViewModel: ObservableObject {
-  @Published var uploadFiles = [String]()
   private var subscription = Set<AnyCancellable>()    // disposeBag
   
   // 서버에 파일 업로드 후, Link 받아오기
@@ -34,14 +33,12 @@ class AlbumUploadViewModel: ObservableObject {
     .value()
     .receive(on: DispatchQueue.main)
     .sink(
-      receiveCompletion: {[weak self] in
-        guard case .failure(let error) = $0 else { return }
+      receiveCompletion: { complete in
+        guard case .failure(let error) = complete else { return }
         NSLog("Error : " + error.localizedDescription)
-        self?.uploadFiles = [String]()
       },
       receiveValue: {[weak self] receivedValue in
 //        NSLog("받은 값 : \(receivedValue)")
-        self?.uploadFiles = receivedValue.links!
         guard let links = receivedValue.links else {
           NSLog("links를 받아오지 못했습니다")
           return
@@ -50,7 +47,7 @@ class AlbumUploadViewModel: ObservableObject {
         if images != nil { // 사진
           self?.postUploadPhoto(date: date, links: links)
         }
-        
+
         if audio != nil { // 오디오
           self?.postUploadRecording(date: date, title: title!, links: links)
         }

@@ -19,8 +19,8 @@ struct ToastMessage: ViewModifier {
   
   enum MessageType {
     case Registration // 즐겨찾기, 다운로드, 대표 사진
-    case Warning      // 사진 선택
-    case Remove       // 사진 제거, 글자 제한
+    case Warning      // 사진 선택, 글자 제한
+    case Remove       // 사진 제거
     
     var iconColor: Color {
       switch self {

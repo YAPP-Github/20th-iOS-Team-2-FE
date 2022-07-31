@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumImageDetailSettingBar: View {
   @ObservedObject var viewModel: AlbumDetailListCellViewModel
+  @StateObject var commentViewModel: CommentViewModel
 
   @Binding var isBookmarkClick: Bool
   @Binding var isCommentClick: Bool
@@ -49,7 +50,7 @@ struct AlbumImageDetailSettingBar: View {
                   .padding(.leading, 20)
                 
                 // 댓글 수
-                Text("\(info.commentCount)")
+                Text("\(commentViewModel.comments.count)")
                   .foregroundColor(.white)
                   .font(.custom("Pretendard-Medium", size: 20))
               }
@@ -80,7 +81,7 @@ struct AlbumImageDetailSettingBar_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: 0, isFavourite: false), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
+    AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: 0, isFavourite: false), commentViewModel: CommentViewModel(filedId: data.fileId), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
       .ignoresSafeArea()
   }
 }

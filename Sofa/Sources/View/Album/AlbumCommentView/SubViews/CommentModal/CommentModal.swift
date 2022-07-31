@@ -15,10 +15,14 @@ struct CommentModal: View {
   @State var isWriteClick = false
   @State var commentText: String?
   @State var placeholder = "댓글을 남겨보세요"
+  @State var selectComment: Comment?
+  @State var editText: String?
+  @Binding var isEllipsisClick: Bool // 설정(수정, 삭제)
+  @Binding var isEdit: Bool // 설정(수정)
   let minHeight: CGFloat = Screen.maxHeight / 2
   let maxHeight: CGFloat = Screen.maxHeight * 0.9
   var callback: (() -> ())? = nil
-  
+    
   // Drag bar
   var topHalfMiddleBar: some View {
     VStack {
@@ -84,7 +88,7 @@ struct CommentModal: View {
     VStack(alignment: .center, spacing: 0) {
       topHalfMiddleBar // top bar
       
-      AlbumCommentList(viewModel: viewModel)
+      AlbumCommentList(viewModel: viewModel, selectComment: $selectComment, editText: $editText, isEllipsisClick: $isEllipsisClick)
       
       Divider()
         .overlay(Color(hex: "EDEADF"))
@@ -96,7 +100,7 @@ struct CommentModal: View {
         .frame(height: Screen.safeAreaBottom)
     }
     .fullScreenCover(isPresented: $isWriteClick) {
-      MessageView($isWriteClick, $commentText, $placeholder) {
+      MessageView($isWriteClick, $commentText, 0, $placeholder) {
         if let commentText = commentText {
           self.viewModel.writeComment(content: commentText) // 댓글 전송
           self.commentText = nil // 댓글 초기화
@@ -104,9 +108,18 @@ struct CommentModal: View {
       }
       .background(BackgroundCleanerView())
     }
+    .fullScreenCover(isPresented: $isEdit) { // 댓글 수정
+      MessageView($isEdit, $editText, editText == nil ? 0 : editText!.count, $placeholder) {
+        if let editText = editText {
+          self.viewModel.editComment(commentId: selectComment!.commentId, content: editText) // 댓글 수정
+          self.editText = nil // 댓글 초기화
+        }
+      }
+      .background(BackgroundCleanerView())
+    }
     .background(Color.white)
     .cornerRadius(16)
-    .frame(height: isWriteClick ? 0 : curHeight) // 댓글 View가 나타날때
+    .frame(height: isWriteClick || isEdit ? 0 : curHeight) // 댓글 View가 나타날때
     .frame(maxWidth: .infinity)
     .animation(isDragging ? nil : .easeInOut(duration: 0.45))
   }
@@ -117,7 +130,7 @@ struct CommentModal_Previews: PreviewProvider {
     ZStack(alignment: .bottom) {
       ModalBackGround() // Back Ground
       
-      CommentModal(viewModel: CommentViewModel(filedId: 0)) // 댓글 Modal
+      CommentModal(viewModel: CommentViewModel(filedId: 0), isEllipsisClick: .constant(false), isEdit: .constant(false)) // 댓글 Modal
         .transition(.move(edge: .bottom))
     }
   }

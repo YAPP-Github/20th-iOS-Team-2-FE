@@ -87,7 +87,7 @@ struct AlbumDetailRow: View {
           }
           
           // 대표 사진 Badge
-          if index == 0 && info.kind == "PHOTO" {
+          if index == 0 && listViewModel.type == "" {
             Group {
               Text("대표 사진")
                 .font(.custom("Pretendard-Bold", size: 12))

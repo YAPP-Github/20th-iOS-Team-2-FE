@@ -84,10 +84,6 @@ class AudioRecorderViewModel: NSObject, ObservableObject {
   func stopRecording(){
     isRecording = false
     timer.invalidate()
-    microSeconds = 0
-    seconds = 0
-    minutes = 0
-    time = 0
     audioRecorder.stop()
     self.startInit(audio: self.url!)
     self.currentStepbar = 0
@@ -167,6 +163,10 @@ extension AudioRecorderViewModel: AVAudioPlayerDelegate {
   }
   
   func startPlayback() {
+    microSeconds = 0
+    seconds = 0
+    minutes = 0
+    time = 0
     playMonitoring()
     isPlaying = true
   }

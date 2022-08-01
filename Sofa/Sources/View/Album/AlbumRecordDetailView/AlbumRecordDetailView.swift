@@ -10,6 +10,7 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  @StateObject var commentViewModel: CommentViewModel
   @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
   let info: AlbumDetailElement?
   
@@ -110,7 +111,7 @@ struct AlbumRecordDetailView: View {
             .padding(.leading, 20)
           
           // 댓글 수
-          Text("\(info!.commentCount)")
+          Text("\(commentViewModel.comments.count)")
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(.white)
             .font(.system(size: 20))
@@ -155,7 +156,8 @@ struct AlbumRecordDetailView: View {
             
             Image(systemName: "pause.fill") // 정지
               .resizable()
-              .frame(width: 28, height: 32)
+              .scaledToFit()
+              .frame(height: 28)
               .foregroundColor(Color(hex: "D81B60"))
           } else { // 녹음 끝
             Circle()
@@ -164,7 +166,9 @@ struct AlbumRecordDetailView: View {
             
             Image(systemName: "play.fill") // 플레이
               .resizable()
-              .frame(width: 29, height: 32)
+              .scaledToFit()
+              .offset(x: 2)
+              .frame(height: 28)
               .foregroundColor(Color(hex: "D81B60"))
           }
         }
@@ -198,7 +202,7 @@ struct AlbumRecordDetailView: View {
     GeometryReader { geometry in
       ZStack {
         recordBarArea // 녹음 Bar 영역
-
+        
         Color.clear
           .ignoresSafeArea()
           .overlay(
@@ -231,7 +235,7 @@ struct AlbumRecordDetailView: View {
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
-        AlbumCommentView(isShowing: $isCommentClick, filedId: info!.fileId)
+        AlbumCommentView(viewModel: commentViewModel, isShowing: $isCommentClick, filedId: info!.fileId)
           .background(BackgroundCleanerView())
       }
       .onAppear {
@@ -251,6 +255,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
   }
 }

@@ -29,7 +29,7 @@ enum AlbumDetailManger: URLRequestConvertible {
     case let .patchAlbumDate(albumId, _):
       return URL(string: "\(APIConstants.url)/album/\(albumId)/date")!
     case let .patchAlbumDetailDate(fieldId, _):
-      return URL(string: "\(APIConstants.url)/album/\(fieldId)/date")!
+      return URL(string: "\(APIConstants.url)/files/\(fieldId)/date")!
     case .postFavourite:
       return URL(string: "\(APIConstants.url)/album/favourite")!
     }

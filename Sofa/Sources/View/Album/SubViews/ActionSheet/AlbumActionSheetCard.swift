@@ -61,6 +61,7 @@ public struct ActionSheetCard: View {
           .frame(height: cellHeight)
         
         Divider() // 구분선 넣기
+          .padding([.leading, .trailing], 15)
       }
 //      Text("").frame(height: 40) // Extra empty space
     }

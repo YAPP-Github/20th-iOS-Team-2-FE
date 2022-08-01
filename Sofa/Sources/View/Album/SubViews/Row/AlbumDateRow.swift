@@ -60,7 +60,7 @@ struct AlbumDateRow: View {
             .foregroundColor(Color(hex: "#121619"))
             .lineLimit(2)
           
-          Text(album.descriptionDate)
+          Text(album.date)
             .font(.custom("Pretendard-Medium", size: 13))
             .foregroundColor(Color(hex: "999999"))
         }

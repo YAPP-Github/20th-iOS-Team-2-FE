@@ -111,6 +111,6 @@ struct AlbumDateEditView: View {
 
 struct AlbumEditDateView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumDateEditView(parant: AlbumDetailView(title: "앨범 상세", selectAlbumId: 0, selectKindType: ""))
+    AlbumDateEditView(parant: AlbumDetailView(listViewModel: AlbumDetailListViewModel(albumId: nil, kindType: nil), title: "앨범 상세", selectAlbumId: 0, selectKindType: ""))
   }
 }

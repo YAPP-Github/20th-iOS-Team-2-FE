@@ -10,6 +10,7 @@ import URLImage
 
 struct AlbumDetailView: View {
   @Environment(\.presentationMode) var presentable
+  @ObservedObject var listViewModel: AlbumDetailListViewModel
   @ObservedObject var tabbarManager = TabBarManager.shared
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
   @ObservedObject var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
@@ -62,6 +63,7 @@ struct AlbumDetailView: View {
           isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "flag", label: "대표 사진") {
+          listViewModel.putDelegate(albumId: selectAlbumId!, fileId: selectFile!.fileId)
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "대표 사진 등록", type: .Registration)
           isToastMessage = true
@@ -79,7 +81,7 @@ struct AlbumDetailView: View {
         ZStack {
           VStack(spacing: 0) {
             Divider().padding(.bottom, 2)
-            AlbumDetailList(viewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: selectKindType), isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
+            AlbumDetailList(viewModel: listViewModel, isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, selectAlbumId: selectAlbumId, selectKindType: selectKindType)
           }
           
           // 이미지 click
@@ -151,6 +153,6 @@ struct AlbumDetailView: View {
 
 struct AlbumDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumDetailView(title: "앨범 상세", selectAlbumId: 0, selectKindType: "")
+    AlbumDetailView(listViewModel: AlbumDetailListViewModel(albumId: 0, kindType: nil), title: "앨범 상세", selectAlbumId: 0, selectKindType: "")
   }
 }

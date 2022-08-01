@@ -113,9 +113,11 @@ struct AlbumDetailView: View {
           
           // 이미지 click
           NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), isDate: selectAlbumId != nil ? true : false, info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isPhotoThumbnailClick)
+            .preferredColorScheme(.dark)
           
           // 댓글 click
           NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), isDate: selectAlbumId != nil ? true : false, info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
+            .preferredColorScheme(.dark)
           
           // 녹음 이미지 click
           NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), isDate: selectAlbumId != nil ? true : false, info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
@@ -179,6 +181,7 @@ struct AlbumDetailView: View {
         }
       }
     }
+    .preferredColorScheme(.light)
   }
 }
 

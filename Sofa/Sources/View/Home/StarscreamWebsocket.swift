@@ -9,6 +9,8 @@ import Foundation
 import Starscream
 import SwiftUI
 import Combine
+import Alamofire
+
 
 class StarscreamWebsocket: ObservableObject {
   
@@ -22,14 +24,21 @@ class StarscreamWebsocket: ObservableObject {
   private var cancellables = Set<AnyCancellable>()
   
   func connect() {
-    guard let url = URL(string: "ws://3.34.94.220:8085/home") else {
+    guard let url = URL(string: "ws://3.34.94.220:8085/home/1/1") else {
       print("Error: can not create URL")
       return
     }
     
-    let request = URLRequest(url: url)
-    //    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q"
     
+    var request = URLRequest(url: url)
+    request.setValue(accessToken, forHTTPHeaderField: "Authorization")
+//    request.setValue("13", forHTTPHeaderField: "Sec-WebSocket-Version")
+//    request.setValue("permessage-deflate; client_max_window_bits", forHTTPHeaderField: "Sec-WebSocket-Extensions")
+//    request.setValue("Upgrade", forHTTPHeaderField: "Connection")
+//    request.setValue("websocket", forHTTPHeaderField: "Upgrade")
+//    request.setValue("ws", forHTTPHeaderField: "Sec-WebSocket-Protocol")
+//    request.setValue("3.34.94.220:8085", forHTTPHeaderField: "Host")
     webSocket = WebSocket(request: request)
     webSocket?.delegate = self
     
@@ -109,7 +118,7 @@ extension StarscreamWebsocket: WebSocketDelegate {
           case .reconnectSuggested(_):
             break
           case .cancelled:
-            print("websocket is canclled")
+            print("websocket is cancelled")
           case .error(let error):
             print("websocket is error = \(error!)")
     }

@@ -75,6 +75,33 @@ struct AlbumDetailView: View {
     )
   }
   
+  var actionSheetView2: some View {
+    ActionSheetCard(
+      isShowing: $isEllipsisClick,
+      items: [
+        ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          isEllipsisClick = false
+          messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+          
+          if selectFile?.kind == "PHOTO" {
+            authorizationViewModel.showPhotoAlbum(selectImage: selectImage) // 권한 확인
+          } else if selectFile?.kind == "RECORDING" {
+            audioViewModel.download(fileName: selectFile?.title, link: selectFile!.link) { complete in
+              isToastMessage = complete
+            }
+          }
+        },
+        ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
+          isUpdateDate = true
+          isEllipsisClick = false
+        },
+        ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
+          isEllipsisClick = false
+        }
+      ]
+    )
+  }
+  
   var body: some View {
     ZStack {
       NavigationView {
@@ -85,16 +112,16 @@ struct AlbumDetailView: View {
           }
           
           // 이미지 click
-          NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isPhotoThumbnailClick)
+          NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), isDate: selectAlbumId != nil ? true : false, info: selectFile, image: selectImage, isPreCommentClick: false), isActive: $isPhotoThumbnailClick)
           
           // 댓글 click
-          NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
+          NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), isDate: selectAlbumId != nil ? true : false, info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
           
           // 녹음 이미지 click
-          NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
+          NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), isDate: selectAlbumId != nil ? true : false, info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
           
           // 댓글 click
-          NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
+          NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), isDate: selectAlbumId != nil ? true : false, info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
         }
         .background(Color.init(hex: "#FAF8F0")) // 임시
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
@@ -144,7 +171,11 @@ struct AlbumDetailView: View {
           }
         
         if isEllipsisClick {
-          actionSheetView // 바텀 Sheet
+          if selectAlbumId != nil {
+            actionSheetView // 바텀 Sheet
+          } else {
+            actionSheetView2 // 바텀 Sheet - 대표 사진 설정이 없음
+          }
         }
       }
     }

@@ -12,6 +12,7 @@ struct AlbumRecordDetailView: View {
   @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
   @StateObject var commentViewModel: CommentViewModel
   @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
+  let isDate: Bool // 날짜/유형별 확인
   let info: AlbumDetailElement?
   
   // 즐겨찾기
@@ -48,6 +49,31 @@ struct AlbumRecordDetailView: View {
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "대표 사진 등록", type: .Registration)
           isToastMessage = true
+        },
+        ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
+          isEllipsisClick = false
+          messageData2 = ToastMessage.MessageData(title: "녹음 제거", type: .Remove)
+          isToastMessage = true
+          presentable.wrappedValue.dismiss()
+        }
+      ]
+    )
+  }
+  
+  var actionSheetView2: some View {
+    ActionSheetCard(
+      isShowing: $isEllipsisClick,
+      items: [
+        ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          isEllipsisClick = false
+          messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+          audioViewModel.download(fileName: info!.title, link: info!.link) { complete in
+            isToastMessage = complete
+          }
+        },
+        ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
+          isUpdateDate = true
+          isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
           isEllipsisClick = false
@@ -222,7 +248,11 @@ struct AlbumRecordDetailView: View {
             }
           
           if isEllipsisClick {
-            actionSheetView // 설정 버튼 sheet
+            if isDate {
+              actionSheetView // 바텀 Sheet
+            } else {
+              actionSheetView2 // 바텀 Sheet - 대표 사진 설정이 없음
+            }
           }
         }
       }
@@ -255,6 +285,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), isDate: true, info: data, isPreCommentClick: false)
   }
 }

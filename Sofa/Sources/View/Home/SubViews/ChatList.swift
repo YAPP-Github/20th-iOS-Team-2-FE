@@ -11,20 +11,39 @@ struct ChatList: View {
   
   @ObservedObject var memberViewModel = MemberViewModel()
   @Binding var showModal: Bool
+  @StateObject var socket = StarscreamWebsocket()
+  @ObservedObject var ChatShared = Chat.shared
+
   var function: (() -> Void)?
   
   var body: some View {
 
     ScrollView(.vertical, showsIndicators: false) {
       LazyVStack(spacing: 8) {
-        ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
-          ChatRow(member, callback: function)
-            .onShowHistory {
-              self.showModal = true
-              print("\(index)")
-            }
+//        ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
+//          ChatRow(member, callback: function)
+//            .onShowHistory {
+//              self.showModal = true
+//              print("\(index)")
+//            }
+//        }
+        if socket.ChatData.members != nil{
+          ForEach(Array(zip(socket.ChatData.members!.indices, socket.ChatData.members!)), id: \.1){ index, member in
+            ChatRow(member, callback: function)
+              .onShowHistory {
+                self.showModal = true
+                print("\(index)")
+              }
+          }
+          
+          ForEach(Array(zip(ChatShared.members.indices, ChatShared.members)), id: \.1){ index, member in
+            ChatRow(member, callback: function)
+              .onShowHistory {
+                self.showModal = true
+                print("\(index)")
+              }
+          }
         }
-        
         
       }
       .background(Color(hex: "F9F7EF"))
@@ -34,6 +53,7 @@ struct ChatList: View {
     Button {
       withAnimation(Animation.easeOut(duration: 0.3)) {
         moveRow(from: IndexSet(integer: memberViewModel.members.count-1), to: 0)
+//        memberViewModel.members.reverse()
       }
     } label: {
       Text(".")

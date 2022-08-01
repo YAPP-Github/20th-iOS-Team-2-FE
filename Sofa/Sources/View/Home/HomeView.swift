@@ -18,6 +18,8 @@ struct HomeView: View {
   @State var text: String?
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
+  @State var receivedText = ""
+  
   
   @StateObject var socket = StarscreamWebsocket()
   
@@ -115,7 +117,7 @@ struct HomeView: View {
       }
     }// ZStack
   }
-  
+
 }
 
 //struct HomeView_Previews: PreviewProvider {

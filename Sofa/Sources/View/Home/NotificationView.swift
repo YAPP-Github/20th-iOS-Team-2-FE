@@ -12,6 +12,9 @@ struct NotificationView: View {
   @State var gotoAlarmSetting = false
   @ObservedObject var notificationViewModel = NotificationViewModel()
   @Binding var selectionType: Tab
+  @State var isTitleClick = false
+  @State var isEdit = false
+  @State var title = "알림"
   
   @ObservedObject var tabbarManager = TabBarManager.shared
   
@@ -31,80 +34,83 @@ struct NotificationView: View {
   }
   
   var body: some View {
-    ScrollView {
-      LazyVStack(spacing: 0) {
-        ForEach(periodArr.indices, id: \.self) { i in
-          if getPeriodType(periodArr[i]).count > 0{ // 해당 기간에 없으면 표시 X
-            Rectangle()
-              .foregroundColor(Color(hex: "FAF8F0"))
-              .frame(height: 8)
-            HStack {
-              Spacer()
-                .frame(width: 16)
-              Text("\(periodArr[i])")
-                .font(.custom("Pretendard-Bold", size: 13))
-                .foregroundColor(Color(hex: "999899"))
-              Spacer()
-            }
-            .frame(height: 52)
-            .background(Color.white)
-          }
-          ForEach(Array(zip(getPeriodType(periodArr[i]).indices, getPeriodType(periodArr[i]))), id: \.1) { idx, notification in
-            //            NavigationLink {
-            //              AlbumImageDetailView(image: UIImage(imageLiteralResourceName: "photo01"), index: 0)
-            //            } label: {
-            //              alarmRow(notification)
-            //            }
-            NotificationRow(notification)
-              .onTapGesture {
-                if notification.type == "CALENDAR"{
-                  tabbarManager.showTabBar = true
-                  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
-                    self.selectionType = .calendar
+    ZStack{
+      NavigationView{
+        ZStack{
+          VStack(spacing: 0){
+            Border()
+            ScrollView {
+              LazyVStack(spacing: 0) {
+                ForEach(periodArr.indices, id: \.self) { i in
+                  if getPeriodType(periodArr[i]).count > 0{ // 해당 기간에 없으면 표시 X
+                    Rectangle()
+                      .foregroundColor(Color(hex: "FAF8F0"))
+                      .frame(height: 8)
+                    HStack {
+                      Spacer()
+                        .frame(width: 16)
+                      Text("\(periodArr[i])")
+                        .font(.custom("Pretendard-Bold", size: 13))
+                        .foregroundColor(Color(hex: "999899"))
+                      Spacer()
+                    }
+                    .frame(height: 52)
+                    .background(Color.white)
                   }
-                  print("CALENDAR")
-                }else if notification.type == "ALBUM"{
-                  tabbarManager.showTabBar = true
-                  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
-                    self.selectionType = .album
+                  ForEach(Array(zip(getPeriodType(periodArr[i]).indices, getPeriodType(periodArr[i]))), id: \.1) { idx, notification in
+                    //            NavigationLink {
+                    //              AlbumImageDetailView(image: UIImage(imageLiteralResourceName: "photo01"), index: 0)
+                    //            } label: {
+                    //              alarmRow(notification)
+                    //            }
+                    NotificationRow(notification)
+                      .onTapGesture {
+                        if notification.type == "CALENDAR"{
+                          tabbarManager.showTabBar = true
+                          DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
+                            self.selectionType = .calendar
+                          }
+                          print("CALENDAR")
+                        }else if notification.type == "ALBUM"{
+                          tabbarManager.showTabBar = true
+                          DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
+                            self.selectionType = .album
+                          }
+                          print("ALBUM")
+                        }
+                        
+                        self.presentationMode.wrappedValue.dismiss()
+                        
+                      }
+                    
                   }
-                  print("ALBUM")
                 }
-                
-                self.presentationMode.wrappedValue.dismiss()
-                
+                Rectangle()
+                  .foregroundColor(Color(hex: "FAF8F0"))
+                  .frame(height: UIDevice().hasNotch ? 40 : 0)
               }
-            
+              NavigationLink("", isActive: $gotoAlarmSetting) {
+                SetNotificationView()
+              }
+            }// ScrollView
+            .onAppear{
+              tabbarManager.showTabBar = false
+            }
+            .background(Color(hex: "FAF8F0"))
+            .padding(.top, 1) // ignoreSafeArea 적용 X
+            .padding(.bottom, 5)
           }
-        }
-        Rectangle()
-          .foregroundColor(Color(hex: "FAF8F0"))
-          .frame(height: UIDevice().hasNotch ? 40 : 0)
-      }
-    }// ScrollView
-    .toolbar {
-      NavigationLink {
-        SetNotificationView()
+          
+        }//ZStack
+        .navigationBarWithTextButtonStyle(isNextClick: $gotoAlarmSetting, isTitleClick: .constant(false), isDisalbeNextButton: .constant(false), isDisalbeTitleButton: .constant(false), title, nextText: "설정", Color.init(hex: "#43A047"))
 
-      } label: {
-        Text("설정")
-      }
-      
-      //            Button {
-      //              print("goto알림")
-      //            } label: {
-      //              Text("설정")
-      //                .foregroundColor(Color(hex: "43A047"))
-      //            }
-    }
-    .navigationBarTitleDisplayMode(.inline)
-    .navigationTitle("알림")
-    .background(Color(hex: "FAF8F0"))
-    .padding(.top, 1) // ignoreSafeArea 적용 X
-    .padding(.bottom, 5)
-    .edgesIgnoringSafeArea([.bottom])
+        .edgesIgnoringSafeArea([.bottom])
+      }// NavigationView
+      .navigationBarHidden(true)
+    }// ZStack
+   
     
-  }
+  }// body
   
   func getPeriodType(_ periodType: String) -> Array<Notification>{
     switch periodType {

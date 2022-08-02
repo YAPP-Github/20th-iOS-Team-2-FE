@@ -36,6 +36,9 @@ struct ContentView: View {
           HomeView(selectionType: $selection, dateToShow: $dateToShow)
         case .calendar:
           CalendarView(currentDate: dateToShow.toDateDay()!)
+            .onAppear{
+              print(dateToShow)
+            }
         case .album:
           AlbumView()
         case .setting:

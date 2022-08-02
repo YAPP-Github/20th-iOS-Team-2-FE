@@ -12,15 +12,17 @@ struct AppendTaskModalView: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   @EnvironmentObject var store: TaskStore
   
-  @State var isTitleFocused: Bool = false
-  @State var isMemoFocused: Bool = false
-  
+  @State var isTitleFocused = false
+  @State var isMemoFocused = false
+  @State var isColorButtonClicked = false
+  @State var showTimePicker = false
+  @State var showColorPicker = false
   @State var title = ""
   @State var memo = ""
   @State var allDayToggle = false
   @State var currentDate = Date()
   @State var showDatePicker = false
-  @State var color = "#43A047"
+  @State var selectedColor = "#43A047"
   @State var time = Date()
   var task: Task? = nil
   
@@ -56,7 +58,7 @@ struct AppendTaskModalView: View {
           .padding(EdgeInsets(top: 25, leading: 16, bottom: 12, trailing: 16))
         
         // 색상
-        TaskColorPicker(selectedColor: "#43A047")
+        colorPicker
         Border()
         Rectangle()
           .frame(width: Screen.maxWidth, height: 7)
@@ -90,7 +92,7 @@ struct AppendTaskModalView: View {
             
             // 시간
             if !allDayToggle {
-              TaskTimePicker(time: Date())
+              timePicker
                 .padding(.bottom, 27)
                 .padding(.top, 12)
             }
@@ -173,7 +175,7 @@ struct AppendTaskModalView: View {
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
           self.presentationMode.wrappedValue.dismiss()
-          store.insert(allDay: allDayToggle, date: currentDate.getFormattedDate(format: "yyyy-MM-dd"), time: time.getFormattedDate(format: "HH:mm"), title: title, content: memo, visibility: true, color: color)
+          store.insert(allDay: allDayToggle, date: currentDate.getFormattedDate(format: "yyyy-MM-dd"), time: time.getFormattedDate(format: "HH:mm"), title: title, content: memo, visibility: true, color: selectedColor)
         }, label: {
           Text("완료")
             .fontWeight(.semibold)
@@ -214,6 +216,95 @@ struct AppendTaskModalView: View {
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .navigationBarHidden(true)
+  }
+  
+  var timePicker: some View {
+    VStack{
+      HStack(spacing: 0) {
+        Image(systemName: "clock")
+          .font(.system(size: 20))
+          .frame(width: 24, height: 24)
+          .foregroundColor(Color(hex:"4CAF50"))
+          .padding(.trailing, 10)
+        Text("시간")
+          .font(.custom("Pretendard-Medium", size: 16))
+          .foregroundColor(Color(hex: "121619"))
+        Spacer()
+        Text("\(time.getFormattedDate(format: "a hh:MM"))")
+          .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+          .font(.custom("Pretendard-Medium", size: 13))
+          .foregroundColor(Color(hex: "#43A047"))
+          .frame(height: 28, alignment: .center)
+          .background(Color(hex: "#E8F5E9"))
+          .cornerRadius(4)
+          .onTapGesture {
+            withAnimation{
+            self.showTimePicker.toggle()
+            }
+          }
+      }
+      if showTimePicker {
+        DatePicker(selection: $time, displayedComponents: .hourAndMinute) {}
+        .datePickerStyle(WheelDatePickerStyle())
+        .labelsHidden()
+        .frame(width: 358)
+      }
+    }
+  }
+  
+  var colorPicker: some View {
+    VStack(spacing: 0){
+      HStack(spacing: 0){
+        Circle()
+          .foregroundColor(Color(hex: selectedColor))
+          .overlay(
+            Circle()
+              .stroke(.black.opacity(0.05), lineWidth: 1)
+          )
+          .padding(3)
+          .overlay(
+            Circle()
+              .stroke(.black.opacity(0.05), lineWidth: 1)
+          )
+          .frame(width: 24, height: 24)
+        
+        Text("색상")
+          .font(.custom("Pretendard-Medium", size: 16))
+          .foregroundColor(Color(hex: "121619"))
+          .padding(.leading, 10)
+        
+        Spacer()
+        
+        Button(action: {
+          withAnimation {
+            self.showColorPicker.toggle()
+            self.isColorButtonClicked.toggle()
+          }
+        }) {
+          Image(systemName: self.isColorButtonClicked ? "chevron.down" : "chevron.right" )
+            .font(.system(size: 20))
+            .frame(width: 24, height: 24)
+            .foregroundColor(self.isColorButtonClicked ? Color(hex: "#121619") : Color(.black).opacity(0.4) )
+        }
+      }
+      
+      if showColorPicker {
+        ColorCircles(selectedColor: $selectedColor)
+          .padding(.top, 24)
+        
+        Rectangle()
+          .foregroundColor(Color(hex: "#EDEADF"))
+          .frame(height: 1)
+          .padding(.top, 12)
+          .padding(.bottom, 16)
+      } else {
+        Rectangle()
+          .foregroundColor(Color.white)
+          .frame(height: 28)
+      }
+    }
+    .padding(.leading, 16)
+    .padding(.trailing, 16)
   }
 }
 

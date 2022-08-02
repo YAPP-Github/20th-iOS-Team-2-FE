@@ -471,6 +471,7 @@
 				0A2887F12870A646000A72F2 /* ChatViewModel.swift */,
 				0AE492012876A8DC00341D35 /* HistoryViewModel.swift */,
 				0A915DD4287A9B8C0055AD6D /* NotificationViewModel.swift */,
+				0A4F4C35289901FA00913021 /* ChatScreenViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -532,7 +533,6 @@
 				0AE4919928740D1A00341D35 /* HistoryView.swift */,
 				0A915DF6287B21E70055AD6D /* MessageView.swift */,
 				0A4F4C222891586B00913021 /* StarscreamWebsocket.swift */,
-				0A4F4C35289901FA00913021 /* ChatScreenViewModel.swift */,
 				0A4F4C2B28959CA800913021 /* Chat.swift */,
 				0AAB36F62866188100A47B24 /* ViewModel */,
 				0AAB367A2863814F00A47B24 /* SubViews */,

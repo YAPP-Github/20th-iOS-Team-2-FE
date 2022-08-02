@@ -27,15 +27,8 @@ struct ChatList: View {
 //              print("\(index)")
 //            }
 //        }
-        if socket.ChatData.members != nil{
-          ForEach(Array(zip(socket.ChatData.members!.indices, socket.ChatData.members!)), id: \.1){ index, member in
-            ChatRow(member, callback: function)
-              .onShowHistory {
-                self.showModal = true
-                print("\(index)")
-              }
-          }
-          
+        if ChatShared.members.count > 0{
+
           ForEach(Array(zip(ChatShared.members.indices, ChatShared.members)), id: \.1){ index, member in
             ChatRow(member, callback: function)
               .onShowHistory {

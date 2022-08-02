@@ -49,10 +49,10 @@ struct ChatRow: View {
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
 
-        Text("\(member.content == "" ? "아직 인사를 건네기 전이에요." : member.content)")
+        Text("\((member.content == "" || member.content == nil ? "아직 인사를 건네기 전이에요." : member.content) ?? "")")
           .font(.custom("Pretendard-Regular", size: 14))
           .lineLimit(2)
-          .foregroundColor(member.content == "" ? Color.gray :  Color.black)
+          .foregroundColor(member.content == "" || member.content == nil ? Color.gray :  Color.black)
           .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 16))
           .onTapGesture{
             callback?()

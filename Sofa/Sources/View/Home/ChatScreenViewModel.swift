@@ -15,6 +15,12 @@ final class ChatScreenViewModel: ObservableObject {
   private var websocketTask: URLSessionWebSocketTask?
   
   @Published private(set) var messages: String = ""
+  @Published var ChatData: OriginalChatResponse = OriginalChatResponse(timestamp: "", status: nil, detail: "")
+  @ObservedObject var ChatShared = Chat.shared
+  
+  @State var firstConnected = true
+  
+  var subscription = Set<AnyCancellable>()
   
   func connect() {
     guard let url = URL(string: "ws://3.34.94.220:8085/home/1/1") else {
@@ -28,6 +34,7 @@ final class ChatScreenViewModel: ObservableObject {
     websocketTask?.resume()
     receiveMessage()
     print("connect!")
+    firstConnected = false
   }
   
   func disconnect() {
@@ -36,7 +43,7 @@ final class ChatScreenViewModel: ObservableObject {
   }
  
   func receiveMessage() {
-    websocketTask?.receive { result in
+    websocketTask?.receive { [self] result in
       switch result {
       case .failure(let error):
         print("Error in receiving message: \(error)")
@@ -44,8 +51,31 @@ final class ChatScreenViewModel: ObservableObject {
         switch message {
         case .string(let text):
           print("Received string: \(text)")
+          if firstConnected == true{ // 가장 처음
+            if let chatData = text.data(using: .utf8){
+              Just(chatData)
+                .decode(type: OriginalChatResponse.self, decoder: JSONDecoder())
+                .map{ $0.members }
+                .sink(receiveCompletion: { completion in
+                  print("데이터스트림 완료")
+
+                }, receiveValue: { receivedValue in
+                  print("받은 값: \(receivedValue?.count ?? 0)")
+                  DispatchQueue.main.async {
+                    self.ChatShared.members = receivedValue ?? []
+                  }
+                  
+                }).store(in: &subscription)
+            }
+          }else{
+            // 처음이 아니라면 싱글톤 객체에 추가됨
+            print("firstConnected: \(firstConnected)")
+          }
+          
         case .data(let data):
           print("Received data: \(data)")
+        @unknown default:
+          print("@unknown default")
         }
         self.receiveMessage()
       }

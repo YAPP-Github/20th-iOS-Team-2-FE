@@ -18,6 +18,7 @@ struct RegisterView: View {
   @State var info = [String](repeating: "", count: 4)
   @State var isTextFocused: Bool = false
   @Binding var accessToken: String
+  @Binding var userId: Int
     
   let placeHolderText = [
     "홍길동",
@@ -104,6 +105,7 @@ struct RegisterView: View {
               .modifier(RegisterTextModifier())
               .onAppear{
                 print("RegisterView accessToken: \(accessToken)")
+                print("RegisterView userId: \(userId)")
               }
           case 2:
             Text("가족 내에서\n나는 어떤 역할인가요?")
@@ -244,7 +246,7 @@ struct RegisterView: View {
           }
 //          .fullScreenCover(isPresented: $showFinishModal, content: RegisterFinishView(accessToken: $accessToken))
           .fullScreenCover(isPresented: $showFinishModal) {
-            RegisterFinishView(accessToken: $accessToken)
+            RegisterFinishView(accessToken: $accessToken, userId: $userId)
           }
         }
           .padding(.bottom, 8+34)

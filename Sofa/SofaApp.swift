@@ -26,24 +26,24 @@ struct SofaApp: App {
     if Storage.isFirstTime() { // 첫 실행
       Constant.accessToken = nil
       KeychainWrapper.standard.remove(forKey: "accessToken")
+      Constant.userId = nil
+      KeychainWrapper.standard.remove(forKey: "userId")
     }
   }
   var body: some Scene {
     WindowGroup {
       
-//      if KeychainWrapper.standard.string(forKey: "accessToken") != nil{ // Access Token 있다면, 홈 화면
-//        ContentView()
-//      }
-//      else{ // 로그인 필요
-//        LoginView()
-//          .onOpenURL { url in
-//            if (AuthApi.isKakaoTalkLoginUrl(url)){
-//              _ = AuthController.handleOpenUrl(url: url)
-//            }
-//          }
-//      }
-      
-      ContentView()
+      if KeychainWrapper.standard.string(forKey: "accessToken") != nil{ // Access Token 있다면, 홈 화면
+        ContentView()
+      }
+      else{ // 로그인 필요
+        LoginView()
+          .onOpenURL { url in
+            if (AuthApi.isKakaoTalkLoginUrl(url)){
+              _ = AuthController.handleOpenUrl(url: url)
+            }
+          }
+      }
       
     }
   }

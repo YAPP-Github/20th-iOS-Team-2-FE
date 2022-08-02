@@ -110,7 +110,8 @@ struct HomeView: View {
         .homenavigationBarStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), $eventViewModel.hometitle, "bell")
         .onAppear{
           tabbarManager.showTabBar = true
-//          print(Constant.accessToken!)                                                                                                                                                                             
+          print(Constant.accessToken ?? "")
+          print(Constant.userId ?? 0)
         }
         .onAppear{
           self.vm.connect() // 웹소켓 연결

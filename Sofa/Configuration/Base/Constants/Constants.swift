@@ -18,6 +18,14 @@ class Constant{
     }
   }
   
+  static var userId: Int? = KeychainWrapper.standard.integer(forKey: "userId") {
+    didSet {
+      guard let userId = userId else { return }
+      print("USER ID: \(userId)")
+      KeychainWrapper.standard.set(userId, forKey: "userId")
+    }
+  }
+  
 }
 
 struct Screen {

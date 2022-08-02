@@ -15,7 +15,7 @@ struct AlbumImageDetailNavigationBar: View {
   var body: some View {
     VStack {
       Button(action: {
-        colorScheme = .light
+        self.colorScheme = .light
         presentable.wrappedValue.dismiss()
       }) {
         VStack {

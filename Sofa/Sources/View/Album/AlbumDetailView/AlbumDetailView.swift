@@ -17,7 +17,7 @@ struct AlbumDetailView: View {
   
   @State var isTitleClick = false
   @State var isEdit = false
-  @State var colorScheme: ColorScheme = .light
+  @State var colorScheme: ColorScheme = .dark
 
   // 이미지
   @State var isPhotoThumbnailClick: Bool = false
@@ -117,14 +117,14 @@ struct AlbumDetailView: View {
           
           // 댓글 click
           NavigationLink("", destination: AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), colorScheme: $colorScheme, isDate: selectAlbumId != nil ? true : false, info: selectFile, image: selectImage, isPreCommentClick: true), isActive: $isPhotoCommentClick)
-          
+
           // 녹음 이미지 click
           NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), colorScheme: $colorScheme, isDate: selectAlbumId != nil ? true : false, info: selectFile, isPreCommentClick: false), isActive: $isRecordingThumbnailClick)
           
           // 댓글 click
           NavigationLink("", destination: AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: selectFile!.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: selectFile == nil ? -1 : selectFile!.fileId, isFavourite: selectFile == nil ? false : selectFile!.favourite), colorScheme: $colorScheme, isDate: selectAlbumId != nil ? true : false, info: selectFile, isPreCommentClick: true), isActive: $isRecordingCommentClick)
         }
-        .preferredColorScheme(colorScheme)
+        .preferredColorScheme(.light)
         .background(Color.init(hex: "#FAF8F0")) // 임시
         .toastMessage(data: $messageData, isShow: $isBookmarkClick, topInset: 0)
         .toastMessage(data: $messageData2, isShow: $authorizationViewModel.showAlbum, topInset: 0)

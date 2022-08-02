@@ -126,7 +126,6 @@ struct AlbumImageDetailView: View {
             .onTapGesture {
               isEllipsisClick = false
             }
-            .onAppear { colorScheme = .dark }
           
           if isEllipsisClick {
             if isDate {

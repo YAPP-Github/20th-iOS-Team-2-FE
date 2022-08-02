@@ -69,6 +69,7 @@ struct AlbumDateEditView: View {
               .fontWeight(.semibold)
           }
         })
+        .preferredColorScheme(.light)
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {

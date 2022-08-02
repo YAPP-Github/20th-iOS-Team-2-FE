@@ -247,6 +247,7 @@ struct AlbumRecordDetailView: View {
             .onTapGesture {
               isEllipsisClick = false
             }
+            .onAppear { colorScheme = .dark }
           
           if isEllipsisClick {
             if isDate {
@@ -270,6 +271,7 @@ struct AlbumRecordDetailView: View {
           .background(BackgroundCleanerView())
       }
       .onAppear {
+        colorScheme = .dark // dark 모드
         audioViewModel.startInit(audio: URL(string: info!.link)!)
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true

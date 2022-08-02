@@ -39,6 +39,7 @@
 		0A4F4C28289584EB00913021 /* NewChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C27289584EB00913021 /* NewChatResponse.swift */; };
 		0A4F4C2A2895953D00913021 /* OriginalChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C292895953D00913021 /* OriginalChatResponse.swift */; };
 		0A4F4C2C28959CA800913021 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C2B28959CA800913021 /* Chat.swift */; };
+		0A4F4C36289901FA00913021 /* ChatScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C35289901FA00913021 /* ChatScreenViewModel.swift */; };
 		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
@@ -238,6 +239,7 @@
 		0A4F4C27289584EB00913021 /* NewChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatResponse.swift; sourceTree = "<group>"; };
 		0A4F4C292895953D00913021 /* OriginalChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalChatResponse.swift; sourceTree = "<group>"; };
 		0A4F4C2B28959CA800913021 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		0A4F4C35289901FA00913021 /* ChatScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewModel.swift; sourceTree = "<group>"; };
 		0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0A915DD2287A9A9B0055AD6D /* NotificationMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationMock.json; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				0AE4919928740D1A00341D35 /* HistoryView.swift */,
 				0A915DF6287B21E70055AD6D /* MessageView.swift */,
 				0A4F4C222891586B00913021 /* StarscreamWebsocket.swift */,
+				0A4F4C35289901FA00913021 /* ChatScreenViewModel.swift */,
 				0A4F4C2B28959CA800913021 /* Chat.swift */,
 				0AAB36F62866188100A47B24 /* ViewModel */,
 				0AAB367A2863814F00A47B24 /* SubViews */,
@@ -1602,6 +1605,7 @@
 				C4EC31D0284F99F30049F2C4 /* AlbumDetailView.swift in Sources */,
 				C481B6C1287607DB005D6831 /* AlbumImageDetailSettingBar.swift in Sources */,
 				C481B6DC287AEF0E005D6831 /* Ex+String.swift in Sources */,
+				0A4F4C36289901FA00913021 /* ChatScreenViewModel.swift in Sources */,
 				C4A979A22869E40F00326ABC /* ToastMessage.swift in Sources */,
 				C4B8F29F285109410000B8CB /* AlbumActionSheetCard.swift in Sources */,
 				C4AC88672889BC0900BA5921 /* AlbumDetailListViewModel.swift in Sources */,

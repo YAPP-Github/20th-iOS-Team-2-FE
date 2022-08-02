@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-  
+  @StateObject var vm = ChatScreenViewModel()
   @StateObject var eventViewModel = EventViewModel()
+  
   @State var gotoAlarm = false
   @State var showModal = false
   @State var showMessageView = false
@@ -19,9 +20,9 @@ struct HomeView: View {
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
   @State var receivedText = ""
+ 
   
-  
-  @StateObject var socket = StarscreamWebsocket()
+//  @StateObject var socket = StarscreamWebsocket()
   
   @ObservedObject var tabbarManager = TabBarManager.shared
   
@@ -104,7 +105,7 @@ struct HomeView: View {
           tabbarManager.showTabBar = true
         }
         .onAppear{
-          self.socket.connect()
+          self.vm.connect()
         }
       }// NavigationView
       .navigationViewStyle(StackNavigationViewStyle())

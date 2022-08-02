@@ -45,23 +45,34 @@ struct HomeView: View {
               .fullScreenCover(isPresented: $showModal) {
                 HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
-//                  .onAppear{
-//                    tabbarManager.showTabBar = false
-//                  }
-//                  .onDisappear{
-//                    tabbarManager.showTabBar = true
-//                  }
+                  .onAppear{
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = false
+                    }
+                    
+                  }
+                  .onDisappear{
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = true
+                    }
+                  }
               }
             if gotoAlarm{
               NavigationLink("", isActive: $gotoAlarm) {
                 NotificationView(selectionType: $selectionType)
                   .onAppear{
-                    tabbarManager.showTabBar = false
-                    emojiViewOffset = UIDevice().hasNotch ? -24 : -15
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = false
+                      emojiViewOffset = UIDevice().hasNotch ? -24 : -15
+                    }
+
                   }
                   .onDisappear{
-                    tabbarManager.showTabBar = true
-                    emojiViewOffset = UIDevice().hasNotch ? -Screen.maxHeight * 0.11 - 24 : -Screen.maxHeight * 0.11 - 5 - 15
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = true
+                      emojiViewOffset = UIDevice().hasNotch ? -Screen.maxHeight * 0.11 - 24 : -Screen.maxHeight * 0.11 - 5 - 15
+                    }
+
                   }
               }
             }
@@ -76,9 +87,6 @@ struct HomeView: View {
             .fullScreenCover(isPresented: $showMessageView) {
               MessageView($showMessageView, $text, 0, $placeholder)
                 .background(BackgroundCleanerView())
-            }
-            .onAppear{
-              print(tabbarManager.showTabBar)
             }
           
           
@@ -105,7 +113,7 @@ struct HomeView: View {
 //          print(Constant.accessToken!)                                                                                                                                                                             
         }
         .onAppear{
-          self.vm.connect()
+          self.vm.connect() // 웹소켓 연결
         }
       }// NavigationView
       .navigationViewStyle(StackNavigationViewStyle())

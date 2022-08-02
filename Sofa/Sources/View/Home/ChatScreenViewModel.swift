@@ -50,14 +50,14 @@ final class ChatScreenViewModel: ObservableObject {
       case .success(let message):
         switch message {
         case .string(let text):
-          print("Received string: \(text)")
+//          print("Received string: \(text)")
           if firstConnected == true{ // 가장 처음
             if let chatData = text.data(using: .utf8){
               Just(chatData)
                 .decode(type: OriginalChatResponse.self, decoder: JSONDecoder())
                 .map{ $0.members }
                 .sink(receiveCompletion: { completion in
-                  print("데이터스트림 완료")
+//                  print("데이터스트림 완료")
 
                 }, receiveValue: { receivedValue in
                   print("받은 값: \(receivedValue?.count ?? 0)")

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-  
+  @StateObject var vm = ChatScreenViewModel()
   @StateObject var eventViewModel = EventViewModel()
+  
   @State var gotoAlarm = false
   @State var showModal = false
   @State var showMessageView = false
@@ -18,6 +19,10 @@ struct HomeView: View {
   @State var text: String?
   @State var placeholder = "가족에게 인사를 남겨보세요."
   @State var currentSelectedTab: Tab = .home // 현재 선택된 탭으로 표시할 곳
+  @State var receivedText = ""
+ 
+  
+//  @StateObject var socket = StarscreamWebsocket()
   @State var emojiViewOffset = -24.0
   
   @ObservedObject var tabbarManager = TabBarManager.shared
@@ -40,23 +45,34 @@ struct HomeView: View {
               .fullScreenCover(isPresented: $showModal) {
                 HistoryView(isShowing: $showModal)
                   .background(BackgroundCleanerView())
-//                  .onAppear{
-//                    tabbarManager.showTabBar = false
-//                  }
-//                  .onDisappear{
-//                    tabbarManager.showTabBar = true
-//                  }
+                  .onAppear{
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = false
+                    }
+                    
+                  }
+                  .onDisappear{
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = true
+                    }
+                  }
               }
             if gotoAlarm{
               NavigationLink("", isActive: $gotoAlarm) {
                 NotificationView(selectionType: $selectionType)
                   .onAppear{
-                    tabbarManager.showTabBar = false
-                    emojiViewOffset = UIDevice().hasNotch ? -24 : -15
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = false
+                      emojiViewOffset = UIDevice().hasNotch ? -24 : -15
+                    }
+
                   }
                   .onDisappear{
-                    tabbarManager.showTabBar = true
-                    emojiViewOffset = UIDevice().hasNotch ? -Screen.maxHeight * 0.11 - 24 : -Screen.maxHeight * 0.11 - 5 - 15
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
+                      tabbarManager.showTabBar = true
+                      emojiViewOffset = UIDevice().hasNotch ? -Screen.maxHeight * 0.11 - 24 : -Screen.maxHeight * 0.11 - 5 - 15
+                    }
+
                   }
               }
             }
@@ -71,9 +87,6 @@ struct HomeView: View {
             .fullScreenCover(isPresented: $showMessageView) {
               MessageView($showMessageView, $text, 0, $placeholder)
                 .background(BackgroundCleanerView())
-            }
-            .onAppear{
-              print(tabbarManager.showTabBar)
             }
           
           
@@ -100,6 +113,9 @@ struct HomeView: View {
           print(Constant.accessToken ?? "")
           print(Constant.userId ?? 0)
         }
+        .onAppear{
+          self.vm.connect() // 웹소켓 연결
+        }
       }// NavigationView
       .navigationViewStyle(StackNavigationViewStyle())
       .accentColor(Color(hex: "43A047"))
@@ -115,7 +131,7 @@ struct HomeView: View {
       
     }// ZStack
   }
-  
+
 }
 
 //struct HomeView_Previews: PreviewProvider {

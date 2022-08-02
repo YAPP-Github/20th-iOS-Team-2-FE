@@ -13,6 +13,7 @@ struct AlbumImageDetailView: View {
   @StateObject var commentViewModel: CommentViewModel
 
   @State var touchImage = false
+  @Binding var colorScheme: ColorScheme // status bar color
   let isDate: Bool // 날짜/유형별 확인
   var info: AlbumDetailElement?
   var image: UIImage
@@ -110,7 +111,7 @@ struct AlbumImageDetailView: View {
         Color.clear
           .ignoresSafeArea()
           .overlay(
-            AlbumImageDetailNavigationBar(safeTop: geometry.safeAreaInsets.top)
+            AlbumImageDetailNavigationBar(colorScheme: $colorScheme, safeTop: geometry.safeAreaInsets.top)
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
           .overlay(
@@ -125,6 +126,7 @@ struct AlbumImageDetailView: View {
             .onTapGesture {
               isEllipsisClick = false
             }
+            .onAppear { colorScheme = .dark }
           
           if isEllipsisClick {
             if isDate {
@@ -173,6 +175,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), isDate: true, info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
+    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
   }
 }

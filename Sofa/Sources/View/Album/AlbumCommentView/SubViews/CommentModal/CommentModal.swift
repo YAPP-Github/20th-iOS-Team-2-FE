@@ -73,7 +73,7 @@ struct CommentModal: View {
     HStack {
       Text("댓글을 남겨보세요")
         .font(.custom("Pretendard-Medium", size: 16))
-        .foregroundColor(Color.secondary)
+        .foregroundColor(Color(hex: "999999"))
         .padding(EdgeInsets(top: 16, leading: 26, bottom: 12, trailing: 26))
       
       Spacer()

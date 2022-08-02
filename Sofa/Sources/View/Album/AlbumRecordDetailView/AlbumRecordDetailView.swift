@@ -12,6 +12,7 @@ struct AlbumRecordDetailView: View {
   @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
   @StateObject var commentViewModel: CommentViewModel
   @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
+  @Binding var colorScheme: ColorScheme // status bar color
   let isDate: Bool // 날짜/유형별 확인
   let info: AlbumDetailElement?
   
@@ -233,7 +234,7 @@ struct AlbumRecordDetailView: View {
           .ignoresSafeArea()
           .overlay(
             // Navigation Bar
-            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: info!.title!, safeTop: geometry.safeAreaInsets.top)
+            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), colorScheme: $colorScheme, title: info!.title!, safeTop: geometry.safeAreaInsets.top)
           )
           .overlay(
             recordBottomArea
@@ -285,6 +286,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), isDate: true, info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), colorScheme: .constant(.dark), isDate: true, info: data, isPreCommentClick: false)
   }
 }

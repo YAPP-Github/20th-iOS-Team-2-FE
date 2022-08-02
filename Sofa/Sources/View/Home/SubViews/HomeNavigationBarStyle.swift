@@ -25,6 +25,7 @@ struct HomeNavigationBarStyle: ViewModifier {
           isButtonClick = true
         }, label: {
           Image(systemName: buttonName)
+            .font(Font.body.weight(.medium))
         })
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))

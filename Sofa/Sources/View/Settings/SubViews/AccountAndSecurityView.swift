@@ -51,6 +51,8 @@ struct AccountAndSecurityView: View {
                         print("로그아웃")
                         Constant.accessToken = nil
                         KeychainWrapper.standard.remove(forKey: "accessToken")
+                        Constant.userId = nil
+                        KeychainWrapper.standard.remove(forKey: "userId")
                         islogout = true
                         presentationMode.wrappedValue.dismiss()
                       }))

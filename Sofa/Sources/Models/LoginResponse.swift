@@ -13,5 +13,6 @@ struct LoginResponse: Decodable {
   let detail: String? // 실패
   let type: String? // 성공
   let authToken: String? // 성공
+  let userId: Int? // 성공
 }
 

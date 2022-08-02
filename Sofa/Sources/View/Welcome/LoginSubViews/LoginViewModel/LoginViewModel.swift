@@ -14,14 +14,16 @@ class LoginViewModel: ObservableObject {
   @Published var showJoin: Bool
   @Published var showContent: Bool
   @Published var accessToken: String
+  @Published var userId: Int
   
   private var cancellables = Set<AnyCancellable>()    // disposeBag
   
   init(){
-    loginResponse = LoginResponse(timestamp: "", status: 0, detail: "", type: "", authToken: "")
+    loginResponse = LoginResponse(timestamp: "", status: 0, detail: "", type: "", authToken: "", userId: 0)
     showJoin = false
     showContent = false
     accessToken = ""
+    userId = 0
   }
   
   func toggleJoin(){
@@ -75,12 +77,15 @@ class LoginViewModel: ObservableObject {
           }else{ // Success
             self?.loginResponse = receivedValue
             if self?.loginResponse.type == "join"{ // 첫 로그인 (회원가입)
-//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
               self?.accessToken = (self?.loginResponse.authToken)!
+              self?.userId = (self?.loginResponse.userId)!
               self?.toggleJoin()
+              print("ACCESSTOKEN: \(self?.accessToken ?? "") USERID: \(self?.userId ?? 0)")
             }else if self?.loginResponse.type == "login"{ // 재 로그인
-//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
+              Constant.accessToken = self?.loginResponse.authToken
+              Constant.userId = self?.loginResponse.userId
               self?.accessToken = (self?.loginResponse.authToken)!
+              self?.userId = (self?.loginResponse.userId)!
               self?.toggleLogin()
             }
             
@@ -122,13 +127,18 @@ class LoginViewModel: ObservableObject {
           }else{ // Success
             self?.loginResponse = receivedValue
             if self?.loginResponse.type == "join"{ // 첫 로그인 (회원가입)
-//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
               self?.accessToken = (self?.loginResponse.authToken)!
+              self?.userId = (self?.loginResponse.userId)!
               self?.toggleJoin()
+              print("ACCESSTOKEN: \(self?.accessToken ?? "") USERID: \(self?.userId ?? 0)")
+              print("JOIN")
             }else if self?.loginResponse.type == "login"{ // 재 로그인
-//              Constant.accessToken = self?.loginResponse.authToken // Token 저장 - 원래 회원 등록하고 나서 해야함 !!
+              Constant.accessToken = self?.loginResponse.authToken
+              Constant.userId = self?.loginResponse.userId
               self?.accessToken = (self?.loginResponse.authToken)!
+              self?.userId = (self?.loginResponse.userId)!
               self?.toggleLogin()
+              print("LOGIN")
             }
             
           }

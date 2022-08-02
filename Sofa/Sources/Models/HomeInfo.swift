@@ -8,13 +8,17 @@
 import Foundation
 
 struct HomeInfo: Decodable {
-  var familyName: String
-  var events: [Event]
+  let timestamp: String? // 실패
+  let status: Int? // 실패
+  let detail: String? // 실패
+  var familyName: String // 성공
+  var events: [Event] // 성공
 }
 
 struct Event: Decodable {
   var title: String
   var eventDate: String
+  var color: String?
   
   static func getDummy() -> Self{
     return Event(title: "크리스마스 파티🎄", eventDate: "2022-12-25")

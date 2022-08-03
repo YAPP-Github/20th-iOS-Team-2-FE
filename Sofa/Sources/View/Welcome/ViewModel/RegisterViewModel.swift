@@ -21,7 +21,6 @@ class RegisterViewModel: ObservableObject {
   }
   
   func register(name: String, roleInFamily: String, birthDay: String, nickname: String) {
-    print("UserVM: register() called")
     AF.request(RegisterManager.registerUser(name: name, roleInFamily: roleInFamily, birthDay: birthDay, nickname: nickname))
       .publishDecodable(type: RegisterResponse.self)
       .value()
@@ -64,30 +63,5 @@ class RegisterViewModel: ObservableObject {
         }
       )
       .store(in: &subscription)
-        
   }
-    
-//    AuthAPIService.register(name: name, email: email, password: password)
-//      .sink{ (completion: Subscribers.Completion<AFError>) in
-//        print("UserVM completion: \(completion)")
-//      } receiveValue: { (receivedUser: UserData) in
-//        self.loggedInUser = receivedUser
-//      }.store(in: &subscription)
-  
-  
-//  func fetchRandomUsers() {
-//    print(#fileID, #function, #line, "")
-//    //기본 세션
-//    AF.request(APIConstants.url)
-//      .publishDecodable(type: RegisterUser.self) //파싱
-//      .compactMap{ $0.value } //옵셔널제거, 언랩핑
-//      //.map{ $0.results } //result만 가지고 옴
-//      .sink(receiveCompletion: { completion in //구독을 통해 이벤트 받음
-//        print("데이터스트림 완료 ")
-//      }, receiveValue: { receivedValue in
-//        //print("받은 값: \(receivedValue.count)")
-//        self.registerUsers = receivedValue //정제된 데이터를 넣음
-//      }).store(in: &subscription) //메모리에서 날려줌
-//  }
 }
-

@@ -7,10 +7,14 @@
 
 import SwiftUI
 
+
 struct ChatRow: View {
   
   var member: ChatMember
   var callback: (() -> Void)?
+  
+  var emojiDict = [1 : "😆", 2: "😭", 3: "😡", 4: "👋", 5: "🎉", 6: "💚"]
+  
   
   init(_ member: ChatMember, callback: (() -> Void)?){
     self.member = member
@@ -23,7 +27,7 @@ struct ChatRow: View {
         Image("lionprofile")
           .resizable()
           .frame(width: 51, height: 52.5)
-        Text("\(member.emoji)")
+        Text("\(emojiDict[member.emoji] ?? "")")
           .font(.system(size: 20))
           .frame(width: 25, height: 25)
           .offset(x: 20, y: -20)

@@ -110,7 +110,7 @@ struct HistoryView: View {
                   
                   
                 }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 14.5))
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 12.5))
               }// VStack
             }// HStack
             Divider()

@@ -56,6 +56,18 @@ extension String {
     }
   }
   
+  func toMonth() -> Date? {  // "MM"
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM"
+    dateFormatter.timeZone = TimeZone(identifier: "ko_KR")
+    
+    if let date = dateFormatter.date(from: self) {
+      return date
+    } else {
+      return nil
+    }
+  }
+  
   func toColorHex() -> String? {
     switch self
     {

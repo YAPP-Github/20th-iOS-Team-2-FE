@@ -66,6 +66,9 @@ final class ChatScreenViewModel: ObservableObject {
                   DispatchQueue.main.async {
                     self.ChatShared.members = receivedValue ?? []
                     self.ChatShared.first = false
+                    for i in (0...receivedValue!.count-1){
+                      self.ChatShared.indexs[receivedValue![i].userId] = i
+                    }
                   }
                   
                 }).store(in: &subscription)
@@ -73,6 +76,28 @@ final class ChatScreenViewModel: ObservableObject {
           }else{
             // 처음이 아니라면 싱글톤 객체에 추가됨
             print("firstConnected: \(ChatShared.first)")
+            if let chatData = text.data(using: .utf8){
+              Just(chatData)
+                .decode(type: NewChatResponse.self, decoder: JSONDecoder())
+                .map{ $0 }
+                .sink(receiveCompletion: { completion in
+//                  print("데이터스트림 완료")
+
+                }, receiveValue: { receivedValue in
+                  var idx = -1
+                  if receivedValue.userId != nil{
+                    idx = self.ChatShared.indexs[receivedValue.userId!]!
+                  }
+                  if idx != -1{
+                    print("NEW CHAT RESPONSE")
+                    print("Received string: \(text)")
+                    DispatchQueue.main.async {
+                      self.ChatShared.members[idx].content = receivedValue.content
+                      self.ChatShared.members[idx].updatedAt = "방금전"
+                    }
+                  }
+                }).store(in: &subscription)
+            }
           }
           
         case .data(let data):

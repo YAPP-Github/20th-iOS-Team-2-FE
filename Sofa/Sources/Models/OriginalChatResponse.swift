@@ -40,22 +40,23 @@ struct ChatMember: Decodable, Hashable {
 //  }
 //
   var descriptionTimeInterval: String{
-//    let diff = Date().timeIntervalSince((updatedAt.prefix(19)).toDateIncludeT() ?? Date())
-//    print(updatedAt.toDateIncludeT()?.description.prefix(19))
-    let diff = Date().timeIntervalSince(String(updatedAt.prefix(19)).toDateIncludeT() ?? Date())
+    if updatedAt == "방금전"{
+      return updatedAt
+    }else{
+      let diff = Date().timeIntervalSince(String(updatedAt.prefix(19)).toDateIncludeT() ?? Date())
 
-    switch diff {
-    case 0..<60:
-      return "방금 전"
-    case 60..<3600:
-      return "\(Int(diff/60))분 전"
-    case 3600..<86400: // 24시간 이전
-      return "\(Int(diff/3600))시간 전"
-    case 86400..<604800: // 이번주 내
-      return "\(Int(diff/86400))일 전"
-    default:
-//      return updatedAt.split(separator: " ").map{String($0)}.first!
-      return updatedAt.toDateIncludeT()?.toString() ?? ""
+      switch diff {
+      case 0..<60:
+        return "방금 전"
+      case 60..<3600:
+        return "\(Int(diff/60))분 전"
+      case 3600..<86400: // 24시간 이전
+        return "\(Int(diff/3600))시간 전"
+      case 86400..<604800: // 이번주 내
+        return "\(Int(diff/86400))일 전"
+      default:
+        return updatedAt.toDateIncludeT()?.toString() ?? ""
+      }
     }
   }
 }

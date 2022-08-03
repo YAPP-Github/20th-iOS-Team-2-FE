@@ -10,6 +10,7 @@ import Foundation
 class Chat: ObservableObject {
   @Published var members: [ChatMember] = []
   @Published var first = true
+  @Published var indexs: [Int : Int] = [:] // userId: Index
   
   static let shared = Chat()
 }

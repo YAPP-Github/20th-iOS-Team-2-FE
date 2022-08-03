@@ -12,10 +12,7 @@ struct NewChatResponse: Decodable {
   let status: Int? // 실패
   let detail: String? // 실패
   let userId: Int? // 성공
-  let image: String? // 성공
-  let nickname: String? // 성공
-  let role: String? // 성공
-  let updatedAt: String? // 성공
-  let emoji: Int? // 성공
-  let content: String?
+  let name: String? // 성공
+  let content: String? // 성공
+  let updatedAt: String?
 }

@@ -11,7 +11,6 @@ struct ChatList: View {
   
   @ObservedObject var memberViewModel = MemberViewModel()
   @Binding var showModal: Bool
-  @StateObject var socket = StarscreamWebsocket()
   @ObservedObject var ChatShared = Chat.shared
 
   var function: (() -> Void)?
@@ -20,13 +19,6 @@ struct ChatList: View {
 
     ScrollView(.vertical, showsIndicators: false) {
       LazyVStack(spacing: 8) {
-//        ForEach(Array(zip(memberViewModel.members.indices, memberViewModel.members)), id: \.1){ index, member in
-//          ChatRow(member, callback: function)
-//            .onShowHistory {
-//              self.showModal = true
-//              print("\(index)")
-//            }
-//        }
         if ChatShared.members.count > 0{
 
           ForEach(Array(zip(ChatShared.members.indices, ChatShared.members)), id: \.1){ index, member in

@@ -54,11 +54,11 @@ struct ChatRow: View {
           .lineLimit(2)
           .foregroundColor(member.content == "" || member.content == nil ? Color.gray :  Color.black)
           .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 16))
-          .onTapGesture{
-            callback?()
-          }
-
       }// VStack
+      .onTapGesture{
+        callback?()
+      }
+
     }// HStack
     .background(Color.white)
     .overlay( // cornerRadius값이 있는 border 주기 위해

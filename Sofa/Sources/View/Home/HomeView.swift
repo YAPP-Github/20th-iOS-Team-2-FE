@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
   @StateObject var vm = ChatScreenViewModel()
-  @StateObject var eventViewModel = EventViewModel()
+  @StateObject var homeinfoVM = HomeInfoViewModel()
   
   @State var gotoAlarm = false
   @State var showModal = false
@@ -33,13 +33,13 @@ struct HomeView: View {
         VStack(spacing: 0){
           ScrollView{
             VStack{
-              EventList(eventViewModel: eventViewModel, page: .first(), alignment: .start, selectionType: $selectionType, dateToShow: $dateToShow)
-                .frame(height: eventViewModel.events.count == 0 ? 0 : 64)
-                .padding(.vertical, eventViewModel.events.count == 0 ? 0 : 16)
+              EventList(homeinfoVM: homeinfoVM, page: .first(), alignment: .start, selectionType: $selectionType, dateToShow: $dateToShow)
+                .frame(height: homeinfoVM.events.count == 0 ? 0 : 64)
+                .padding(.vertical, homeinfoVM.events.count == 0 ? 0 : 16)
                 .animation(.default)
             }
-            .overlay(Rectangle().frame(width: nil, height: eventViewModel.events.count == 0 ? 0 : 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
-            .overlay(Rectangle().frame(width: nil, height: eventViewModel.events.count == 0 ? 0 : 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
+            .overlay(Rectangle().frame(width: nil, height: homeinfoVM.events.count == 0 ? 0 : 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
+            .overlay(Rectangle().frame(width: nil, height: homeinfoVM.events.count == 0 ? 0 : 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
             ChatList(showModal: $showModal)
               .fullScreenCover(isPresented: $showModal) {
@@ -107,7 +107,7 @@ struct HomeView: View {
         .background(Color(hex: "F9F7EF"))
 //        .navigationBarHidden(true)
         .edgesIgnoringSafeArea([.bottom])
-        .homenavigationBarStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), $eventViewModel.hometitle, "bell")
+        .homenavigationBarStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), $homeinfoVM.hometitle, "bell")
         .onAppear{
           tabbarManager.showTabBar = true
           print(Constant.accessToken ?? "")
@@ -124,8 +124,11 @@ struct HomeView: View {
         Color.black
           .opacity(0.7)
           .ignoresSafeArea()
+          .animationsDisabled()
           .onAppear{
-            emojiViewOffset = -24
+            DispatchQueue.main.async {
+              emojiViewOffset = -24
+            }
           }
       }
       

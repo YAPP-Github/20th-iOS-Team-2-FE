@@ -10,7 +10,7 @@ import SwiftUIPager
 
 struct EventList: View {
   
-  @StateObject var eventViewModel = EventViewModel()
+  @StateObject var homeinfoVM = HomeInfoViewModel()
   @StateObject var page: Page = .first()
   @State var alignment: SofaPositionAlignment = .start
   @State var viewAppear: Bool = false
@@ -20,21 +20,21 @@ struct EventList: View {
   
   var body: some View {
     Pager(page: page,
-          data: eventViewModel.events.indices,
+          data: homeinfoVM.events.indices,
           id: \.self,
           content: { index in
       // create a page based on the data passed
-      if eventViewModel.events.count > 0 {
-        EventRow(eventViewModel.events[index], callback: function)
+      if homeinfoVM.events.count > 0 {
+        EventRow(homeinfoVM.events[index], callback: function)
           .onDeleteRow {
             print("\(index)")
-            if eventViewModel.events.count > 0{
-              eventViewModel.events.remove(at: index)
+            if homeinfoVM.events.count > 0{
+              homeinfoVM.events.remove(at: index)
             }
           }
           .onTapGesture {
             self.selectionType = .calendar
-            self.dateToShow = eventViewModel.events[index].descriptionDate
+            self.dateToShow = homeinfoVM.events[index].descriptionDate
           }
       }
     })
@@ -44,7 +44,7 @@ struct EventList: View {
           self.alignment = .start
         }
       }
-      else if newIndex == eventViewModel.events.count {
+      else if newIndex == homeinfoVM.events.count {
         withAnimation {
           self.alignment = .end
         }
@@ -59,7 +59,7 @@ struct EventList: View {
     .alignment(PositionAlignment(alignment: self.alignment))
     .singlePagination(ratio: 0.8, sensitivity: .high)
     .itemSpacing(16)
-    .preferredItemSize(CGSize(width: eventViewModel.events.count > 1 ? Screen.maxWidth - 72 : Screen.maxWidth - 32, height: 100))
+    .preferredItemSize(CGSize(width: homeinfoVM.events.count > 1 ? Screen.maxWidth - 72 : Screen.maxWidth - 32, height: 100))
     .animation(viewAppear ? .default : .none)
     .onAppear{
       DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

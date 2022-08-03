@@ -23,13 +23,18 @@ final class ChatScreenViewModel: ObservableObject {
   var subscription = Set<AnyCancellable>()
   
   func connect() {
-    guard let url = URL(string: "ws://3.34.94.220:8085/home/\(Constant.userId ?? -1)") else {
+//    guard let url = URL(string: "ws://3.34.94.220:8085/home/\(Constant.userId ?? -1)") else {
+//      print("Error: can not create URL")
+//      return
+//    }
+    guard let url = URL(string: "ws://3.34.94.220:8085/home/1") else {
       print("Error: can not create URL")
       return
     }
     var request = URLRequest(url: url)
-    request.addValue(Constant.accessToken ?? "", forHTTPHeaderField: "Authorization")
-
+//    request.addValue(Constant.accessToken ?? "", forHTTPHeaderField: "Authorization")
+    request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q", forHTTPHeaderField: "Authorization")
+    
     websocketTask = URLSession.shared.webSocketTask(with: request)
     websocketTask?.resume()
     receiveMessage()

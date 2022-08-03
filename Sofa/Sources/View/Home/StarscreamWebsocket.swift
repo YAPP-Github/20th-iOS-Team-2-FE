@@ -24,7 +24,7 @@ class StarscreamWebsocket: ObservableObject {
   private var cancellables = Set<AnyCancellable>()
   
   func connect() {
-    guard let url = URL(string: "ws://3.34.94.220:8085/home/1/1") else {
+    guard let url = URL(string: "ws://3.34.94.220:8085/home/1") else {
       print("Error: can not create URL")
       return
     }

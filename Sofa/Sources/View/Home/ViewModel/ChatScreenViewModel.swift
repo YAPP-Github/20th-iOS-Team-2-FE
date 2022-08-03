@@ -65,7 +65,7 @@ final class ChatScreenViewModel: ObservableObject {
 //                  print("데이터스트림 완료")
 
                 }, receiveValue: { receivedValue in
-                  print("받은 값: \(receivedValue?.count ?? 0)")
+                  print("ChatScreen 받은 값: \(receivedValue?.count ?? 0)")
                   DispatchQueue.main.async {
                     self.ChatShared.members = receivedValue ?? []
                   }

@@ -18,8 +18,6 @@ final class ChatScreenViewModel: ObservableObject {
   @Published var ChatData: OriginalChatResponse = OriginalChatResponse(timestamp: "", status: nil, detail: "")
   @ObservedObject var ChatShared = Chat.shared
   
-  @State var firstConnected = true
-  
   var subscription = Set<AnyCancellable>()
   
   func connect() {
@@ -39,7 +37,6 @@ final class ChatScreenViewModel: ObservableObject {
     websocketTask?.resume()
     receiveMessage()
     print("connect!")
-    firstConnected = false
   }
   
   func disconnect() {
@@ -56,7 +53,7 @@ final class ChatScreenViewModel: ObservableObject {
         switch message {
         case .string(let text):
 //          print("Received string: \(text)")
-          if firstConnected == true{ // 가장 처음
+          if ChatShared.first == true{ // 가장 처음
             if let chatData = text.data(using: .utf8){
               Just(chatData)
                 .decode(type: OriginalChatResponse.self, decoder: JSONDecoder())
@@ -68,13 +65,14 @@ final class ChatScreenViewModel: ObservableObject {
                   print("ChatScreen 받은 값: \(receivedValue?.count ?? 0)")
                   DispatchQueue.main.async {
                     self.ChatShared.members = receivedValue ?? []
+                    self.ChatShared.first = false
                   }
                   
                 }).store(in: &subscription)
             }
           }else{
             // 처음이 아니라면 싱글톤 객체에 추가됨
-            print("firstConnected: \(firstConnected)")
+            print("firstConnected: \(ChatShared.first)")
           }
           
         case .data(let data):

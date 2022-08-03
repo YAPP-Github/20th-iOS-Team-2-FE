@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+  @StateObject var messageVM = MessageViewModel()
   @StateObject var vm = ChatScreenViewModel()
   @StateObject var homeinfoVM = HomeInfoViewModel()
   
@@ -85,7 +86,12 @@ struct HomeView: View {
             .padding(.horizontal, 23)
             .edgesIgnoringSafeArea(.all)
             .fullScreenCover(isPresented: $showMessageView) {
-              MessageView($showMessageView, $text, 0, $placeholder)
+              MessageView($showMessageView, $text, 0, $placeholder) {
+                if let text = text {
+                  self.messageVM.postMessage(content: text)
+                  self.text = nil
+                }
+              }
                 .background(BackgroundCleanerView())
             }
           

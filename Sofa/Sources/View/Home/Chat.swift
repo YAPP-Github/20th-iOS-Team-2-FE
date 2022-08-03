@@ -9,6 +9,7 @@ import Foundation
 
 class Chat: ObservableObject {
   @Published var members: [ChatMember] = []
+  @Published var first = true
   
   static let shared = Chat()
 }

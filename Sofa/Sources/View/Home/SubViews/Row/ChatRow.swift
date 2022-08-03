@@ -23,7 +23,7 @@ struct ChatRow: View {
         Image("lionprofile")
           .resizable()
           .frame(width: 51, height: 52.5)
-        Text("👋")
+        Text("\(member.emoji)")
           .font(.system(size: 20))
           .frame(width: 25, height: 25)
           .offset(x: 20, y: -20)

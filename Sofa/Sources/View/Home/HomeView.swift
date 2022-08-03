@@ -13,6 +13,7 @@ struct HomeView: View {
   
   @State var gotoAlarm = false
   @State var showModal = false
+  @State var historyUserId = 0
   @State var showMessageView = false
   @Binding var selectionType: Tab
   @Binding var dateToShow: String
@@ -41,15 +42,14 @@ struct HomeView: View {
             .overlay(Rectangle().frame(width: nil, height: homeinfoVM.events.count == 0 ? 0 : 1, alignment: .top).foregroundColor(Color(hex: "EDEADF")), alignment: .top)
             .overlay(Rectangle().frame(width: nil, height: homeinfoVM.events.count == 0 ? 0 : 1, alignment: .bottom).foregroundColor(Color(hex: "EDEADF")), alignment: .bottom)
             .background(Color(hex: "F5F2E9"))
-            ChatList(showModal: $showModal)
+            ChatList(historyUserId: $historyUserId, showModal: $showModal)
               .fullScreenCover(isPresented: $showModal) {
-                HistoryView(isShowing: $showModal)
+                HistoryView($historyUserId, $showModal)
                   .background(BackgroundCleanerView())
                   .onAppear{
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {
                       tabbarManager.showTabBar = false
                     }
-                    
                   }
                   .onDisappear{
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.00000000000000001) {

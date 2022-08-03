@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ChatList: View {
-  
-  @ObservedObject var memberViewModel = MemberViewModel()
+
+  @Binding var historyUserId: Int
   @Binding var showModal: Bool
   @ObservedObject var ChatShared = Chat.shared
 
@@ -25,7 +25,8 @@ struct ChatList: View {
             ChatRow(member, callback: function)
               .onShowHistory {
                 self.showModal = true
-                print("\(index)")
+                self.historyUserId = ChatShared.members[index].userId
+                print("\(ChatShared.members[index].userId)")
               }
           }
         }
@@ -37,7 +38,7 @@ struct ChatList: View {
     
     Button {
       withAnimation(Animation.easeOut(duration: 0.3)) {
-        moveRow(from: IndexSet(integer: memberViewModel.members.count-1), to: 0)
+        moveRow(from: IndexSet(integer: ChatShared.members.count-1), to: 0)
 //        memberViewModel.members.reverse()
       }
     } label: {
@@ -48,7 +49,7 @@ struct ChatList: View {
   }
   
   func moveRow(from source: IndexSet, to destination: Int) {
-    memberViewModel.members.move(fromOffsets: source, toOffset: destination)
+    ChatShared.members.move(fromOffsets: source, toOffset: destination)
   }
 }
 

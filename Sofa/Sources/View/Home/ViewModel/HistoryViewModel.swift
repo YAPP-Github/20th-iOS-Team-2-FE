@@ -7,59 +7,60 @@
 
 import Foundation
 import Combine
+import Alamofire
 
 class HistoryViewModel: ObservableObject{
   
-  //MARK: Properties
-  var subscription = Set<AnyCancellable>()
-  
-  @Published var info: HistoryInfo
+  @Published var info: HistoryInfo = HistoryInfo(nickname: "희동이", roleInFamily: "엄마", profileLink: "", count: 6, history: [])
   @Published var history = [History]()
+  @Published var isLoading: Bool = false
   
-  var baseUrl = ""
   
   init(){
-    info = HistoryInfo(nickname: "희동이", roleInFamily: "엄마", profileLink: "", count: 6, history: [])
-    fetchHistory()
+    print(#fileID, #function, #line, "")
   }
   
-  func fetchHistory(){
+  private var subscription = Set<AnyCancellable>()
+  
+  func fetchHistory(userId: Int){
     
-    guard let path = Bundle.main.path(forResource: "HistoryMock", ofType: "json")
-    else {
-      fatalError("Couldn't find file in main bundle.")
-    }
-    
-    guard let jsonString = try? String(contentsOfFile: path) else {
-      return
-    }
-    
-    if let infodata = jsonString.data(using: .utf8){
-      Just(infodata)
-        .decode(type: HistoryInfo.self, decoder: JSONDecoder())
-        .map{ $0 }
-        .sink(receiveCompletion: { completion in
-//          print("데이터스트림 완료")
-          
-        }, receiveValue: { receivedValue in
-//          print("받은 값: \(receivedValue.count)")
-          self.info = receivedValue
-        }).store(in: &subscription)
-    }
-    
-    if let data = jsonString.data(using: .utf8){
-      Just(data)
-        .decode(type: HistoryInfo.self, decoder: JSONDecoder())
-        .map{ $0.history }
-        .sink(receiveCompletion: { completion in
-//          print("데이터스트림 완료")
-          
-        }, receiveValue: { receivedValue in
-//          print("받은 값: \(receivedValue.count)")
-          self.history = receivedValue
-        }).store(in: &subscription)
-    }
-    
+    AF.request(HistoryManager.getHistory(userId: userId))
+      .publishDecodable(type: HistoryInfo.self)
+      .value()
+      .print()
+      .receive(on: DispatchQueue.main)
+      .map { $0 }
+      .sink(
+        receiveCompletion: {[weak self] in
+          guard case .failure(let error) = $0 else { return }
+          NSLog("Error : " + error.localizedDescription)
+        },
+        receiveValue: {[weak self] receivedValue in
+          if receivedValue.status != nil{
+            switch receivedValue.status {
+            case 400: // 요청 에러 발생했을 때
+              print(receivedValue.status!)
+              print(receivedValue.detail!)
+              break
+            case 500: // 서버의 내부적 에러가 발생했을 때
+              print(receivedValue.status!)
+              print(receivedValue.detail!)
+              break
+            default:
+              print(receivedValue.status!)
+              print(receivedValue.detail!)
+              break
+            }
+          }else{ // Success
+            print("History 받은 값: \(receivedValue.history?.count ?? 0)")
+            self?.info = HistoryInfo(timestamp: "", status: 0, error: "", detail: "", path: "", nickname: receivedValue.nickname ?? "", roleInFamily: receivedValue.roleInFamily ?? "", profileLink: receivedValue.profileLink ?? "", count: receivedValue.count ?? 0, history: [])
+            self?.history = receivedValue.history!
+            self?.isLoading = true
+          }
+        }
+      )
+      .store(in: &subscription)
+
     
   }
 }

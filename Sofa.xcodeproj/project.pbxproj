@@ -41,6 +41,7 @@
 		0A4F4C2C28959CA800913021 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C2B28959CA800913021 /* Chat.swift */; };
 		0A4F4C36289901FA00913021 /* ChatScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F4C35289901FA00913021 /* ChatScreenViewModel.swift */; };
 		0A50A7DA289AA731000622C4 /* HomeInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50A7D9289AA731000622C4 /* HomeInfoManager.swift */; };
+		0A50A7DC289ACF98000622C4 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50A7DB289ACF98000622C4 /* HistoryManager.swift */; };
 		0A6033AA287B3583001AD6A6 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */; };
 		0A858CBC2855BC6600907019 /* Ex+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A858CBB2855BC6600907019 /* Ex+Color.swift */; };
 		0A915DD3287A9A9B0055AD6D /* NotificationMock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A915DD2287A9A9B0055AD6D /* NotificationMock.json */; };
@@ -242,6 +243,7 @@
 		0A4F4C2B28959CA800913021 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		0A4F4C35289901FA00913021 /* ChatScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewModel.swift; sourceTree = "<group>"; };
 		0A50A7D9289AA731000622C4 /* HomeInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoManager.swift; sourceTree = "<group>"; };
+		0A50A7DB289ACF98000622C4 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		0A6033A9287B3583001AD6A6 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		0A858CBB2855BC6600907019 /* Ex+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+Color.swift"; sourceTree = "<group>"; };
 		0A915DD2287A9A9B0055AD6D /* NotificationMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NotificationMock.json; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 				6F80942A288AE29100CD12F8 /* UserFamilyManager.swift */,
 				C4AC88562886A15000BA5921 /* UploadManager.swift */,
 				0A50A7D9289AA731000622C4 /* HomeInfoManager.swift */,
+				0A50A7DB289ACF98000622C4 /* HistoryManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1562,6 +1565,7 @@
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				0A2B55092858779D006F816C /* View.swift in Sources */,
 				6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */,
+				0A50A7DC289ACF98000622C4 /* HistoryManager.swift in Sources */,
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
 				0AF2B54028845FF900C6A55E /* LoginViewModel.swift in Sources */,
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,

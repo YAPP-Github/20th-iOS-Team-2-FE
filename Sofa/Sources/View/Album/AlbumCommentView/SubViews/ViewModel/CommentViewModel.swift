@@ -58,9 +58,9 @@ class CommentViewModel: ObservableObject{
       .receive(on: DispatchQueue.main)
       .sink(
         receiveCompletion: {completion in
+          self.fetchComments()
           guard case .failure(let error) = completion else { return }
           NSLog("Error : " + error.localizedDescription)
-          self.fetchComments()
         },
         receiveValue: {receivedValue in
           NSLog("받은 값 : \(receivedValue)")

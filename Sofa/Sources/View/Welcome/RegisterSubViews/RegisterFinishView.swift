@@ -11,6 +11,7 @@ import SwiftKeychainWrapper
 struct RegisterFinishView: View {
   
   @Binding var accessToken: String
+  @Binding var userId: Int
   @State var showFamilyRegister: Bool = false
   
   var body: some View {
@@ -36,8 +37,11 @@ struct RegisterFinishView: View {
         }
         .onAppear{
           Constant.accessToken = accessToken
+          Constant.userId = userId
           KeychainWrapper.standard.set(accessToken, forKey: "accessToken")
+          KeychainWrapper.standard.set(userId, forKey: "userId")
           print("RegisterFinishView AccessToken: \(Constant.accessToken ?? "")")
+          print("RegisterFinishView userId: \(Constant.userId ?? 0)")
         }
       }
       

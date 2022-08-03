@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ChatRow: View {
   
-  var member: Member
+  var member: ChatMember
   var callback: (() -> Void)?
   
-  init(_ member: Member, callback: (() -> Void)?){
+  init(_ member: ChatMember, callback: (() -> Void)?){
     self.member = member
     self.callback = callback
   }
@@ -31,10 +31,10 @@ struct ChatRow: View {
       .padding(EdgeInsets(top: 10.5, leading: 10.5, bottom: 27, trailing: 14.5))
       VStack(alignment: .leading){
         HStack(){
-          Text("\(member.descriptionNickname)")
+          Text("\(member.nickname)")
             .font(.custom("Pretendard-Bold", size: 13))
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 4, trailing: 1))
-          Text("\(member.descriptionRole)")
+          Text("\(member.role)")
             .font(.custom("Pretendard-Medium", size: 12))
             .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
             .background(Color(hex: "E8F5E9"))
@@ -49,10 +49,10 @@ struct ChatRow: View {
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
 
-        Text("\(member.descriptionContent == "" ? "아직 인사를 건네기 전이에요." : member.descriptionContent)")
+        Text("\((member.content == "" || member.content == nil ? "아직 인사를 건네기 전이에요." : member.content) ?? "")")
           .font(.custom("Pretendard-Regular", size: 14))
           .lineLimit(2)
-          .foregroundColor(member.descriptionContent == "" ? Color.gray :  Color.black)
+          .foregroundColor(member.content == "" || member.content == nil ? Color.gray :  Color.black)
           .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 16))
           .onTapGesture{
             callback?()

@@ -59,9 +59,8 @@ enum AlbumDetailManger: URLRequestConvertible {
   
   var headers: HTTPHeaders {
     var headers = HTTPHeaders()
-    let accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q"
-    headers["Authorization"] = accessToken
-    
+    headers["Authorization"] = "Bearer \(Constant.accessToken ?? "")"
+
     switch self {
     case .getAlbumDetailListByDate:
       headers["accept"] = "application/json"

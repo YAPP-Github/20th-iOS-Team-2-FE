@@ -15,9 +15,9 @@ struct User: Decodable {
 }
 
 struct Family: Decodable {
-  let familyName: String
-  let familyMotto: String
-  let nicknames: [Nicknames]?
+  let familyName: String?
+  let familyMotto: String?
+  let nicknames: [Nickname]?
 }
 
 struct FamilyID: Decodable {
@@ -40,7 +40,7 @@ struct DetailUser: Decodable {
   let imageLink: String?
 }
 
-struct Nicknames: Decodable {
+struct Nickname: Decodable {
   let pastNickname: String
   let newNickname: String
 }

@@ -37,16 +37,16 @@ struct SettingsView: View {
             VStack(spacing: 0){
               HStack{
                 //가족 공간 - 이름
-                Text("우리가족 공간")
+                Text(settingViewModel.family.familyName ?? "")
                   .font(.custom("Pretendard-Bold", size: 20))
                   .foregroundColor(Color(hex: "#121619"))
-                  .frame(width: 109, height: 30)
+                  .frame(width: 320, height: 30, alignment: .leading)
                   .padding(.leading, 16)
                 Spacer()
                 
                 //가족 공간 - 버튼
                 NavigationLink {
-                  FamilySettingView(familyName: "우리가족 공간", familyMotto: "밥은 잘 챙겨먹자!")
+                  FamilySettingView(familyName: settingViewModel.family.familyName ?? "", familyMotto: settingViewModel.family.familyMotto ?? "")
                 } label: {
                   Image(systemName: "chevron.right")
                     .font(.system(size: 20, weight: .medium))
@@ -58,10 +58,10 @@ struct SettingsView: View {
               
               HStack{
                 //가족 공간 - 가훈
-                Text(familyHymn)
+                Text(settingViewModel.family.familyMotto ?? "")
                   .font(.custom("Pretendard-Medium", size: 13))
                   .foregroundColor(Color.black.opacity(0.4))
-                  .frame(width: 89, height: 20)
+                  .frame(width: 335, height: 20, alignment: .leading)
                   .padding(.leading, 16)
                   .padding(.top, 4)
                 Spacer()

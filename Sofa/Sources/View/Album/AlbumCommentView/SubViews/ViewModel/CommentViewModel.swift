@@ -52,7 +52,7 @@ class CommentViewModel: ObservableObject{
   
   // 댓글 작성
   func writeComment(content: String) {
-    AF.request(CommentManger.postComments(writerId: 0, fileId: filedId, content: content))
+    AF.request(CommentManger.postComments(fileId: filedId, content: content))
       .publishDecodable(type: AlbumDefaulAPIResponse.self)
       .value()
       .receive(on: DispatchQueue.main)

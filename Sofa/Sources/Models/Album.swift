@@ -8,6 +8,9 @@
 import Foundation
 
 struct AlbumDefaulAPIResponse: Hashable, Decodable {
+  let timestamp: String?
+  let status: Int?
+  let detail: String?
 }
 
 struct AlbumDateAPIResponse: Hashable, Decodable {

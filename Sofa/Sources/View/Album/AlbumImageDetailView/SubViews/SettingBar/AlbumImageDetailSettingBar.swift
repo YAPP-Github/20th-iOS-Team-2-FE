@@ -35,8 +35,8 @@ struct AlbumImageDetailSettingBar: View {
                 .frame(width: 20, height: 20)
                 .foregroundColor(viewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
                 .font(.system(size: 20))
-                .padding(.leading, 8)
             }
+            .padding(EdgeInsets(top: 12, leading: 20, bottom: 15, trailing: 5))
             
             Button(action: {
               // NetWork
@@ -47,7 +47,6 @@ struct AlbumImageDetailSettingBar: View {
                   .frame(width: 20, height: 20)
                   .foregroundColor(.white)
                   .font(.system(size: 20))
-                  .padding(.leading, 20)
                 
                 // 댓글 수
                 Text("\(commentViewModel.comments.count)")
@@ -55,6 +54,7 @@ struct AlbumImageDetailSettingBar: View {
                   .font(.custom("Pretendard-Medium", size: 20))
               }
             })
+            .padding(EdgeInsets(top: 12, leading: 15, bottom: 15, trailing: 5))
             
             Spacer()
             
@@ -66,8 +66,8 @@ struct AlbumImageDetailSettingBar: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20))
             }
+            .padding(EdgeInsets(top: 12, leading: 20, bottom: 15, trailing: 16))
           }
-          .padding(EdgeInsets(top: 12, leading: 12, bottom: 15, trailing: 16))
           Spacer()
         }
         .frame(height: 83)

@@ -73,7 +73,7 @@ struct CommentModal: View {
     HStack {
       Text("댓글을 남겨보세요")
         .font(.custom("Pretendard-Medium", size: 16))
-        .foregroundColor(Color.secondary)
+        .foregroundColor(Color(hex: "999999"))
         .padding(EdgeInsets(top: 16, leading: 26, bottom: 12, trailing: 26))
       
       Spacer()
@@ -103,10 +103,10 @@ struct CommentModal: View {
       MessageView($isWriteClick, $commentText, 0, $placeholder) {
         if let commentText = commentText {
           self.viewModel.writeComment(content: commentText) // 댓글 전송
-          self.commentText = nil // 댓글 초기화
         }
       }
       .background(BackgroundCleanerView())
+      .onDisappear { self.commentText = nil }
     }
     .fullScreenCover(isPresented: $isEdit) { // 댓글 수정
       MessageView($isEdit, $editText, editText == nil ? 0 : editText!.count, $placeholder) {

@@ -244,7 +244,6 @@ struct RegisterView: View {
               }
             }
           }
-//          .fullScreenCover(isPresented: $showFinishModal, content: RegisterFinishView(accessToken: $accessToken))
           .fullScreenCover(isPresented: $showFinishModal) {
             RegisterFinishView(accessToken: $accessToken, userId: $userId)
           }

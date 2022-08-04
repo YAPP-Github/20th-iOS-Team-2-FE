@@ -48,7 +48,7 @@ enum UserFamilyManager: URLRequestConvertible {
   
   var headers: HTTPHeaders {
     var headers = HTTPHeaders()
-    headers["Authorization"] = Constant.accessToken
+    headers["Authorization"] = "Bearer \(Constant.accessToken ?? "")"
     switch self {
     case .registerUser:
       headers["Content-Type"] = "application/json"

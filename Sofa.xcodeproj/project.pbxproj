@@ -83,9 +83,9 @@
 		6F22E53C284B9D5A0069D268 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53B284B9D5A0069D268 /* Base.swift */; };
 		6F22E53E284B9D640069D268 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53D284B9D640069D268 /* Constants.swift */; };
 		6F347EC828951AED005329DE /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347EC728951AED005329DE /* SettingViewModel.swift */; };
+		6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ECD28955E44005329DE /* UserPatchResponse.swift */; };
 		6F347ED02895896A005329DE /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ECF2895896A005329DE /* TaskStore.swift */; };
 		6F347ED228958E35005329DE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ED128958E35005329DE /* TaskCell.swift */; };
-		6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ECD28955E44005329DE /* UserPatchResponse.swift */; };
 		6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */; };
 		6F6E5A572882B7FF00C0734E /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */; };
 		6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7340B92874184300707AB7 /* GeneralCalendar.swift */; };
@@ -287,9 +287,9 @@
 		6F22E53B284B9D5A0069D268 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		6F22E53D284B9D640069D268 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6F347EC728951AED005329DE /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		6F347ECD28955E44005329DE /* UserPatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPatchResponse.swift; sourceTree = "<group>"; };
 		6F347ECF2895896A005329DE /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
 		6F347ED128958E35005329DE /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-		6F347ECD28955E44005329DE /* UserPatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPatchResponse.swift; sourceTree = "<group>"; };
 		6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTaskModalView.swift; sourceTree = "<group>"; };
 		6F6E5A542882B26A00C0734E /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		6F6E5A562882B7FF00C0734E /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };

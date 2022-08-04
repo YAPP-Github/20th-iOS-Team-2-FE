@@ -106,7 +106,7 @@ struct SettingsView: View {
                   
                   //프로필 - 뱃지
                   Rectangle()
-                    .frame(width: 17 + CGFloat((settingViewModel.simpleUser.roleInfamily!.count)*11), height: 20)
+                    .frame(width: 17 + CGFloat((settingViewModel.simpleUser.roleInfamily?.count ?? 0)*11), height: 20)
                     .cornerRadius(4)
                     .foregroundColor(Color(hex: profileRoleColor))
                     .overlay(
@@ -121,7 +121,7 @@ struct SettingsView: View {
                 
                 //프로필 - 이메일
                 HStack(spacing: 0){
-                  Text(profileEmail)
+                  Text(settingViewModel.simpleUser.name ?? "")
                     .font(.custom("Pretendard-Medium", size: 13))
                     .foregroundColor(Color.black.opacity(0.4))
                     .frame(height: 20)

@@ -32,10 +32,10 @@ struct ChatList: View {
           }
           .onChange(of: ChatShared.members) { newValue in
             if ChatShared.getData {
-              print(ChatShared.members)
+//              print(ChatShared.members)
               DispatchQueue.main.async {
                 withAnimation(Animation.easeOut(duration: 0.3)) {
-                  print(ChatShared.indexs)
+//                  print(ChatShared.indexs)
                   self.ChatShared.members.bringToFront(item: self.ChatShared.members[ChatShared.moveIndex])
                   for i in (0...self.ChatShared.members.count-1){
                     self.ChatShared.indexs[self.ChatShared.members[i].userId] = i
@@ -55,15 +55,15 @@ struct ChatList: View {
       .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
     }//ScrollView
     
-    Button {
-      withAnimation(Animation.easeOut(duration: 0.3)) {
-        moveRow(from: IndexSet(integer: ChatShared.members.count-1), to: 0)
-        //        memberViewModel.members.reverse()
-      }
-    } label: {
-      Text(".")
-        .foregroundColor(Color(hex: "F9F7EF"))
-    }
+//    Button {
+//      withAnimation(Animation.easeOut(duration: 0.3)) {
+//        moveRow(from: IndexSet(integer: ChatShared.members.count-1), to: 0)
+//        //        memberViewModel.members.reverse()
+//      }
+//    } label: {
+//      Text(".")
+//        .foregroundColor(Color(hex: "F9F7EF"))
+//    }
     
   }
   

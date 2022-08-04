@@ -74,7 +74,7 @@ struct HistoryView: View {
       .background(Color.white.opacity(0.00001))
       .gesture(dragGesture)
       .onAppear{
-        print(page.index)
+//        print(page.index)
       }
       
       ZStack(alignment: .center){

@@ -27,7 +27,7 @@ class HistoryViewModel: ObservableObject{
     AF.request(HistoryManager.getHistory(userId: userId))
       .publishDecodable(type: HistoryInfo.self)
       .value()
-      .print()
+//      .print()
       .receive(on: DispatchQueue.main)
       .map { $0 }
       .sink(

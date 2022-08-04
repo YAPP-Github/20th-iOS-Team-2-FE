@@ -37,6 +37,7 @@ final class ChatScreenViewModel: ObservableObject {
     websocketTask?.resume()
     receiveMessage()
     print("connect!")
+    ping()
   }
   
   func disconnect() {
@@ -45,14 +46,21 @@ final class ChatScreenViewModel: ObservableObject {
   }
  
   func receiveMessage() {
+    print("receiveMessage() called")
     websocketTask?.receive { [self] result in
       switch result {
       case .failure(let error):
-        print("Error in receiving message: \(error)")
+          print("Error in receiving message: \(error)")
+          let code = (error as NSError).code
+          if code == 60 || code == 57 || code == 54 {
+              // deal with error
+            print(code)
+            print(error)
+          }
       case .success(let message):
         switch message {
         case .string(let text):
-//          print("Received string: \(text)")
+          print("Received string: \(text)")
           if ChatShared.first == true{ // 가장 처음
             if let chatData = text.data(using: .utf8){
               Just(chatData)
@@ -75,7 +83,8 @@ final class ChatScreenViewModel: ObservableObject {
             }
           }else{
             // 처음이 아니라면 싱글톤 객체에 추가됨
-            print("firstConnected: \(ChatShared.first)")
+            print("GET NEW DATA")
+//            print("firstConnected: \(ChatShared.first)")
             if let chatData = text.data(using: .utf8){
               Just(chatData)
                 .decode(type: NewChatResponse.self, decoder: JSONDecoder())
@@ -90,13 +99,14 @@ final class ChatScreenViewModel: ObservableObject {
                   }
                   if idx != -1{
                     print("NEW CHAT RESPONSE")
-                    print("Received string: \(text)")
+//                    print("Received string: \(text)")
                     DispatchQueue.main.async {
                       self.ChatShared.members[idx].content = receivedValue.content
                       self.ChatShared.members[idx].updatedAt = "방금전"
                       self.ChatShared.moveIndex = idx
+                      self.ChatShared.getData = true
                     }
-                    self.ChatShared.getData = true
+                    
                   }
                 }).store(in: &subscription)
             }
@@ -111,6 +121,20 @@ final class ChatScreenViewModel: ObservableObject {
       }
     }
   }
+  
+  func ping() {
+    websocketTask?.sendPing { error in
+      if let error = error {
+        print("Error when sending PING \(error)")
+      } else {
+          print("Web Socket connection is alive")
+          DispatchQueue.global().asyncAfter(deadline: .now() + 60) {
+            self.ping()
+          }
+      }
+    }
+  }
+  
   
   deinit {
     disconnect()

@@ -103,10 +103,10 @@ struct CommentModal: View {
       MessageView($isWriteClick, $commentText, 0, $placeholder) {
         if let commentText = commentText {
           self.viewModel.writeComment(content: commentText) // 댓글 전송
-          self.commentText = nil // 댓글 초기화
         }
       }
       .background(BackgroundCleanerView())
+      .onDisappear { self.commentText = nil }
     }
     .fullScreenCover(isPresented: $isEdit) { // 댓글 수정
       MessageView($isEdit, $editText, editText == nil ? 0 : editText!.count, $placeholder) {

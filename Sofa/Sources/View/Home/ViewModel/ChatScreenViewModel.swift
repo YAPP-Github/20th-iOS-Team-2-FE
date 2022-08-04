@@ -73,11 +73,15 @@ final class ChatScreenViewModel: ObservableObject {
 
                 }, receiveValue: { receivedValue in
                   print("ChatScreen 받은 값: \(receivedValue?.count ?? 0)")
+                  var sortedReceivedValue = receivedValue
+                  sortedReceivedValue = sortedReceivedValue?.sorted(by: {$0.updatedAt > $1.updatedAt})
+                  print(receivedValue)
+                  print(sortedReceivedValue)
                   DispatchQueue.main.async {
-                    self.ChatShared.members = receivedValue ?? []
+                    self.ChatShared.members = sortedReceivedValue ?? []
                     self.ChatShared.first = false
-                    for i in (0...receivedValue!.count-1){
-                      self.ChatShared.indexs[receivedValue![i].userId] = i
+                    for i in (0...sortedReceivedValue!.count-1){
+                      self.ChatShared.indexs[sortedReceivedValue![i].userId] = i
                     }
                   }
                   

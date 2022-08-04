@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
   @StateObject var messageVM = MessageViewModel()
   @StateObject var vm = ChatScreenViewModel()
-  @StateObject var homeinfoVM = HomeInfoViewModel()
+  @ObservedObject var homeinfoVM = HomeInfoViewModel()
   
   @State var gotoAlarm = false
   @State var showModal = false
@@ -116,6 +116,7 @@ struct HomeView: View {
         .homenavigationBarStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), $homeinfoVM.hometitle, "bell")
         .onAppear{
           tabbarManager.showTabBar = true
+
 //          print(Constant.accessToken ?? "")
 //          print(Constant.userId ?? 0)
         }

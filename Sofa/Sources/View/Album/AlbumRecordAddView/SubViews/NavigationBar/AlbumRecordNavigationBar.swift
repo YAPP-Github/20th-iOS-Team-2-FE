@@ -13,6 +13,7 @@ struct AlbumRecordNavigationBar: View {
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
   @Binding var isNext: Bool
   @Binding var existRecord: Bool
+  @Binding var colorScheme: ColorScheme // status bar color
   let title: String
   var recordParent: AlbumRecordAddView?
   var recordUrl: URL?
@@ -30,6 +31,7 @@ struct AlbumRecordNavigationBar: View {
             } else {
               presentable.wrappedValue.dismiss()
             }
+            colorScheme = .light
             audioRecorder.deleteRecording(urlsToDelete: recordUrl)
           }) {
             if recordParent != nil {
@@ -72,6 +74,6 @@ struct AlbumRecordNavigationBar: View {
 
 struct AlbumRecordAddNavigationBar_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumRecordNavigationBar(isNext: .constant(true), existRecord: .constant(true), title: "새로운 녹음", recordParent: AlbumRecordAddView(), safeTop: 10)
+    AlbumRecordNavigationBar(isNext: .constant(true), existRecord: .constant(true), colorScheme: .constant(.light), title: "새로운 녹음", recordParent: AlbumRecordAddView(), safeTop: 10)
   }
 }

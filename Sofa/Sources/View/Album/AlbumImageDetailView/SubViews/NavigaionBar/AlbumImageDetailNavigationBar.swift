@@ -9,11 +9,13 @@ import SwiftUI
 
 struct AlbumImageDetailNavigationBar: View {
   @Environment(\.presentationMode) var presentable
+  @Binding var colorScheme: ColorScheme // status bar color
   let safeTop: CGFloat
   
   var body: some View {
     VStack {
       Button(action: {
+        self.colorScheme = .light
         presentable.wrappedValue.dismiss()
       }) {
         VStack {
@@ -38,6 +40,6 @@ struct AlbumImageDetailNavigationBar: View {
 
 struct AlbumImageDetailNavigationBar_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumImageDetailNavigationBar(safeTop: 10)
+    AlbumImageDetailNavigationBar(colorScheme: .constant(.light), safeTop: 10)
   }
 }

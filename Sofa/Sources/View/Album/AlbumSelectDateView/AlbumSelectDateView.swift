@@ -23,8 +23,9 @@ struct AlbumSelectDateView: View {
   
   // 녹음
   @State var recordTitle: String = ""
+  @Binding var colorScheme: ColorScheme
   var recordParent: AlbumRecordAddView?
-  var recordUrl: URL? // 녹음
+  var recordUrl: URL? // 녹음d
   
   var body: some View {
     NavigationView {
@@ -70,6 +71,9 @@ struct AlbumSelectDateView: View {
             if photoParent == nil && recordParent == nil { // 카메라로 들어왔을 경우,
               isCameraCancle = true // 카메라 imagePicker로 이동
             }
+            if recordParent != nil { // 녹음으로 들어왔을 경우,
+              colorScheme = .dark
+            }
             presentable.wrappedValue.dismiss()
           }, label: {
             HStack(spacing: 0) {
@@ -108,6 +112,7 @@ struct AlbumSelectDateView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(title)
         .onAppear {
+          self.colorScheme = .light
           let appearance = UINavigationBarAppearance()
           appearance.configureWithTransparentBackground()
           appearance.backgroundColor =
@@ -126,6 +131,6 @@ struct AlbumSelectDateView: View {
 
 struct AlbumSelectDateView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumSelectDateView(isCameraCancle: .constant(false), images: MockData().photoList.map{UIImage(named: $0)!})
+    AlbumSelectDateView(isCameraCancle: .constant(false), images: MockData().photoList.map{UIImage(named: $0)!}, colorScheme: .constant(ColorScheme.light))
   }
 }

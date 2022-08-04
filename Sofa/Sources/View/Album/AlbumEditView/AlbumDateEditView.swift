@@ -69,6 +69,7 @@ struct AlbumDateEditView: View {
               .fontWeight(.semibold)
           }
         })
+        .preferredColorScheme(.light)
         .accentColor(buttonColor)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
         trailing: Button(action: {
@@ -111,6 +112,6 @@ struct AlbumDateEditView: View {
 
 struct AlbumEditDateView_Previews: PreviewProvider {
   static var previews: some View {
-    AlbumDateEditView(parant: AlbumDetailView(title: "앨범 상세", selectAlbumId: 0, selectKindType: ""))
+    AlbumDateEditView(parant: AlbumDetailView(listViewModel: AlbumDetailListViewModel(albumId: nil, kindType: nil), title: "앨범 상세", selectAlbumId: 0, selectKindType: ""))
   }
 }

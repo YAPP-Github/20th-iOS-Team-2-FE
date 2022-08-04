@@ -36,6 +36,7 @@ struct AlbumCommentRow: View {
         HStack(alignment: .top, spacing: 8) { // 댓글 작성자 정보
           Text("\(comment.nickname)") // 별명
             .font(.custom("Pretendard-Bold", size: 13))
+            .foregroundColor(.black)
           
           Text("\(comment.roleInFamily)") // 역할
             .font(.custom("Pretendard-Medium", size: 12))
@@ -53,6 +54,7 @@ struct AlbumCommentRow: View {
         
         Text("\(comment.descriptionContent)") // 댓글
           .font(.custom("Pretendard-Medium", size: 14))
+          .foregroundColor(.black)
           .lineSpacing(5)
       }
       .padding(.top, 10)

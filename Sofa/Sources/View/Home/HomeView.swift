@@ -92,9 +92,6 @@ struct HomeView: View {
                   self.text = nil
                 }
               }
-              .onDisappear{
-                self.vm.receiveMessage()
-              }
                 .background(BackgroundCleanerView())
             }
           

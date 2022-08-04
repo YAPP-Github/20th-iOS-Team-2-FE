@@ -96,6 +96,7 @@ final class ChatScreenViewModel: ObservableObject {
                       self.ChatShared.members[idx].updatedAt = "방금전"
                       self.ChatShared.moveIndex = idx
                     }
+                    self.ChatShared.getData = true
                   }
                 }).store(in: &subscription)
             }

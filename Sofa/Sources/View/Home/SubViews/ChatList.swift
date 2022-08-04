@@ -31,17 +31,21 @@ struct ChatList: View {
               }
           }
           .onChange(of: ChatShared.members) { newValue in
-            print(ChatShared.members)
-            DispatchQueue.main.async {
-              withAnimation(Animation.easeOut(duration: 0.3)) {
-                print(ChatShared.indexs)
-                self.ChatShared.members.bringToFront(item: self.ChatShared.members[ChatShared.moveIndex])
-                for i in (0...self.ChatShared.members.count-1){
-                  self.ChatShared.indexs[self.ChatShared.members[i].userId] = i
-                  print(self.ChatShared.indexs)
+            if ChatShared.getData {
+              print(ChatShared.members)
+              DispatchQueue.main.async {
+                withAnimation(Animation.easeOut(duration: 0.3)) {
+                  print(ChatShared.indexs)
+                  self.ChatShared.members.bringToFront(item: self.ChatShared.members[ChatShared.moveIndex])
+                  for i in (0...self.ChatShared.members.count-1){
+                    self.ChatShared.indexs[self.ChatShared.members[i].userId] = i
+                    print(self.ChatShared.indexs)
+                  }
                 }
               }
             }
+            
+            ChatShared.getData = false
 
           }
         }

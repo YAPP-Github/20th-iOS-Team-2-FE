@@ -26,7 +26,7 @@ struct ContentView: View {
   @State private var selection: Tab = .home
   @State var dateToShow: String = getTodayDate()
   @ObservedObject var tabbarManager = TabBarManager.shared
-  
+  @StateObject var taskStore = TaskStore()
 
   var body: some View {
     VStack(spacing: 0){
@@ -35,10 +35,7 @@ struct ContentView: View {
         case .home:
           HomeView(selectionType: $selection, dateToShow: $dateToShow)
         case .calendar:
-          CalendarView(currentDate: dateToShow.toDateDay()!)
-            .onAppear{
-              print(dateToShow)
-            }
+          CalendarView(currentDate: dateToShow.toDateDay()!).environmentObject(taskStore)
         case .album:
           AlbumView()
         case .setting:

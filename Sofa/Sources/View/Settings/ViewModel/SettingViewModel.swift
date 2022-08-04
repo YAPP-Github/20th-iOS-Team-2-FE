@@ -24,7 +24,6 @@ class SettingViewModel: ObservableObject {
     print(#fileID, #function, #line, "")
     getUserSimple()
     getUserDetail()
-    
   }
   
   func getUserSimple() { // '설정'뷰의 유저 정보 불러오기

@@ -47,6 +47,6 @@ struct ColorCircles: View {
 
 struct ColorCircles_Previews: PreviewProvider {
   static var previews: some View {
-    TaskColorPicker()
+    TaskColorPicker(selectedColor: "#43A047")
   }
 }

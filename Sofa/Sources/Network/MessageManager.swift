@@ -12,17 +12,24 @@ import Combine
 enum MessageManager: URLRequestConvertible {
   
   case postMessage(content: String)
+  case postEmoji(content: Int)
   
   var baseURL: URL {
     switch self {
     case let .postMessage:
       return URL(string: "\(APIConstants.url)/family/greeting/message")!
+      
+    case let .postEmoji:
+      return URL(string: "\(APIConstants.url)/family/greeting/emoji")!
+      
     }
   }
   
   var method: HTTPMethod {
     switch self {
     case .postMessage:
+      return .post
+    case .postEmoji:
       return .post
     }
   }
@@ -35,6 +42,8 @@ enum MessageManager: URLRequestConvertible {
     switch self {
     case .postMessage:
       headers["Content-Type"] = "application/json"
+    case .postEmoji:
+      headers["Content-Type"] = "application/json"
     }
     return headers
   }
@@ -44,6 +53,8 @@ enum MessageManager: URLRequestConvertible {
 
     switch self {
     case let .postMessage(content):
+      params["content"] = content
+    case let .postEmoji(content):
       params["content"] = content
     }
     return params
@@ -58,6 +69,8 @@ enum MessageManager: URLRequestConvertible {
     
     switch self {
     case .postMessage:
+      request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+    case .postEmoji:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
     }
     

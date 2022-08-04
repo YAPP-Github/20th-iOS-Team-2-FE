@@ -29,18 +29,20 @@ struct ChatList: View {
                 self.historyUserId = ChatShared.members[index].userId
                 print("\(ChatShared.members[index].userId)")
               }
-              .onChange(of: ChatShared.members) { newValue in
-                print(ChatShared.members)
-                withAnimation(Animation.easeOut(duration: 0.3)) {
-                  print(ChatShared.indexs)
-                  self.ChatShared.members.bringToFront(item: self.ChatShared.members[ChatShared.moveIndex])
-                  for i in (0...self.ChatShared.members.count-1){
-                    self.ChatShared.indexs[self.ChatShared.members[i].userId] = i
-                    print(self.ChatShared.indexs)
-                  }
+          }
+          .onChange(of: ChatShared.members) { newValue in
+            print(ChatShared.members)
+            DispatchQueue.main.async {
+              withAnimation(Animation.easeOut(duration: 0.3)) {
+                print(ChatShared.indexs)
+                self.ChatShared.members.bringToFront(item: self.ChatShared.members[ChatShared.moveIndex])
+                for i in (0...self.ChatShared.members.count-1){
+                  self.ChatShared.indexs[self.ChatShared.members[i].userId] = i
+                  print(self.ChatShared.indexs)
                 }
               }
-            
+            }
+
           }
         }
         

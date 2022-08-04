@@ -32,5 +32,24 @@ class MessageViewModel: ObservableObject{
       .store(in: &subscription)
   }
   
+  func postEmoji(content: Int) {
+    AF.request(MessageManager.postEmoji(content: content))
+      .publishDecodable(type: MessageResponse.self)
+      .value()
+      .receive(on: DispatchQueue.main)
+      .sink(
+        receiveCompletion: {completion in
+          guard case .failure(let error) = completion else { return }
+          NSLog("Error : " + error.localizedDescription)
+          print("Emoji POST 성공")
+          
+        },
+        receiveValue: {receivedValue in
+          NSLog("받은 값 : \(receivedValue)")
+        }
+      )
+      .store(in: &subscription)
+  }
+  
 }
 

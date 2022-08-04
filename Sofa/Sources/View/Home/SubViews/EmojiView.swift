@@ -10,6 +10,8 @@ import ConfettiSwiftUI
 
 struct EmojiView: View {
   
+  @StateObject var messageVM = MessageViewModel()
+  
   @State private var counter1: Int = 0
   @State private var counter2: Int = 0
   @State private var counter3: Int = 0
@@ -31,6 +33,7 @@ struct EmojiView: View {
             Group{
               Button {
                 counter1 += 1
+                self.messageVM.postEmoji(content: 1)
               } label: {
                 Text("😆")
                   .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
@@ -38,6 +41,7 @@ struct EmojiView: View {
               .confettiCannon(counter: $counter1, num: 20,confettis: [.text("😆")], confettiSize: 20, rainHeight: 500, radius: 350)
               Button {
                 counter2 += 1
+                self.messageVM.postEmoji(content: 2)
               } label: {
                 Text("😭")
                   .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
@@ -45,6 +49,7 @@ struct EmojiView: View {
               .confettiCannon(counter: $counter2, num: 20,confettis: [.text("😭")], confettiSize: 20, rainHeight: 500, radius: 350)
               Button {
                 counter3 += 1
+                self.messageVM.postEmoji(content: 3)
               } label: {
                 Text("😡")
                   .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
@@ -52,6 +57,7 @@ struct EmojiView: View {
               .confettiCannon(counter: $counter3, num: 20,confettis: [.text("😡")], confettiSize: 20, rainHeight: 500, radius: 350)
               Button {
                 counter4 += 1
+                self.messageVM.postEmoji(content: 4)
               } label: {
                 Text("👋")
                   .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
@@ -59,6 +65,7 @@ struct EmojiView: View {
               .confettiCannon(counter: $counter4, num:20,confettis: [.text("👋")], confettiSize: 20, rainHeight: 500, radius: 350)
               Button {
                 counter5 += 1
+                self.messageVM.postEmoji(content: 5)
               } label: {
                 Text("🎉")
                   .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))
@@ -66,6 +73,7 @@ struct EmojiView: View {
               .confettiCannon(counter: $counter5, num: 20,confettis: [.text("🎉")], confettiSize: 20, rainHeight: 500, radius: 350)
               Button {
                 counter6 += 1
+                self.messageVM.postEmoji(content: 6)
               } label: {
                 Text("💚")
                   .font(.system(size: CGFloat(Int(Screen.maxWidth/13))))

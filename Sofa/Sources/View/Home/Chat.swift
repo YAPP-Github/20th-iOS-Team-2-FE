@@ -11,7 +11,7 @@ class Chat: ObservableObject {
   @Published var members: [ChatMember] = []
   @Published var first = true
   @Published var indexs: [Int : Int] = [:] // userId: Index
-  @Published var moveIndex = -1
+  @Published var moveIndex = 0
   
   static let shared = Chat()
 }

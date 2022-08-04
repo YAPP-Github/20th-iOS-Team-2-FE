@@ -89,12 +89,6 @@ struct LoginButtonView: View {
       VStack {
         TextLabelWithHyperlink()
       }
-      .onAppear{
-        
-        // 여기에 써주세요!
-//        KeychainWrapper.standard.set("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzpudWxsIiwiaWF0IjoxNjU3ODE1ODE2LCJleHAiOjE2NTc4MTk0MTZ9.AoThfTsgp4vzT4uVgl3llpGTmBPwzabjp-6t_2UjxAU", forKey: "accessToken")
-        
-      }
       .padding(EdgeInsets(top: 0.02 * Screen.maxHeight, leading: 0.075 * Screen.maxWidth, bottom: 0.05 * Screen.maxHeight, trailing: 0.075 * Screen.maxWidth))
       
     }//VStack
@@ -104,7 +98,7 @@ struct LoginButtonView: View {
     .ignoresSafeArea()
     .background(Color.white )
     .fullScreenCover(isPresented: $loginViewModel.showJoin) { // 회원 등록
-      RegisterView(registerViewModel: RegisterViewModel(), accessToken: $loginViewModel.accessToken)
+      RegisterView(registerViewModel: RegisterViewModel(), accessToken: $loginViewModel.accessToken, userId: $loginViewModel.userId)
     }
     .fullScreenCover(isPresented: $loginViewModel.showContent) { // 재로그인
       ContentView()

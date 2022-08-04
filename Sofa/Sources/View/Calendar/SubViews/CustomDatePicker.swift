@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct CustomDatePicker: View {
-  
+  @EnvironmentObject var store: TaskStore
   @Binding var currentDate: Date
-  
   @State var yearCount = 0
   @State var currentMonth = 0
   @State var showTaskDetail = false
@@ -18,9 +17,7 @@ struct CustomDatePicker: View {
   
   var body: some View {
     VStack(spacing: 0){
-      
       let days: [String] = ["일","월","화","수","목","금","토"]
-      
       HStack(spacing: 0){
         Text(extraDate()[1] + "년 " + extraDate()[0])
           .font(.custom("Pretendard-Bold", size: 18))
@@ -45,7 +42,6 @@ struct CustomDatePicker: View {
           Image(systemName: "chevron.left")
             .font(.system(size: 20))
             .foregroundColor(Color(hex: "121619"))
-          
         }
         Button {
           withAnimation{
@@ -61,7 +57,6 @@ struct CustomDatePicker: View {
       .padding(.top,15)
       
       ZStack{
-        
         // Day
         if !showYearPicker {
           VStack{
@@ -75,9 +70,6 @@ struct CustomDatePicker: View {
                   .opacity(0.4)
               }
             }
-            
-            
-            
             // Dates
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             LazyVGrid(columns: columns, spacing: 25) {
@@ -112,40 +104,19 @@ struct CustomDatePicker: View {
             }
         }
       }
-      
       Border().padding(.top, 22)
-      
       ScrollView(.vertical, showsIndicators: false) {
         // Task
         LazyVStack(spacing: 24) {
-          if let task = tasks.first(where: { task in
-            return isSameDay(date1: task.taskDate, date2: currentDate)
-          }){
-            ForEach(task.task){ task in
-              HStack(spacing: 8){
-                Rectangle()
-                  .fill(Color(hex: "E91E63"))
-                  .frame(width: 5, height: 48, alignment: .leading)
-                  .cornerRadius(8)
-                VStack(alignment: .leading, spacing: 0){
-                  Text(task.title)
-                    .font(.custom("Pretendard-Bold", size: 16))
-                    .foregroundColor(Color(hex: "21272A"))
-                    .frame(alignment: .leading)
-                  Text(task.time)
-                    .font(.custom("Pretendard-Medium", size: 14))
-                    .foregroundColor(Color(hex: "21272A"))
-                    .frame(alignment: .leading)
-                }
+          ForEach(store.list){ task in
+            let isSameDay = isSameDay(date1: task.date.toDateDay()!, date2: currentDate)
+            if isSameDay {
+              NavigationLink {
+                TaskDetailView(task: task)
+              } label: {
+                TaskCell(task: task)
               }
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .contentShape(Rectangle())
-              .onTapGesture {
-                self.showTaskDetail.toggle()
-              }
-              .fullScreenCover(isPresented: self.$showTaskDetail, content: TaskDetailView.init)
             }
-          } else {
           }
         }
         .padding()
@@ -154,19 +125,22 @@ struct CustomDatePicker: View {
         currentDate = getCurrentMonth()
       }
     }
+    .onAppear {
+      currentMonth = currentDate.get(.month) - Date().get(.month)
+    }
   }
   
   func CardView(value: DateValue)->some View{
     VStack(spacing: 0) {
       if value.day != -1 {
-        if let task = tasks.first(where: { task in
-          return isSameDay(date1: task.taskDate, date2: value.dates)
+        if let task = store.list.first(where: { task in
+          return isSameDay(date1: task.date.toDateDay()!, date2: value.dates)
         }){
           Text("\(value.day)")
             .font(.custom("Pretendard-Medium", size: 14))
-            .foregroundColor(isSameDay(date1: task.taskDate, date2: currentDate) ? .white : Color(hex: "121619"))
+            .foregroundColor(isSameDay(date1: task.date.toDateDay()!, date2: currentDate) ? .white : Color(hex: "121619"))
           Circle()
-            .fill(isSameDay(date1: task.taskDate, date2: currentDate) ? .white : Color(hex: "66BB6A"))
+            .fill(isSameDay(date1: task.date.toDateDay()!, date2: currentDate) ? .white : Color(hex: "66BB6A"))
             .frame(width: 6, height: 6)
             .padding(EdgeInsets(top: 1, leading: 0, bottom: -1, trailing: 0))
         }
@@ -184,7 +158,6 @@ struct CustomDatePicker: View {
   
   func isSameDay(date1: Date, date2: Date)->Bool{
     let calendar = Calendar.current
-    
     return calendar.isDate(date1, inSameDayAs: date2)
   }
   
@@ -194,39 +167,29 @@ struct CustomDatePicker: View {
     formatter.timeZone = TimeZone(abbreviation: "KST")
     formatter.dateFormat = "MMMM yyyy"
     let date = formatter.string(from: currentDate)
-    
     return date.components(separatedBy: " ")
   }
   
   func getCurrentMonth()->Date{
     let calendar = Calendar.current
-    
     guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else {
       return Date()
     }
-    
     return currentMonth
   }
   
   func extractDate()->[DateValue] {
-    let calendar = Calendar.current
-    
+    let calendar = Calendar.current // currentDate로 변경
     let currentMonth = getCurrentMonth()
-    
     var days = currentMonth.getAllDates().compactMap { date ->
       DateValue in
-      
       let day = calendar.component(.day, from: date)
-      
       return DateValue(day: day, dates: date)
     }
-    
     let firstWeekday = calendar.component(.weekday, from: days.first?.dates ?? Date())
-    
     for _ in 0..<firstWeekday - 1{
       days.insert(DateValue(day: -1, dates: Date()), at: 0)
     }
-    
     return days
   }
 }

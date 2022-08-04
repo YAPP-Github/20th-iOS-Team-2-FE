@@ -7,21 +7,31 @@
 
 import SwiftUI
 
-struct Task: Identifiable {
-  var id = UUID().uuidString
-  var allDay: Bool
-  var date: String //"2022-06-20"  var time: Date = Date()
-  var time: String //"20:35"
-  var title: String
-  var content: String
-  var visibility: Bool
-  var color: String
+class Task: Identifiable, ObservableObject {
+  let id: UUID
+  @Published var allDay: Bool
+  @Published var date: String
+  @Published var time: String
+  @Published var title: String
+  @Published  var content: String
+  @Published var visibility: Bool
+  @Published var color: String
+  
+  init(allDay: Bool, date: String, time: String, title: String, content: String, visibility: Bool, color: String) {
+    id = UUID()
+    self.allDay = allDay
+    self.date = date
+    self.time = time
+    self.title = title
+    self.content = content
+    self.visibility = visibility
+    self.color = color
+  }
 }
 
 struct TaskMetaData: Identifiable{
   var id = UUID().uuidString
   var task: [Task]
-  var taskDate: Date
 }
 
 func getSampleDate(offset: Int)->Date{

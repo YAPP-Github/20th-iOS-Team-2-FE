@@ -10,6 +10,9 @@ import SwiftUI
 struct TaskDetailView: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
+  @ObservedObject var task: Task
+  @EnvironmentObject var store: TaskStore
+  
   @State var isTitleFocused: Bool = false
   @State var isMemoFocused: Bool = false
   @State private var title: String = ""
@@ -17,10 +20,7 @@ struct TaskDetailView: View {
   @State private var allDayToggle = false
   @State var showDatePicker = false
   @State var currentDate: Date = Date()
-  
-  init() {
-    UITextView.appearance().backgroundColor = .clear
-  }
+
   
   var taskDetailContent: some View {
     ScrollView {
@@ -38,6 +38,7 @@ struct TaskDetailView: View {
             .cornerRadius(6)
             .highlightTextField(firstLineWidth: isTitleFocused ? 1 : 0, secondLineWidth: isTitleFocused ? 4 : 0)
             .onAppear {
+              title = task.title
               UIApplication.shared.hideKeyboard()
             }
           UITextFieldRepresentable(
@@ -51,7 +52,7 @@ struct TaskDetailView: View {
           .padding(EdgeInsets(top: 16, leading: 16, bottom: 12, trailing: 16))
         
         // 색상
-        TaskColorPicker()
+        TaskColorPicker(selectedColor: task.color.toColorHex() ?? "#43A047")
         Border()
         Rectangle()
           .frame(width: Screen.maxWidth, height: 7)
@@ -70,12 +71,18 @@ struct TaskDetailView: View {
                 .font(.custom("Pretendard-Medium", size: 16))
                 .foregroundColor(Color(hex: "121619"))
               Toggle("", isOn: $allDayToggle)
+                .onAppear{
+                  allDayToggle = task.allDay
+                }
               Spacer()
             }.padding(.bottom, 24)
             
             // 날짜
             GeneralDatePickerView(showDatePicker: $showDatePicker, enableToggle: .constant(true), currentDate: $currentDate)
               .padding(.bottom, 12)
+              .onAppear {
+                currentDate = task.date.toDateDay()!
+              }
             
             if showDatePicker {
               Rectangle()
@@ -86,7 +93,7 @@ struct TaskDetailView: View {
             
             // 시간
             if !allDayToggle {
-              TaskTimePicker()
+              TaskTimePicker(time: task.time.toTime() ?? Date())
                 .padding(.bottom, 27)
                 .padding(.top, 12)
             }
@@ -134,6 +141,10 @@ struct TaskDetailView: View {
             )
             .frame(height: 116)
             .padding(.horizontal, 27)
+            .onAppear{
+              UITextView.appearance().backgroundColor = .clear
+              memo = task.content
+            }
           }
           Border()
         }
@@ -174,10 +185,7 @@ struct TaskDetailView: View {
           .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)),
           trailing: Button(action: {
             self.presentationMode.wrappedValue.dismiss()
-            tasks.append(contentsOf: [TaskMetaData(task: [
-              Task(allDay: false, date: "2022-08-01", time: "20:35", title: title, content: memo, visibility: true, color: "BLUE")
-            ], taskDate: getSampleDate(offset: 0))])
-            print(tasks)
+            // 업데이트
           }, label: {
             Text("수정")
               .fontWeight(.semibold)
@@ -209,6 +217,6 @@ struct TaskDetailView: View {
 
 struct TaskDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    TaskDetailView()
+    TaskDetailView(task: Task(allDay: true, date: "2022-07-20", time: "08:25", title: "회의", content: "전체회의", visibility: true, color: "BLUE")).environmentObject(TaskStore())
   }
 }

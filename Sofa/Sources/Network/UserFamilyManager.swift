@@ -10,7 +10,6 @@ import Alamofire
 import Combine
 
 enum UserFamilyManager: URLRequestConvertible {
-  
   case registerUser(name: String, roleInFamily: String, birthDay: String, nickname: String)
   case registerFamily(familyName: String, familyMotto: String)
   case getUserSimple
@@ -49,9 +48,7 @@ enum UserFamilyManager: URLRequestConvertible {
   
   var headers: HTTPHeaders {
     var headers = HTTPHeaders()
-    let accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q"
-    headers["Authorization"] = accessToken
-    
+    headers["Authorization"] = "Bearer \(Constant.accessToken ?? "")"
     switch self {
     case .registerUser:
       headers["Content-Type"] = "application/json"
@@ -72,7 +69,6 @@ enum UserFamilyManager: URLRequestConvertible {
   
   var parameters: Parameters {
     var params = Parameters()
-    
     switch self {
     case let .registerUser(name: name, roleInFamily: roleInFamily, birthDay: birthDay, nickname: nickname):
       params["name"] = name
@@ -97,11 +93,9 @@ enum UserFamilyManager: URLRequestConvertible {
   
   func asURLRequest() throws -> URLRequest {
     let url = baseURL
-    
     var request = URLRequest(url: url)
     request.method = method
     request.headers = headers
-    
     switch self {
     case .registerUser:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody

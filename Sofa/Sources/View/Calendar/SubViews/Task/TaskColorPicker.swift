@@ -11,7 +11,7 @@ struct TaskColorPicker: View {
   
   @State private var isButtonClicked = false
   @State private var showColorPicker = false
-  @State private var selectedColor: String = "#4CAF50"
+  @State var selectedColor: String
   
   var body: some View {
     VStack(spacing: 0){
@@ -71,6 +71,6 @@ struct TaskColorPicker: View {
 
 struct TaskColorPicker_Previews: PreviewProvider {
   static var previews: some View {
-    TaskColorPicker()
+    TaskColorPicker(selectedColor: "#43A047")
   }
 }

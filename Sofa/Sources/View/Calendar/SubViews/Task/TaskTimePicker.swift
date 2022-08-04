@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TaskTimePicker: View {
   
-  @State private var time = Date()
-  
+  @State var time: Date
   @State private var showTimePicker = false
   
   var body: some View {
@@ -50,6 +49,6 @@ struct TaskTimePicker: View {
 
 struct TaskTimePicker_Previews: PreviewProvider {
   static var previews: some View {
-    TaskTimePicker()
+    TaskTimePicker(time: Date())
   }
 }

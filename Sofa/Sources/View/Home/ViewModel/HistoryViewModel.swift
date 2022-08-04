@@ -54,7 +54,7 @@ class HistoryViewModel: ObservableObject{
           }else{ // Success
             print("History 받은 값: \(receivedValue.history?.count ?? 0)")
             self?.info = HistoryInfo(timestamp: "", status: 0, error: "", detail: "", path: "", nickname: receivedValue.nickname ?? "", roleInFamily: receivedValue.roleInFamily ?? "", profileLink: receivedValue.profileLink ?? "", count: receivedValue.count ?? 0, history: [])
-            self?.history = receivedValue.history!
+            self?.history = Array((receivedValue.history?.reversed())!)
             self?.isLoading = true
           }
         }

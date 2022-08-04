@@ -121,6 +121,7 @@ struct HomeView: View {
         }
         .onAppear{
           self.vm.connect() // 웹소켓 연결
+          Chat.shared.first = true
         }
       }// NavigationView
       .navigationViewStyle(StackNavigationViewStyle())

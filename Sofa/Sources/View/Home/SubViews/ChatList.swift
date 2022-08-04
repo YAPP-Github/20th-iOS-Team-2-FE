@@ -28,6 +28,12 @@ struct ChatList: View {
                 self.historyUserId = ChatShared.members[index].userId
                 print("\(ChatShared.members[index].userId)")
               }
+              .onChange(of: ChatShared.members) { newValue in
+                withAnimation(Animation.easeOut(duration: 0.3)) {
+                  moveRow(from: IndexSet(integer: ChatShared.members.count-1), to: 0)
+                  // 움직이고 나서 index 변화했으므로 다시 갱신 필요
+                }
+              }
           }
         }
         

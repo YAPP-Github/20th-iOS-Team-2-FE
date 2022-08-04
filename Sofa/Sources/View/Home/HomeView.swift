@@ -89,9 +89,9 @@ struct HomeView: View {
               MessageView($showMessageView, $text, 0, $placeholder) {
                 if let text = text {
                   self.messageVM.postMessage(content: text)
-                  self.text = nil
                 }
               }
+              .onDisappear { self.text = nil }
                 .background(BackgroundCleanerView())
             }
           

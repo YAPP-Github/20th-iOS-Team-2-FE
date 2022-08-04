@@ -60,7 +60,7 @@ struct AlbumView: View {
             
             // 카메라 날짜 선택 View로 이동
             if showCameraSelectDate {
-              NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, images: [cameraImage]), isActive: $showCameraSelectDate)
+              NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, images: [cameraImage], colorScheme: .constant(ColorScheme.light)), isActive: $showCameraSelectDate)
             }
           }
           .background(Color.init(hex: "#FAF8F0")) // 임시

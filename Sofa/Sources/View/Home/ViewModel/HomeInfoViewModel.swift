@@ -38,16 +38,15 @@ class HomeInfoViewModel: ObservableObject{
           if receivedValue.status != nil{
             switch receivedValue.status {
             case 400: // 요청 에러 발생했을 때
-              print(receivedValue.status!)
-              print(receivedValue.detail!)
+//              print(receivedValue.status!)
+//              print(receivedValue.detail!)
+              print(receivedValue)
               break
             case 500: // 서버의 내부적 에러가 발생했을 때
-              print(receivedValue.status!)
-              print(receivedValue.detail!)
+              print(receivedValue)
               break
             default:
-              print(receivedValue.status!)
-              print(receivedValue.detail!)
+              print(receivedValue)
               break
             }
           }else{ // Success

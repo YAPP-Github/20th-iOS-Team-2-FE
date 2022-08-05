@@ -13,6 +13,8 @@ struct AlbumImageDetailView: View {
   @StateObject var commentViewModel: CommentViewModel
 
   @State var touchImage = false
+  @Binding var colorScheme: ColorScheme // status bar color
+  let isDate: Bool // 날짜/유형별 확인
   var info: AlbumDetailElement?
   var image: UIImage
   
@@ -62,6 +64,32 @@ struct AlbumImageDetailView: View {
     )
   }
   
+  var actionSheetView2: some View {
+    ActionSheetCard(
+      isShowing: $isEllipsisClick,
+      items: [
+        ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          isEllipsisClick = false
+          messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+          
+          if image != UIImage() { // 이미지가 비어있지 않을 경우
+            authorizationViewModel.showPhotoAlbum(selectImage: image) // 권한 확인
+          }
+        },
+        ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
+          isUpdateDate = true
+          isEllipsisClick = false
+        },
+        ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
+          isEllipsisClick = false
+          messageData2 = ToastMessage.MessageData(title: "사진 제거", type: .Remove)
+          isToastMessage = true
+          presentable.wrappedValue.dismiss()
+        }
+      ]
+    )
+  }
+  
   var body: some View {
     GeometryReader { geometry in
       ZStack {
@@ -83,7 +111,7 @@ struct AlbumImageDetailView: View {
         Color.clear
           .ignoresSafeArea()
           .overlay(
-            AlbumImageDetailNavigationBar(safeTop: geometry.safeAreaInsets.top)
+            AlbumImageDetailNavigationBar(colorScheme: $colorScheme, safeTop: geometry.safeAreaInsets.top)
               .opacity(touchImage ? 0 : 1) // show/hidden toggle 기능
           )
           .overlay(
@@ -100,7 +128,11 @@ struct AlbumImageDetailView: View {
             }
           
           if isEllipsisClick {
-            actionSheetView // 바텀 Sheet
+            if isDate {
+              actionSheetView // 바텀 Sheet
+            } else {
+              actionSheetView2 // 바텀 Sheet - 대표 사진 설정이 없음
+            }
           }
         }
       }
@@ -142,6 +174,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
+    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
   }
 }

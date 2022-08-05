@@ -11,14 +11,14 @@ import Combine
 enum CommentManger: URLRequestConvertible {
   
   case getComments(fileId: Int)
-  case postComments(writerId: Int, fileId: Int, content: String)
+  case postComments(fileId: Int, content: String)
   case patchComment(commentId: Int, content: String)
   
   var baseURL: URL {
     switch self {
     case let .getComments(fileId):
       return URL(string: "\(APIConstants.url)/album/\(fileId)/comments")!
-    case let .postComments(_, fileId, _):
+    case let .postComments(fileId, _):
       return URL(string: "\(APIConstants.url)/album/\(fileId)/comments")!
     case let .patchComment(commentId, _):
       return URL(string: "\(APIConstants.url)/album/comments/\(commentId)")!
@@ -58,7 +58,7 @@ enum CommentManger: URLRequestConvertible {
     switch self {
     case .getComments:
       break
-    case let .postComments(_, _, content):
+    case let .postComments(_, content):
       params["content"] = content
     case let .patchComment(_, content):
       params["content"] = content

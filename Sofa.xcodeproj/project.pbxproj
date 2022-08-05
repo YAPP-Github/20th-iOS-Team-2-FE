@@ -83,7 +83,7 @@
 		6F22E53C284B9D5A0069D268 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53B284B9D5A0069D268 /* Base.swift */; };
 		6F22E53E284B9D640069D268 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22E53D284B9D640069D268 /* Constants.swift */; };
 		6F347EC828951AED005329DE /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347EC728951AED005329DE /* SettingViewModel.swift */; };
-		6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ECD28955E44005329DE /* UserPatchResponse.swift */; };
+		6F347ECE28955E44005329DE /* UserFamilyPatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ECD28955E44005329DE /* UserFamilyPatchResponse.swift */; };
 		6F347ED02895896A005329DE /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ECF2895896A005329DE /* TaskStore.swift */; };
 		6F347ED228958E35005329DE /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F347ED128958E35005329DE /* TaskCell.swift */; };
 		6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */; };
@@ -94,7 +94,7 @@
 		6F809427288AE17700CD12F8 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809426288AE17700CD12F8 /* RegisterViewModel.swift */; };
 		6F809429288AE18500CD12F8 /* RegisterFamilyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809428288AE18500CD12F8 /* RegisterFamilyViewModel.swift */; };
 		6F80942B288AE29100CD12F8 /* UserFamilyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942A288AE29100CD12F8 /* UserFamilyManager.swift */; };
-		6F80942F288B1CA600CD12F8 /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942E288B1CA600CD12F8 /* RegisterUser.swift */; };
+		6F80942F288B1CA600CD12F8 /* UserFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80942E288B1CA600CD12F8 /* UserFamily.swift */; };
 		6F809455288D258A00CD12F8 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809454288D258A00CD12F8 /* RegisterResponse.swift */; };
 		6F809457288D3E4100CD12F8 /* FamilySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F809456288D3E4000CD12F8 /* FamilySettingView.swift */; };
 		6F964BB32875D3A5007FD6B1 /* ColorCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */; };
@@ -105,6 +105,7 @@
 		6FBCD639287AFEBC00D874FD /* RoleActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCD638287AFEBC00D874FD /* RoleActionSheetItem.swift */; };
 		6FC853C628743D8D00988A44 /* TaskTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC853C528743D8D00988A44 /* TaskTimePicker.swift */; };
 		6FC854012874522900988A44 /* TaskColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC854002874522900988A44 /* TaskColorPicker.swift */; };
+		6FD3049C289BFA9E00CDDE0A /* EnterCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD3049B289BFA9E00CDDE0A /* EnterCodeView.swift */; };
 		6FE6D78928619A1D00E3C21E /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */; };
 		6FE6D78B2861B1B100E3C21E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D78A2861B1B100E3C21E /* DateValue.swift */; };
 		6FF836FD2879FDEB00B3A390 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */; };
@@ -287,7 +288,7 @@
 		6F22E53B284B9D5A0069D268 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		6F22E53D284B9D640069D268 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6F347EC728951AED005329DE /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
-		6F347ECD28955E44005329DE /* UserPatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPatchResponse.swift; sourceTree = "<group>"; };
+		6F347ECD28955E44005329DE /* UserFamilyPatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFamilyPatchResponse.swift; sourceTree = "<group>"; };
 		6F347ECF2895896A005329DE /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
 		6F347ED128958E35005329DE /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		6F3E3EBB286B1E3900EF7082 /* AppendTaskModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendTaskModalView.swift; sourceTree = "<group>"; };
@@ -299,7 +300,7 @@
 		6F809426288AE17700CD12F8 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		6F809428288AE18500CD12F8 /* RegisterFamilyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFamilyViewModel.swift; sourceTree = "<group>"; };
 		6F80942A288AE29100CD12F8 /* UserFamilyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFamilyManager.swift; sourceTree = "<group>"; };
-		6F80942E288B1CA600CD12F8 /* RegisterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUser.swift; sourceTree = "<group>"; };
+		6F80942E288B1CA600CD12F8 /* UserFamily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFamily.swift; sourceTree = "<group>"; };
 		6F809454288D258A00CD12F8 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		6F809456288D3E4000CD12F8 /* FamilySettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilySettingView.swift; sourceTree = "<group>"; };
 		6F964BB22875D3A5007FD6B1 /* ColorCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCircles.swift; sourceTree = "<group>"; };
@@ -310,6 +311,7 @@
 		6FBCD638287AFEBC00D874FD /* RoleActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleActionSheetItem.swift; sourceTree = "<group>"; };
 		6FC853C528743D8D00988A44 /* TaskTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimePicker.swift; sourceTree = "<group>"; };
 		6FC854002874522900988A44 /* TaskColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskColorPicker.swift; sourceTree = "<group>"; };
+		6FD3049B289BFA9E00CDDE0A /* EnterCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeView.swift; sourceTree = "<group>"; };
 		6FE6D78828619A1D00E3C21E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		6FE6D78A2861B1B100E3C21E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		6FF836FC2879FDEB00B3A390 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
@@ -591,8 +593,8 @@
 				0A2887F52870A80B000A72F2 /* FamilyList.swift */,
 				0AF2B5412884601B00C6A55E /* LoginResponse.swift */,
 				6F809454288D258A00CD12F8 /* RegisterResponse.swift */,
-				6F347ECD28955E44005329DE /* UserPatchResponse.swift */,
-				6F80942E288B1CA600CD12F8 /* RegisterUser.swift */,
+				6F347ECD28955E44005329DE /* UserFamilyPatchResponse.swift */,
+				6F80942E288B1CA600CD12F8 /* UserFamily.swift */,
 				0A915DD6287A9BA00055AD6D /* Notifications.swift */,
 				0AE492052876A9B000341D35 /* HistoryInfo.swift */,
 				0AAB367E286381C000A47B24 /* HomeInfo.swift */,
@@ -730,6 +732,7 @@
 				6FBCD636287AFB7600D874FD /* RoleActionSheet.swift */,
 				6FBCD638287AFEBC00D874FD /* RoleActionSheetItem.swift */,
 				6F15532F287FA8260048CE54 /* GreyOutOfFocusView.swift */,
+				6FD3049B289BFA9E00CDDE0A /* EnterCodeView.swift */,
 			);
 			path = RegisterSubViews;
 			sourceTree = "<group>";
@@ -1562,8 +1565,9 @@
 				6F3E3EBC286B1E3900EF7082 /* AppendTaskModalView.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				0A2B55092858779D006F816C /* View.swift in Sources */,
-				6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */,
+				6F347ECE28955E44005329DE /* UserFamilyPatchResponse.swift in Sources */,
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
+				6FD3049C289BFA9E00CDDE0A /* EnterCodeView.swift in Sources */,
 				0AF2B54028845FF900C6A55E /* LoginViewModel.swift in Sources */,
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,
 				6FF89F13287EF7A60009D934 /* RegisterFinishView.swift in Sources */,
@@ -1594,7 +1598,7 @@
 				0A4F4C1F288ED6F200913021 /* AccountAndSecurityView.swift in Sources */,
 				0AE4920A287740B300341D35 /* HomeNavigationBarStyle.swift in Sources */,
 				C4B4963928801E5D000C9E1F /* AlbumManager.swift in Sources */,
-				6F80942F288B1CA600CD12F8 /* RegisterUser.swift in Sources */,
+				6F80942F288B1CA600CD12F8 /* UserFamily.swift in Sources */,
 				0A012B60288C2EC700D07970 /* SignInWithAppleButtonView.swift in Sources */,
 				C495F5F32855D668009B3BDE /* NavigationBarWithTextButtonStyle.swift in Sources */,
 				6F155330287FA8260048CE54 /* GreyOutOfFocusView.swift in Sources */,
@@ -1801,7 +1805,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = B4G53F63TN;
+				DEVELOPMENT_TEAM = 3FAK98S72C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;
@@ -1834,7 +1838,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
-				DEVELOPMENT_TEAM = B4G53F63TN;
+				DEVELOPMENT_TEAM = 3FAK98S72C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;

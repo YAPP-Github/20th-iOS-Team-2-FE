@@ -15,7 +15,9 @@ enum UserFamilyManager: URLRequestConvertible {
   case getUserSimple
   case getUserDetail
   case patchUser(imageLink: String, birthDay: String, roleInFamily: String, nickname: String)
-  
+  case patchFamily(familyName: String, familyMotto: String, nickname: [Nickname])
+  case getFamily
+                  
   var baseURL: URL {
     switch self {
     case .registerUser:
@@ -28,6 +30,10 @@ enum UserFamilyManager: URLRequestConvertible {
       return URL(string: "\(APIConstants.url)/user/detail")!
     case .patchUser:
       return URL(string: "\(APIConstants.url)/user")!
+    case .patchFamily:
+      return URL(string: "\(APIConstants.url)/family")!
+    case .getFamily:
+      return URL(string: "\(APIConstants.url)/family")!
     }
   }
   
@@ -43,6 +49,10 @@ enum UserFamilyManager: URLRequestConvertible {
       return .get
     case .patchUser:
       return .patch
+    case .patchFamily:
+      return .patch
+    case .getFamily:
+      return .get
     }
   }
   
@@ -63,6 +73,11 @@ enum UserFamilyManager: URLRequestConvertible {
     case .patchUser:
       headers["Content-Type"] = "application/json"
       headers["accept"] = "application/json"
+    case .patchFamily:
+      headers["Content-Type"] = "application/json"
+      headers["accept"] = "application/json"
+    case .getFamily:
+      return headers
     }
     return headers
   }
@@ -87,6 +102,12 @@ enum UserFamilyManager: URLRequestConvertible {
       params["birthDay"] = birthDay
       params["roleInFamily"] = roleInFamily
       params["nickname"] = nickname
+    case let .patchFamily(familyName: familyName, familyMotto: familyMotto, nickname: nickname):
+      params["familyName"] = familyName
+      params["familyMotto"] = familyMotto
+      params["nickname"] = nickname
+    case .getFamily:
+      break
     }
     return params
   }
@@ -107,6 +128,10 @@ enum UserFamilyManager: URLRequestConvertible {
       request = try URLEncoding.default.encode(request, with: nil)
     case .patchUser:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+    case .patchFamily:
+      request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+    case .getFamily:
+      request = try URLEncoding.default.encode(request, with: nil)
     }
     return request
   }

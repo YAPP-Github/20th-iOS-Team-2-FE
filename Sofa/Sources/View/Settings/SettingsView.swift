@@ -202,6 +202,8 @@ struct SettingsView: View {
       }///ZStack
     }///NavigationView
     .accentColor(Color(hex: "43A047"))
+    .navigationViewStyle(StackNavigationViewStyle())
+    .navigationBarHidden(true)
   }
 }
 

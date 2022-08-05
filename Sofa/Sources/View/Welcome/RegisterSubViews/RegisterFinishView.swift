@@ -13,6 +13,7 @@ struct RegisterFinishView: View {
   @Binding var accessToken: String
   @Binding var userId: Int
   @State var showFamilyRegister: Bool = false
+  @State var showEnterCode: Bool = false
   
   var body: some View {
     VStack(spacing: 0){
@@ -49,13 +50,14 @@ struct RegisterFinishView: View {
       .fullScreenCover(isPresented: $showFamilyRegister, content: RegisterFamilyView.init)
       .padding(.top, 16)
       
-      NavigationLink {
-        
-      } label: {
+      Button(action: {
+        self.showEnterCode = true
+      }){
         Image("code")
-          .padding(.top, 10)
       }
-
+      .fullScreenCover(isPresented: $showEnterCode, content: EnterCodeView.init)
+      .padding(.top, 10)
+      
       Image("alert")
         .padding(.top, 10)
       Spacer()

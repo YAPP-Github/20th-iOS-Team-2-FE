@@ -27,15 +27,11 @@ struct AccountAndSecurityView: View {
               ForEach(titles.indices) { idx in
                 switch idx{
                 case 0:
-                  NavigationLink {
-                    Text("개인정보 이용 약관")
-                  } label: {
+                  Link(destination: URL(string: "https://five-colby-ae6.notion.site/488e62fe794b4cdbab7eba99c2b9964b")!) {
                     settingSubRowView(titles[idx], idx)
                   }
                 case 1:
-                  NavigationLink {
-                    Text("서비스 이용 약관")
-                  } label: {
+                  Link(destination: URL(string: "https://five-colby-ae6.notion.site/e8a88b814a0c48d8b0e348f08f96bcd0")!) {
                     settingSubRowView(titles[idx], idx)
                   }
                 case 2:

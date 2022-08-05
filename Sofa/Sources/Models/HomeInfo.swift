@@ -16,12 +16,13 @@ struct HomeInfo: Decodable {
 }
 
 struct Event: Decodable {
+  var eventId: Int?
   var title: String?
-  var date: String?
+  var date: [Int]?
   var color: String?
   
   static func getDummy() -> Self{
-    return Event(title: "크리스마스 파티🎄", date: "2022-12-25")
+    return Event(title: "크리스마스 파티🎄", date: [2022, 12, 25])
   }
   
   var descriptionTitle: String{
@@ -29,11 +30,18 @@ struct Event: Decodable {
   }
   
   var descriptionDate: String{
-    return "\(date ?? "")"
+    var year = String((date?[0])!)
+    var month = String((date?[1])!)
+    var day = String((date?[2])!)
+    if (date?[1])! < 10{ month = "0\(month)" }
+    if (date?[2])! < 10{ day = "0\(day)" }
+    let reDate = String("\(year)-\(month)-\(day)")
+    return reDate
   }
   
   var descriptionIntervalDate: String {
-    let startDate = date?.toDateDay()
+    let reDate = String("\(date![0])-\(date![1])-\(date![2])")
+    let startDate = reDate.toDateDay()
     let offsetComps = Calendar.current.dateComponents([.day], from: Date().stripTime(), to: startDate!)
     
     if offsetComps.day == 0{

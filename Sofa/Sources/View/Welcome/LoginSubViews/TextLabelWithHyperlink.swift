@@ -24,7 +24,7 @@ struct TextLabelWithHyperlink: UIViewRepresentable {
       NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
       NSAttributedString.Key.foregroundColor: UIColor(hex: "439F47"),
       NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-      NSAttributedString.Key.link: "https://stackoverflow.com"
+      NSAttributedString.Key.link: "https://five-colby-ae6.notion.site/e8a88b814a0c48d8b0e348f08f96bcd0"
     ]
     
     let textWithHyperlink = NSMutableAttributedString(string: "필수 이용약관")
@@ -40,7 +40,7 @@ struct TextLabelWithHyperlink: UIViewRepresentable {
       NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13),
       NSAttributedString.Key.foregroundColor: UIColor(hex: "439F47"),
       NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-      NSAttributedString.Key.link: "https://stackoverflow.com"
+      NSAttributedString.Key.link: "https://five-colby-ae6.notion.site/488e62fe794b4cdbab7eba99c2b9964b"
     ]
     
     

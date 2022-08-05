@@ -12,12 +12,16 @@ class TaskStore: ObservableObject {
   
   init() {
     list = [
-      Task(allDay: true, date: "2022-08-07", time: "08:25", title: "복권 사기", content: "복권사기", visibility: true, color: "BLUE"),
-      Task(allDay: true, date: "2022-08-13", time: "08:25", title: "가족여행 제주도", content: "파트회의", visibility: true, color: "PINK"),
-      Task(allDay: false, date: "2022-07-31", time: "22:25", title: "소파 회의", content: "전체 정기  회의", visibility: true, color: "BLUE"),
-      Task(allDay: true, date: "2022-07-31", time: "21:00", title: "경주 여행", content: "당일치기 경주 여행", visibility: true, color: "AMBER"),
-      Task(allDay: false, date: "2022-07-31", time: "10:25", title: "스터디", content: "토익 그룹 스터디", visibility: true, color: "PINK"),
-      Task(allDay: true, date: "2022-07-31", time: "18:25", title: "밥약속", content: "사거리에서 약속", visibility: true, color: "LIGHTGREEN"),
+      Task(allDay: true, date: "2022-08-07", time: "08:25", title: "복권 사기", content: "복권사기", visibility: true, color: "BLUE".toColorHex() ?? ""),
+      Task(allDay: true, date: "2022-08-13", time: "08:25", title: "가족여행 제주도", content: "가족여행 제주도", visibility: true, color: "PINK".toColorHex() ?? ""),
+      Task(allDay: true, date: "2022-08-06", time: "22:25", title: "아빠 생일", content: "", visibility: true, color: "BLUE".toColorHex() ?? ""),
+      Task(allDay: false, date: "2022-08-06", time: "12:00", title: "아들 기숙사 짐빼기", content: "", visibility: true, color: "AMBER".toColorHex() ?? ""),
+      Task(allDay: false, date: "2022-08-06", time: "20:25", title: "음악회", content: "", visibility: true, color: "PINK".toColorHex() ?? ""),
+      Task(allDay: true, date: "2022-08-06", time: "20:25", title: "케이크 사오기", content: "", visibility: true, color: "LIGHTGREEN".toColorHex() ?? ""),
+      Task(allDay: true, date: "2022-07-31", time: "18:25", title: "밥약속", content: "사거리에서 약속", visibility: true, color: "LIGHTGREEN".toColorHex() ?? ""),
+      Task(allDay: true, date: "2022-07-20", time: "18:25", title: "밥약속", content: "사거리에서 약속", visibility: true, color: "LIGHTGREEN".toColorHex() ?? ""),
+      Task(allDay: true, date: "2022-08-23", time: "18:25", title: "밥약속", content: "사거리에서 약속", visibility: true, color: "LIGHTGREEN".toColorHex() ?? ""),
+      Task(allDay: true, date: "2022-08-17", time: "18:25", title: "밥약속", content: "사거리에서 약속", visibility: true, color: "LIGHTGREEN".toColorHex() ?? ""),
     ]
   }
   

@@ -215,6 +215,8 @@ struct TaskDetailView: View {
       }
       .navigationViewStyle(StackNavigationViewStyle())
       .navigationBarHidden(true)
+    }.onAppear{
+      selectedColor = task.color
     }
   }
   

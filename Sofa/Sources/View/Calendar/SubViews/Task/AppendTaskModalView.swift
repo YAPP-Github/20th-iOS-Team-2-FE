@@ -230,7 +230,7 @@ struct AppendTaskModalView: View {
           .font(.custom("Pretendard-Medium", size: 16))
           .foregroundColor(Color(hex: "121619"))
         Spacer()
-        Text("\(time.getFormattedDate(format: "a hh:MM"))")
+        Text("\(time.getFormattedDate(format: "a hh:mm"))")
           .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
           .font(.custom("Pretendard-Medium", size: 13))
           .foregroundColor(Color(hex: "#43A047"))
@@ -239,7 +239,7 @@ struct AppendTaskModalView: View {
           .cornerRadius(4)
           .onTapGesture {
             withAnimation{
-            self.showTimePicker.toggle()
+              self.showTimePicker.toggle()
             }
           }
       }

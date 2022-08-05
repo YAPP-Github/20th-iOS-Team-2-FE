@@ -12,7 +12,7 @@ import Combine
 enum MessageManager: URLRequestConvertible {
   
   case postMessage(content: String)
-  case postEmoji(content: Int)
+  case postEmoji(emojiNumber: Int)
   
   var baseURL: URL {
     switch self {
@@ -56,7 +56,7 @@ enum MessageManager: URLRequestConvertible {
     case let .postMessage(content):
       params["content"] = content
     case let .postEmoji(content):
-      params["content"] = content
+      params["emojiNumber"] = content
     }
     return params
   }

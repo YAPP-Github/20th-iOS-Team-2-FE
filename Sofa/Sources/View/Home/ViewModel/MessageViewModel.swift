@@ -34,7 +34,7 @@ class MessageViewModel: ObservableObject{
   }
   
   func postEmoji(content: Int) {
-    AF.request(MessageManager.postEmoji(content: content))
+    AF.request(MessageManager.postEmoji(emojiNumber: content))
       .publishDecodable(type: MessageResponse.self)
       .value()
       .receive(on: DispatchQueue.main)

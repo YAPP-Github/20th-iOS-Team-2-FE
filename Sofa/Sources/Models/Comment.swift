@@ -8,7 +8,12 @@
 import Foundation
 
 struct CommensAPIResponse: Decodable {
-  var comments: [Comment]
+  var comments: [Comment]?
+  let timestamp: String?
+  let status: Int?
+  let error: String?
+  let path: String?
+  let detail: String?
 }
 
 struct Comment: Decodable {

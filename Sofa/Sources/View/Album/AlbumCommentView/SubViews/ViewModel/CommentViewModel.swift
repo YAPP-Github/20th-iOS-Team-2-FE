@@ -43,8 +43,8 @@ class CommentViewModel: ObservableObject{
           self?.comments = [Comment]()
         },
         receiveValue: {[weak self] receivedValue in
-          //  NSLog("받은 값 : \(receivedValue)")
-          self?.comments = receivedValue.comments
+            NSLog("받은 값 : \(receivedValue)")
+          self?.comments = receivedValue.comments ?? [Comment]()
         }
       )
       .store(in: &subscription)   // disposed(by: disposeBag)

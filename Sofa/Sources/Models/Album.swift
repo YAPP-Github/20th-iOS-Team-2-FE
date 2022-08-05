@@ -8,6 +8,9 @@
 import Foundation
 
 struct AlbumDefaulAPIResponse: Hashable, Decodable {
+  let timestamp: String?
+  let status: Int?
+  let detail: String?
 }
 
 struct AlbumDateAPIResponse: Hashable, Decodable {
@@ -30,12 +33,6 @@ struct AlbumDate: Hashable, Decodable {
   let title: String
   let thumbnail: String
   let date: String
-  
-  var descriptionDate: String {
-    let date = self.date.toDateIncludeT()
-    let str = date!.getFormattedDate(format: "yyyy-MM-dd")
-    return str
-  }
 }
 
 struct AlbumKind: Hashable, Decodable {

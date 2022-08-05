@@ -24,6 +24,44 @@ struct AlbumDetailList: View {
   let selectAlbumId: Int?      // 날짜별
   let selectKindType: String?  // 유형별
   
+  enum KindImage {
+    case favourite
+    case photo
+    case recording
+    case notCase
+    
+    var imageName: String {
+      switch self {
+      case .favourite: return "empty2"
+      case .photo: return "empty3"
+      case .recording: return "empty1"
+      case .notCase: return "empty1"
+      }
+    }
+    
+    var text: String {
+      switch self {
+      case .favourite: return "아직 즐겨찾기에 파일이 없습니다.\n즐겨찾기로 설정하고 여기서 모아보세요."
+      case .photo: return "아직 업로드한 사진이 없습니다.\n사진을 업로드하고 여기서로 모아보세요."
+      case .recording: return "아직 업로드한 음성이 없습니다.\n음성을 업로드하고 여기서로 모아보세요."
+      case .notCase: return "아직 게시물이 없습니다.\n게시물을 업로드하고 여기서로 모아보세요."
+      }
+    }
+  }
+  
+  func getKind(kind: String) -> KindImage {
+    switch kind {
+    case "favourite":
+      return KindImage.favourite
+    case "photo":
+      return KindImage.photo
+    case "recording":
+      return KindImage.recording
+    default:
+      return KindImage.notCase
+    }
+  }
+  
   var body: some View {
     ScrollView {
       PullToRefresh(coordinateSpaceName: "pullToRefresh") {
@@ -40,8 +78,28 @@ struct AlbumDetailList: View {
           AlbumDetailRow(viewModel: AlbumDetailListCellViewModel(fileId: element.fileId, isFavourite: element.favourite), listViewModel: viewModel, isPhotoThumbnailClick: $isPhotoThumbnailClick, isRecordingThumbnailClick: $isRecordingThumbnailClick, selectFile: $selectFile, selectImage: $selectImage, isBookmarkClick: $isBookmarkClick, isPhotoCommentClick: $isPhotoCommentClick, isRecordingCommentClick: $isRecordingCommentClick, isEllipsisClick: $isEllipsisClick, info: element, index: index)
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
+        
+        if !viewModel.albumDetailList.isEmpty {
+          Rectangle() // 마지막 게시물 밑
+            .frame(height: 16)
+            .foregroundColor(Color.white)
+        }
       }
       .background(Color.white)
+      
+      if viewModel.albumDetailList.isEmpty {
+        Image(getKind(kind: viewModel.type).imageName)
+          .resizable()
+          .scaledToFit()
+          .padding(.top, 16)
+          .padding([.leading, .trailing], 25)
+        
+        Text(getKind(kind: viewModel.type).text)
+          .font(.custom("Pretendard-Medium", size: 18))
+          .multilineTextAlignment(.center) // 가운데 정렬
+          .lineSpacing(10)
+          .foregroundColor(Color(hex: "999999"))
+      }
     }
     .onAppear {
       if selectAlbumId != nil {

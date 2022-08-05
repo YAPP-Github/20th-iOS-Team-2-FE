@@ -30,13 +30,26 @@ struct AlbumList: View {
               AlbumDateRow(selectAlbumId: $selectAlbumId, showAlbumDetail: $showAlbumDetail, title: $title, album: album)
             }
             
-            Text("가져올 앨범이 없어요")
-              .font(.custom("Pretendard-Medium", size: 16))
-              .frame(height: 20)
+            if viewModel.albumDateList.count == 0 {
+              Image("empty1")
+                .resizable()
+                .scaledToFit()
+                .padding(.top, 16)
+                .padding([.leading, .trailing], 25)
+              
+              Text("아직 앨범에 파일이 없습니다")
+                .font(.custom("Pretendard-Medium", size: 18))
+                .foregroundColor(Color(hex: "999999"))
+            } else {
+              Text("앨범의 마지막이예요")
+                .font(.custom("Pretendard-Medium", size: 16))
+                .foregroundColor(Color(hex: "999999"))
+                .padding(.top, 16)
+            }
           }
           
           // 상세 앨범 View로 이동
-          NavigationLink("", destination: AlbumDetailView(title: title, selectAlbumId: selectAlbumId), isActive: $showAlbumDetail)
+          NavigationLink("", destination: AlbumDetailView(listViewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: nil), title: title, selectAlbumId: selectAlbumId), isActive: $showAlbumDetail)
         }
         .offset(y: -10) // PullToRefresh로 인해 scrollview위로 올리기
         .coordinateSpace(name: "pullToRefresh")
@@ -55,7 +68,7 @@ struct AlbumList: View {
           }
           
           // 상세 앨범 View로 이동
-          NavigationLink("", destination: AlbumDetailView(title: title, selectKindType: selectKindType), isActive: $showAlbumDetail)
+          NavigationLink("", destination: AlbumDetailView(listViewModel: AlbumDetailListViewModel(albumId: nil, kindType: selectKindType), title: title, selectKindType: selectKindType), isActive: $showAlbumDetail)
         }
       }
     }

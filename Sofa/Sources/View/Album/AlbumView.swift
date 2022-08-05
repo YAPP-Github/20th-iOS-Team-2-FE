@@ -40,59 +40,63 @@ struct AlbumView: View {
   var body: some View {
     ZStack {
       NavigationView {
-        VStack(spacing: 0) {
-          Picker(selection: $selected, label: Text(""), content: {
-            Text("날짜별").font(.custom("Pretendard-Regular", size: 16)).tag(0)
-            Text("유형별").font(.custom("Pretendard-Regular", size: 16)).tag(1)
-          })
-          .padding(16)
+        VStack(spacing: 3) {
+          Divider()
+          VStack(spacing: 0) {
+            Picker(selection: $selected, label: Text(""), content: {
+              Text("날짜별").font(.custom("Pretendard-Regular", size: 16)).tag(0)
+              Text("유형별").font(.custom("Pretendard-Regular", size: 16)).tag(1)
+            })
+            .padding(16)
+            .background(Color.init(hex: "#FAF8F0")) //
+            .pickerStyle(SegmentedPickerStyle())
+            .scaleEffect(CGSize(width: 1, height: 1.1))
+            
+            AlbumList(viewModel: viewModel, selectType: selected) // select값에 따른 날짜별, 유형별 View
+            
+            if (!tabbarManager.showTabBar){
+              CustomTabView(selection: $currentSelectedTab)
+            }
+            
+            // 카메라 날짜 선택 View로 이동
+            if showCameraSelectDate {
+              NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, images: [cameraImage], colorScheme: .constant(ColorScheme.light)), isActive: $showCameraSelectDate)
+            }
+          }
           .background(Color.init(hex: "#FAF8F0")) // 임시
-          .pickerStyle(SegmentedPickerStyle())
-          
-          AlbumList(viewModel: viewModel, selectType: selected) // select값에 따른 날짜별, 유형별 View
-          
-          if (!tabbarManager.showTabBar){
-            CustomTabView(selection: $currentSelectedTab)
+          .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
+          .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) {
+            // 사진 추가 View로 이동
+            AlbumPhotoAddView()
+              .onDisappear { viewModel.refreshActionSubject.send() }
           }
-          
-          // 카메라 날짜 선택 View로 이동
-          if showCameraSelectDate {
-            NavigationLink("", destination: AlbumSelectDateView(title: "사진 올리기", isCameraCancle: $authorizationViewModel.showCamera, images: [cameraImage]), isActive: $showCameraSelectDate)
+          .fullScreenCover(isPresented: $authorizationViewModel.showCamera) {
+            // 카메라 imagePicker로 이동
+            CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
+              .onDisappear { viewModel.refreshActionSubject.send() }
+              .ignoresSafeArea()
           }
+          .fullScreenCover(isPresented: $authorizationViewModel.showRecord) {
+            // 녹음 추가 View로 이동
+            AlbumRecordAddView()
+              .onDisappear { viewModel.refreshActionSubject.send() }
+          }
+          .alert(isPresented: $authorizationViewModel.showErrorAlert) {
+            // 카메라 error
+            Alert(
+              title: Text(authorizationViewModel.showErrorAlertTitle),
+              message: Text(authorizationViewModel.showErrorAlertMessage),
+              primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
+                if let appSettring = URL(string: UIApplication.openSettingsURLString) {
+                  UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
+                }
+              },
+              secondaryButton: .default(Text("확인")))
+          }
+          .edgesIgnoringSafeArea([.bottom])
         }
-        .background(Color.init(hex: "#FAF8F0")) // 임시
-        .navigationBarWithIconButtonStyle(isButtonClick: $showingSheet, buttonColor: Color.init(hex: "#43A047"), "앨범", "plus") // 임시 컬러
-        .fullScreenCover(isPresented: $authorizationViewModel.showAlbum) {
-          // 사진 추가 View로 이동
-          AlbumPhotoAddView()
-            .onDisappear { viewModel.refreshActionSubject.send() }
         }
-        .fullScreenCover(isPresented: $authorizationViewModel.showCamera) {
-          // 카메라 imagePicker로 이동
-          CameraImagePicker(selectedImage: $cameraImage, isNext: $showCameraSelectDate)
-            .onDisappear { viewModel.refreshActionSubject.send() }
-            .ignoresSafeArea()
-        }
-        .fullScreenCover(isPresented: $authorizationViewModel.showRecord) {
-          // 녹음 추가 View로 이동
-          AlbumRecordAddView()
-            .onDisappear { viewModel.refreshActionSubject.send() }
-        }
-        .alert(isPresented: $authorizationViewModel.showErrorAlert) {
-          // 카메라 error
-          Alert(
-            title: Text(authorizationViewModel.showErrorAlertTitle),
-            message: Text(authorizationViewModel.showErrorAlertMessage),
-            primaryButton: .default(Text("설정")) { // 앱 설정으로 이동
-              if let appSettring = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
-              }
-            },
-            secondaryButton: .default(Text("확인")))
-        }
-        .edgesIgnoringSafeArea([.bottom])
-      }
-      .navigationViewStyle(StackNavigationViewStyle())
+//      .navigationViewStyle(StackNavigationViewStyle())
       if showingSheet { // action sheet
         Color.black
           .opacity(0.7)
@@ -104,7 +108,7 @@ struct AlbumView: View {
           .onAppear { self.tabbarManager.showTabBar = false }
         
         actionSheetView // 바텀 Sheet
-      }
+      } // Zstack
     }
   }
 }

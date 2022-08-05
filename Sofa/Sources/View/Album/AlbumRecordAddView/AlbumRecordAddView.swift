@@ -11,6 +11,7 @@ import AVFoundation
 struct AlbumRecordAddView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioRecorder = AudioRecorderViewModel(numberOfSamples: 21)
+  @State var colorScheme: ColorScheme = .dark
   @State var isNext = false
   var record: Bool { return existRecord() }
   
@@ -48,7 +49,9 @@ struct AlbumRecordAddView: View {
         
         Image(systemName: "play.fill")
           .resizable()
-          .frame(width: 32, height: 32)
+          .scaledToFit()
+          .offset(x: 2)
+          .frame(height: 28)
           .foregroundColor(Color(hex: "D81B60"))
       }
     }
@@ -63,8 +66,8 @@ struct AlbumRecordAddView: View {
       
       Image(systemName: "pause.fill")
         .resizable()
-        .font(.system(size: 32))
-        .frame(width: 28, height: 32)
+        .scaledToFit()
+        .frame(height: 28)
         .foregroundColor(Color(hex: "D81B60"))
     }
   }
@@ -131,7 +134,7 @@ struct AlbumRecordAddView: View {
           Color.clear
             .ignoresSafeArea()
             .overlay(
-              AlbumRecordNavigationBar(isNext: $isNext, existRecord: .constant(record), title: "새로운 녹음", recordParent: self, recordUrl: audioRecorder.url, safeTop: geometry.safeAreaInsets.top) // Navigation Bar
+              AlbumRecordNavigationBar(isNext: $isNext, existRecord: .constant(record), colorScheme: $colorScheme, title: "새로운 녹음", recordParent: self, recordUrl: audioRecorder.url, safeTop: geometry.safeAreaInsets.top) // Navigation Bar
             )
             .overlay(
               recordButtonArea
@@ -139,7 +142,7 @@ struct AlbumRecordAddView: View {
           
           // 날짜 선택으로 이동
           if isNext {
-            NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
+            NavigationLink("", destination: AlbumSelectDateView(title: "녹음 올리기", isCameraCancle: .constant(false), colorScheme: $colorScheme, recordParent: self, recordUrl: audioRecorder.url), isActive: $isNext)
               .onAppear {
                 self.audioRecorder.stopInit()
               }
@@ -150,6 +153,7 @@ struct AlbumRecordAddView: View {
         .ignoresSafeArea()
       }
     }
+    .preferredColorScheme(colorScheme)
     .onAppear {
       audioRecorder.requestAuthorization(parant: self)
     }

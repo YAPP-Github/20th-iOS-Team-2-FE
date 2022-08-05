@@ -9,9 +9,7 @@ import SwiftUI
 
 struct CustomDatePicker: View {
   @EnvironmentObject var store: TaskStore
-  
   @Binding var currentDate: Date
-  
   @State var yearCount = 0
   @State var currentMonth = 0
   @State var showTaskDetail = false
@@ -19,9 +17,7 @@ struct CustomDatePicker: View {
   
   var body: some View {
     VStack(spacing: 0){
-      
       let days: [String] = ["일","월","화","수","목","금","토"]
-      
       HStack(spacing: 0){
         Text(extraDate()[1] + "년 " + extraDate()[0])
           .font(.custom("Pretendard-Bold", size: 18))
@@ -46,7 +42,6 @@ struct CustomDatePicker: View {
           Image(systemName: "chevron.left")
             .font(.system(size: 20))
             .foregroundColor(Color(hex: "121619"))
-          
         }
         Button {
           withAnimation{
@@ -62,7 +57,6 @@ struct CustomDatePicker: View {
       .padding(.top,15)
       
       ZStack{
-        
         // Day
         if !showYearPicker {
           VStack{
@@ -76,7 +70,6 @@ struct CustomDatePicker: View {
                   .opacity(0.4)
               }
             }
-            
             // Dates
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             LazyVGrid(columns: columns, spacing: 25) {
@@ -111,9 +104,7 @@ struct CustomDatePicker: View {
             }
         }
       }
-      
       Border().padding(.top, 22)
-      
       ScrollView(.vertical, showsIndicators: false) {
         // Task
         LazyVStack(spacing: 24) {
@@ -133,6 +124,9 @@ struct CustomDatePicker: View {
       .onChange(of: currentMonth) { newValue in
         currentDate = getCurrentMonth()
       }
+    }
+    .onAppear {
+      currentMonth = currentDate.get(.month) - Date().get(.month)
     }
   }
   
@@ -164,7 +158,6 @@ struct CustomDatePicker: View {
   
   func isSameDay(date1: Date, date2: Date)->Bool{
     let calendar = Calendar.current
-    
     return calendar.isDate(date1, inSameDayAs: date2)
   }
   
@@ -174,39 +167,29 @@ struct CustomDatePicker: View {
     formatter.timeZone = TimeZone(abbreviation: "KST")
     formatter.dateFormat = "MMMM yyyy"
     let date = formatter.string(from: currentDate)
-    
     return date.components(separatedBy: " ")
   }
   
   func getCurrentMonth()->Date{
     let calendar = Calendar.current
-    
     guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else {
       return Date()
     }
-    
     return currentMonth
   }
   
   func extractDate()->[DateValue] {
-    let calendar = Calendar.current
-    
+    let calendar = Calendar.current // currentDate로 변경
     let currentMonth = getCurrentMonth()
-    
     var days = currentMonth.getAllDates().compactMap { date ->
       DateValue in
-      
       let day = calendar.component(.day, from: date)
-      
       return DateValue(day: day, dates: date)
     }
-    
     let firstWeekday = calendar.component(.weekday, from: days.first?.dates ?? Date())
-    
     for _ in 0..<firstWeekday - 1{
       days.insert(DateValue(day: -1, dates: Date()), at: 0)
     }
-    
     return days
   }
 }

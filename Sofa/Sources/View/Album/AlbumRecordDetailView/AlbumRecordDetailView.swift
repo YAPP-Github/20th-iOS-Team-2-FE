@@ -10,7 +10,10 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  @StateObject var commentViewModel: CommentViewModel
   @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
+  @Binding var colorScheme: ColorScheme // status bar color
+  let isDate: Bool // 날짜/유형별 확인
   let info: AlbumDetailElement?
   
   // 즐겨찾기
@@ -47,6 +50,31 @@ struct AlbumRecordDetailView: View {
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "대표 사진 등록", type: .Registration)
           isToastMessage = true
+        },
+        ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
+          isEllipsisClick = false
+          messageData2 = ToastMessage.MessageData(title: "녹음 제거", type: .Remove)
+          isToastMessage = true
+          presentable.wrappedValue.dismiss()
+        }
+      ]
+    )
+  }
+  
+  var actionSheetView2: some View {
+    ActionSheetCard(
+      isShowing: $isEllipsisClick,
+      items: [
+        ActionSheetCardItem(systemIconName: "arrow.down", label: "다운로드") {
+          isEllipsisClick = false
+          messageData2 = ToastMessage.MessageData(title: "다운로드 완료", type: .Registration)
+          audioViewModel.download(fileName: info!.title, link: info!.link) { complete in
+            isToastMessage = complete
+          }
+        },
+        ActionSheetCardItem(systemIconName: "calendar", label: "날짜 수정") {
+          isUpdateDate = true
+          isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
           isEllipsisClick = false
@@ -95,8 +123,8 @@ struct AlbumRecordDetailView: View {
           .frame(width: 20, height: 20)
           .foregroundColor(favouriteViewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
           .font(.system(size: 20))
-          .padding(.leading, 8)
       }
+      .padding(EdgeInsets(top: 12, leading: 20, bottom: 15, trailing: 5))
       
       Button(action: {
         // NetWork
@@ -107,15 +135,15 @@ struct AlbumRecordDetailView: View {
             .frame(width: 20, height: 20)
             .foregroundColor(.white)
             .font(.system(size: 20))
-            .padding(.leading, 20)
           
           // 댓글 수
-          Text("\(info!.commentCount)")
+          Text("\(commentViewModel.comments.count)")
             .font(.custom("Pretendard-Medium", size: 16))
             .foregroundColor(.white)
             .font(.system(size: 20))
         }
       })
+      .padding(EdgeInsets(top: 12, leading: 15, bottom: 15, trailing: 5))
       Spacer()
       Button(action: { // 설정
         self.isEllipsisClick = true
@@ -125,8 +153,8 @@ struct AlbumRecordDetailView: View {
           .foregroundColor(.white)
           .font(.system(size: 20))
       }
+      .padding(EdgeInsets(top: 12, leading: 20, bottom: 15, trailing: 16))
     }
-    .padding(EdgeInsets(top: 12, leading: 12, bottom: 15, trailing: 16))
   }
   
   // 녹음 버튼 영역
@@ -155,7 +183,8 @@ struct AlbumRecordDetailView: View {
             
             Image(systemName: "pause.fill") // 정지
               .resizable()
-              .frame(width: 28, height: 32)
+              .scaledToFit()
+              .frame(height: 28)
               .foregroundColor(Color(hex: "D81B60"))
           } else { // 녹음 끝
             Circle()
@@ -164,7 +193,9 @@ struct AlbumRecordDetailView: View {
             
             Image(systemName: "play.fill") // 플레이
               .resizable()
-              .frame(width: 29, height: 32)
+              .scaledToFit()
+              .offset(x: 2)
+              .frame(height: 28)
               .foregroundColor(Color(hex: "D81B60"))
           }
         }
@@ -198,12 +229,12 @@ struct AlbumRecordDetailView: View {
     GeometryReader { geometry in
       ZStack {
         recordBarArea // 녹음 Bar 영역
-
+        
         Color.clear
           .ignoresSafeArea()
           .overlay(
             // Navigation Bar
-            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), title: info!.title!, safeTop: geometry.safeAreaInsets.top)
+            AlbumRecordNavigationBar(isNext: .constant(false), existRecord: .constant(false), colorScheme: $colorScheme, title: info!.title!, safeTop: geometry.safeAreaInsets.top)
           )
           .overlay(
             recordBottomArea
@@ -216,9 +247,14 @@ struct AlbumRecordDetailView: View {
             .onTapGesture {
               isEllipsisClick = false
             }
+            .onAppear { colorScheme = .dark }
           
           if isEllipsisClick {
-            actionSheetView // 설정 버튼 sheet
+            if isDate {
+              actionSheetView // 바텀 Sheet
+            } else {
+              actionSheetView2 // 바텀 Sheet - 대표 사진 설정이 없음
+            }
           }
         }
       }
@@ -231,10 +267,11 @@ struct AlbumRecordDetailView: View {
         AlbumDateEditView(fileId: info!.fileId) // 임시
       }
       .fullScreenCover(isPresented: $isCommentClick) {
-        AlbumCommentView(isShowing: $isCommentClick, filedId: info!.fileId)
+        AlbumCommentView(viewModel: commentViewModel, isShowing: $isCommentClick, filedId: info!.fileId)
           .background(BackgroundCleanerView())
       }
       .onAppear {
+        colorScheme = .dark // dark 모드
         audioViewModel.startInit(audio: URL(string: info!.link)!)
         if isPreCommentClick { // Detail View에서 댓글 버튼을 눌렀을때
           isCommentClick = true
@@ -251,6 +288,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), colorScheme: .constant(.dark), isDate: true, info: data, isPreCommentClick: false)
   }
 }

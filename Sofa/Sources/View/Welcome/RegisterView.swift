@@ -7,68 +7,6 @@
 
 import SwiftUI
 
-struct UITextFieldRepresentable: UIViewRepresentable {
-    @Binding var text: String
-    var isFirstResponder: Bool = false
-    var isNumberPad: Bool = false
-    @Binding var isFocused: Bool
-    
-  func makeUIView(context: UIViewRepresentableContext<UITextFieldRepresentable>) -> UITextField {
-    let textField = UITextField(frame: .zero)
-    textField.delegate = context.coordinator
-    textField.textColor = UIColor.clear
-    textField.autocorrectionType = .no
-    if isNumberPad { textField.keyboardType = .numberPad
-    }
-    
-    return textField
-  }
-  
-    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<UITextFieldRepresentable>) {
-        uiView.text = self.text
-        if isFirstResponder && !context.coordinator.didFirstResponder {
-            uiView.becomeFirstResponder()
-            context.coordinator.didFirstResponder = true
-        }
-      if isNumberPad { uiView.keyboardType = .numberPad
-      }
-    }
-    
-    func makeCoordinator() -> UITextFieldRepresentable.Coordinator {
-      Coordinator(text: self.$text, isFocused: self.$isFocused)
-    }
-    
-    class Coordinator: NSObject, UITextFieldDelegate {
-        @Binding var text: String
-        @Binding var isFocused: Bool
-        var didFirstResponder = false
-        var isNumberPad = false
-        
-      init(text: Binding<String>, isFocused: Binding<Bool>) {
-            self._text = text
-            self._isFocused = isFocused
-        }
-        
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            self.text = textField.text ?? ""
-        }
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-          
-          return true
-        }
-        
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-            self.isFocused = true
-        }
-        
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            self.isFocused = false
-        }
-    }
-}
-
 struct RegisterView: View {
   
   @ObservedObject var registerViewModel: RegisterViewModel
@@ -80,6 +18,7 @@ struct RegisterView: View {
   @State var info = [String](repeating: "", count: 4)
   @State var isTextFocused: Bool = false
   @Binding var accessToken: String
+  @Binding var userId: Int
     
   let placeHolderText = [
     "홍길동",
@@ -166,6 +105,7 @@ struct RegisterView: View {
               .modifier(RegisterTextModifier())
               .onAppear{
                 print("RegisterView accessToken: \(accessToken)")
+                print("RegisterView userId: \(userId)")
               }
           case 2:
             Text("가족 내에서\n나는 어떤 역할인가요?")
@@ -306,7 +246,7 @@ struct RegisterView: View {
           }
 //          .fullScreenCover(isPresented: $showFinishModal, content: RegisterFinishView(accessToken: $accessToken))
           .fullScreenCover(isPresented: $showFinishModal) {
-            RegisterFinishView(accessToken: $accessToken)
+            RegisterFinishView(accessToken: $accessToken, userId: $userId)
           }
         }
           .padding(.bottom, 8+34)
@@ -316,6 +256,68 @@ struct RegisterView: View {
       }
     }
   }
+}
+
+struct UITextFieldRepresentable: UIViewRepresentable {
+    @Binding var text: String
+    var isFirstResponder: Bool = false
+    var isNumberPad: Bool = false
+    @Binding var isFocused: Bool
+    
+  func makeUIView(context: UIViewRepresentableContext<UITextFieldRepresentable>) -> UITextField {
+    let textField = UITextField(frame: .zero)
+    textField.delegate = context.coordinator
+    textField.textColor = UIColor.clear
+    textField.autocorrectionType = .no
+    if isNumberPad { textField.keyboardType = .numberPad
+    }
+    
+    return textField
+  }
+  
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<UITextFieldRepresentable>) {
+        uiView.text = self.text
+        if isFirstResponder && !context.coordinator.didFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.didFirstResponder = true
+        }
+      if isNumberPad { uiView.keyboardType = .numberPad
+      }
+    }
+    
+    func makeCoordinator() -> UITextFieldRepresentable.Coordinator {
+      Coordinator(text: self.$text, isFocused: self.$isFocused)
+    }
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        @Binding var text: String
+        @Binding var isFocused: Bool
+        var didFirstResponder = false
+        var isNumberPad = false
+        
+      init(text: Binding<String>, isFocused: Binding<Bool>) {
+            self._text = text
+            self._isFocused = isFocused
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            self.text = textField.text ?? ""
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+          
+          return true
+        }
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            self.isFocused = true
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            self.isFocused = false
+        }
+    }
 }
 
 //struct RegisterView_Previews: PreviewProvider {

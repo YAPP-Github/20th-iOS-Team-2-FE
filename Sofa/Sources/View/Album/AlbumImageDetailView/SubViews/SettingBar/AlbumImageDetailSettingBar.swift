@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumImageDetailSettingBar: View {
   @ObservedObject var viewModel: AlbumDetailListCellViewModel
+  @StateObject var commentViewModel: CommentViewModel
 
   @Binding var isBookmarkClick: Bool
   @Binding var isCommentClick: Bool
@@ -34,8 +35,8 @@ struct AlbumImageDetailSettingBar: View {
                 .frame(width: 20, height: 20)
                 .foregroundColor(viewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
                 .font(.system(size: 20))
-                .padding(.leading, 8)
             }
+            .padding(EdgeInsets(top: 12, leading: 20, bottom: 15, trailing: 5))
             
             Button(action: {
               // NetWork
@@ -46,14 +47,14 @@ struct AlbumImageDetailSettingBar: View {
                   .frame(width: 20, height: 20)
                   .foregroundColor(.white)
                   .font(.system(size: 20))
-                  .padding(.leading, 20)
                 
                 // 댓글 수
-                Text("\(info.commentCount)")
+                Text("\(commentViewModel.comments.count)")
                   .foregroundColor(.white)
                   .font(.custom("Pretendard-Medium", size: 20))
               }
             })
+            .padding(EdgeInsets(top: 12, leading: 15, bottom: 15, trailing: 5))
             
             Spacer()
             
@@ -65,8 +66,8 @@ struct AlbumImageDetailSettingBar: View {
                 .foregroundColor(.white)
                 .font(.system(size: 20))
             }
+            .padding(EdgeInsets(top: 12, leading: 20, bottom: 15, trailing: 16))
           }
-          .padding(EdgeInsets(top: 12, leading: 12, bottom: 15, trailing: 16))
           Spacer()
         }
         .frame(height: 83)
@@ -80,7 +81,7 @@ struct AlbumImageDetailSettingBar_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: 0, isFavourite: false), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
+    AlbumImageDetailSettingBar(viewModel: AlbumDetailListCellViewModel(fileId: 0, isFavourite: false), commentViewModel: CommentViewModel(filedId: data.fileId), isBookmarkClick: .constant(false), isCommentClick: .constant(false), isEllipsisClick: .constant(false), info: data)
       .ignoresSafeArea()
   }
 }

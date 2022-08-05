@@ -67,10 +67,11 @@ struct AlbumCommentRow: View {
       }) {
         Image(systemName: "ellipsis")
           .frame(width: 20)
-          .foregroundColor(Color(hex: "999999"))
           .font(.system(size: 20))
       }
       .padding(EdgeInsets(top: 14, leading: 6.5, bottom: 10, trailing: 16))
+      .foregroundColor(Constant.userId == comment.writerId ? Color(hex: "999999") : .white)
+      .disabled(Constant.userId != comment.writerId)
 
     }
     .padding([.bottom], 14)

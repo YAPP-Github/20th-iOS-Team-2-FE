@@ -51,8 +51,7 @@ class HomeInfoViewModel: ObservableObject{
             }
           }else{ // Success
             print("HomeInfo events 받은 값: \(receivedValue.events?.count ?? 0)")
-            let getEvents = receivedValue.events!
-            self?.events = getEvents.sorted(by: { $0.descriptionIntervalDate > $1.descriptionIntervalDate })
+            self?.events = receivedValue.events!
             self?.hometitle = receivedValue.familyName!
           }
         }

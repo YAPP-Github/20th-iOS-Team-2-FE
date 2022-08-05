@@ -107,7 +107,11 @@ final class ChatScreenViewModel: ObservableObject {
                     print("NEW CHAT RESPONSE")
 //                    print("Received string: \(text)")
                     DispatchQueue.main.async {
-                      self.ChatShared.members[idx].content = receivedValue.content
+                      if receivedValue.emoji == nil{
+                        self.ChatShared.members[idx].content = receivedValue.content
+                      }else if receivedValue.content == nil {
+                        self.ChatShared.members[idx].emoji = receivedValue.emoji ?? 0
+                      }
                       self.ChatShared.members[idx].updatedAt = "방금전"
                       self.ChatShared.moveIndex = idx
                       self.ChatShared.getData = true

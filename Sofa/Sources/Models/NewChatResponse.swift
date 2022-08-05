@@ -13,6 +13,7 @@ struct NewChatResponse: Decodable {
   let detail: String? // 실패
   let userId: Int? // 성공
   let name: String? // 성공
+  let emoji: Int? // 성공
   let content: String? // 성공
   let updatedAt: String?
 }

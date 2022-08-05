@@ -13,7 +13,7 @@ struct ChatRow: View {
   var member: ChatMember
   var callback: (() -> Void)?
   
-  var emojiDict = [1 : "😆", 2: "😭", 3: "😡", 4: "👋", 5: "🎉", 6: "💚"]
+  var emojiDict = [0 : "", 1 : "😆", 2: "😭", 3: "😡", 4: "👋", 5: "🎉", 6: "💚"]
   
   
   init(_ member: ChatMember, callback: (() -> Void)?){

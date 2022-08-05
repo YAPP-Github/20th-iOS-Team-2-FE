@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import Combine
+import SwiftUI
 
 class MessageViewModel: ObservableObject{
 
@@ -42,7 +43,6 @@ class MessageViewModel: ObservableObject{
           guard case .failure(let error) = completion else { return }
           NSLog("Error : " + error.localizedDescription)
           print("Emoji POST 성공")
-          
         },
         receiveValue: {receivedValue in
           NSLog("받은 값 : \(receivedValue)")

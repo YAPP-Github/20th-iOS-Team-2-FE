@@ -325,7 +325,7 @@
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A2E284B6FF200A4A759 /* SofaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaApp.swift; sourceTree = "<group>"; };
 		C4667A30284B6FF200A4A759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C4667A32284B6FF400A4A759 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4667A32284B6FF400A4A759 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Configuration/Assets/Assets.xcassets; sourceTree = "<group>"; };
 		C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C4667A3B284B6FF400A4A759 /* SofaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A3F284B6FF400A4A759 /* SofaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaTests.swift; sourceTree = "<group>"; };
@@ -786,6 +786,7 @@
 				0A4CFBA22860C963000603A5 /* Sofa.entitlements */,
 				0A026877284BA9A300E7AF4A /* Info.plist */,
 				C4667A2E284B6FF200A4A759 /* SofaApp.swift */,
+				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
 				C4667A58284B74F100A4A759 /* Configuration */,
 				C4667A34284B6FF400A4A759 /* Sources */,
 			);
@@ -838,7 +839,6 @@
 			children = (
 				0A012B5D288C252100D07970 /* 113766-gravity.json */,
 				C4667A35284B6FF400A4A759 /* Preview Assets.xcassets */,
-				C4667A32284B6FF400A4A759 /* Assets.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -1804,7 +1804,7 @@
 				CODE_SIGN_ENTITLEMENTS = Sofa/Sofa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 3FAK98S72C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1837,7 +1837,7 @@
 				CODE_SIGN_ENTITLEMENTS = Sofa/Sofa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Sofa/Configuration/Assets\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 3FAK98S72C;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

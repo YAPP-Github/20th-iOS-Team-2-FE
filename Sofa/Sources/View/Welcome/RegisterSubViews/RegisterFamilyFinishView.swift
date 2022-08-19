@@ -21,13 +21,11 @@ struct RegisterFamilyFinishView: View {
             .ignoresSafeArea()
             .frame(height: 191-34)
             .foregroundColor(Color(hex: "#388E3C"))
-          
           VStack(spacing: 0){
             Text("가족 공간 생성 완료!")
               .font(.custom("Pretendard-Bold", size: 28))
               .foregroundColor(Color.white)
               .frame(height: 42)
-            
             Text("우리 가족만의 공간이 생성되었어요.")
               .font(.custom("Pretendard-Medium", size: 20))
               .foregroundColor(Color.white.opacity(0.5))
@@ -35,7 +33,6 @@ struct RegisterFamilyFinishView: View {
               .frame(height: 30)
           }
         }
-        
         ZStack{
           Rectangle()
             .frame(height: 131)
@@ -47,25 +44,23 @@ struct RegisterFamilyFinishView: View {
               RoundedRectangle(cornerRadius: 8)
                 .stroke(Color(hex: "EDEADF"), lineWidth: 1)
             )
-          
-          
           VStack(spacing: 0){
             ZStack{
               Rectangle()
                 .frame(height: 47)
+                .cornerRadius(8)
                 .foregroundColor(Color(hex: "#FAF8F0"))
                 .padding(.horizontal, 32)
                 .padding(.top, 16)
               HStack{
-                Text("qlzpdl_dkdleldj_2909.com")
-                  .foregroundColor(Color.black.opacity(0.4))
+                Text("vcdzu")
+                  .foregroundColor(Color.black.opacity(0.5))
                   .font(.custom("Pretendard-Medium", size: 18))
                   .padding(.horizontal, 44)
                   .padding(.top, 16)
                 Spacer()
               }
             }
-            
             Button {
               print("copy")
             } label: {
@@ -74,16 +69,14 @@ struct RegisterFamilyFinishView: View {
                 Text("링크 복사")
               }
               .frame(width: 326, height: 48, alignment: .center)
-              .cornerRadius(6)
               .background(Color(hex: "FFB300"))
+              .cornerRadius(8)
               .foregroundColor(Color.white)
             }
             .padding(.top, 4)
           }
         }
-        
         Spacer()
-        
         Button(action: {
           self.showContentView = true
         }){
@@ -91,7 +84,6 @@ struct RegisterFamilyFinishView: View {
         }
         .fullScreenCover(isPresented: $showContentView, content: ContentView.init)
         .padding(.bottom, 88-34)
-        
       }
     }
   }

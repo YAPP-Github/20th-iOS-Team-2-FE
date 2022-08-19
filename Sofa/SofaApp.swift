@@ -44,7 +44,6 @@ struct SofaApp: App {
             }
           }
       }
-      
     }
   }
 }

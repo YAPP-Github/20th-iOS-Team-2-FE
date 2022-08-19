@@ -13,22 +13,20 @@ struct RegisterFinishView: View {
   @Binding var accessToken: String
   @Binding var userId: Int
   @State var showFamilyRegister: Bool = false
+  @State var showEnterCode: Bool = false
   
   var body: some View {
-    
     VStack(spacing: 0){
       ZStack{
         Rectangle()
           .ignoresSafeArea()
           .frame(height: 191-34)
           .foregroundColor(Color(hex: "#388E3C"))
-        
         VStack(spacing: 0){
           Text("회원가입 완료!")
             .font(.custom("Pretendard-Bold", size: 28))
             .foregroundColor(Color.white)
             .frame(height: 42)
-
           Text("Sofa의 회원가입을 완료했어요.")
             .font(.custom("Pretendard-Medium", size: 20))
             .foregroundColor(Color.white.opacity(0.5))
@@ -44,7 +42,6 @@ struct RegisterFinishView: View {
           print("RegisterFinishView userId: \(Constant.userId ?? 0)")
         }
       }
-      
       Button(action: {
         self.showFamilyRegister = true
       }){
@@ -53,17 +50,23 @@ struct RegisterFinishView: View {
       .fullScreenCover(isPresented: $showFamilyRegister, content: RegisterFamilyView.init)
       .padding(.top, 16)
       
+      Button(action: {
+        self.showEnterCode = true
+      }){
+        Image("code")
+      }
+      .fullScreenCover(isPresented: $showEnterCode, content: EnterCodeView.init)
+      .padding(.top, 10)
+      
       Image("alert")
         .padding(.top, 10)
-      
       Spacer()
-      
     }
   }
 }
 
-//struct RegisterFinishView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    RegisterFinishView()
-//  }
-//}
+struct RegisterFinishView_Previews: PreviewProvider {
+  static var previews: some View {
+    RegisterFinishView(accessToken: .constant(""), userId: .constant(0))
+  }
+}

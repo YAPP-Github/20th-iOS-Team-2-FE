@@ -14,7 +14,7 @@ struct TaskCell: View {
       
       HStack(spacing: 8){
         Rectangle()
-          .fill(Color(hex: task.color.toColorHex() ?? ""))
+          .fill(Color(hex: task.color))
           .frame(width: 5, height: 48, alignment: .leading)
           .cornerRadius(8)
         VStack(alignment: .leading, spacing: 0){

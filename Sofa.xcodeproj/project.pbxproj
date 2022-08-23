@@ -1584,7 +1584,7 @@
 				0A50A7DA289AA731000622C4 /* HomeInfoManager.swift in Sources */,
 				0ABA0C1D2857A30E005F2C6A /* LoginButtonView.swift in Sources */,
 				0A2B55092858779D006F816C /* View.swift in Sources */,
-				6F347ECE28955E44005329DE /* UserPatchResponse.swift in Sources */,
+				6F347ECE28955E44005329DE /* UserFamilyPatchResponse.swift in Sources */,
 				0A50A7DC289ACF98000622C4 /* HistoryManager.swift in Sources */,
 				6F347ECE28955E44005329DE /* UserFamilyPatchResponse.swift in Sources */,
 				C4EC31E128504F2B0049F2C4 /* AlbumList.swift in Sources */,
@@ -1826,7 +1826,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 3FAK98S72C;
+				DEVELOPMENT_TEAM = B4G53F63TN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sofa/Info.plist;

@@ -34,7 +34,7 @@ final class ChatScreenViewModel: ObservableObject {
 //    request.addValue("                                                                                                                                                                                                                                     eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q", forHTTPHeaderField: "Authorization")
     
     request.addValue("Bearer \(Constant.accessToken ?? "")", forHTTPHeaderField: "Authorization")
-    print(Constant.accessToken!)
+    print(Constant.accessToken ?? " ")
     websocketTask = URLSession.shared.webSocketTask(with: request)
     websocketTask?.resume()
     receiveMessage()

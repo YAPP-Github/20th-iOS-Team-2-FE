@@ -10,6 +10,7 @@ import SwiftUI
 struct AlbumCommentView: View {
   @StateObject var viewModel: CommentViewModel
   @Binding var isShowing: Bool
+  @State var selectComment: Comment?
   @State var isEllipsisClick: Bool = false // 설정(수정, 삭제)
   @State var isEdit: Bool = false // 설정(수정)
   let filedId: Int
@@ -23,6 +24,7 @@ struct AlbumCommentView: View {
           isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
+          viewModel.deleteComment(commentId: selectComment!.commentId)
           isEllipsisClick = false
         }
       ]
@@ -36,7 +38,7 @@ struct AlbumCommentView: View {
           self.isShowing = false
         }
         
-        CommentModal(viewModel: viewModel, isEllipsisClick: $isEllipsisClick, isEdit: $isEdit) { // 댓글 Modal
+        CommentModal(viewModel: viewModel, selectComment: $selectComment, isEllipsisClick: $isEllipsisClick, isEdit: $isEdit) { // 댓글 Modal
           self.isShowing = false
         }
         .transition(.move(edge: .bottom))

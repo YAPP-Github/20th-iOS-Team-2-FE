@@ -35,7 +35,6 @@ struct Comment: Decodable {
     
     while content.hasSuffix("\n") {
       content.removeLast()
-      content.removeLast()
     }
     return "\(content)"
   }

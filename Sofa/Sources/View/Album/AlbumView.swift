@@ -16,7 +16,7 @@ struct AlbumView: View {
   @State var selected = 0
   @State var showCameraSelectDate = false // 카메라 이미지 선택 -> 날짜 선택
   @State var cameraImage = UIImage() // 카메라를 통해 받아오는 이미지
-
+  
   var actionSheetView: some View {
     ActionSheetCard(
       isShowing: $showingSheet,
@@ -82,7 +82,7 @@ struct AlbumView: View {
               .onDisappear { viewModel.refreshActionSubject.send() }
           }
           .alert(isPresented: $authorizationViewModel.showErrorAlert) {
-            // 카메라 error
+            // 허용안함, 카메라없는 error
             Alert(
               title: Text(authorizationViewModel.showErrorAlertTitle),
               message: Text(authorizationViewModel.showErrorAlertMessage),
@@ -90,13 +90,15 @@ struct AlbumView: View {
                 if let appSettring = URL(string: UIApplication.openSettingsURLString) {
                   UIApplication.shared.open(appSettring, options: [:], completionHandler: nil)
                 }
+                self.tabbarManager.showTabBar = true
               },
-              secondaryButton: .default(Text("확인")))
+              secondaryButton: .default(Text("확인")) {
+                self.tabbarManager.showTabBar = true
+              })
           }
           .edgesIgnoringSafeArea([.bottom])
         }
-        }
-//      .navigationViewStyle(StackNavigationViewStyle())
+      } // .navigationViewStyle(StackNavigationViewStyle())
       if showingSheet { // action sheet
         Color.black
           .opacity(0.7)

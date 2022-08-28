@@ -113,6 +113,7 @@
 		6FF89F11287EF3DA0009D934 /* RegisterFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F10287EF3DA0009D934 /* RegisterFamilyView.swift */; };
 		6FF89F13287EF7A60009D934 /* RegisterFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F12287EF7A60009D934 /* RegisterFinishView.swift */; };
 		6FF89F15287F011C0009D934 /* RegisterFamilyFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */; };
+		C436EF9628BB4CEA0061B215 /* AlbumDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436EF9528BB4CEA0061B215 /* AlbumDetailCellViewModel.swift */; };
 		C440003728819838007D0C20 /* AlbumTitleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440003628819838007D0C20 /* AlbumTitleEditView.swift */; };
 		C45B502A28ABBFDA00D14A63 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45B502928ABBFDA00D14A63 /* APIConstants.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
@@ -321,6 +322,7 @@
 		6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFamilyFinishView.swift; sourceTree = "<group>"; };
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.debug.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C436EF9528BB4CEA0061B215 /* AlbumDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailCellViewModel.swift; sourceTree = "<group>"; };
 		C440003628819838007D0C20 /* AlbumTitleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleEditView.swift; sourceTree = "<group>"; };
 		C45B502928ABBFDA00D14A63 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1126,6 +1128,7 @@
 			children = (
 				C4AC88662889BC0900BA5921 /* AlbumDetailListViewModel.swift */,
 				C4AC886C288D86BD00BA5921 /* AlbumDetailListCellViewModel.swift */,
+				C436EF9528BB4CEA0061B215 /* AlbumDetailCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1623,6 +1626,7 @@
 				6F22E538284B9D4F0069D268 /* Fonts.swift in Sources */,
 				C4B8F2D42854A8510000B8CB /* NavigationBarInlineStyle.swift in Sources */,
 				0A4F4C232891586B00913021 /* StarscreamWebsocket.swift in Sources */,
+				C436EF9628BB4CEA0061B215 /* AlbumDetailCellViewModel.swift in Sources */,
 				6F22E526284B9CFD0069D268 /* CalendarView.swift in Sources */,
 				0AC79182286AF1440034A830 /* EmojiView.swift in Sources */,
 				6F7340BA2874184300707AB7 /* GeneralCalendar.swift in Sources */,

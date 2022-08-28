@@ -10,8 +10,9 @@ import SwiftUI
 struct AlbumRecordDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject private var audioViewModel = AudioRecorderViewModel(numberOfSamples: 21)
+  @ObservedObject var listCellViewModel = AlbumDetailCellViewModel()
+  @ObservedObject var favoriteViewModel: AlbumDetailListCellViewModel
   @StateObject var commentViewModel: CommentViewModel
-  @ObservedObject var favouriteViewModel: AlbumDetailListCellViewModel
   @Binding var colorScheme: ColorScheme // status bar color
   let isDate: Bool // 날짜/유형별 확인
   let info: AlbumDetailElement?
@@ -53,6 +54,7 @@ struct AlbumRecordDetailView: View {
         },
         ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
           isEllipsisClick = false
+          listCellViewModel.deleteFile(fileId: info!.fileId)
           messageData2 = ToastMessage.MessageData(title: "녹음 제거", type: .Remove)
           isToastMessage = true
           presentable.wrappedValue.dismiss()
@@ -113,15 +115,15 @@ struct AlbumRecordDetailView: View {
     HStack {
       Button(action: {
         // 북마크 네트워크 로직
-        favouriteViewModel.postFavourite()
-        if !favouriteViewModel.isFavourite { // 즐겨찾기 등록
+        favoriteViewModel.postFavourite()
+        if !favoriteViewModel.isFavourite { // 즐겨찾기 등록
           isBookmarkClick = true
         }
       }) {
         // 북마크
-        Image(systemName: favouriteViewModel.isFavourite ? "bookmark.fill" : "bookmark")
+        Image(systemName: favoriteViewModel.isFavourite ? "bookmark.fill" : "bookmark")
           .frame(width: 20, height: 20)
-          .foregroundColor(favouriteViewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
+          .foregroundColor(favoriteViewModel.isFavourite ? Color(hex: "#FFCA28") : .white)
           .font(.system(size: 20))
       }
       .padding(EdgeInsets(top: 12, leading: 20, bottom: 15, trailing: 5))
@@ -288,6 +290,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), favouriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), colorScheme: .constant(.dark), isDate: true, info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(favoriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, isPreCommentClick: false)
   }
 }

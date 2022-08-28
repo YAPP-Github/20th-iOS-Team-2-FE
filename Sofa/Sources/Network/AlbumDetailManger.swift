@@ -19,6 +19,7 @@ enum AlbumDetailManger: URLRequestConvertible {
   case putAlbumDelegate(albumId: Int, fieldId: Int)
   case postFavourite(fieldId: Int)
   case deleteAlbum(albumId: Int)
+  case deleteFile(fileId: Int)
   
   var baseURL: URL {
     switch self {
@@ -38,6 +39,8 @@ enum AlbumDetailManger: URLRequestConvertible {
       return URL(string: "\(APIConstants.url)/album/favourite")!
     case let .deleteAlbum(albumId):
       return URL(string: "\(APIConstants.url)/album/\(albumId)")!
+    case let .deleteFile(fileId):
+      return URL(string: "\(APIConstants.url)/album/\(fileId)")!
     }
   }
   
@@ -58,6 +61,8 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .postFavourite:
       return .post
     case .deleteAlbum:
+      return .delete
+    case .deleteFile:
       return .delete
     }
   }
@@ -86,6 +91,9 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .postFavourite:
       headers["accept"] = "application/json"
     case .deleteAlbum:
+      headers["accept"] = "application/json"
+      headers["Content-Type"] = "application/json"
+    case .deleteFile:
       headers["accept"] = "application/json"
       headers["Content-Type"] = "application/json"
     }
@@ -141,6 +149,8 @@ enum AlbumDetailManger: URLRequestConvertible {
     case .postFavourite:
       request = try URLEncoding.default.encode(request, with: parameters)
     case .deleteAlbum:
+      request = try URLEncoding.default.encode(request, with: nil)
+    case .deleteFile:
       request = try URLEncoding.default.encode(request, with: nil)
     }
 

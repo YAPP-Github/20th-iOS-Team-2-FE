@@ -10,6 +10,7 @@ import SwiftUI
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+  @ObservedObject var listCellViewModel = AlbumDetailCellViewModel()
   @StateObject var commentViewModel: CommentViewModel
 
   @State var touchImage = false
@@ -55,9 +56,10 @@ struct AlbumImageDetailView: View {
           isToastMessage = true
         },
         ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
-          isEllipsisClick = false
+          listCellViewModel.deleteFile(fileId: info!.fileId) // 파일 삭제
           messageData2 = ToastMessage.MessageData(title: "사진 제거", type: .Remove)
           isToastMessage = true
+
           presentable.wrappedValue.dismiss()
         }
       ]

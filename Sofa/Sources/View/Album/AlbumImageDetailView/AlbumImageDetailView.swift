@@ -18,6 +18,7 @@ struct AlbumImageDetailView: View {
   let isDate: Bool // 날짜/유형별 확인
   var info: AlbumDetailElement?
   var image: UIImage
+  let albumId: Int
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
@@ -51,6 +52,7 @@ struct AlbumImageDetailView: View {
           isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "flag", label: "대표 사진") {
+          listCellViewModel.putDelegate(albumId: albumId, fileId: info!.fileId)
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "대표 사진 등록", type: .Registration)
           isToastMessage = true
@@ -176,6 +178,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
+    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, image: UIImage(named: data.link)!, albumId: 0, isPreCommentClick: false)
   }
 }

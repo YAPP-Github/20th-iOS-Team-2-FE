@@ -16,6 +16,7 @@ struct AlbumRecordDetailView: View {
   @Binding var colorScheme: ColorScheme // status bar color
   let isDate: Bool // 날짜/유형별 확인
   let info: AlbumDetailElement?
+  let albumId: Int
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
@@ -48,6 +49,7 @@ struct AlbumRecordDetailView: View {
           isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "flag", label: "대표 사진") {
+          listCellViewModel.putDelegate(albumId: albumId, fileId: info!.fileId)
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "대표 사진 등록", type: .Registration)
           isToastMessage = true
@@ -290,6 +292,6 @@ struct AlbumRecordDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[3]
     
-    AlbumRecordDetailView(favoriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, isPreCommentClick: false)
+    AlbumRecordDetailView(favoriteViewModel: AlbumDetailListCellViewModel(fileId: data.fileId, isFavourite: data.favourite), commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, albumId: 0, isPreCommentClick: false)
   }
 }

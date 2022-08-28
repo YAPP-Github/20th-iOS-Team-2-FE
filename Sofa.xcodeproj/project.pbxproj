@@ -114,6 +114,7 @@
 		6FF89F13287EF7A60009D934 /* RegisterFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F12287EF7A60009D934 /* RegisterFinishView.swift */; };
 		6FF89F15287F011C0009D934 /* RegisterFamilyFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF89F14287F011C0009D934 /* RegisterFamilyFinishView.swift */; };
 		C440003728819838007D0C20 /* AlbumTitleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440003628819838007D0C20 /* AlbumTitleEditView.swift */; };
+		C45B502A28ABBFDA00D14A63 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45B502928ABBFDA00D14A63 /* APIConstants.swift */; };
 		C4667A2F284B6FF200A4A759 /* SofaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A2E284B6FF200A4A759 /* SofaApp.swift */; };
 		C4667A31284B6FF200A4A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667A30284B6FF200A4A759 /* ContentView.swift */; };
 		C4667A33284B6FF400A4A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4667A32284B6FF400A4A759 /* Assets.xcassets */; };
@@ -164,7 +165,6 @@
 		C4AC886A288B8AFA00BA5921 /* AlbumEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC8869288B8AFA00BA5921 /* AlbumEditViewModel.swift */; };
 		C4AC886D288D86BD00BA5921 /* AlbumDetailListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC886C288D86BD00BA5921 /* AlbumDetailListCellViewModel.swift */; };
 		C4AC886F288EE3D300BA5921 /* CommentManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC886E288EE3D300BA5921 /* CommentManger.swift */; };
-		C4AC887928921C9600BA5921 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC887828921C9600BA5921 /* APIConstants.swift */; };
 		C4B4963528800DDF000C9E1F /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */; };
 		C4B4963928801E5D000C9E1F /* AlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4963828801E5D000C9E1F /* AlbumManager.swift */; };
 		C4B8F2952850DA1C0000B8CB /* AlbumActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */; };
@@ -322,6 +322,7 @@
 		8E72770DE00FE8DC5BDC3054 /* Pods_Sofa_SofaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofa_SofaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5C5DA7B0EA0D195D6A129 /* Pods-SofaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SofaTests.debug.xcconfig"; path = "Target Support Files/Pods-SofaTests/Pods-SofaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C440003628819838007D0C20 /* AlbumTitleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTitleEditView.swift; sourceTree = "<group>"; };
+		C45B502928ABBFDA00D14A63 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C4667A2B284B6FF200A4A759 /* Sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667A2E284B6FF200A4A759 /* SofaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofaApp.swift; sourceTree = "<group>"; };
 		C4667A30284B6FF200A4A759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -375,7 +376,6 @@
 		C4AC8869288B8AFA00BA5921 /* AlbumEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEditViewModel.swift; sourceTree = "<group>"; };
 		C4AC886C288D86BD00BA5921 /* AlbumDetailListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailListCellViewModel.swift; sourceTree = "<group>"; };
 		C4AC886E288EE3D300BA5921 /* CommentManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentManger.swift; sourceTree = "<group>"; };
-		C4AC887828921C9600BA5921 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C4B4963428800DDF000C9E1F /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		C4B4963828801E5D000C9E1F /* AlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumManager.swift; sourceTree = "<group>"; };
 		C4B8F2942850DA1C0000B8CB /* AlbumActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumActionSheetItem.swift; sourceTree = "<group>"; };
@@ -609,7 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B4963828801E5D000C9E1F /* AlbumManager.swift */,
-				C4AC887828921C9600BA5921 /* APIConstants.swift */,
+				C45B502928ABBFDA00D14A63 /* APIConstants.swift */,
 				C4AC88632889B29D00BA5921 /* AlbumDetailManger.swift */,
 				C4AC886E288EE3D300BA5921 /* CommentManger.swift */,
 				0AF2B5432884613D00C6A55E /* LoginManager.swift */,
@@ -1493,7 +1493,6 @@
 			files = (
 				C4B8F2CC285474900000B8CB /* PinchToZoom.swift in Sources */,
 				C495F61A285BBF58009B3BDE /* AudioRecorderViewModel.swift in Sources */,
-				C4AC887928921C9600BA5921 /* APIConstants.swift in Sources */,
 				6F809429288AE18500CD12F8 /* RegisterFamilyViewModel.swift in Sources */,
 				C481B6DF287AFFF3005D6831 /* AlbumCommentList.swift in Sources */,
 				0ACC024D2886E287006234DF /* CustomTabView.swift in Sources */,
@@ -1570,6 +1569,7 @@
 				6FD3049C289BFA9E00CDDE0A /* EnterCodeView.swift in Sources */,
 				0AF2B54028845FF900C6A55E /* LoginViewModel.swift in Sources */,
 				C4B8F2C12852912D0000B8CB /* AlbumPhotoAddList.swift in Sources */,
+				C45B502A28ABBFDA00D14A63 /* APIConstants.swift in Sources */,
 				6FF89F13287EF7A60009D934 /* RegisterFinishView.swift in Sources */,
 				6FF836FD2879FDEB00B3A390 /* TaskDetailView.swift in Sources */,
 				6FBCD633287ADA5100D874FD /* RegisterView.swift in Sources */,

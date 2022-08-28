@@ -50,6 +50,7 @@ struct AlbumList: View {
           
           // 상세 앨범 View로 이동
           NavigationLink("", destination: AlbumDetailView(listViewModel: AlbumDetailListViewModel(albumId: selectAlbumId, kindType: nil), title: title, selectAlbumId: selectAlbumId), isActive: $showAlbumDetail)
+            .onDisappear { viewModel.refreshActionSubject.send() }
         }
         .offset(y: -10) // PullToRefresh로 인해 scrollview위로 올리기
         .coordinateSpace(name: "pullToRefresh")

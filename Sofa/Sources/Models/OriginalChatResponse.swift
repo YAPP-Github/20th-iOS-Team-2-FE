@@ -23,28 +23,11 @@ struct ChatMember: Decodable, Hashable {
   var emoji: Int
   var content: String?
   
-//  static func getDummy() -> Self{
-//    return Member(userId: 1, image: "https:// .... ", nickname: "닉네임", role: "아들", updatedAt: "2022-06-04 22:08", emoji: 2, content: "지구는 우리 은")
-//  }
-  
-//  var descriptionRole: String{
-//    return "\(role)"
-//  }
-//
-//  var descriptionNickname: String{
-//    return "\(nickname)"
-//  }
-//
-//  var descriptionContent: String{
-//    return "\(content)"
-//  }
-//
   var descriptionTimeInterval: String{
     if updatedAt == "방금전"{
       return updatedAt
     }else{
       let diff = Date().timeIntervalSince(String(updatedAt.prefix(19)).toDateIncludeT() ?? Date())
-
       switch diff {
       case 0..<60:
         return "방금 전"
@@ -55,7 +38,7 @@ struct ChatMember: Decodable, Hashable {
       case 86400..<604800: // 이번주 내
         return "\(Int(diff/86400))일 전"
       default:
-        return updatedAt.toDateIncludeT()?.toString() ?? ""
+        return String(updatedAt.prefix(10))
       }
     }
   }

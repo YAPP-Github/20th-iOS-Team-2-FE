@@ -116,7 +116,9 @@ struct HomeView: View {
         .homenavigationBarStyle(isButtonClick: $gotoAlarm, buttonColor: Color(hex: "121619"), $homeinfoVM.hometitle, "bell")
         .onAppear{
           tabbarManager.showTabBar = true
-
+          // 홍길2동 귀염둥이
+          Constant.userId = 4
+          Constant.accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBUFBMRTpzZDEyZSIsImlhdCI6MTY2MTY5NjgwMCwiZXhwIjoxNjY5NDcyODAwfQ.ZMlWjknIqwc2AZQRNaLwqrp5WEaWqRocL8atgas33d4"
 //          print(Constant.accessToken ?? "")
 //          print(Constant.userId ?? 0)
         }

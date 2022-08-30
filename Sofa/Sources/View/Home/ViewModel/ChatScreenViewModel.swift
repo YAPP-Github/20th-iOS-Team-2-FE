@@ -21,24 +21,23 @@ final class ChatScreenViewModel: ObservableObject {
   var subscription = Set<AnyCancellable>()
   
   func connect() {
-    //    guard let url = URL(string: "ws://3.34.94.220:8085/home/\(Constant.userId ?? -1)") else {
-    //      print("Error: can not create URL")
-    //      return
-    //    }
-    guard let url = URL(string: "ws://3.34.94.220:8082/home/\(Constant.userId ?? 1)") else {
+    guard let url = URL(string: "\(APIConstants.websocketurl)/home/\(Constant.userId ?? -1)") else {
       print("Error: can not create URL")
       return
     }
+//    guard let url = URL(string: "ws://localhost:1337/") else {
+//      print("Error: can not create URL")
+//      return
+//    }
     var request = URLRequest(url: url)
-    //    request.addValue(Constant.accessToken ?? "", forHTTPHeaderField: "Authorization")
-    request.addValue("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q", forHTTPHeaderField: "Authorization")
+    request.addValue("Bearer \(Constant.accessToken ?? "")", forHTTPHeaderField: "Authorization")
+    //    request.addValue("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJLQUtBTzoyMTczNzMzODA0IiwiaWF0IjoxNjU4MDM4NzA0LCJleHAiOjE2NjU4MTQ3MDR9.Cm1pEFN83ribamFh36WdnSTJI74Crmy2T9XmxElwr1Q", forHTTPHeaderField: "Authorization")
     
     //    request.addValue("Bearer \(Constant.accessToken ?? "")", forHTTPHeaderField: "Authorization")
     print(Constant.accessToken ?? " ")
     websocketTask = URLSession.shared.webSocketTask(with: request)
     websocketTask?.resume()
     receiveMessage()
-    print("connect!")
     ping()
   }
   
@@ -50,14 +49,17 @@ final class ChatScreenViewModel: ObservableObject {
   func receiveMessage() {
     print("receiveMessage() called")
     websocketTask?.receive { [self] result in
+      print(websocketTask?.response)
       switch result {
       case .failure(let error):
         print("Error in receiving message: \(error)")
         let code = (error as NSError).code
+        print("code: \(code.description)")
+        print("error: \(error.localizedDescription)")
         if code == 60 || code == 57 || code == 54 {
           // deal with error
-          print(code)
-          print(error)
+          print("code: \(code)")
+          print("error: \(error)")
         }
       case .success(let message):
         switch message {
@@ -69,7 +71,7 @@ final class ChatScreenViewModel: ObservableObject {
                 .decode(type: OriginalChatResponse.self, decoder: JSONDecoder())
                 .map{ $0.members }
                 .sink(receiveCompletion: { completion in
-                  //                  print("데이터스트림 완료")
+                  print("데이터스트림 완료")
                   
                 }, receiveValue: { receivedValue in
                   print("ChatScreen 받은 값: \(receivedValue?.count ?? 0)")

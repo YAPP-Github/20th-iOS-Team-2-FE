@@ -55,6 +55,7 @@ struct AlbumDateEditView: View {
           primaryButton: .default(Text("취소")),
           secondaryButton: .destructive(Text("삭제")
             .font(.custom("Pretendard-Bold", size: 18))) {
+              self.viewModel.deleteAlbum(albumId: albumId!)
               self.parant?.presentable.wrappedValue.dismiss()
               self.presentable.wrappedValue.dismiss()
             })

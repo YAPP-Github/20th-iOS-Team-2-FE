@@ -13,6 +13,7 @@ enum CommentManger: URLRequestConvertible {
   case getComments(fileId: Int)
   case postComments(fileId: Int, content: String)
   case patchComment(commentId: Int, content: String)
+  case deleteComment(commentId: Int)
   
   var baseURL: URL {
     switch self {
@@ -21,6 +22,8 @@ enum CommentManger: URLRequestConvertible {
     case let .postComments(fileId, _):
       return URL(string: "\(APIConstants.url)/album/\(fileId)/comments")!
     case let .patchComment(commentId, _):
+      return URL(string: "\(APIConstants.url)/album/comments/\(commentId)")!
+    case let .deleteComment(commentId):
       return URL(string: "\(APIConstants.url)/album/comments/\(commentId)")!
     }
   }
@@ -33,6 +36,8 @@ enum CommentManger: URLRequestConvertible {
       return .post
     case .patchComment:
       return .patch
+    case .deleteComment:
+      return .delete
     }
   }
   
@@ -46,6 +51,8 @@ enum CommentManger: URLRequestConvertible {
     case .postComments:
       headers["Content-Type"] = "application/json"
     case .patchComment:
+      headers["Content-Type"] = "application/json"
+    case .deleteComment:
       headers["Content-Type"] = "application/json"
     }
     return headers
@@ -61,6 +68,8 @@ enum CommentManger: URLRequestConvertible {
       params["content"] = content
     case let .patchComment(_, content):
       params["content"] = content
+    case .deleteComment:
+      break
     }
     return params
   }
@@ -79,6 +88,8 @@ enum CommentManger: URLRequestConvertible {
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
     case .patchComment:
       request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+    case .deleteComment:
+      request = try URLEncoding.default.encode(request, with: nil)
     }
     
     return request

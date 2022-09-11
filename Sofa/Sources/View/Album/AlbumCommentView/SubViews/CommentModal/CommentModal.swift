@@ -15,8 +15,8 @@ struct CommentModal: View {
   @State var isWriteClick = false
   @State var commentText: String?
   @State var placeholder = "댓글을 남겨보세요"
-  @State var selectComment: Comment?
   @State var editText: String?
+  @Binding var selectComment: Comment?
   @Binding var isEllipsisClick: Bool // 설정(수정, 삭제)
   @Binding var isEdit: Bool // 설정(수정)
   let minHeight: CGFloat = Screen.maxHeight / 2
@@ -130,7 +130,7 @@ struct CommentModal_Previews: PreviewProvider {
     ZStack(alignment: .bottom) {
       ModalBackGround() // Back Ground
       
-      CommentModal(viewModel: CommentViewModel(filedId: 0), isEllipsisClick: .constant(false), isEdit: .constant(false)) // 댓글 Modal
+      CommentModal(viewModel: CommentViewModel(filedId: 0), selectComment: .constant(nil), isEllipsisClick: .constant(false), isEdit: .constant(false)) // 댓글 Modal
         .transition(.move(edge: .bottom))
     }
   }

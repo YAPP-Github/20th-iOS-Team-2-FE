@@ -10,6 +10,7 @@ import SwiftUI
 struct AlbumImageDetailView: View {
   @Environment(\.presentationMode) var presentable
   @ObservedObject var authorizationViewModel = AuthorizationViewModel()
+  @ObservedObject var listCellViewModel = AlbumDetailCellViewModel()
   @StateObject var commentViewModel: CommentViewModel
 
   @State var touchImage = false
@@ -17,6 +18,7 @@ struct AlbumImageDetailView: View {
   let isDate: Bool // 날짜/유형별 확인
   var info: AlbumDetailElement?
   var image: UIImage
+  let albumId: Int
   
   // 즐겨찾기
   @State var isBookmarkClick: Bool = false
@@ -50,14 +52,16 @@ struct AlbumImageDetailView: View {
           isEllipsisClick = false
         },
         ActionSheetCardItem(systemIconName: "flag", label: "대표 사진") {
+          listCellViewModel.putDelegate(albumId: albumId, fileId: info!.fileId)
           isEllipsisClick = false
           messageData2 = ToastMessage.MessageData(title: "대표 사진 등록", type: .Registration)
           isToastMessage = true
         },
         ActionSheetCardItem(systemIconName: "trash", label: "삭제", foregrounColor: Color(hex: "#EC407A")) {
-          isEllipsisClick = false
+          listCellViewModel.deleteFile(fileId: info!.fileId) // 파일 삭제
           messageData2 = ToastMessage.MessageData(title: "사진 제거", type: .Remove)
           isToastMessage = true
+
           presentable.wrappedValue.dismiss()
         }
       ]
@@ -174,6 +178,6 @@ struct AlbumImageDetailView_Previews: PreviewProvider {
   static var previews: some View {
     let data = MockData().albumDetail.results.elements[6]
     
-    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, image: UIImage(named: data.link)!, isPreCommentClick: false)
+    AlbumImageDetailView(commentViewModel: CommentViewModel(filedId: data.fileId), colorScheme: .constant(.dark), isDate: true, info: data, image: UIImage(named: data.link)!, albumId: 0, isPreCommentClick: false)
   }
 }

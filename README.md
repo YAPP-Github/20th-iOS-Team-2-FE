@@ -1,8 +1,8 @@
 # 20th-iOS-Team-2-FE
 
 ## 🛋 소개
-<img width="1080" alt="Instagram post1" src="https://user-images.githubusercontent.com/48436020/190422871-afdc3319-1d97-4b43-a8b5-fbc1426dfa87.png">
-<img width="1080" alt="Instagram post3" src="https://user-images.githubusercontent.com/48436020/190422882-e5c37161-f2a9-4fd9-a85f-7ac9a2cd617b.png"> <img width="1080" alt="post" src="https://user-images.githubusercontent.com/48436020/190422635-035d5f11-704e-4910-90b2-164bceb970ac.png">
+<img width="1080" alt="post" src="https://user-images.githubusercontent.com/48436020/190422635-035d5f11-704e-4910-90b2-164bceb970ac.png"><img width="1080" alt="Instagram post1" src="https://user-images.githubusercontent.com/48436020/190422871-afdc3319-1d97-4b43-a8b5-fbc1426dfa87.png">
+<img width="1080" alt="Instagram post3" src="https://user-images.githubusercontent.com/48436020/190422882-e5c37161-f2a9-4fd9-a85f-7ac9a2cd617b.png">
 
 ## 🛠 기술 스택
 
